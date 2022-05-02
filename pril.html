@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8" />
+<link rel='stylesheet' type="text/css" href="style.css"></link>
+<meta name="author" content="leonid" />
+<meta name="description" content="вероятность" />
+<meta name="keywords" content="вероятность," />
+<head><title>Понятие вероятности</title></head>
+<body>
+<p><a href="index.html">К содержанию</a></p>
+<h2>Приложение. Понятие вероятности</h2>
+<p>Пусть &#945; &#8212; случайное событие, появлению которого из всевозможных <var>n</var> исходов благоприятствует <var>m</var> исходов, причем ограничимся случаем конечного числа исходов <var>n</var>.</p>
+<p><span class="teorema">Вероятностью <var>p</var> случайного события &#945; назовем отношение числа благоприятствующих его появлению исходов к общему числу исходов:   
+<table class="formula"><tr>
+<td class="formula">
+<math >
+<mrow>
+	<mi>p</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo><mi>&#945;</mi><mo>)</mo>
+	</mrow>
+	<mo>=</mo>
+	<mfrac><mi>m</mi><mi>n</mi></mfrac>
+</mrow>
+</math>.</td>
+<td class="nomer">(7.1.1)</td>
+</tr></table>
+</span>
+</p>
+<p>Если <var>n</var> и <var>m</var> бесконечно большие числа, то определение (7.1.1) становится некорректным. Дадим определение вероятности через частоту случайного события:</p>
+<p><span class="teorema">Частотой случайного события назовем величину 
+<math >
+<mrow>
+	<mi>w</mi>
+	<mo>=</mo>
+	<mfrac><mi>m</mi><mi>n</mi></mfrac>
+</mrow>
+</math>, определяемую экспериментально как отношение числа появления события <var>m</var> к общему числу испытаний <var>n</var>, а вероятностью назовем величину, определяемую теоретически как ожидаемую долю появления события в общем числе испытаний, рассчитанную до испытаний.</span></p>
+<p>Частота и вероятность характеризуют степень возможности появления случайного события, и <span class="name">закон больших чисел</span> утверждает: при возрастании числа испытаний частота случайного события стремится к вероятности этого события.</p>
+<p>Очевидно, что вероятность <var>p</var> случайного события заключена в интервал от 0 до 1:
+<math >
+<mrow>
+	<mn>0</mn><mo>&#8804;</mo><mi>p</mi><mo>&#8804;</mo><mn>1</mn>
+</mrow>
+</math>.
+</p>
+<p>Для невозможного события <var>&#945;</var> имеем 
+<math >
+<mrow>
+<mrow>
+	<mi>p</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<mi>&#945;</mi>
+			<mo>)</mo>
+		</mrow>
+</mrow>
+<mo>=</mo>
+<mn>0</mn>
+</mrow>
+</math>, а для достоверного &#8212;  
+<math >
+<mrow>
+<mrow>
+	<mi>p</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<mi>&#945;</mi>
+			<mo>)</mo>
+		</mrow>
+</mrow>
+<mo>=</mo>
+<mn>1</mn>
+</mrow>
+</math>.
+</p>
+<p>Cобытие 
+<math >
+<mover><mi>&#945;</mi><mi>&#773;</mi></mover>
+</math>, противоположное &#945;, состоящее в непоявлении случайного события &#945;, имеет следующую вероятность
+</p>
+<table class="formula"><tr>
+<td class="formula">
+<math >
+<mrow>
+	<mi>p</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<mover><mi>&#945;</mi><mi>&#773;</mi></mover>
+			<mo>)</mo>
+		</mrow>
+</mrow>
+<mo>=</mo>
+<mrow>
+<mn>1</mn><mo>-</mo>
+<mrow>
+	<mi>p</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<mi>&#945;</mi>
+			<mo>)</mo>
+		</mrow>
+</mrow>
+</mrow>
+</math>.</td>
+<td class="nomer">(7.1.2)</td>
+</tr></table>
+
+<div class="examp">
+<p><span class="exam">Пример 7.1.1</span>. Пусть из урны, в котором находится 7 белых и 6 красных шаров, наудачу извлекается шар. Случайное событие &#945; состоит в извлечении красного шара. Очевидно, что</p> 
+<table class="formula"><tr>
+<td>
+<math >
+<mrow>
+<mrow>
+	<mi>p</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<mi>&#945;</mi>
+			<mo>)</mo>
+		</mrow>
+</mrow>
+<mo>=</mo>
+<mfrac><mn>6</mn><mn>13</mn></mfrac>
+</mrow>
+<mo>,</mo>
+<mrow>
+<mrow>
+	<mi>p</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<mover><mi>&#945;</mi><mi>&#773;</mi></mover>
+			<mo>)</mo>
+		</mrow>
+</mrow>
+<mo>=</mo>
+<mfrac><mn>7</mn><mn>13</mn></mfrac>
+</mrow>
+</math>.
+</td>
+</tr></table>
+</div>
+<p><span class="teorema">Пусть случайному событию <var>&#946;</var> предшествует случайное событие <var>&#945;</var>. Вероятность случайного события <var>&#946;</var> при условии, что <var>&#945;</var> произошло, назовем условной вероятностью 
+<math >
+<mrow>
+	<msub><mi>p</mi><mi>&#945;</mi></msub>
+	<mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo><mi>&#946;</mi><mo>)</mo>
+	</mrow>
+</mrow>
+</math>.</span>
+</p>
+<div class="examp">
+<p><span class="exam">Пример 7.1.2</span>. Из урны с 7 белыми и 6 красными шарами последовательно без возврата извлекаются два шара. Случайное событие <var>&#945;</var> состоит в извлечении белого шара, а <var>&#946;</var> &#8212; в извлечении красного шара. Условная вероятность
+<math >
+<mrow>
+<mrow>
+	<msub><mi>p</mi><mi>&#945;</mi></msub>
+	<mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo><mi>&#946;</mi><mo>)</mo>
+	</mrow>
+</mrow>
+<mo>=</mo>
+<mfrac><mn>6</mn><mn>12</mn></mfrac>
+</mrow>
+</math>.
+</p>
+</div>
+<p><span class="teorema">
+<a name="proizv">Произведением</a> случайных событий &#945; и &#946; называется случайное событие &#945; &#183; &#946;, состоящее в совместном появлении событий &#945; и &#946;, причем имеет место формула
+<table class="formula">
+<tr>
+<td class="formula">
+<math >
+<mrow>
+	<mrow>
+		<mi>p</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<mi>&#945;</mi><mo>&#183;</mo><mi>&#946;</mi>
+			<mo>)</mo>
+		</mrow>
+	</mrow>	
+	<mo>=</mo>
+	<mrow>
+	<mi>p</mi><mo>&#x2061;</mo>
+		<mrow>	
+			<mo>(</mo>
+			<mi>&#945;</mi>
+			<mo>)</mo>
+		</mrow>
+	</mrow>				
+	<mo>&#183;</mo>
+	<mrow>	
+	<msub><mi>p</mi><mi>&#945;</mi></msub><mo>&#x2061;</mo>
+		<mrow>	
+			<mo>(</mo>
+			<mi>&#946;</mi>
+			<mo>)</mo>
+		</mrow>
+	</mrow>					
+	<mo>=</mo>
+	<mrow>	
+	<mi>p</mi><mo>&#x2061;</mo>
+		<mrow>	
+			<mo>(</mo>
+			<mi>&#946;</mi>
+			<mo>)</mo>
+		</mrow>
+	</mrow>			
+	<mo>&#183;</mo>
+	<mrow>
+	<msub><mi>p</mi><mi>&#946;</mi></msub><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<mi>&#945;</mi>
+			<mo>)</mo>
+		</mrow>
+	</mrow>	
+</mrow>		
+</math>.</td>
+<td class="nomer">(7.1.3)</td>
+</tr>
+</table></span>
+</p>
+<div class="examp">
+<p><span class="exam">Пример 7.1.3</span>. Из урны с 7 белыми и 6 красными шарами последовательно без возврата извлекаются два шара. Случайное событие <var>&#945;</var> состоит в извлечении белого шара, а <var>&#946;</var> &#8212; в извлечении красного шара. Вычислим вероятность произведения событий <var>&#945;</var> и <var>&#946;</var>:
+<table class="formula"><tr>
+<td class="formula">
+<math >
+<mrow>
+	<mrow>
+		<mi>p</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<mi>&#945;</mi><mo>&#183;</mo><mi>&#946;</mi>
+			<mo>)</mo>
+		</mrow>
+	</mrow>	
+	<mo>=</mo>
+	<mrow>
+	<mi>p</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo><mi>&#945;</mi><mo>)</mo>
+		</mrow>
+	</mrow>		
+	<mo>&#183;</mo>
+	<mrow>
+	<msub><mi>p</mi><mi>&#945;</mi></msub><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo><mi>&#946;</mi><mo>)</mo>
+		</mrow>
+	</mrow>		
+	<mo>=</mo>
+	<mrow>
+		<mfrac><mn>7</mn><mn>13</mn></mfrac>
+		<mo>&#183;</mo>
+		<mfrac><mn>6</mn><mn>12</mn></mfrac>
+	</mrow>
+</mrow>
+</math>.</td>
+</tr></table>
+</p>
+</div>
+<a name="nezs_s"></a>
+<p><span class="teorema">Случайные события <var>&#945;</var> и <var>&#946;</var> называются <span class="name">независимыми</span>, если исход одного из них никак не влияет на исход другого.</span></p>
+<p>Для независимых случайных событий <var>&#945;</var> и <var>&#946;</var></p>
+<table class="formula"><tr>
+<td class="formula">
+<math >
+<mrow>
+	<mrow>
+		<mi>p</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<mrow>		
+				<mi>&#945;</mi><mo>&#183;</mo><mi>&#946;</mi>
+			</mrow>
+			<mo>)</mo>
+		</mrow>
+	</mrow>
+	<mo>=</mo>
+	<mrow>
+		<mrow>		
+			<mi>p</mi><mo>&#x2061;</mo>
+			<mrow>
+				<mo>(</mo>
+				<mi>&#945;</mi>
+				<mo>)</mo>
+			</mrow>	
+		</mrow>	
+		<mo>&#183;</mo>
+		<mrow>
+			<mi>p</mi><mo>&#x2061;</mo>
+			<mrow>
+				<mo>(</mo>
+				<mi>&#946;</mi>
+				<mo>)</mo>
+			</mrow>	
+		</mrow>	
+	</mrow>
+</mrow>
+</math>.</td>
+<td class="nomer">(7.1.4)</td>
+</tr></table>
+<div class="examp">
+<p><span class="exam">Пример 7.1.4</span>. Бросают две игральные кости. Случайное событие <var>&#945;</var> состоит в выпадении не более двух очков на первой кости, а <var>&#946;</var> &#8212; в выпадении не менее четырех очков на второй кости. Вычислить вероятность того, что произошли события <var>&#945;</var> и <var>&#946;</var>.</p>
+<p>Очевидно, что <var>&#945;</var> и <var>&#946;</var> &#8212; независимые события,
+<math >
+<mrow>
+	<mrow>
+		<mi>p</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo><mi>&#945;</mi><mo>)</mo>
+		</mrow>
+	</mrow>
+	<mo>=</mo>
+	<mfrac>
+		<mn>2</mn><mn>6</mn>
+	</mfrac>
+</mrow>	
+	<mo>,</mo>
+<mrow>
+	<mrow>
+		<mi>p</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<mi>&#946;</mi>
+			<mo>)</mo>
+		</mrow>
+	</mrow>
+	<mo>=</mo>
+	<mfrac><mn>3</mn><mn>6</mn></mfrac>
+</mrow>
+</math>.
+ По формуле (7.1.4) имеем
+<math >
+<mrow>
+	<mrow>
+		<mi>p</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<mi>&#945;</mi>
+			<mo>&#183;</mo>
+			<mi>&#946;</mi>
+			<mo>)</mo>
+		</mrow>
+	</mrow>	
+	<mo>=</mo>
+	<mrow>
+		<mrow>
+			<mi>p</mi><mo>&#x2061;</mo>
+			<mrow>
+				<mo>(</mo><mi>&#945;</mi><mo>)</mo>
+			</mrow>
+		</mrow>		
+		<mo>&#183;</mo>
+		<mrow>
+			<mi>p</mi><mo>&#x2061;</mo>
+			<mrow>
+				<mo>(</mo><mi>&#946;</mi><mo>)</mo>
+			</mrow>
+		</mrow>
+	</mrow>	
+	<mo>=</mo>
+		<mrow>
+			<mfrac><mn>2</mn><mn>6</mn></mfrac>
+			<mo>&#183;</mo>
+			<mfrac><mn>3</mn><mn>6</mn></mfrac>
+		</mrow>
+	<mo>=</mo>
+	<mfrac><mn>1</mn><mn>6</mn></mfrac> 
+</mrow>
+</math>.</p> 
+</div>
+<p><span class="teorema">Суммой случайных событий <var>&#945;</var> и <var>&#946;</var> называется случайное событие 
+<math >
+<mrow>
+	<mi>&#945;</mi>
+	<mo>+</mo>
+	<mi>&#946;</mi>	
+</mrow>
+</math>,
+состоящее в появлении хотя бы одного из событий <var>&#945;</var> и <var>&#946;</var>.</span></p>
+<p>Вероятность суммы двух случайных событий находится по формуле
+<table class="formula"><tr>
+<td class="formula">
+<math >
+<mrow>
+	<mrow>
+	<mi>p</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo><mi>&#945;</mi><mo>+</mo><mi>&#946;</mi><mo>)</mo>
+		</mrow>
+	</mrow>	
+	<mo>=</mo>
+	<mrow>
+		<mrow>		
+			<mi>p</mi><mo>&#x2061;</mo>
+			<mrow>
+				<mo>(</mo><mi>&#945;</mi><mo>)</mo>
+			</mrow>
+		</mrow>
+		<mo>+</mo>
+		<mrow>
+			<mi>p</mi><mo>&#x2061;</mo>
+			<mrow>
+				<mo>(</mo><mi>&#946;</mi><mo>)</mo>
+			</mrow>	
+		</mrow>	
+		<mo>-</mo>
+		<mrow>
+			<mi>p</mi><mo>&#x2061;</mo>
+			<mrow>
+				<mo>(</mo>
+				<mrow>
+					<mi>&#945;</mi><mo>&#183;</mo><mi>&#946;</mi>
+				</mrow>	
+				<mo>)</mo>
+			</mrow>	
+		</mrow>	
+	</mrow>
+</mrow>
+</math>.
+</td>
+<td class="formula">(7.1.5)</td>
+</tr>
+</table>
+</p>
+<div class="examp">
+<p><span class="exam">Пример 7.1.5</span>. Бросают две игральные кости. Случайное событие <var>&#945;</var> состоит в выпадении не более двух очков на первой кости, а <var>&#946;</var> &#8212; в выпадении не менее четырех очков на второй кости. Вычислить вероятность появления хотя бы одного из событий <var>&#945;</var> и <var>&#946;</var>.</p>
+<p>Очевидно, что <var>&#945;</var> и <var>&#946;</var> &#8212; совместные события, и искомую вероятность найдем по формуле (7.1.5):
+<table class="formula"><tr>
+<td class="formula">
+<math >
+<mrow>
+	<mrow>
+	<mi>p</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo><mi>&#945;</mi><mo>+</mo><mi>&#946;</mi><mo>)</mo>
+		</mrow>
+	</mrow>	
+	<mo>=</mo>
+	<mrow>
+		<mrow>		
+			<mi>p</mi><mo>&#x2061;</mo>
+			<mrow>
+				<mo>(</mo><mi>&#945;</mi><mo>)</mo>
+			</mrow>
+		</mrow>
+		<mo>+</mo>
+		<mrow>
+			<mi>p</mi><mo>&#x2061;</mo>
+			<mrow>
+				<mo>(</mo><mi>&#946;</mi><mo>)</mo>
+			</mrow>	
+		</mrow>	
+		<mo>-</mo>
+		<mrow>
+			<mi>p</mi><mo>&#x2061;</mo>
+			<mrow>
+				<mo>(</mo>
+				<mrow>
+					<mi>&#945;</mi><mo>&#183;</mo><mi>&#946;</mi>
+				</mrow>	
+				<mo>)</mo>
+			</mrow>	
+		</mrow>	
+	</mrow>
+	<mo>=</mo>
+	<mrow>
+		<mfrac><mn>2</mn><mn>6</mn></mfrac>
+		<mo>+</mo>
+		<mfrac><mn>3</mn><mn>6</mn></mfrac>
+		<mo>-</mo>
+		<mfrac><mn>2</mn><mn>6</mn></mfrac>
+		<mo>&#183;</mo>
+		<mfrac><mn>3</mn><mn>6</mn></mfrac>
+	</mrow>	
+	<mo>=</mo>
+		<mfrac><mn>2</mn><mn>3</mn></mfrac>
+</mrow>
+</math>.</td>
+</tr>
+</table>
+</p>
+</div>
+<p><span class="teorema">Случайные события называются несовместными, если появление одного из них исключает возможность появления других.</span></p>
+<p>Для несовместных событий формулу (7.1.5) перепишем так</p>
+<table class="formula"><tr>
+<td class="formula">
+<math >
+<mrow>
+	<mrow>
+	<mi>p</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo><mi>&#945;</mi><mo>+</mo><mi>&#946;</mi><mo>)</mo>
+		</mrow>
+	</mrow>	
+	<mo>=</mo>
+	<mrow>
+		<mrow>		
+			<mi>p</mi><mo>&#x2061;</mo>
+			<mrow>
+				<mo>(</mo><mi>&#945;</mi><mo>)</mo>
+			</mrow>
+		</mrow>
+		<mo>+</mo>
+		<mrow>
+			<mi>p</mi><mo>&#x2061;</mo>
+			<mrow>
+				<mo>(</mo><mi>&#946;</mi><mo>)</mo>
+			</mrow>	
+		</mrow>	
+	</mrow>
+</mrow>
+</math>.
+</td>
+</tr>
+</table>
+<div class="examp">
+<p><span class="exam">Пример 7.1.6</span>. Бросают игральную кость. Случайное событие <var>&#945;</var> состоит в выпадении четного числа очков, а <var>&#946;</var> &#8212; в выпадении трех очков. Вычислить вероятность появления хотя бы одного из событий <var>&#945;</var> и <var>&#946;</var>.</p>
+<p>Очевидно, что <var>&#945;</var> и <var>&#946;</var> &#8212; несовместные события. Событию <var>&#945;</var> благоприятствуют три исхода, и поэтому 
+<math >
+<mrow>
+	<mrow>
+		<mi>p</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo><mi>&#945;</mi><mo>)</mo>
+		</mrow>
+	</mrow>	
+	<mo>=</mo>
+	<mfrac><mn>3</mn><mn>6</mn></mfrac>
+</mrow>
+</math>. Событию <var>&#946;</var> благоприятствует один исход, следовательно, 
+<math >
+<mrow>
+	<mrow>
+		<mi>p</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo><mi>&#946;</mi><mo>)</mo>
+		</mrow>
+	</mrow>	
+	<mo>=</mo>
+	<mfrac><mn>1</mn><mn>6</mn></mfrac>
+</mrow>
+</math>.
+Вычислим искомую вероятность
+<math >
+<mrow>
+	<mrow>
+	<mi>p</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo><mi>&#945;</mi><mo>+</mo><mi>&#946;</mi><mo>)</mo>
+		</mrow>
+	</mrow>	
+	<mo>=</mo>
+	<mrow>
+		<mrow>		
+			<mi>p</mi><mo>&#x2061;</mo>
+			<mrow>
+				<mo>(</mo><mi>&#945;</mi><mo>)</mo>
+			</mrow>
+		</mrow>
+		<mo>+</mo>
+		<mrow>
+			<mi>p</mi><mo>&#x2061;</mo>
+			<mrow>
+				<mo>(</mo><mi>&#946;</mi><mo>)</mo>
+			</mrow>	
+		</mrow>	
+	</mrow>
+	<mo>=</mo>
+	<mrow>
+		<mfrac><mn>3</mn><mn>6</mn></mfrac>
+		<mo>+</mo>
+		<mfrac><mn>1</mn><mn>6</mn></mfrac>
+	</mrow>
+	<mo>=</mo>
+	<mfrac><mn>2</mn><mn>3</mn></mfrac>
+</mrow>
+</math>.
+</p>
+</div>
+<a name="poln_gr"></a>
+<p><span class="teorema">Случайные события 
+<math >
+<mrow>
+	<msub><mi>&#946;</mi><mn>1</mn></msub>
+	<mo>,</mo>
+	<mi>&#8230;</mi>
+	<mo>,</mo>
+	<msub><mi>&#946;</mi><mi>k</mi></msub>
+</mrow>
+</math>
+образуют полную группу событий, если в результате опыта непременно должно произойти хотя бы одно из них.
+</span>
+</p>
+<p>Например, противоположные события <var>&#945;</var> и 
+<math >
+<mover><mi>&#945;</mi><mi>&#773;</mi></mover>
+</math>
+ образуют полную группу событий. Другой пример полной группы событий: выпадение одного очка, двух очков, &#8230; , шести очков при однократном бросании игральной кости.</p>
+<p>Сумма полной группы событий 
+<math >
+<mrow>
+	<msub><mi>&#946;</mi><mn>1</mn></msub>
+	<mo>,</mo><mi>&#8230;</mi><mo>,</mo>
+	<msub><mi>&#946;</mi><mi>k</mi></msub>
+</mrow>
+</math>
+ является достоверным событием: 
+<table class="formula"><tr>
+<td class="formula">
+<math >
+<mrow>
+	<mrow>
+		<mi>p</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<msub><mi>&#946;</mi><mn>1</mn></msub>
+			<mo>+</mo>
+			<mi>&#8230;</mi>
+			<mo>+</mo>
+			<msub><mi>&#946;</mi><mi>k</mi></msub>
+			<mo>)</mo>
+		</mrow>
+	</mrow>
+	<mo>=</mo>
+	<mn>1</mn>
+</mrow>
+</math>.
+</td>
+</tr></table>
+</p>
+<p>Пусть событие
+<math >
+<mi>&#945;</mi>
+</math>
+ может случиться только с одним из несовместных событий
+<math >
+<mrow>
+	<msub><mi>&#946;</mi><mn>1</mn></msub>
+	<mo>,</mo><mi>&#8230;</mi><mo>,</mo>
+	<msub><mi>&#946;</mi><mi>k</mi></msub>
+	<mo>,</mo>
+</mrow>
+</math>
+ образующих полную группу событий. Тогда
+
+<math >
+<mrow>
+	<mi>&#945;</mi>
+	<mo>=</mo>
+	<mrow>
+		<mrow>
+			<mi>&#945;</mi>
+			<mo>&#183;</mo>
+			<msub><mi>&#946;</mi><mn>1</mn></msub>
+		</mrow>
+		<mo>+</mo>
+		<mi>&#8230;</mi>
+		<mo>+</mo>
+		<mrow>
+			<mi>&#945;</mi>
+			<mo>&#183;</mo>
+			<msub><mi>&#946;</mi><mn>k</mn></msub>
+		</mrow>
+	</mrow>
+	<mo>,</mo>
+</mrow>
+</math> 
+ причем слагаемые являются несовместными событиями. Следовательно,
+<math >
+<mrow>
+	<mrow>	
+		<mi>p</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<mi>&#945;</mi>
+			<mo>)</mo>
+		</mrow>
+	</mrow>
+	<mo>=</mo>
+	<mrow>
+		<mrow>		
+			<mi>p</mi><mo>&#x2061;</mo>
+			<mrow>			
+				<mo>(</mo>
+				<mi>&#945;</mi>
+				<mo>&#183;</mo>
+				<msub><mi>&#946;</mi><mn>1</mn></msub>
+				<mo>)</mo>
+			</mrow>
+		</mrow>
+		<mo>+</mo>
+		<mi>&#8230;</mi>
+		<mo>+</mo>
+		<mi>p</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<mi>&#945;</mi>
+			<mo>&#183;</mo>
+			<msub><mi>&#946;</mi><mn>k</mn></msub>
+			<mo>)</mo>
+		</mrow>
+	</mrow>
+</mrow>
+</math>. Отсюда и из формулы <a href="#proizv">(7.1.3)</a> получаем <span class="name">формулу полной вероятности</span>:
+<table class="formula"><tr>
+<td class="formula">
+<math >
+<mrow>
+	<mi>p</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo><mi>&#945;</mi><mo>)</mo>
+	</mrow>
+	<mo>=</mo>
+	<mrow>
+		<mrow>
+			<mi>p</mi><mo>&#x2061;</mo>
+			<mrow>
+				<mo>(</mo>
+				<msub><mi>&#946;</mi><mn>1</mn></msub>
+				<mo>)</mo>
+			</mrow>
+		</mrow>	
+		<mo>&#183;</mo>
+		<mrow>
+			<msub>
+				<mi>p</mi>
+				<msub><mi>&#946;</mi><mn>1</mn></msub>
+			</msub><mo>&#x2061;</mo>
+			<mrow>
+				<mo>(</mo><mi>&#945;</mi><mo>)</mo>
+			</mrow>
+		</mrow>		
+		<mo>+</mo>
+		<mi>&#8230;</mi>
+		<mo>+</mo>
+		<mrow>
+			<mi>p</mi><mo>&#x2061;</mo>
+			<mrow>
+				<mo>(</mo>
+				<msub><mi>&#946;</mi><mn>k</mn></msub>
+				<mo>)</mo>
+			</mrow>	
+		</mrow>	
+		<mo>&#183;</mo>
+		<mrow>
+			<msub>
+				<mi>p</mi>
+				<mrow><msub><mi>&#946;</mi><mn>k</mn></msub></mrow>
+			</msub><mo>&#x2061;</mo>
+			<mrow>
+				<mo>(</mo><mi>&#945;</mi><mo>)</mo>
+			</mrow>
+		</mrow>		
+	</mrow>	
+</mrow>
+</math>.</td>
+<td class="nomer">(7.1.6)</td>
+</tr></table>
+</p>
+<div class="examp">
+<p><span class="exam">Пример 7.1.7</span>. Из урны с 6 белыми, 8 красными и 5 черными шарами последовательно без возвращения извлекают два шара. Найти вероятность того, что второй извлеченный шар белый.</p>
+<p>Примем следующие обозначения событий:
+<math >
+<msub><mi>&#946;</mi><mn>1</mn></msub>
+</math>
+&#8212; &quot;первый извлеченный шар белый&quot;,
+<math >
+<msub><mi>&#946;</mi><mn>2</mn></msub>
+</math>
+&#8212; &quot;первый извлеченный шар красный&quot;,
+<math >
+<msub><mi>&#946;</mi><mn>3</mn></msub>
+</math>
+&#8212; &quot;первый извлеченный шар черный&quot;,
+<math >
+<mi>&#945;</mi>
+</math>
+&#8212; &quot;второй извлеченный шар белый&quot;. Несовместные события 
+<math >
+<mrow>
+	<msub><mi>&#946;</mi><mn>1</mn></msub><mo>,</mo>
+	<msub><mi>&#946;</mi><mn>2</mn></msub><mo>,</mo>
+	<msub><mi>&#946;</mi><mn>3</mn></msub>
+</mrow>
+</math>
+ образуют полную группу событий, предшествуют событию 
+<math >
+<mi>&#945;</mi>
+</math> 
+ и 
+<math >
+<mrow>
+	<mi>p</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo><msub><mi>&#946;</mi><mn>1</mn></msub><mo>)</mo>
+	</mrow>
+	<mo>=</mo>
+	<mfrac><mn>6</mn><mn>19</mn></mfrac><mo>,</mo>
+</mrow>
+<mrow>
+	<mi>p</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo><msub><mi>&#946;</mi><mn>2</mn></msub><mo>)</mo>
+	</mrow>
+	<mo>=</mo>
+	<mfrac><mn>8</mn><mn>19</mn></mfrac><mo>,</mo>
+</mrow>
+<mrow>	
+	<mi>p</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo><msub><mi>&#946;</mi><mn>3</mn></msub><mo>)</mo>
+	</mrow>
+	<mo>=</mo>
+	<mfrac><mn>5</mn><mn>19</mn></mfrac><mo>,</mo>
+</mrow>
+<mrow>
+	<msub><mi>p</mi>
+		<mrow>
+			<msub><mi>&#946;</mi><mn>1</mn>
+			</msub>
+		</mrow>
+	</msub><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo><mi>&#945;</mi><mo>)</mo>
+	</mrow>
+	<mo>=</mo>
+	<mfrac><mn>5</mn><mn>18</mn></mfrac><mo>,</mo>
+</mrow>
+<mrow>
+	<msub><mi>p</mi>
+		<mrow>
+			<msub>
+				<mi>&#946;</mi><mn>2</mn>
+			</msub>
+		</mrow>
+	</msub><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo><mi>&#945;</mi><mo>)</mo>
+	</mrow>
+	<mo>=</mo>
+	<mfrac><mn>6</mn><mn>18</mn></mfrac><mo>,</mo>
+</mrow>
+<mrow>
+	<msub><mi>p</mi>
+		<mrow>
+			<msub>
+				<mi>&#946;</mi><mn>3</mn>
+			</msub>
+		</mrow>
+	</msub><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo><mi>&#945;</mi><mo>)</mo>
+	</mrow>
+	<mo>=</mo>
+	<mfrac><mn>6</mn><mn>18</mn></mfrac>
+</mrow>
+</math>.  
+Искомую вероятность того, что второй извлеченный шар белый, найдем по формуле полной вероятности (7.1.6):</p>
+<table class="formula"><tr>
+<td class="formula"> 
+<math >
+<mrow>
+	<mrow>
+		<mi>p</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo><mi>&#945;</mi><mo>)</mo>
+		</mrow>
+	</mrow>
+	<mo>=</mo>
+	<mrow>
+		<mrow>
+			<mfrac><mn>6</mn><mn>19</mn></mfrac>
+			<mo>&#183;</mo>
+			<mfrac><mn>5</mn><mn>18</mn></mfrac>
+		</mrow>
+		<mo>+</mo>
+		<mrow>
+			<mfrac><mn>8</mn><mn>19</mn></mfrac>
+			<mo>&#183;</mo>
+			<mfrac><mn>6</mn><mn>18</mn></mfrac>
+		</mrow>
+		<mo>+</mo>
+		<mrow>
+			<mfrac><mn>5</mn><mn>19</mn></mfrac>
+			<mo>&#183;</mo>
+			<mfrac><mn>6</mn><mn>18</mn></mfrac>
+		</mrow>
+	</mrow>	
+	<mo>=</mo>
+	<mfrac><mn>108</mn><mn>342</mn></mfrac>
+</mrow>
+</math>.</td>
+</tr></table>
+</div>
+<p><a href="index.html">К содержанию</a></p>
+</body>
+</html>

@@ -1,0 +1,87 @@
+table {
+margin-top: 0.2in;
+margin-bottom: 0.2in;
+caption-side: top;
+text-align: center;
+}
+table.formula {
+width: 100%;
+}
+td.nomer {
+width: 5%;
+text-align: right;
+}
+
+td.formula {
+width: 95%;
+}
+td.right {
+text-align: right;
+}
+td.left {
+text-align: left;
+}
+span.termin {
+font-style: italic;
+}
+p {
+text-indent: 25pt;
+text-align: justify;
+}
+p.ind0 {
+text-indent: 0pt;
+text-align: left;
+}
+p.ind1 {
+text-indent: 15pt;
+text-align: left;
+}
+p.ind2 {
+text-indent: 30pt;
+text-align: left;
+}
+p.ind3 {
+text-indent: 45pt;
+text-align: left;
+}
+p.ind4 {
+text-indent: 60pt;
+text-align: left;
+}
+p.ind5 {
+text-indent: 75pt;
+text-align: left;
+}
+p.ind6 {
+text-indent: 90pt;
+text-align: left;
+}
+p.ind7 {
+text-indent: 105pt;
+text-align: left;
+}
+span.teorema {
+font-style: italic;
+}
+span.name	{
+letter-spacing: 0.25em;
+font-family: serif;
+}
+span.primer	{
+letter-spacing: 0.5em;
+}
+span.komm	{
+letter-spacing: 0.25em;
+color: greenyellow;
+}
+
+
+body	{
+font-family:serif;
+}
+
+div.examp	{
+font-family:oblique;
+letter-spacing: 1.5pt;
+font-size:0.9em;
+}

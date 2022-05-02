@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<link rel='stylesheet' type='text/css' href='style.css' />
+<meta name='author' content='leonid' />
+<title>Разветвления</title>
+</head>
+<body>
+<p><a href="8_5.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_7.html">К следующему</a> </p>
+<h2>8.6. Разветвления</h2>
+<h3>8.6.1. Условный оператор IF</h3>
+<p>Синтаксис оператора <span class="termin">IF</span>:</p>
+<p class='ind0'><span class="termin">IF охрана THEN последовательность_операторов</span></p>
+<p class='ind0'><span class="termin">{ELSIF охрана THEN последовательность_операторов}</span></p>
+<p class='ind0'><span class="termin">[ELSE последовательность_операторов]</span></p>
+<p class='ind0'><span class="termin">END.</span></p>
+<p>Оператор <span class="termin">IF</span> задает условное выполнение охраняемых операторных по­сле­до­ва­тельностей. Логическое выражение, предшествующее операторной последователь­ности, называется его охраной. Охраны вычисляются в том порядке, в котором они встречаются в тексте, до тех пор, пока одна из них не даст значение <span class="termin">TRUE</span>, после чего выполняется соответствующая операторная последовательность. Если ни одна охрана не будет удовлетворена, выполняется операторная последовательность, следующая за лексемой <span class="termin">ELSE</span>, если таковая имеется.
+</p>
+<p>Рассмотрим примеры организации разветвления.</p>
+<div class="examp">
+<p><span class="primer">Пример 8.6.1</span>. Даны действительные положительные числа 
+<math display='inline'><mfenced open='' close=''><mi>x</mi><mi>y</mi><mi>z</mi></mfenced></math>. Выяснить, существует ли треугольник с длинами сторон <math display='inline'><mfenced open='' close=''><mi>x</mi><mi>y</mi><mi>z</mi></mfenced></math>. 
+</p>
+<p>Решение. Числа <math display='inline'><mfenced open='' close=''><mi>x</mi><mi>y</mi><mi>z</mi></mfenced></math> будут длинами сторон треугольника в том случае, если любое из этих чисел не превосходит суммы двух других чисел. Программа будет такой:
+</p>
+<code>
+<p class='ind0'>MODULE ветвление1;</p>
+<p class='ind1'>IMPORT Log:=StdLog, In:=i21sysIn;</p>
+<p class='ind1'>PROCEDURE проверить*;</p>
+<p class='ind2'>VAR x, y, z: REAL;</p>
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>In.Open;</p>
+<p class='ind2'>ASSERT(In.Done);</p>
+<p class='ind2'>In.Real(x);</p>
+<p class='ind2'>ASSERT(In.Done & (x>=0));</p>
+<p class='ind2'>In.Real(y);</p>
+<p class='ind2'>ASSERT(In.Done & (y>=0));</p>
+<p class='ind2'>In.Real(z);</p>
+<p class='ind2'>ASSERT(In.Done & (z>=0));</p>
+<p class='ind2'>IF (x<=y+z) & (y<=x+z) & (z<=x+y) THEN</p>
+<p class='ind3'>Log.String('Данные числа могут быть длинами сторон треугольника.');</p>
+<p class='ind2'>ELSE</p>
+<p class='ind3'>Log.String('Данные числа не могут быть длинами сторон треугольника.');</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>Log.Ln;</p>
+<p class='ind1'>END проверить;</p>
+<p class='ind0'>END ветвление1.</p>
+<table>
+<tr>
+<td align='right' valign='bottom'>
+<svg width='35' height='40'>
+<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+</svg>
+</td>
+<td align='left' valign='middle'>ветвление1.проверить 4 7 5</td>
+</tr>
+</table>
+</code>
+<p>Оценим эффективность алгоритма в количествах операций: для реализации алгоритма потребуются шесть операций сравнения, пять логических операций и три операции сложения. Здесь и далее мы не будет учитывать операции вывода в Рабочий журнал.</p>
+</div>
+<div class="examp">
+<p><span class="primer">Пример 8.6.2</span>. Даны действительные положительные числа <math display='inline'><mfenced open='' close=''><mi>a</mi><mi>b</mi><mi>x</mi><mi>y</mi><mi>z</mi></mfenced></math>. Выяснить, пройдет ли кирпич с ребрами <math display='inline'><mfenced open='' close=''><mi>x</mi><mi>y</mi><mi>z</mi></mfenced></math> в прямоугольное отверстие со сторонами <math display='inline'><mfenced open='' close=''><mi>a</mi><mi>b</mi></mfenced></math>. Просовывать кирпич в отверстие разрешается только так, чтобы каждое из его ребер было параллельно или перпендикулярно каждой из сторон отверстия.
+</p>
+<p>Решение. Кирпич пройдет в отверстие в том случае, если минимум <math display='inline'><mfenced open='{' close='}'><mi>x</mi><mi>y</mi><mi>z</mi></mfenced></math> будет меньше минимума <math display='inline'><mfenced open='{' close='}'><mi>a</mi><mi>b</mi></mfenced></math> и максимум минимумов пар <math display='inline'><mfenced open='{' close='}'><mi>x</mi><mi>y</mi></mfenced></math> и <math display='inline'><mfenced open='{' close='}'><mi>y</mi><mi>z</mi></mfenced></math> будет меньше максимума <math display='inline'><mfenced open='{' close='}'><mi>a</mi><mi>b</mi></mfenced></math>. Программа будет такой:
+</p>
+<code>
+<p class='ind0'>MODULE  kirp;</p>
+<p class='ind1'>IMPORT  Log := StdLog,  In := i21sysIn,  Math;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>VAR x, y, z, a, b: REAL;</p>  
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>In.Open;</p>
+<p class='ind2'>ASSERT(In.Done);</p>
+<p class='ind2'>In.Real(x);</p>
+<p class='ind2'>ASSERT(In.Done & (x&gt;0));</p>
+<p class='ind2'>In.Real(y);</p>
+<p class='ind2'>ASSERT(In.Done & (y&gt;0));</p>
+<p class='ind2'>In.Real(z);</p>
+<p class='ind2'>ASSERT(In.Done & (z&gt;0));</p>
+<p class='ind2'>In.Real(a);</p>
+<p class='ind2'>ASSERT(In.Done & (a&gt;0));</p>
+<p class='ind2'>In.Real(b);</p>
+<p class='ind2'>ASSERT(In.Done & (b&gt;0));</p>
+<p class='ind2'>IF (MIN(x, MIN(y, z)) &lt; MIN(a, b)) & (MAX(MIN(x,y), MIN(y, z)) &lt; MAX(a, b)) THEN</p>
+<p class='ind3'>Log.String('Кирпич пройдет в отверстие в стене.')</p>
+<p class='ind2'>ELSE</p>
+<p class='ind3'>Log.String('Кирпич не пройдет в отверстие в стене.')</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>Log.Ln</p>
+<p class='ind1'>END do;</p>
+<p class='ind0'>END kirp.</p>
+<table>
+<tr>
+<td align='right' valign='bottom'>
+<svg width='35' height='40'>
+<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+</svg>
+</td>
+<td align='left' valign='middle'>kirp.do 5 10 25 15 26</td>
+</tr>
+</table>
+</code>
+<p>Другой вариант программы:</p>
+<code>
+<p class='ind0'>MODULE  kirp1;</p>
+<p class='ind1'>IMPORT  Log := StdLog,  In := i21sysIn,  Math;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>VAR x, y, z, a, b, t: REAL;</p>  
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>In.Open;</p>
+<p class='ind2'>ASSERT(In.Done);</p>
+<p class='ind2'>In.Real(x);</p>
+<p class='ind2'>ASSERT(In.Done & (x&gt;0));</p>
+<p class='ind2'>In.Real(y);</p>
+<p class='ind2'>ASSERT(In.Done & (y&gt;0));</p>
+<p class='ind2'>In.Real(z);</p>
+<p class='ind2'>ASSERT(In.Done & (z&gt;0));</p>
+<p class='ind2'>In.Real(a);</p>
+<p class='ind2'>ASSERT(In.Done & (a&gt;0));</p>
+<p class='ind2'>In.Real(b);</p>
+<p class='ind2'>ASSERT(In.Done & (b&gt;0));</p>
+<p class='ind2'>IF (a &gt; b) THEN (*сортируем a, b без дополнительной переменной так, чтобы a<=b*)</p>
+<p class='ind3'>a:=a+b;</p>
+<p class='ind3'>b:=a-b;</p>
+<p class='ind3'>a:=a-b</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>IF (z &lt; y) THEN (*сортируем x, y, z  посредством переменной t так, чтобы x<=y<=z*)</p>
+<p class='ind3'>t:=y;</p>
+<p class='ind3'>y:=z;</p>
+<p class='ind3'>z:=t</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>IF (y &lt; x) THEN</p>
+<p class='ind3'>t:=y;</p>
+<p class='ind3'>y:=x;</p>
+<p class='ind3'>x:=t</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>IF (y &gt; z) THEN</p>
+<p class='ind3'>t:=y;</p>
+<p class='ind3'>y:=z;</p>
+<p class='ind3'>z:=t</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>IF (x &lt; a) & (y &lt; b) THEN</p>
+<p class='ind3'>Log.String('Кирпич пройдет в отверстие в стене.')</p>
+<p class='ind2'>ELSE</p>
+<p class='ind3'>Log.String('Кирпич не пройдет в отверстие в стене.')</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>Log.Ln</p>
+<p class='ind1'>END do;</p>
+<p class='ind0'>END kirp1.</p>
+<table>
+<tr>
+<td align='right' valign='bottom'>
+<svg width='35' height='40'>
+<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+</svg>
+</td>
+<td align='left' valign='middle'>kirp1.do 5 10 25 15 26</td>
+</tr>
+</table>
+</code>
+<p>Первый вариант решения задачи потребует выполнения семи операций вызова встроенных в ядро Компонентного Паскаля функций <span class="termin">MIN</span> и <span class="termin">MAX</span>, шести логических операций и семи операций сравнения. Второй вариант характеризуется одиннадцатью операциями сравнения, шестью логическими операциями, тремя арифметическими операциями, двенадцатью операциями присваивания и одной дополнительной переменной. Первый вариант решения задачи, очевидно, потребует меньших ресурсов компьютера. Встроенные в ядро языка программирования функции <span class="termin">MIN</span> и <span class="termin">MAX</span> условно можно приравнять к операциям сравнения в силу их оптимизированности. Тогда потребуется для первого варианта 14 операций сравнения и шесть логических операций.</p>
+<p>Обратите внимание на два способа перестановки местами переменных. При перестановке местами двух переменных первым способом выполняются три операции сложения (вычитания) и три операции присваивания. Второй способ перестановки требует использования дополнительной переменной и выполнения трех операций присваивания. Очевидно, что второй способ требует меньших ресурсов.</p>
+<p><span class="primer">Пример 8.6.3</span>. Дано натуральное число, меньшее ста, определяющее возраст человека в годах. Дать для этого числа наименования &quot;год&quot;, &quot;года&quot; или &quot;лет&quot;: например, 1 год, 23 года, 45 лет и т.д.
+</p>
+<p>Решение. Наименование &quot;год&quot; будет фигурировать в том случае, если остаток от деления заданного числа на десять равно 1, а само число не равно 11. Если заданное число меньше 12 или больше 14 и остаток от деления нацело этого числа на десять принадлежит отрезку от 2 до 4, то к заданному числу добавляем слово &quot;года&quot;. Во всех остальных случаях печатаем слово &quot;лет&quot;. 
+Реализовать задачу можно следующим образом:
+</p>
+<code>
+<p class='ind0'>MODULE  vozrast;</p>
+<p class='ind1'>IMPORT  Log := StdLog,  In := i21sysIn,  Math;</p>
+<p class='ind1'>PROCEDURE  do*;</p>
+<p class='ind2'>VAR n, ostatok: INTEGER;</p>  
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>In.Open;</p>
+<p class='ind2'>ASSERT(In.Done);</p>
+<p class='ind2'>In.Int(n);</p>
+<p class='ind2'>ASSERT(In.Done & (n>0));</p>
+<p class='ind2'>ostatok:=n MOD 10;</p>
+<p class='ind2'>Log.Int(n);</p>
+<p class='ind2'>IF (ostatok=1) & (n#11) THEN</p>
+<p class='ind3'>Log.String(" год.")</p>
+<p class='ind2'>ELSIF (ostatok>1) & (ostatok<5) & ((n<12) OR (n>14)) THEN</p>
+<p class='ind3'>Log.String(" года.")</p>
+<p class='ind2'>ELSE</p>
+<p class='ind3'>Log.String(" лет.")</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>Log.Ln</p>
+<p class='ind1'>END do;</p>
+<p class='ind0'>END vozrast.</p>
+<table>
+<tr>
+<td align='right' valign='bottom'>
+<svg width='35' height='40'>
+<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+</svg>
+</td>
+<td align='left' valign='middle'>vozrast.do 24</td>
+</tr>
+</table>
+</code>
+<p>Предложенный выше алгоритм требует выполнения одной операции деления нацело, семи операций сравнения и пяти логических операций.</p>
+</div>
+<p>Задачи для самостоятельного решения из сборника задач по программированию под редакцией С.А. Абрамова, Г.Г. Гнездиловой, Е.Н. Капустиной, М.И. Селюн. Задачи по программированию:</p>
+<p><a href='zadachi/2.html'>§2.Разветвления.</a></p>
+<p><a href='zadachi/3.html'>§3.Простейшая целочисленная арифметика.</a></p>
+<p><a href="8_5.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_7.html">К следующему</a> </p>
+</body>
+</html>

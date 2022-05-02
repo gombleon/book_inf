@@ -1,0 +1,1550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="style.css"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Биология</title>
+</head>
+<body>
+<p><a href="index.xml">Оглавление</a></p>
+<h2>§26 Биология</h2>
+<p>785.  У кроликов чёрная окраска (определяемая аллелем 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>B</mi>
+</math>) доминирует над белой (определяемой аллелем 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>b</mi>
+</math>).
+Даны сочетания аллелей 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>B</mi>
+</math>
+и 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>b</mi>
+</math>
+в генотипах кроликов-родителей, каждое из сочетаний &#8210; это 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>BB</mi>
+</math>, 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>Bb</mi>
+</math>
+ или
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>bb</mi>
+</math>. Используя законы Менделя, перечислить возможности для сочетаний аллелей 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>B</mi>
+</math>
+ и 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>b</mi>
+</math>
+в генотипе потомка первого поколения (<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>F</mi>
+<mn>1</mn>
+</msub>
+</math>) этой пары. Вместе с каждым возможным сочетанием указать окраску потомка. 
+</p>
+<p>
+786.  Каждый из двух подвергнутых скрещиванию сортов гороха имел либо желтые, либо зелёные семядоли. Известно, что желтая окраска семядолей (аллель 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>R</mi>
+</math>) доминирует над зелёной (аллель 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>r</mi>
+</math>). Среди растений 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>F</mi>
+<mn>1</mn>
+</msub>
+</math>
+ (см. предыдущую задачу) имелось 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi>
+</math>
+с желтыми семядолями и 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>m</mi>
+</math>
+с зелёными (<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi>
+</math>
+<b>
+<mo>&#8805;</mo>
+</b>
+0, 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>m</mi>
+</math>
+<b>
+<mo>&#8805;</mo>
+</b>
+0). Используя законы Менделя, перечислить наиболее вероятные возможности сочетаний аллелей 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>R</mi>
+</math>
+ и 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>r</mi>
+</math>
+в генотипах родителей.
+</p>
+<p>
+787.  Вернёмся к сортам гороха сжелтыми (аллель 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>R</mi>
+</math>) и зелёными (аллель 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>r</mi>
+</math>) семядолями (см. предыдущую задачу). Были подвергнуты скрещиванию два растения, одно из которых имело зелёные семядоли.В результате скрещивания получили 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>m</mi>
+</math>
+ растений 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>F</mi>
+<mn>1</mn>
+</msub>
+</math>
+ (см.задачу 785) с желтыми семядолями и 
+ <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi>
+</math> 
+- с зелёными ( <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi>
+</math> 
+<b>
+<mo>&#8805;</mo>
+</b>
+0, 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>m</mi>
+</math> 
+<b>
+<mo>&#8805;</mo>
+</b>
+0). Используя законы Менделя, указать наиболее вероятное сочетание аллелей 
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>R</mi>
+</math> 
+ и 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>r</mi>
+</math> 
+в генотипе второго родителя и в генотипах каждого из растений
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>F</mi>
+<mn>1</mn>
+</msub>
+</math>.
+<p>
+788.  Два сорта пшеницы различают устойчивостью к определённому пестицыду (ядохимикату). Делается предположение, что в гетерозиготном растений проявляет своё действие только один аллель &#8210; устоичивости или неустойчивости к данному пестицыду, т.е. имеет место явление доминирования. Взяты два растения &#8210; одно устоичивое, другое неустойчивое. В результате скрещивания этих растений появилось несколько устойчивых растений 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>F</mi>
+<mn>1</mn>
+</msub>
+</math>
+ и несколько неустойчивых. Проведены с двумя растениями 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>F</mi>
+<mn>1</mn>
+</msub>
+</math>, из которых одно было устойчивым к пестициду, а другое &#8210; нет. Результаты этих четырёх возвратных скрещиваний известны и записаны четырьмя парами неотрицательных целых чисел (первое число пары указывает количество растений, устойчивых к пестициду, второе &#8210; неустойчивых).Подтверждают ли результаты проведённых опытов гипотезу о доминировании? Если да, то какой из признаков (устойчивость или неустойчивость) является доминирующим? 
+<p>
+789.  "Контакты первого и второго порядка в эпидемиологии". Предположим, что 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>k</mi>
+</math> 
+человек заболели инфекционной болезнью. Вторую группу из 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>L</mi>
+</math> 
+человек опросили с целью выяснения, кто из них имел контакт с больными. Затем опросили третью группу из 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>m</mi>
+</math> 
+человек, чтобы выяснить контакт с кем-нибудь из 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>L</mi>
+</math> 
+человек второй группы. Результаты первого опроса записаны в виде матрицы [
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>a</mi>
+<mn>ij</mn>
+</msub>
+</math>]
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>i</mi>
+</math> 
+<mo>=</mo>1<mo>, ..., </mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>k</mi>
+</math><mo>;</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>j</mi></math><mo>=</mo>1<mo>, ..., /</mo>
+так, что 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>a</mi>
+<mn>ij</mn>
+</msub>
+</math>
+=1, если 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>j</mi>
+</math>-й человек второй группы находился в контакте с i-м больным из первой группы, и 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>a</mi>
+<mn>ij</mn>
+</msub>
+</math>=0 в противном случае. Аналогично определена матрица 
+[<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>b</mi>
+<mn>ij</mn>
+</msub>
+</math>] 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>i</mi>
+</math> 
+<mo>=</mo>1<mo>, ..., /;</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>j</mi>
+</math> 
+<mo>=</mo>1<mo>, ..., ;</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>m</mi>
+</math> 
+<mo>:</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>b</mi>
+<mn>ij</mn>
+</msub>
+</math>
+=1, если 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>j</mi>
+</math>
+-й человек третьей группы находился в контакте с 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>i</mi>
+</math>
+-м человеком из второй группы, и 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>b</mi>
+<mn>ij</mn>
+</msub>
+</math>
+=0 в противном случае. Эти две матрицы описывают схему контактов первого порядка между группами. Могут представлять интерес непрямые контакты, или, иначе говоря, контакты второго порядка между людьми третьей группы и больными первой группы. Исходя из двух упомянутых матриц, получить матрицу 
+[<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>c</mi>
+<mn>ij</mn>
+</msub>
+</math>] 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>i</mi>
+</math> 
+<mo>=</mo>1<mo>, ...,</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>k</mi>
+</math><mo>;</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>j</mi></math><mo>=</mo>1<mo>, ...,</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>m</mi>
+</math> 
+контактов второго порядка. 
+</p>
+<p>
+790.  Реакция организма на лекарство через 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi>
+</math> 
+часов после инъекции выражается показателем
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>r</mi>
+<mn>n</mn>
+</msub>
+</math>, измеряемым в подходящих единицах. Экспериментально установлено, что для лекарственных препаратов некоторой группы показатель реакции есть 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>r</mi>
+<mn>n</mn>
+</msub>
+</math>
+<mo>=</mo>
+<b>
+<mo>&#945;</mo>
+</b>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>r</mi>
+<mn>n-1</mn>
+</msub>
+</math><mo>+</mo><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>0.4</mi>
+</math> 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msup>
+r
+<mi>n</mi>
+</msup>
+</math>, где 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>r</mi>
+<mn>0</mn>
+</msub>
+</math>
+=1, a 
+<b>
+<mo>&#945;</mo>
+</b>
+&#8210; меньшее единицы данное положительное число, характеризующее конкретный препорат группы. Определить, через сколько часов наступает максимальная реакция на введение препарата. После скольких часов реакция понизится ниже 50% первоначального уровня
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>r</mi>
+<mn>0</mn>
+</msub>
+</math>?
+</p>
+<p>
+791.  В процессе лечебного голодания вес пациента за 30 дней снизился с 96 до 70 кг. Было установлено, что ежедневные потери веса пропорциональны весу тела. Вычислить, чему равен вес пациента через 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>k</mi>
+</math> 
+ дней после начала голодания для 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>k</mi>
+</math> 
+=1, 2, ..., 29.
+</p>
+<p>
+792.  Если культура клеток в питательной среде растёт, не подвергаясь внешним воздействиям, то прирост массы в течении
+<mo>(</mo><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi>
+</math>+1<mo>)</mo>
+-го часа оказывается вдвое больше прироста в течении 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi>
+</math>
+-го часа. Однако в исследовательских целях к растушей массе по истечению каждого часа добавляется по 2 г культуры. Дано натуральное число 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>k</mi></math>. Найти массу 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msup>
+x
+<mi>k</mi>
+</msup>
+</math>
+ в конце 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>k</mi>
+</math>
+	-го часа исследования, если первоначально было взято 3 г (Исходя из предположения, что при отсутствии внешнего воздействия масса 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msup>
+x
+<mi>n</mi>
+</msup>
+</math>
+в конце 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi>
+</math>
+-го часа исследования удовлетворяет соотношению 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>x</mi>
+<mn>n</mn>
+</msub>
+</math><mo>=</mo><b><mo>&#945;</mo>
+</b>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>x</mi>
+<mn>n-1</mn>
+</msub>
+</math>
+для некоторой постоянной величины 
+<b>
+<mo>&#945;</mo></b>).
+<p>
+793.  В одном большом стаде, состояшем из животных одного возраста и пола, рост животных, измеренный в сантиметрах, колеблется от 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>k</mi>
+</math>
+до
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>l</mi>
+</math>
+(даны натуральные числа). 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>a</mi>
+</math>
+<mo>)</mo>
+Пусть 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>m</mi>
+</math>
+ и 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi>
+</math>
+- данные натуральные числа такие, что 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>k</mi>
+</math>
+<b>
+<mo>&#8804;</mo>
+</b>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>m</mi>
+</math>
+<b>
+<mo>&#8804;</mo>
+</b>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>l</mi></math>. Каких животных в стаде больше &#8210; с ростом, близким к 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>m</mi>
+ </math>
+см, или с ростом, близким к 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi>
+ </math>
+см? б) Если  
+ <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>r</mi>
+ </math>
+&#8210; количество пищи, потребляемое в сутки животным с ростом 
+ <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>k</mi>
+ </math>, то каково количество пищи, потребляемое в сутки животным с ростом 
+ <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>l</mi>
+ </math>? Если 
+ <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>s</mi>
+ </math>
+- количество шерсти, состригаемой ежегодно с животного с ростом 
+ <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>k</mi>
+ </math>, то сколько приблезительно шерсти можно ежегодно состригать с животного с ростом 
+ <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>l</mi>
+ </math>? (Предполагается, что густота и длина шерсти не зависят от рoста.)
+</p>
+<p>
+794.  Числа Фибоначчи 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>U</mi>
+<mn>0</mn>
+</msub>
+</math>,
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>U</mi>
+<mn>1</mn>
+</msub>
+</math>... (см. задачу 144) получили название в честь итальянского математика Леонардо Фибоначчи, который ввёл их для описания численности поколений животных (без учёта смертности). Предпологается, что каждая пара животных некоторого вида приносит ежегодно приплод в одну пару животных (самку и самца), которые в свою очередь начинают давать приплод через два года после рождения. Если имеется одна пара новорожденных животных, то как можно показать по прошествии 
+ <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi>
+ </math>
+лет будет иметься 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>U</mi>
+<mn>n+1</mn>
+</msub>
+</math>
+ пар животных. Внести в эту модель уточнение, касающееся смертности. Считать, что продолжительность жизни животного: а)5 лет; б)
+ <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>m</mi>
+ </math>
+ лет, где
+ <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>m</mi>
+ </math>
+-данное натуральное число. Вычислить количество пар животных, которые будет иметься по прошествию срока в 
+ <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi>
+ </math>
+лет (
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi>
+ </math>
+-данное натуральное число).
+</p>
+<p>
+795  Для описания происходящего со временем изменения численности популяции удобно рассматривать распределение популяции по возрастным группам (в первую группу попадают все особи в возрасте до года, во вторую &#8210; все те не попавшие в первую группу особи, возраст которых меньше двух лет, и т.д.). Пусть в первую возрастную группу входит 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>p</mi>
+<mn>1</mn>
+</msub>
+</math>
+ особей, во вторую &#8210; 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>p</mi>
+<mn>2</mn>
+</msub>
+</math>
+особей и т.д.. Смертность весьма упрощенно можно учесть, положив, что все особи вымирают, находясь в 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi>
+ </math>
+-й возрастной группе, где 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi>
+ </math>
+- некоторое фиксированное натуральное число. Ясно, что общее число особей в популяции есть 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>p</mi>
+<mn>1</mn>
+</msub>
+</math>
++ ... + 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>p</mi>
+<mn>n</mn>
+</msub>
+</math>. Для каждой возрастной группы имеется свой коэффициент рождаемости; если коэффициенты для рассматриваемых возрастных групп соответственно равны 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>b</mi>
+<mn>1</mn>
+</msub>
+</math>, ..., 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>b</mi>
+<mn>n</mn>
+</msub>
+</math>, то годовой прирост, обусловленный присутствием в популяции 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>i</mi>
+ </math>
+-й возрастной группы с численностью 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>p</mi>
+<mn>i</mn>
+</msub>
+</math>
+есть 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>b</mi>
+<mn>i</mn>
+</msub>
+</math>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>p</mi>
+<mn>i</mn>
+</msub>
+</math>
+. Таким образом, годовой прирост по всей популяции есть 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>b</mi>
+<mn>1</mn>
+</msub>
+</math>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>p</mi>
+<mn>1</mn>
+</msub>
+</math>
++ ... + 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>b</mi>
+<mn>n</mn>
+</msub>
+</math>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>p</mi>
+<mn>n</mn>
+</msub>
+</math>. В то же время особи, принадлежащие 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>i</mi>
+ </math>
+-й возрастной группе, через год перейдут в (
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>i</mi>
+ </math>
++1)-ю возрастную групу (<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>i</mi>
+ </math>
+ =1, ...,
+ <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi>
+ </math>
+ -1), а особи, принадлежащие 
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi>
+ </math>
+ -й возрастной группе, вымрут в течение года. Поэтому через год распределение популяции по возрастным группам будет следующим: 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>b</mi>
+<mn>1</mn>
+</msub>
+</math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>p</mi>
+<mn>1</mn>
+</msub>
+</math>
+ + ... + 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>b</mi>
+<mn>n</mn>
+</msub>
+</math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>p</mi>
+<mn>n</mn>
+</msub>
+</math>,
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>p</mi>
+<mn>1</mn>
+</msub> 
+</math>, ..., <math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>p</mi>
+<mn>n-1</mn>
+</msub>
+</math>. Даны натуральные числа 
+ <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi>
+ </math>
+,
+ <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>m</mi>
+ </math>
+, действительные числа 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>b</mi>
+<mn>1</mn>
+</msub>
+</math>
+, ..., 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>b</mi>
+<mn>n</mn>
+</msub>
+</math>, неотрицательные целые числа 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>p</mi>
+<mn>1</mn>
+</msub>
+</math>
+, ...,  
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>p</mi>
+<mn>n</mn>
+</msub>
+</math>. Считая, что 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>p</mi>
+<mn>1</mn>
+</msub>
+</math>, ..., 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>p</mi>
+<mn>n</mn>
+</msub>
+</math>
++ ... +
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>b</mi>
+<mn>1</mn>
+</msub>
+</math>, ..., 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>b</mi>
+<mn>n</mn>
+</msub>
+</math>
+- коэффициенты рождаемости для возрастных групп, определить общую численность популяции через 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>m</mi>
+ </math>
+ лет.
+</p>
+<p>
+796.  Описанную в предыдущей задаче модель изменения численности популяции можно сделать более точной введением, кроме коэффициентов рождаемости, ещё и коэффициентов выживания 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>S</mi>
+<mn>1</mn>
+</msub>
+</math>, ..., 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>S</mi>
+<mn>n</mn>
+</msub>
+</math>
+(0
+<b>
+<mo>&#8804;</mo>
+</b>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>S</mi>
+<mn>i</mn>
+</msub>
+</math>
+<b>
+<mo>&#60;</mo>
+</b>
+1, 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>i</mi>
+ </math>
+= 1, ...,
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>i</mi>
+ </math>
+) для всех возрастных групп: считаем, что если в текущем году 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>j</mi>
+ </math>
+-я возрастная группа имеет численность 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>p</mi>
+<mn>i</mn>
+</msub>
+</math>
+, то в будующем году (
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>i</mi>
+ </math>
++1)- я возрастная группа будет иметь численность, равную
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>S</mi>
+<mn>i</mn>
+</msub>
+</math>,
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>p</mi>
+<mn>i</mn>
+</msub>
+</math>. При этом 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>S</mi>
+<mn>n</mn>
+</msub>
+</math>
+ = 0 (так как мы по-прежнему считаем, что возраст особи не превосходит 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi>
+ </math>
+лет), и фактически можно рассматривать только 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>S</mi>
+<mn>1</mn>
+</msub>
+</math>, ..., 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>S</mi>
+<mn>n-1</mn>
+</msub>
+</math>. Годовой прирост за счёт 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>i</mi>
+ </math>
+-й группы в этой модели считается равным 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>b</mi>
+<mn>i</mn>
+</msub>
+</math>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>S</mi>
+<mn>i</mn>
+</msub>
+</math>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>p</mi>
+<mn>i</mn>
+</msub>
+</math>
+. Коэффициенты выживания, так же как и коэффициенты рождаемости, выводятся на основе многолетних наблюдений за популяциями данного вида. Считая заданными 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>S</mi>
+<mn>i</mn>
+</msub>
+</math>, ...,
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>S</mi>
+<mn>n-1</mn>
+</msub>
+</math>
+, вновь рассмотреть задачу расчёта численности популяции через 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>i</mi>
+ </math>
+лет.</p>
+<p>
+797.  Дополняя модель, которая была описана в предыдущей задаче, предположим, что когда численность популяции оказывается к концу года большей, чем некоторое число 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>l</mi>
+ </math>, то из-за большой скученности начинается эпидемия, приводящая к понижению вдвое коэффициентов выживания 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>S</mi>
+<mn>1</mn>
+</msub>
+</math>, ..., 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>S</mi>
+<mn>n-1</mn>
+</msub>
+</math>
+в следующем году. Считая 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>l</mi>
+ </math>
+ заданным числом, вновь рассмотреть задачу расчёта численности популяции через 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>m</mi>
+ </math>
+ лет.
+</p>
+<p>
+798.  Взаимное влияние некоторых двух конкурирующих видов на размер 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>x</mi>
+<mn>n</mn>
+</msub>
+</math>,
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>y</mi>
+<mn>n</mn>
+</msub>
+</math>
+ их популяций в 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi>
+ </math>
+-м году описывается системой
+<p>
+</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>x</mi>
+<mn>n+1</mn>
+</msub>
+</math>
+=
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>2x</mi>
+<mn>n</mn>
+</msub>
+</math>
+-
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>y</mi>
+<mn>n</mn>
+</msub>
+</math>,
+</p>
+<p>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>y</mi>
+<mn>n+1</mn>
+</msub>
+</math>
+=
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>-x</mi>
+<mn>n</mn>
+</msub>
+</math>
++
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>2y</mi>
+<mn>n</mn>
+</msub>
+</math>.
+</p>
+Пусть 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>x</mi>
+<mn>0</mn>
+</msub>
+</math>= 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>a</mi>
+ </math>,
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>y</mi>
+<mn>0</mn>
+</msub>
+</math>
+=
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>b</mi>
+ </math>,
+(
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>a</mi>
+ </math>
+<b>
+<mo>&#8800;</mo>
+</b>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>b</mi>
+ </math>), где 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>a</mi>
+ </math>
+и
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>b</mi>
+ </math>
+-данные числа. Найти численности обоих видов за все годы, предшествующие полному вымиранию одного из них.
+<p>
+799.  Даны натуральные числа 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi>
+ </math>,
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>a</mi>
+<mn>1</mn>
+</msub>
+</math>,...,
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>a</mi>
+<mn>n</mn>
+</msub>
+</math>, отражающие наблюдения за лесным муравейником. Вначале было отловлено 100 рабочих муравьёв, все они были помечены и выпущены на волю. Далее, в течении 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi>
+ </math>
+дней повторялось следующее: отлавливалось по 100 рабочих муравьёв, подсчитывалось число помеченных среди них (<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>a</mi>
+<mn>i</mn>
+</msub>
+</math>
+- количество помеченных муравьёв среди отловленных в 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>i</mi>
+ </math>
+-й день, 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>i</mi>
+ </math>=1, ...,
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi>
+ </math>), помечались непомеченные муравьи, находящиеся в этой сотне, затем все 100 муравьёв выпускались на волю. Требуется подсчитать (приблезительно) число рабочих муравьёв в этом муравейнике.
+</p>
+</p>
+<p>
+800.  Эта задача является продолжением предыдущей. Через год наблюдения над муравейником были возобновлены. Вновь сначала было отловлено 100 рабочих муравьёв и все они были помечены новой, отличимой от прошлогодней меткой и выпущены на волю. Затем в течение 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi>
+ </math>
+дней повторялось следующее: отлавливалось по 100 рабочих муравьёв, подсчитывалось число помеченных только прошлогодней меткой, только новой меткой и обеими метками (в
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>i</mi>
+ </math>
+-й день фиксировались соответственно числа 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>a</mi>
+<mn>i</mn>
+</msub>
+</math>,
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>b</mi>
+<mn>i</mn>
+</msub>
+</math>
+ и 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>с</mi>
+<mn>i</mn>
+</msub>
+</math>), затем помечались муравьи этой сотни, ещё не помеченные меткой этого года, и все 100 муравьёв выпускались на волю. Требуется выдвинуть разумные гипотезы относительно числа среди них новых рабочих муравьёв и количестве прошлогодних. Исходные данные задачи: 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>k</mi>
+ </math>,
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi>
+ </math>,
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>a</mi>
+<mn>1</mn>
+</msub>
+</math>,
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>b</mi>
+<mn>1</mn>
+</msub>
+</math>, 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>с</mi>
+<mn>1</mn>
+</msub>
+</math>, 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>a</mi>
+<mn>2</mn>
+</msub>
+</math>,
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>b</mi>
+<mn>2</mn>
+</msub>
+</math>
+ , 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>с</mi>
+<mn>2</mn>
+</msub>
+</math>, ...,
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>a</mi>
+<mn>n</mn>
+</msub>
+</math>,
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>b</mi>
+<mn>n</mn>
+</msub>
+</math>,
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>с</mi>
+<mn>n</mn>
+</msub>
+</math>, где 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>k</mi>
+ </math>
+-число рабочих муравьёв, помеченных в прошлом году,
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>l</mi>
+ </math>
+-предположительное общее число рабочих муравьёв в прошлом году. Смысл остальных чисел разъяснён выше. 
+</p>
+<p>801.  "Зависимость веса от роста". Часто пытаются "уложить" некоторые экспериментальные или статистические данные в некоторую простую формулу. Пусть, например, обследовано 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi>
+ </math>
+взрослых людей с нормальным телосложением и измерен рост (в см) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>x</mi>
+<mn>i</mn>
+</msub>
+</math>
+вес (в кг) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>y</mi>
+<mn>i</mn>
+</msub>
+</math>, у каждого из них. Можно пытаться на основании этих измерений получить формулу вида 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>y</mi>
+ </math>
+<mo>=</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>ax</mi>
+ </math>
+<mo>+</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>b</mi>
+ </math>, выражающую вес 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>y</mi>
+ </math>
+через рост 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>x</mi>.
+ </math>
+Конечно, трудно рассчитывать на то, что для каких-либо конкретных 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>a</mi>.
+ </math>
+и 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>b</mi>.
+ </math>
+будут с абсалютной точностью выполнены все 
+ <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi>.
+ </math> равенств
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>y</mi>
+<mn>i</mn>
+</msub>
+</math>
+<mo>=</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>ax</mi>
+<mn>i</mn>
+</msub>
+</math>
+<mo>+</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>b</mi>.
+ </math> 
+. Но не трудно найти 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>a</mi>
+ </math> 
+и 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>b</mi>
+ </math>
+такие, что величина 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>f</mi>
+ </math>
+<mo>(</mo><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>a</mi>
+</math>,
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>b</mi>
+ </math><mo>)</mo>, равная 
+<mo>(</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>a</mi>
+</math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>x</mi>
+<mn>1</mn>
+</msub>
+</math>
+<mo>+</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>b</mi>
+</math>
+<mo>-</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>y</mi>
+<mn>1</mn>
+</msub>
+</math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<msup>
+<mo>)</mo>
+<mi>2</mi>
+</msup>
+</math>
++
+<mo>(</mo><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>a</mi>
+</math>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>x</mi>
+<mn>2</mn>
+</msub>
+</math>
+<mo>+</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>b</mi>
+</math>
+<mo>-</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>y</mi>
+<mn>2</mn>
+</msub>
+</math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<msup>
+<mo>)</mo>
+<mi>2</mi>
+</msup>
+</math>
++ ... +
+
+<mo>(</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>a</mi>
+</math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>x</mi>
+<mn>n</mn>
+</msub>
+</math>
+<mo>+</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>b</mi>
+</math>
+<mo>-</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>y</mi>
+<mn>n</mn>
+</msub>
+</math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<msup>
+<mo>)</mo>
+<mi>2</mi>
+</msup>
+</math>, имеет наименьшее из возможных значений (рис.57). Для выполнения этого условия достаточно, чтобы *)
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mfrac>
+<mrow>&#8706;<mo>(</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>a</mi>
+</math>,
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>b</mi>
+</math>
+<mo>)</mo>
+</mrow>
+<mrow>&#8706;a</mrow>
+</mfrac>
+</math>
+<mo>=</mo>
+<mi>0</mi>, 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mfrac>
+<mrow>&#8706;<mo>(</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>a</mi>
+</math>,
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>b</mi>
+</math>
+<mo>)</mo>
+</mrow>
+<mrow>&#8706;b</mrow>
+</mfrac>
+</math>
+<mo>=</mo>
+<mi>0</mi>. Последние равенства дают два линейных уравнения для определения 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>a</mi>
+</math>
+и
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>b</mi>
+</math>
+(это частный случай метода наименьших квадратов, принадлежащего Гауссу):
+<p>
+<mo>(</mo><math xmlns="http://www.w3.org/1998/Math/MathML">
+<msup>
+<msub>
+<mi>x</mi>
+<mn>1</mn>
+</msub>
+<mn>2</mn>
+</msup>
+</math>
+<mo>+...+</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msup>
+<msub>
+<mi>x</mi>
+<mn>n</mn>
+</msub>
+<mn>2</mn>
+</msup>
+</math><mo>)</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>a</mi>
+</math>
+<mo>+ (</mo><math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>x</mi>
+<mn>1</mn>
+</msub>
+</math>
+<mo>+ ... +</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>x</mi>
+<mn>n</mn>
+</msub>
+</math><mo>)</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>b</mi>
+</math>
+<mo>=</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>x</mi>
+<mn>1</mn>
+</msub>
+</math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>y</mi>
+<mn>1</mn>
+</msub>
+</math>
+<mo>+ ... +</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>x</mi>
+<mn>n</mn>
+</msub>
+</math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>y</mi>
+<mn>n</mn>
+</msub>
+</math><mo>,</mo>
+</p>
+<p>
+
+
+<mo>(</mo><math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>x</mi>
+<mn>1</mn>
+</msub>
+</math>
+<mo>+ ... +</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>x</mi>
+<mn>n</mn>
+</msub>
+</math><mo>)</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>a</mi>
+</math>
+<mo>+</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi>
+</math><math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>b</mi>
+</math>
+<mo>=</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>y</mi>
+<mn>1</mn>
+</msub>
+</math>
+<mo>+ ... +</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>y</mi>
+<mn>n</mn>
+</msub>
+</math>.
+</p>
+<p>
+Даны действительные числа 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>x</mi>
+<mn>1</mn>
+</msub>
+</math><mo>, ...,</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>x</mi>
+<mn>n</mn>
+</msub>
+</math><mo>,</mo>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>y</mi>
+<mn>1</mn>
+</msub>
+</math><mo>, ...,</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>y</mi>
+<mn>n</mn>
+</msub>
+</math>
+ Получить указанные 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>a</mi>
+</math>
+и 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>b</mi>
+</math>
+. По поводу этой задачи сделаем следующее замечание. Действительно, этим способом можно получить некоторые 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>a</mi>
+</math>
+и 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>b</mi>
+</math>
+; более того, считается, например, что для мужчин с нормальным телосложением 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>a</mi>
+</math>
+<mo>&#8776;</mo>
+<mn>1</mn><mo>,</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>b</mi>
+</math>
+<mo>&#8776;</mo>
+<mo>-100</mo>.
+ Однако значительно более точную формулу можно, видимо, получить, используя не многочлен первой степени 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>a</mi>
+</math><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>x</mi>
+</math>
+<mo>+</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>b</mi>
+</math>, а многочлен третьей степени
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msup>
+<msub>
+<mi>ax</mi>
+<mn></mn>
+</msub>
+<mn>3</mn>
+</msup>
+</math>
++
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msup>
+<msub>
+<mi>bx</mi>
+<mn></mn>
+</msub>
+<mn>2</mn>
+</msup>
+</math>
++
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msup>
+<msub>
+<mi>cx</mi>
+<mn></mn>
+</msub>
+<mn></mn>
+</msup>
+</math>
++
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>d</mi>
+</math>
+(ср. с задачей 793б). Этот многочлен тоже можно искать методом наименьших квадратов.
+
+
+</p>
+<svg width="500" height="300" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <defs>
+  <marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" orient="auto" markerUnits="strokeWidth" id="se_marker_start_svg_2">
+   <path stroke-width="10" stroke="#000000" fill="#000000" d="m0,50l100,40l-30,-40l30,-40l-100,40z"/>
+  </marker>
+  <marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" orient="auto" markerUnits="strokeWidth" id="se_marker_mid_svg_2">
+   <path stroke-width="10" stroke="#000000" fill="#000000" d="m100,50l-100,40l30,-40l-30,-40l100,40z"/>
+  </marker>
+  <marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" orient="auto" markerUnits="strokeWidth" id="se_marker_end_svg_3">
+   <path stroke-width="10" stroke="#000000" fill="#000000" d="m100,50l-100,40l30,-40l-30,-40l100,40z"/>
+  </marker>
+ </defs>
+ <g>
+  <title>Layer 1</title>
+  <path marker-mid="url(#se_marker_mid_svg_2)" marker-start="url(#se_marker_start_svg_2)" id="svg_2" d="m131,126l0,140.42801" stroke-width="2" stroke="#000000" fill="none"/>
+  <line marker-end="url(#se_marker_end_svg_3)" transform="rotate(7.94787e-05)" id="svg_3" y2="238" x2="274.82" y1="238" x1="103" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_4" y2="149" x2="291" y1="261" x1="112" stroke-width="2" stroke="#000000" fill="none"/>
+ </g>
+ <g>
+  <title>Layer 2</title>
+  <text x="80" y="125">y</text>
+  <text x="250" y="270">x</text>
+  <text x="200" y="153" fill="black">Y=kx+</text>
+  <text x="150" y="300">Рис. 57</text>
+  <path d="m153,52c7,2 8,2 9,2l1,0l1,0" id="svg_1" stroke-width="5" fill="none"/>
+  <ellipse ry="3" rx="3" id="svg_6" cy="212" cx="172" stroke-width="5" fill="black"/>
+  <ellipse ry="2" rx="3" id="svg_7" cy="214" cx="195" stroke-width="5" fill="black"/>
+  <ellipse ry="3" rx="3" id="svg_8" cy="189" cx="216" stroke-width="5" fill="black"/>
+  <ellipse id="svg_9" ry="3" rx="3" cy="181" cx="233" stroke-width="5" fill="black"/>
+  <ellipse id="svg_10" ry="3" rx="3" cy="171" cx="245.5" stroke-width="5" fill="black"/>
+  <ellipse id="svg_11" ry="3" rx="3" cy="172" cx="263" stroke-width="5" fill="black"/>
+  <ellipse id="svg_12" ry="3" rx="3" cy="165" cx="278" stroke-width="5" fill="black"/>
+ </g>
+</svg>
+
+
+
+</p>
+</p>
+</p>
+</body>
+</html>

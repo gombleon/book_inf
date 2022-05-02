@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<link rel='stylesheet' type='text/css' href='style.css' />
+<meta name='author' content='leonid' />
+<title>Разветвления</title>
+</head>
+<body>
+<h2>§2. Разветвления</h2>
+<ol start='33' type='1'>
+<li>Даны действительные числа <math><mi>x</mi><mo>,</mo><mi>y</mi></math>. Получить:
+	<ol type='a'>
+		<li>
+			<math>
+				<mi>max</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>)</mo></mrow>
+			</math>;
+		</li>
+		<li>
+			<math>
+				<mi>min</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>)</mo></mrow>
+			</math>;
+		</li>
+		<li>
+			<math>
+				<mi>max</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>)</mo></mrow>
+				<mo>,</mo><mi>min</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>)</mo></mrow>
+			</math>;
+		</li>
+	</ol>
+</li>
+
+<li>Даны действительные числа
+<math><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi></math>. Получить:
+<ol type='a'>
+<li>
+<math>
+<mi>max</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi><mo>)</mo><mrow>
+</math>;
+</li>
+<li>
+<math>
+<mi>max</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi><mo>)</mo></mrow><mo>,</mo><mi>min</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi><mo>)</mo></mrow>
+</math>;
+</li>
+</ol>
+</li>
+<li>Даны действительные числа <math><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi></math>. Вычислить:
+<ol type='a'>
+<li>
+<math>
+<mi>max</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mrow><mi>x</mi><mo>+</mo><mi>y</mi><mo>+</mo><mi>z</mi></mrow><mo>,</mo><mrow><mi>x</mi><mo>&#x2062;</mo><mi>y</mi><mo>&#x2062;</mo><mi>z</mi></mrow><mo>)</mo></mrow>
+</math>;
+</li>
+<li>
+<math>
+<msup><mi>max</mi><mn>2</mn></msup><mo>&#x2061;</mo>
+<mrow>
+<mo>(</mo><mi>x</mi><mo>+</mo><mi>y</mi><mo>+</mo><mi>z</mi><mo>/</mo><mn>2</mn><mo>,</mo><mi>x</mi><mi>y</mi><mi>z</mi><mo>)</mo>
+</mrow><mo>+</mo><mn>1</mn>
+</math>.
+</li>
+</ol>
+</li> 
+<li>Даны действительные числа <math><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi></math>.
+Проверить, выполняются ли неравенства <math><mi>a</mi><mo>&#60;</mo><mi>b</mi><mo>&#60;</mo><mi>c</mi></math>.
+</li>
+<li>Даны действительные числа
+<math><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi></math>. Удвоить эти числа, если
+<math><mi>a</mi><mo>&#8805;</mo><mi>b</mi><mo>&#8805;</mo><mi>c</mi></math>, и заменить их абсолютными значениями, если это не так.
+</li>
+<li>Даны действительные числа <math><mi>x</mi><mo>,</mo><mi>y</mi></math>. Вычислить <math><mi>z</mi></math>:
+<math>
+<mi>z</mi><mo>=</mo>
+<mrow>
+<mo>{</mo>
+<mtable   columnalign="left">
+<mtr><mtd><mi>x</mi><mo>-</mo><mi>y</mi><mo>,</mo> если <mi>x</mi><mo>&#62;</mo><mi>y</mi><mo>,</mo></mtd></mtr>
+<mtr><mtd><mi>y</mi><mo>-</mo><mi>x</mi><mo>+</mo><mn>1</mn> в противном случае.</mtd></mtr>
+</mtable>
+</mrow>
+</math>
+</li>
+<li>Даны два действительных числа. Вывести первое число, если оно больше второго, и оба числа, если это не так.</li>
+<li>Даны два действительных числа. Заменить первое число нулём, если оно меньше или равно второму, и оставить числа без изменения в противном случае.</li>
+<li>Даны три действительных числа. Выбрать из них те, которые принадлежат интервалу <math><mfenced><mn>1</mn><mn>3</mn></math>.
+</li>
+<li>Даны действительные числа 
+<math><mi>x</mi><mo>,</mo><mi>y</mi></math>, (<math><mi>x</mi></math> не равно <math><mi>y</mi></math>).  Меньшее из этих двух чисел заменить их полусуммой, а большее &#151; их удвоенным произведением.</li>
+<li>Даны три действительных числа. Возвести в квадрат те из них, значения которых неотрицательны.</li>
+<li>Если сумма трех попарно различных действительных чисел 
+<math><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi></math> меньше единицы, то наименьшее из этих трех чисел заменить полусуммой двух других; в противном случае заменить меньшее из <math><mi>x</mi></math> и <math><mi>y</mi></math> полусуммой двух оставшихся значений.
+</li>
+<li>Даны действительные числа 
+<math><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo>,</mo><mi>d</mi></math>. Если 
+<math><mi>a</mi><mo>&#8804;</mo><mi>b</mi><mo>&#8804;</mo><mi>c</mi><mo>&#8804;</mo><mi>d</mi></math>, то каждое число заменить наибольшим из них; если 
+<math><mi>a</mi><mo>&#62;</mo><mi>b</mi><mo>&#62;</mo><mi>c</mi><mo>&#62;</mo><mi>d</mi></math>, то числа оставить без изменения; в противном случае все числа заменяются их квадратами.</li>
+<li>Даны действительные числа <math><mi>x</mi><mo>,</mo><mi>y</mi></math>. Если 
+ <math><mi>x</mi></math> и <math><mi>y</mi></math> отрицательны, то каждое значение заменить его модулем; если отрицательно только одно из них, то оба значения увеличить на <math><mn>0.5</mn></math>; если оба значения неотрицательны и ни одно из них не принадлежит отрезку <math><mfenced open='[' close=']'><mn>0.5</mn><mn>2.0</mn></mfenced></math>, то оба значения уменьшить в <math><mn>10</mn></math> раз; в остальных случаях <math><mi>x</mi></math> и <math><mi>y</mi></math> оставить без изменения.</li>
+<li>Даны действительные положительные числа 
+<math><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi></math>.
+	<ol type='a'>
+		<li>Выяснить, существует ли треугольник с длинами сторон <math><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi></math>.</li>
+		<li>Если треугльник существует, то ответить &#8212; является ли он остроугольным?</li>
+	</ol>
+</li>
+<li>Даны действительные числа
+<math><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi></math> (<math><mi>a</mi></math> не равно нулю).
+Выяснить, имеет ли уравнение 
+<math><mi>a</mi><mo>&#x2062;</mo><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mi>b</mi><mo>&#x2062;</mo><mi>x</mi><mo>+</mo><mi>c</mi><mo>=</mo><mn>0</mn></math> действительные корни. Если действительные корни имеются, то найти их. В противном случае ответом должно служить сообщение, что действительных корней нет.
+</li>
+<li>Дано действительное число <math><mi>h</mi></math>. Выяснить, имеет ли уравнение 
+<math><mi>a</mi><mo>&#x2062;</mo><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mi>b</mi><mo>&#x2062;</mo><mi>x</mi><mo>+</mo><mi>c</mi><mo>=</mo><mn>0</mn></math> действительные корни, если
+<math>
+	<mi>a</mi>
+	<mo>=</mo>
+	<msqrt>
+		<mfrac>
+			<mrow>
+				<mo>|</mo>
+				<mi>sin</mi>
+				<mo>&#x2061;</mo>
+				<mrow>
+				<mo>(</mo>
+				<mn>8</mn>
+				<mo>&#x2062;</mo>
+				<mi>h</mi>
+				<mo>)</mo>
+				</mrow>
+				<mo>|</mo>
+				<mo>+</mo>
+				<mn>17</mn>
+			</mrow>
+			<msup>
+			<mrow>
+				<mo>(</mo>
+				<mn>1</mn>
+				<mo>-</mo>
+				<mi>sin </mi>
+				<mo>&#x2061;</mo>
+				<mrow>
+				<mo>(</mo>
+				<mn>4</mn>
+				<mo>&#x2062;</mo>
+				<mi>h</mi>
+				<mo>)</mo>
+				</mrow>
+				<mo>&#x2062;</mo>
+				<mrow>
+				<mo>(</mo>
+				<msup><mi>h</mi><mn>2</mn></msup>
+				<mo>+</mo>
+				<mn>18</mn>
+				<mo>)</mo>
+				</mrow>
+				<mo>)</mo>
+			</mrow>
+			<mn>2</mn>
+			</msup>
+		</mfrac>
+	</msqrt>
+</math>
+<mo>,</mo>
+
+<math>
+	<mi>b</mi>
+	<mo>=</mo>
+	<mn>1</mn>
+	<mo>-</mo>
+		<msqrt>
+			<mfrac>
+				
+					<mn>3</mn>
+				
+				<mrow>
+					<mn>3</mn>
+					<mo>+</mo>					
+					<mo>|</mo>
+					<mrow>
+					<mi>tg</mi>
+					<mo>&#x2061;</mo>
+					<mrow><mo>(</mo>
+						<mi>a</mi>
+						<msup><mi>h</mi><mn>2</mn></msup>
+						<mo>)</mo>
+					</mrow>
+					</mrow>
+					<mo>-</mo>
+					<mi>sin</mi>
+					<mo>&#x2061;</mo>
+					<mrow><mo>(</mo>
+					<mi>a</mi><mo>&#x2062;</mo><mi>h</mi>
+					<mo>)</mo>
+					</mrow>
+					
+					<mo>|</mo>
+				</mrow>
+			</mfrac>		
+		</msqrt>
+	<mo>,</mo>
+</math>
+
+<math>
+
+	<mi>c</mi>
+	<mo>=</mo>
+	<mi>a</mi><mo>&#x2062;</mo>
+	<msup><mi>h</mi><mn>2</mn></msup>
+	<mo>&#x2062;</mo>
+	<mrow>
+	<mi>sin</mi><mo>&#x2062;</mo>
+	<mrow>
+	<mo>(</mo>
+	<mi>b</mi><mo>&#x2062;</mo><mi>h</mi>
+	<mo>)</mo>
+	</mrow>
+	</mrow>
+	<mo>+</mo>
+	<mi>b</mi><mo>&#x2062;</mo>
+	<msup><mi>h</mi><mn>3</mn></msup>
+	<mo>&#x2062;</mo>
+	<mrow>	
+	<mi>cos</mi>
+	<mrow>
+	<mo>(</mo>
+	<mi>a</mi><mo>&#x2062;</mo><mi>h</mi>
+	<mo>)</mo>
+	</mrow>
+	</mrow>	
+	<mo>.</mo>
+	</math>
+Если действительные корни существуют, то найти их. В противном случае ответом должно служить сообщение, что действительных корней нет.</li>
+<li>Даны действительные числа 
+<math>
+<msub><mi>a</mi><mn>1</mn></msub>, <msub><mi>b</mi><mn>1</mn></msub>, <msub><mi>c</mi><mn>1</mn></msub>,<msub><mi>a</mi><mn>2</mn></msub>, <msub><mi>b</mi><mn>2</mn></msub>, <msub><mi>c</mi><mn>2</mn></msub>.
+</math>
+ Выяснить, верно ли, что 
+<math>
+<mo>|</mo>
+<mrow><msub><mi>a</mi><mn>1</mn></msub><mo>&#x2062;</mo><msub><mi>b</mi><mn>2</mn></msub></mrow>
+<mo>-</mo>
+<mrow><msub><mi>a</mi><mn>2</mn></msub><mo>&#x2062;</mo><msub><mi>b</mi><mn>1</mn></msub></mrow>
+<mo>|</mo> <mo>&#8805;</mo><mn>0.0001</mn>
+</math>, 
+и если верно, то найти решение системы линейных уравнений
+
+<math>
+<mrow>
+<mo>{</mo>
+<mtable>
+<mtr>
+		<mtd>
+			<mrow>
+				<msub><mi>a</mi><mn>1</mn></msub>
+				<mi>x</mi>
+				<mo>+</mo>
+				<msub><mi>b</mi><mn>1</mn></msub>
+				<mi>y</mi>
+				<mo>+</mo>						
+				<msub><mi>c</mi><mn>1</mn></msub>
+				<mo>=</mo>
+				<mn>0</mn>
+				<mo>,</mo>
+			</mrow>
+		</mtd>
+		</mtr>
+		<mtr>
+		<mtd>
+			<mrow>
+				<mrow>
+				<msub><mi>a</mi><mn>2</mn></msub>
+				<mo>&#x2062;</mo>
+				<mi>x</mi>
+				</mrow>
+				<mo>+</mo>
+				<mrow>
+				<msub><mi>b</mi><mn>2</mn></msub>
+				<mo>&#x2062;</mo>
+				<mi>y</mi>	
+				</mrow>
+				<mo>+</mo>					
+				<msub><mi>c</mi><mn>2</mn></msub>
+				<mo>=</mo>
+				<mn>0</mn>
+				<mo>,</mo>
+			</mrow>
+		</mtd>
+		</mtr>
+</mtable>
+</mrow>
+</math>
+
+(при выполнении выписанного неравенства система заведомо совместна и имеет единственное решение).
+</li>
+<li>Даны действительные числа 
+<math><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo>(</mo><mi>a</mi><mo>&#8800;</mo><mn>0</mn><mo>)</mo></math>. Полностью исследовать биквадратное уравнение 
+<math>
+<mrow>
+	<mrow><mi>a</mi><mo>&#x2062;</mo><msup><mi>x</mi><mn>4</mn></msup></mrow><mo>+</mo>
+	<mrow><mi>b</mi><mo>&#x2062;</mo><msup><mi>x</mi><mn>2</mn></msup></mrow><mo>+</mo>
+	<mi>c</mi>
+</mrow>
+<mo>=</mo>
+<mn>0</mn>
+</math>,
+т.е. если действительных корней нет, то должно быть выдано сообщение об этом, иначе должны быть выданы два или четыре корня.
+</li>
+<li>Даны действительные числа 
+<math>
+<mfenced open='' close=''>
+<mi>a</mi><mi>b</mi><mi>c</mi><mi>d</mi><mi>s</mi><mi>t</mi><mi>u</mi>
+</mfenced>
+ </math>
+(<math><mi>s</mi></math> и <math><mi>t</mi></math> одновременно не равны нулю).
+Известно, что точки 
+<math><mo>(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>)</mo></math> и <math><mo>(</mo><mi>c</mi><mo>,</mo><mi>d</mi><mo>)</mo>
+ </math> не лежат на прямой <math><mi>L</mi></math>, заданной уравнением 
+<math>
+<mrow>
+<mrow><mi>s</mi><mo>&#x2062;</mo><mi>x</mi></mrow><mo>+</mo>
+<mrow><mi>t</mi><mo>&#x2062;</mo><mi>y</mi></mrow>
+<mo>+</mo><mi>u</mi>
+</mrow>
+<mo>=</mo><mn>0</mn>
+</math>. 
+Прямая <math><mi>L</mi></math> разбивает координатную плоскость на две полуплоскости. Выяснить, верно ли, что точки 
+<math><mo>(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>)</mo></math> и <math><mo>(</mo><mi>c</mi><mo>,</mo><mi>d</mi><mo>)</mo>
+ </math> 
+ принадлежат разным полуплоскостям? (*)
+</li>
+<li>Даны действительные числа 
+<math>
+<mfenced open='' close=''><mi>a</mi><mi>b</mi><mi>c</mi><mi>d</mi><mi>e</mi><mi>f</mi><mi>g</mi><mi>h</mi></mfenced>
+ </math>.
+Известно что точки
+<math>
+<mo>(</mo><mi>e</mi><mo>,</mo><mi>f</mi><mo>)</mo></math> и <math><mo>(</mo><mi>g</mi><mo>,</mo><mi>h</mi><mo>)</mo> 
+ </math>
+различны. Известно также, что точки
+<math>
+ <mo>(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>)</mo></math> и <math><mo>(</mo><mi>c</mi><mo>,</mo><mi>d</mi><mo>)</mo>
+</math>
+не лежат на прямой <math><mi>L</mi></math>, проходящей через точки 
+<math>
+<mo>(</mo><mi>e</mi><mo>,</mo><mi>f</mi><mo>)</mo></math> и <math><mo>(</mo><mi>g</mi><mo>,</mo><mi>h</mi><mo>)</mo> 
+ </math>.
+Прямая
+<math><mi>L</mi></math> разбивает координатную плоскость на две полуплоскости. Выяснить, верно ли, что точки 
+<math>
+ <mo>(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>)</mo></math> и <math><mo>(</mo><mi>c</mi><mo>,</mo><mi>d</mi><mo>)</mo>
+</math>
+принадлежат одной и той же полуплоскости. (**)
+</li>
+<li>Даны действительные числа 
+<math><mfenced open='' close=''>
+<msub><mi>x</mi><mn>1</mn></msub><msub><mi>x</mi><mn>2</mn></msub><msub><mi>x</mi><mn>3</mn></msub><msub><mi>y</mi><mn>1</mn></msub> <msub><mi>y</mi><mn>2</mn></msub><msub><mi>y</mi><mn>3</mn></msub>
+</mfenced>
+</math>. 
+Принадлежит ли начало координат треугольнику с вершинами 
+<math><mfenced open='' close=''>
+<mrow><mo>(</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><msub><mi>y</mi><mn>1</mn></msub><mo>)</mo></mrow>
+<mrow><mo>(</mo><msub><mi>x</mi><mn>2</mn></msub><mo>,</mo><msub><mi>y</mi><mn>2</mn></msub><mo>)</mo></mrow>
+<mrow><mo>(</mo><msub><mi>x</mi><mn>3</mn></msub><mo>,</mo><msub><mi>y</mi><mn>3</mn></msub><mo>)</mo></mrow>
+</mfenced>
+ </math>?
+</li>
+<li>Даны действительные положительные числа <math><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi> <mo>,</mo><mi>d</mi></math> .
+Выяснить можно ли прямоугольник со сторонами <math><mi>a</mi><mo>,</mo><mi>b</mi></math> 
+уместить внутри прямоугольника со сторонами <math><mi>c</mi><mo>,</mo><mi>d</mi></math> так, чтобы каждая из сторон одного прямоугольника была параллельна или перпендикулярна каждой стороне второго прямоугольника. 
+</li>
+<li>Даны действительные положительные числа
+<math><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo>,</mo><mi>x</mi><mo>,</mo><mi>y</mi></math>. 
+Выяснить, пройдет ли кирпич с ребрами <math><mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi></math>
+ в прямоугольное отверстие со сторонами <math><mi>x</mi><mo>,</mo><mi>y</mi></math> .
+ Просовывать кирпич в отверстие разрешается только так, чтобы каждое из его ребер было параллельно или перпендикулярно каждой из сторон отверстия.
+</li>
+<li>Дано действительное число <math><mi>a</mi></math>. Вычислить 
+<math><mrow><mi>f</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>a</mi><mo>)</mo></mrow></mrow></math>, если
+<ol type='a'>
+	<li>
+	<math>
+		<mrow><mi>f</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>a</mi><mo>)</mo></mrow></mrow>
+		<mo>=</mo>
+		<mrow>
+			<mo>{</mo>
+			<mtable>
+				<mtr>
+				<mtd>
+					<mrow>
+						<msup><mi>x</mi><mn>2</mn></msup>
+						<mtext>&#160; при &#160;</mtext>
+						<mn>-2</mn><mo>&#8804;</mo><mi>x</mi><mo>&lt;</mo><mn>2</mn><mo>,</mo>
+					</mrow>
+				</mtd>
+				</mtr>
+				<mtr><mtd><mn>4</mn><mtext>&#160; в противном случае;</mtext></mtd></mtr>
+			</mtable>
+		</mrow>
+</math>
+</li>
+<li>
+<math>
+<mrow><mi>f</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>a</mi><mo>)</mo></mrow></mrow>
+	<mo>=</mo>
+	<mrow>
+		<mo>{</mo>
+		<mtable>
+			<mtr>
+			<mtd>
+				<mrow>
+					<msup><mi>x</mi><mn>2</mn></msup>
+					<mo>+</mo>
+					<mrow><mn>4</mn><mo>&#x2062;</mo><mi>x</mi></mrow>
+					<mo>+</mo>
+					<mn>5</mn>
+					<mtext>&#160; при &#160;</mtext>
+					<mi>x</mi><mo>&#8804;</mo><mn>2</mn>
+					<mo>,</mo>
+				</mrow>
+			</mtd>
+			</mtr>
+			<mtr>
+			<mtd>
+				<mrow>
+					<mfrac>
+							<mn>1</mn>
+							<mrow>
+								<msup><mi>x</mi><mn>2</mn></msup>
+								<mo>+</mo>
+								<mrow><mn>4</mn><mo>&#x2062;</mo><mi>x</mi></mrow>
+								<mo>+</mo>
+								<mn>5</mn>
+							</mrow>
+					</mfrac>
+					<mtext>&#160;в противном случае;</mtext>
+				</mrow>
+			</mtd>
+			</mtr>
+		</mtable>
+</mrow>
+</math>
+</li>
+<li>
+<math>
+<mrow><mi>f</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>a</mi><mo>)</mo></mrow></mrow>
+<mo>=</mo>
+	<mrow>
+		<mo>{</mo>
+		<mtable>
+			<mtr>
+			<mtd>
+			<mrow>
+				<mn>0</mn><mtext>&#160; при &#160;</mtext>
+				<mrow><mi>x</mi><mo>&#8804;</mo><mn>0</mn></mrow>
+				<mo>,</mo>
+			</mrow>
+			</mtd>
+			</mtr>
+			<mtr>
+			<mtd>
+			<mrow>
+				<mi>x</mi>
+				<mtext>&#160; при &#160;</mtext>
+				<mrow><mn>0</mn><mo>&lt;</mo><mi>x</mi><mo>&#8804;</mo><mn>1</mn></mrow><mo>,</mo>
+			</mrow>
+			</mtd>
+			</mtr>
+			
+			<mtr>
+			<mtd>
+			<mrow>
+				<msup><mi>x</mi><mn>4</mn></msup>
+				<mtext>&#160; в остальных случаях;</mtext>
+			</mrow>
+			</mtd>
+			</mtr>
+		</mtable>
+	</mrow>
+
+</math>
+</li>
+<li>
+<math>
+<mrow><mi>f</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>a</mi><mo>)</mo></mrow></mrow>
+<mo>=</mo>
+	<mrow>
+		<mo>{</mo>
+		<mtable>
+			<mtr>
+			<mtd>
+			<mrow>
+				<mn>0</mn>
+				<mtext>&#160; при &#160;</mtext>
+				<mi>x</mi><mo>&#8804;</mo><mn>0</mn>
+				<mo>,</mo>
+			</mrow>
+			</mtd>
+			</mtr>
+			<mtr>
+			<mtd>
+			<mrow>
+				<msup><mi>x</mi><mn>2</mn></msup>
+				<mo>-</mo>
+				<mi>x</mi>
+				<mtext>&#160; при &#160;</mtext>
+				<mrow><mn>0</mn><mo>&lt;</mo><mi>x</mi><mo>&#8804;</mo><mn>1</mn></mrow><mo>,</mo>
+			</mrow>
+			</mtd>
+			</mtr>
+			<mtr>
+			<mtd>
+			<mrow>
+				<msup><mi>x</mi><mn>2</mn></msup>
+				<mo>-</mo>
+				<mi>sin</mi><mo>&#x2061;</mo>
+				<mrow><mo>(</mo>
+				<msup><mi>x</mi><mn>2</mn></msup>
+				<mo>)</mo>
+				</mrow>
+				<mtext>&#160; в остальных случаях.</mtext>
+			</mrow>
+			</mtd>
+			</mtr>
+		</mtable>
+	</mrow>
+
+</math>
+</li>
+</ol>
+</li>
+<li><p>Дано действительное число <math><mi>a</mi></math>. Для функций
+<math><mi>f</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>x</mi><mo>)</mo></mrow></math>,
+графики которых представлены на рис.1 а-г, вычислить 
+<math><mi>f</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>a</mi><mo>)</mo></mrow></math>:</p>
+
+<svg width="400" height="400">
+<line x1='30' y1='30' x2='200' y2='185' stroke="#000000" stroke-width="1" fill="none"/>
+<polyline points='196,27 200,20 204,27' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='200' y1='20' x2='200' y2='350' stroke="#000000" stroke-width="1" fill="none"/>
+<text fill="#000000" stroke="#000000" stroke-width="0" x="205" y="25" id="svg_10" >y</text>
+<line x1='20' y1='185' x2='380' y2='185' stroke="#000000" stroke-width="1" fill="none"/>
+<text fill="#000000" stroke="#000000" stroke-width="0" x="385" y="190" id="svg_11">x</text>
+<polyline points='373,181 380,185 373,189' stroke="#000000" stroke-width="1" fill="none"/>
+<path d='M200,185 A76,140 0 0,1 280,330' stroke="#000000" stroke-width="1" fill="none"/>
+<text x='60' y='50' stroke="#000000" stroke-width="1" fill="none">y=-x</text>
+<text x='275' y='250' stroke="#000000" stroke-width="1" fill="none">y=-x<tspan dx="" dy="-6" font-size='12'>2</tspan></text>
+<text x='150' y='390' stroke="#000000" stroke-width="1" fill="none">Рис. 1 а</text>
+</svg>
+
+
+<svg width="580" height="430">
+<g transform='translate(-60,-10)'>  
+	<line fill="none" stroke="#000000" stroke-width="1" x1="300" y1="56" x2="300" y2="370" id="svg_1"/>
+	<polyline points='296,62 300,56 304,62' fill="none" stroke="#000000" stroke-width="1"/>
+	<line fill="none" stroke="#000000" stroke-width="1" x1="96" y1="248" x2="536" y2="250" id="svg_2"/>
+	<polyline points='530,247 536,250 530,253' fill="none" stroke="#000000" stroke-width="1"/>
+	<path fill="none" stroke="#000000" stroke-width="1" d="m250,207 c74,103 98,-13 115,-71" id="svg_7"/>
+	<line fill="none" stroke="#000000" stroke-width="1" x1="365" y1="135" x2="504" y2="135" id="svg_8"/>
+	<path fill="none" stroke="#000000" stroke-width="1" d="m249,207c-38,26 -85,40 -136,39" id="svg_9"/>
+	<text fill="#000000" stroke="#000000" stroke-width="0" x="322" y="40" id="svg_10" >y</text>
+	<text fill="#000000" stroke="#000000" stroke-width="0" x="568" y="256" id="svg_11">x</text>
+	<text fill="#000000" stroke="#000000" stroke-width="0" x="445" y="118" id="svg_12">y=4</text>
+	<text fill="#000000" stroke="#000000" stroke-width="0" x="362" y="206" id="svg_14">y=x<tspan dx="1" dy="-9" font-size="15">2</tspan> </text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="250" y="400" id="svg_21"">Рис. 1б</text>
+   <text fill="#000000" stroke="#000000" stroke-width="0" x="148" y="221" id="svg_23">y=1/x<tspan dx="1" dy="-9" font-size="15">2</tspan></text>
+   
+</g>
+</svg>
+
+<p>
+<svg width="640" height="380">
+<g transform='translate(-50,-80)'>  
+ <line fill="none" stroke="#000000" x1="307" y1="100" x2="307" y2="360" id="svg_23" stroke-width="1"/>
+ <polyline points='303,105 307,100 311,105' fill="none" stroke="#000000" stroke-width="1"/>
+  <line fill="none" stroke="#000000" stroke-width="1" x1="100" y1="282" x2="544" y2="282" id="svg_24"/>
+   <polyline points='538,278 544,282 538,286' fill="none" stroke="#000000" stroke-width="1"/>
+  <line fill="none" stroke="#000000" stroke-width="1" x1="307" y1="224" x2="253" y2="282" id="svg_25"/>
+  <line fill="none" stroke="#000000" stroke-width="1" x1="307" y1="224" x2="362" y2="281" id="svg_26"/>
+  <line fill="none" stroke="#000000" stroke-width="1" x1="362" y1="282" x2="516" y2="147" id="svg_27"/>
+  <line fill="none" stroke="#000000" stroke-width="1" x1="253" y1="282" x2="93" y2="152" id="svg_28"/>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="563" y="288" id="svg_31">x</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="333" y="100" id="svg_32">y</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="175" y="310" id="svg_33">-2</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="248" y="310" id="svg_34" >-1</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" opacity="0.5" x="363" y="310" id="svg_35">1</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="433" y="310" id="svg_36">2</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" opacity="0.5" x="327" y="227" id="svg_37">1</text>
+  <line fill="none" stroke="#000000" stroke-width="1" x1="182" y1="281" x2="182" y2="224" id="svg_38"   stroke-dasharray="7"/>
+  <line fill="none" stroke="#000000" stroke-width="1" x1="182" y1="224" x2="428" y2="224" id="svg_39"  stroke-dasharray="7"/>
+  <line fill="none" stroke="#000000" stroke-width="1" x1="428" y1="225" x2="428" y2="282" id="svg_40"  stroke-dasharray="7"/>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="270" y="400" id="svg_21">Рис. 1в</text>
+ </g> 
+</svg>
+</p>
+<p>
+<svg width="640" height="340">
+<g  transform='translate(-50,-55)'>
+	<line y2="350" x2="302" y1="74" x1="302" stroke-width="1" stroke="#000000" fill="none"/>
+	<polyline points='298,80 302,74 306,80' fill="none" stroke="#000000" stroke-width="1"/>
+  <line y2="244" x2="552" y1="244" x1="170" stroke-width="1" stroke="#000000" fill="none"/>
+  
+  <polyline points='546,240 552,244 546,248' fill="none" stroke="#000000" stroke-width="1"/>
+  
+  <line id="svg_4" y2="135" x2="160" y1="244" x1="302" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_5" y2="201" x2="343" y1="244" x1="302" stroke-width="1" stroke="#000000" fill="none"/>
+  
+  <line id="svg_6" y2="201" x2="415" y1="201" x1="342" stroke-width="1" stroke="#000000" fill="none"/>
+  
+  <line id="svg_7" y2="322" x2="500" y1="201" x1="415" stroke-width="1" stroke="#000000" fill="none"/>
+  
+  <line id="svg_8" y2="286" x2="475" y1="286" x1="303" stroke-width="1" stroke="#000000" fill="none"  stroke-dasharray='2'/>
+  <line id="svg_9" y2="244" x2="475" y1="286" x1="475" stroke-width="1" stroke="#000000" fill="none"  stroke-dasharray='2'/>
+  <line id="svg_9" y2="242" x2="414" y1="201" x1="414" stroke-width="1" stroke="#000000" fill="none"  stroke-dasharray='2'/>  
+  <text y="290" x="280" stroke-width="0" stroke="#000000" fill="#000000">-1</text>
+  <polyline points='280,290 280,150 340,150' stroke-width="0" stroke="#000000" fill="none" stroke-dasharray='2'/>
+  
+  <text y="66" x="324" stroke-width="0" stroke="#000000" fill="#000000">y</text>
+  <text y="249" x="580" stroke-width="0" stroke="#000000" fill="#000000">x</text>
+  <text y="260" x="338" stroke-width="0" stroke="#000000" fill="#000000">1</text>
+  
+  <text y="260" x="240" stroke-width="0" stroke="#000000" fill="#000000">-1</text>
+  
+  <text y="205" x="285" stroke-width="0" stroke="#000000" fill="#000000">1</text>
+  
+  <text y="260" x="409" stroke-width="0" stroke="#000000" fill="#000000">2</text>
+  <text y="232" x="468" stroke-width="0" stroke="#000000" fill="#000000">3</text>
+  
+  <polyline points='245,242 245,201 340,201' stroke-width="1" stroke="#000000" fill="none" stroke-dasharray='2'/>
+  <line x1='342' y1='242' x2='342' y2='201'  stroke-width="1" stroke="#000000" fill="none" stroke-dasharray='2'/>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="265" y="380" >Рис. 1г</text>
+ </g>
+</svg>
+</p>
+</li>
+<li><p>Даны действительные числа <math><mi>x</mi><mo>,</mo><mi>y</mi></math>. Определить, принадлежит ли точкa c координатами <math><mi>x</mi><mo>,</mo><mi>y</mi></math> закрашенной части плоскости (рис.2, а-к):</p>
+<svg width="400" height="280">
+<circle r='90' cx='200' cy='150' stroke-width="1" stroke="#000000" fill="#999999"/>
+<text y="55" x="205" stroke-width="0" stroke="#000000" fill="#000000">1</text>
+<text y="145" x="290" stroke-width="0" stroke="#000000" fill="#000000">1</text>
+<line y2="250" x2="200" y1="20" x1="200" stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='196,26 200,20 204,26' fill="none" stroke="#000000" stroke-width="1"/>
+<text x="207" y="26" stroke-width="0" stroke="#000000" fill="#000000">Y</text>
+<line y2="150" x2="80" y1="150" x1="340" stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='334,146 340,150 334,154' fill="none" stroke="#000000" stroke-width="1"/>
+<text y="154" x="340" stroke-width="0" stroke="#000000" fill="#000000">X</text>
+<text y="260" x="100" stroke-width="0" stroke="#000000" fill="#000000">Рис. 2, a</text>
+</svg>
+
+<svg width="400" height="280">
+<circle r='90' cx='200' cy='150' stroke-width="1" stroke="#000000" fill="#999999"/>
+<circle r='45' cx='200' cy='150' stroke-width="1" stroke="#000000" fill="#ffffff"/>
+<text y="55" x="205" stroke-width="0" stroke="#000000" fill="#000000">1</text>
+<text y="100" x="205" stroke-width="0" stroke="#000000" fill="#000000">0.5</text>
+<text y="145" x="290" stroke-width="0" stroke="#000000" fill="#000000">1</text>
+<text y="145" x="245" stroke-width="0" stroke="#000000" fill="#000000">0.5</text>
+<line y2="250" x2="200" y1="20" x1="200" stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='196,26 200,20 204,26' fill="none" stroke="#000000" stroke-width="1"/>
+<text x="207" y="26" stroke-width="0" stroke="#000000" fill="#000000">Y</text>
+<line y2="150" x2="80" y1="150" x1="340" stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='334,146 340,150 334,154' fill="none" stroke="#000000" stroke-width="1"/>
+<text y="154" x="340" stroke-width="0" stroke="#000000" fill="#000000">X</text>
+<text y="260" x="100" stroke-width="0" stroke="#000000" fill="#000000">Рис. 2, б</text>
+</svg>
+
+
+<svg width="400" height="280">
+<rect x='110' y='60' width='180' height='180' stroke-width="1" stroke="#000000" fill="#999999"/>
+<text y="55" x="205" stroke-width="0" stroke="#000000" fill="#000000">1</text>
+<text y="253" x="205" stroke-width="0" stroke="#000000" fill="#000000">-1</text>
+<text y="145" x="290" stroke-width="0" stroke="#000000" fill="#000000">1</text>
+<text y="145" x="95" stroke-width="0" stroke="#000000" fill="#000000">-1</text>
+<line y2="250" x2="200" y1="20" x1="200" stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='196,26 200,20 204,26' fill="none" stroke="#000000" stroke-width="1"/>
+<text x="207" y="26" stroke-width="0" stroke="#000000" fill="#000000">Y</text>
+<line y2="150" x2="80" y1="150" x1="340" stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='334,146 340,150 334,154' fill="none" stroke="#000000" stroke-width="1"/>
+<text y="154" x="340" stroke-width="0" stroke="#000000" fill="#000000">X</text>
+<text y="270" x="100" stroke-width="0" stroke="#000000" fill="#000000">Рис. 2, в</text>
+</svg>
+
+
+<svg width="400" height="280">
+<polygon points='110,150 200,60 290,150 200,240' stroke-width="1" stroke="#000000" fill="#999999"/>
+<text y="55" x="205" stroke-width="0" stroke="#000000" fill="#000000">1</text>
+<text y="253" x="205" stroke-width="0" stroke="#000000" fill="#000000">-1</text>
+<text y="145" x="290" stroke-width="0" stroke="#000000" fill="#000000">1</text>
+<text y="145" x="95" stroke-width="0" stroke="#000000" fill="#000000">-1</text>
+<line y2="250" x2="200" y1="20" x1="200" stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='196,26 200,20 204,26' fill="none" stroke="#000000" stroke-width="1"/>
+<text x="207" y="26" stroke-width="0" stroke="#000000" fill="#000000">Y</text>
+<line y2="150" x2="80" y1="150" x1="340" stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='334,146 340,150 334,154' fill="none" stroke="#000000" stroke-width="1"/>
+<text y="154" x="340" stroke-width="0" stroke="#000000" fill="#000000">X</text>
+<text y="270" x="100" stroke-width="0" stroke="#000000" fill="#000000">Рис. 2, г</text>
+</svg>
+
+
+<svg width="350" height="380">
+ <g>
+ 	<polygon points='120,200 170,100 220,200 170,300'  stroke-width="1" stroke="#000000" fill="#7f7f7f"/>
+ 	<text y="190" x="215" stroke-width="0" stroke="#000000" fill="#000000">0.5</text>
+ 	<text y="190" x="100" stroke-width="0" stroke="#000000" fill="#000000">-0.5</text>
+ 	<text y="100" x="175" stroke-width="0" stroke="#000000" fill="#000000">1</text>
+ 	<text y="300" x="175" stroke-width="0" stroke="#000000" fill="#000000">-1</text>
+ 	<line x1='20' y1='200' x2='320' y2="200" stroke-width="1" stroke="#000000" fill="none"/>
+ 	<polyline points='313,196 320,200 313,204' fill="none" stroke="#000000" stroke-width="1"/>
+ 	<text y="205" x="330" stroke-width="0" stroke="#000000" fill="#000000">X</text>
+ 	<line x1='170' y1='40' x2='170' y2="340" stroke-width="1" stroke="#000000" fill="none"/>
+  	<polyline points='166,46 170,40 174,46' fill="none" stroke="#000000" stroke-width="1"/>	
+ 	<text y="50" x="176" stroke-width="0" stroke="#000000" fill="#000000">Y</text>
+ 	<text y="375" x="100" stroke-width="0" stroke="#000000" fill="#000000">Рис. 2, д</text>
+</svg>
+
+
+<svg width="400" height="380">
+<path stroke-width="1" stroke="#000000" fill="#999999" d="M60,150 L200,80 A70,70 0 1,1 200,220 z"/>
+<line y2="250" x2="200" y1="20" x1="200" stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='196,26 200,20 204,26' fill="none" stroke="#000000" stroke-width="1"/>
+<text x="207" y="25" stroke-width="0" stroke="#000000" fill="#000000">Y</text>
+<line y2="150" x2="30" y1="150" x1="300" stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='294,146 300,150 294,154' fill="none" stroke="#000000" stroke-width="1"/>
+<text y="154" x="305" stroke-width="0" stroke="#000000" fill="#000000">X</text>
+<text y="140" x="55" stroke-width="0" stroke="#000000" fill="#000000">-2</text>
+<text y="140" x="275" stroke-width="0" stroke="#000000" fill="#000000">1</text>
+<text y="75" x="205" stroke-width="0" stroke="#000000" fill="#000000">1</text>
+<text y="230" x="205" stroke-width="0" stroke="#000000" fill="#000000">-1</text>
+<text y="275" x="100" stroke-width="0" stroke="#000000" fill="#000000">Рис. 2, е</text>
+</svg>
+
+
+<svg width="400" height="380">
+<polygon points='200,45 330,215 70,215' stroke-width="1" stroke="#000000" fill="#999999"/>
+<line y2="250" x2="200" y1="20" x1="200" stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='196,26 200,20 204,26' fill="none" stroke="#000000" stroke-width="1"/>
+<text x="207" y="26" stroke-width="0" stroke="#000000" fill="#000000">Y</text>
+<text y="50" x="205" stroke-width="0" stroke="#000000" fill="#000000">2</text>
+<line y2="150" x2="30" y1="150" x1="340" stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='334,146 340,150 334,154' fill="none" stroke="#000000" stroke-width="1"/>
+<text y="154" x="340" stroke-width="0" stroke="#000000" fill="#000000">X</text>
+<text y="230" x="205" stroke-width="0" stroke="#000000" fill="#000000">-1</text>
+<text y="275" x="10" stroke-width="0" stroke="#000000" fill="#000000">Рис. 2, ж. Равносторонний треугольник</text>
+</svg>
+
+<svg width="400" height="380">
+<polygon points='100,50 200,150 300,50 300,300 100,300' stroke-width="1" stroke="#000000" fill="#999999"/>
+<line x1='100' y1='50' x2='300' y2='50' stroke-width="1" stroke="#000000" stroke-dasharray='2' fill="#999999"/>
+<text y="55" x="205" stroke-width="0" stroke="#000000" fill="#000000">1</text>
+<text y="315" x="205" stroke-width="0" stroke="#000000" fill="#000000">-2</text>
+<text y="145" x="305" stroke-width="0" stroke="#000000" fill="#000000">1</text>
+<text y="145" x="75" stroke-width="0" stroke="#000000" fill="#000000">-1</text>
+<line y2="350" x2="200" y1="20" x1="200" stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='196,26 200,20 204,26' fill="none" stroke="#000000" stroke-width="1"/>
+<text x="207" y="26" stroke-width="0" stroke="#000000" fill="#000000">Y</text>
+
+<line y2="150" x2="30" y1="150" x1="340" stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='334,146 340,150 334,154' fill="none" stroke="#000000" stroke-width="1"/>
+
+<text y="154" x="340" stroke-width="0" stroke="#000000" fill="#000000">X</text>
+
+<text y="375" x="100" stroke-width="0" stroke="#000000" fill="#000000">Рис. 2, з</text>
+</svg>
+
+<svg width="400" height="380">
+<polygon points='110,60 20,240 290,150 200,150' stroke-width="1" stroke="#000000" fill="#999999"/>
+<polyline points='110,150 110,60 200,60' fill="none" stroke="#000000" stroke-width="1" stroke-dasharray='2'/>
+<line x1='20' y1='240' x2='20' y2='150' stroke-width="1" stroke="#000000" stroke-dasharray='2' fill="#999999"/>
+<line x1='20' y1='240' x2='200' y2='240' stroke-width="1" stroke="#000000" stroke-dasharray='2' fill="#999999"/>
+<text y="65" x="205" stroke-width="0" stroke="#000000" fill="#000000">1</text>
+<text y="246" x="205" stroke-width="0" stroke="#000000" fill="#000000">-1</text>
+<text y="145" x="290" stroke-width="0" stroke="#000000" fill="#000000">1</text>
+<text y="145" x="5" stroke-width="0" stroke="#000000" fill="#000000">-2</text>
+<text y="145" x="95" stroke-width="0" stroke="#000000" fill="#000000">-1</text>
+<line y2="250" x2="200" y1="20" x1="200" stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='196,26 200,20 204,26' fill="none" stroke="#000000" stroke-width="1"/>
+<text x="207" y="26" stroke-width="0" stroke="#000000" fill="#000000">Y</text>
+<line y2="150" x2="5" y1="150" x1="340" stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='334,146 340,150 334,154' fill="none" stroke="#000000" stroke-width="1"/>
+<text y="154" x="340" stroke-width="0" stroke="#000000" fill="#000000">X</text>
+<text y="270" x="150" stroke-width="0" stroke="#000000" fill="#000000">Рис. 2, и</text>
+</svg>
+
+
+<svg width="420" height="280">
+<polygon points='20,60 110,60 200,150 290,60 380,60 380,150 20,150' stroke-width="1" stroke="#999999" fill="#999999"/>
+<polyline points='110,150 110,60 290,60 290,150' fill="none" stroke="#000000" stroke-width="1" stroke-dasharray='2'/>
+<text y="65" x="205" stroke-width="0" stroke="#000000" fill="#000000">1</text>
+<text y="165" x="290" stroke-width="0" stroke="#000000" fill="#000000">1</text>
+<text y="165" x="95" stroke-width="0" stroke="#000000" fill="#000000">-1</text>
+<line y2="200" x2="200" y1="20" x1="200" stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='196,26 200,20 204,26' fill="none" stroke="#000000" stroke-width="1"/>
+<text x="207" y="26" stroke-width="0" stroke="#000000" fill="#000000">Y</text>
+<line y2="150" x2="5" y1="150" x1="400" stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='394,146 400,150 394,154' fill="none" stroke="#000000" stroke-width="1"/>
+<text y="154" x="405" stroke-width="0" stroke="#000000" fill="#000000">X</text>
+<text y="220" x="100" stroke-width="0" stroke="#000000" fill="#000000">Рис. 2, к</text>
+</svg>
+
+</li>
+<li>Пусть <math><mi>D</mi></math> &#151; закрашенная часть плоскости (рис.3, а-г), и пусть 
+<math><mi>U</mi></math> определяется по <math><mi>x</mi></math> и <math><mi>y</mi></math> следующим образом (запись
+ <math><mo>(</mo><mi>x</mi>,<mi>y</mi><mo>)</mo><mo>&#8712;</mo><mi>D</mi></math> означает, что точка с координатами 
+ <math><mi>x</mi><mo>,</mo><mi>y</mi></math> принадлежит <math><mi>D</mi></math>):
+<ol type='a'>
+<li>
+ <math>
+	<mi>U</mi>
+	<mo>=</mo>
+	<mrow>
+		<mo>{</mo>
+		<mtable columnalign="left">
+			<mtr>
+				<mtd>
+					<mrow>
+						<mn>0</mn><mo>,</mo><mtext>&#160;если&#160;</mtext>
+						<mo>(</mo><mi>x</mi><mo>,</mo>	<mi>y</mi><mo>)</mo>&#8712;&#160;D<mo>,</mo>
+					</mrow>
+				</mtd>
+			</mtr>
+			<mtr>
+				<mtd>
+				<mi>x</mi>&#160;  в противном случае;
+				</mtd>
+			</mtr>
+		</mtable>
+	</mrow>
+</math>
+</li>
+<li>
+<math>	
+	<mi>U</mi>
+	<mo>=</mo>
+	<mrow>
+		<mo>{</mo>
+		<mtable columnalign="left">
+			<mtr>
+				<mtd>
+					<mrow>
+						<mn>-3</mn><mtext>,&#160;если&#160;</mtext>
+						<mo>(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>)</mo>&#8712;&#160;D<mo>,</mo>
+					</mrow>
+				</mtd>
+			</mtr>
+			<mtr>
+				<mtd>
+					<msup><mi>y</mi><mn>2</mn></msup><mtext>&#160;в противном случае;</mtext>
+				</mtd>
+			</mtr>
+		</mtable>
+
+	</mrow>
+</math>	
+</li>
+
+<li>
+<math>	
+	<mi>U</mi>
+	<mo>=</mo>
+	<mrow>
+		<mo>{</mo>
+		<mtable columnalign="left">
+			<mtr>
+			<mtd>
+				<mrow>
+					<mi>x</mi>
+					<mo>-</mo>
+					<mi>y</mi>
+					<mtext>,&#160;если &#160;</mtext><mrow><mo>(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>)</mo></mrow>
+					&#8712;&#160;D
+					<mo>,</mo>
+				</mrow>
+			</mtd>
+			</mtr>
+			<mtr>
+				<mtd><mrow><mi>x</mi><mo>&#x2062;</mo><mi>y</mi></mrow><mo>+</mo><mn>7</mn><mtext>&#160;  в противном случае.</mtext></mtd>
+			</mtr>
+		</mtable>
+	</mrow>
+</math>	
+</li>
+</ol>
+Даны действительные числа <math><mi>x</mi><mo>,</mo><mi>y</mi></math>. Определить <math><mi>U</mi></math>.
+</li>
+</ol>
+<svg width="400" height="330">
+<path d='M100,250 A70,70 0 0,1 300,150 L100,250' stroke-width="1" stroke="#000000" fill="#999999" transform='translate(0,-50)'/>
+<text x="250" y="39" stroke-width="0" stroke="#000000" fill="#000000">y<tspan dy='-5'>2</tspan><tspan dy='5'>+x</tspan><tspan dy='-5'>2</tspan><tspan dy='5'>=1</tspan></text>
+<text x="290" y="120" stroke-width="0" stroke="#000000" fill="#000000">y=x/2</text>
+<line y2="200" x2="200" y1="20" x1="200" stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='196,26 200,20 204,26' fill="none" stroke="#000000" stroke-width="1"/>
+<text x="207" y="26" stroke-width="0" stroke="#000000" fill="#000000">Y</text>
+<text y="55" x="203" stroke-width="0" stroke="#000000" fill="#000000">1</text>
+<text y="165" x="96" stroke-width="0" stroke="#000000" fill="#000000">-1</text>
+<line y2="150" x2="30" y1="150" x1="340" stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='334,146 340,150 334,154' fill="none" stroke="#000000" stroke-width="1"/>
+<text y="154" x="340" stroke-width="0" stroke="#000000" fill="#000000">X</text>
+<text y="225" x="150" stroke-width="0" stroke="#000000" fill="#000000">Рис. 3, a</text>
+</svg>
+
+<svg width="400" height="230">
+<path d='M100,150 A100,100 0 0,1 300,150 L250,150 A50,50 0 1,0 150,150 L100,150' stroke-width="1" stroke="#000000" fill="#999999"/>
+<text x="250" y="45" stroke-width="0" stroke="#000000" fill="#000000">y<tspan dy='-5'>2</tspan><tspan dy='5'>+x</tspan><tspan dy='-5'>2</tspan><tspan dy='5'>=1</tspan></text>
+<text x="215" y="170" stroke-width="0" stroke="#000000" fill="#000000">y<tspan dy='-5'>2</tspan><tspan dy='5'>+x</tspan><tspan dy='-5'>2</tspan><tspan dy='5'>=0.25</tspan></text>
+
+<line y2="200" x2="200" y1="20" x1="200" stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='196,26 200,20 204,26' fill="none" stroke="#000000" stroke-width="1"/>
+<text x="207" y="26" stroke-width="0" stroke="#000000" fill="#000000">Y</text>
+<line y2="150" x2="30" y1="150" x1="340" stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='334,146 340,150 334,154' fill="none" stroke="#000000" stroke-width="1"/>
+<text y="154" x="340" stroke-width="0" stroke="#000000" fill="#000000">X</text>
+<text y="225" x="150" stroke-width="0" stroke="#000000" fill="#000000">Рис. 3, б</text>
+</svg>
+
+
+<svg width="360" height="230">
+<g transform='translate(-40,-40)'>
+<path d='M100,150 A100,50 0 0,1 300,150 L100,150' stroke-width="1" stroke="#000000" fill="#999999"/>
+<text x="205" y="90" stroke-width="0" stroke="#000000" fill="#000000">4y<tspan dy='-5'>2</tspan><tspan dy='5'>+x</tspan><tspan dy='-5'>2</tspan><tspan dy='5'>=1</tspan></text>
+<line y2="200" x2="200" y1="50" x1="200" stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='196,56 200,50 204,56' fill="none" stroke="#000000" stroke-width="1"/>
+<text x="207" y="56" stroke-width="0" stroke="#000000" fill="#000000">Y</text>
+<line y2="150" x2="60" y1="150" x1="340" stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='334,146 340,150 334,154' fill="none" stroke="#000000" stroke-width="1"/>
+<text y="154" x="340" stroke-width="0" stroke="#000000" fill="#000000">X</text>
+<text y="225" x="150" stroke-width="0" stroke="#000000" fill="#000000">Рис. 3, в</text>
+</g>
+</svg>
+
+
+<svg width="360" height="230">
+<path d='M150,150 A50,100 0 1,1 250,150 A100,100 0 0,1 150,150 ' stroke-width="1" stroke="#000000" fill="#999999" transform='translate(0,-14)'/>
+<text x="250" y="70" stroke-width="0" stroke="#000000" fill="#000000">4x<tspan dy='-5'>2</tspan><tspan dy='5'>+y</tspan><tspan dy='-5'>2</tspan><tspan dy='5'>=1</tspan></text>
+<text x="205" y="170" stroke-width="0" stroke="#000000" fill="#000000">x<tspan dy='-5'>2</tspan><tspan dy='5'>+(y-1)</tspan><tspan dy='-5'>2</tspan><tspan dy='5'>=1</tspan></text>
+<line y2="200" x2="200" y1="20" x1="200" stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='196,26 200,20 204,26' fill="none" stroke="#000000" stroke-width="1"/>
+<text x="207" y="26" stroke-width="0" stroke="#000000" fill="#000000">Y</text>
+<line y2="150" x2="60" y1="150" x1="340" stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='334,146 340,150 334,154' fill="none" stroke="#000000" stroke-width="1"/>
+<text y="154" x="340" stroke-width="0" stroke="#000000" fill="#000000">X</text>
+<text y="225" x="150" stroke-width="0" stroke="#000000" fill="#000000">Рис. 3, г</text>
+</svg>
+</ol>
+<p>(*) В этой задаче, как и в ряде следующих задач, надо воспользоваться тем, что две точки 
+ <math> <mo>(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>)</mo></math> и <math><mo>(</mo><mi>c</mi><mo>,</mo><mi>d</mi><mo>)</mo>
+</math>, не лежащие на прямой, определяемой уравнением 
+<math>
+	<mrow>
+		<mrow><mi>s</mi><mo>&#x2062;</mo><mi>x</mi></mrow>
+		<mo>+</mo>
+		<mrow><mi>t</mi><mo>&#x2062;</mo><mi>y</mi></mrow>
+		<mo>+</mo>
+		<mi>u</mi>
+	</mrow>
+	<mo>=</mo><mi>0</mi>
+</math>, принадлежат одной полуплоскости, если
+<math>
+	<mrow>
+		<mrow><mi>s</mi><mo>&#x2062;</mo><mi>a</mi></mrow>
+		<mo>+</mo>
+		<mrow><mi>t</mi><mo>&#x2062;</mo><mi>b</mi></mrow>
+		<mo>+</mo>
+		<mi>u</mi>
+	</mrow>
+</math>
+и
+<math>
+	<mrow>
+		<mrow><mi>s</mi><mo>&#x2062;</mo><mi>c</mi></mrow>
+		<mo>+</mo>
+		<mrow><mi>t</mi><mo>&#x2062;</mo><mi>d</mi></mrow>
+		<mo>+</mo>
+		<mi>u</mi>
+	</mrow>
+</math> &#151; числа одного знака. Справедлив и более общий факт: если уравнение 
+<math><mi>F</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo>)</mo></mrow><mo>=</mo><mi>0</mi></math>
+определяет прямую или кривую, разбивающую координатную плоскость на две части, то точки 
+<math><mo>(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>)</mo></math> и <math><mo>(</mo><mi>c</mi><mo>,</mo><mi>d</mi><mo>)</mo>
+</math>, не лежащие на этой линии, принадлежат одной и той же части плоскости, если 
+<math><mi>F</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>)</mo></mrow></math>
+ и <math><mi>F</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>c</mi><mo>,</mo><mi>d</mi><mo>)</mo></mrow></math>
+ &#151; числа одного знака.</p>
+ <p>(**) В этой задаче, как и в ряде следующих задач, надо воспользоваться тем, что уравнением прямой, проходящей через две различные точки <math><mo>(</mo><mi>e</mi><mo>,</mo><mi>f</mi><mo>)</mo></math> и <math><mo>(</mo><mi>g</mi><mo>,</mo><mi>h</mi><mo>)</mo>
+</math>, является уравнение
+<math>
+<mrow>
+	<mrow><mo>(</mo><mi>x</mi><mo>-</mo><mi>e</mi><mo>)</mo></mrow>
+	<mo>&#x2062;</mo>
+	<mrow><mo>(</mo><mi>h</mi><mo>-</mo><mi>f</mi><mo>)</mo></mrow>
+	<mo>-</mo>
+	<mrow><mo>(</mo><mi>y</mi><mo>-</mo><mi>f</mi><mo>)</mo></mrow> 
+	<mo>&#x2062;</mo>
+	<mrow><mo>(</mo><mi>g</mi><mo>-</mo><mi>e</mi><mo>)</mo></mrow>
+</mrow>
+<mo>=</mo><mo>0</mo>
+</math>.</p>
+
+</body>
+</html>

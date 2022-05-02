@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<link rel='stylesheet' type='text/css' href='style.css' />
+<meta name='author' content='leonid' /> 
+<head>
+<title>Матричная алгебра</title>
+</head>
+<body>
+<h2>§21. Матричная алгебра</h2>
+<ol start='673'>
+<li>Даны матрицы 
+<math>
+	<mi>A</mi>
+</math> 
+и 
+<math>
+	<mi>B</mi>
+</math> размера
+<math>
+<mrow>
+	<mi>k</mi>
+	<mo>&#215;</mo>
+	<mi>m</mi>
+</mrow>
+</math>
+и 
+<math>
+<mrow>
+	<mi>m</mi>
+	<mo>&#215;</mo>
+	<mi>l</mi>
+</mrow>
+</math>
+соответственно. Найти произведение 
+<math>
+<mrow>
+	<mi>A</mi>
+	<mo>&#x2062;<!--произведение--></mo>
+	<mi>B</mi>
+</mrow>
+</math>.
+</li>
+<li>Дана квадратная матрица порядка
+<math><mi>n</mi></math>. Получить матрицу
+<math>
+	<msup>
+		<mi>A</mi>
+		<mn>2</mn>
+	</msup>
+</math>.
+</li>
+<li>Даны квадратные матрицы 
+<math>
+	<mi>A</mi>
+</math> 
+и 
+<math>
+	<mi>B</mi>
+</math> порядка
+<math>
+	<mi>n</mi>
+</math>. Получить матрицу
+<math>
+<mrow>
+	<mrow>
+		<mi>A</mi>
+		<mo>&#x2062;<!--произведение--></mo>
+		<mi>B</mi>
+	</mrow>
+	<mo>-</mo>
+	<mrow>
+		<mi>B</mi>
+		<mo>&#x2062;<!--произведение--></mo>
+		<mi>A</mi>
+	</mrow>
+</mrow>
+</math>.
+</li>
+<li>Дана квадратная матрица 
+<math>
+	<mi>A</mi>
+</math>   
+порядка
+<math>
+	<mi>n</mi>
+</math>. Получить матрицу 
+<math>
+<mrow>
+		<mi>A</mi>
+		<mo>&#x2062;<!--произведение--></mo>
+		<mi>B</mi>
+</mrow>
+</math>;
+элементы матрицы 
+<math>
+<mi>B</mi>
+</math> вычисляются по формуле:
+<ol type="a">
+<li>
+<math>
+<mrow>
+	 <mmultiscripts>
+    	<mi>b</mi> <!--основание-->
+    	<mi>i</mi> <!--нижний индекс-->
+    	<none/>    <!--верхний индекс-->
+    	<mi>j</mi> <!--нижний индекс-->
+    	<none/>    <!--верхний индекс-->
+   </mmultiscripts>
+	<mo>=</mo>
+	<mfrac>
+		<mn>1</mn>
+		<mrow>
+			<mi>i</mi><mo>+</mo><mi>j</mi><mo>-</mo><mn>1</mn>
+		</mrow>
+	</mfrac>
+</mrow>
+</math>;
+</li>
+<li>
+<math>
+<mrow>
+	 <mmultiscripts>
+    	<mi>b</mi> <!--основание-->
+    	<mi>i</mi> <!--нижний индекс-->
+    	<none/>    <!--верхний индекс-->
+    	<mi>j</mi> <!--нижний индекс-->
+    	<none/>    <!--верхний индекс-->
+   </mmultiscripts>
+	<mo>=</mo>
+	<mrow>
+		<mo>{</mo>
+			<mtable columnalign="left">
+				<mtr>
+					<mtd>
+						<mfrac>
+							<mn>1</mn>
+							<mrow>
+								<mi>i</mi><mo>+</mo><mi>j</mi><mo>-</mo><mn>1</mn>
+							</mrow>
+						</mfrac>
+						<mo>,</mo>
+						<mtext>если</mtext><mspace width="1em"/><!--пробельный знак шириной в 1 условную единицу-->
+						<mi>i</mi><mo>&#8804;</mo><mi>j</mi><mo>,</mo>
+					</mtd>
+				</mtr>
+				<mtr>
+					<mtd>
+						<mfrac>
+							<mn>1</mn>
+							<mrow>
+								<mi>i</mi><mo>+</mo><mi>j</mi><mo>+</mo><mn>1</mn>
+							</mrow>
+						</mfrac>
+						<mo>,</mo>
+						<mtext>в противном случае;</mtext>
+					</mtd>
+				</mtr>
+			</mtable>
+		</mrow>
+</mrow>
+</math>
+</li>
+<li>
+<math>
+<mrow>
+	 <mmultiscripts>
+    	<mi>b</mi> <!--основание-->
+    	<mi>i</mi> <!--нижний индекс-->
+    	<none/>    <!--верхний индекс-->
+    	<mi>j</mi> <!--нижний индекс-->
+    	<none/>    <!--верхний индекс-->
+   </mmultiscripts>
+	<mo>=</mo>
+	<mrow>
+		<mo>{</mo>
+		<mtable columnalign="left">
+			<mtr>
+				<mtd>
+					<mfrac>
+						<mn>1</mn>
+						<mrow>
+							<mi>i</mi><mo>+</mo><mi>j</mi><mo>-</mo><mn>1</mn>
+						</mrow>
+					</mfrac>
+					<mo>,</mo>
+					<mtext>если</mtext><mspace width="1em"/>
+					<mi>i</mi><mo>&#x003C;</mo><mi>j</mi><mo>,</mo>
+				</mtd>
+			</mtr>
+			<mtr>
+				<mtd>
+					<mn>0</mn><mo>,</mo>
+					<mtext>если</mtext><mspace width="1em"/>
+					<mi>i</mi><mo>=</mo><mi>j</mi><mo>,</mo>
+				</mtd>
+			</mtr>		
+			<mtr>
+				<mtd>
+					<mo>-</mo>
+					<mfrac>
+						<mn>1</mn>
+						<mrow>
+							<mi>i</mi><mo>+</mo><mi>j</mi><mo>+</mo><mn>1</mn>
+						</mrow>
+					</mfrac>
+					<mo>,</mo>
+					<mtext>в остальных случаях,</mtext>
+				</mtd>
+			</mtr>
+		</mtable>
+	</mrow>
+</mrow>
+</math>
+</li>
+</ol>
+<math>
+<mrow>
+	<mo>(</mo>
+	<mi>i</mi>
+	<mo>,</mo>
+	<mi>j</mi>
+	<mo>=</mo>
+	<mn>1</mn>
+	<mo>,</mo>
+	<mi>&#133;</mi>
+	<mo>,</mo>
+	<mi>n</mi>
+	<mo>)</mo>
+</mrow>
+</math>.
+</li>
+<li>Даны квадратная матрица 
+<math><mi>A</mi></math> порядка <math><mi>n</mi></math> и вектор <math><mi>b</mi></math> c <math><mi>n</mi></math> элементами. Получить вектор:
+<ol type="a">
+<li><math><mi>A</mi><mo>&#x2062;</mo><mi>b</mi></math>;</li>
+<li><math><msup><mi>A</mi><mn>2</mn></msup><mo>&#x2062;</mo><mi>b</mi></math>;</li>
+<li>
+<math><mrow><mo>(</mo><mi>A</mi><mo>-</mo><mi>E</mi><mo>)</mo></mrow><mo>&#x2062;</mo><mi>b</mi></math>, где
+<math><mi>E</mi></math> &#151; единичная матрица порядка <math><mi>n</mi></math>.
+</li>
+</ol>
+</li>
+<li>Дана квадратная матрица порядка <math><mi>n</mi></math>. Получить вектор
+<math><mi>A</mi><mi>b</mi></math>, где <math><mi>b</mi></math> &#151; вектор, элементы которого вычисляются по формуле
+<ol type='a'>
+<li><math>
+<msub><mi>b</mi><mi>i</mi></msub>
+<mo>=</mo>
+<mfrac><mn>1</mn><mrow><msup><mi>i</mi><mn>2</mn></msup><mo>+</mo><mn>2</mn></mrow></mfrac></math>;
+</li>
+<li><math><msub><mi>b</mi><mrow><mi>i</mi></mrow></msub>
+<mo>=</mo>
+<mrow>
+<mo>{</mo>
+	<mtable columnalign="left">
+		<mtr>
+			<mtd><mfrac><mn>1</mn><mrow><msup><mi>i</mi><mn>2</mn></msup><mo>+</mo><mn>2</mn></mrow></mfrac><mo>,</mo>
+				<mtext>если</mtext><mphantom>r</mphantom><mi>i</mi><mtext> &#151; четное;</mtext>
+			</mtd>
+		</mtr>
+		<mtr>
+			<mtd><mfrac><mn>1</mn><mrow><mi>i</mi></mrow></mfrac><mspace width="1em"/><mtext> в противном случае, </mtext></mtd>
+		</mtr>
+	</mtable>
+</mrow>
+</math>
+</li>
+<math><mo>(</mo><mi>i</mi><mo>=</mo><mn>1</mn><mo>,</mo><mo>&#133;</mo><mo>,</mo><mi>n</mi><mo>)</mo></math>.
+</ol>
+</li>
+<li>Даны квадратная матрица <math><mi>A</mi></math> порядка <math><mi>n</mi></math>, векторы
+<math><mi>x</mi></math> и <math><mi>y</mi></math> с <math><mi>n</mi></math> элементами. Получить вектор
+<math><mi>A</mi><mo>&#x2062;</mo><mrow><mo>(</mo><mi>x</mi><mo>+</mo><mi>y</mi><mo>)</mo></mrow></math>.
+</li>
+<li>Даны квадратные матрицы <math><mi>A</mi><mo>,</mo><mi>B</mi><mo>,</mo><mi>C</mi></math> порядка
+<math><mi>n</mi></math>. Получить матрицу
+<math><mrow><mo>(</mo><mi>A</mi><mo>+</mo><mi>B</mi><mo>)</mo></mrow><mo>&#x2062;</mo><mi>C</mi></math>.
+</li>
+<li>Дана квадратная матрица порядка <math><mi>n</mi></math>. Получить матрицу
+<math><mi>A</mi><mo>&#x2062;</mo><mrow><mo>(</mo><mi>B</mi><mo>-</mo><mi>E</mi><mo>)</mo></mrow><mo>+</mo><mi>C</mi>
+</math>, где <math><mi>E</mi></math> &#151; единичная матрица порядка <math><mi>n</mi></math>, а элементы матрицы
+<math><mi>C</mi></math> вычисляются по формуле
+<math><msub><mi>C</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub>
+<mo>=</mo>
+<mfrac><mn>1</mn><mrow><mi>i</mi><mo>+</mo><mi>j</mi></mrow></mfrac><mo>,</mo>
+<mrow>
+<mi>i</mi><mo>,</mo><mi>j</mi><mo>=</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mo>&#133;</mo><mo>,</mo><mi>n</mi>
+</mrow>
+</math>.
+</li>
+<li>Пусть даны квадратная матрица <math><mi>A</mi></math> порядка <math><mi>m</mi></math> и натуральное число 
+<math><mi>n</mi></math>; требуется найти <math><msup><mi>A</mi><mi>n</mi></msup></math>.
+Алгоритм основанный на непосредственном применении формулы
+<math>
+<msup><mi>A</mi><mi>n</mi></msup><mo>=</mo><mi>A</mi><mo>&#215;</mo><mi>A</mi><mo>&#215;</mo><mi>&#133;</mi><mo>&#215;</mo><mi>A</mi></math>, (<math><mi>n</mi></math> сомножителей) слишком разорителен. Например <math><msup><mi>A</mi><mn>4</mn></msup></math> экономичнее вычислять как
+<math><msup><mrow>
+<mo>(</mo><msup><mi>A</mi><mn>2</mn></msup><mo>)</mo></mrow><mn>2</mn></msup></math>. Идея одного достаточно экономного алгоритма вычисления <math><msup><mi>A</mi><mi>n</mi></msup></math> заключена в следующем: если
+<math><mi>n</mi><mo>=</mo><mn>2</mn><mo>&#x2062;</mo><mi>k</mi></math>, то
+<math><msup><mi>A</mi><mi>n</mi></msup><mo>=</mo>
+<msup><mrow><mo>(</mo><msup><mi>A</mi><mn>2</mn></msup><mo>)</mo></mrow><mi>k</mi></msup></math>; если же
+<math><mi>n</mi><mo>=</mo><mn>2</mn><mo>&#x2062;</mo><mi>k</mi><mo>+</mo><mn>1</mn></math>, то
+<math><msup><mi>A</mi><mi>n</mi></msup><mo>=</mo>
+<msup><mrow><mo>(</mo><msup><mi>A</mi><mn>2</mn></msup><mo>)</mo></mrow><mi>k</mi></msup><mo>&#215;</mo><mi>A</mi></math>. Cтепень с показателем <math><mi>k</mi></math> вычисляется с учётом этих же соображений. Итак, надо разделить <math><mi>n</mi></math> на
+<math><mn>2</mn></math> с остатком:
+<math><mi>n</mi><mo>=</mo><mn>2</mn><mo>&#x2062;</mo><mi>k</mi><mo>+</mo><mi>l</mi><mphantom>r</mphantom>
+<mo>(</mo><mn>0</mn><mo>&#8804;</mo><mi>l</mi><mo>&#8804;</mo><mn>1</mn><mo>)</mo>
+</math>, потом это же проделать с <math><mi>k</mi></math> и т.д. Эти действия приводят, как известно, к построению двоичной записи
+<math><mi>n</mi></math>. Алгоритм, основанный на этой идее , состоит в том, что последовательно вычисляются 
+<math><msup><mi>A</mi><msub><mi>&#945;</mi><mn>0</mn></msub></msup><mo>,</mo>
+<msup><mi>A</mi><mrow><msub><mi>&#945;</mi><mn>1</mn></msub><mo>&#x2062;</mo><msub><mi>&#945;</mi><mn>0</mn></msub></mrow></msup>
+<mo>,</mo><mi>&#133;</mi><mo>,</mo>
+<msup><mi>A</mi><mrow><msub><mi>&#945;</mi><mi>l</mi></msub><mo>&#x2062;</mo><msub><mi>&#945;</mi>
+<mrow><mi>l</mi><mo>-</mo><mn>1</mn></mrow></msub><mo>&#x2062;</mo><mi>&#133;</mi><mo>&#x2062;</mo><msub><mi>&#945;</mi><mn>1</mn></msub>
+<mo>&#x2062;</mo><msub><mi>&#945;</mi><mn>0</mn></msub></mrow></msup>
+</math>, где
+<math>
+<msub><mi>&#945;</mi><mi>l</mi></msub><msub><mi>&#945;</mi><mrow><mi>l</mi><mo>-</mo><mn>1</mn></mrow></msub><mi>&#133;</mi>
+<msub><mi>&#945;</mi><mn>1</mn></msub><msub><mi>&#945;</mi><mn>0</mn></msub>
+</math> &#151; двоичная запись числа <math><mi>n</mi></math>. Для этого вычисляется, цифра за цифрой, двоичная запись 
+<math>
+	<mi>n</mi></math> и, параллельно, степень за степенью <math><msup><mi>A</mi><mrow><mo>(</mo><msup><mn>2</mn><mn>0</mn>
+	</msup><mo>)</mo></mrow></msup></math>, <math><msup><mi>A</mi><mrow><mo>(</mo><msup><mn>2</mn><mn>1</mn></msup><mo>)</mo></mrow></msup>
+	<mo>,</mo>
+	<msup><mi>A</mi><mrow><mo>(</mo><msup><mn>2</mn><mn>2</mn></msup><mo>)</mo></mrow></msup><mi>&#133;</mi>
+</math> &#151; каждая следующая степень получается из предыдущей возведением в квадрат. Подсчитывается произведение тех из вычисленных степеней, для которых соответствующая цифра двоичного представления равна <math><mn>1</mn></math>. Например, запись
+<math><mn>9</mn></math> в двоичной системе есть <math><mn>1001</mn><mo>(</mo><mn>9</mn><mo>=</mo><mn>1</mn><mo>&#5159;</mo><mn>8</mn><mo>+</mo><mn>0</mn><mo>&#5159;</mo><mn>4</mn><mo>+</mo><mn>0</mn><mo>&#5159;</mo><mn>2</mn><mo>+</mo><mn>1</mn><mo>)</mo>
+</math>; для вычисления <math><msup><mi>A</mi><mn>9</mn></msup></math> достаточно найти
+<math><msup><mi>A</mi><mn>2</mn></msup><mo>,</mo><msup><mi>A</mi><mn>4</mn></msup><mo>,</mo><msup><mi>A</mi><mn>8</mn></msup></math> (три умножения), а затем определить  <math><mi>A</mi><mo>&#215;</mo><msup><mi>A</mi><mn>8</mn></msup></math> (одно умножение). Преимущество этого алгоритма в сравнении с простейшим состоит в том, что простейший алгоритм требует числа умножений, растущего как линейная функция от
+<math><mi>n</mi></math>, а здесь число умножений, грубо говоря, пропорционально количеству цифр числа <math><mi>n</mi></math> или двоичному логарифму <math><mi>n</mi></math>. Это преимущество весьма ощутимо при работе с матрицами (из-за трудоемкости каждого умножения), хотя, разумеется, этот алгоритм может быть использован и для вычисления степени любого числа. Написать программу, реализующую предложенный алгоритм.
+</li>
+<li>Дана квадратная матрица <math><mi>A</mi></math> порядка <math><mn>5</mn></math>. Получить матрицу
+<math><msup><mi>A</mi><mn>15</mn></msup></math> (см. задачу 706).
+</li>
+<li>Даны квадратная матрица <math><mi>A</mi></math> порядка <math><mi>m</mi></math>, натуральное число
+<math><mi>n</mi></math>. Получить матрицу <math><mi>E</mi><mo>+</mo><mi>A</mi><mo>+</mo><msup><mi>A</mi><mn>2</mn></msup><mo>+</mo><mi>&#133;</mi><mo>+</mo><msup><mi>A</mi><mi>n</mi></msup></math>, где <math><mi>E</mi></math> &#151; единичная матрица порядка
+<math><mi>m</mi></math>.
+</li>
+<li>Дана квадратная матрица
+<math>
+<mi>A</mi>	
+</math>
+порядка
+<math>
+<mi>m</mi>	
+</math>
+, натуральное число
+<math>
+<mi>n</mi>	
+</math>
+, действительные числа
+<math>
+<msub><mi>p</mi><mi>n</mi></msub><mo>,</mo><msub><mi>p</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub><mo>,</mo>	
+<mo>&#133;</mo><mo>,</mo><msub><mi>p</mi><mn>0</mn></msub></math>. Получить матрицу
+<math>
+<msub><mi>p</mi><mi>n</mi></msub><mo>&#x2062;</mo><msup><mi>A</mi><mi>n</mi></msup>
+<mo>+</mo>
+<msub><mi>p</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub><mo>&#x2062;</mo>
+<msup><mi>A</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msup><mo>+</mo><mi>&#133;</mi><mo>+</mo>
+<msub><mi>p</mi><mn>1</mn></msub><mo>&#x2062;</mo><mi>A</mi><mo>+</mo><msub><mi>p</mi><mn>0</mn></msub><mo>&#x2062;</mo><mi>E</mi>	
+</math>, где <math><mi>E</mi></math> &#151; единичная матрица порядка <math><mi>m</mi></math>.
+</li>
+<li>Дана матрица <math><mi>A</mi></math> размера <math><mi>m</mi><mo>&#215;</mo><mi>n</mi></math>. Получить транспонированную матрицу
+<math><msup><mi>A</mi><mo>*</mo></msup></math><math> (ее размер <math><mi>n</mi><mo>&#215;</mo><mi>m</mi></math>).
+</li>
+<li>Дана матрица <math><mi>A</mi></math> размера:
+<ol type='a'>
+<li><math><mi>m</mi><mo>&#215;</mo><mi>m</mi></math>;
+</li>
+<li>
+<math>
+<mi>m</mi>
+<mo>&#215;</mo>
+<mi>n</mi>
+</math>.
+</li>
+</ol>
+Получить матрицу 
+<math>
+<mi>A</mi><mo>&#x2062;</mo><msup><mi>A</mi><mo>*</mo></msup></math> (ее размер <math><mi>m</mi><mo>&#215;</mo><mi>m</mi></math>).
+</li>
+<li>Дана квадратная матрица <math><mi>A</mi></math> порядка <math><mi>m</mi></math>.
+Получить матрицы
+<math><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>&#x2062;</mo><mo>(</mo><mi>A</mi><mo>+</mo><msup><mi>A</mi><mo>*</mo></msup><mo>)</mo></math>
+и
+<math>
+<mfrac><mn>1</mn><mn>2</mn></mfrac><mo>&#x2062;</mo><mo>(</mo><mi>A</mi><mo>-</mo><msup><mi>A</mi><mo>*</mo></msup><mo>)</mo></math>.
+</li>
+<li>Следом квадратной матрицы называется сумма элементов, расположенных на главной диагонали.
+ Даны квадратная матрица порядка <math><mi>m</mi></math> , натурально число <math><mi>n</mi></math>. Вычислить следы матриц 
+ <math><mi>A</mi><mo>,</mo><msup><mi>A</mi><mn>2</mn></msup><mo>,</mo><mo>&#133;</mo><mo>,</mo><msup>
+<mi>A</mi>
+<mi>n</mi>
+</msup></math>.
+</li>
+<li>Комплексная матрица <math><mi>A</mi></math> представляется парой
+<math><mi>X</mi><mo>,</mo><mi>Y</mi></math> действительных матриц так, что
+ <math><mi>Z</mi><mo>=</mo><mi>X</mi><mo>+</mo><mi>i</mi><mo>&#x2062;</mo><mi>Y</mi> </math>.
+ Даны деиствительные квадратные матрицы
+ <math>
+ <mi>A</mi><mo>,</mo><mi>B</mi><mo>,</mo><mi>C</mi>
+ </math>
+ и
+ <math>
+ <mi>D</mi>
+ </math>
+ порядка
+ <math>
+ <mi>m</mi>
+ </math>
+ . Найти произведение двух комплексных матриц 
+ <math>
+ <mi>A</mi><mo>+</mo><mi>i</mi><mi>B</mi>
+ </math>
+ и
+<math>
+ <mi>C</mi><mo>+</mo><mi>i</mi><mi>D</mi>
+ </math> 
+ , т. е. найти действительные квадратные матрицы
+ <math><mi>X</mi></math> и <math><mi>Y</mi></math> порядка <math><mi>m</mi></math> такие, что 
+ <math><mi>X</mi><mo>+</mo><mi>i</mi><mi>Y</mi><mo>=</mo><mo>(</mo><mi>A</mi><mo>+</mo><mi>i</mi><mo>&#x2062;</mo><mi>B</mi><mo>)</mo><mo>&#x2062;</mo><mo>(</mo><mi>C</mi><mo>+</mo><mi>i</mi><mo>&#x2062;</mo><mi>D</mi><mo>)</mo>
+ </math>.
+</li>
+<li>Пусть для квадратной матрицы <math> <mi>A</mi> </math>, имеющей порядок <math><mi>n</mi></math>, существует обратная матрица 
+<math><msup><mi>A</mi><mrow><mo>-</mo><mi>n</mi></mrow></msup></math>. Тогда, рассматривая элементы матрицы
+<math> <msup><mi>A</mi><mrow><mo>-</mo><mi>n</mi></mrow></msup></math> как неизвестные величины, из соотношения
+<math><mi>A</mi><mo>&#215;</mo><msup><mi>A</mi><mrow><mo>-</mo><mi>n</mi></mrow></msup><mo>=</mo><mi>E</mi></math>, где
+<math><mi>E</mi></math> &#151; единичная матрица порядка <math><mi>n</mi></math>, можно получить систему
+ <math><msup><mi>n</mi><mn>2</mn></msup></math> линейных уравнений с <math><msup><mi>n</mi><mn>2</mn></msup></math> 
+неизвестными. Найти матрицу этой системы и вектор, опрeделяющий ее правую часть, считая, что неизвестные элементы матрицы
+<math><msup><mi>A</mi><mrow><mo>-</mo><mi>n</mi></mrow></msup></math> пронумерованы так, что сначала пo порядку идут элементы первой строки, затем &#151; второй и т. д. Считать, что <math><mi>A</mi></math> &#151; заданная матрица порядка <math><mn>4</mn></math>; в ответе должны получиться квадратная матрица и вектор порядка <math><mn>16</mn> </math>.
+</li>
+<li>Правая треугольная матрица <math><mi>A</mi></math> порядка <math><mi>n</mi></math> заданa в виде последовательности 
+<math><mfrac><mrow><mo>(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo>)</mo><mo>&#x2062;</mo><mi>n</mi></mrow><mn>2</mn></mfrac></math> чисел: сначала идут
+<math><mi>n</mi></math> элементов первой строки, затем 
+<math>
+<mi>n</mi><mo>-</mo><mn>1</mn>
+</math>
+элемент второй строки, начиная со второго элемента, и т. д. (из последней 
+<math>
+<mi>n</mi>
+</math>-й строки берется только <math><mi>n</mi></math>- й элемент). Кроме этой последовательности дан вектор
+<math><mi>b</mi></math> с <math><mi>n</mi></math> элементами. Найти вектор 
+ <math> <mi>A</mi><mo>&#x2062;</mo><mi>b</mi></math>.
+</li>
+<li>Две правые треугольные матрицы <math><mi>A</mi></math> и <math><mi>B</mi></math> порядка <math><mi>n</mi></math> заданы так, как описано в предыдущей задаче. Получить в аналогичном виде:
+<ol type='a'>
+<li>матрицу <math><mi>A</mi><mo>&#215;</mo<mi>B</mi></math>;
+</li>
+<li>матрицу
+<math><mi>A</mi><mo>&#215;</mo<mo>(</mo><mi>E</mi><mo>+</mo><msup><mi>B</mi><mn>2</mn></msup><mo>)</mo></math>, где
+ <math><mi>E</mi></math> &#151; единичная матрица порядка <math> <mi>n</mi> </math>.</li>
+</ol>
+</li>
+<li>Симметричная квадратная матрица
+<math><mi>A</mi></math> порядка <math><mi>n</mi></math> задана последовательностью
+<math><mfrac><mrow><mo>(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo>)</mo><mo>&#x2062;</mo><mi>n</mi></mrow><mn>2</mn></mfrac></math> 
+чисел: сначала идут <math><mi>n</mi></math> элементов первой строки, затем 
+<math><mi>n</mi><mo>-</mo><mn>1</mn></math> элемент второй строки, начиная со второго элемента, и т. д. (из последней,
+<math><mi>n</mi></math>-й строки берется только <math><mi>n</mi></math>-й элемент). Кроме этой последовательности, дан вектор
+<math><mi>b</mi> </math>  с  <math> <mi>n</mi> </math> элементами. Найти вектор  <math> <mi>A</mi><mo>&#215;</mo><mi>b</mi> </math>.
+</li>
+<li>
+719. Симметричные квадратные матрицы
+<math>
+ <mi>A</mi>
+ </math>
+ и
+<math>
+ <mi>B</mi>
+ </math> 
+ порядка
+ <math>
+ <mi>n</mi>
+ </math>
+ заданы последовательностями из
+ <math><mfrac><mrow><mo>(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo>)</mo><mo>&#x2062;</mo><mi>n</mi></mrow><mn>2</mn></mfrac></math> 
+чисел, аналогично правым треугольным матрицам (см. задачу 716). Получить в аналогичном виде:
+<ol type='a'>
+<li>матрицу
+<math>
+ <mi>A</mi><mo>&#215;</mo><mi>B</mi>
+ </math>;
+</li>
+<li>матрицу
+<math>
+ <msup>
+<mi>A</mi>
+<mn>2</mn>
+</msup><mo>-</mo>
+ <msup>
+<mi>B</mi>
+<mn>2</mn>
+</msup>
+ </math>.
+ </li>
+</ol>
+</li>
+</ol>
+</body>
+</html>

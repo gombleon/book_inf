@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Графика и движение. Мультипликация</title>
+</head>
+<body>
+<p><a href="index.xml">Оглавление </a></p>
+<h2>§32 Графика и движение. Мультипликация</h2>
+<p> <b>933. </b> Изобразить на экране точку, пересекающую с постоянной скоростью экран справа налево параллельно его горизонтальной оси.
+<mo>&#42;</mo>
+<mo>&#41;</mo>
+</p>
+<p> <b>934. </b> К условию предыдущей задачи добавляется следующее требование: как только точка доходит до левого края, в этот момент от правого края в строке, выбранной с помощью датчика случайных чисел, начинает свое движение другая точка и т. д. Цвет точки также может выбираться с помощью датчика случайных чисел.
+</p>
+<p> <b>935. </b> Усложним условие предыдущей задачи: очередная точка начинает движение от правого края экрана несколько раньше, чем предыдущая точка доходит до левого края. Попытаться добиться того, чтобы одновременно на экране двигались три, четыре точки.
+</p>
+<p> <b>936. </b> Изобразить на экране точку, движущуюся по окружности с постоянной угловой скоростью.
+</p>
+<p> <b>937. </b> Составить программу для управления скоростью движения точки по окружности (см. предыдущую задачу). Управление производится клавишами
+ <mo>&#62;</mo> (скорость несколько увеличивается) и 
+ <mo>&#60;</mo> (скорость несколько уменьшается).
+ <mo>&#42;</mo>
+ <mo>&#41;</mo>
+</p>
+<p> <b>938. </b> Изобразить на экране прямую, вращающуюся в плоскости экрана вокруг одной из своих точек. Задачу можно усложнить дополнительным требованием, чтобы цвет прямой изменялся при переходе от предыдущего положения к следующему.
+</p>
+<p> <b>939. </b> Изобразить на экране отрезок, вращающийся в плоскости экрана вокруг:<br></br>
+        а) своей середины;<br></br>
+        б) свого конца;<br></br>
+        в) точки, делящей отрезок в отношении 1:3.
+</p>
+<p> <b>940. </b> Усложним условие задачи 938: в плоскости экрана должны вращаться, каждая вокруг своей точки, две прямые.
+</p>
+<p> <b>941. </b> В условие предыдущей задачи вносится дополнение: должна быть предоставлена возможность управления с клавиатуры расстоянием между центрами вращения.
+</p>
+<p> <b>942. </b>  Изобразить на экране две движущиеся точки, траектории которых являются концентрическими окружностями. Угловая скорость точки, движущейся по внутренней окружности, должна быть несколько меньше, чем угловая скорость точки, движущейся по внешней окружности (обе скорости - постоянные величины). При этом <br></br>
+ а) обе точки вращаются в одном направлении (например, по часовой стрелке);<br></br>
+ б) точки вращаются в противоположных направлениях.<br></br>
+</p>
+<p> <b>943. </b>   Изобразить одновременное вращение двух стрелок - большой и малой, при котором одному полному обороту большой стрелки соответствует 1/12 оборота малой стрелки (как на циферблате часов). Стрелки можно для простоты заменить отрезками.
+</p> 
+<p> <b>944. </b>   Изобразить на экране правильный треугольник, вращающийся в плоскости экрана вокруг своего центра.
+</p>
+<p> <b>945. </b>   Изобразить на экране разносторонний треугольник, вращающийся в плоскости экрана вокруг своего центра тяжести.
+</p>
+<p> <b>946. </b>   Изобразить на экране прямоугольник, вращающийся в плоскости экрана вокруг своего центра.
+</p> 
+<p> <b>947. </b>   Изобразить на экране прямоугольник, вращающийся в плоскости экрана вокруг одной из своих вершин.
+</p>
+<p> <b>948. </b>   Условия задач 938, 939, 944 - 947 изменяются следующим образом: во время вращения прямой, отрезка или многоугольника центр вращения с постоянной скоростью перемещается от одного края экрана до другого параллельно горизонтальной оси экрана.
+</p>
+<p> <b>949. </b>   Условие этой задачи отличается от предыдущей тем, что требуется сохранять на экране все высвеченные положения геометрической фигуры. Задачу можно еще усложнить дополнительным требованием, чтобы цвет фигуры изменился при переходе от предыдущего положения к следующему.
+</p>
+<p> <b>950. </b>   Изобразить движущуюся прямую, которая в каждый момент касается окружности данного радиуса, центр которой совпадает с центром экрана. Точка касания перемещается по окружности с постоянной угловой скоростью. Сама окружность невидима.
+</p>
+<b>951. </b>   Круглое кольцо вращается с постоянной угловой скоростью вокруг своего диаметра, расположенного параллельно горизонтальной оси экрана. Изобразить на экране процесс вращения. Считать, что в момент времени t кольцо выглядит для наблюдателя как эллипс, большая ось которого равна постоянной величине с, а малая равна с|cos ωt|, где ω - угловая скорость вращения. В правой части Рис. 101 приведено несколько последовательных изображений. В левой части рисунка кольцо изображено сбоку (этот вид не даётся на экране).
+
+<p align="center"> <svg width="640" height="480" xmlns="http://www.w3.org/2000/svg">
+ <g>
+  <ellipse fill="#ffffff" stroke="#000000" stroke-width="2" cx="493" cy="217" id="svg_1" rx="125" ry="125"/>
+  <ellipse fill="#ffffff" stroke="#000000" stroke-width="2" cx="493" cy="219.004" id="svg_2" rx="124" ry="87"/>
+  <ellipse fill="#ffffff" stroke="#000000" stroke-width="2" cx="493" cy="219.502" id="svg_3" rx="124" ry="40.5"/>
+  <line fill="none" stroke="#000000" stroke-width="2" x1="368" y1="222" x2="617.008" y2="222" id="svg_4"/>
+  <line fill="none" stroke="#000000" stroke-width="2" stroke-dasharray="5,5" x1="480" y1="93" x2="85.3102" y2="93" id="svg_5"/>
+  <line fill="none" stroke="#000000" stroke-width="2" stroke-dasharray="5,5" x1="480" y1="343" x2="83.9798" y2="343" id="svg_6"/>
+  <line fill="none" stroke="#000000" stroke-width="2" x1="93" y1="92" x2="93" y2="343.509" id="svg_7"/>
+  <line fill="none" stroke="#000000" stroke-width="2" x1="10" y1="222" x2="201.771" y2="222" id="svg_8"/>
+  <line fill="none" stroke="#000000" stroke-width="2" stroke-dasharray="5,5" x1="472" y1="134" x2="16.621" y2="134" id="svg_9"/>
+  <line fill="none" stroke="#000000" stroke-width="2" stroke-dasharray="5,5" x1="467" y1="181" x2="13.5576" y2="181" id="svg_10"/>
+  <line fill="none" stroke="#000000" stroke-width="2" stroke-dasharray="5,5" x1="469" y1="261" x2="164.944" y2="261" id="svg_11"/>
+  <line fill="none" stroke="#000000" stroke-width="2" stroke-dasharray="5,5" x1="469" y1="305" x2="162.959" y2="305" id="svg_12"/>
+  <line fill="none" stroke="#000000" stroke-width="2" x1="17" y1="134" x2="165" y2="305" id="svg_13"/>
+  <line fill="none" stroke="#000000" stroke-width="2" x1="13" y1="182" x2="165" y2="261" id="svg_14"/>
+  <line fill="none" stroke="#ffffff" stroke-width="2" x1="87" y1="312" x2="85" y2="386" id="svg_15"/>
+  <line fill="none" stroke="#ffffff" stroke-width="2" x1="89" y1="366" x2="86" y2="298" id="svg_16"/>
+  <line fill="none" stroke="#ffffff" stroke-width="2" x1="86" y1="298" x2="90" y2="377" id="svg_17"/>
+  <line fill="none" stroke="#ffffff" stroke-width="2" x1="92" y1="364" x2="87" y2="320" id="svg_18"/>
+  <line fill="none" stroke="#ffffff" stroke-width="2" x1="84" y1="68" x2="86" y2="110" id="svg_19"/>
+  <line fill="none" stroke="#ffffff" stroke-width="2" x1="82" y1="92" x2="89" y2="93" id="svg_20"/>
+  <line fill="none" stroke="#ffffff" stroke-width="2" x1="87" y1="94" x2="88" y2="98" id="svg_21"/>
+  <line fill="none" stroke="#ffffff" stroke-width="2" x1="89" y1="89" x2="89" y2="95" id="svg_22"/>
+  <text fill="#000000" stroke="#ffffff" stroke-width="0" x="97" y="80" id="svg_23" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve" opacity="0.45" transform="matrix(1, 0, 0, 0.611111, 0, 31.1111)">1</text>
+  <text transform="matrix(0.823529, 0, 0, 0.666667, -49.5136, 44)" fill="#000000" stroke="#ffffff" stroke-width="0" opacity="0.45" x="659.374" y="120" id="svg_24" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve">2</text>
+  <text fill="#000000" stroke="#ffffff" stroke-width="0" opacity="0.45" x="501" y="83" id="svg_25" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve">1</text>
+  <ellipse fill="#ffffff" stroke="#ffffff" opacity="0.45" cx="533" cy="50" id="svg_26" rx="42" ry="17"/>
+  <line id="svg_27" y2="76" x2="511" y1="58" x1="489" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <line id="svg_28" y2="82" x2="503" y1="81" x1="508" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <line id="svg_29" y2="79" x2="512" y1="79" x1="490" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <line id="svg_30" y2="75" x2="507" y1="75" x1="488" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <line id="svg_31" y2="73" x2="491" y1="74" x1="507" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <line id="svg_32" y2="70" x2="503" y1="70" x1="491" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <line id="svg_33" y2="78" x2="489" y1="70" x1="502" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <line id="svg_34" y2="84" x2="506" y1="82" x1="489" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <line id="svg_35" y2="69" x2="488" y1="67" x1="500" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <text id="svg_36" fill="#000000" stroke="#ffffff" stroke-width="0" x="494" y="79.9997" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve" opacity="0.45" transform="matrix(1, 0, 0, 0.611111, 0, 31.1111)">1</text>
+  <text id="svg_37" transform="matrix(0.823529, 0, 0, 0.666667, -49.5136, 44)" fill="#000000" stroke="#ffffff" stroke-width="0" opacity="0.45" x="86.2311" y="117" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve">2</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_38" y="404" x="212" stroke-width="0" stroke="#ffffff" fill="#000000">3</text>
+  <line id="svg_39" y2="391" x2="224" y1="390" x1="186" stroke="#ffffff" fill="none"/>
+  <line id="svg_40" y2="403" x2="196" y1="388" x1="233" stroke="#ffffff" fill="none"/>
+  <line id="svg_41" y2="439" x2="186" y1="399" x1="190" stroke="#ffffff" fill="none"/>
+  <line id="svg_42" y2="401" x2="219" y1="384" x1="189" stroke-width="3" stroke="#ffffff" fill="none"/>
+  <line id="svg_43" y2="398" x2="229" y1="385" x1="228" stroke-width="3" stroke="#ffffff" fill="none"/>
+  <line id="svg_44" y2="417" x2="196" y1="385" x1="225" stroke-width="3" stroke="#ffffff" fill="none"/>
+  <line id="svg_45" y2="386" x2="219" y1="408" x1="198" stroke-width="3" stroke="#ffffff" fill="none"/>
+  <line id="svg_46" y2="404" x2="204" y1="381" x1="222" stroke-width="3" stroke="#ffffff" fill="none"/>
+  <line id="svg_47" y2="388" x2="222" y1="393" x1="219" stroke-width="3" stroke="#ffffff" fill="none"/>
+  <line id="svg_48" y2="389" x2="223" y1="388" x1="221" stroke-width="3" stroke="#ffffff" fill="none"/>
+  <line id="svg_49" y2="398" x2="218" y1="389" x1="223" stroke-width="3" stroke="#ffffff" fill="none"/>
+  <line id="svg_50" y2="421" x2="202" y1="396" x1="220" stroke-width="3" stroke="#ffffff" fill="none"/>
+  <line id="svg_51" y2="377" x2="203" y1="383" x1="226" stroke-width="3" stroke="#ffffff" fill="none"/>
+  <line id="svg_52" y2="372" x2="207" y1="373" x1="204" stroke-width="3" stroke="#ffffff" fill="none"/>
+  <line id="svg_53" y2="411" x2="218" y1="371" x1="207" stroke-width="3" stroke="#ffffff" fill="none"/>
+  <line id="svg_54" y2="415" x2="205" y1="375" x1="213" stroke-width="3" stroke="#ffffff" fill="none"/>
+  <line id="svg_55" y2="388" x2="222" y1="388" x1="203" stroke-width="3" stroke="#ffffff" fill="none"/>
+  <line id="svg_56" y2="401" x2="209" y1="389" x1="220" stroke-width="3" stroke="#ffffff" fill="none"/>
+  <line id="svg_57" y2="459" x2="159" y1="389" x1="220" stroke-width="3" stroke="#ffffff" fill="none"/>
+  <line id="svg_58" y2="396" x2="232.016" y1="396" x1="201" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <line id="svg_59" y2="416.045" x2="214" y1="372" x1="214" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <line id="svg_60" y2="419.366" x2="206" y1="385" x1="206" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <line id="svg_61" y2="404.925" x2="219.925" y1="385" x1="200" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <line id="svg_62" y2="420.564" x2="203.436" y1="403" x1="221" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <line id="svg_63" y2="408" x2="220" y1="408" x1="197" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <line id="svg_64" y2="407" x2="198" y1="398" x1="208" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <line id="svg_65" y2="407" x2="222" y1="407" x1="198" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <line id="svg_66" y2="406" x2="194" y1="407" x1="222" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <line id="svg_67" y2="405" x2="225" y1="406" x1="194" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_68" y="417" x="235" stroke-width="0" stroke="#ffffff" fill="#000000">3</text>
+  <line id="svg_69" y2="408" x2="250.008" y1="408" x1="185" stroke-width="9" stroke="#ffffff" fill="none"/>
+  <line id="svg_70" y2="403" x2="284.031" y1="403" x1="220" stroke-width="9" stroke="#ffffff" fill="none"/>
+  <line id="svg_71" y2="414.804" x2="221.196" y1="392" x1="244" stroke-width="9" stroke="#ffffff" fill="none"/>
+  <line id="svg_72" y2="412" x2="299.262" y1="412" x1="221" stroke-width="9" stroke="#ffffff" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="19" id="svg_73" y="170" x="18" stroke-width="0" stroke="#ffffff" fill="#000000">3</text>
+  <text id="svg_74" xml:space="preserve" text-anchor="middle" font-family="serif" font-size="19" y="171" x="494" stroke-width="0" stroke="#ffffff" fill="#000000">3</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="19" id="svg_75" y="213" x="493" stroke-width="0" stroke="#ffffff" fill="#000000">4</text>
+  <text id="svg_76" xml:space="preserve" text-anchor="middle" font-family="serif" font-size="19" y="214" x="17" stroke-width="0" stroke="#ffffff" fill="#000000">4</text>
+  <text transform="matrix(0.835294, 0, 0, 0.684211, 44.2235, 119.684)" xml:space="preserve" text-anchor="middle" font-family="serif" font-size="20" id="svg_77" y="398.385" x="334.746" stroke-width="0" stroke="#ffffff" fill="#000000">рис.101</text>
+ </g>
+</svg>
+</p>
+<p> <b>952. </b>   Изобразить на экране равнобедренный треугольник, вращающийся с постоянной угловой скоростью вокруг своей высоты, расположенной параллельно вертикальной оси экрана.
+</p>
+<p> <b>953. </b>  Изобразить на экране гармонические колебания точки вдоль некоторого горизонтального отрезка. Если длина отрезка равна с, то расстояние от точки до левого конца в момент времени t можно считать равным с(1+cosωt)/2, где ω - некоторая постоянная. Предусмотреть возможность управления частотой колебания с помощью клавиш 
+<mo>&#750;</mo> 
+<mo>&#62;</mo> 
+<mo>&#750;</mo> 
+<mo>&#750;</mo> 
+<mo>&#60;</mo> 
+<mo>&#750;</mo> 
+, аналогично тому, как это описано в задаче 937 в отношении вращающейся точки. С помощью двух других клавиш можно управлять амплитудой, т. е. величиной с.
+</p> 
+<b>954. </b>  Изобразить точку, совершающую независимые гармонические колебания с частотой 
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msub><mo>&#969;</mo><mrow><mi>1</mi></mrow></msub>
+</math>
+, по горизонтали и с частотой
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msub><mo>&#969;</mo><mrow><mi>2</mi></mrow></msub>
+</math>
+по вертикали (амплитуда тех и других колебаний равна а). Считать, что в момент времени t точка имеет координаты
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mo>x</mo>
+<mo>=</mo>  
+<mo>a cos</mo>
+<mo> &#215;</mo>
+<msub><mo> &#969;</mo><mrow><mi>1</mi></mrow></msub>
+<mo> &#40;</mo>
+<mo> &#116;</mo>
+<mo> &#45;</mo>
+<msub><mo> &#116;</mo><mrow><mi>1</mi></mrow></msub>
+<mo> &#41;</mo>
+,
+<mo>y</mo>
+<mo>=</mo>  
+<mo>a cos</mo>
+<mo> &#215;</mo>
+<msub><mo> &#969;</mo><mrow><mi>2</mi></mrow></msub>
+<mo> &#40;</mo>
+<mo> &#116;</mo>
+<mo> &#45;</mo>
+<msub><mo> &#116;</mo><mrow><mi>2</mi></mrow></msub>
+<mo> &#41;</mo>
+</math>
+числа
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msub><mo>t</mo><mrow><mi>1</mi></mrow></msub>
+и 
+<msub><mo>t</mo><mrow><mi>2</mi></mrow></msub> 
+</math>
+даны. 
+Предусмотреть возможность управления с клавиатуры значениями
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msub><mo>&#969;</mo><mrow><mi>1</mi></mrow></msub> 
+и
+<msub><mo>&#969;</mo><mrow><mi>2</mi></mrow></msub>.
+</math>
+<p align="center"> 
+<svg width="640" height="380" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g>
+  <title>Layer 1</title>
+  <rect fill="#ffffff" stroke="#000000" stroke-width="2" x="23" y="27" width="582" height="278" id="svg_6"/>
+  <line fill="none" stroke="#000000" stroke-width="2" stroke-dasharray="5,5" x1="300" y1="28" x2="23" y2="175" id="svg_7"/>
+  <line fill="none" stroke="#000000" stroke-width="2" stroke-dasharray="5,5" x1="301" y1="28" x2="598" y2="170" id="svg_8"/>
+  <line fill="none" stroke="#000000" stroke-width="2" stroke-dasharray="5,5" x1="23" y1="177" x2="218" y2="303" id="svg_9"/>
+  <line fill="none" stroke="#000000" stroke-width="2" stroke-dasharray="5,5" x1="603" y1="172" x2="386" y2="306" id="svg_10"/>
+  <line fill="none" stroke="#000000" stroke-width="2" stroke-dasharray="5,5" x1="221" y1="301" x2="403" y2="201" id="svg_11"/>
+  <line fill="none" stroke="#000000" stroke-width="2" stroke-dasharray="5,5" x1="388" y1="305" x2="218" y2="193" id="svg_12"/>
+  <ellipse fill="#ffffff" stroke="#000000" stroke-width="2" cx="212" cy="189" id="svg_13" rx="5" ry="5"/>
+  <ellipse fill="#000000" stroke="#000000" stroke-width="2" cx="403" cy="201" rx="3" ry="3" id="svg_14"/>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="303" y="357" id="svg_15" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve" transform="matrix(0.813084, 0, 0, 0.782609, 46.542, 78.6957)">рис. 102</text>
+ </g>
+</svg>
+</p>
+<p> <b>955. </b>   Изобразить на экране движение шара по биллиарду без луз (рис. 102).
+</p>
+<p> <b>956. </b>   В условие предыдущей задачи вносится дополнение: шар должен оставлять за собой светящийся след.
+</p>
+<p> <b>957. </b>   Изобразить на экране точку, пересекающую экран равноускоренно в вертикальном направлении.
+</p>
+<p> <b>958. </b>   Выполнить задачи 934, 935 применительно к равноускоренному движению.
+</p>
+<b>959. </b>   Изобразить на экране приближающийся издали шар. По какому закону возрастает видимый диаметр шара с течением времени?
+<p align="center">  <svg width="640" height="280" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g>
+  <title>Layer 1</title>
+  <ellipse ry="61" rx="101" id="svg_1" cy="90" cx="138" stroke-width="2" stroke="#000000" fill="#ffffff"/>
+  <ellipse id="svg_2" ry="61" rx="101" cy="91" cx="434" stroke-width="2" stroke="#000000" fill="#ffffff"/>
+  <line id="svg_3" y2="85" x2="181" y1="48" x1="65" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_4" y2="88" x2="37" y1="86" x1="180" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_5" y2="47" x2="214" y1="86" x1="180" opacity="0.5" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_6" y2="129" x2="216" y1="86" x1="180" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_7" y2="49" x2="212" y1="87" x1="180" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_8" y2="54" x2="218" y1="93" x1="185" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_9" y2="59" x2="224" y1="99" x1="190" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_10" y2="66" x2="229" y1="106" x1="195" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_11" y2="73" x2="234" y1="111" x1="200" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_12" y2="80" x2="238" y1="117" x1="205" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_13" y2="89" x2="240" y1="123" x1="210" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_14" y2="101" x2="239" y1="128" x1="215" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_16" y2="75.3154" x2="39.6846" y1="49" x1="66" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_17" y2="85.5905" x2="37.4095" y1="51" x1="72" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_18" y2="88.3657" x2="45.6343" y1="54" x1="80" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_19" y2="87.1497" x2="57.8504" y1="57" x1="88" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_20" y2="87.443" x2="67.5571" y1="59" x1="96" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_21" y2="87.0799" x2="79.9201" y1="62" x1="105" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_22" y2="88.7592" x2="89.2408" y1="65" x1="113" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_23" y2="87.2608" x2="99.7392" y1="67" x1="120" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_24" y2="87.0294" x2="112.971" y1="70" x1="130" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_25" y2="86.5602" x2="123.44" y1="72" x1="138" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_26" y2="85.5119" x2="135.488" y1="75" x1="146" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_27" y2="86.2462" x2="143.754" y1="78" x1="152" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_28" y2="85.9642" x2="153.036" y1="79" x1="160" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_29" y2="87.0991" x2="161.901" y1="82" x1="167" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_30" y2="85.5812" x2="172.419" y1="84" x1="174" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_31" y2="89" x2="616.604" y1="89" x1="497" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_32" y2="56" x2="516" y1="89" x1="497" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_33" y2="103" x2="246.5" y1="98.5" x1="239" stroke-width="2" stroke="#ffffff" fill="none"/>
+  <line id="svg_34" y2="101.5" x2="239" y1="102" x1="238.5" stroke-width="2" stroke="#ffffff" fill="none"/>
+  <line id="svg_35" y2="104" x2="238" y1="101.5" x1="239" stroke-width="2" stroke="#ffffff" fill="none"/>
+  <line id="svg_36" y2="102.5" x2="238.5" y1="100" x1="240" stroke-width="2" stroke="#ffffff" fill="none"/>
+  <line id="svg_37" y2="96.5" x2="244.5" y1="88.5" x1="240" stroke-width="2" stroke="#ffffff" fill="none"/>
+  <line id="svg_39" y2="77.5" x2="153" y1="79.5" x1="150.5" stroke-width="2" stroke="#000000" fill="none"/>
+  <ellipse ry="19.0001" rx="19.0001" id="svg_40" cy="90.5" cx="498.5" stroke-width="2" stroke="#000000" fill="none"/>
+  <path d="m504.3334,73.00005c-7.66666,-0.66667 -7.66666,-1 -7.33334,-1l0,-0.33334" id="svg_41" stroke-width="2" stroke="#ffffff" fill="none"/>
+  <path d="m504.66675,68.00005c-3.66669,6.33333 -4,6.33333 -4.33334,6.33333l-0.33334,0l-0.66666,0l-0.33334,0" id="svg_42" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <polyline id="svg_43" points="501,70.6667 494.667,72.3334" stroke-linecap="round" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <polyline id="svg_44" points="493.667,71 481.667,80.3334" stroke-linecap="round" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <path d="0" id="svg_45" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <path d="0" id="svg_46" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <path d="m481.66675,80.33337c-1.33334,17.66667 -1.33334,18 -1.33334,18.33334l0,0.33334" id="svg_47" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <path d="m480.3334,95.66671c14.66666,21 14.66666,20.66666 15,20.66666l0,-0.33333l0.33334,0l0,-0.33334" id="svg_48" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <polyline id="svg_49" points="491,108.667 512.333,107" stroke-linecap="round" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <path d="m517.33301,91c-2.66602,9.667 -2.90198,9.236 -2.66602,9c0.23499,-0.2356 0.33301,-0.3333 0.33301,-0.6666c0,-0.3334 0.33301,-0.3334 0.33301,-0.66669c0,-0.33331 0.33398,-0.33331 0.33398,-0.6667c0,-0.3333 0.20502,-0.692 0.33301,-1c0.17999,-0.4355 0.33301,-0.6666 0.66699,-0.6666l0,-0.3334" id="svg_50" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <path d="0" id="svg_51" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <polyline id="svg_52" points="514,100.333 513.333,103.333" stroke-linecap="round" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <path d="m515.00006,99.33337c-5.33331,8 -5.66666,8 -6,8l-0.33331,0" id="svg_53" stroke-width="5" stroke="#ffffff" fill="none"/>
+  <polyline id="svg_54" points="521,91.3334 515.667,91.6667" stroke-linecap="round" stroke-width="2" stroke="#ffffff" fill="none"/>
+  <polyline id="svg_56" points="521.333,91 514.667,91" stroke-linecap="round" stroke-width="2" stroke="#ffffff" fill="none"/>
+  <path d="m505.3334,70.00005c-3.66666,4.66666 -4,4.66666 -4,5l0,0.33333l0,0.33334l-0.33334,0" id="svg_57" stroke-width="2" stroke="#ffffff" fill="none"/>
+  <text x="516" y="80" stroke="#000000">&#966;</text>
+  <text x="480" y="100" stroke="#000000">&#927;</text>
+  <text x="610" y="110" stroke="#000000">&#80;</text>
+  <text x="490" y="65" stroke="#000000">&#80;</text>
+  <text x="130" y="180" stroke="#000000">&#1072;</text>
+  <text x="440" y="180" stroke="#000000">&#1073;</text>
+  <text x="250" y="250" stroke="#000000">&#1088;</text>
+  <text x="260" y="250" stroke="#000000">&#1080;</text>
+  <text x="270" y="250" stroke="#000000">&#1089;</text>
+  <text x="280" y="250" stroke="#000000">&#46;</text>
+  <text x="290" y="250" stroke="#000000">&#49;</text>
+  <text x="300" y="250" stroke="#000000">&#48;</text>
+  <text x="310" y="250" stroke="#000000">&#51;</text>
+</g>
+</svg>
+</p>
+<p> <b>960. </b>   Согласно первому и второму закону Каплера, каждая планета движется по эллипсу, в одном из фокусов которого находится Солнце. В равные времена радиус-вектор вектор планеты, проведённый от оси Солнца, заметает равные площади (рис. 103, а). Если ввести в плоскости орбиты полярные координаты так, как показано на рис. 103, б (Солнце выбирается в качестве полюса), то дифференциальным уравнением движения планеты будет
+<div align="center">
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mfrac>
+<mrow><mi>d</mi><mi>&#x03C6;</mi></mrow>
+<mrow><mi>d</mi><mi>t</mi></mrow>
+</mfrac>
+<mo>=</mo>
+<mfrac>
+<mi>c</mi>
+<mrow>
+<msup>
+<mi>p</mi>
+<mn>2</mn>
+</msup>
+</mrow>
+</mfrac>
+</math>
+</div>
+где с - некоторая постоянная. С другой стороны, уравнением эллипса в этой системе координат будет
+<div align="center">
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mo>&#961;</mo>
+<mo>=</mo>  
+<mfrac> 
+<mrow><mi>p</mi></mrow>
+<mrow><mi>1</mi><mo>+</mo><mi>e</mi><mi>cos</mi><mi>&#966;</mi> 
+</mrow></mfrac>
+</math>
+</div>
+ где p и e - неотрицательные постоянные, e &lt; 1  
+ . Получить на экране картину, дающую модель движения планеты вокруг Солнца (планета и Солнцё изображаются светящимися точками: Солнце - неподвижной, а планета - подвижной). Для нахождения последовательностей φ0, φ1, ..., ρ0, ρ1,... значений угла φ и расстояния ρ через одинаковые промежутки времени, равные τ, можно воспользоваться методом Эйлера численного решения дифференциальных уравнений. Это позволит написать
+<div align="center">
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msub><mo>&#966;</mo><mrow><mi>0</mi></mrow>   
+</msub>
+<mo>=</mo><mi>0</mi>,
+<msub><mo>&#961;</mo><mrow><mi>0</mi></mrow>
+</msub>
+<mfrac>
+<mrow><mi>p</mi></mrow>
+<mrow><mi>1</mi><mo>+</mo><mi>e</mi></mrow>
+</mfrac>
+</math>
+</div>
+<div align="center">
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msub><mo>&#966;</mo><mrow><mi>i</mi></mrow></msub>
+<mo>=</mo><msub><mo>&#966;</mo><mrow><mi>i-1</mi></mrow></msub>
+<mo>+</mo>
+<mfrac>
+<mrow><mi>c&#964;</mi></mrow> 
+<mrow><msup><mi>&#961;</mi><mn>2</mn></msup><mi>i-1</mi></mrow>
+</mfrac>,
+</math>
+</div>
+<div align="center">
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msub><mo>&#961;</mo><mrow><mi>i</mi></mrow>
+</msub>
+<mfrac>
+<mrow><mi>p</mi></mrow> 
+<mrow><mi>1</mi><mo>+</mo><mi>ecos&#966;</mi><mi>i</mi></mrow>
+</mfrac>
+</math>
+</div>
+(здесь для простоты принято φ0 = 0).
+ Значения c, τ, p, e следует подобрать так, чтобы картина на экране получилась достаточно выразительной (хотя, строго говоря, величины c, р и е не могут выбираться независимо друг от друга: они связаны соотношениями, вытекающими, в частности, из третьего закона Кеплера, но в данной графической задаче этим можно пренебречь). Для того, чтобы представить себе форму эллипса в зависимости от р и е, рекомендуется рассмотреть случаи φ = 0, π/2, π.
+</p>
+<p> <b>961. </b>   Получить мультфильм "Круги на воде", используя семь концентрических окружностей. Центры окружностей должны быть совмещены с центром экрана, а радиусы изменяться от 40 до 82 пикселя, увеличиваясь на 7 пиксель с каждой следующей окружностью. Иллюзия движения должна создаваться последовательной сменой цветов всех окружностей, начиная с внутренней и кончая внешней. Процесс смены цветов следует повторить не менее десяти раз.
+</p>
+<p> <b>962. </b>   Получить на экране слово ТЕСТ, составленное из крупных букв так, как описано в задаче 893, и обеспечить его перемещение по экрану:<br></br>
+<ol>а) по горизонтали от левого края экрана к правому краю;<br></br> 
+    б) по вертикали от верхнего края экрана к нижнему и обратно.
+</ol>
+</p>
+<p> <b>963. </b>   Аналогично предыдущей задаче получить на экране два слова ТЕСТ, движущиеся по экрану по одной горизонтальной прямой на встречу друг другу. Первое слово должно двигаться от левого края экрана к правому, второе - от правого к левому. Движение должно выполняться до полного совмещения слов.
+</p>
+<p> <b>964. </b>   Получить на экране какую-либо фигуру, описанную в задаче 129 (рис. 11,а - 11,о), и "оживить" её: пусть цыплёнок (рис 11, а) летает, из трубы домика (рис. 11, б) идёт дым, грузовик (рис. 11, в) едет, елка (рис. 11, г) растёт, шар (рис. 11, д) движется влево до соприкоснавения со стенкой и обратно, треугольник (рис. 11, е) движется вниз до соприкосновения с нижней фигурой, рожица (рис. 11, ж) подмигивает, рыба (рис. 11, з) плывёт, подводная лодка (рис. 11, и) поднимает и опускает перископ, сова (рис. 11, к) машет крыльями, стрелки будильника (рис. 11, л) и колесо (рис. 11, н) вращаются, велосипед (рис. 11, м) катится, телефонный диск (рис. 11, о) крутится.
+</p>
+
+
+<p> <b>965. </b>   Получить на экране изображение какой-либо фигуры, описанной в задаче 130, и обеспечить её перемещение (шаблоны для построения фигур даны на рис. 12, а - 12, р). Выбор направления перемещения и расстояния, на которое фигура должна перемещаться в данном направлении, выполнять:<br></br>
+<ol>     а) с помощью датчика случайных чисел;<br></br>
+         б) под управлением с клавиатуры - для этого должны использоваться клавиши "стрелка вверх", 
+         "стрелка вниз", "стрелка вправо", "стрелка влево", вызывающие
+          перемещение фигуры в соответствующем  направлении на 5 пикселей.  
+</ol>
+</p>
+<b>966. </b>   Получить звуковой мультфильм "Танцующий НЛО". НЛО строить из отдельных символов так, как показано на рис. 104. Очередное положение НЛО на экране определять с помощью датчика случайных чисел. Результатом обращения к датчику случайных чисел должны быть номера строки и столбца экрана, с которыми следует совместить левый верхний угол прямоугольника размером 3 X 4 символа, объемлющего НЛО. Каждый раз, когда номер полученного таким образом столбца окажется кратным 12, НЛО должен издавать звуковой сигнал.
+<p align="center">  <svg width="640" height="480" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g>
+  <title>Layer 1</title>
+  <line id="svg_1" y2="169" x2="526.311" y1="169" x1="87" stroke-dasharray="5,5" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_2" y2="194" x2="526.101" y1="194" x1="85" stroke-dasharray="5,5" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_3" y2="147.809" x2="275.809" y1="43" x1="171" stroke-width="2" stroke="#000000" fill="none"/>
+  <line transform="rotate(90, 669, -134)" id="svg_4" y2="204.809" x2="949.809" y1="100" x1="845" stroke-width="2" stroke="#000000" fill="none"/>
+  <line transform="rotate(175)" id="svg_5" y2="374.809" x2="277.809" y1="270" x1="173" stroke-width="2" stroke="#000000" fill="none"/>
+  <line transform="rotate(90, 525, -317) translate(351, 74)" id="svg_6" y2="-35.191" x2="807.809" y1="-140" x1="703" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_7" y2="316.809" x2="438.809" y1="212" x1="334" stroke-width="2" stroke="#000000" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_8" y="392" x="303" stroke-width="0" stroke="#000000" fill="#000000">рис.104</text>
+ </g>
+</svg>
+</p>
+<b>967. </b>   В рисованных мультфильмах иллюзия движения создаётся последовательной сменой кадров, каждый из которых фиксирует очередное положение движущегося объекта. Используя этот принцип, получить мультфильм, показывающий:<br></br>
+<ol>а) идущего человека;<br></br>
+    б) бегущего человека;<br></br>
+    в) человека, выполняющего приседания;<br></br>
+    г) человека, выполняющего сигнализацию флажком. 
+</ol>
+Для построения отдельных кадров мультфильма воспользоваться фигурками, описанными в рассказе А. Конана Дойля "Пляшущие человечки". Некоторые из этих фигурок даны на рис. 105.
+<p align="center"> <svg width="640" height="280" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g>
+  <title>Layer 1</title>
+  <ellipse ry="11" rx="11" id="svg_1" cy="76" cx="229" stroke-width="2" stroke="#000000" fill="#ffffff"/>
+  <ellipse ry="1.00003" id="svg_2" cy="87" cx="151" stroke-width="2" stroke="#000000" fill="#ffffff"/>
+  <ellipse id="svg_4" ry="11" rx="11" cy="132" cx="477" stroke-width="2" stroke="#000000" fill="#ffffff"/>
+  <line id="svg_5" y2="115.016" x2="361" y1="84" x1="361" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_6" y2="138.683" x2="335.317" y1="112" x1="362" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_7" y2="137.515" x2="384.515" y1="113" x1="360" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_8" y2="62.4708" x2="399.529" y1="101" x1="361" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_9" y2="66.4964" x2="325.496" y1="101" x1="360" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_10" y2="138" x2="396.042" y1="138" x1="384" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_11" y2="139" x2="336.042" y1="139" x1="324" stroke-width="2" stroke="#000000" fill="none"/>
+  <ellipse id="svg_3" ry="11" rx="11" cy="76" cx="360" stroke-width="2" stroke="#000000" fill="#ffffff"/>
+  <line id="svg_12" y2="121.016" x2="477" y1="90" x1="477" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_13" y2="90.683" x2="476.317" y1="64" x1="503" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_14" y2="90.515" x2="477.515" y1="66" x1="453" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_15" y2="105.471" x2="477.529" y1="144" x1="439" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_16" y2="106.496" x2="477.496" y1="141" x1="512" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_17" y2="66" x2="454.042" y1="66" x1="442" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_18" y2="64" x2="514.042" y1="64" x1="502" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_19" y2="118.016" x2="229" y1="87" x1="229" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_20" y2="143.683" x2="202.317" y1="117" x1="229" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_21" y2="143" x2="203.042" y1="143" x1="191" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_22" y2="64.459" x2="282.541" y1="98" x1="249" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_23" y2="131.23" x2="243.23" y1="117" x1="229" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_24" y2="146.524" x2="243" y1="131" x1="243" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_25" y2="141" x2="256.042" y1="141" x1="244" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_26" y2="147" x2="257.105" y1="147" x1="238" stroke-width="2" stroke="#ffffff" fill="none"/>
+  <line id="svg_27" y2="149" x2="246" y1="144" x1="234" stroke-width="2" stroke="#ffffff" fill="none"/>
+  <line id="svg_28" y2="145" x2="263.476" y1="145" x1="237" stroke-width="2" stroke="#ffffff" fill="none"/>
+  <line id="svg_29" y2="143" x2="253.524" y1="143" x1="238" stroke-width="2" stroke="#ffffff" fill="none"/>
+  <path id="svg_31" d="m232,119.00003c-50.33333,-29.66668 -1.66669,-21.33335 20,-23.00003" stroke-width="2" stroke="#000000" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_32" y="205" x="345" stroke-width="0" stroke="#000000" fill="#000000">рис.105</text>
+ </g>
+</svg>
+</p>
+<p> <b>968. </b>   Аналогично предыдущей задаче получить спортивный мультфильм:<br></br> 
+<ol>              а) о метании диска;<br></br>
+ 						б) о беге с барьерами;<br></br>
+ 						в) о подтягивании на перекладине;<br></br>
+					   г) о прыжках в длину;<br></br>
+ 					   д) о гребле;<br></br>
+ 						е) о поднятии штанги.<br></br> 
+</ol> 
+Построение отдельных кадров выполнить на основе олимпийской символики.
+</p>
+<p> <b>969. </b>   Получить звуковой фильм "Человек, танцующий под музыку". Танец может заключаться в выполнении самых простых движений, например, притоптывании ногой или приседании, в такт мелодии, воспроизводимой по звукогенератору.
+</p>
+<p> <b>970. </b>   Аналогично предыдущей задаче получить звуковой мультфильм "Человек, играющий на гитаре". Игра на гитаре может изображаться, например, с помощью перемещения правой руки по струнам гитары вверх и вниз. Мультфильм должен сопровождаться воспроизведением популярной мелодии.
+</p>
+<p> <b>971. </b>   Изобразить на экране доску Гальтона (см. задачу 751) с движущимися по ней шариками. Одновременно по доске должно двигаться несколько шариков. Закончившие движение шарики остаются в нижней части доски. Использовать датчик случайных чисел для выбора пути шарика при прохождении через препятствие.
+</p>
+
+
+
+<p align="center"><a href="index.xml">К началу</a></p>
+</body>
+</html>

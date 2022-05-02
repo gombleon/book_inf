@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<link rel='stylesheet' type='text/css' href='style.css' />
+<meta name='author' content='leonid' /> 
+<head>
+<title>Численные методы</title>
+</head>
+<body>
+<h2>§22. Численные методы</h2>
+<ol start='720'>
+<li>Даны действительные числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>x</mi><mi>n</mi></msub>
+	<msub><mi>y</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>y</mi><mi>n</mi></msub>
+	<msub><mi>t</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>t</mi><mi>m</mi></msub>	
+</mfenced>
+<mo>,</mo>
+<mrow>
+	<mo>(</mo>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<mo>&lt;</mo>
+	<msub><mi>x</mi><mn>2</mn></msub>
+	<mo>&lt;</mo>
+	<mi>&#133;</mi>
+	<mo>&lt;</mo>
+	<msub><mi>x</mi><mi>n</mi></msub>
+	<mo>,</mo>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<mo>&#8804;</mo>
+	<msub><mi>t</mi><mi>i</mi></msub>
+	<mo>&#8804;</mo>			
+	<msub><mi>x</mi><mi>n</mi></msub>	
+	<mo>,</mo>
+	<mrow>
+		<mi>i</mi>
+		<mo>=</mo>
+		<mfenced open='' close=''>
+			<mn>1</mn>
+			<mi>&#133;</mi>
+			<mi>m</mi>
+		</mfenced>
+	</mrow>
+	<mo>)</mo>
+</mrow>
+</math>. Пусть
+<math>
+	<msub><mi>y</mi><mi>i</mi></msub>
+	<mo>=</mo>
+	<mrow>
+		<mi>f</mi>
+		<mo>&#x2061;</mo>
+		<mrow><mo>(</mo><msub><mi>x</mi><mi>i</mi></msub><mo>)</mo></mrow>	
+	</mrow>
+	<mo>,</mo>
+		<mi>i</mi>
+		<mo>=</mo>
+		<mfenced open='' close=''>
+			<mn>1</mn>
+			<mi>&#133;</mi>
+			<mi>n</mi>
+		</mfenced>
+	</mrow>
+</math>, представляют собой значения некоторой функции <math><mi>f</mi></math>. С помощью линейной интерполяции получить значения
+<math>
+<mfenced open='' close=''>
+	<mrow>
+		<mi>f</mi>
+		<mo>&#x2061;</mo>
+		<mrow><mo>(</mo><msub><mi>t</mi><mn>1</mn></msub><mo>)</mo></mrow>	
+	</mrow>
+	<mi>&#133;</mi>
+	<mrow>
+		<mi>f</mi>
+		<mo>&#x2061;</mo>
+		<mrow><mo>(</mo><msub><mi>t</mi><mi>m</mi></msub><mo>)</mo></mrow>	
+	</mrow>
+</mfenced>
+</math>.
+</li>
+<li>Даны действительные числа
+<math>
+<mfenced open='' close=''>
+	<mi>h</mi>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>x</mi><mi>n</mi></msub>
+	<msub><mi>y</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>y</mi><mi>n</mi></msub>
+</mfenced>
+</math>. Все сказанное об
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>x</mi><mi>n</mi></msub>
+	<msub><mi>y</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>y</mi><mi>n</mi></msub>
+</mfenced>
+</math> в предыдущей задаче остается в силе. С помощью линейной интерполяции получить значения функции <math><mi>f</mi></math> для
+значений аргументов, равных
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<mrow><msub><mi>x</mi><mn>1</mn></msub><mo>+</mo><mi>h</mi></mrow>
+	<mrow><msub><mi>x</mi><mn>1</mn></msub><mo>+</mo><mrow><mn>2</mn><mo>&#x2061;</mo><mi>h</mi></mrow></mrow>	
+	<mi>&#133;</mi>
+	<mrow><msub><mi>x</mi><mn>1</mn></msub><mo>+</mo><mrow><mi>k</mi><mo>&#x2061;</mo><mi>h</mi></mrow></mrow>
+</mfenced>
+</math>, где k &#151; наибольшее целое, для которого 
+<math>
+	<mrow><msub><mi>x</mi><mn>1</mn></msub><mo>+</mo><mrow><mi>k</mi><mo>&#x2061;</mo><mi>h</mi></mrow></mrow>
+	<mo>&#8804;</mo>
+	<msub><mi>x</mi><mi>n</mi></msub>
+</math>.
+</li>
+<li>Даны натуральное число <math><mi>n</mi></math>, действительные числа 
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>x</mi><mi>n</mi></msub>
+	<msub><mi>y</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>y</mi><mi>n</mi></msub>
+</mfenced>
+</math>. Рассмотреть предыдущую задачу, считая, что 
+<math>
+<mi>h</mi><mo>=</mo>
+	<mfrac>
+		<mrow>
+			<msub><mi>x</mi><mi>n</mi></msub>
+			<mo>-</mo>
+			<msub><mi>x</mi><mn>1</mn></msub>
+		</mrow>
+		<mi>n</mi>
+	</mfrac>
+</math> (ответом должна служить последовательность, содержащая
+<math><mi>n</mi><mo>+</mo><mn>1</mn></math> число).
+</li>
+<li>Даны действительные числа 
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>x</mi><mi>n</mi></msub>
+	<msub><mi>y</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>y</mi><mi>n</mi></msub>
+	<mi>t</mi>	
+</mfenced>
+<mo>,</mo>
+<mrow>
+	<mo>(</mo>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<mo>&lt;</mo>
+	<msub><mi>x</mi><mn>2</mn></msub>
+	<mo>&lt;</mo>
+	<mi>&#133;</mi>
+	<mo>&lt;</mo>
+	<msub><mi>x</mi><mi>n</mi></msub>
+	<mo>,</mo>
+	<msub><mi>y</mi><mn>1</mn></msub>
+	<mo>&#8804;</mo>
+	<mi>t</mi>
+	<mo>&#8804;</mo>			
+	<msub><mi>y</mi><mi>n</mi></msub>	
+	<mo>)</mo>
+</mrow>
+</math>. Предполагается, что 
+<math>
+<mfenced open='' close=''>
+	<msub><mi>y</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>y</mi><mi>n</mi></msub>
+</mfenced>
+</math> представляют собой результаты измерения температуры воздуха в моменты времени 
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>x</mi><mi>n</mi></msub>
+</mfenced>
+</math>. С помощью линейной интерполяции указать все моменты времени, в которые температура воздуха была равна 
+<math><mi>t</mi></math> (не исключен случай
+<math>
+	<msub><mi>y</mi><mi>j</mi></msub>
+	<mo>=</mo>
+	<msub><mi>y</mi><mrow><mi>j</mi><mo>+</mo><mn>1</mn></mrow></msub>
+	<mo>=</mo>
+	<mi>t</mi>
+</math> для некоторых 
+<math>
+	<mi>j</mi>
+	<mo>,</mo>		
+	<mn>1</mn>
+	<mo>&#8804;</mo>	
+	<mi>j</mi>
+	<mo>&lt;</mo>
+	<mi>n</mi>
+</math>.
+</li>
+<li>Вернуться к задачам 721, 723, считая, что разности между соседними известными значениями аргумента 
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>x</mi><mi>n</mi></msub>
+</mfenced>
+</math> равны между собой:
+<math>
+	<mrow>
+		<msub><mi>x</mi><mi>n</mi></msub>
+		<mo>-</mo>
+		<msub><mi>x</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub>
+	</mrow>
+	<mo>=</mo>	
+	<mrow>
+		<msub><mi>x</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub>
+		<mo>-</mo>
+		<msub><mi>x</mi><mrow><mi>n</mi><mo>-</mo><mn>2</mn></mrow></msub>
+	</mrow>
+	<mo>=</mo>	
+	<mi>&#133;</mi>
+	<mo>=</mo>
+	<mrow>
+		<msub><mi>x</mi><mn>2</mn></msub>
+		<mo>-</mo>
+		<msub><mi>x</mi><mn>1</mn></msub>
+	</mrow>
+	<mo>=</mo>
+	<mi>h</mi>			
+</math>. Вместо 
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>x</mi><mi>n</mi></msub>
+</mfenced>
+</math> задаются 
+<math><msub><mi>x</mi><mn>1</mn></msub></math>
+ и <math><mi>h</mi></math>, порядок остальных исходных данных не изменяется.
+</li>
+<li>Дано действительное положительное число <math><mi>&#949;</mi></math>. Методом
+деления отрезка пополам найти приближенное значение корня уравнения 
+<math>
+<mrow>
+	<mi>f</mi>
+	<mo>&#x2061;</mo>
+	<mrow><mo>(</mo><mi>x</mi><mo>)</mo></mrow>	
+	<mo>=</mo>
+	<mn>0</mn>
+</mrow>
+</math>. Абсолютная погрешность найденного значения не должна превосходить <math><mi>&#949;</mi></math>. (Ниже, рядом с уравнением 
+<math>
+<mrow>
+	<mi>f</mi>
+	<mo>&#x2061;</mo>
+	<mrow><mo>(</mo><mi>x</mi><mo>)</mo></mrow>	
+	<mo>=</mo>
+	<mn>0</mn>
+</mrow>
+</math>, дополнительно указан отрезок , содержащий корень).
+<ol type='a'>
+<li>
+<math>
+<mrow>
+<mrow>
+	<mi>x</mi><mo>+</mo>
+	<mrow>
+		<mi>ln</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>x</mi><mo>+</mo><mn>0.5</mn><mo>)</mo></mrow>
+		<mo>-</mo>
+		<mn>0.5</mn>
+	</mrow>
+</mrow>
+<mo>=</mo><mn>0</mn>
+</mrow>
+<mo>,</mo>
+<mfenced open='[' close=']'>
+	<mn>0</mn><mn>2</mn>
+</mfenced>
+</math>;
+</li>
+<li>
+<math>
+<mrow>
+	<msup><mi>x</mi><mn>5</mn></msup>
+	<mo>+</mo>
+	<mi>x</mi><mo>-</mo>
+	<mn>0.2</mn>
+</mrow>
+<mo>=</mo><mn>0</mn>
+<mo>,</mo>
+<mfenced open='[' close=']'>
+	<mn>1</mn><mn>1.1</mn>
+</mfenced>
+</math>;
+</li>
+<li>
+<math>
+<mrow>
+	<msup><mi>x</mi><mn>4</mn></msup>
+	<mo>-</mo>
+	<mrow>
+		<mn>2</mn><mo>&#x2062;</mo><msup><mi>x</mi><mn>3</mn></msup>
+	</mrow>
+	<mo>-</mo>
+	<mi>x</mi>
+	<mo>-</mo>
+	<mn>1</mn>
+</mrow>
+<mo>=</mo><mn>0</mn>
+<mo>,</mo>
+<mfenced open='[' close=']'>
+	<mn>0</mn><mn>1</mn>
+</mfenced>
+</math>;
+</li>
+<li>
+<math>
+<mrow>
+	<msup><mi>x</mi><mn>3</mn></msup>
+	<mo>-</mo>
+	<mrow>
+		<mn>0.2</mn><mo>&#x2062;</mo><msup><mi>x</mi><mn>2</mn></msup>
+	</mrow>
+	<mo>-</mo>
+	<mrow>
+		<mn>0.2</mn><mo>&#x2062;</mo><mi>x</mi>
+	</mrow>
+	<mo>-</mo>
+	<mn>1.2</mn>
+</mrow>
+<mo>=</mo><mn>0</mn>
+<mo>,</mo>
+<mfenced open='[' close=']'>
+	<mn>1</mn><mn>1.5</mn>
+</mfenced>
+</math>;
+</li>
+<li>
+<math>
+<mrow>
+<mfrac>
+	<mrow>
+		<mn>2</mn><mo>&#x2062;</mo><msup><mi>sin</mi><mn>2</mn></msup><mo>&#x2062;</mo><mrow><mo>(</mo><mi>x</mi><mo>)</mo></mrow>
+	</mrow>
+	<mn>3</mn>
+</mfrac>
+<mo>+</mo>
+<mfrac>
+	<mrow>
+		<mn>3</mn><mo>&#x2062;</mo><msup><mi>cos</mi><mn>2</mn></msup><mo>&#x2062;</mo><mrow><mo>(</mo><mi>x</mi><mo>)</mo></mrow>
+	</mrow>
+	<mn>4</mn>
+</mfrac>
+</mrow>
+<mo>=</mo><mn>0</mn>
+<mo>,</mo>
+<mfenced open='[' close=']'>
+	<mn>0</mn><mfrac><mn> &#960;</mn><mn>2</mn></mfrac>
+</mfenced>
+</math>;
+</li>
+<li>
+<math>
+<mrow>
+	<msup><mi>x</mi><mn>4</mn></msup>
+	<mo>+</mo>
+	<mrow>
+		<mn>0.8</mn><mo>&#x2062;</mo><msup><mi>x</mi><mn>3</mn></msup>
+	</mrow>
+	<mo>-</mo>
+	<mrow>
+		<mn>0.4</mn><mo>&#x2062;</mo><msup><mi>x</mi><mn>2</mn></msup>
+	</mrow>	
+	<mo>-</mo>	
+	<mrow>
+		<mn>1.4</mn><mo>&#x2062;</mo><mi>x</mi>
+	</mrow>
+	<mo>-</mo>
+	<mn>1.2</mn>
+</mrow>
+<mo>=</mo><mn>0</mn>
+<mo>,</mo>
+<mfenced open='[' close=']'>
+	<mrow><mo>-</mo><mn>1.2</mn></mrow><mrow><mo>-</mo><mn>0.5</mn></mrow>
+</mfenced>
+</math>;
+</li>
+<li>
+<math>
+<mrow>
+	<msup><mi>x</mi><mn>4</mn></msup>
+	<mo>-</mo>
+	<mrow>
+		<mn>4.1</mn><mo>&#x2062;</mo><msup><mi>x</mi><mn>3</mn></msup>
+	</mrow>
+	<mo>+</mo>
+	<msup><mi>x</mi><mn>2</mn></msup>
+	<mo>-</mo>	
+	<mrow>
+		<mn>5.1</mn><mo>&#x2062;</mo><mi>x</mi>
+	</mrow>
+	<mo>+</mo>
+	<mn>4.1</mn>
+</mrow>
+<mo>=</mo><mn>0</mn>
+<mo>,</mo>
+<mfenced open='[' close=']'>
+	<mn>3.7</mn></mrow><mn>5</mn>
+</mfenced>
+</math>.
+</li>
+</ol>
+</li>
+<li>Дано действительное положительное число <math><mi>&#949;</mi></math>. Методом хорд вычислить с точностью <math><mi>&#949;</mi></math> *) корень уравнения
+<math>
+<mrow>
+	<mi>f</mi>
+	<mo>&#x2061;</mo>
+	<mrow><mo>(</mo><mi>x</mi><mo>)</mo></mrow>	
+	<mo>=</mo>
+	<mn>0</mn>
+</mrow>
+</math> (ниже, следом за уравнением 
+<math>
+<mrow>
+	<mi>f</mi>
+	<mo>&#x2061;</mo>
+	<mrow><mo>(</mo><mi>x</mi><mo>)</mo></mrow>	
+	<mo>=</mo>
+	<mn>0</mn>
+</mrow>
+</math>, дополнительно задан отрезок, содержащий корень):
+<ol type='a'>
+<li>
+<math>
+	<mrow><mi>x</mi><mo>&#183;</mo><msup><mn>2</mn><mi>x</mi></msup></mrow>
+	<mo>-</mo><mn>1</mn>
+	<mo>=</mo><mn>0</mn>
+	<mo>,</mo>
+	<mfenced open='[' close=']'>
+		<mn>0</mn></mrow><mn>1</mn>
+	</mfenced>
+</math>;
+</li>
+<li>
+<math>
+	<mrow>
+		<msup><mi>x</mi><mn>2</mn></msup>
+		<mo>-</mo>
+		<mi>sin</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mn>5</mn><mo>&#x2062;</mo><mi>x</mi><mo>)</mo></mrow>	
+	</mrow>
+	<mo>=</mo><mn>0</mn>
+	<mo>,</mo>
+	<mfenced open='[' close=']'>
+		<mn>0.5</mn></mrow><mn>0.6</mn>
+	</mfenced>
+</math>;
+</li>
+<li>
+<math>
+<mrow>
+<mfrac>
+	<mrow>
+		<mn>2</mn><mo>&#x2062;</mo><msup><mi>sin</mi><mn>2</mn></msup><mo>&#x2062;</mo><mrow>
+		<mo>(</mo>
+		<mrow><mn>2</mn><mo>&#x2062;</mo><mi>x</mi></mrow>
+		<mo>)</mo></mrow>
+	</mrow>
+	<mn>3</mn>
+</mfrac>
+<mo>+</mo>
+<mfrac>
+	<mrow>
+		<mn>3</mn><mo>&#x2062;</mo><msup><mi>cos</mi><mn>2</mn></msup><mo>&#x2062;</mo><mrow>
+		<mo>(</mo>
+		<mrow><mn>2</mn><mo>&#x2062;</mo><mi>x</mi></mrow>
+		<mo>)</mo>
+	</mrow>
+	</mrow>
+	<mn>4</mn>
+</mfrac>
+</mrow>
+<mo>=</mo><mn>0</mn>
+<mo>,</mo>
+<mfenced open='[' close=']'>
+	<mn>0</mn><mfrac><mn> &#960;</mn><mn>4</mn></mfrac>
+</mfenced>
+</math>;
+</li>
+<li>
+<math>
+<mrow>
+	<msup><mi>x</mi><mn>3</mn></msup>
+	<mo>-</mo>
+	<mrow>
+		<mn>2</mn><mo>&#x2062;</mo><msup><mi>x</mi><mn>2</mn></msup>
+	</mrow>
+	<mo>+</mo>
+	<mi>x</mi>
+	<mo>-</mo>	
+	<mn>3</mn>
+</mrow>
+<mo>=</mo><mn>0</mn>
+<mo>,</mo>
+<mfenced open='[' close=']'>
+	<mn>2.1</mn></mrow><mn>2.2</mn>
+</mfenced>
+</math>;
+</li>
+<li>
+<math>
+	<mrow><mo>(</mo><mn>4</mn><mo>+</mo><msup><mi>x</mi><mn>2</mn></msup><mo>)</mo></mrow>
+	<mo>&#x2062;</mo>
+	<mrow>
+		<mo>(</mo><msup><mn>e</mn><mi>x</mi></msup>
+		<mo>-</mo>
+		<msup><mn>e</mn><mrow><mo>-</mo><mi>x</mi></mrow></msup><mo>)</mo>
+	</mrow>
+	<mo>=</mo>
+	<mn>18</mn>
+	<mo>,</mo>
+<mfenced open='[' close=']'>
+	<mn>1.2</mn></mrow><mn>1.3</mn>
+</mfenced>
+</math>;
+</li>
+<li>
+<math>
+<mrow>
+	<msup><mi>x</mi><mn>4</mn></msup>
+	<mo>+</mo>
+	<mrow>
+		<mn>0.5</mn><mo>&#x2062;</mo><msup><mi>x</mi><mn>3</mn></msup>
+	</mrow>
+	<mo>-</mo>
+	<mrow>	
+		<mn>4</mn><mo>&#x2062;</mo><msup><mi>x</mi><mn>2</mn></msup>
+	</mrow>
+	<mo>-</mo>	
+	<mrow>
+		<mn>3</mn><mo>&#x2062;</mo><mi>x</mi>
+	</mrow>
+	<mo>-</mo>
+	<mn>0.5</mn>
+</mrow>
+<mo>=</mo><mn>0</mn>
+<mo>,</mo>
+<mfenced open='[' close=']'>
+	<mrow><mo>-</mo><mn>1</mn></mrow><mn>0</mn>
+</mfenced>
+</math>;
+</li>
+<li>
+<math>
+<mrow>
+	<msup><mi>x</mi><mn>2</mn></msup>
+	<mo>-</mo>
+	<mrow>
+		<mn>1.3</mn><mo>&#x2062;</mo>
+		<mrow>
+			<mi>ln</mi><mo>&#x2061;</mo>
+			<mrow>
+				<mo>(</mo>
+				<mi>x</mi><mo>+</mo><mi>x</mi>
+				<mo>)</mo>
+			</mrow>					
+		</mrow>
+	</mrow>
+	<mo>-</mo>
+	<mrow>	
+		<mn>2.8</mn><mo>&#x2062;</mo><mi>x</mi>
+	</mrow>
+	<mo>+</mo>	
+	<mn>1.15</mn>
+</mrow>
+<mo>=</mo><mn>0</mn>
+<mo>,</mo>
+<mfenced open='[' close=']'>
+	<mn>2.1</mn><mn>2.5</mn>
+</mfenced>
+</math>.
+</li>
+</ol>
+*) Когда заходит речь о вычислении с точностью <math><mi>&#949;</mi></math>, следует иметь в виду, что лишь немногие численные методы, основанные на построении последовательных приближений 
+<math><mfenced open='' close=''><msub><mi>x</mi><mn>0</mn></msub><msub><mi>x</mi><mn>1</mn></msub><mi<&#133;</mi></mfenced></math>
+ к искомому числу <math><mi>x</mi></math>, гарантируют, подобно методу деления отрезка пополам, что абсолютная погрешность найденного значения будет меньше <math><mi>&#949;</mi></math>. Будем считать, что требуемая точность <math><mi>&#949;</mi></math> достигнута, как только получено такое 
+<math>
+	<msub><mi>x</mi><mi>m</mi></msub>
+	<mspace width='1ex'/><mo>(</mo>
+	<mtext>при</mtext>
+	<mspace width='1ex'/>
+	<mrow><mi>m</mi><mo>&gt;</mo><mn>1</mn></mrow>
+	<mo>)</mo>	
+</math>, для которого 
+<math>
+	<mrow>
+	<mo>|</mo>
+	<msub><mi>x</mi><mi>m</mi></msub><mo>-</mo>
+	<msub><mi>x</mi><mrow><mi>m</mi><mo>-</mo><mn>1</mn></mrow></msub>
+	<mo>|</mo>
+	</mrow>
+	<mo>&lt;</mo>	
+	<mn>&#949;</mn>
+</math>. В данной задаче предполагается, что в программе будет реализован именно этот подход к оценке точности.
+</li>
+
+</ol>
+</body>
+</html>

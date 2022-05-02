@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<link rel='stylesheet' type='text/css' href='style.css' />
+<meta name='author' content='leonid' />
+<title>Очереди</title>
+</head>
+<body>
+<p><a href="8_9_4.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_9_6.html">К следующему</a> </p>
+<h2>8.9.5. Очереди</h2>
+<p><span class='teorema'>Очередь или односторонняя очередь &#151; это список, в котором все операции вставки выполняются на одном конце списка,  а все операции удаления (и, как правило, операции доступа к данным) &#151; на другом конце.
+</span></p>
+<p>Очевидно, стек и очередь &#151; частные случаи дека.</p>
+<p>Очереди именуют еще и как циклические хранилища (circular stores) или дисциплины обслуживания в порядке поступления (first-in-first-out lists &#151; FIFO lists). Для очереди логично использовать два ссылочных поля prev и next и два именованных узла first и last. Поле prev будет служить для хранения ссылки на предыдущий узел, next &#151; для хранения ссылки на следующий узел, first &#151; имя первого в очереди узла,  last &#151; имя последнего узла очереди.</p>
+<div  class="examp">
+<p><span class='teorema'>Пример</span> 8.9.5.1 объявления типа узла очереди и ее концевых узлов:</p>
+<code>
+<p class='ind0'>TYPE узел=RECORD</p>
+<p class='ind2'>name: ARRAY 20 OF CHAR;</p>
+<p class='ind2'>prev, next: указатель</p>
+<p class='ind1'>END;</p>
+<p class='ind1'>указатель=POINTER TO узел;</p>
+<p class='ind1'>VAR first, last: указатель;</p>
+</code>
+<p><span class='teorema'>Пример</span> 8.9.5.2 операции добавления узла в очередь в предположении существования очереди:</p>
+<code>
+<p class='ind1'>NEW(X);</p>
+<p class='ind1'>X.next:=last;</p>
+<p class='ind1'>last:=X;</p>
+</code> 
+<p><span class='teorema'>Пример</span> 8.9.5.3 извлечения узла из очереди:</p>
+<code>
+<p class='ind1'>			X:=first; </p>
+<p class='ind1'>			first:=first.prev; </p>
+<p class='ind1'>			X:=NIL; </p>
+</code>
+<p><span class='teorema'>Пример</span> 8.9.5.4 вывода на печать заданного количества натуральных чисел, имеющих в качестве делителей лишь 2, 3 и 5.
+</p>
+<p>Изложим идею решения задачи. Для решения создадим три очереди. Для каждого
+<math display='inline'><mi>t</mi><mo>=</mo>
+<mrow>
+<mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mi>&#133;</mi>
+</mrow></math>
+ в первую очередь заносится число
+<math><mn>2</mn><mo>&#x2062;</mo><mi>t</mi></math>, во вторую
+<math><mn>3</mn><mo>&#x2062;</mo><mi>t</mi></math>,
+ в третью 
+ <math><mn>5</mn><mo>&#x2062;</mo><mi>t</mi></math>.
+  Затем из трех чисел, хранящихся в поле <var>number</var> узлов <var>last2</var>, <var>last3</var>, <var>last5</var> выбирается минимальное число, которое выводится на печать в Рабочем журнале и удаляется из очередей. Процесс продолжается до тех пор, пока не будут напечатаны все <var>n</var> чисел.</p>
+<code>
+<p class='ind0'>MODULE queue;</p>
+<p class='ind1'>	IMPORT  Log := StdLog,  In := i21sysIn,  Math;</p>
+<p class='ind1'>	TYPE узел=RECORD</p>
+<p class='ind3'>			number: INTEGER;</p>
+<p class='ind3'>			next, prev: ptr</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		ptr=POINTER TO узел;</p>
+<p class='ind1'>	PROCEDURE new(VAR first, last: ptr; k: INTEGER);</p>
+<p class='ind2'>		VAR x: ptr;</p>
+<p class='ind1'>	BEGIN</p>
+<p class='ind2'>		IF last=NIL THEN</p>
+<p class='ind3'>			NEW(last);</p>
+<p class='ind3'>			last.number:=k;</p>
+<p class='ind3'>			last.next:=NIL;</p>
+<p class='ind3'>			last.prev:=NIL;</p>
+<p class='ind1'>			first:=last;</p>
+<p class='ind2'>		ELSE</p>
+<p class='ind3'>			NEW(x);</p>
+<p class='ind3'>			x.number:=k;</p>
+<p class='ind3'>			x.prev:=last;</p>
+<p class='ind3'>			x.next:=NIL;</p>
+<p class='ind3'>			last.next:=x;</p>
+<p class='ind3'>			last:=x;</p>	
+<p class='ind2'>		END;</p>	
+<p class='ind1'>	END new;</p>
+<p class='ind1'>	PROCEDURE delete(VAR first, last: ptr);</p>
+<p class='ind2'>	VAR X: ptr;</p>
+<p class='ind1'>	BEGIN</p>
+<p class='ind2'>		IF last=first THEN</p>
+<p class='ind3'>			last:=NIL;</p>
+<p class='ind2'>		ELSIF last#first THEN</p>
+<p class='ind3'>			X:=first;</p>			
+<p class='ind3'>			first:=first.prev</p>
+<p class='ind3'>			X:=NIL</p>
+<p class='ind2'>		END;</p>
+<p class='ind1'>	END delete;</p>
+	
+<p class='ind1'>	PROCEDURE do*;</p>
+<p class='ind2'>		VAR t, n, r, min: INTEGER;</p>
+<p class='ind3'>			first2, first3, first5, last2, last3, last5: ptr;</p> 
+<p class='ind1'>	BEGIN</p>
+<p class='ind2'>		In.Open;</p>
+<p class='ind2'>		ASSERT(In.Done);</p>
+<p class='ind2'>		In.Int(n);</p>
+<p class='ind2'>		ASSERT(In.Done & (n>0));</p>
+<p class='ind2'>		t:=1;</p>
+<p class='ind2'>		r:=0;</p>
+<p class='ind2'>		WHILE r &lt; n DO</p>
+<p class='ind3'>			new(first2, last2, 2*t);</p>
+<p class='ind3'>			new(first3, last3, 3*t);</p>
+<p class='ind3'>			new(first5, last5, 5*t);</p>
+<p class='ind3'>			INC(t);</p>
+<p class='ind3'>			min:= MIN(MIN(last2.number, last3.number), last5.number);</p>
+<p class='ind3'>			Log.Int(min);</p>
+<p class='ind3'>			INC(r);</p>
+<p class='ind3'>			IF (last2.number=min) THEN</p>
+<p class='ind4'>				delete(first2, last2);</p>
+<p class='ind3'>			END;</p>
+<p class='ind3'>			IF (last3.number=min) THEN</p>
+<p class='ind4'>				delete(first3, last3);</p>
+<p class='ind3'>			END;</p>
+<p class='ind3'>			IF (last5.number=min) THEN</p>
+<p class='ind4'>				delete(first5, last5);</p>
+<p class='ind3'>			END;</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		Log.Ln</p>
+<p class='ind1'>	END do;
+<p class='ind0'>END queue.</p>
+<table>
+<tr>
+<td align='right' valign='bottom'>
+<svg width='35' height='40'>
+<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+</svg>
+</td>
+<td align='left' valign='middle'>queue.do 19</td>
+</tr>
+</table>
+</code>
+<p><span class='teorema'>Пример</span> 8.9.5.5. (А. Шень. Задачи по программированию) Придумать способ моделирования очереди с помощью двух стеков и фиксированного числа переменных. При этом отработка <var>n</var> операций с очередью (начатых, когда очередь была пуста) должна требовать порядка <var>n</var> действий.
+</p>
+<p>Порядок решения задачи следующий: в стек <var>last</var> заносятся элементы в порядке имитации поступления элементов в очередь. Для имитации изъятия элементов из очереди их предварительно извлекают из стека <var>last</var> и помещают в стек <var>first</var>, в результате чего стек <var>last</var> окажется пустым, а все элементы будут записаны в стек <var>first</var> в обратном порядке. Затем элементы извлекаются из стека <var>first</var> как из очереди. Новые элементы помещаются из стека <var>last</var> в стек <var>first</var> только при исчерпании всех элементов стека <var>first</var>. Ниже представлен один из вариантов решения задачи:</p>
+<code>
+<p class='ind0'>MODULE queue_steck;</p>
+<p class='ind1'>	IMPORT Log:= StdLog, Ran:= i21eduRandom;</p>
+<p class='ind1'>	TYPE node=RECORD</p>
+<p class='ind3'>			nomer: INTEGER;</p>
+<p class='ind3'>			next: ptr</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		ptr=POINTER TO node;</p>
+<p class='ind1'>	VAR first, last: ptr;</p>	
+<p class='ind1'>	(*процедура добавления  элементов в стек last*)</p>
+<p class='ind1'>	PROCEDURE input*;</p> 
+<p class='ind2'>		VAR  x: ptr;</p>
+<p class='ind1'>	BEGIN</p>
+<p class='ind2'>		IF last=NIL THEN</p>
+<p class='ind3'>			NEW(last);</p>
+<p class='ind3'>			last.next:=NIL;</p>
+<p class='ind3'>			last.nomer:=Ran.Int(10);</p>
+<p class='ind2'>		ELSE</p>
+<p class='ind3'>			NEW(x);</p>
+<p class='ind3'>			x.next:=last;</p>
+<p class='ind3'>			x.nomer:=Ran.Int(10);</p>
+<p class='ind3'>			last:=x</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		Log.String('Добавили в очередь элемент ');</p>
+<p class='ind2'>		Log.Int(last.nomer);</p>
+<p class='ind2'>		Log.Ln</p>
+<p class='ind1'>	END input;</p>
+<p class='ind1'>	(*процедура изъятия  элементов из стека last и помещения в стек first*)</p>
+<p class='ind1'>	PROCEDURE perebr;</p>
+<p class='ind2'>		VAR  x: ptr;</p>
+<p class='ind1'>	BEGIN</p>
+<p class='ind2'>		WHILE last#NIL DO</p>
+<p class='ind3'>			x:=last;</p>
+<p class='ind3'>			last:=last.next;</p>
+<p class='ind3'>			x.next:=first;</p>
+<p class='ind3'>			first:=x</p>
+<p class='ind2'>		END;</p>
+<p class='ind1'>	END perebr;</p>
+<p class='ind1'>(*процедура изъятия  элементов  из стека first*)</p>
+<p class='ind1'>	PROCEDURE output*;</p>
+<p class='ind2'>		VAR  x: ptr;</p>
+<p class='ind1'>	BEGIN</p>
+<p class='ind2'>		IF (first=NIL) & (last#NIL) THEN (*если стек first пуст, то перебросить все элементы из стека last в стек first*)</p>
+<p class='ind3'>			perebr</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		IF (first=NIL) & (last=NIL) THEN</p>
+<p class='ind3'>			Log.String('Очередь пуста.');</p>
+<p class='ind3'>			Log.Ln</p>
+<p class='ind2'>		ELSE</p>
+<p class='ind3'>			Log.String('Извлекли из очереди элемент '); (*извлекаем элемент из стека first*)</p>
+<p class='ind3'>			Log.Int(first.nomer);</p>
+<p class='ind3'>			Log.Ln;</p>
+<p class='ind3'>			x:=first;</p>
+<p class='ind3'>			first:=first.next;</p>
+<p class='ind3'>			x:=NIL</p>
+<p class='ind2'>		END;</p>
+<p class='ind1'>	END output;</p>
+<p class='ind1'>	(*процедура просмотра содержимого стеков last и first*)</p>
+<p class='ind1'>	PROCEDURE view*;</p>
+<p class='ind2'>		VAR  x: ptr;</p>
+<p class='ind1'>	BEGIN</p>
+<p class='ind2'>		Log.String('last:');</p>
+<p class='ind2'>		x:=last;</p>
+<p class='ind2'>		WHILE x#NIL DO</p>
+<p class='ind3'>			Log.Int(x.nomer);</p>
+<p class='ind3'>			x:=x.next</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		Log.Ln;</p>
+<p class='ind2'>		Log.String('first:');</p>
+<p class='ind2'>		x:=first;</p>
+<p class='ind2'>		WHILE x#NIL DO</p>
+<p class='ind3'>			Log.Int(x.nomer);</p>
+<p class='ind3'>			x:=x.next</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		Log.Ln;</p>
+<p class='ind1'>	END view;</p>
+<p class='ind0'>END queue_steck.</p>
+<table>
+<tr>
+<td align='right' valign='bottom'>
+<svg width='35' height='40'>
+<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+</svg>
+</td>
+<td align='left' valign='middle'>queue_steck.input</td>
+</tr>
+<tr>
+<td align='right' valign='bottom'>
+<svg width='35' height='40'>
+<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+</svg>
+</td>
+<td align='left' valign='middle'>queue_steck.output</td>
+</tr>
+<tr>
+<td align='right' valign='bottom'>
+<svg width='35' height='40'>
+<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+</svg>
+</td>
+<td align='left' valign='middle'>queue_steck.view</td>
+</tr>
+</table>
+
+</code>
+</div>
+<h3>Задачи для самостоятельного решения из сборника задач по программированию под редакцией С.А. Абрамова, Г.Г. Гнездиловой, Е.Н. Капустиной, М.И. Селюн. Задачи по программированию:</h3>
+
+<p><a href='zadachi/14.html'>§14 Вычисление с хранением последовательностей, число членов которых зависит от исходных данных</a></p>
+<p><a href='zadachi/36.html'>§36. Некоторые приемы программирования</a></p>
+<p><a href="8_9_4.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_9_6.html">К следующему</a> </p>
+</body>
+</html>

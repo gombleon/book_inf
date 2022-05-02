@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Арифметика действительных чисел. Вычисления по формулам</title>
+</head>
+<body>
+<h2>§1. Арифметика действительных чисел. Вычисления по формулам</h2>
+<ol start="1">
+<li>Даны два действительных числа <math><mi>a</mi></math> и <math><mi>b</mi></math>. Получить их сумму, разность и произведение.</li>
+<li>Даны действительные числа <math><mi>a</mi></math> и <math><mi>b</mi></math>. Получить
+<math>
+<mfrac>
+	<mrow><mo>|</mo><mi>x</mi><mo>|</mo><mo>-</mo><mo>|</mo><mi>y</mi><mo>|</mo></mrow>
+	<mrow><mn>1</mn><mo>+</mo><mo>|</mo><mi>x</mi><mo>&#x2062;</mo><mi>y</mi><mo>|</mo></mrow>
+</mfrac>
+</math>
+</li>
+<li>Дана длина ребра куба. Найти объём куба и площадь его боковой поверхности.</li>
+<li>Даны два действительных положительных числа. Найти среднее арифметическое и среднее геометрическое этих чисел.</li>
+<li>Даны два действительных числа. Найти среднее арифметическое этих чисел и среднее геометрическое их модулей.</li>
+<li>Даны катеты прямоугольного треугольника. Найти его гипотенузу и площадь.</li>
+<li>Смешано <math><msub><mi>v</mi><mn>1</mn></msub></math> литров воды температуры <math><msub><mi>t</mi><mn>1</mn></msub></math> с <math><msub><mi>v</mi><mn>2</mn></msub>
+</math> литрами воды температуры <math><msub><mi>t</mi><mn>2</mn></msub></math>. Найти объём и температуру образовавшейся смеси.</li>
+<li>Определить периметр правильного <math><mi>n</mi></math>-угольника, описанного около окружности радиуса <math><mi>r</mi></math>.</p>
+<li>Три сопротивления <math><mrow><msub><mi>R</mi><mn>1</mn></msub><mo>,</mo><msub><mi>R</mi><mn>2</mn></msub><mo>,</mo><msub><mi>R</mi><mn>3</mn></msub></mrow></math>
+  соединены параллельно. Найти сопротивление соединения.</li>
+<li>Определить время падения камня на поверхность земли с высоты <math><mi>h</mi></math>.</li>
+<li>Даны <math><mi>x</mi><mo>,</mo><mi>y</mi><mo>, </mo><mi>z</mi></math> Вычислить <math><mi>a</mi><mo>,</mo><mi>b</mi></math> если
+<ol type='a'> 
+<li><math>
+	<mi>a</mi><mo>=</mo>
+	<mfrac>
+		<mrow>
+			<msqrt><mo>|</mo><mi>x</mi><mo>-</mo><mn>1</mn><mo>|</mo></msqrt><mo>-</mo><msqrt><mo>|</mo><mi>y</mi><mo>|</mo></msqrt>
+		</mrow>
+		<mrow>
+			<mn>1</mn><mo>+</mo><mfrac><msup><mi>x</mi><mn>2</mn></msup><mn>2</mn></mfrac><mo>+</mo><mfrac><msup><mi>y</mi><mn>2</mn></msup><mn>4</mn></mfrac>
+		</mrow>
+	</mfrac>
+</math>
+,
+<math>
+	<mi>b</mi><mo>=</mo>
+	<mrow>
+		<mi>x</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<mrow><mi>arctg</mi><mo>&#x2061;</mo><mi>z</mi></mrow>
+			<mo>+</mo>
+			<msup>
+				<mi>e</mi>
+				<mrow><mo>-</mo><mo>(</mo><mi>x</mi><mo>+</mo><mn>3</mn><mo>)</mo></mrow>
+			</msup>
+			<mo>)</mo>	
+		</mrow>
+	</mrow>
+</math>;
+</li>
+<li>
+<math>	
+	<mi>a</mi><mo>=</mo>
+	<mfrac>
+		<mrow>
+			<mn>3</mn><mo>+</mo>
+			<msup>
+				<mi>e</mi>
+				<mrow><mi>y</mi><mo>-</mo><mn>1</mn></mrow>
+			</msup>
+		</mrow>
+		<mrow>
+			<mn>1</mn><mo>+</mo><msup><mi>x</mi><mn>2</mn></msup>
+			<mo>&#x2062;</mo>
+			<mrow>
+				<mo>|</mo>
+				<mi>y</mi><mo>-</mo>
+				<mrow><mi>tg</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>z</mi><mo>)</mo></mrow></mrow>
+				<mo>|</mo>
+			</mrow>
+		</mrow>
+	</mfrac>
+</math>
+,
+<math>
+<mi>b</mi>
+<mo>=</mo>
+	<mn>1</mn>
+	<mo>+</mo>
+	<mrow><mo>|</mo><mi>y</mi><mo>-</mo><mi>x</mi><mo>|</mo></mrow>
+	<mo>+</mo>
+	<mfrac>
+		<msup>
+			<mrow>
+				<mo>(</mo><mi>y</mi><mo>-</mo><mi>x</mi><mo>)</mo>
+			</mrow>
+			<mn>2</mn>
+		</msup>
+		<mn>2</mn>
+	</mfrac>
+	<mo>+</mo>
+	<mfrac>
+		<msup>
+			<mrow><mo>|</mo><mi>y</mi><mo>-</mo><mi>x</mi><mo>|</mo></mrow>
+			<mn>3</mn>
+		</msup>
+		<mn>3</mn>
+	</mfrac>
+</math>;
+</li>
+<li> 
+<math>
+	<mi>a</mi>
+	<mo>=</mo>
+	<mrow><mo>(</mo><mn>1</mn><mo>+</mo><mi>y</mi><mo>)</mo></mrow><mo>&#x2062;</mo>
+	<mfrac>
+		<mrow>
+			<mi>x</mi><mo>+</mo>
+			<mfrac>			
+				<mi>y</mi>
+				<mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mn>4</mn></mrow>
+		</mrow>
+		<mrow>
+			<msup>
+				<mi>e</mi>
+				<mrow><mo>-</mo><mi>x</mi><mo>-</mo><mn>2</mn></mrow>
+			</msup>
+			<mo>+</mo>
+			<mfrac>
+				<mn>1</mn>
+				<mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mn>4</mn></mrow>
+			</mfrac>
+		</mrow>
+	</mfrac>
+</math>
+,
+<math>
+	<mi>b</mi>
+	<mo>=</mo>
+	<mfrac>
+		<mrow>
+			<mn>1</mn><mo>+</mo><mi>cos</mi><mo>&#x2061;</mo>
+			<mrow><mo>(</mo><mi>y</mi><mo>-</mo><mn>2</mn><mo>)</mo></mrow>
+		</mrow>
+		
+		<mrow>
+			<mfrac><msup><mi>x</mi><mn>4</mn></msup><mn>2</mn></mfrac>
+			<mo>+</mo>
+			<mrow>
+				<msup><mi>sin</mi><mn>2</mn></msup>
+				<mo>&#x2061;</mo>
+				<mrow><mo>(</mo><mi>z</mi><mo>)</mo></mrow>
+			</mrow>
+		</mrow>
+	</mfrac>
+</math>;
+</li>
+<li> 
+<math>
+	<mi>a</mi>
+	<mo>=</mo>
+	<mi>y</mi>
+	<mo>+</mo>
+	<mfrac>
+		<mi>x</mi>
+		<mrow>
+			<msup><mi>y</mi><mn>2</mn></msup>
+			<mo>+</mo>
+			<mfrac>
+				<msup><mi>x</mi><mn>2</mn></msup>
+				<mrow>
+					<mo>|</mo>
+					<mi>y</mi>
+					<mo>+</mo>
+					<mfrac><msup><mi>x</mi><mn>3</mn></msup><mn>3</mn></mfrac>
+					<mo>|</mo>
+				</mrow>
+			</mfrac>
+		</mrow>
+	</mfrac>
+</math>
+,
+<math>
+	<mi>b</mi><mo>=</mo>
+	<mrow>
+		<mrow>
+		<mn>1</mn>
+		<mo>+</mo>
+		<mrow>
+			<msup><mi>tg</mi><mn>2</mn></msup><mo>&#x2061;</mo>
+			<mfrac><mi>z</mi><mn>2</mn></mfrac>
+		</mrow>
+	</mrow>
+</math>;
+</li>
+<li> 
+<math>
+	<mi>a</mi>
+	<mo>=</mo>
+	<mfrac>
+		<mrow>
+			<mn>2</mn><mi>cos</mi><mo>&#x2061;</mo>
+			<mrow><mo>(</mo><mi>x</mi><mo>-</mo><mfrac><mi>&#960;</mi><mn>6</mn></mfrac><mo>)</mo></mrow>
+		</mrow>
+		<mrow>
+			<mfrac><mn>1</mn><mn>2</mn></mfrac>
+			<mo>+</mo>
+			<mrow><msup><mi>sin</mi><mn>2</mn></msup><mo>&#x2061;</mo><mi>y</mi></mrow>
+		</mrow>
+	</mfrac>
+</math>,
+<math>
+	<mi>b</mi>
+	<mo>=</mo>
+	<mn>1</mn>
+	<mo>+</mo>
+	<mfrac>
+		<msup><mi>Z</mi><mn>2</mn></msup>
+		<mrow>
+			<mn>3</mn><mo>+</mo>
+			<mfrac><msup><mi>Z</mi><mn>2</mn></msup><mn>5</mn></mfrac>
+		</mrow>
+	</mfrac>
+</math>;
+</li>
+<li>
+<math>
+	<mi>a</mi><mo>=</mo>
+	<mfrac>
+		<mrow>
+			<mn>1</mn><mo>+</mo><msup><mi>sin</mi><mn>2</mn></msup><mo>&#x2061;</mo>
+			<mrow><mo>(</mo><mi>x</mi><mo>+</mo><mi>y</mi><mo>)</mo></mrow>
+		</mrow>
+		<mrow>
+			<mn>2</mn><mo>+</mo>
+			<mrow>
+				<mo>|</mo><mi>x</mi><mo>-</mo>
+				<mfrac>
+					<mrow><mn>2</mn><mi>x</mi></mrow>
+					<mrow>
+						<mn>1</mn>
+						<mo>+</mo>
+						<mrow><msup><mi>x</mi><mn>2</mn></msup><mo>&#x2062;</mo><msup><mi>y</mi><mn>2</mn></msup></mrow>
+					</mrow>
+				</mfrac>	
+				<mo>|</mo>
+			<mrow>
+		</mrow>
+	</mfrac>
+</math>
+,
+<math>
+	<mi>b</mi><mo>=</mo>
+	<msup><mi>cos</mi><mn>2</mn></msup><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo><mi>arctg</mi><mo>&#x2061;</mo>
+		<mfrac><mn>1</mn><mi>z</mi></mfrac>
+		<mo>)</mo>
+	</mrow>
+</math>;
+</li>
+<li> 
+<math>
+	<mi>a</mi><mo>=</mo>
+	<mi>ln</mi><mo>&#x2061;</mo>
+	<mrow><mo>|</mo><mi>y</mi><mo>-</mo>
+	<msqrt><mo>|</mo><mi>x</mi><mo>|</mo></msqrt>
+	<mo>&#x2062;</mo>
+	<mrow>
+		<mo>(</mo>
+		<mi>x</mi>
+		<mo>-</mo>
+		<mfrac>
+			<mi>y</mi>
+			<mrow>
+				<mi>z</mi><mo>+</mo>
+				<mfrac><msup><mi>x</mi><mn>2</mn></msup><mn>4</mn></mfrac>	
+			</mrow>
+		</mfrac>
+		<mo>)</mo>
+	</mrow>
+<mo>|</mo>
+</math>
+,
+<math>
+<mi>b</mi><mo>=</mo>
+<mrow>
+	<mi>x</mi><mo>-</mo>
+	<mfrac>
+		<mrow><msup><mi>x</mi><mn>2</mn></msup></mrow>
+		<mrow><mn>3</mn><mi>!</mi></mrow>
+	</mfrac>
+	<mo>+</mo>
+	<mfrac>
+		<mrow><msup><mi>x</mi><mn>5</mn></msup></mrow>
+		<mrow><mn>5</mn><mi>!</mi></mrow>
+	</mfrac>
+</mrow>	
+</math>.
+</li>
+</ol>
+<li>Дана сторона равностороннего треугольника. Найти площадь этого треугольника.</li>
+<li>Вычислить период колебания маятника длины L.</li> 
+<li>Определить силу притяжения <math><mi>F</mi></math> между телами массы <math><msub><mi>m</mi><mn>1</mn></msub></math> 
+  и <math><msub><mi>m</mi><mn>2</mn></msub></math>, находящимися на расстоянии <math><mi>r</mi></math> друг от друга.</li>
+<li>Даны гипотенуза и катет прямоугольного треугольника. Найти второй катет и радиус вписанной окружности.</li>
+<li>Известна длина окружности. Найти площадь круга, ограниченного этой окружностью.</li>
+<li>Найти площадь кольца, внутренний радиус которого равен <math><mn>20</mn></math>, а внешний &#151; заданному числу <math><mi>r</mi><mrow><mo>(</mo><mi>r</mi><mo>&gt;</mo><mn>0</mn><mo>)</mo></mrow></math>.</li>
+<li>Треугольник задан величинами своих углов и радиусом описанной окружности. Найти стороны треугольника.</li>
+<li>Определить время, через которое встретятся два тела, равноускоренно движущихся навстречу друг другу, если известны их начальные скорости, ускорения и начальное расстояние между ними.</li>
+<li>Найти сумму членов арифметической прогрессии 
+<math>
+<mfenced open='' close=''>
+	<mi>a</mi><mrow><mi>a</mi><mo>+</mo><mi>d</mi></mrow><mi>&#133;</mi>
+	<mrow><mi>a</mi><mo>+</mo><mrow><mo>(</mo><mi>n</mi><mo>-</mo><mn>1</mn><mo>)</mo></mrow><mo>&#x2062;</mo><mi>d</mi></mrow>
+</mfenced>
+</math> по данным значениям <math><mfenced open='' close=''><mi>a</mi><mi>d</mi><mi>n</mi></mfenced></math>.
+</li>
+<li>Даны действительные числа <math><mfenced open='' close=''><mi>d</mi><mi>d</mi></mfenced></math>. Вычислить 
+<math>
+<mo>|</mo>
+<mfrac>
+	<mrow>
+		<msup><mi>sin</mi><mn>3</mn></msup><mo>&#x2061;</mo>
+		<mrow>
+			<mo>|</mo>
+			<mrow>
+				<mi>c</mi><mo>&#x2062;</mo>
+				<msup><msub><mi>x</mi><mn>1</mn></msub><mn>3</mn></msup>
+			</mrow>
+			<mo>+</mo>
+			<mrow>
+				<mi>d</mi><mo>&#x2062;</mo>
+				<msup><msub><mi>x</mi><mn>2</mn></msub><mn>2</mn></msup>
+			</mrow>
+			<mo>-</mo>
+			<mrow>			
+				<mi>c</mi><mo>&#x2062;</mo><mi>d</mi>
+			</mrow>			
+			<mo>|</mo>
+		</mrow>
+	</mrow>
+	<mrow>
+		<msqrt>
+			<mo>(</mo><mi>c</mi><mo>&#x2062;</mo>
+			<msup><msub><mi>x</mi><mn>1</mn></msub><mn>3</mn></msup>
+			<mo>+</mo>
+			<mi>d</mi><mo>&#x2062;</mo>
+			<msup><msub><mi>x</mi><mn>2</mn></msub><mn>2</mn></msup>
+			<mo>-</mo>
+			<msub><mi>x</mi><mn>1</mn></msub>
+			<mo>)</mo>
+		</msqrt>
+	</mrow>
+</mfrac>
+<mo>|</mo>
+</math>, 
+где <math><msub><mi>x</mi><mn>1</mn></msub></math> &#151; больший, а <math><msub><mi>x</mi><mn>2</mn></msub></math> &#151; меньший корни уравнения
+<math>
+<mrow>
+	<msup><mi>x</mi><mn>2</mn></msup>
+	<mo>-</mo>
+	<mrow><mn>3</mn><mo>&#x2062;</mo><mi>x</mi></mrow>
+	<mo>-</mo>
+	<mrow><mo>|</mo><mi>c</mi><mo>&#x2062;</mo><mi>d</mi><mo>|</mo></mrow>
+</mrow>	
+	<mo>=</mo>
+	<mn>0</mn>
+</math>.
+</li>
+<li>Найти площадь равнобочной трапеции с основаниями <math><mi>a</mi></math> и <math><mi>b</mi></math> и углом α при большем основании <math><mi>a</mi></math>.</li>
+<li>Треугольник задан длинами сторон. Найти: 
+<ol type='a'>
+	<li>длины высот;</li>
+	<li>длины медиан;</li>
+	<li>длины биссектрис;</li>
+<li>радиусы вписанной и описанной окружностей.</li>
+</ol>
+</li>
+<li>Вычислить расстояние между двумя точками с координатами 
+<math><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><msub><mi>y</mi><mn>1</mn></msub></math> и 
+ <math><msub><mi>x</mi><mn>2</mn></msub><mo>,</mo><msub><mi>y</mi><mn>2</mn></msub></math>.
+</li> 
+<li>Треугольник задан координатами своих вершин. Найти: 
+<ol type='a'>
+<li>периметр треугольника;</li> 
+<li>площадь треугольника.</li> 
+</ol>
+</li> 
+ <li>Найти площадь сектора, радиус которого равен 13.7, а дуга содержит заданное число радиан φ.</li> 
+<li>Даны действительные положительные числа a, b, c. По трем сторонам с длинами a, b, c можно построить треугольник. Найти углы треугольника.</li> 
+<li>Дано действительное число <math><mi>x</mi></math>. Не пользуясь никакими другими арифметическими операциями, кроме умножения, сложения и вычитания, вычислить 
+<math>
+	<mn>2</mn><mo>&#x2062;</mo><msup><mi>x</mi><mi>4</mi></msup>
+	<mo>-</mo>
+	<mn>3</mn><mo>&#x2062;</mo><msup><mi>x</mi><mi>3</mi></msup>
+	<mo>+</mo>
+	<mn>4</mn><mo>&#x2062;</mo><msup><mi>x</mi><mi>2</mi></msup>
+	<mo>-</mo>
+	<mn>5</mn><mi>x</mi>
+	<mo>+</mo><mn>6</mn>
+</math>. Разрешается использовать не более четырёх умножений и четырёх сложений и вычитаний.
+</li> 
+ <li>Даны действительные числа <math><mi>x</mi><mo>,</mo><mi>y</mi></math>. Не пользуясь никакими другими операциями, кроме умножения, сложения и вычитания, вычислить
+<math>
+	<mrow><mn>3</mn><mo>&#x2062;</mo><msup><mi>x</mi><mn>2</mn></msup><mo>&#x2062;</mo><msup><mi>y</mi><mn>2</mn></msup></mrow>
+	<mo>-</mo>
+	<mrow><mn>2</mn><mo>&#x2062;</mo><mi>x</mi><mo>&#x2062;</mo><msup><mi>y</mi><mn>2</mn></msup></mrow>
+	<mo>-</mo>
+	<mrow><mn>7</mn><mo>&#x2062;</mo><msup><mi>x</mi><mn>2</mn></msup><mo>&#x2062;</mo><mi>y</mi></mrow>
+	<mo>-</mo>
+	<mrow><mn>4</mn><mo>&#x2062;</mo><msup><mi>y</mi><mn>2</mn></msup></mrow>
+	<mo>+</mo><mrow><mn>15</mn><mo>&#x2062;</mo><mi>x</mi><mo>&#x2062;</mo><mi>y</mi></mrow>
+	<mo>+</mo>
+	<mrow><mn>2</mn><mo>&#x2062;</mo><msup><mi>x</mi><mn>2</mn></msup></mrow>
+	<mo>-</mo>
+	<mrow><mn>3</mn><mo>&#x2062;</mo><mi>x</mi></mrow>
+	<mo>+</mo>
+	<mrow><mn>10</mn><mo>&#x2062;</mo><mi>y</mi></mrow>
+	<mo>+</mo>  
+	<mn>6</mn>
+</math>.
+  Разрешается использовать не более восьми умножений и восьми сложений и вычитаний.
+</li> 
+<li>Дано действительное число <math><mi>x</mi></math>. Не пользуясь никакими другими операциями, кроме умножения, сложения и вычитания, вычислить 
+<math>
+	<mn>1</mn><mo>-</mo><mn>2</mn><mo>&#x2062;</mo><mi>x</mi> 
+	<mo>+</mo><mn>3</mn><mo>&#x2062;</mo><msup><mi>x</mi><mn>2</mn></msup>
+	<mo>-</mo><mn>4</mn><mo>&#x2062;</mo><msup><mi>x</mi><mn>3</mn></msup>
+</math>	
+и
+<math>
+	<mn>1</mn><mo>+</mo><mrow><mn>2</mn><mo>&#x2062;</mo><mi>x</mi></mrow>
+	<mo>+</mo>
+	<mrow><mn>3</mn><mo>&#x2062;</mo><msup><mi>x</mi><mn>2</mn></msup></mrow>
+	<mo>+</mo>
+	<mrow><mn>4</mn><mo>&#x2062;</mo><msup><mi>x</mi><mn>3</mn></msup></mrow>
+</math>. Разрешается использовать не более восьми операций.
+</li> 
+<li>Дано действительное число <math><mi>a</mi></math>. Не пользуясь никакими другими арифметическими операциями, кроме умножения, получить: 
+<ol type="a">
+<li><math><msup><mi>a</mi><mn>4</mn></msup></math> за две операции;</li>
+<li><math><msup><mi>a</mi><mn>6</mn></msup></math> за три операции;</li>
+<li><math><msup><mi>a</mi><mn>7</mn></msup></math> за четыре операции;</li> 
+<li><math><msup><mi>a</mi><mn>8</mn></msup></math> за три операции;</li> 
+<li><math><msup><mi>a</mi><mn>9</mn></msup></math> за четыре операции;</li>
+<li><math><msup><mi>a</mi><mn>10</mn></msup></math> за четыре операции;</li> 
+<li><math><msup><mi>a</mi><mn>13</mn></msup></math> за пять операций;</li> 
+<li><math><msup><mi>a</mi><mn>15</mn></msup></math> за пять операций;</li> 
+<li><math> <msup><mi>a</mi><mn>21</mn></msup></math> за шесть операций;</li> 
+<li><math><msup><mi>a</mi><mn>28</mn></msup></math> за шесть операций;</li> 
+<li><math><msup><mi>a</mi><mn>64</mn></msup></math> за шесть операций.</li>
+</ol> 
+</li>
+<li>Дано действительное число a. Не пользуясь никакими другими арифметическими операциями, кроме умножения, получить: 
+<ol type="a">
+<li><math><msup><mi>a</mi><mn>3</mn></msup></math>  и <math><msup><mi>a</mi><mn>10</mn></msup></math> за четыре операци;</li>
+<li><math><msup><mi>a</mi><mn>4</mn></msup></math> и <math><msup><mi>a</mi><mn>20</mn></msup></math> за пять операции;</li>
+<li><math><msup><mi>a</mi><mn>5</mn></msup></math> и <math><msup><mi>a</mi><mn>13</mn></msup></math> за пять операции;</li> 
+<li><math><msup><mi>a</mi><mn>5</mn></msup></math> и <math><msup><mi>a</mi><mn>19</mn></msup></math> за пять операции;</li> 
+<li><math><msup><mi>a</mi><mn>2</mn></msup><mo>,</mo><math><msup><mi>a</mi><mn>5</mn></msup></math> и 
+<math><msup><mi>a</mi><mn>17</mn></msup></math> за шесть операции;</li> 
+<li><math><msup><mi>a</mi><mn>4</mn></msup><mo>,</mo><msup><mi>a</mi><mn>12</mn></msup></math> и
+<math><msup><mi>a</mi><mn>28</mn></msup></math> за шесть операции.</li>
+</ol>
+</li>
+</ol>
+ </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

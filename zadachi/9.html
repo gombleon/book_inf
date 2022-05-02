@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<link rel='stylesheet' type='text/css' href='style.css' />
+<meta name='author' content='leonid' />
+<title>Вычисления с хранением последовательности значений</title>
+</head>
+<body>
+<h2>§ 9. Вычисления с хранением последовательности значений</h2>
+<ol start='271' type='1'>
+<li>Даны действительные числа 
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>15</mn></msub>
+</mfenced>
+</math>. Получить
+<math display='block'>
+<mrow>	
+	<mover><mi>a</mi><mi>~</mi></mover>
+	<mo>=</mo>
+	<mrow>
+		<mfrac><mn>1</mn><mn>15</mn></mfrac>
+		<mo>&#x2062;</mo>
+		<mrow>
+			<munderover>
+   			<mo>&#931;</mo>
+   			<mrow>
+        			<mi>i</mi>
+        			<mo>=</mo>
+        			<mn>1</mn>
+   			</mrow>
+   			<mn>15</mn>
+			</munderover>
+			<msub><mi>a</mi><mi>i</mi></msub>
+		</mrow>
+	</mrow>
+</mrow>
+<mo>,</mo>
+<mspace width='1em'/>
+<mrow>
+<msqrt>
+	<mfrac>
+		<mrow>
+			<munderover>
+   			<mo>&#931;</mo>
+   			<mrow>
+        			<mi>i</mi>
+        			<mo>=</mo>
+        			<mn>1</mn>
+   			</mrow>
+   			<mn>15</mn>
+			</munderover>		
+			<msup>
+				<mrow>
+					<mo>(</mo>
+					<msub><mi>a</mi><mi>i</mi></msub>				
+					<mo>-</mo>
+					<mover><mi>a</mi><mi>~</mi></mover>
+					<mo>)</mo>
+				</mrow>
+				<mn>2</mn>
+			</msup>
+		</mrow>		
+		<mn>14</mn>
+	</mfrac>
+</msqrt>
+</mrow>
+<mo>.</mo>
+</math>
+</li>
+<li>Даны действительные числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1901</mn></msub>
+	<msub><mi>a</mi><mn>1902</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>1950</mn></msub>
+</mfenced>
+</math> – количество осадков (в миллиметрах), выпавших в Москве в течение первых <var>50</var> лет нашего столетия. Надо вычислить среднее количество
+осадков и отклонение от среднего для каждого года.
+</li>
+<li>Система из <var>25</var> материальных точек в пространстве задана с помощью последовательности действительных чисел 
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<msub><mi>y</mi><mn>1</mn></msub>
+	<msub><mi>z</mi><mn>1</mn></msub>
+	<msub><mi>p</mi><mn>1</mn></msub>
+	<msub><mi>x</mi><mn>2</mn></msub>
+	<msub><mi>y</mi><mn>2</mn></msub>
+	<msub><mi>z</mi><mn>2</mn></msub>
+	<msub><mi>p</mi><mn>2</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>x</mi><mn>25</mn></msub>
+	<msub><mi>y</mi><mn>25</mn></msub>
+	<msub><mi>z</mi><mn>25</mn></msub>
+	<msub><mi>p</mi><mn>25</mn></msub>
+</mfenced>
+</math>, где
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mi>i</mi></msub>
+	<msub><mi>y</mi><mi>1</mi></msub>
+	<msub><mi>z</mi><mi>i</mi></msub>
+</mfenced>
+</math> - координаты <var>i</var>-ой точки, а 
+<math>
+	<msub><mi>p</mi><mi>i</mi></msub>
+</math> – ее вес (<var>i=1, 2, ..., 25</var>). Получить координаты центра тяжести системы, а
+также расстояние от центра тяжести до всех точек системы.
+</li>
+<li>Даны действительные числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>20</mn></msub>
+</mfenced>
+</math>. Получить числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>b</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>b</mi><mn>20</mn></msub>
+</mfenced>
+</math>, где
+<math>
+	<msub><mi>b</mi><mi>i</mi></msub>
+</math> – среднее арифметическое всех членов последовательности
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>20</mn></msub>
+</mfenced>
+</math>, кроме
+<math>
+	<msub><mi>a</mi><mi>i</mi></msub>
+	<mspace width='1ex'/>
+	<mrow>
+		<mo>(</mo>
+		<mi>i</mi>
+		<mo>=</mo>
+		<mrow><mn>1</mn><mo>,</mo><mi>&#133;<mo>,</mo></mn><mn>20</mn></mrow>
+		<mo>)</mo>
+	</mrow>
+</math>.
+</li>
+<li>Даны действительные числа 
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>x</mi><mn>10</mn></msub>
+	<msub><mi>y</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>y</mi><mn>10</mn></msub>
+</mfenced>
+</math>.  Получить
+<math>
+	<munderover>
+   	<mo>&#931;</mo>
+   	<mrow>
+   		<mi>i</mi>
+   		<mo>=</mo>
+   		<mn>1</mn>
+   	</mrow>
+   	<mn>10</mn>
+	</munderover>	
+	<mrow>
+		<msub><mi>x</mi><mi>i</mi></msub>
+		<mo>&#x2062;</mo>
+		<msub><mi>y</mi><mi>i</mi></msub>		
+	</mrow>
+</math>. Как упростить решение, если исходные данные будут иметь следующий порядок:
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<msub><mi>y</mi><mn>1</mn></msub>	
+	<mi>&#133;</mi>
+	<msub><mi>x</mi><mn>10</mn></msub>
+	<msub><mi>y</mi><mn>10</mn></msub>
+</mfenced>
+</math>?
+</li>
+<li>Построить последовательность целых чисел
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>30</mn></msub>
+</mfenced>
+</math>, где
+<math>
+	<mrow>
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<mo>=</mo>
+		<mn>1</mn>
+	</mrow>
+	<mo>,</mo>
+	<mrow>
+		<msub><mi>a</mi><mn>2</mn></msub>
+		<mo>=</mo>
+		<mn>1</mn>
+	</mrow>
+	<mo>,</mo>
+	<mrow>
+		<msub><mi>a</mi><mi>i</mi></msub>
+		<mo>=</mo>
+		<mrow>
+			<msub><mi>a</mi><mrow><mo>[</mo><mfrac><mi>i</mi><mn>2</mn></mfrac><mo>]</mo></mrow></msub>
+			<mo>+</mo>
+			<msub><mi>a</mi><mrow><mi>i</mi><mo>-</mo><mn>2</mn></mrow></msub>		
+		</mrow>
+	</mrow>
+	<mspace width='1ex'/>
+	<mrow>
+		<mo>(</mo>
+		<mi>i</mi>
+		<mo>=</mo>
+		<mrow>
+			<mn>3</mn>
+			<mo>,</mo>
+			<mi>&#133;</mi>
+			<mn>30</mn>
+		</mrow>
+		<mo>)</mo>
+	</mrow>
+</math>.
+</li>
+<li>Даны действительные числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mi>n</mi></msub>
+</mfenced>
+</math>. Получить
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mi>n</mi></msub>
+	<msub><mi>a</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub>	
+	<mi>&#133;</mi>	
+	<msub><mi>a</mi><mn>1</mn></msub>
+</mfenced>
+</math>*).
+<p>*) Каждый раз, когда число членов в данной последовательности зависит от некоторой величины <var>n, m</var>,..., не отнесенных явно к данным задачи, то подразумевается, что при работе с языками, в которых не предусмотрены массивы с динамическими границами (таким языком является, в частности, паскаль), эти величины либо определяются в
+программе как константы (например, в программе на Паскале даются определения <var>const n=...; const m=...</var> с конкретными числами вместо многоточий), либо же еще до составления программы эти величины заменяются конкретными числами. Если же язык позволяет после ввода значений переменных <var>n, m,</var>..., рассматривать массив, границы которого зависят от <var>n, m,</var>..., то следует воспользоваться этой возможностью и считать значения <var>n, m,</var>..., данными числами.
+</p>
+</li>
+<li>Даны натуральные числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>n</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>n</mi><mn>20</mn></msub>
+</mfenced>
+</math>, действительные числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>x</mi><mn>20</mn></msub>
+</mfenced>
+</math>. Вычислить
+<math display='block'>
+<mfrac>
+	<mrow>
+		<mrow>
+			<msub><mi>n</mi><mn>1</mn></msub>
+			<mo>&#x2062;</mo>
+			<msub><mi>x</mi><mn>1</mn></msub>
+		</mrow>
+		<mo>+</mo>
+		<mi>&#133;</mi>
+		<mo>+</mo>
+		<mrow>
+			<msub><mi>n</mi><mn>20</mn></msub>
+			<mo>&#x2062;</mo>
+			<msub><mi>x</mi><mn>20</mn></msub>
+		</mrow>
+	</mrow>
+	<mrow>
+		<msub><mi>n</mi><mn>1</mn></msub>
+			<mo>+</mo>
+			<mi>&#133;</mi>
+			<mo>+</mo>		
+		<msub><mi>n</mi><mn>20</mn></msub>
+	</mrow>
+</mfrac><mo>.</mo>
+</math>.
+</li>
+<li>Даны действительные числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mi>n</mi></msub>
+	<msub><mi>b</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>b</mi><mi>n</mi></msub>
+</mfenced>
+</math>. Вычислить
+<math>
+	<mrow>
+		<mo>(</mo>
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<mo>+</mo>
+		<msub><mi>b</mi><mi>n</mi></msub>
+		<mo>)</mo>
+	</mrow>	
+	<mo>&#x2062;</mo>
+	<mrow>
+		<mo>(</mo>
+		<msub><mi>a</mi><mn>2</mn></msub>
+		<mo>+</mo>
+		<msub><mi>b</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub>
+		<mo>)</mo>
+	</mrow>	
+	<mo>&#x2062;</mo>
+	<mi>&#133;</mi>
+	<mo>&#x2062;</mo>
+	<mrow>
+		<mo>(</mo>
+		<msub><mi>a</mi><mi>n</mi></msub>
+		<mo>+</mo>
+		<msub><mi>b</mi><mn>1</mn></msub>
+		<mo>)</mo>
+	</mrow>		
+</math>
+</li>
+<li>Пусть
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mi>i</mi></msub>
+	<msub><mi>y</mi><mi>i</mi></msub>
+</mfenced>
+<mspace width='1ex'/>
+<mrow>
+	<mo>(</mo>
+	<mi>i</mi>
+	<mo>=</mo>
+	<mrow>
+		<mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mi>&#133;</mi>
+	</mrow>
+	<mo>)</mo>
+</mrow>
+</math> определены, как в задаче 167. Получить
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>x</mi><mn>25</mn></msub>
+	<msub><mi>y</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>y</mi><mn>25</mn></msub>
+</mfenced>
+</math>.
+</li>
+<li>Даны действительные числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>28</mn></msub>
+	<msub><mi>b</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>b</mi><mn>28</mn></msub>
+</mfenced>
+</math>. Члены
+последовательности
+<math>
+<mfenced open='' close=''>
+	<msub><mi>c</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>c</mi><mn>29</mn></msub>
+</mfenced>
+</math> связаны с членами данных последовательностей соотношениями 
+<math display='block'>
+<mrow>
+	<msub><mi>c</mi><mn>29</mn></msub><mo>=</mo><mn>0</mn>
+</mrow>
+<mo>,</mo>
+<mrow>
+	<msub>
+		<mi>c</mi>
+		<mrow><mn>29</mn><mo>-</mo><mi>i</mi></mrow>
+	</msub>
+	<mo>=</mo>
+	<mfrac>
+		<msub>
+			<mi>a</mi>
+			<mrow><mn>29</mn><mo>-</mo><mi>i</mi></mrow>
+		</msub>
+		<mrow>
+			<msub>
+				<mi>b</mi>
+				<mrow><mn>29</mn><mo>-</mo><mi>i</mi></mrow>
+			</msub>
+			<mo>-</mo>
+			<msub>
+				<mi>c</mi>
+				<mrow><mn>29</mn><mo>-</mo><mi>i</mi><mo>+</mo><mn>1</mn></mrow>
+			</msub>
+			
+		</mrow>
+	</mfrac>
+</mrow>
+<mspace width='1ex'/>
+<mrow>
+	<mo>(</mo>
+	<mi>i</mi>
+	<mo>=</mo>
+	<mrow>
+		<mn>1</mn><mo>,</mo><mi>&#133;</mi><mo>,</mo><mn>28</mn>
+	</mrow>
+	<mo>)</mo>
+</mrow>
+<mo>.</mo>
+</math>
+Получить
+<math>
+<mfenced open='' close=''>
+	<msub><mi>c</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>c</mi><mn>29</mn></msub>
+</mfenced>
+</math>.
+</li>
+<li>Даны действительные числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<msub><mi>a</mi><mn>2</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mrow><mn>2</mn><mo>&#x2062;</mo><mi>n</mi></mrow></msub>
+</mfenced>
+</math>. Получить:
+<ol type='a'>
+<li>
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<msub><mi>a</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub>	
+	<msub><mi>a</mi><mn>2</mn></msub>
+	<msub><mi>a</mi><mrow><mi>n</mi><mo>+</mo><mn>2</mn></mrow></msub>	
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mi>n</mi></msub>	
+	<msub><mi>a</mi><mrow><mn>2</mn><mo>&#x2062;</mo><mi>n</mi></mrow></msub>
+</mfenced>
+</math>;
+</li>
+<li>
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<msub><mi>a</mi><mrow><mn>2</mn><mo>&#x2062;</mo><mi>n</mi></mrow></msub>
+	<msub><mi>a</mi><mn>2</mn></msub>
+	<msub><mi>a</mi><mrow><mrow><mn>2</mn><mo>&#x2062;</mo><mi>n</mi></mrow><mo>-</mo><mn>1</mn></mrow></msub>			
+	<msub><mi>a</mi><mn>3</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mi>n</mi></msub>	
+	<msub><mi>a</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub>
+</mfenced>
+</math>;
+</li>
+<li>
+<math>
+<mfenced open='' close=''>
+	<mrow>
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<mo>+</mo>
+		<msub><mi>a</mi><mrow><mn>2</mn><mo>&#x2062;</mo><mi>n</mi></mrow></msub>
+	</mrow>
+	<mrow>
+		<msub><mi>a</mi><mn>2</mn></msub>
+		<mo>+</mo>	
+		<msub><mi>a</mi><mrow><mrow><mn>2</mn><mo>&#x2062;</mo><mi>n</mi></mrow><mo>-</mo><mn>1</mn></mrow></msub>
+	</mrow>				
+	<mi>&#133;</mi>
+	<mrow>
+		<msub><mi>a</mi><mi>n</mi></msub>
+		<mo>+</mo>	
+		<msub><mi>a</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub>
+	</mrow>
+</mfenced>
+</math>;
+</li>
+</ol>
+</li>
+<li>Даны действительные числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>17</mn></msub>
+</mfenced>
+</math>. Получить:
+<ol type='a'>
+<li>
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>17</mn></msub>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<msub><mi>a</mi><mn>2</mn></msub>		
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>16</mn></msub>
+</mfenced>
+</math>;
+</li>
+<li>
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>11</mn></msub>
+	<msub><mi>a</mi><mn>12</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>17</mn></msub>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<msub><mi>a</mi><mn>2</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>10</mn></msub>			
+</mfenced>
+</math>;
+</li>
+<li>
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>11</mn></msub>
+	<msub><mi>a</mi><mn>12</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>17</mn></msub>
+	<msub><mi>a</mi><mn>10</mn></msub>
+	<msub><mi>a</mi><mn>9</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>1</mn></msub>			
+</mfenced>
+</math>.
+</li>
+</ol>
+</li>
+<li>Даны действительные числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>20</mn></msub>
+</mfenced>
+</math>. Получить:
+<ol type='a'>
+<li>
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>20</mn></msub>
+	<msub><mi>a</mi><mn>11</mn></msub>
+	<msub><mi>a</mi><mn>19</mn></msub>
+	<msub><mi>a</mi><mn>10</mn></msub>		
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>10</mn></msub>
+	<msub><mi>a</mi><mn>1</mn></msub>
+</mfenced>
+</math>;
+</li>
+<li>
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<msub><mi>a</mi><mn>3</mn></msub>
+	<mi>&#133;</mi>	
+	<msub><mi>a</mi><mn>2</mn></msub>
+	<msub><mi>a</mi><mn>4</mn></msub>		
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>20</mn></msub>
+</mfenced>
+</math>;
+</li>
+<li>
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<msub><mi>a</mi><mn>11</mn></msub>
+	<msub><mi>a</mi><mn>3</mn></msub>
+	<msub><mi>a</mi><mn>13</mn></msub>		
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>9</mn></msub>
+	<msub><mi>a</mi><mn>19</mn></msub>
+</mfenced>
+</math>;
+</li>
+<li>
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>12</mn></msub>
+	<msub><mi>a</mi><mn>2</mn></msub>
+	<msub><mi>a</mi><mn>3</mn></msub>
+	<msub><mi>a</mi><mn>14</mn></msub>
+	<msub><mi>a</mi><mn>4</mn></msub>			
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>20</mn></msub>
+	<msub><mi>a</mi><mn>10</mn></msub>
+</mfenced>
+</math>;
+</li>
+<li>
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<msub><mi>a</mi><mn>11</mn></msub>
+	<msub><mi>a</mi><mn>12</mn></msub>
+	<msub><mi>a</mi><mn>2</mn></msub>
+	<msub><mi>a</mi><mn>3</mn></msub>
+	<msub><mi>a</mi><mn>13</mn></msub>
+	<msub><mi>a</mi><mn>14</mn></msub>
+	<msub><mi>a</mi><mn>4</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>9</mn></msub>
+	<msub><mi>a</mi><mn>19</mn></msub>
+	<msub><mi>a</mi><mn>20</mn></msub>
+	<msub><mi>a</mi><mn>10</mn></msub>
+</mfenced>
+</math>.
+</li>
+</ol>
+</li>
+<li>Даны действительные числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mi>n</mi></msub>
+</mfenced>
+</math>. Если в результате замены отрицательных членов последовательности
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mi>n</mi></msub>
+</mfenced>
+</math>  их квадратами члены будут образовывать неубывающую последовательность, то получить сумму членов исходной последовательности, в противном случае получить их произведение.
+</li>
+<li>Даны целые числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>99</mn></msub>
+</mfenced>
+</math>. Получить новую последовательность, выбросив из исходной все члены со значением
+<math>
+<mi>max</mi>
+<mo>&#x2061;</mo>
+<mfenced>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>99</mn></msub>
+</mfenced>
+</math>.
+</li>
+<li>Даны целые числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mi>n</mi></msub>
+</mfenced>
+</math>. Все члены последовательности с четными номерами, предшествующие первому по порядку члену со
+значением
+<math>
+<mi>max</mi>
+<mo>&#x2061;</mo>
+<mfenced>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mi>n</mi></msub>
+</mfenced>
+</math>, домножить на
+<math>
+<mi>max</mi>
+<mo>&#x2061;</mo>
+<mfenced>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mi>n</mi></msub>
+</mfenced>
+</math>.
+</li>
+<li>Даны целые числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mi>n</mi></msub>
+</mfenced>
+</math>, каждое из которых отлично от нуля. Если в последовательности отрицательные и положительные
+члены чередуются (<var>+, –, +, –, ...</var> или <var>–, +, –, +, ...</var> ), то ответом должна служить сама исходная последовательность. Иначе получить все отрицательные члены последовательности, сохранив порядок их следования.
+</li>
+<li>Даны натуральное число
+<math><mi>m</mi><mrow><mo>,</mo><mi>m</mi><mo>&#8804;</mo><mn>30</mn></mrow></math>, попарно различные действительные числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>30</mn></msub>
+</mfenced>
+</math>. В последовательности
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>30</mn></msub>
+</mfenced>
+</math> поменять местами наибольший член и член с номером <math><mi>m</mi></math>.
+</li>
+<li>Даны действительные числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>x</mi><mn>101</mn></msub>
+	<msub><mi>y</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>y</mi><mn>101</mn></msub>
+</mfenced>
+</math>. Получить действительные
+<math>
+<mfenced open='' close=''>
+	<msubsup accent='true'><mi>x</mi><mn>1</mn><mo>′</mo></msubsup>
+	<mi>&#133;</mi>
+	<msubsup accent='true'><mi>x</mi><mn>101</mn><mo>′</mo></msubsup>	
+	<msubsup accent='true'><mi>y</mi><mn>1</mn><mo>′</mo></msubsup>	
+	<mi>&#133;</mi>
+	<msubsup accent='true'><mi>y</mi><mn>101</mn><mo>′</mo></msubsup>
+</mfenced>
+</math>, преобразовав для получения
+<math>
+<mfenced open='' close=''>
+	<msubsup accent='true'><mi>x</mi><mi>i</mi><mo>′</mo></msubsup>
+	<msubsup accent='true'><mi>y</mi><mi>i</mi><mo>′</mo></msubsup>
+</mfenced>
+</math> члены
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mi>i</mi></msub>
+	<msub><mi>y</mi><mi>i</mi></msub>
+</mfenced>
+</math> по правилу: если они оба отрицательны, то каждый из них увеличить на <var>0.5</var>; если отрицательно только одно число, то отрицательное число заменить его квадратом; если оба числа неотрицательны, то каждое из них заменить на среднее арифметическое исходных значений.
+</li>
+<li>Даны действительные числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>30</mn></msub>
+</mfenced>
+</math>. Получить:
+<ol type='a'>
+<li>
+<math>
+<mi>max</mi>
+<mo>&#x2061;</mo>
+<mfenced>
+	<mrow>
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<mo>+</mo>
+		<msub><mi>a</mi><mn>30</mn></msub>
+	</mrow>
+	<mrow>
+		<msub><mi>a</mi><mn>2</mn></msub>
+		<mo>+</mo>
+		<msub><mi>a</mi><mn>29</mn></msub>
+	</mrow>
+	<mi>&#133;</mi>
+	<mrow>
+		<msub><mi>a</mi><mn>15</mn></msub>
+		<mo>+</mo>
+		<msub><mi>a</mi><mn>16</mn></msub>
+	</mrow>
+</mfenced>
+</math>
+</li>
+<li>
+<math>
+<mi>min</mi>
+<mo>&#x2061;</mo>
+<mfenced>
+	<mrow>
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<mo>&#x2062;</mo>
+		<msub><mi>a</mi><mn>16</mn></msub>
+	</mrow>
+	<mrow>
+		<msub><mi>a</mi><mn>2</mn></msub>
+		<mo>&#x2062;</mo>
+		<msub><mi>a</mi><mn>17</mn></msub>
+	</mrow>
+	<mi>&#133;</mi>
+	<mrow>
+		<msub><mi>a</mi><mn>15</mn></msub>
+		<mo>&#x2062;</mo>
+		<msub><mi>a</mi><mn>30</mn></msub>
+	</mrow>
+</mfenced>
+</math>
+</li>
+</ol>
+</li>
+<li>Даны действительные числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>20</mn></msub>
+</mfenced>
+</math>. Преобразовать эту последовательность по правилу: большее из
+<math><msub><mi>a</mi><mi>i</mi></msub></math> и 
+<math>
+	<msub><mi>a</mi><mrow><mn>10</mn><mo>+</mo><mi>i</mi></mrow></msub>
+	<mspace width='1ex'/>
+	<mrow><mo>(</mo><mi>i</mi><mo>=</mo><mrow><mn>1</mn><mi>&#133;</mi><mn>10</mn></mrow><mo>)</mo></mrow>
+</math> принять в качестве нового значения <math><msub><mi>a</mi><mi>i</mi></msub></math>, а меньшее – в качестве нового
+значения
+<math>
+	<msub><mi>a</mi><mrow><mn>10</mn><mo>+</mo><mi>i</mi></mrow></msub>
+</math>.
+</li>
+<li>Даны целые числа 
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mi>n</mi></msub>
+</mfenced>
+</math>. Если в данной последовательности ни одно четное число не расположено после нечетного, то получить все отрицательные члены последовательности, иначе – все положительные. Порядок следования чисел в обоих случаях заменяется на обратный.
+</li>
+<li>Даны действительные числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>r</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>r</mi><mn>17</mn></msub>
+</mfenced>
+</math>, среди которых заведомо есть как отрицательные, так и неотрицательные. Получить 
+<math>
+	<mrow>
+		<msub><mi>x</mi><mn>1</mn></msub>
+		<mo>&#x2062;</mo>
+		<msub><mi>y</mi><mn>1</mn></msub>
+	</mrow>
+	<mo>+</mo>	
+	<mi>&#133;</mi>
+	<mo>+</mo>
+	<mrow>
+		<msub><mi>x</mi><mi>s</mi></msub>
+		<mo>&#x2062;</mo>
+		<msub><mi>y</mi><mi>s</mi></msub>
+	</mrow>	
+</math>, где
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>x</mi><mi>p</mi></msub>
+</mfenced>
+</math> – отрицательные члены последовательности
+<math>
+<mfenced open='' close=''>
+	<msub><mi>r</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>r</mi><mn>17</mn></msub>
+</mfenced>
+</math>, взятые в порядке их следования,
+<math>
+<mfenced open='' close=''>
+	<msub><mi>y</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>y</mi><mi>q</mi></msub>
+</mfenced>
+</math> – неотрицательные члены, взятые в обратном порядке,
+<math>
+	<mi>s</mi><mo>=</mo><mi>min</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>p</mi><mo>,</mo><mi>q</mi><mo>)</mo></mrow>
+</math>.
+</li>
+<li>Даны целые числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>20</mn></msub>
+</mfenced>
+</math>. Наименьший член последовательности
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>20</mn></msub>
+</mfenced>
+</math> заменить целой частью среднего арифметического всех членов, остальные члены оставить без изменения. Если в последовательности несколько членов со значением 
+<math>
+<mi>min</mi>
+<mo>&#x2061;</mo>
+<mfenced>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>20</mn></msub>
+</mfenced>
+</math>, то заменить последний по порядку.
+</li>
+<li>Даны действительные числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>20</mn></msub>
+</mfenced>
+</math> (все числа попарно различны). Поменять в этой последовательности местами:
+<ol type='a'>
+<li>наибольший и наименьший члены;</li>
+<li>наибольший и последний члены.</li>
+</ol>
+</li>
+<li>Даны целые числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>100</mn></msub>
+</mfenced>
+</math>. Получить новую последовательность из <var>100</var> целых чисел, заменяя
+<math><msub><mi>a</mi><mi>i</mi></msub></math> нулями, если
+<math><msub><mi>a</mi><mi>i</mi></msub></math> не равно
+<math>
+<mi>max</mi><mo>&#x2061;</mo>
+<mfenced>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>100</mn></msub>
+</mfenced>
+</math>, и заменяя <math><msub><mi>a</mi><mi>i</mi></msub></math> единицей в противном случае
+<math>
+<mrow>
+	<mo>(</mo>
+	<mi>i</mi>
+	<mo>=</mo>
+	<mrow><mn>1</mn><mo>,</mo><mi>&#133;</mi><mo>,</mo><mn>100</mn></mrow>
+	<mo>)</mo>
+</mrow>
+</math>.
+</li>
+<li>Даны целые числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>25</mn></msub>
+	<msub><mi>b</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>b</mi><mn>25</mn></msub>
+</mfenced>
+</math>. Преобразовать последовательность
+<math>
+<mfenced open='' close=''>
+	<msub><mi>b</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>b</mi><mn>25</mn></msub>
+</mfenced>
+</math> по правилу: если
+<math>
+	<msub><mi>a</mi><mi>i</mi></msub>
+	<mo>&#8804;</mo>
+	<mn>0</mn>
+</math>, то
+<math>
+	<msub><mi>b</mi><mi>i</mi></msub>
+</math> увеличить в <var>10</var> раз, иначе
+<math>
+	<msub><mi>b</mi><mi>i</mi></msub>
+</math> заменить нулем
+<math>
+<mrow>
+	<mo>(</mo>
+	<mi>i</mi>
+	<mo>=</mo>
+	<mrow><mn>1</mn><mo>,</mo><mi>&#133;</mi><mo>,</mo><mn>25</mn></mrow>
+	<mo>)</mo>
+</mrow>
+</math>.
+</li>
+<li>Даны действительные числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>26</mn></msub>
+</mfenced>
+</math>. Требуется домножить все члены последовательности
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>26</mn></msub>
+</mfenced>
+</math> на квадрат ее наименьшего члена, если
+<math>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mo>&#8805;</mo>
+	<mn>0</mn>
+</math>, и на квадрат ее наибольшего члена, если
+<math>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mo>&lt;</mo>
+	<mn>0</mn>
+</math>.
+</li>
+<li>Даны натуральное число <var>n</var>, действительные числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mi>n</mi></msub>
+</mfenced>
+</math>. Получить
+<math>
+<mfenced open='' close=''>
+	<msub><mi>b</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>b</mi><mn>10</mn></msub>
+</mfenced>
+</math>, где
+<math>
+	<msub><mi>b</mi><mi>i</mi></msub>
+</math> равно сумме тех членов последовательности 
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mi>n</mi></msub>
+</mfenced>
+</math>, которые принадлежат полуинтервалу
+<math>
+<mrow>
+	<mo>(</mo>
+	<mrow><mi>i</mi><mo>-</mo><mn>1</mn></mrow>
+	<mo>,</mo>
+	<mi>i</mi>
+	<mo>]</mo>
+</mrow>
+<mspace width='1ex'/>
+<mrow>
+	<mo>(</mo>
+	<mi>i</mi>
+	<mo>=</mo>
+	<mrow><mn>1</mn><mo>,</mo><mi>&#133;</mi><mo>,</mo><mn>25</mn></mrow>
+	<mo>)</mo>
+</mrow>
+</math>. Если полуинтервал не содержит членов последовательности, то соответствующее
+<math>
+	<msub><mi>b</mi><mi>i</mi></msub>
+</math> положить равным нулю.
+</li>
+<li>Даны действительные числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<msub><mi>y</mi><mn>1</mn></msub>
+	<msub><mi>x</mi><mn>2</mn></msub>
+	<msub><mi>y</mi><mn>2</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>x</mi><mn>20</mn></msub>
+	<msub><mi>y</mi><mn>20</mn></msub>
+	<msub><mi>r</mi><mn>1</mn></msub>
+	<msub><mi>r</mi><mn>2</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>r</mi><mn>11</mn></msub>		
+</mfenced>
+<mspace width='1ex'/>
+<mrow>
+	<mo>(</mo>
+	<mn>0</mn><mo>&lt;</mo><msub><mi>r</mi><mn>1</mn></msub>
+	<mo>&lt;</mo><msub><mi>r</mi><mn>2</mn></msub>
+	<mo>&lt;</mo>
+	<mi>&#133;</mi>
+	<mo>&lt;</mo>
+	<msub><mi>r</mi><mn>11</mn></msub>
+	<mo>)</mo>
+</mrow>
+</math>. Пары
+<math>
+<mfenced open='' close=''>
+	<mfenced>
+		<msub><mi>x</mi><mn>1</mn></msub>
+		<msub><mi>y</mi><mn>1</mn></msub>
+	</mfenced>
+	<mfenced>	
+		<msub><mi>x</mi><mn>2</mn></msub>
+		<msub><mi>y</mi><mn>2</mn></msub>
+	</mfenced>		
+	<mi>&#133;</mi>
+	<mfenced>	
+		<msub><mi>x</mi><mn>20</mn></msub>
+		<msub><mi>y</mi><mn>20</mn></msub>
+	</mfenced>	
+</mfenced>
+</math> рассматриваются как координаты точек плоскости. Числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>r</mi><mn>1</mn></msub>
+	<msub><mi>r</mi><mn>2</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>r</mi><mn>11</mn></msub>		
+</mfenced>
+</math> рассматриваются как радиусы одиннадцати полукругов в полуплоскости
+<math><mi>y</mi><mo>&gt;</mo><mn>0</mn></math> с центром в начале координат. Найти количество точек, попадающих внутрь каждого полукруга (границы-полуокружности не принадлежат полукругам).
+</li>
+<li>Дано натуральное число <var>n</var>. Сколько различных цифр встречается в его десятичной записи?</li>
+<li>Даны действительные числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>x</mi><mn>200</mn></msub>
+</mfenced>
+</math>, принадлежащие полуинтервалу
+<math><mfenced open='(' close=']'><mn>0</mn><mn>1</mn></mfenced></math>. Полуинтервал разбивается на <var>100</var> равных частей.
+Вычислить
+<math>
+<mfenced open='' close=''>
+	<msub><mi>p</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>p</mi><mn>200</mn></msub>
+</mfenced>
+</math>, где
+<math>
+	<msub><mi>p</mi><mi>k</mi></msub>
+	<mo>=</mo>
+	<mfrac>
+		<msub><mi>m</mi><mi>k</mi></msub>
+		<mn>2000</mn>	
+	</mfrac>
+</math>, а 
+<math><msub><mi>m</mi><mi>k</mi></msub></math> – количество заданных чисел, принадлежащих полуинтервалу
+<math>
+	<mfenced open='(' close=']'>
+		<mrow><mn>0.01</mn><mo>&#x2062;</mo><mrow><mo>(</mo><mi>k</mi><mo>-</mo><mn>1</mn><mo>)</mo></mrow></mrow>
+		<mrow><mn>0.01</mn><mo>&#x2062;</mo><mi>k</mi></mrow>
+	</mfenced>
+	<mspace width='1ex'/>
+	<mrow>
+		<mo>(</mo>
+		<mi>k</mi>
+		<mo>=</mo>
+		<mrow><mn>1</mn><mo>,</mo><mi>&#133;</mi><mo>,</mo><mn>100</mn></mrow>
+		<mo>)</mo>
+	</mrow>
+</math>.
+</li>
+<li>Даны действительные числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>16</mn></msub>
+</mfenced>
+</math>. Переставить члены последовательности
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>16</mn></msub>
+</mfenced>
+</math> так, чтобы сначала расположились все ее неотрицательные члены, а потом – все отрицательные. Иначе
+говоря, после перестановки должно найтись такое <var>k</var>, что
+<math><mn>1</mn><mo>&#8804;</mo><mi>k</mi><mo>&#8804;</mo><mn>16</mn></math>, и если
+<math><mi>i</mi><mo>&#8804;</mo><mi>k</mi></math>, то
+<math><msub><mi>a</mi><mi>i</mi></msub><mo>&#8805;</mo><mn>0</mn></math>; если
+<math><mi>i</mi><mo>&gt;</mo><mi>k</mi></math>, то
+<math>
+	<mrow>
+		<msub><mi>a</mi><mi>i</mi></msub><mo>&lt;</mo><mn>0</mn>
+	</mrow>
+	<mspace width='1ex'/>
+	<mrow>
+		<mo>(</mo>
+		<mi>k</mi>
+		<mo>=</mo>
+		<mrow><mn>1</mn><mo>,</mo><mi>&#133;</mi><mo>,</mo><mn>16</mn></mrow>
+		<mo>)</mo>
+	</mrow>
+</math>. Порядок как среди неотрицательных членов, так и среди отрицательных должен быть сохранен прежним.
+</li>
+<li>Даны действительные числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>30</mn></msub>
+</mfenced>
+</math>. Оставить без изменения последовательность
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>30</mn></msub>
+</mfenced>
+</math>, если она упорядочена по неубыванию или по по невозрастанию; в противном случае удалить из последовательности те члены, порядковые номера которых кратны четырем, сохранив прежним порядок оставленных членов.
+</li>
+<li>Даны натуральные числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<msub><mi>y</mi><mn>1</mn></msub>
+	<msub><mi>x</mi><mn>2</mn></msub>
+	<msub><mi>y</mi><mn>2</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>x</mi><mi>n</mi></msub>
+	<msub><mi>y</mi><mi>n</mi></msub>
+</mfenced>
+</math>. Числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mi>i</mi></msub>
+	<msub><mi>y</mi><mi>i</mi></msub>
+</mfenced>
+</math> являются координатами точек. Построить на экране точки, заданные
+последовательностью
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<msub><mi>y</mi><mn>1</mn></msub>
+	<msub><mi>x</mi><mn>2</mn></msub>
+	<msub><mi>y</mi><mn>2</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>x</mi><mi>n</mi></msub>
+	<msub><mi>y</mi><mi>n</mi></msub>
+</mfenced>
+</math>, а затем удалить их. Процесс построения должен начинаться точкой с номером <var>1</var> и заканчиваться точкой с номером <var>n</var>; процесс удаления точек должен происходить в обратном порядке – начинаться точкой с номером <var>n</var> и заканчиваться точкой с номером <var>1</var>.
+</li>
+<li>Даны натуральные числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<msub><mi>y</mi><mn>1</mn></msub>
+	<msub><mi>x</mi><mn>2</mn></msub>
+	<msub><mi>y</mi><mn>2</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>x</mi><mi>n</mi></msub>
+	<msub><mi>y</mi><mi>n</mi></msub>
+</mfenced>
+</math>. Числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mi>i</mi></msub>
+	<msub><mi>y</mi><mi>i</mi></msub>
+</mfenced>
+</math> являются координатами точек. Построить на экране точки, заданные
+последовательностью
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<msub><mi>y</mi><mn>1</mn></msub>
+	<msub><mi>x</mi><mn>2</mn></msub>
+	<msub><mi>y</mi><mn>2</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>x</mi><mi>n</mi></msub>
+	<msub><mi>y</mi><mi>n</mi></msub>
+</mfenced>
+</math>. Точки должны строиться поочередно: построение каждой последующей точки должно сопровождаться удалением предыдущей. Процесс построения следует выполнять дважды: первый раз начиная точкой с номером <var>1</var> и кончая точкой с номером <var>n</var>, второй раз – в обратном порядке – начиная точкой с номером <var>n</var> и заканчивая точкой с номером <var>1</var>.
+</li>
+<li>В условие предыдущей задачи вносится изменение: поочередное построение точек следует выполнять так, чтобы после появления на экране первых трех точек построение каждой новой точки сопровождалось удалением точки, которая была построена раньше трех других видимых точек.</li>
+<li>Даны натуральные числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<msub><mi>y</mi><mn>1</mn></msub>
+	<msub><mi>r</mi><mn>1</mn></msub>
+	<msub><mi>x</mi><mn>2</mn></msub>
+	<msub><mi>y</mi><mn>2</mn></msub>
+	<msub><mi>r</mi><mn>2</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>x</mi><mi>n</mi></msub>
+	<msub><mi>y</mi><mi>n</mi></msub>
+	<msub><mi>r</mi><mi>n</mi></msub>
+</mfenced>
+</math>.
+Числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mi>i</mi></msub>
+	<msub><mi>y</mi><mi>i</mi></msub>
+</mfenced>
+</math> являются центрами кругов радиуса
+<math>
+	<msub><mi>r</mi><mi>i</mi></msub>
+</math>. Построить на экране круги, заданные последовательностью
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<msub><mi>y</mi><mn>1</mn></msub>
+	<msub><mi>r</mi><mn>1</mn></msub>
+	<msub><mi>x</mi><mn>2</mn></msub>
+	<msub><mi>y</mi><mn>2</mn></msub>
+	<msub><mi>r</mi><mn>2</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>x</mi><mi>n</mi></msub>
+	<msub><mi>y</mi><mi>n</mi></msub>
+	<msub><mi>r</mi><mi>n</mi></msub>
+</mfenced>
+</math>, а затем закрасить их (одним и тем же цветом или разными цветами). Процесс построения должен начинаться кругом с номером <var>1</var> и заканчиваться кругом с номером <var>n</var>; процесс закраски должен происходить в обратном порядке – начинаться кругом с номером <var>n</var> и заканчиваться кругом с номером <var>1</var>.
+</li>
+<li>Даны натуральные числа
+<math>
+<mfenced open='' close=''>
+	<mi>x</mi>
+	<mi>y</mi>
+	<msub><mi>r</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>r</mi><mi>n</mi></msub>
+</mfenced>
+</math>. Числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>r</mi><mi>i</mi></msub>
+</mfenced>
+</math> являются сторонами квадратов с центрами в точке
+<math>
+<mfenced>
+	<mi>x</mi>
+	<mi>y</mi>
+</mfenced>
+</math>. Построить на экране квадраты, заданные последовательностью
+<math>
+<mfenced open='' close=''>
+	<msub><mi>r</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>r</mi><mi>n</mi></msub>
+</mfenced>
+</math>, а затем удалить их. Процесс построения должен начинаться квадратом с номером <var>1</var> и заканчиваться квадратом с номером <var>n</var>; процесс удаления должен происходить в обратном порядке – начинаться квадратом с номером <var>n</var>
+и заканчиваться квадратом с номером <var>1</var>.
+</li>
+<li>Даны натуральные числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<msub><mi>y</mi><mn>1</mn></msub>
+	<msub><mi>r</mi><mn>1</mn></msub>
+	<msub><mi>x</mi><mn>2</mn></msub>
+	<msub><mi>y</mi><mn>2</mn></msub>
+	<msub><mi>r</mi><mn>2</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>x</mi><mi>n</mi></msub>
+	<msub><mi>y</mi><mi>n</mi></msub>
+	<msub><mi>r</mi><mi>n</mi></msub>
+</mfenced>
+</math>. Построить на экране окружности с центрами в точках
+<math>
+<mfenced>
+	<msub><mi>x</mi><mi>i</mi></msub>
+	<msub><mi>y</mi><mi>i</mi></msub>
+</mfenced>
+</math> и радиусами 
+<math>
+<mfenced>
+	<msub><mi>r</mi><mi>i</mi></msub>
+</mfenced>
+</math>, если среди
+<math>
+<mfenced open='' close=''>
+	<msub><mi>r</mi><mn>1</mn></msub>
+	<msub><mi>r</mi><mn>2</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>r</mi><mi>n</mi></msub>
+</mfenced>
+</math> найдется число, меньше <var>5</var>, и квадраты с центрами в точках
+<math>
+<mfenced>
+	<msub><mi>x</mi><mi>i</mi></msub>
+	<msub><mi>y</mi><mi>i</mi></msub>
+</mfenced>
+</math> и сторонами
+<math>
+<mfenced>
+	<msub><mi>r</mi><mi>i</mi></msub>
+</mfenced>
+</math> в противном случае.
+</li>
+<li>Даны символы
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<msub><mi>s</mi><mn>2</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math> *). Оставить последовательность
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<msub><mi>s</mi><mn>2</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math> без изменения, если в нее не входит символ <var>*</var> , иначе каждый символ <var>/</var> , предшествующий первому вхождению символа <var>*</var>:
+<ol type='a'>
+<li>заменить на запятую;</li>
+<li>удалить из последовательности.
+</li>
+</ol>
+</li>
+<li>Даны символы
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<msub><mi>s</mi><mn>2</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math>. Если последовательность
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<msub><mi>s</mi><mn>2</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math> является палиндромом , т.е.
+<math>
+<mfenced open='' close=''>
+	<mrow>	
+		<msub><mi>s</mi><mn>1</mn></msub>
+		<mo>=</mo>
+		<msub><mi>s</mi><mi>n</mi></msub>	
+	</mrow>
+	<mrow>	
+		<msub><mi>s</mi><mn>2</mn></msub>
+		<mo>=</mo>
+		<msub><mi>s</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub>	
+	</mrow>
+	<mi>&#133;</mi>
+</mfenced>
+</math>, то оставить ее без изменения, иначе получить последовательность
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<msub><mi>s</mi><mn>2</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub>
+	<msub><mi>s</mi><mi>n</mi></msub>
+	<msub><mi>s</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mn>2</mn></msub>
+	<msub><mi>s</mi><mn>1</mn></msub>		
+</mfenced>
+</math>.
+</li>
+<li>Даны символы
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mn>66</mn></msub>
+</mfenced>
+</math>. Если последовательность
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mn>66</mn></msub>
+</mfenced>
+</math> такова, что
+<math>
+<mfenced open='' close=''>
+	<mrow>	
+		<msub><mi>s</mi><mn>1</mn></msub>
+		<mo>=</mo>
+		<msub><mi>s</mi><mn>34</mn></msub>	
+	</mrow>
+	<mrow>	
+		<msub><mi>s</mi><mn>2</mn></msub>
+		<mo>=</mo>
+		<msub><mi>s</mi><mn>35</mn></msub>	
+	</mrow>
+	<mi>&#133;</mi>
+	<mrow>	
+		<msub><mi>s</mi><mn>33</mn></msub>
+		<mo>=</mo>
+		<msub><mi>s</mi><mn>66</mn></msub>	
+	</mrow>
+</mfenced>
+</math>, то оставить ее без изменения, иначе получить последовательность
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mn>66</mn></msub>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mn>66</mn></msub>
+</mfenced>
+</math>.
+</li>
+<li>Даны символы
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mn>80</mn></msub>
+</mfenced>
+</math>. Определить количество неверных равенств среди:
+<ol type='a'>
+<li>
+<math>
+<mfenced open='' close=''>
+	<mrow>	
+		<msub><mi>s</mi><mn>1</mn></msub>
+		<mo>=</mo>
+		<msub><mi>s</mi><mn>41</mn></msub>	
+	</mrow>
+	<mrow>	
+		<msub><mi>s</mi><mn>2</mn></msub>
+		<mo>=</mo>
+		<msub><mi>s</mi><mn>42</mn></msub>	
+	</mrow>
+	<mi>&#133;</mi>
+	<mrow>	
+		<msub><mi>s</mi><mn>40</mn></msub>
+		<mo>=</mo>
+		<msub><mi>s</mi><mn>80</mn></msub>	
+	</mrow>
+</mfenced>
+</math>;
+</li>
+<li>
+<math>
+<mfenced open='' close=''>
+	<mrow>	
+		<msub><mi>s</mi><mn>1</mn></msub>
+		<mo>=</mo>
+		<msub><mi>s</mi><mn>80</mn></msub>	
+	</mrow>
+	<mrow>	
+		<msub><mi>s</mi><mn>2</mn></msub>
+		<mo>=</mo>
+		<msub><mi>s</mi><mn>79</mn></msub>	
+	</mrow>
+	<mi>&#133;</mi>
+	<mrow>	
+		<msub><mi>s</mi><mn>40</mn></msub>
+		<mo>=</mo>
+		<msub><mi>s</mi><mn>41</mn></msub>	
+	</mrow>
+</mfenced>
+</math>.
+</li>
+</ol>
+</li>
+<li>
+Даны натуральное число <var>n</var>, символы
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math>. Будем рассматривать слова, образованные символами, входящими в последовательность
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math> (см. задачу 269), считая при этом, что количество символов в каждом слове не превосходит <var>15</var>.
+<ol type='a'>
+<li>Найти какое-нибудь слово, оканчивающееся буквой <var>д</var> (если таких слов нет, то сообщить об этом).</li>
+<li>Найти какое-нибудь слово, начинающееся буквой <var>а</var> и оканчивающееся буквой <var>я</var> (если таких слов нет, то сообщить об этом).
+</li>
+<li>Удалить из
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math> все слова с нечетными порядковыми номерами и перевернуть все слова с четными номерами. Например, если 
+<math><mi>n</mi><mo>=</mo><mn>21</mn></math> и данная последовательность символов представляет собой последовательность
+<var>во_что_бы_то_ни_стало</var>, то должна получиться последовательность <var>отч_от_олатс</var>.
+</li>
+<li>Удалить из
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math> все слова, в которых встречается не более двух различных букв.
+</li>
+<li>Удалить из
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math> все слова, оканчивающиеся группой букв <var>кая</var> или <var>кое</var>.
+</li>
+</ol>
+
+
+</li>
+</ol>
+</body>
+</html>

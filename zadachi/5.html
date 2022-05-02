@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<link rel='stylesheet' type='text/css' href='style.css' />
+<meta name='author' content='leonid' />
+<title>Простейшие графические построения</title> </head><body>
+    <h2>§5 Простейшие графические построения</h2>
+<ol start='120' type='1'>
+<li>Построить:
+<ol type='a'> 
+<li>Треугольник с вершинами 
+	<math>
+	<mrow>
+		<mfenced><mn>100</mn><mn>100</mn></mfenced><mo>,</mo><mfenced><mn>150</mn><mn>100</mn></mfenced>
+		<mo>,</mo><mfenced><mn>80</mn><mn>170</mn></mfenced>
+	</mrow>
+</math>
+</li>
+<li>
+Прямоугольник с вершинами 
+	<math>
+	<mrow>
+<mfenced><mn>80</mn><mn>80</mn></mfenced><mo>,</mo><mfenced><mn>170</mn><mn>80</mn></mfenced><mo>,</mo><mfenced><mn>170</mn><mn>150</mn></mfenced><mo>,</mo><mfenced><mn>80</mn><mn>150</mn></mfenced></mrow> </math>
+</li>
+<li>Пятиугольник с вершинами 
+<math>
+	<mrow>
+<mfenced><mn>100</mn><mn>100</mn></mfenced><mo>,</mo><mfenced><mn>150</mn><mn>100</mn></mfenced><mo>,</mo><mfenced><mn>170</mn><mn>120</mn></mfenced><mo>,</mo><mfenced><mn>150</mn><mn>140</mn></mfenced><mo>,</mo><mfenced><mn>100</mn><mn>140</mn></mfenced>
+</mrow> </math>
+</li>
+<li>Шестиугольник с вершинами
+<math>
+	<mrow>
+<mfenced><mn>120</mn><mn>100</mn></mfenced><mo>,</mo><mfenced><mn>140</mn><mn>120</mn></mfenced><mo>,</mo><mfenced><mn>140</mn><mn>140</mn></mfenced><mo>,</mo><mfenced><mn>120</mn><mn>160</mn></mfenced><mo>,</mo><mfenced><mn>100</mn><mn>140</mn></mfenced><mo>,</mo><mfenced><mn>100</mn><mn>120</mn></mfenced>
+</mrow> </math>
+</li>
+<li>Выполнить задания a-d, дополнив каждое из них требованием закраски построенной плоской фигуры.
+</li>
+</ol>
+ </li>
+<li>Построить и закрасить квадрат со стороной 30 пиксел, центр которого совмещен с центром экрана. Стороны квадрата должны быть параллельны осям координат экрана.</li>
+<li>Построить и закрасить прямоугольник со сторонами 30 и 50 пиксел, центр которого совмещен с центром экрана. 		Стороны 	прямоугольника должны быть параллельны осям координат экрана.</li>
+<li>Построить и закрасить круг радиуса 40 пиксел, центр которого совмещен с центром экрана.</li>
+<li>Столбчатая диаграмма (гистограмма) представляет собой набор прямоугольников, основания которых равны, а 	высоты пропорциональны числовым величинам, взятым из некоторой совокупности (Рис. 5.1). Для большей наглядности прямоугольники диаграммы обычно 	закрашивают в разные цвета.
+Даны семь действительных положительных числа а<sub>1</sub>,a<sub>2</sub>,...,a<sub>7</sub>. Построить гистограмму для этих значений.<br></br>
+<svg width="300" height="200">
+ <g>
+  <rect height="103" width="25" y="66" x="54" stroke="#000000" fill="#ffffff"/>
+  <rect height="118" width="24" y="50" x="88" stroke="#000000" fill="none"/>
+  <rect height="139" width="25" y="29" x="119" stroke="#000000" fill="none"/>
+  <rect height="102" width="26" y="65" x="150" stroke="#000000" fill="none"/>
+  <rect height="118" width="29" y="49" x="183" stroke="#000000" fill="none"/>
+  <rect height="102" width="27" y="64" x="217" stroke="#000000" fill="none"/>
+  <line y2="167" x2="262" y1="168" x1="44" stroke-width="5" stroke="#000000" fill="none"/>
+  <text x="106" y="190">Рис. 5.1</text>
+ </g>
+</svg>
+</li>
+<li>Секторная диаграмма-это круг, площади секторов которого пропорциональны соответствующим числовым величинам, взятым из некоторой совокупности (Рис. 5.2). Для большей наглядности секторы диаграмм закрашивают в разные цвета.
+Даны семь действительных положительных числа а<sub>1</sub>,a<sub>2</sub>,...,a<sub>7</sub>. Построить секторную диаграмму для этих значений.
+<svg width="300" height="300">
+ <g>
+  <circle cy="150" cx="150" r="100" stroke="#000000" fill="none"/>
+  <line fill="none" stroke="#000000" x1="150" y1="150" x2="50" y2="150"/>
+  <line fill="none" stroke="#000000" x1="150" y1="150" x2="229" y2="89"/>
+  <line fill="none" stroke="#000000" x1="151" y1="150" x2="232" y2="204"/>
+  <line fill="none" stroke="#000000" x1="150" y1="150" x2="54" y2="180"/>
+  <line fill="none" stroke="#000000" x1="151" y1="150" x2="54" y2="120"/>
+  <text y="283" x="120">Рис. 5.2</text>
+ </g>
+</svg>
+</li>
+<li>Даны натуральные V<sub>1</sub>,V<sub>2</sub>,...,V<sub>8</sub>, задающие число дней в году, в которых преобладало соответственно северное, северо-восточное, восточное, юго-восточное, южное, юго-западное, западное или северо-западное направление ветра. Построить розу ветров (Рис. 5.3).
+<svg width="300" height="300">
+ <g>
+   <line stroke="#000000" x1="150" y1="250" x2="150" y2="50"/>
+   <path d="m143.5,58l13,-0.5l-7,-7.75l-6,8.25z"/>
+   <line stroke="#000000" x1="0" y1="150" x2="300" y2="150"/>
+   <line  y2="56" x2="254" y1="240" x1="52" stroke="#000000"/>
+   <line y2="249" x2="250" y1="48" x1="46" stroke="#000000"/>
+   <text x="250" y="189" font-size="24">В</text>
+   <text x="40" y="187" font-size="24">З</text>
+   <path fill="none" stroke="#000000" d="m149.5,80.5l-75,-4.5l13.5,73l-12,67.5l73.5,22.5l38.5,-53l64,-37l-2,-91l-100.5,22.5z"/>
+   <text y="50" x="173" font-size="24">С</text>
+   <text y="290" x="125">Рис. 5.3</text>
+ </g>
+</svg>
+</li>
+<li>Стрелка (Рис. 5.4) состоит из отрезка прямой и равностороннего треугольника-острия. Сторона треугольника, пересекающая отрезок, образует с ним прямой угол; точка пересечения делит отрезок в отношении 1:5. Построить:
+<svg width="250" height="100">
+ <g>
+  <line stroke="#000000" y2="40" x2="222" y1="40" x1="5"/>
+  <path d="m 222 40 L 171 7 171 73 z" stroke="#000000" fill="none"/>
+  <text y="90" x="80" >Рис. 5.4</text>
+ </g>
+</svg>
+
+<ol type='a'> 
+<li>горизонтальную стрелку, направленную из точки 
+ <math><mfenced><mn>100</mn><mn>100</mn></mfenced></math> в точку <math><mfenced><mn>150</mn><mn>100</mn></mfenced></math></li>
+<li>горизонтальную стрелку, направленную из точки <math><mfenced><mn>150</mn><mn>100</mn></mfenced></math> в точку <math><mfenced><mn>100</mn><mn>100</mn></mfenced></math></li>
+<li>вертикальную стрелку, направленную из точки <math><mfenced><mn>100</mn><mn>50</mn></mfenced></math> в точку <math><mfenced><mn>100</mn><mn>150</mn></mfenced></math></li>
+<li>вертикальную стрелку, направленную из точки <math><mfenced><mn>100</mn><mn>100</mn></mfenced></math> в точку <math><mfenced><mn>100</mn><mn>50</mn></mfenced></math></li>
+</ol>
+</li>
+<li>Построить оси координат (Рис. 5.5). Начало координат следует поместить вблизи левого нижнего угла экрана, полуоси Оx и Оy разместить, как показано на рис. 5.5.<br/>
+<svg width="250" height="260">
+  <line stroke="#000000" x1="20" y1="50" x2="20" y2="220"/>
+  <path d="M 16 50 L 24 50 20 43 z" stroke="#000000" fill="none"/>
+  <line stroke="#000000" y2="220" x2="180" y1="220" x1="20"/>
+  <path d="M 180 224 L 180 216 187 220 z" stroke="#000000" fill="none"/> 
+  <line stroke="#000000" x1="20" y1="210" x2="30" y2="210"/>
+  <line stroke="#000000" x1="20" y1="200" x2="30" y2="200"/>
+  <line stroke="#000000" x1="20" y1="190" x2="30" y2="190"/>
+  <line stroke="#000000" x1="20" y1="180" x2="30" y2="180"/>
+  <line stroke="#000000" x1="20" y1="170" x2="30" y2="170"/>
+  <line stroke="#000000" x1="20" y1="160" x2="30" y2="160"/>
+  <line stroke="#000000" x1="20" y1="150" x2="30" y2="150"/>
+  <line stroke="#000000" x1="20" y1="140" x2="30" y2="140"/>
+  <line stroke="#000000" x1="20" y1="130" x2="30" y2="130"/>
+  <line stroke="#000000" x1="20" y1="120" x2="30" y2="120"/>
+  <line stroke="#000000" x1="20" y1="110" x2="30" y2="110"/>
+  <line stroke="#000000" x1="20" y1="100" x2="30" y2="100"/>
+  <line stroke="#000000" x1="20" y1="90" x2="30" y2="90"/>
+  <line stroke="#000000" x1="20" y1="80" x2="30" y2="80"/>
+  <line stroke="#000000" x1="20" y1="70" x2="30" y2="70"/>
+  <line stroke="#000000" x1="30" y1="210" x2="30" y2="220"/>
+  <line stroke="#000000" x1="40" y1="210" x2="40" y2="220"/>
+  <line stroke="#000000" x1="50" y1="210" x2="50" y2="220"/>
+  <line stroke="#000000" x1="60" y1="210" x2="60" y2="220"/>
+  <line stroke="#000000" x1="30" y1="210" x2="30" y2="220"/>
+  <line stroke="#000000" x1="80" y1="210" x2="80" y2="220"/>
+  <line stroke="#000000" x1="70" y1="210" x2="70" y2="220"/>
+  <line stroke="#000000" x1="90" y1="210" x2="90" y2="220"/>
+  <line stroke="#000000" x1="100" y1="210" x2="100" y2="220"/>
+  <line stroke="#000000" x1="110" y1="210" x2="110" y2="220"/>
+  <line stroke="#000000" x1="120" y1="210" x2="120" y2="220"/>
+  <line stroke="#000000" x1="130" y1="210" x2="130" y2="220"/>
+  <line stroke="#000000" x1="140" y1="210" x2="140" y2="220"/>
+  <line stroke="#000000" x1="150" y1="210" x2="150" y2="220"/>
+  <line stroke="#000000" x1="160" y1="210" x2="160" y2="220"/>
+  <text x="190" y="220">x</text>
+  <text x="30" y="40">y</text>
+  <text x="60" y="250">Рис. 5.5</text>
+</svg>
+</li>
+<li>Рис. 5.6, а-n составлены из простейших геометрических фигур: треугольников, квадратов, окружностей, точек и т.п. Цыпленок (рис. 5.6, a) состоит из эллипса (тело цыпленка), окружности (голова), трех треугольников (нос, хвост и крыло цыпленка) и двух прямых (лапы). Дом (рис. 5.6, b) состоит из двух квадратов (дом и окно), прямоугольник (дверь), треугольника (крыша) и ломаной (труба). Грузовик (рис. 5.6, c) состоит из двух прямоугольников (кабина и кузов), квадрата (окно) и двух окружностей (колеса). Елка (рис. 5.6, d) состоит из трех треугольников (ветви) и прямоугольника (ствол) и т.п. Получить на экране и раскрасить рис. 5.6, a-n.
+<table>
+<tr><td>
+<ol type='a'>
+<li>
+<svg width="300" height="300">
+ <g>
+  <ellipse ry="40" rx="84" cy="164" cx="157" stroke="#000000" fill="none"/>
+  <circle r="32.6496" cy="101" cx="99" stroke="#000000" fill="none"/>
+  <path d="m83,93l-46,24l48,-7l-2,-17z" stroke="#000000" fill="none"/>
+  <path d="m204,156l91,-1l-90,19l-1,-18z" stroke="#000000" fill="none"/>
+  <path d="m178,162l-42,1l81,77l-39,-78z" stroke="#000000" fill="none"/>
+  <line y2="257" x2="99" y1="200" x1="122" stroke="#000000"/>
+  <line y2="255" x2="172" y1="204" x1="161" stroke="#000000"/>
+ </g>
+</svg>
+</li>
+<li>
+<svg width="300" height="300">
+ <g>
+  <rect fill="none" stroke="#000000" x="69" y="98" width="156" height="145" id="svg_7"/>
+  <path fill="none" stroke="#000000" d="m69,99l76,-77l79,76l-155,1z" id="svg_8"/>
+  <path fill="none" stroke="#000000" d="m201,76l1,-69l-23,1l-1,45l23,23z" id="svg_9"/>
+  <rect fill="none" stroke="#000000" x="87" y="126" width="58" height="58" id="svg_10"/>
+  <rect fill="none" stroke="#000000" x="159" y="127" width="48" height="117" id="svg_11"/>
+ </g>
+</svg>
+</li>
+<li>
+<svg width="400" height="300">
+ <g>
+  <rect fill="none" stroke="#000000" x="58" y="74" width="56" height="91"/>
+  <rect height="61" width="210" y="104" x="114" stroke="#000000" fill="none"/>
+  <rect height="37" width="37" y="84" x="67" stroke="#000000" fill="none"/>
+  <circle r="24.743" cy="189" cx="100" stroke="#000000" fill="none"/>
+  <circle r="25.2389" cy="190" cx="259" stroke="#000000" fill="none"/>
+ </g>
+</svg>
+</li>
+<li>
+<svg width="200" height="300">
+ <g>
+  <path fill="none" stroke="#000000" d="m92,27l-41,39l81,-1l-40,-38z"/>
+  <path d="m93,66l-47,41l97,1l-50,-42z" stroke="#000000" fill="none"/>
+  <path d="m90,108l-52,50l115,-1l-63,-49z" stroke="#000000" fill="none"/>
+  <rect height="47" width="33" y="158" x="76" stroke="#000000" fill="none"/>
+ </g>
+</svg>
+</li>
+<li>
+<svg width="250" height="300">
+ <g>
+  <line y2="200" x2="40" y1="20" x1="40" stroke="#000000"/>
+  <line y2="20" x2="130" y1="20" x1="40" stroke="#000000"/>
+  <line y2="200" x2="130" y1="200" x1="40" stroke="#000000"/>
+  <path d="M130,20 Q95,110 130,200" stroke="#000000" fill="none"/>
+  <circle cx="180" cy="110" r="50" stroke="#000000" fill="none"/>
+ </g>
+</svg>
+</li>
+<li>
+<svg width="250" height="300">
+ <g>
+  <polygon points="20,20 220,20 120,100" stroke="#000000" fill="none"/>
+  <polygon points="20,60 20,220 220,220 220,60 120,140" stroke="#000000" fill="none"/>
+ </g>
+</svg>
+</li>
+<li>
+<svg width="250" height="300">
+ <g>
+  <circle cx="120" cy="120" r="100" stroke="#000000" fill="none"/>
+  <circle cx="80" cy="90" r="10" stroke="#000000" fill="none"/>
+  <circle cx="160" cy="90" r="10" stroke="#000000" fill="none"/>
+  <polygon points="120,100 100,140 140,140" stroke="#000000" fill="none"/>
+  <polygon points="80,170 160,170 120,190" stroke="#000000" fill="none"/>
+  <line fill="none" stroke="#000000" x1="108" y1="20" x2="108" y2="60"/>
+  <line fill="none" stroke="#000000" x1="118" y1="20" x2="118" y2="60"/>
+  <line fill="none" stroke="#000000" x1="129" y1="20" x2="129" y2="60"/>
+  <line fill="none" stroke="#000000" x1="146" y1="22" x2="155" y2="60"/>
+  <line fill="none" stroke="#000000" x1="94" y1="22" x2="85" y2="60"/>
+ </g>
+</svg>
+</li>
+<li>
+<svg width="350" height="300">
+ <g>
+  <ellipse fill="none" stroke="#000000" cx="167" cy="133" rx="122" ry="51"/>
+  <circle r="28" cy="133" cx="74" stroke="#000000" fill="none"/>
+  <polyline points="123,180 145,202 232,202 216,180" stroke="#000000" fill="none"/>
+  <polyline points="116,86 129,54 219,54 206,84" stroke="#000000" fill="none"/>
+  <polyline points="272,106 308,85 343,85 305,122 326,170 292,170 277,155" stroke="#000000" fill="none"/>
+  <line y2="145" x2="80" y1="145" x1="55" stroke="#000000"/>
+  <circle r="5" cy="125" cx="65" stroke="#000000" fill="none"/>
+  </g>
+</svg>
+</li>
+<li>
+<svg width="250" height="300">
+ <g>
+  <rect height="70" width="130" y="100" x="80" stroke="#000000" fill="none"/>
+  <polygon points="100,100 100,20 140,20 140,40 120,40 120,100" stroke="#000000" fill="none"/>
+  <path d="M80,170 A25,25 0 0,0 80,220" stroke="#000000"  fill="none"/>
+  <path d="M210,170 A25,25 0 1,1 210,220" stroke="#000000"  fill="none"/>
+  <line x1="80" y1="220" x2="210" y2="220" stroke="#000000"/>
+  <circle r="10" cy="195" cx="80" stroke="#000000" fill="none"/>
+  <circle r="10" cy="195" cx="110" stroke="#000000" fill="none"/>
+  <circle r="10" cy="195" cx="140" stroke="#000000" fill="none"/>
+  <circle r="10" cy="195" cx="170" stroke="#000000" fill="none"/>
+  <circle r="10" cy="195" cx="200" stroke="#000000" fill="none"/>
+ </g>
+</svg>
+</li>
+<li>
+<svg width="240" height="350">
+ <g>
+  <circle r="40" cy="60" cx="120" stroke="#000000" fill="none"/>
+  <circle r="7" cy="50" cx="100" stroke="#000000" fill="none"/>
+  <circle r="7" cy="50" cx="140" stroke="#000000" fill="none"/>
+  <polyline points="80,5 100,5 120,50 140,5 160,5" stroke="#000000" fill="none"/>
+  <path d="M70,150 A50,50 0 1,1 170,150" stroke="#000000"  fill="none"/>
+  <line x1="70" y1="150" x2="70" y2="200" stroke="#000000"/>
+  <line x1="170" y1="150" x2="170" y2="200" stroke="#000000"/>
+  <path d="M70,200 A50,50 0 0,0 170,200" stroke="#000000"  fill="none"/>
+  <polygon points="80,190 90,150 1,150" stroke="#000000" fill="none"/>
+  <polygon points="160,190 150,150 239,150" stroke="#000000" fill="none"/>
+  <polyline points="155,237 155,280 210,280" stroke="#000000" fill="none"/>
+  <polyline points="85,237 85,280 30,280" stroke="#000000" fill="none"/>
+ </g>
+</svg>
+</li>
+<li>
+<svg width="240" height="300">
+ <g>
+  <circle r="80" cx="150" cy="150" stroke="#000000" fill="none"/>
+  <line x1="150" y1="150" x2="210" y2="150" stroke="#000000"/>
+  <line x1="150" y1="150" x2="150" y2="90" stroke="#000000"/>
+  <path d="M100,70 A100,100 0 0,1 200,70" stroke="#000000"  fill="none"/>
+  <path d="M100,70 A60,60 0 0,1 200,70" stroke="#000000"  fill="none"/>
+  <circle r="10" cx="150" cy="33" stroke="#000000" fill="none"/>
+  <text y="88" x="140">12</text>
+  <text y="228" x="145">6</text>
+  <text y="154" x="72">9</text>
+  <text y="154" x="218">3</text>
+  <line x1="173" y1="225" x2="190" y2="245" stroke="#000000"/>
+  <line x1="127" y1="225" x2="110" y2="245" stroke="#000000"/>
+ </g>
+</svg>
+</li>
+<li>
+<svg width="400" height="300">
+ <g>
+  <circle r="50" cx="60" cy="240" stroke="#000000" fill="none"/>
+  <circle r="5" cx="60" cy="240" stroke="#000000" fill="none"/>
+  <circle r="15" cx="200" cy="225" stroke="#000000" fill="none"/>
+  <circle r="5" cx="200" cy="225" stroke="#000000" fill="none"/>
+  <line stroke="#000000" x1="60" y1="245" x2="200" y2="240"/>
+  <line stroke="#000000" x1="60" y1="235" x2="200" y2="210"/>
+  <polygon points="60,240 10,170 110,170" stroke="#000000" fill="none" stroke-width="2"/>
+  <path d="M5,240 A55,55 0 1,1 115,240" stroke="#000000" fill="none"/>
+  <line stroke="#000000" x1="60" y1="240" x2="15" y2="209"/>
+  <polyline points="110,170 125,150 250,150 200,225 102,125" stroke="#000000" fill="none" stroke-width="2"/>
+  <polygon points="70,125  130,125 130,115 70,115" stroke="#000000" fill="none"/>
+  <polyline points="180,200 200,200 200,250 220,250" stroke="#000000" fill="none"/>
+  <line stroke="#000000" x1="60" y1="240" x2="200" y2="225" stroke-width="2"/>
+  <circle r="50" cx="300" cy="240" stroke="#000000" fill="none"/>
+  <line stroke="#000000" x1="300" y1="240" x2="224" y2="100" stroke-width="2"/>
+  <polyline points="228,60 243,60 205,140 190,140" stroke="#000000" fill="none"/>
+  <line stroke="#000000" x1="300" y1="240" x2="253" y2="209"/>
+  <path d="M245,240 A55,55 0 1,1 355,240" stroke="#000000" fill="none"/>
+  <circle r="5" cx="300" cy="240" stroke="#000000" fill="none"/>
+ </g>
+</svg>
+</li>
+<li>
+<svg width="300" height="300">
+ <g>
+  <circle r="80" cx="150" cy="150" stroke="#000000" fill="none"/>
+  <circle r="60" cx="150" cy="150" stroke="#000000" fill="none"/>
+  <circle r="20" cx="150" cy="150" stroke="#000000" fill="none"/>
+  <circle r="10" cx="80" cy="150" stroke="#000000" fill="none"/>
+  <circle r="10" cx="220" cy="150" stroke="#000000" fill="none"/>
+  <circle r="10" cx="150" cy="80" stroke="#000000" fill="none"/>
+  <circle r="10" cx="150" cy="220" stroke="#000000" fill="none"/>
+  <circle r="10" cx="199" cy="100" stroke="#000000" fill="none"/>
+  <circle r="10" cx="101" cy="100" stroke="#000000" fill="none"/>
+  <circle r="10" cx="199" cy="200" stroke="#000000" fill="none"/>
+  <circle r="10" cx="101" cy="200" stroke="#000000" fill="none"/>
+  <polygon points="150,150 140,260 110,260" stroke="#000000" fill="none"/>
+  <polygon points="150,150 160,260 190,260" stroke="#000000" fill="none"/>
+ </g>
+</svg>
+</li>
+<li>
+<svg width="400" height="300">
+ <g>
+  <circle r="100" cx="150" cy="150" stroke="#000000" fill="none"/>
+  <circle r="25" cx="150" cy="150" stroke="#000000" fill="none"/>
+  <circle r="20" cx="150" cy="70" stroke="#000000" fill="none"/>
+  <text y="75" x="145">4</text>
+  <circle r="20" cx="70" cy="150" stroke="#000000" fill="none"/>
+  <text y="155" x="65">7</text>
+  <circle r="20" cx="150" cy="230" stroke="#000000" fill="none"/>
+  <text y="235" x="145">0</text>
+  <circle r="20" cx="230" cy="150" stroke="#000000" fill="none"/>
+  <text y="155" x="225">1</text>
+  <circle r="20" cx="220" cy="111" stroke="#000000" fill="none"/>
+  <text y="116" x="215">2</text>
+  <circle r="20" cx="193" cy="82" stroke="#000000" fill="none"/>
+  <text y="87" x="188">3</text>
+  <circle r="20" cx="107" cy="82" stroke="#000000" fill="none"/>
+  <text y="87" x="102">5</text>
+  <circle r="20" cx="80" cy="111" stroke="#000000" fill="none"/>
+  <text y="116" x="75">6</text>
+  <circle r="20" cx="107" cy="218" stroke="#000000" fill="none"/>
+  <text y="223" x="102">9</text>
+  <circle r="20" cx="80" cy="189" stroke="#000000" fill="none"/>
+  <text y="194" x="75">8</text>
+  <polygon points="150,150 240,260 260,240" stroke="#000000" fill="white"/>
+  </g>
+</svg>
+</li>
+</ol>
+</td>
+</tr>
+<tr><td align='center'>Рис. 5.6</td></tr>
+</table>
+</li>
+<li>На рис. 5.7, a-p даны шаблоны нескольких фигур: жука, букета цветов, робота, самолета и т. д. Закрашенный квадрат на шаблоне соответствует высвечиваемой точке, пустой квадрат-точке, которая не высвечивается (или, что то же самое, точке, цвет которой совпадает с цветом фона).
+<ol type='a'>
+<li>
+<svg width="400" height="350">
+   <rect height="100" width="100" y="145" x="130"  stroke="#000000" fill="#000000"/>  
+   <rect height="30" width="210" y="175" x="75"  stroke="#000000" fill="#000000"/>    <rect height="30" width="30" y="115" x="100"  stroke="#000000" fill="#000000"/> 
+   <rect height="30" width="30" y="85" x="70"  stroke="#000000" fill="#000000"/>  
+   <rect height="30" width="30" y="116" x="230"  stroke="#000000" fill="#000000"/>  
+   <rect height="30" width="30" y="86" x="260"  stroke="#000000" fill="#000000"/>  
+   <rect height="30" width="30" y="245" x="100"  stroke="#000000" fill="#000000"/>  
+   <rect height="30" width="30" y="275" x="70"  stroke="#000000" fill="#000000"/> 
+   <rect  height="30" width="30" y="245" x="230"  stroke="#000000" fill="#000000"/>  
+   <rect  height="30" width="30" y="275" x="260"  stroke="#000000" fill="#000000"/>  
+   <rect  height="15" width="50" y="130" x="155"  stroke="#000000" fill="#000000"/>  
+   <rect  height="30" width="25" y="115" x="168"  stroke="#000000" fill="#000000"/>  
+   <rect  height="15" width="15" y="100" x="154"  stroke="#000000" fill="#000000"/>  
+   <rect  height="15" width="15" y="100" x="193"  stroke="#000000" fill="#000000"/>  
+   <rect  height="50" width="20" y="50" x="134"  stroke="#000000" fill="#000000"/> 
+   <rect  height="50" width="20" y="50" x="208"  stroke="#000000" fill="#000000"/>  
+   <rect  height="15" width="50" y="245" x="155"  stroke="#000000" fill="#000000"/> 
+   <rect  height="15" width="25" y="260" x="168"  stroke="#000000" fill="#000000"/>  
+   <rect  height="15" width="15" y="36" x="119"  stroke="#000000" fill="#000000"/>
+   <rect  height="15" width="15" y="36" x="228"  stroke="#000000" fill="#000000"/>
+   <polygon points="30,3 30,348 348,348 348,3" stroke-width="2" stroke="#000000"  fill="none"/>
+</svg> 
+</li>
+<li>
+<svg width="330" height="300">
+   <rect  height="30" width="60" y="35" x="40"  stroke="red" fill="red"/>
+  <rect  height="60" width="30" y="20" x="55"  stroke="red" fill="red"/>
+  <rect  height="30" width="60" y="65" x="115"  stroke="red" fill="red"/>
+  <rect  height="60" width="30" y="50" x="130"  stroke="red" fill="red"/>
+  <rect  height="30" width="15" y="80" x="85"  stroke="green" fill="green"/>
+  <rect  height="30" width="15" y="110" x="100"  stroke="green" fill="green"/>
+  <rect  height="30" width="15" y="110" x="160"  stroke="green" fill="green"/>
+  <rect  height="30" width="15" y="140" x="145"  stroke="green" fill="green"/>  
+  <rect  height="30" width="15" y="140" x="115"  stroke="green" fill="green"/>
+  <rect  height="30" width="15" y="170" x="130"  stroke="green" fill="green"/>
+  <rect  height="15" width="30" y="200" x="145"  stroke="green" fill="green"/>
+  <rect  height="30" width="15" y="170" x="175"  stroke="green" fill="green"/>
+  <rect  height="30" width="15" y="140" x="190"  stroke="green" fill="green"/>
+  <rect  height="30" width="15" y="110" x="205"  stroke="green" fill="green"/>
+  <rect  height="15" width="15" y="215" x="145"  stroke="green" fill="green"/>
+  <rect  height="15" width="45" y="230" x="145"  stroke="green" fill="green"/>
+  <rect  height="15" width="15" y="215" x="190"  stroke="green" fill="green"/>
+  <rect  height="30" width="15" y="185" x="205"  stroke="green" fill="green"/>
+  <rect  height="15" width="30" y="245" x="130"  stroke="green" fill="green"/>
+  <rect  height="15" width="15" y="230" x="115"  stroke="green" fill="green"/>
+  <rect  height="45" width="15" y="185" x="100"  stroke="green" fill="green"/>
+  <rect  height="15" width="15" y="170" x="85"  stroke="green" fill="green"/>
+  <rect  height="15" width="15" y="155" x="70"  stroke="green" fill="green"/>
+  <rect  height="60" width="60" y="35" x="205"  stroke="red" fill="red"/>
+  <rect  height="90" width="30" y="20" x="220"  stroke="red" fill="red"/>
+  <rect  height="30" width="90" y="50" x="190"  stroke="red" fill="red"/>
+  <polygon points="20,1 20,298 298,298 298,1" stroke-width="2" stroke="#000000"  fill="none"/>
+  </svg>
+</li>
+<li>
+<svg width="330" height="400">
+<rect  height="300" width="140" y="100" x="110"  stroke="#000000" fill="#000000"/> 
+<rect  height="40" width="180" y="100" x="90"  stroke="#000000" fill="#000000"/> 
+<rect  height="60" width="30" y="120" x="60"  stroke="#000000" fill="#000000"/> 
+<rect  height="60" width="30" y="120" x="270"  stroke="#000000" fill="#000000"/>
+<rect  height="30" width="30" y="180" x="30"  stroke="#000000" fill="#000000"/> 
+<rect  height="30" width="30" y="180" x="300"  stroke="#000000" fill="#000000"/> 
+<rect  height="100" width="40" y="300" x="160"  stroke="#000000" fill="white"/> 
+<rect  height="40" width="40" y="60" x="160"  stroke="#000000" fill="#000000"/>
+<rect  height="60" width="100" y="0" x="130"  stroke="#000000" fill="#000000"/>
+<polygon points="20,1 20,398 328,398 328,1" stroke-width="2" stroke="#000000"  fill="none"/>
+</svg>
+</li>
+<li>
+<svg width="350" height="400">
+<rect  height="200" width="100" y="200" x="110"  stroke="#000000" fill="#000000"/> 
+<rect  height="40" width="120" y="160" x="100"  stroke="#000000" fill="#000000"/>
+<rect  height="50" width="20" y="130" x="80"  stroke="#000000" fill="#000000"/>
+<rect  height="50" width="20" y="130" x="220"  stroke="#000000" fill="#000000"/>
+<rect  height="50" width="15" y="80" x="65"  stroke="#000000" fill="#000000"/>
+<rect  height="50" width="15" y="80" x="240"  stroke="#000000" fill="#000000"/>
+<rect  height="30" width="30" y="130" x="145"  stroke="#000000" fill="#000000"/>
+<rect  height="50" width="80" y="80" x="120"  stroke="#000000" fill="#000000"/>
+<rect  height="15" width="30" y="65" x="35"  stroke="#000000" fill="#000000"/>
+<rect  height="15" width="30" y="65" x="255"  stroke="#000000" fill="#000000"/>
+<rect  height="15" width="280" y="50" x="20"  stroke="#000000" fill="#000000"/>
+<rect  height="15" width="15" y="35" x="35"  stroke="#000000" fill="#000000"/>
+<rect  height="15" width="15" y="35" x="270"  stroke="#000000" fill="#000000"/>
+<rect  height="100" width="30" y="300" x="145"  stroke="#000000" fill="white"/>
+<rect  height="15" width="15" y="385" x="95"  stroke="#000000" fill="#000000"/>
+<rect  height="15" width="15" y="385" x="210"  stroke="#000000" fill="#000000"/>
+<polygon points="19,1 19,399 300,399 300,1" stroke-width="2" stroke="#000000"  fill="none"/>
+</svg> 
+</li>
+<li>
+<svg width="370" height="400">
+  <rect height="98" width="103" y="7" x="165" stroke="#000000" fill="#000000"/>
+  <rect height="14" width="51" y="104" x="189" stroke="#000000" fill="#000000"/>
+  <rect height="27" width="202" y="118" x="115" stroke="#000000" fill="#000000"/>
+  <rect height="135" width="129" y="145" x="149" stroke="#000000" fill="#000000"/>
+  <rect height="134" width="20" y="144" x="115" stroke="#000000" fill="#000000"/>
+  <rect height="134" width="22" y="144" x="295" stroke="#000000" fill="#000000"/>
+  <rect height="94" width="33" y="280" x="166" stroke="#000000" fill="#000000"/>
+  <rect height="94" width="29" y="280" x="238" stroke="#000000" fill="#000000"/>
+  <rect height="25" width="127" y="373" x="152" stroke="#000000" fill="#000000"/>
+   <polygon points="19,1 19,399 335,399 335,1" stroke-width="2" stroke="#000000"  fill="none"/>
+</svg>
+</li>
+<li>
+<svg width="350" height="350">
+<rect height="20" width="300" y="140" x="40"  stroke="#000000" fill="#000000"/>
+<rect height="20" width="240" y="160" x="60"  stroke="#000000" fill="#000000"/>
+<rect height="20" width="280" y="120" x="60"  stroke="#000000" fill="#000000"/>
+<rect height="20" width="140" y="100" x="140"  stroke="#000000" fill="#000000"/>
+<rect height="20" width="140" y="180" x="140"  stroke="#000000" fill="#000000"/>
+<rect height="20" width="120" y="80" x="160"  stroke="#000000" fill="#000000"/>
+<rect height="20" width="120" y="200" x="160"  stroke="#000000" fill="#000000"/>
+<rect height="20" width="80" y="60" x="200"  stroke="#000000" fill="#000000"/>
+<rect height="20" width="80" y="220" x="200"  stroke="#000000" fill="#000000"/>
+<rect height="20" width="40" y="40" x="240"  stroke="#000000" fill="#000000"/>
+<rect height="20" width="40" y="240" x="240"  stroke="#000000" fill="#000000"/>
+<rect height="20" width="20" y="20" x="260"  stroke="#000000" fill="#000000"/>
+<rect height="20" width="20" y="260" x="260"  stroke="#000000" fill="#000000"/>
+<rect height="20" width="20" y="100" x="300"  stroke="#000000" fill="#000000"/>
+<rect height="80" width="20" y="50" x="320"  stroke="#000000" fill="#000000"/>
+<polygon points="19,1 19,349 349,349 349,1" stroke-width="2" stroke="#000000"  fill="none"/>
+</svg> 
+</li>
+<li>
+<svg width="300" height="300">
+ <rect height="20" width="240" y="280" x="30"  stroke="#000000" fill="#000000"/>
+<rect height="20" width="100" y="260" x="100"  stroke="#000000" fill="#000000"/> 
+<rect height="150" width="150" y="110" x="75"  stroke="#000000" fill="#000000"/>
+<rect height="20" width="20" y="90" x="110"  stroke="#000000" fill="#000000"/>
+<rect height="20" width="20" y="70" x="130"  stroke="#000000" fill="#000000"/>
+<rect height="20" width="20" y="50" x="110"  stroke="#000000" fill="#000000"/>
+<rect height="40" width="20" y="10" x="130"  stroke="#000000" fill="#000000"/>
+<rect height="20" width="20" y="90" x="110"  stroke="#000000" fill="#000000"/>
+<rect height="20" width="20" y="70" x="190"  stroke="#000000" fill="#000000"/>
+<rect height="20" width="20" y="50" x="170"  stroke="#000000" fill="#000000"/>
+<rect height="40" width="20" y="10" x="190"  stroke="#000000" fill="#000000"/>
+<rect height="20" width="40" y="130" x="225"  stroke="#000000" fill="#000000"/>
+<rect height="60" width="20" y="150" x="245"  stroke="#000000" fill="#000000"/>
+<rect height="20" width="20" y="210" x="225"  stroke="#000000" fill="#000000"/>
+<rect height="20" width="20" y="90" x="170"  stroke="#000000" fill="#000000"/>
+<polygon points="19,1 19,299 299,299 299,1" stroke-width="2" stroke="#000000"  fill="none"/>
+</svg>
+</li>
+<li>
+<svg width="450" height="250">
+<rect  height="20" width="280" y="100" x="100"  stroke="#000000" fill="#000000"/> 
+<rect  height="20" width="20" y="120" x="80"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="120" x="380"  stroke="#000000" fill="#000000"/>
+<rect  height="60" width="100" y="41" x="140"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="150" y="60" x="240"  stroke="#000000" fill="#000000"/>
+<rect  height="11" width="21" y="40" x="139"  stroke="white" fill="white"/>
+<line x1="60" x2="360" y1="150" y2="150" stroke-dasharray="20" stroke-width="20" stroke="#000000" fill="none"/>
+<line x1="80" x2="380" y1="170" y2="170" stroke-dasharray="20" stroke-width="20" stroke="#000000" fill="none"/>
+<line x1="120" x2="340" y1="210" y2="210" stroke-dasharray="20" stroke-width="20" stroke="#000000" fill="none"/>
+<rect  height="20" width="20" y="180" x="100"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="180" x="340"  stroke="#000000" fill="#000000"/>
+<polygon points="39,1 39,249 409,249 409,1" stroke-width="2" stroke="#000000"  fill="none"/>
+</svg>
+</li>
+<li>
+<svg width="200" height="300">
+ <rect  height="300" width="20" y="0" x="100"  stroke="#000000" fill="#000000"/> 
+<rect  height="20" width="20" y="0" x="120"  stroke="#000000" fill="#000000"/>
+<rect  height="40" width="20" y="20" x="140"  stroke="#000000" fill="#000000"/> 
+<rect  height="20" width="20" y="60" x="120"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="80" x="80"  stroke="#000000" fill="#000000"/> 
+<rect  height="20" width="20" y="100" x="60"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="120" x="40"  stroke="#000000" fill="#000000"/> 
+<rect  height="60" width="20" y="140" x="20"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="40" y="200" x="40"  stroke="#000000" fill="#000000"/> 
+<rect  height="20" width="60" y="220" x="80"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="40" y="200" x="140"  stroke="#000000" fill="#000000"/> 
+<rect  height="40" width="20" y="160" x="180"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="40" y="140" x="140"  stroke="#000000" fill="#000000"/> 
+<rect  height="20" width="80" y="120" x="80"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="140" x="60"  stroke="#000000" fill="#000000"/> 
+<rect  height="30" width="60" y="160" x="80"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="280" x="80"  stroke="#000000" fill="#000000"/> 
+<rect  height="20" width="20" y="260" x="60"  stroke="#000000" fill="#000000"/>
+<polygon points="20,1 20,299 199,299 199,1" stroke-width="2" stroke="#000000"  fill="none"/>
+</svg>
+</li>
+<li>
+<svg width="450" height="300">
+<rect  height="20" width="350" y="50" x="40"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="350" y="280" x="40"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="40" y="70" x="40"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="60" y="70" x="330"  stroke="#000000" fill="#000000"/>
+<rect  height="250" width="20" y="50" x="40"  stroke="#000000" fill="#000000"/>
+<rect  height="250" width="20" y="50" x="370"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="90" x="350"  stroke="#000000" fill="#000000"/>
+<rect  height="170" width="200" y="90" x="100"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="60" y="70" x="170"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="60" y="260" x="170"  stroke="#000000" fill="#000000"/>
+<rect  height="130" width="240" y="110" x="80"  stroke="#000000" fill="#000000"/>
+<rect  height="40" width="40" y="20" x="40"  stroke="#000000" fill="#000000"/>
+<rect  height="60" width="100" y="0" x="150"  stroke="#000000" fill="#000000"/>
+<rect  height="60" width="20" y="0" x="310"  stroke="#000000" fill="#000000"/>
+<rect  height="40" width="20" y="20" x="110"  stroke="#000000" fill="#000000"/>
+<polygon points="20,1 20,299 399,299 399,1" stroke-width="2" stroke="#000000"  fill="none"/>
+</svg>
+</li>
+<li>
+<svg width="300" height="250">
+<rect  height="100" width="70" y="60" x="55"  stroke="#000000" fill="#000000"/>
+<rect  height="10" width="20" y="81" x="65"  stroke="white" fill="white"/>
+<rect  height="10" width="20" y="81" x="95"  stroke="white" fill="white"/>
+<rect  height="30" width="10" y="91" x="85"  stroke="white" fill="white"/>
+<rect  height="10" width="50" y="151" x="65"  stroke="white" fill="white"/>
+<rect  height="10" width="10" y="141" x="65"  stroke="white" fill="white"/>
+<rect  height="10" width="10" y="141" x="105"  stroke="white" fill="white"/>
+<rect  height="10" width="10" y="160" x="65"  stroke="#000000" fill="#000000"/>
+<rect  height="10" width="10" y="160" x="105"  stroke="#000000" fill="#000000"/>
+<rect  height="10" width="30" y="170" x="75"  stroke="#000000" fill="#000000"/>
+<rect  height="30" width="10" y="30" x="55"  stroke="#000000" fill="#000000"/>
+<rect  height="30" width="10" y="30" x="115"  stroke="#000000" fill="#000000"/>
+<rect  height="100" width="70" y="100" x="150"  stroke="#000000" fill="#000000"/>
+<rect  height="30" width="10" y="70" x="150"  stroke="#000000" fill="#000000"/>
+<rect  height="30" width="10" y="70" x="210"  stroke="#000000" fill="#000000"/>
+<rect  height="10" width="20" y="119" x="160"  stroke="white" fill="white"/>
+<rect  height="10" width="20" y="119" x="190"  stroke="white" fill="white"/>
+<rect  height="30" width="10" y="129" x="180"  stroke="white" fill="white"/>
+<rect  height="10" width="50" y="189" x="160"  stroke="white" fill="white"/>
+<rect  height="10" width="30" y="179" x="170"  stroke="white" fill="white"/>
+<rect  height="10" width="10" y="190" x="180"  stroke="#000000" fill="#000000"/>
+<rect  height="10" width="50" y="200" x="160"  stroke="#000000" fill="#000000"/>
+<rect  height="10" width="30" y="210" x="170"  stroke="#000000" fill="#000000"/>
+ <polygon points="20,1 20,249 249,249 249,1" stroke-width="2" stroke="#000000"  fill="none"/>
+</svg> 
+</li>
+<li>
+<svg width="350" height="200">
+ <rect  height="20" width="240" y="160" x="60"  stroke="#000000" fill="#000000"/> 
+ <rect  height="20" width="280" y="140" x="40"  stroke="#000000" fill="#000000"/>
+ <rect  height="20" width="100" y="120" x="240"  stroke="#000000" fill="#000000"/> 
+<rect  height="20" width="100" y="120" x="80"  stroke="#000000" fill="#000000"/>
+  <rect  height="20" width="20" y="120" x="100"  stroke="#000000" fill="white"/> 
+<rect  height="20" width="20" y="120" x="140"  stroke="#000000" fill="white"/>
+  <rect  height="20" width="140" y="100" x="60"  stroke="#000000" fill="#000000"/> 
+<rect  height="60" width="20" y="40" x="100"  stroke="#000000" fill="#000000"/>
+ <rect  height="60" width="40" y="40" x="140"  stroke="#000000" fill="#000000"/> 
+ <polygon points="20,1 20,199 349,199 349,1" stroke-width="2" stroke="#000000"  fill="none"/>
+</svg>
+</li>
+<li>
+<svg width="390" height="400">
+<rect  height="400" width="20" y="0" x="180"  stroke="#000000" fill="#000000"/> 
+<rect  height="20" width="260" y="110" x="60"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="220" y="90" x="80"  stroke="#000000" fill="#000000"/>
+<rect  height="40" width="180" y="50" x="100"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="100" y="30" x="140"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="130" x="40"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="130" x="320"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="130" x="120"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="130" x="240"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="40" y="380" x="200"  stroke="#000000" fill="#000000"/>
+<rect  height="40" width="20" y="340" x="220"  stroke="#000000" fill="#000000"/>
+ <polygon points="20,1 20,399 349,399 349,1" stroke-width="2" stroke="#000000"  fill="none"/>
+ </svg>
+</li>
+<li>
+<svg width="350" height="400">
+
+<rect  height="200" width="20" y="200" x="130"  stroke="#000000" fill="#000000"/> 
+<rect  height="200" width="20" y="200" x="170"  stroke="#000000" fill="#000000"/>
+<rect  height="60" width="280" y="240" x="20"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="240" y="220" x="40"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="160" y="200" x="80"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="120" y="180" x="100"  stroke="#000000" fill="#000000"/>
+<rect  height="40" width="200" y="140" x="60"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="180" x="40"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="180" x="260"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="160" y="120" x="80"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="100" x="150"  stroke="#000000" fill="#000000"/>
+<rect  height="80" width="80" y="20" x="120"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="280" x="150"  stroke="#FFFFFF" fill="white"/>
+ <polygon points="20,1 20,399 299,399 299,1" stroke-width="2" stroke="#000000"  fill="none"/>
+
+</svg>
+</li>
+<li>
+<svg width="350" height="300">
+ 
+  <rect  height="120" width="20" y="0" x="140"  stroke="#000000" fill="#000000"/> 
+<rect  height="200" width="20" y="20" x="120"  stroke="#000000" fill="#000000"/>
+<rect  height="240" width="20" y="40" x="100"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="280" x="120"  stroke="#000000" fill="#000000"/>
+<rect  height="100" width="20" y="80" x="80"  stroke="#000000" fill="#000000"/>
+<rect  height="120" width="20" y="100" x="60"  stroke="#000000" fill="#000000"/>
+<rect  height="100" width="20" y="180" x="40"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="280" x="60"  stroke="#000000" fill="#000000"/>
+<rect  height="40" width="20" y="120" x="40"  stroke="#000000" fill="#000000"/>
+<rect  height="140" width="20" y="0" x="20"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="40" y="0" x="40"  stroke="#000000" fill="#000000"/>
+<rect  height="160" width="20" y="20" x="160"  stroke="#000000" fill="#000000"/>
+<rect  height="180" width="20" y="40" x="180"  stroke="#000000" fill="#000000"/>
+<rect  height="60" width="20" y="220" x="200"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="280" x="220"  stroke="#000000" fill="#000000"/>
+<rect  height="100" width="20" y="80" x="200"  stroke="#000000" fill="#000000"/>
+<rect  height="40" width="20" y="160" x="220"  stroke="#000000" fill="#000000"/>
+<rect  height="60" width="20" y="200" x="240"  stroke="#000000" fill="#000000"/>
+<rect  height="40" width="20" y="260" x="260"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="100" x="220"  stroke="#000000" fill="#000000"/>
+<rect  height="80" width="100" y="40" x="240"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="60" y="120" x="260"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="140" x="280"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="20" x="260"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="20" x="300"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="0" x="240"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="0" x="320"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="60" x="260"  stroke="#000000" fill="white"/>
+<rect  height="20" width="20" y="60" x="300"  stroke="#000000" fill="white"/>
+<rect  height="20" width="20" y="100" x="280"  stroke="#000000" fill="white"/>
+ <polygon points="20,1 20,299 349,299 349,1" stroke-width="2" stroke="#000000"  fill="none"/>
+</svg>
+</li>
+<li>
+<svg width="350" height="300">
+ 
+<rect  height="100" width="160" y="120" x="120"  stroke="#000000" fill="#000000"/> 
+<rect  height="40" width="80" y="100" x="40"  stroke="#000000" fill="#000000"/>
+<rect  height="60" width="60" y="60" x="120"  stroke="#000000" fill="#000000"/> 
+<rect  height="60" width="60" y="20" x="100"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="80" x="80"  stroke="#000000" fill="#000000"/> 
+<rect  height="20" width="40" y="20" x="160"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="120" x="280"  stroke="#000000" fill="#000000"/> 
+<rect  height="20" width="20" y="100" x="300"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="80" x="320"  stroke="#000000" fill="#000000"/> 
+<rect  height="20" width="20" y="60" x="300"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="40" x="280"  stroke="#000000" fill="#000000"/> 
+<rect  height="20" width="20" y="200" x="280"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="220" x="300"  stroke="#000000" fill="#000000"/> 
+<rect  height="40" width="20" y="240" x="320"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="40" y="220" x="240"  stroke="#000000" fill="#000000"/> 
+<rect  height="20" width="20" y="240" x="260"  stroke="#000000" fill="#000000"/>
+<rect  height="40" width="20" y="260" x="280"  stroke="#000000" fill="#000000"/> 
+<rect  height="20" width="20" y="220" x="120"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="240" x="100"  stroke="#000000" fill="#000000"/> 
+<rect  height="20" width="20" y="260" x="80"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="280" x="60"  stroke="#000000" fill="#000000"/> 
+<rect  height="20" width="20" y="220" x="180"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="240" x="160"  stroke="#000000" fill="#000000"/> 
+<rect  height="20" width="20" y="260" x="140"  stroke="#000000" fill="#000000"/>
+<rect  height="20" width="20" y="280" x="120"  stroke="#000000" fill="#000000"/>
+<polygon points="20,1 20,299 349,299 349,1" stroke-width="2" stroke="#000000"  fill="none"/> 
+</svg>
+</li>
+</ol>
+Получить на экране фигуры по шаблонам, приведенным на рис. 5.7, a-p.</li>
+<li>Составить шаблоны рукописных букв от а до я. Используя эти шаблоны, выполнить подрисуночные подписи к фигурам предыдущей задачи и фигурам задачи 129. (Шаблон рукописной буквы г см. на рис. 5.8).<br/>
+
+<svg width="300" height="200">
+  <polygon points="1,1 1,160 150,160 150,1" stroke="#000000"  fill="none"/>
+  <polygon points="0,60 20,60 20,40 0,40" stroke="#000000"  fill="#000000"/>
+  <polygon points="20,20 20,40 40,40 40,20" stroke="#000000"  fill="#000000"/>
+  <polygon points="40,0 80,0 80,20 40,20" stroke="#000000"  fill="#000000"/>
+  <polygon points="80,20 100,20 100,40 80,40" stroke="#000000"  fill="#000000"/>
+  <polygon points="60,40 80,40 80,80 60,80" stroke="#000000"  fill="#000000"/>
+  <polygon points="40,80 60,80 60,120 40,120" stroke="#000000"  fill="#000000"/>
+  <polygon points="20,120 40,120 40,140 20,140" stroke="#000000"  fill="#000000"/>
+  <polygon points="40,140 80,140 80,160 40,160" stroke="#000000"  fill="#000000"/>
+  <polygon points="80,140 100,140 100,120 80,120" stroke="#000000"  fill="#000000"/>
+  <polygon points="100,120 120,120 120,100 100,100" stroke="#000000"  fill="#000000"/>
+  <text y="200" x="30">Рис. 5.8</text>
+</svg>
+
+</li>
+<li>Дано натуральное число n (n &lt;=999999). Записать его шестью цифрами, используя девятисегментный шаблон (как на почтовых конвертах).</li>
+
+<li>Получить на экране рис.14 и обеспечить возможнность "зажигать" и "гасить" нарисованную лампочку: включение и выключение лампочки должно выполняться с клавиатуры, спираль зажженной и погашенной лампочек окрашивается в разные цвета.
+<svg width="240" height="320">
+ <g>
+  <polygon points="100,20 180,20 180,80 100,80" stroke="#000000" fill="#7f7f7f"/>
+  <line x1="100" y1="80" x2="100" y2="150" stroke="#000000"/>
+  <line x1="180" y1="80" x2="180" y2="150" stroke="#000000"/>
+  <path d="M100,150 A75,75 0 1,0 180,150" stroke="#000000"  fill="none"/>
+  <line x1="120" y1="80" x2="120" y2="170" stroke="#000000"/>
+  <line x1="160" y1="80" x2="160" y2="170" stroke="#000000"/>
+  <path d="M120,170 A50,50 0 0,0 100,220" stroke="#000000"  fill="none"/>
+  <path d="M160,170 A50,50 0 0,1 180,220" stroke="#000000"  fill="none"/>
+  <path d="M100,220 A13,20 0 1,1 127,220" stroke="#000000"  fill="none"/>
+  <path d="M127,220 A13,20 0 1,1 154,220" stroke="#000000"  fill="none"/>
+  <path d="M154,220 A13,20 0 1,1 180,220" stroke="#000000"  fill="none"/>
+  <text font-size="24" y="320" x="95">Рис. 14</text>
+ </g>
+
+</svg>
+
+</li>
+
+<li>Получить на экране рис.15 и обеспечить возможность "зажигать" и "гасить" свет в доме: включение и выключение света должно выполняться с клавиатуры, окно дома при зажженном и при погащенном свете окрашивается в разные цвета. 
+<svg width="250" height="350">
+ <g>
+<polygon points="10,100 210,100 210,300 10,300" stroke="#000000"  fill="none"/>
+<polyline points="220,108 110,10 0,108" stroke="#000000"  fill="none"/>
+<polygon points="40,150 110,150 110,220 40,220" stroke="#000000"  fill="none"/>
+<polyline points="200,300 200,150 130,150 130,300" stroke="#000000"  fill="none"/>
+<line x1="40" x2="110" y1="170" y2="170" stroke="#000000"  fill="none"/>
+<line x1="75" x2="75" y1="170" y2="220" stroke="#000000"  fill="none"/>
+<text font-size="24" y="340" x="80">Рис. 15</text>
+ </g>
+</svg></li>
+<li>Получить на экране изображение действующих электронных часов, показывающих текущее время. Шаблоны используемых цифр должны соответствовать обычному для электронных часов семисегментному шаблону.</li>
+</ol>
+</body>
+</html>

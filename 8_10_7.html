@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<link rel='stylesheet' type='text/css' href='style.css' />
+<meta name='author' content='leonid' />
+<title>Быстрая сортировка</title>
+<script type="text/javascript">
+function sort_nerec() {
+	var win=open("", "newWindow"),  html, head, title, body, h2, p,  str='', n=10, mass_a=[], stack_l=[], stack_r=[], j, l, r, w, x, k, ind_bar, s='', len;
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Быстрая сортировка";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h2=document.createElement("h2");
+	h2.textContent="Быстрая сортировка";
+	body.appendChild(h2);
+	for (i=0; i<n; i++) {
+		mass_a[i]=Math.round(Math.random()*100);
+		str=str+mass_a[i]+' ';
+	}
+	p=document.createElement("p");
+	p.textContent='Исходный массив: '+str;
+	body.appendChild(p);	
+	stack_l.push(0);
+	stack_r.push(n-1);
+	do {
+		len=stack_l.length-1;
+		l=stack_l[len];
+		r=stack_r[len];
+		stack_l.pop();
+		stack_r.pop();
+		len=stack_l.length-1;
+		s='Стек: ';
+		for (i=0; i<=len; i++) {
+			s=s+'['+stack_l[i]+', '+stack_r[i]+']';		
+		}
+		p=document.createElement("p");
+		p.textContent=s;
+		body.appendChild(p);
+		s='';
+		do {
+			i=l;
+			j=r;
+			ind_bar=(l+r-(l+r)%2)/2;
+			x=mass_a[ind_bar];
+			s='Массив: ';
+			for (k=l; k<=r; k++) {
+				s=s+mass_a[k]+' ';		
+			}
+			s=s+', барьер a['+ind_bar+']='+x+'. ';
+			p=document.createElement("p");
+			p.textContent=s;
+			s='';				
+			body.appendChild(p);					
+			do {
+				while (mass_a[i]<x){
+					i++;		
+				}
+				while (mass_a[j]>x){
+					j--;		
+				}
+				if (i<=j) {
+					s=s+mass_a[i]+' <---> '+ mass_a[j];
+					p=document.createElement("p");
+					p.textContent=s;
+					body.appendChild(p);		
+					s='Массив: ';	
+					w=mass_a[i];
+					mass_a[i]=mass_a[j];
+					mass_a[j]=w;
+					i++;
+					j--;
+					for (k=l; k<=r; k++) {
+						s=s+mass_a[k]+' ';		
+					}
+					p=document.createElement("p");
+					p.textContent=s;
+					body.appendChild(p);						
+					s='';	
+				}				
+			} while (i<j);
+			if (i<r) {
+				stack_l.push(i);
+				stack_r.push(r);
+				len=stack_l.length-1;
+				s='Стек: ';
+				for (i=0; i<=len; i++) {
+					s=s+'['+stack_l[i]+', '+stack_r[i]+']';		
+				}
+				p=document.createElement("p");
+				p.textContent=s;
+				body.appendChild(p);
+				s='';				
+			}
+			r=j;
+		} while (l<r);
+		
+	} while (len>=0);
+	str='';
+	for (i=0; i<n; i++) {
+		str=str+mass_a[i]+' ';
+	}
+	p=document.createElement("p");	
+	p.textContent='Отсортированный массив: '+str;	
+	body.appendChild(p);
+	win.document.close();
+}
+
+function analis_nerec(n) {
+	var win=open("", "newWindow"),  html, head, title, body, h2, p, mass_a=[], stack_l=[], stack_r=[], j, l, r, w, x, ind_bar, kol_obmen=0, len, max_len=1, comp=0, tt_n, t_n, tt_k, t_k;
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Оценка вычислительной сложности алгоритма нерекурсивной быстрой сортировки";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h2=document.createElement("h2");
+	h2.textContent="Оценка вычислительной сложности алгоритма нерекурсивной быстрой сортировки";
+	body.appendChild(h2);
+	if (n<10) {
+		n=10;	
+	}
+	for (i=0; i<n; i++) {
+		mass_a[i]=Math.round(Math.random()*100);
+	}
+	p=document.createElement("p");
+	p.textContent='Массив из '+n+' элементов.';
+	body.appendChild(p);	
+	t_n= new Date();
+	tt_n=t_n.valueOf();	
+	stack_l.push(0);
+	stack_r.push(n-1);
+	do {
+		len=stack_l.length-1;
+		l=stack_l[len];
+		r=stack_r[len];
+		stack_l.pop();
+		stack_r.pop();
+		len=stack_l.length-1;
+		do {
+			i=l;
+			j=r;
+			ind_bar=(l+r-(l+r)%2)/2;
+			x=mass_a[ind_bar];
+			do {
+				while (mass_a[i]<x){
+					i++;
+					comp++;
+				}
+				while (mass_a[j]>x){
+					j--;	
+					comp++;	
+				}
+				if (i<=j) {
+					kol_obmen++;
+					w=mass_a[i];
+					mass_a[i]=mass_a[j];
+					mass_a[j]=w;
+					i++;
+					j--;
+				}				
+			} while (i<j);
+			if (i<r) {
+				stack_l.push(i);
+				stack_r.push(r);
+				len=stack_l.length-1;
+				if (len>max_len) {
+					max_len=len;		
+				}
+				comp++;
+			}
+			r=j;
+		} while (l<r);
+	} while (len>=0);
+	t_k= new Date();
+	tt_k=t_k.valueOf();	
+	max_len++;
+	p=document.createElement("p");	
+	p.textContent='Потребовалось операций обмена '+kol_obmen+ '.';	
+	body.appendChild(p);
+	p=document.createElement("p");	
+	p.textContent='Максимальное количество узлов в стеке '+max_len+ '.';	
+	body.appendChild(p);
+	p=document.createElement("p");
+	p.textContent='Потребовалось операций сравнения: '+' '+ comp + '.';
+	body.appendChild(p);
+	i=comp/(n*Math.LOG2E*Math.log(n));
+	p.textContent='Оценка количества операций сравнения: '+i.toPrecision(4)+'*'+n+'*ln('+n+').';	
+	body.appendChild(p);			
+	p=document.createElement("p");
+	i=(3*kol_obmen)/(n*Math.LOG2E*Math.log(n));	
+	p.textContent='Оценка количества операций присваивания: '+i.toPrecision(4)+'*'+n+'*ln('+n+').';	
+	body.appendChild(p);	
+	p=document.createElement("p");
+	i=tt_k.valueOf()-tt_n.valueOf();
+	p.textContent='Продолжительность сортировки t='+i+' миллисекунд.';
+	body.appendChild(p);		
+	win.document.close();
+}
+
+function sort_mass() {
+	var win=open("", "newWindow"),  html, head, title, body, h2, p,  str='', n=7, mass_a=[], mass_b=[];
+	function sorting(l, r) {
+		var i, j, w, x, k, ind_bar, s='';
+		i=l;
+		j=r;
+		ind_bar=(l+r-(l+r)%2)/2;
+		x=mass_a[ind_bar];
+		s='Массив: ';
+		for (k=l; k<=r; k++) {
+			s=s+mass_a[k]+' ';		
+		}
+		s=s+', барьер a['+ind_bar+']='+x+'. ';
+		mass_b.push(s);
+		s='';
+		do {
+			while (mass_a[i]<x){
+				i++;		
+			}
+			while (mass_a[j]>x){
+				j--;		
+			}
+			if (i<=j) {
+				s=s+mass_a[i]+' <---> '+mass_a[j];
+				mass_b.push(s);
+				s='';	
+				w=mass_a[i];
+				mass_a[i]=mass_a[j];
+				mass_a[j]=w;
+				i++;
+				j--;
+				for (k=l; k<=r; k++) {
+					s=s+mass_a[k]+' ';		
+				}
+				mass_b.push(s);
+				s='';	
+			}
+		} while (i<=j);
+		if (l<j) {
+			sorting(l,j);		
+		}
+		if (i<r) {
+			sorting(i,r)
+		}
+	}
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Быстрая сортировка";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h2=document.createElement("h2");
+	h2.textContent="Быстрая сортировка";
+	body.appendChild(h2);
+	p=document.createElement("p");
+	for (i=0; i<n; i++) {
+		mass_a[i]=Math.round(Math.random()*100);
+		str=str+mass_a[i]+' ';
+	}
+	p.textContent='Исходный массив: '+str;
+	body.appendChild(p);	
+	sorting(0, n-1);
+	for (i=0; i<mass_b.length; i++) {
+		p=document.createElement("p");
+		p.textContent=mass_b[i];
+		body.appendChild(p);	
+	}
+	str='';
+	for (i=0; i<n; i++) {
+		str=str+mass_a[i]+' ';
+	}
+	p=document.createElement("p");	
+	p.textContent='Отсортированный массив: '+str;	
+	body.appendChild(p);
+	win.document.close();
+}
+function analis_rec(n) {
+var win=open("", "newWindow"),  html, head, title, body, h2, p, mass_a=[], obmen=0, comp=0, tt_n, t_n, tt_k, t_k; 
+	function sorting(l, r) {
+		var i, j, w, x, k, ind_bar, s='';
+		i=l;
+		j=r;
+		ind_bar=(l+r-(l+r)%2)/2;
+		x=mass_a[ind_bar];
+		do {
+			while (mass_a[i]<x){
+				i++;
+				comp++;
+			}
+			while (mass_a[j]>x){
+				j--;
+				comp++;	
+			}
+			if (i<=j) {
+				w=mass_a[i];
+				mass_a[i]=mass_a[j];
+				mass_a[j]=w;
+				i++;
+				j--;
+				obmen++;
+			}
+		} while (i<=j);
+		if (l<j) {
+			sorting(l,j);		
+		}
+		if (i<r) {
+			sorting(i,r)
+		}
+	}
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Оценка вычислительной сложности алгоритма рекурсивной быстрой сортировки";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h2=document.createElement("h2");
+	h2.textContent="Оценка вычислительной сложности алгоритма рекурсивной быстрой сортировки";
+	body.appendChild(h2);
+	p=document.createElement("p");
+	if (n<10) {
+		n=10;	
+	}
+	for (i=0; i<n; i++) {
+		mass_a[i]=Math.round(Math.random()*100);
+	}
+	t_n= new Date();
+	tt_n=t_n.valueOf();	
+	p.textContent='Исходный массив из '+n + ' элементов.';
+	body.appendChild(p);	
+	sorting(0, n-1);
+	t_k= new Date();
+	tt_k=t_k.valueOf();	
+	p=document.createElement("p");
+	p.textContent='Потребовалось операций сравнения: '+' '+ comp + '.';
+	body.appendChild(p);
+	p=document.createElement("p");	
+	i=comp/(n*Math.LOG2E*Math.log(n));
+	p.textContent='Оценка количества операций сравнения: '+i.toPrecision(4)+'*'+n+'*ln('+n+').';	
+	body.appendChild(p);	
+	p=document.createElement("p");
+	p.textContent='Потребовалось операций обмена: '+' '+ obmen + '.';
+	body.appendChild(p);	
+	
+	p=document.createElement("p");	
+	i=(3*obmen)/(n*Math.LOG2E*Math.log(n));
+	p.textContent='Оценка количества операций присваивания: '+i.toPrecision(4)+'*'+n+'*ln('+n+').';	
+	body.appendChild(p);		
+	p=document.createElement("p");
+	i=tt_k.valueOf()-tt_n.valueOf();
+	p.textContent='Продолжительность сортировки t='+i+' миллисекунд.';
+	body.appendChild(p);		
+	win.document.close();
+}
+
+function analis_odn(n) {
+var win=open("", "newWindow"),  html, head, title, body, h2, p, mass_a=[], obmen=0, comp=0, tt_n, t_n, tt_k, t_k; 
+	function sorting(l, r) {
+		var i, j, w, x, k, ind_bar, s='';
+		i=l;
+		j=r;
+		ind_bar=(l+r-(l+r)%2)/2;
+		x=mass_a[ind_bar];
+		do {
+			while (mass_a[i]<x){
+				i++;
+			}
+			comp++;
+			while (mass_a[j]>x){
+				j--;
+			}
+			comp++;
+			if (i<=j) {
+				w=mass_a[i];
+				mass_a[i]=mass_a[j];
+				mass_a[j]=w;
+				i++;
+				j--;
+				obmen++;
+			}
+		} while (i<=j);
+		if (l<j) {
+			sorting(l,j);		
+		}
+		if (i<r) {
+			sorting(i,r)
+		}
+	}
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Оценка вычислительной сложности алгоритма рекурсивной быстрой сортировки массива из 1";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h2=document.createElement("h2");
+	h2.textContent="Оценка вычислительной сложности алгоритма рекурсивной быстрой сортировки массива из 1";
+	body.appendChild(h2);
+	p=document.createElement("p");
+	if (n<10) {
+		n=10;	
+	}
+	for (i=0; i<n; i++) {
+		mass_a[i]=1;
+	}
+	t_n= new Date();
+	tt_n=t_n.valueOf();	
+	p.textContent='Исходный массив из '+n + ' единиц.';
+	body.appendChild(p);	
+	sorting(0, n-1);
+	t_k= new Date();
+	tt_k=t_k.valueOf();	
+	p=document.createElement("p");
+	p.textContent='Потребовалось операций сравнения: '+' '+ comp + '.';
+	body.appendChild(p);
+	p=document.createElement("p");	
+	i=comp/(n*Math.LOG2E*Math.log(n));
+	p.textContent='Оценка количества операций сравнения: '+i.toPrecision(4)+'*'+n+'*ln('+n+').';	
+	body.appendChild(p);	
+	p=document.createElement("p");
+	p.textContent='Потребовалось операций обмена: '+' '+ obmen + '.';
+	body.appendChild(p);	
+	
+	p=document.createElement("p");	
+	i=(3*obmen)/(n*Math.LOG2E*Math.log(n));
+	p.textContent='Оценка количества операций присваивания: '+i.toPrecision(4)+'*'+n+'*ln('+n+').';	
+	body.appendChild(p);		
+	p=document.createElement("p");
+	i=tt_k.valueOf()-tt_n.valueOf();
+	p.textContent='Продолжительность сортировки t='+i+' миллисекунд.';
+	body.appendChild(p);		
+	win.document.close();
+}
+
+function analis_up(n) {
+var win=open("", "newWindow"),  html, head, title, body, h2, p, mass_a=[], obmen=0, comp=0, tt_n, t_n, tt_k, t_k; 
+	function sorting(l, r) {
+		var i, j, w, x, k, ind_bar, s='';
+		i=l;
+		j=r;
+		ind_bar=(l+r-(l+r)%2)/2;
+		x=mass_a[ind_bar];
+		do {
+			while (mass_a[i]<x){
+				i++;
+				comp++;
+			}
+			while (mass_a[j]>x){
+				j--;
+				comp++;	
+			}
+			if (i<=j) {
+				w=mass_a[i];
+				mass_a[i]=mass_a[j];
+				mass_a[j]=w;
+				i++;
+				j--;
+				obmen++;
+			}
+		} while (i<=j);
+		if (l<j) {
+			sorting(l,j);		
+		}
+		if (i<r) {
+			sorting(i,r)
+		}
+	}
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Оценка вычислительной сложности алгоритма рекурсивной быстрой сортировки упорядоченного массива";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h2=document.createElement("h2");
+	h2.textContent="Оценка вычислительной сложности алгоритма рекурсивной быстрой сортировки  упорядоченного массива";
+	body.appendChild(h2);
+	p=document.createElement("p");
+	if (n<10) {
+		n=10;	
+	}
+	for (i=0; i<n; i++) {
+		mass_a[i]=i;
+	}
+	t_n= new Date();
+	tt_n=t_n.valueOf();	
+	p.textContent='Исходный упорядоченный массив из '+n + ' элементов.';
+	body.appendChild(p);	
+	sorting(0, n-1);
+	t_k= new Date();
+	tt_k=t_k.valueOf();	
+	p=document.createElement("p");
+	p.textContent='Потребовалось операций сравнения: '+' '+ comp + '.';
+	body.appendChild(p);
+	p=document.createElement("p");	
+	i=comp/(n*Math.LOG2E*Math.log(n));
+	p.textContent='Оценка количества операций сравнения: '+i.toPrecision(4)+'*'+n+'*ln('+n+').';	
+	body.appendChild(p);	
+	p=document.createElement("p");
+	p.textContent='Потребовалось операций обмена: '+' '+ obmen + '.';
+	body.appendChild(p);	
+	
+	p=document.createElement("p");	
+	i=(3*obmen)/(n*Math.LOG2E*Math.log(n));
+	p.textContent='Оценка количества операций присваивания: '+i.toPrecision(4)+'*'+n+'*ln('+n+').';	
+	body.appendChild(p);		
+	p=document.createElement("p");
+	i=tt_k.valueOf()-tt_n.valueOf();
+	p.textContent='Продолжительность сортировки t='+i+' миллисекунд.';
+	body.appendChild(p);		
+	win.document.close();
+}
+
+function analis_obr(n) {
+var win=open("", "newWindow"),  html, head, title, body, h2, p, mass_a=[], obmen=0, comp=0, tt_n, t_n, tt_k, t_k; 
+	function sorting(l, r) {
+		var i, j, w, x, k, ind_bar, s='';
+		i=l;
+		j=r;
+		ind_bar=(l+r-(l+r)%2)/2;
+		x=mass_a[ind_bar];
+		do {
+			while (mass_a[i]<x){
+				i++;
+				comp++;
+			}
+			while (mass_a[j]>x){
+				j--;
+				comp++;	
+			}
+			if (i<=j) {
+				w=mass_a[i];
+				mass_a[i]=mass_a[j];
+				mass_a[j]=w;
+				i++;
+				j--;
+				obmen++;
+			}
+		} while (i<=j);
+		if (l<j) {
+			sorting(l,j);		
+		}
+		if (i<r) {
+			sorting(i,r)
+		}
+	}
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Оценка вычислительной сложности алгоритма рекурсивной быстрой сортировки массива  с обратным порядком";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h2=document.createElement("h2");
+	h2.textContent="Оценка вычислительной сложности алгоритма рекурсивной быстрой сортировки массива с обратным порядком";
+	body.appendChild(h2);
+	p=document.createElement("p");
+	if (n<10) {
+		n=10;	
+	}
+	for (i=0; i<n; i++) {
+		mass_a[i]=n-i;
+	}
+	t_n= new Date();
+	tt_n=t_n.valueOf();	
+	p.textContent='Исходный массив из '+n + ' элементов с обратным порядком.';
+	body.appendChild(p);	
+	sorting(0, n-1);
+	t_k= new Date();
+	tt_k=t_k.valueOf();	
+	p=document.createElement("p");
+	p.textContent='Потребовалось операций сравнения: '+' '+ comp + '.';
+	body.appendChild(p);
+	p=document.createElement("p");	
+	i=comp/(n*Math.LOG2E*Math.log(n));
+	p.textContent='Оценка количества операций сравнения: '+i.toPrecision(4)+'*'+n+'*ln('+n+').';	
+	body.appendChild(p);	
+	p=document.createElement("p");
+	p.textContent='Потребовалось операций обмена: '+' '+ obmen + '.';
+	body.appendChild(p);	
+	
+	p=document.createElement("p");	
+	i=(3*obmen)/(n*Math.LOG2E*Math.log(n));
+	p.textContent='Оценка количества операций присваивания: '+i.toPrecision(4)+'*'+n+'*ln('+n+').';	
+	body.appendChild(p);		
+	p=document.createElement("p");
+	i=tt_k.valueOf()-tt_n.valueOf();
+	p.textContent='Продолжительность сортировки t='+i+' миллисекунд.';
+	body.appendChild(p);		
+	win.document.close();
+}
+
+</script>
+
+</head>
+<body>
+<p><a href="8_10_6.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_10_8.html">К следующему</a> </p>
+<h2>8.10.7. Быстрая сортировка</h2>
+<p>Сортировка обменом (методом пузырька) оказался наименее эффективным из рассмотренных нами методов сортировки. Усовершенствованный же метод обмена, автором которого является К. Хоар, оказался настолько эффективным, что его назвали быстрой сортировкой. На сегодняшний день это один из самых быстрых алгоритмов сортировки. Идея быстрой сортировки основывается на том факте, что наибольший эффект достигается при обмене наиболее удаленных друг от друга элементов. Рассмотрим его подробнее.</p>
+<p>Пусть требуется отсортировать по возрастанию числовую последовательность 
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>a</mi><mn>0</mn></msub>
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>a</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub>		
+	</mfenced>
+	<mo>.</mo>
+</math>
+Случайным образом выбирается некоторый элемент <math><msub><mi>a</mi><mi>k</mi></msub><mo>=</mo><mi>x</mi></math> заданной последовательности в качестве барьера (можно взять <math><mi>k</mi><mo>=</mo><mfrac><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow><mn>2</mn></mfrac></math>). Последовательность пробегается слева направо и справа налево: элементы 
+<math>
+<msub><mi>a</mi><mi>i</mi></msub><mo>,</mo>
+	<mrow>
+		<mi>i</mi><mo>=</mo>
+		<mfenced open='' close=''><mn>0</mn><mn>1</mn><mi>&#133;</mi></mfenced>
+	</mrow>
+</math> и
+<math>
+<msub><mi>a</mi><mi>j</mi></msub><mo>,</mo>
+	<mrow>
+		<mi>j</mi><mo>=</mo>
+		<mfenced open='' close=''><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow><mrow><mi>n</mi><mo>-</mo><mn>2</mn></mrow><mi>&#133;</mi></mfenced>
+	</mrow>
+</math>
+сравниваются с барьером <math><mi>x</mi></math>; элементы
+<math><msub><mi>a</mi><mi>i</mi></msub></math> и 
+<math>
+	<msub><mi>a</mi><mi>j</mi></msub><mo>,</mo>
+</math> удовлетворяющие условиям
+<math>
+	<mrow>
+		<msub><mi>a</mi><mi>i</mi></msub><mo>&#8805;</mo><mi>x</mi>
+	</mrow>
+	<mo>,</mo>
+	<mrow>
+		<msub><mi>a</mi><mi>j</mi></msub><mo>&#8804;</mo><mi>x</mi>
+	</mrow>
+	<mo>,</mo>	
+	<mrow><mi>i</mi><mo>&#8804;</mo><mi>j</mi></mrow>
+	<mo>,</mo>
+</math> обмениваются местами. Замена условия обмена <math><mrow><mi>i</mi><mo>&#8804;</mo><mi>j</mi></mrow></math> на строгое неравенство <math><mrow><mi>i</mi><mo>&lt;</mo><mi>j</mi></mrow></math>, в попытке избежать лишней операции обмена совпадающих элементов, не оправдывает себя, так как приводит к необходимости использования дополнительных условий. 
+</p>
+<p>Проход последовательности завершается в том случае, когда правая граница левой подпоследовательности будет больше левой границы правой подпоследовательности (в терминах индексов при <math><mi>i</mi><mo>&gt;</mo><mi>j</mi></math> ).</p>
+<p>Затем последовательность разбивается на две подпоследовательности: левая подпоследовательность
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>a</mi><mn>0</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>a</mi><mi>j</mi></msub>		
+	</mfenced>
+	<mo>,</mo>
+</math> при условии <math><mi>j</mi><mo>&gt;</mo><mn>0</mn><mo>,</mo></math>
+и правая подпоследовательность
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>a</mi><mi>i</mi></msub>
+		<mi>&#133;</mi>
+		<msub><mi>a</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub>		
+	</mfenced>
+	<mo>,</mo>
+</math> при условии <math><mi>i</mi><mo>&lt;</mo><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></math>. К каждой последовательности применяется описанный выше процесс выбора барьерного элемента, прохода последовательности слева и справа с операциями сравнения элементов с барьером и, при выполнении необходимых условий, обмена.  
+</p>
+<p>Процесс разбиения последовательности на левую и правую подпоследовательности  выполняется до тех пор, пока каждая из них не будет состоять лишь из одного элемента. В результате заданная последовательность будет отсортирована.</p>
+<p>Ниже представлен сценарий рекурсивной сортировки массива псевдослучайных чисел:</p>
+<form id='f1'>
+<input type='button' value="Сортировать" onclick="sort_mass()" />
+</form>
+<p><a id='proc_sort'>Рекурсивная процедура быстрой сортировки может быть такой:</a></p>
+<code>
+<p class='ind2'>PROCEDURE sort( L, R: INTEGER );</p>
+<p class='ind3'>VAR  i, j, w, x: INTEGER;</p> 
+<p class='ind2'>BEGIN</p>
+<p class='ind3'>i := L;  j := R;</p>
+<p class='ind3'>x := a[(L+R) DIV 2];</p>
+<p class='ind3'>REPEAT</p>
+<p class='ind4'>WHILE a[i] &lt; x DO</p>  
+<p class='ind5'>INC(i);</p>
+<p class='ind4'>END;</p>
+<p class='ind4'>WHILE x &lt; a[j] DO</p>
+<p class='ind5'>DEC(j)</p>
+<p class='ind4'>END;</p>
+<p class='ind4'>IF  i &#8804; j THEN</p>
+<p class='ind5'>w := a[i];  a[i] := a[j];  a[j] := w;</p>
+<p class='ind5'>INC(i);  DEC(j)</p>
+<p class='ind4'>END</p>
+<p class='ind3'>UNTIL  i &gt; j;</p>
+<p class='ind3'>IF  L &lt; j  THEN</p>
+<p class='ind4'>sort(L, j)</p>
+<p class='ind3'>END;</p>
+<p class='ind3'>IF  i &lt; R  THEN</p>
+<p class='ind4'>sort(i, R)</p>
+<p class='ind3'>END</p>
+<p class='ind2'>END sort;</p>	
+</code>
+<p>Условие обмена <math><mi>i</mi><mo>&#8804;</mo><mi>j</mi></math> предполагает  выполнение лишней операции обмена элемента с самим собой (при <math><mi>i</mi><mo>=</mo><mi>j</mi></math>). Напрашивается изменение условия обмена на строгое неравенство <math><mi>i</mi><mo>&lt;</mo><mi>j</mi></math>, исключающее выполнение операции обмена, оставляющего элемент на месте. Но в этом случае необходимо наложение более затратных дополнительных условий на увеличение индекса <math><mi>i</mi></math> и уменьшение индекса <math><mi>j</mi></math>, без которых возможно зацикливание программы (см. <a href='#ex81072'>Пример 8.10.7.2</a>). Если же задать безусловное выполнение операции обмена, то возможен обмен элементов, уже находящихся в правильном порядке (см. <a href='#ex81073'>Пример 8.10.7.3</a>).</p>  
+<p><a id='ex81071'><span class="primer">Пример</span> 8.10.7.1. Рассмотрим алгоритм быстрой сортировки последовательности
+<math><mfenced open='' close=''><mn>7</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>7</mn></mfenced></math>.</a>
+</p>
+<p>Пусть барьером будет <math><msub><mi>a</mi><mn>2</mn></msub><mo>=</mo><mn>2</mn></math>. Проход слева направо начинается с <math><msub><mi>a</mi><mn>0</mn></msub></math> и останавливается на начальном элементе, поскольку он больше барьерного элемента и, следовательно, должен быть перенесен в правую часть последовательности.  
+</p>
+<p>Проход последовательности справа налево начинается с элемента
+<math><msub><mi>a</mi><mn>4</mn></msub><mo>=</mo><mn>7</mn></math> и останавливается на элементе <math><msub><mi>a</mi><mn>3</mn></msub></math>, меньшем барьерного элемента.  
+</p>
+<p>Элементы <math><msub><mi>a</mi><mn>0</mn></msub></math> и <math><msub><mi>a</mi><mn>3</mn></msub></math> переставляются:
+<math>
+	<mfenced open='' close=''>
+		<mn>1</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mn>7</mn><mo>,</mo><mn>7</mn>
+	</mfenced>
+</math>.
+</p>
+<p>После операции обмена проходы последовательности слева направо и справа налево продолжаются с <math><mi>i</mi><mo>=</mo><mn>1</mn></math> и <math><mi>j</mi><mo>=</mo><mn>2</mn></math> соответственно. Проход слева направо останавливается по достижению барьера <math><msub><mi>a</mi><mn>2</mn></msub><mo>=</mo><mn>2</mn></math>. Проход последовательности справа налево также останавливается на барьерном элементе.</p>
+<p>Выполняется (фактически ненужная) операция обмена элемента <math><msub><mi>a</mi><mn>2</mn></msub></math> с самим собой. Проходы слева направо и справа налево завершаются при <math><mi>i</mi><mo>=</mo><mn>3</mn></math> и <math><mi>j</mi><mo>=</mo><mn>1</mn></math>.</p>
+<p>Последовательность разбивается на две подпоследовательности: левая подпоследовательность 
+<math>
+	<mfenced open='' close=''>
+		<mn>1</mn><mo>,</mo><mn>1</mn>
+	</mfenced>
+</math>
+и правая подпоследовательность 
+<math>
+	<mfenced open='' close=''>
+		<mn>7</mn><mo>,</mo><mn>7</mn>
+	</mfenced>
+</math>.
+ </p>
+<p>Рассмотрим применение процедуры сортировки к левой подпоследовательности
+<math>
+	<mfenced open='' close=''>
+		<mn>1</mn><mo>,</mo><mn>1</mn>
+	</mfenced>
+</math>. Пусть барьерный элемент 
+<math><msub><mi>a</mi><mn>0</mn></msub><mo>=</mo><mn>1</mn></math>. Проход последовательности слева останавливается на этом барьерном элементе. Проход последовательности справа останавливается на элементе <math><msub><mi>a</mi><mn>1</mn></msub><mo>=</mo><mn>1</mn></math>. Поскольку индекс <math><mi>i</mi><mo>=</mo><mn>0</mn></math> меньше индекса <math><mi>j</mi><mo>=</mo><mn>1</mn></math>, то выполняется операция обмена элементов <math><msub><mi>a</mi><mn>0</mn></msub></math>  и <math><msub><mi>a</mi><mn>1</mn></msub></math>, увеличение индекса <math><mi>i</mi><mo>=</mo><mn>0</mn></math> на единицу и уменьшение индекса <math><mi>j</mi><mo>=</mo><mn>1</mn></math> на единицу. Левая граница <math><mi>L</mi><mo>=</mo><mn>0</mn></math> и индекс <math><mi>j</mi><mo>=</mo><mn>0</mn></math> совпадают, совпадают точно также правая граница
+<math><mi>R</mi><mo>=</mo><mn>1</mn></math> и индекс <math><mi>i</mi><mo>=</mo><mn>1</mn></math>. Поэтому последовательность 
+<math>
+	<mfenced open='' close=''>
+		<mn>1</mn><mo>,</mo><mn>1</mn>
+	</mfenced>
+</math> уже не разбивается на подпоследовательности, она уже упорядочена. Точно также упорядочивается правая подпоследовательность
+<math>
+	<mfenced open='' close=''>
+		<mn>7</mn><mo>,</mo><mn>7</mn>
+	</mfenced>
+</math>. 
+</p>
+<p>Следующие два примера демонстрируют последствия замены или отмены условия обмена элементов <math><mi>i</mi><mo>&#8804;</mo><mi>j</mi></math>.</p>
+<p><a id='ex81072'><span class="primer">Пример</span> 8.10.7.2. Применим процедуру <math><mi>sort</mi></math> с условием обмена элементов в виде строгого неравенства  <math><mi>i</mi><mo>&lt;</mo><mi>j</mi></math> к последовательности <math><mfenced open='' close=''><mn>1</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>1</mn></mfenced><mo>.</mo></math></a></p>
+<p><math><mi>i</mi><mo>=</mo><mn>0</mn><mo>,</mo><mi>j</mi><mo>=</mo><mn>2</mn><mo>,</mo></math> барьерный элемент <math><msub><mi>a</mi><mn>1</mn></msub><mo>=</mo><mn>1</mn><mo>.</mo></math> Так как <math><mi>i</mi><mo>&lt;</mo><mi>j</mi></math>, то выполняются обмен элементов <math><msub><mi>a</mi><mn>0</mn></msub></math> и <math><msub><mi>a</mi><mn>2</mn></msub></math> и изменение индексов: 
+<math><mi>i</mi><mo>=</mo><mn>1</mn><mo>,</mo><mi>j</mi><mo>=</mo><mn>1</mn><mo>.</mo></math> Далее индексы не изменяются, поскольку не выполняется ни одно из условий их изменения, т.е. происходит зацикливание (бесконечное выполнение цикла).</math>
+</p>
+<p><a id='ex81073'><span class="primer">Пример</span> 8.10.7.3. Попытаемся отсортировать последовательность
+<math>
+	<mfenced open='' close=''>
+		<mn>5</mn><mo>,</mo><mn>2</mn><mo>,</mo><mn>1</mn>
+	</mfenced>
+</math> 
+посредством модифицированной процедуры  <math><mi>sort</mi></math> с безусловной операцией обмена. Первая операция обмена элементов происходит при <math><mi>i</mi><mo>=</mo><mn>1</mn><mo>,</mo><mi>j</mi><mo>=</mo><mn>1</mn><mo>:</mo>
+	<mfenced open='' close=''>
+		<mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mn>5</mn>
+	</mfenced>
+	<mo>.</mo>
+</math>
+Затем изменяются индексы, <math><mi>i</mi><mo>=</mo><mn>2</mn><mo>,</mo><mi>j</mi><mo>=</mo><mn>0</mn><mo>,</mo></math> выполняется операция обмена элементов
+<math><msub><mi>a</mi><mn>2</mn></msub></math> и <math><msub><mi>a</mi><mn>0</mn></msub></math>, что возвращает исходную	последовательность
+<math>
+	<mfenced open='' close=''>
+		<mn>5</mn><mo>,</mo><mn>2</mn><mo>,</mo><mn>1</mn>
+	</mfenced>
+</math>. 
+</a>
+</p>
+<p><a id='module8_10_7_1'>Ниже представлен рекурсивный вариант реализации алгоритма быстрой сортировки последовательности:</a></p>
+<code>
+<p class='ind0'>MODULE sort_quick;</p>
+<p class='ind1'>IMPORT Log := StdLog, Ran:= i21eduRandom;</p>
+<p class='ind1'>CONST n=11;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>VAR a: ARRAY n OF INTEGER;</p> 
+<p class='ind3'>i, j, x: INTEGER;</p>
+<p class='ind2'>PROCEDURE sort( L, R: INTEGER );</p>
+<p class='ind3'>VAR  i, j, w, x: INTEGER;</p> 
+<p class='ind2'>BEGIN</p>
+<p class='ind3'>i := L;  j := R;</p>
+<p class='ind3'>x := a[(L+R) DIV 2];</p>
+<p class='ind3'>REPEAT</p>
+<p class='ind4'>WHILE a[i] &lt; x DO</p>  
+<p class='ind5'>INC(i);</p>
+<p class='ind4'>END;</p>
+<p class='ind4'>WHILE x &lt; a[j] DO</p>
+<p class='ind5'>DEC(j)</p>
+<p class='ind4'>END;</p>
+<p class='ind4'>IF  i &#8804; j THEN</p>
+<p class='ind5'>w := a[i];  a[i] := a[j];  a[j] := w;</p>
+<p class='ind5'>INC(i);  DEC(j)</p>
+<p class='ind4'>END</p>
+<p class='ind3'>UNTIL  i &gt; j;</p>
+<p class='ind3'>IF  L &lt; j  THEN</p>
+<p class='ind4'>sort(L, j)</p>
+<p class='ind3'>END;</p>
+<p class='ind3'>IF  i &lt; R  THEN</p>
+<p class='ind4'>sort(i, R)</p>
+<p class='ind3'>END</p>
+<p class='ind2'>END sort;</p>	
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>Log.String('Исходная последовательность: ');</p>
+<p class='ind2'>FOR  i:=0  TO n-1  DO</p>
+<p class='ind3'>a[i]:=Ran.Int(45);</p>
+<p class='ind3'>Log.Int(a[i]);</p>
+<p class='ind3'>Log.Char(',');</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>Log.Ln;</p>
+<p class='ind2'>sort(0, n-1);</p>
+<p class='ind2'>Log.String('Отсортированная последовательность: ');</p>
+<p class='ind2'>FOR  i:=0  TO n-1 DO</p>
+<p class='ind3'>Log.Int(a[i]);</p>
+<p class='ind3'>Log.Char(',');</p>
+<p class='ind2'>END;</p>
+<p class='ind1'>END do;</p>
+<p class='ind0'>END sort_quick.</p>
+sort_quick.do
+</code>
+<p>Рекурсивное исполнение программы требует значительных ресурсов компьютера. Поэтому имеет смысл рассмотреть идею нерекурсивной реализации алгоритма быстрой сортировки. После каждого разбиения последовательности на левую и правую подпоследовательности в стек заносятся границы правой подпоследовательности, а к левой подпоследовательности опять применяется механизм разбиения на левую и правую подпоследовательности. Как только будет упорядочена самая левая подпоследовательность, из стека извлекается последняя занесенная в нее запись с границами последовательности, к которой применяется процесс разделения на левую и правую части. И так до тех пор, пока не будут извлечены из стека все записи и не будет упорядочена исходная последовательность</p>
+<p>Ниже предлагается сценарий нерекурсивной реализации алгоритма быстрой сортировки последовательности 10 псевдослучайных чисел:
+<form id='f2'>
+<input type='button' value="Сортировать" onclick="sort_nerec()" />
+</form>
+
+</p>
+<p><a id='module8_10_7_2'>Нерекурсивный вариант реализации алгоритма быстрой сортировки:</a></p>
+<code>
+<p class='ind0'>MODULE sort_quick1;</p>
+<p class='ind1'>IMPORT  Log := StdLog,  Ran := i21eduRandom ;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>CONST n=15;</p>
+<p class='ind2'>VAR a: ARRAY n OF INTEGER;</p> 
+<p class='ind3'>i, j, x: INTEGER;</p>
+<p class='ind2'>PROCEDURE sort;</p>
+<p class='ind3'>CONST m=15;</p>
+<p class='ind3'>VAR  i, j, l, r, x, w, s: INTEGER;</p> 
+<p class='ind4'>stack: ARRAY m OF RECORD</p>
+<p class='ind6'>l, r: INTEGER;</p>
+<p class='ind5'>END;</p>
+<p class='ind2'>BEGIN</p>
+<p class='ind3'>s:=0;</p>
+<p class='ind3'>stack[s].l:=0;</p>
+<p class='ind3'>stack[s].r:=n-1;</p>
+<p class='ind3'>REPEAT</p>
+<p class='ind4'>l:=stack[s].l;</p>
+<p class='ind4'>r:=stack[s].r;</p>
+<p class='ind4'>DEC(s);</p>
+<p class='ind4'>REPEAT</p>
+<p class='ind5'>i:=l;</p>
+<p class='ind5'>j:=r;</p>
+<p class='ind5'>x := a[(l+r) DIV 2];</p>
+<p class='ind5'>REPEAT</p>
+<p class='ind6'>WHILE  a[i] &lt; x  DO INC(i) END;</p>
+<p class='ind6'>WHILE  x &lt; a[j]  DO DEC(j) END;</p>
+<p class='ind6'>IF  i &#8804; j  THEN</p>
+<p class='ind7'>w := a[i];</p>
+<p class='ind7'>a[i] := a[j];</p>
+<p class='ind7'>a[j] := w;</p>
+<p class='ind7'>INC(i);</p>
+<p class='ind7'>DEC(j)</p>
+<p class='ind6'>END</p>	
+<p class='ind5'>UNTIL i &lt; j;</p>
+<p class='ind5'>IF i &lt; r THEN</p>
+<p class='ind6'>INC(s);</p>
+<p class='ind6'>stack[s].l:=i;</p>
+<p class='ind6'>stack[s].r:=r</p>
+<p class='ind5'>END;</p>
+<p class='ind5'>r:=j</p>
+<p class='ind4'>UNTIL l &#8805; r;</p>
+<p class='ind3'>UNTIL s &lt; 0;</p>
+<p class='ind2'>END sort;</p>	
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>Log.String('Исходная последовательность: ');</p>
+<p class='ind2'>FOR i :=0  TO n-1 DO</p>
+<p class='ind3'>a[i]:=Ran.Int(45);</p>
+<p class='ind3'>Log.Int(a[i]);</p>
+<p class='ind3'>Log.Char(',');</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>Log.Ln;</p>
+<p class='ind2'>sort;</p>
+<p class='ind2'>Log.String('Отсортированная последовательность: ');</p>
+<p class='ind2'>FOR  i:=0  TO n-1 DO</p>
+<p class='ind3'>Log.Int(a[i]);</p>
+<p class='ind3'>Log.Char(',');</p>
+<p class='ind2'>END;</p>
+<p class='ind1'>END do;</p>
+<p class='ind0'>END sort_quick1.</p>
+sort_quick1.do
+</code>
+<p>Разберем предложенный выше <a href='#module8_10_7_2'>модуль</a>. Механизм извлечения из стека записи с границами последовательности такой:</p>
+<code>
+<p class='ind4'>l:=stack[s].l;</p>
+<p class='ind4'>r:=stack[s].r;</p>
+<p class='ind4'>DEC(s);</p>
+</code>
+<p>Инициализация начальных данных для индексов, определение барьерного элемента задаются следующими операторами:</p>
+<code>
+<p class='ind5'>i:=l;</p>
+<p class='ind5'>j:=r;</p>
+<p class='ind5'>x := a[(l+r) DIV 2];</p>
+</code>
+<p>Процесс разделения последовательности на левую и правую части был описан <a href='#proc_sort'>выше:</a></p>
+<code>
+<p class='ind5'>REPEAT</p>
+<p class='ind6'>WHILE  a[i] &lt; x  DO INC(i) END;</p>
+<p class='ind6'>WHILE  x &lt; a[j]  DO DEC(j) END;</p>
+<p class='ind6'>IF  i &#8804; j  THEN</p>
+<p class='ind7'>w := a[i];</p>
+<p class='ind7'>a[i] := a[j];</p>
+<p class='ind7'>a[j] := w;</p>
+<p class='ind7'>INC(i);</p>
+<p class='ind7'>DEC(j)</p>
+<p class='ind6'>END</p>	
+<p class='ind5'>UNTIL i &lt; j;</p>
+</code>
+<p>Границы правой подпоследовательности заносятся в стек так:</p>
+<code>
+<p class='ind5'>IF i &lt; r THEN</p>
+<p class='ind6'>INC(s);</p>
+<p class='ind6'>stack[s].l:=i;</p>
+<p class='ind6'>stack[s].r:=r</p>
+<p class='ind5'>END;</p>
+</code>
+<p>Задается правая граница левой подпоследовательности:</p>
+<code>
+<p class='ind5'>r:=j</p>
+</code>
+<p>Как только правая граница достигнет левой (или перейдет ее), завершается очередной проход последовательности:</p>
+<code>
+<p class='ind4'>UNTIL l &#8805; r;</p>
+</code>
+<p>Стек проверяется на наличие записей так:</p>
+<code>
+<p class='ind3'>UNTIL s &lt; 0;</p>
+</code>
+<p>Если стек пуст, то это означает. что последовательность отсортирована. В противном случае из стека извлекается последняя запись и обрабатывается последовательность с границами из этой записи.</p>
+<p>Проанализируем быстродействие алгоритма быстрой сортировки.</p>
+<p>Начнем с изучения процесса разбиения последовательности. После выбора барьерного элемента выполняется <math><mi>n</mi></math> операций сравнения. Число операций обмена оценим с помощью вероятностного подхода.</p>
+<p>Пусть последовательность состоит из элементов множества
+<math>
+	<mfenced open='{' close='}'>
+		<mn>1</mn><mn>2</mn><mi>&#133;</mi><mi>n</mi>
+	</mfenced><mo>,</mo>
+</math> а роль барьера выполняет его элемент <math><mi>x</mi></math>.Тогда левее барьера будет <math><mrow><mi>x</mi><mo>-</mo><mn>1</mn></mrow></math> элемент, а правая часть вместе с барьером будет состоять из <math><mrow><mi>n</mi><mo>-</mo><mi>x</mi><mo>-</mo><mn>1</mn></mrow></math> элементов. Элемент обменивается, если он не меньше чем <math><mi>x</mi></math>. Тогда вероятность обмена будет равна 
+<math><mfrac><mrow><mi>n</mi><mo>-</mo><mi>x</mi><mo>-</mo><mn>1</mn></mrow><mi>n</mi></mfrac></math>, а число требующихся обменов оценивается как произведение числа элементов в левой части <math><mrow><mi>x</mi><mo>-</mo><mn>1</mn></mrow></math> на вероятность обмена элемента. Ожидаемое же число обменов можно оценить как сумму всех возможных вариантов выбора границы и деления этой суммы на <math><mi>n</mi></math>:
+<math display='block'>
+<mi>M</mi><mo>=</mo>
+<mrow>
+	<mfrac><mn>1</mn><mi>n</mi></mfrac>
+	<mo>&#x2062;</mo>
+	<mrow>
+		<munderover>
+   		<mo>&#931;</mo>
+   			<mrow>
+        			<mi>x</mi>
+        			<mo>=</mo>
+        			<mn>1</mn>
+   			</mrow>
+   			<mi>n</mi>
+   	</munderover>		
+		<mfrac>
+			<mrow><mi>x</mi><mo>-</mo><mn>1</mn></mrow>
+			<mi>n</mi>
+		</mfrac>
+		<mo>&#x2062;</mo>
+		<mrow>
+			<mo>(</mo><mi>n</mi><mo>-</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo>)</mo>
+		</mrow>		
+	</mrow>	
+</mrow>
+<mo>=</mo>
+<mrow>
+<mfrac><mi>n</mi><mn>6</mn></mfrac>
+<mo>-</mo>
+<mfrac><mn>1</mn><mrow><mn>6</mn><mo>&#x2062;</mo><mi>n</mi></mrow></mfrac>
+</mrow><mo>.</mo>
+</math>
+В качестве оценки числа ожидаемых операций обмена можно взять
+<math><mfrac><mi>n</mi><mn>6</mn></mfrac></math>.
+</p>
+<p>Рассмотрим наилучший вариант быстрой сортировки. Предположим, что в качестве барьера всегда выбирается средний элемент последовательности (медиана). Тогда левая и правая подпоследовательности разбиения будут состоять из примерно равного количества элементов, а число проходов для сортировки последовательности будет оцениваться числом <math><msub><mi>log</mi><mn>2</mn></msub><mo>&#x2061;</mo><mi>n</mi></math>. Общее число операций сравнения будет оцениваться величиной 
+<math>
+	<mi>n</mi><mo>&#x2062;</mo>
+	<mrow>
+		<msub><mi>log</mi><mn>2</mn></msub>
+		<mo>&#x2061;</mo>
+		<mi>n</mi>
+	</mrow>
+</math>, а оценкой общего числа обменов будет
+<math>
+	<mfrac><mi>n</mi><mn>6</mn></mfrac>
+	<mo>&#x2062;</mo>
+	<mrow>
+		<msub><mi>log</mi><mn>2</mn></msub>
+		<mo>&#x2061;</mo>
+		<mi>n</mi>
+	</mrow>
+</math>.
+Заметим, что вероятность выбора в качестве барьера медианы равна 
+<math><mfrac><mn>1</mn><mi>n</mi></mfrac></math>.
+</p>
+<p>Из опыта известно, что если барьер выбирается случайным образом, то эффективность сортировки в среднем хуже оптимального варианта лишь в 
+<math>
+	<mn>2</mn>
+	<mo>&#x2062;</mo>
+	<mrow><mi>ln</mi><mo>&#x2061;</mo><mn>2</mn></mrow>
+</math> раз.
+</p>
+<p>Быстрая сортировка потребует максимального количества разбиений последовательности (максимального количества вызовов процедуры <math><mi>sort</mi></math>, следовательно, максимального размера неявного стека для рекурсивной организации сортировки), когда в качестве барьера каждый раз выбирается максимальный (минимальный) элемент последовательности или ее подпоследовательности (например, выбор в качестве барьера первого или последнего элемента уже отсортированного массива). В этом случае последовательность разбивается так, что в правую (левую) часть попадет лишь один элемент, а в левой (правой) части будут все остальные элементы. Следовательно, потребуется <math><mi>n</mi><mo>-</mo><mn>1</mn></math> разбиений, а в каждом разбиении будет выполняться <math><mi>n</mi></math> операций сравнения. Из этого вытекает, что количество операций сравнения будет порядка <math><msup><mi>n</mi><mn>2</mn></msup></math>, как в таких алгоритмах сортировки, как метод пузырька. Количество же операций обмена будет равно количеству разбиений <math><mi>n</mi><mo>-</mo><mn>1</mn></math>.
+</p>
+<p><a id='ex81074'><span class="primer">Пример</span> 8.10.7.4. При сортировке массива 
+<math>
+	<mfenced open='' close=''>
+		<mn>1</mn><mo>,</mo><mn>3</mn><mo>,</mo><mn>5</mn><mo>,</mo><mn>6</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>4</mn><mo>,</mo><mn>2</mn>
+	</mfenced>
+</math> 
+в качестве опорного элемента каждый раз будет выбираться максимальный элемент подпоследовательности или подпоследовательности. Действительно, пусть в качестве опорного элемента выбран серединный элемент <math><mn>6</mn></math>. Проход слева направо остановится на опорном элементе, а справа налево &#151; на последнем элементе <math><mn>2</mn></math>.  Произойдет обмен этих элементов:  
+<math>
+	<mfenced open='' close=''>
+		<mn>1</mn><mn>3</mn><mn>5</mn><mo>,</mo><mn>2</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>4</mn><mo>,</mo><mn>6</mn>
+	</mfenced>
+</math>. 
+</p>
+<p>Проход слева направо остановится по достижению последнего элемента последовательности, а справа налево &#151; на предпоследнем элементе <math><mn>4</mn></math>. Следовательно, последовательность разобьется на две подпоследовательности: левая подпоследовательность
+<math>
+	<mfenced open='' close=''>
+		<mn>1</mn><mo>,</mo><mn>3</mn><mo>,</mo><mn>5</mn><mo>,</mo><mn>2</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>4</mn>
+	</mfenced>
+</math>
+и правая подпоследовательность из одного элемента <math><mn>6</mn></math>.
+</p>
+<p>К правой подпоследовательности процедура <math><mi>sort</mi></math> уже не применяется, поскольку она состоит лишь из одного элемента.</p>
+<p>Серединным элементов левой подпоследовательности будет ее максимальный элемент <math><mn>5</mn></math>. В результате операций сравнения и обмена получим последовательность 
+<math>
+	<mfenced open='' close=''>
+		<mn>1</mn><mo>,</mo><mn>3</mn><mo>,</mo><mn>4</mn><mo>,</mo><mn>2</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>5</mn>
+	</mfenced>
+</math>, которая разбивается на две подпоследовательности:
+<math>
+	<mfenced open='' close=''>
+		<mn>1</mn><mo>,</mo><mn>3</mn><mo>,</mo><mn>4</mn><mo>,</mo><mn>2</mn><mo>,</mo><mn>0</mn>
+	</mfenced>
+</math> и <math><mn>5</mn></math>.
+</p>
+<p>Продолжая процесс разбиения, в конечном итоге получим отсортированную последовательность 
+<math>
+	<mfenced open='' close=''>
+		<mn>0</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mn>3</mn><mo>,</mo><mn>4</mn><mo>,</mo><mn>5</mn><mo>,</mo><mn>6</mn>
+	</mfenced>
+</math>.</p>
+<p>Всего потребовалось 6 разбиений и столько же операций обмена, что по количеству операций обмена не так уж и плохо.</p>
+<p>Максимальное количество операций сравнения потребуется для сортировки последовательности с равными элементами. В этом случае каждая операция сравнения будет сопровождаться операцией обмена. Пусть в качестве опорного элемента будет рассматриваться серединный элемент последовательности с равными элементами. Тогда количество разбиений будет равно <math><mo>[</mo><mrow><msub><mi>log</mi><mn>2</mn></msub><mo>&#x2061;</mo><mi>n</mi></mrow><mo>]</mo></math>, а в каждом разбиении количество операций обмена будет порядка <math><mfrac><mi>n</mi><mn>2</mn></mfrac></math>. Следовательно, сортировка потребует количества операций обмена порядка 
+<math><mfrac><mi>n</mi><mn>2</mn></mfrac><mo>&#x2062;</mo><mrow><msub><mi>log</mi><mn>2</mn></msub><mo>&#x2061;</mo><mi>n</mi></mrow></math>.
+
+</p>
+<p>При сортировке небольших массивов эффективность алгоритма быстрой сортировки невелика &#151; для сортировки уже разделенных небольших массивов рекомендуют применять простые алгоритмы.</p>
+<p>В приведенных выше процедурах сортировки в качестве барьера выбирается элемент, расположенный посередине. Если последовательность будет уже упорядочена, то такой выбор барьера будет оптимальным по причине того, что минимизируется как количество разбиений последовательности, так и количество операций обмена (обмениваются только совпадающие элементы).</p>
+
+<p>Таким образом, эффективность алгоритма сортировки существенно зависит от выбора барьерного элемента.</p>
+<p>Автор алгоритма быстрой сортировки рекомендует выбирать барьер случайным образом или в качестве барьера использовать медиану из небольшого количества ключей. Такой выбор почти не влияет на среднюю скорость сортировки, но значительно улучшает скорость в худшем случае.</p>
+<p>Вернемся к случаю быстрой сортировки, когда при каждом разбиении правая (или левая) часть подпоследовательности состоит из одного элемента. Для <a href='#module8_10_7_2'>нерекурсивного варианта</a> реализации алгоритма быстрой сортировки в стек заносится запись с границами подпоследовательности. Общий размер стека должен равняться количеству разбиений последовательности, т.е. количеству элементов в последовательности, что совершенно неприемлемо. Для <a href='#module8_10_7_1'>рекурсивного варианта</a> реализации алгоритм становится еще более затратным, так как в этом случае требуется автоматическое сохранение значений локальных переменных и параметров при каждом вызове процедуры. Для этой цели используется неявный стек. Решением проблемы является хранение в стеке записи с границами более длинной части последовательности и дальнейшее разделение коротких частей последовательности. Тогда размер стека ограничится до <math><msub><mi>log</mi><mn>2</mn></msub><mo>&#x2061;</mo><mi>n</mi></math>.</p>
+<p>Сценарии для оценки вычислительной сложности алгоритма быстрой сортировки последовательности целых чисел:</p>
+<form id='f3'>
+<table>
+<tr><td>
+Введите n &gt; 10:<input type="text" id="r_kolich" maxlength="6" size="6" value='1000'/>
+</td>
+</tr>
+<tr>
+<td>Сортировка псевдослучайных чисел</td>
+<td><input type='button' value="Рекурсивная" onclick="analis_rec(r_kolich.value)" /></td>
+<td><input type='button' value="Нерекурсивная" onclick="analis_nerec(r_kolich.value)" /></td>
+</tr>
+<tr>
+<td>Сортировка </td>
+<td><input type='button' value="однородного массива" onclick="analis_odn(r_kolich.value)" /></td>
+<td><input type='button' value="упорядоченного массива" onclick="analis_up(r_kolich.value)" /></td>
+<td><input type='button' value="массива с обратным порядком" onclick="analis_obr(r_kolich.value)" /></td>
+</tr>
+</table>
+</form>
+
+<h3>Вопросы и задачи</h3>
+<ol>
+<li>Отсортируйте по убыванию в тетради последовательность цифр даты рождения методом быстрой сортировки. Вычислите вычислительную сложность метода быстрой сортировки.</li>
+<li>Примените к последовательности цифр даты рождения рекурсивный (нерекурсивный) вариант быстрой сортировки по возрастанию (убыванию).</li>
+<li>Отсортируйте в алфавитном порядке (в обратном порядке) буквы фамилии нерекурсивным методом быстрой сортировки.</li>
+<li>Примените к последовательности чисел от 1 до 7 метод быстрой сортировки и вычислите количества операций сравнения и присваивания. Как зависит количество операций от количества <math><mi>n</mi></math> элементов в последовательности?</li>
+<li>Отсортируйте по возрастанию последовательность чисел от 7 до 1 методом быстрой сортировки и вычислите количество операций сравнения и присваивания.  Как зависит количество операций сравнения и присваивания от количества <math><mi>n</mi></math> элементов в последовательности?</li>
+<li>Составьте программу оценки вычислительной сложности метода быстрой сортировки последовательности целых чисел. Сравните оценку среднего количества операций присваивания (полученную путем многократного исполнения программы.
+</li>
+<li>Опишите асимптотическую сложность алгоритма быстрой сортировки согласно <a href='8_2.html#t8_2_1'> таблице 8.2.1.</a></li>
+<li>Составьте программу быстрой сортировки последовательности записей из целых чисел и букв по целочисленному ключевому полю. Является ли алгоритм устойчивым?</li>
+<li>Составьте программу оценки вычислительной сложности и затраченного времени (в миллисекундах) алгоритма быстрой сортировки последовательности записей из нескольких полей.</li>
+</ol>
+<p>Задачи для самостоятельного решения из сборника задач по программированию под редакцией С.А. Абрамова, Г.Г. Гнездиловой, Е.Н. Капустиной, М.И. Селюн. Задачи по программированию:</p>
+<p><a href='zadachi/18.html'>§18. Сортировка массивов и файлов</a></p>
+<p><a href="8_10_6.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_10_8.html">К следующему</a> </p>
+</body>
+</html>

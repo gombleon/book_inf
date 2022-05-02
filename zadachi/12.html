@@ -1,0 +1,2147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<link rel='stylesheet' type='text/css' href='style.css' />
+<meta name='author' content='leonid' />
+<title>Использование процедур</title>
+</head>
+<body>
+<h2> §12. Использование процедур *)</h2>
+<p>*) В задачах этого параграфа будем для краткости говорить просто о процедурах, подразумевая, что решающий задачи сам выберет подходящее средство программирования &#151; подпрограмму, функцию и т. д. Этот выбор должен быть сделан с учётом как характера задач, так и особенностей используемого языка программирования.</p>
+<ol start='424' type='1'>
+<li>Даны действительные числа
+<math>
+	<mi>s</mi>
+	<mo>,</mo>
+	<mi> t </mi>
+</math>. Получить
+<math>
+	<mrow>
+	<mi>f </mi>
+	<mo>&#x2061;</mo>
+	<mrow>	
+		<mo>( </mo>
+		<mi>t</mi>
+		<mo>,</mo>
+		<mo>-</mo>
+		<mn>2</mn>
+		<mo>&#183;</mo>
+		<mi>s</mi>
+		<mo>,</mo>
+		<mn>1.17</mn>
+		<mo>)</mo>
+	</mrow>	
+	</mrow>	
+	<mo>+</mo>
+	<mrow>
+	<mi>f</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>( </mo>
+		<mn>2.2</mn>
+		<mo>,</mo>
+		<mi>t</mi>
+		<mo>,</mo>
+		<mi>s</mi>
+		<mo>-</mo>
+		<mi>t</mi>
+		<mo>)</mo>
+	</mrow>
+	</mrow>
+</math>,
+ где
+<math display='block'>
+<mi>f</mi><mo>&#x2061;</mo>
+<mrow>
+	<mo>(</mo>
+	<mi>a</mi>
+	<mo>,</mo>
+	<mi>b</mi>
+	<mo>,</mo>
+	<mi>c</mi>
+	<mo>)</mo>
+</mrow>	
+<mo>=</mo>
+<mfrac>
+<mrow>
+	<mn>2</mn>
+	<mo>&#183;</mo>
+	<mi>a</mi>
+	<mo>-</mo>
+	<mi>b</mi>
+	<mo>-</mo>
+	<mi>sin</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+		<mi>c</mi>
+		<mo>)</mo>
+	</mrow>	
+</mrow>
+<mrow>
+	<mn>5</mn>
+	<mo>+</mo>
+	<mo>|</mo>
+	<mi>c</mi>
+	<mo>|</mo>
+</mrow>
+</mfrac><mo>.</mo>
+</math>
+</li>
+<li>
+Даны действительные числа
+<math>
+	<mi>s</mi>
+	<mo>,</mo>
+	<mi>t</mi>
+</math>. Получить
+<math>
+	<mi>g</mi>
+	<mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+		<mn>1.2</mn>
+		<mo>,</mo>
+		<mi>s</mi>
+		<mo>)</mo>
+	</mrow>	
+	<mo>+</mo>
+	<mi>g</mi>
+	<mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+		<mi>t</mi>
+		<mo>,</mo>
+		<mi>s</mi>
+		<mo>)</mo>
+	</mrow>	
+	<mo>-</mo>
+	<mi>g</mi>
+	<mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+		<mrow>
+			<mn>1.2</mn>
+			<mo>&#183;</mo>
+			<mi>s</mi>
+		</mrow>	
+		<mo>-</mo>
+		<mn>1</mn>
+		<mo>,</mo>
+		<mrow>
+			<mi>s</mi>
+			<mo>&#183;</mo>
+			<mi>t</mi>
+		</mrow>
+		<mo>)</mo>
+	</mrow>	
+</math>, где
+<math display='block'>
+<mrow>
+	<mi>g</mi>
+	<mo>&#x2061;</mo>
+	<mrow>
+		<mo>( </mo>
+		<mi>a</mi>
+		<mo>,</mo>
+		<mi>b</mi>
+		<mo>)</mo>
+	</mrow>	
+</mrow>	
+<mo>=</mo>
+<mfrac>
+	<mrow>
+		<msup><mi>a</mi><mn>2</mn></msup>
+		<mo>+</mo>
+		<msup><mi>b</mi><mn>2</mn></msup>
+	</mrow>
+	<mrow>
+		<msup><mi>a</mi><mn>2</mn></msup>
+		<mo>+</mo>
+		<mn>2</mn>
+		<mrow>
+			<mo>&#183;</mo>
+			<mi>a</mi>
+			<mo>&#183;</mo>
+			<mi>b</mi>
+		</mrow>	
+		<mo>+</mo>
+		<mrow>
+			<mn>3</mn>
+			<mo>&#183;</mo>
+			<msup><mi>b</mi><mn>2</mn></msup>
+		</mrow>	
+		<mo>+</mo>
+		<mn>4</mn>
+	</mrow>
+</mfrac><mo>.</mo>
+</math>
+</li>
+<li>Дано действительное число
+<math><mi>y</mi></math>. Получить
+<math display='block'>
+<mfrac>
+	<mrow>
+		<mn>1.7</mn>
+		<mo>&#183;</mo>
+		<mi>t</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<mn>0.25</mn>
+			<mo>)</mo>
+		</mrow>	
+		<mo>+</mo>
+		<mn>2</mn>
+		<mo>&#183;</mo>
+		<mi>t</mi>
+		<mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<mn>1</mn>
+			<mo>+</mo>
+			<mi>y</mi>
+			<mo>)</mo>
+		</mrow>	
+	</mrow>
+	<mrow>
+		<mn>6</mn>
+		<mo>-</mo>
+		<mi>t</mi>
+		<mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<msup><mi>y</mi><mn>2</mn></msup>
+			<mo>-</mo>
+			<mn>1</mn>
+			<mo>)</mo>
+		</mrow>	
+	</mrow>
+</mfrac><mo>,</mo>
+</math> где 
+<math display='block'>
+<mi>t</mi>
+<mo>&#x2061;</mo>
+<mrow>
+	<mo>(</mo>
+	<mi>x</mi>
+	<mo>)</mo>
+</mrow>	
+<mo>=</mo>
+  <mfrac>
+    <mrow>
+      <munderover>
+       <mo>&#931;</mo>
+        <mrow>
+          <mi>k</mi>
+          <mo>=</mo>
+          <mn>0</mn>
+        </mrow>
+        <mn>10</mn>
+      </munderover>
+      <mfrac>
+        <msup><mi>x</mi>
+          		<mrow>
+            		<mn>2</mn>
+            		<mo>&#183;</mo>
+            		<mi>k</mi>
+            		<mo>+</mo>
+            		<mn>1</mn>
+          		</mrow>
+        </msup>
+        <mrow>
+          <mrow>
+            <mo>(</mo>
+            <mn>2</mn>
+            <mo>&#183;</mo>
+            <mi>k</mi>
+            <mo>+</mo>
+            <mn>1</mn>
+	         <mo>)</mo>
+	        </mrow> 
+          <mo>!</mo>
+        </mrow>
+      </mfrac>
+    </mrow>
+    <mrow>
+      <munderover>
+        <mo>&#931;</mo>
+        <mrow>
+          <mi>k</mi>
+          <mo>=</mo>
+          <mn>0</mn>
+        </mrow>
+        <mn>10</mn>
+      </munderover>
+      <mfrac>
+        <msup><mi>x</mi><mrow><mn>2</mn><mo>&#183;</mo><mi>k</mi></mrow></msup>
+        <mrow>
+          <mrow>
+            <mo>(</mo>
+            <mn>2</mn>
+            <mo>&#183;</mo>
+            <mi>k</mi>
+            <mo>)</mo>
+				</mrow>          
+         	<mo>!</mo>
+        	</mrow>
+      </mfrac>
+    </mrow>
+  </mfrac>
+</math>
+</li>
+<li>Даны действительные числа
+<math>
+<mfenced open='' close=''><mi>a</mi><mi>b</mi><mi>c</mi></mfenced>
+</math>. Получить
+<math display='block'>
+  <mfrac>
+    <mrow>
+      <mi>max</mi>
+      <mo>&#x2061;</mo>
+      <mrow>
+      	<mo>(</mo>
+      	<mi>a</mi>
+      	<mo>,</mo>
+      	<mi>a</mi>
+      	<mo>+</mo>
+      	<mi>b</mi>
+      	<mo>)</mo>
+      </mrow>	
+      <mo>+</mo>
+      <mi>max</mi>
+      <mo>&#x2061;</mo>
+      <mrow>
+	      <mo>(</mo>
+   	   <mi>a</mi>
+      	<mo>,</mo>
+      	<mi>b</mi>
+      	<mo>+</mo>
+      	<mi>c</mi>
+      	<mo>)</mo>
+      </mrow>	
+    </mrow>
+    <mrow>
+      <mn>1</mn>
+      <mo>+</mo>
+      <mi>max</mi>
+      <mo>&#x2061;</mo>
+      <mrow>
+      	<mo>(</mo>
+      	<mi>a</mi>
+      	<mo>+</mo>
+      	<mi>b</mi>
+      	<mo>&#183;</mo>
+      	<mi>c</mi>
+      	<mo>,</mo>
+      	<mn>1,15</mn>
+      	<mo>)</mo>
+      </mrow>	
+    </mrow>
+  </mfrac><mo>.</mo>
+</math>
+</li>
+<li> Даны действительные числа
+<math><mi>a</mi><mo>,</mo><mi>b</mi></math>. Получить
+<math>
+<mrow>
+	<mi>u</mi>
+	<mo>=</mo>
+	<mi>min</mi>
+	<mo>&#x2061;</mo>
+  <mrow><mo>(</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>)</mo></mrow>
+</mrow>
+<mo>,</mo>  
+<mrow>
+	<mi>v</mi>
+	<mo>=</mo>
+	<mi>min</mi>
+	<mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+		<mrow><mi>a</mi><mo>&#x2062;</mo><mi>b</mi></mrow>
+		<mo>,</mo>
+		<mrow><mi>a</mi><mo>+</mo><mi>b</mi></mrow>
+		<mo>)</mo>
+	</mrow>
+</mrow>
+<mo>,</mo>
+<mrow>
+	<mo>min</mo>
+	<mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+  		<mrow><mi>u</mi><mo>+</mo><msup><mi>v</mi><mn>2</mn></msup></mrow>
+		<mo>,</mo>
+		<mn>3.14</mn>
+		<mo>)</mo>
+	</mrow>
+  <mo>.</mo>   
+</math> 
+</li>
+<li> Даны натуральные числа
+<math><mi>n</mi><mo>,</mo><mi>m</mi></math>, целые числа 
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>		
+		<msub><mi>a</mi><mi>n</mi></msub>
+		<msub><mi>b</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>		
+		<msub><mi>b</mi><mi>m</mi></msub>
+		<msub><mi>c</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>		
+		<msub><mi>c</mi><mn>30</mn></msub>
+	</mfenced>
+</math>. Получить
+<math display='block'>
+<mi>l</mi>
+<mo>=</mo>
+<mrow>
+	<mo>{</mo>
+	<mtable>
+		<mtr>
+		<mtd>
+			<mrow>
+				<mi>min</mi><mo>&#x2061;</mo>
+				<mfenced><msub><mi>b</mi><mn>1</mn></msub><mi>&#133;</mi><msub><mi>b</mi><mi>m</mi></msub></mfenced>
+			</mrow>			
+			<mo>+</mo>
+			<mrow>
+				<mi>min</mi><mo>&#x2061;</mo>
+				<mfenced><msub><mi>c</mi><mn>1</mn></msub><mi>&#133;</mi><msub><mi>c</mi><mn>30</mn></msub></mfenced>
+			</mrow>
+			<mrow>
+			<mspace width='1ex'/>
+			<mtext>при</mtext>
+			<mspace width='1ex'/>
+			<mrow>
+				<mo>|</mo>
+				<mi>min</mi><mo>&#x2061;</mo>
+				<mfenced><msub><mi>a</mi><mn>1</mn></msub><mi>&#133;</mi><msub><mi>a</mi><mi>n</mi></msub></mfenced>
+				<mrow><mo>|</mo>			
+			</mrow>
+			<mo>&gt;</mo>
+			<mn>10</mn>			
+			</mrow><mo>,</mo>
+		</mtd>
+		</mtr>
+		<mtr>
+			<mtd columnalign='left'>
+			<mrow>
+				<mn>1</mn><mo>+</mo>
+				<msup>
+					<mrow>
+					<mo>(</mo>
+					<mi>max</mi><mo>&#x2061;</mo>
+					<mfenced><msub><mi>c</mi><mn>1</mn></msub><mi>&#133;</mi><msub><mi>c</mi><mn>30</mn></msub></mfenced>
+					<mo>)</mo>
+					</mrow>
+					<mn>2</mn>			
+				</msup>
+				<mspace width='1ex'/>
+				<mtext>в противном случае.</mtext>
+			</mtd>
+		</mtr>
+	</mtable>   
+</math>
+</li>
+<li>Даны натуральные числа
+<math><mi>k</mi><mo>,</mo><mi>l</mi><mo>,</mo><mi>m</mi><mo>,</mo></math> 
+действительные числа 
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>x</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>		
+		<msub><mi>x</mi><mi>k</mi></msub>
+		<msub><mi>y</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>		
+		<msub><mi>y</mi><mi>l</mi></msub>
+		<msub><mi>z</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>		
+		<msub><mi>z</mi><mi>m</mi></msub>
+	</mfenced>
+</math>. Получить
+<math display='block'>
+<mi>l</mi>
+<mo>=</mo>
+<mrow>
+	<mo>{</mo>
+	<mtable>
+		<mtr>
+		<mtd>
+			<mrow>
+			<mo>(</mo>
+			<mrow>
+				<mi>max</mi><mo>&#x2061;</mo>
+				<mfenced><msub><mi>y</mi><mn>1</mn></msub><mi>&#133;</mi><msub><mi>y</mi><mi>l</mi></msub></mfenced>
+			</mrow>			
+			<mo>+</mo>
+			<mrow>
+				<mi>max</mi><mo>&#x2061;</mo>
+				<mfenced><msub><mi>z</mi><mn>1</mn></msub><mi>&#133;</mi><msub><mi>z</mi><mi>m</mi></msub></mfenced>
+			</mrow>
+			<mo>)</mo>
+			</mrow>
+			<mo>/</mo>
+			<mn>2</mn>
+			<mrow>
+			<mspace width='1ex'/>
+			<mtext>при</mtext>
+			<mspace width='1ex'/>
+			<mrow>
+				<mi>max</mi><mo>&#x2061;</mo>
+				<mfenced><msub><mi>x</mi><mn>1</mn></msub><mi>&#133;</mi><msub><mi>x</mi><mi>k</mi></msub></mfenced>
+				<mo>&#8805;</mo>
+				<mn>0</mn>			
+			</mrow>
+			<mo>,</mo>
+		</mtd>
+		</mtr>
+		<mtr>
+			<mtd columnalign='left'>
+			<mrow>
+				<mn>1</mn><mo>+</mo>
+				<msup>
+					<mrow>
+					<mo>(</mo>
+					<mi>max</mi><mo>&#x2061;</mo>
+					<mfenced><msub><mi>x</mi><mn>1</mn></msub><mi>&#133;</mi><msub><mi>x</mi><mi>k</mi></msub></mfenced>
+					<mo>)</mo>
+					</mrow>
+					<mn>2</mn>			
+				</msup>
+				<mspace width='1ex'/>
+				<mtext>в противном случае.</mtext>
+			</mtd>
+		</mtr>
+	</mtable>   
+</math>
+</li>
+<li> Даны действительные числа
+<math><mi>s</mi><mo>,</mo><mi>t</mi></math>. Получить
+<math>
+<mrow>
+	<mrow>
+		<mi>h</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>s</mi><mo>,</mo><mi>t</mi><mo>)</mo></mrow>
+	</mrow>
+  <mo>+</mo>
+  <mrow>
+		<mi>max</mi><mo>&#x2061;</mo>
+		<mrow>
+      	<mrow><mo>(</mo>
+      	<msup>
+				<mrow><mo>(</mo>
+					<mi>h</mi><mo>&#x2061;</mo>
+					<mrow>
+						<mo>(</mo>
+							<mrow><mi>s</mi><mo>-</mo><mi>t</mi></mrow>
+							<mo>,</mo>
+							<mrow><mi>s</mi><mo>&#x2062;</mo><mi>t</mi></mrow>
+						<mo>)</mo>
+					</mrow>
+					<mo>)</mo>
+				</mrow>
+      		<mn>2</mn>
+      	</msup>
+      	</mrow>
+      	<mo>,</mo>
+
+		<mrow>
+      	<mrow>
+      	<msup>
+				<mrow><mo>(</mo>
+					<mi>h</mi><mo>&#x2061;</mo>
+					<mrow>
+						<mo>(</mo>
+							<mrow><mi>s</mi><mo>-</mo><mi>t</mi></mrow>
+							<mo>,</mo>
+							<mrow><mi>s</mi><mo>+</mo><mi>t</mi></mrow>
+						<mo>)</mo>
+					</mrow>
+					<mo>)</mo>
+				</mrow>
+      		<mn>4</mn>
+      	</msup>
+      	<mo>)</mo>
+      	</mrow>      	
+      </mrow>
+  <mo>,</mo>
+</math> где
+<math display='block'>
+<mrow>
+	<mi>h</mi><mo>&#x2061;</mo>
+  <mfenced><mi>a</mi><mi>b</mi></mfenced>
+</mrow>  
+<mo>=</mo>
+<mrow>
+	<mfrac>
+		<mi>a</mi>
+		<mrow>
+      	<mn>1</mn>
+      	<mo>+</mo>
+      	<msup><mi>b</mi><mn>2</mn></msup>
+		</mrow>
+  </mfrac>
+  <mo>+</mo>
+  <mfrac>
+    <mi>b</mi>
+    <mrow>
+      <mn>1</mn>
+      <mo>+</mo>
+      <msup><mi>a</mi><mn>2</mn></msup>
+    </mrow>
+  </mfrac>
+  <mo>-</mo>
+  <msup>
+    <mrow>
+      <mo>(</mo>
+      <mi>a</mi>
+      <mo>-</mo>
+      <mi>b</mi>
+      <mo>)</mo>
+    </mrow>
+    <mn>3</mn>
+  </msup><mo>.</mo>
+</math>
+</li>
+<li> Даны действительные числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>0</mn></msub><mi>&#133;</mi><msub><mi>a</mi><mn>6</mn></msub>
+</mfenced>
+</math>. Получить для 
+<math>
+	<mi>x</mi><mo>=</mo>
+	<mfenced open='' close=''><mn>1</mn><mn>3</mn><mn>4</mn></mfenced>
+</math> значения 
+<math>
+<mrow>
+	<mi>p</mi><mo>&#x2061;</mo>
+	<mrow><mo>(</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo>)</mo></mrow>
+</mrow>
+<mo>-</mo>
+<mrow>
+	<mi>p</mi><mo>&#x2061;</mo>
+	<mrow><mo>(</mo><mi>x</mi><mo>)</mo></mrow>
+</mrow>
+</math>, где
+<math>
+<mrow>
+	<mi>p</mi><mo>&#x2061;</mo>
+	<mrow><mo>(</mo><mi>y</mi><mo>)</mo></mrow>
+</mrow>
+<mo>=</mo>
+<mrow>
+	<msub><mi>a</mi><mn>6</mn></msub>
+	<mo>&#183;</mo>
+	<msup><mi>y</mi><mn>6</mn></msup>
+</mrow>
+<mo>+</mo>
+<mrow>
+	<msub><mi>a</mi><mn>5</mn></msub>
+	<mo>&#183;</mo>
+	<msup><mi>y</mi><mn>5</mn></msup>
+</mrow>
+<mo>+</mo>
+<mi>&#133;</mi>
+<mo>+</mo>
+<msub><mi>a</mi><mn>0</mn></msub>
+<mo>.</mo>
+</math>
+</li>
+<li> Даны действительные числа
+<math>
+<mfenced open='' close=''>
+	<mi>s</mi><mi>t</mi><msub><mi>a</mi><mn>0</mn></msub><mi>&#133;</mi><msub><mi>a</mi><mn>12</mn></msub>
+</mfenced>
+</math>. Получить
+<math>
+<mrow>
+	<mi>p</mi><mo>&#x2061;</mo>
+	<mrow><mo>(</mo><mn>1</mn><mo>)</mo></mrow>
+</mrow>
+<mo>-</mo>
+<mrow>
+	<mi>p</mi><mo>&#x2061;</mo>
+	<mrow><mo>(</mo><mi>t</mi><mo>)</mo></mrow>
+</mrow>
+<mo>+</mo>
+<msup>
+<mrow><mo>(</mo>
+	<mi>p</mi><mo>&#x2061;</mo>
+	<mrow><mo>(</mo><mrow><mi>s</mi><mo>-</mo><mi>t</mi></mrow><mo>)</mo></mrow>
+	<mo>)</mo>
+</mrow>
+<mn>2</mn>
+</msup>
+<mo>+</mo>
+<msup>
+<mrow><mo>(</mo>
+	<mi>p</mi><mo>&#x2061;</mo>
+	<mrow><mo>(</mo><mn>1</mn><mo>)</mo></mrow>
+	<mo>)</mo>
+</mrow>
+<mn>3</mn>
+</msup>
+<mo>,</mo>
+</math> где 
+<math>
+<mrow>
+	<mi>p</mi><mo>&#x2061;</mo>
+	<mrow><mo>(</mo><mi>x</mi><mo>)</mo></mrow>
+</mrow>
+<mo>=</mo>
+<mrow>
+	<msub><mi>a</mi><mn>12</mn></msub>
+	<mo>&#x2062;</mo>
+	<msup><mi>x</mi><mn>12</mn></msup>
+	<mo>+</mo>
+	<msub><mi>a</mi><mn>11</mn></msub>
+	<mo>&#x2062;</mo>
+	<msup><mi>x</mi><mn>11</mn></msup>
+	<mo>+</mo>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>0</mn></msub>
+</mrow>
+<mo>.</mo>
+</math>
+</li>
+<li> Даны действительные числа   
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>		
+		<msub><mi>a</mi><mi>n</mi></msub>
+		<msub><mi>b</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>		
+		<msub><mi>b</mi><mi>m</mi></msub>
+	</mfenced>
+</math>. В каждой из последовательностей
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>		
+		<msub><mi>a</mi><mi>n</mi></msub>
+	</mfenced>
+</math>
+и
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>b</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>		
+		<msub><mi>b</mi><mi>m</mi></msub>
+	</mfenced>
+</math> все члены, следующие за максимальным элементом последовательности (за первым по порядку, если их несколько), заменить на 
+<math><mn>0.5</mn></math>.
+
+</li>
+<li> Даны целые  числа 
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>		
+		<msub><mi>a</mi><mi>n</mi></msub>
+		<msub><mi>b</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>		
+		<msub><mi>b</mi><mi>m</mi></msub>
+		<mi>k</mi>
+	</mfenced>
+</math>. Если в последовательности
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>		
+		<msub><mi>a</mi><mi>n</mi></msub>
+	</mfenced>
+</math> нет ни одного члена со значением <math><mi>k</mi></math>, то первый по порядку член этой последовательности, не меньший всех остальных членов, заменить на значение <math><mi>k</mi></math>. По такому же правилу же правилу преобразовать последовательность 
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>b</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>		
+		<msub><mi>b</mi><mi>m</mi></msub>
+	</mfenced> 
+</math> применительно к значению <math><mn>10</mn></math>.
+</li>
+<li>Даны целые  числа
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>n</mi><mn>0</mn></msub>
+		<msub><mi>d</mi><mn>0</mn></msub>
+		<msub><mi>n</mi><mn>1</mn></msub>
+		<msub><mi>d</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>		
+		<msub><mi>n</mi><mn>7</mn></msub>
+		<msub><mi>d</mi><mn>7</mn></msub>
+		<mi>a</mi>
+		<mi>b</mi>
+	</mfenced>
+	<mspace width='1ex'/>
+	<mrow>
+		<mo>(</mo>
+			<mrow>
+			<msub><mi>d</mi><mn>0</mn></msub>
+			<mo>&#x2062;</mo>
+			<msub><mi>d</mi><mn>1</mn></msub>
+			<mo>&#x2062;</mo>
+			<mi>&#133;</mi>
+			<mo>&#x2062;</mo>
+			<msub><mi>d</mi><mn>7</mn></msub>
+			<mo>&#x2062;</mo>
+			<mi>b</mi>
+			</mrow>
+			<mo>&#8800;</mo>
+			<mn>0</mn>					
+		<mo>)</mo>	
+	</mrow>
+</math>. Вычислить по схеме Горнера
+<math display='block'>
+<mrow>
+	<mfrac>
+ 		<msub><mi>n</mi><mn>7</mn></msub>
+		<msub><mi>d</mi><mn>7</mn></msub>
+	</mfrac>
+	<mo>&#x2062;</mo>
+	<msup>
+		<mrow><mo>(</mo><mfrac><mi>a</mi><mi>b</mi></mfrac><mo>)</mo></mrow>
+		<mn>7</mn>
+	</msup>
+</mrow>
+<mo>+</mo>
+<mrow>
+	<mfrac>
+ 		<msub><mi>n</mi><mn>6</mn></msub>
+		<msub><mi>d</mi><mn>6</mn></msub>
+	</mfrac>
+	<mo>&#x2062;</mo>
+	<msup>
+		<mrow><mo>(</mo><mfrac><mi>a</mi><mi>b</mi></mfrac><mo>)</mo></mrow>
+		<mn>6</mn>
+	</msup>
+</mrow>
+<mo>+</mo>
+<mi>&#133;</mi>
+<mo>+</mo>
+	<mfrac>
+ 		<msub><mi>n</mi><mn>0</mn></msub>
+		<msub><mi>d</mi><mn>0</mn></msub>
+	</mfrac>
+	<mo>,</mo>
+</math> определив процедуры полного сокращения рационального числа, заданного числителем и знаменателем, а также процедуры сложения и умножения рациональных чисел.  
+</li>
+<li> Даны целые числа   
+<math>
+<mfenced open='' close=''>
+	<msub><mi>f</mi><mn>0</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>f</mi><mn>10</mn></msub>
+</mfenced>
+</math>. Исследовать существование целочисленных корней уравнения
+<math display='block'>
+<mrow>
+<mrow>
+	<msub><mi>f</mi><mn>10</mn></msub>
+	<mo>&#x2062;</mo>
+	<msup><mi>x</mi><mn>10</mn></msup>
+</mrow>
+<mo>+</mo>
+<mrow>
+	<msub><mi>f</mi><mn>9</mn></msub>
+	<mo>&#x2062;</mo>
+	<msup><mi>x</mi><mn>9</mn></msup>
+</mrow>
+<mo>+</mo>
+<mi>&#133;</mi>
+<mo>+</mo>
+<msub><mi>f</mi><mn>0</mn></msub>
+</mrow>
+<mo>=</mo>
+<mn>0</mn>
+<mo>.</mo>
+</math>
+ (Если <math><msub><mi>f</mi><mn>0</mn></msub><mo>=</mo><mn>0</mn></math>, то имеется корень <math><mn>0</mn></math>; если же <math><msub><mi>f</mi><mn>0</mn></msub><mo>&#8800;</mo><mn>0</mn></math>, то целочисленный корень, если он существует, принадлежит конечному множеству положительных и отрицательных делителей числа
+<math><msub><mi>f</mi><mn>0</mn></msub></math>). Здесь полезно определить процедуру вычисления по схеме Горнера значения многочлена, а также процедуру, которая по двум заданным числам 
+<math><mi>k</mi></math> и <math ><mi>m</mi></math> 
+(<math><mi>m</mi><mo>&#62;</mo><mi>k</mi><mo>&#8805;</mo><mn>0</mn></math>) позволяет определить значение наименьшего делителя числа <math><mi>m</mi></math>, содержащегося среди чисел 
+<math>
+	<mfenced open='' close=''>
+		<mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow>
+		<mrow><mi>k</mi><mo>+</mo><mn>2</mn></mrow>
+		<mi>&#133;</mi>
+		<mi>m</mi>		
+	</mfenced>
+</math>.
+</li>
+<li>Даны натуральное число  
+<math><mi>n</mi></math>, действительные числа
+<math>
+<mfenced open='' close=''>
+	<mi>x</mi><mi>y</mi>
+	<msub><mi>a</mi><mi>n</mi></msub>
+	<msub><mi>b</mi><mi>n</mi></msub>
+	<msub><mi>a</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub>
+	<msub><mi>b</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mn>0</mn></msub>
+	<msub><mi>b</mi><mn>0</mn></msub>
+</mfenced>
+</math>. Вычислить по схеме Горнера значения многочлена с комплексными коэффициентами 
+ <math display='block'>
+<mrow> 
+<mrow>
+	 <mo>(</mo>
+ 	<msub><mi>a</mi><mn>n</mn></msub> <mo>+</mo><mn>i</mn><mo>&#x2062;</mo><msub><mi>b</mi><mi>n</mi></msub>
+ 	<mo>)</mo>
+ </mrow>
+ <mo>&#x2062;</mo>
+<mrow>
+	<msup>
+		<mrow>
+			<mo>(</mo>
+				<mi><mi>x</mi><mo>+</mo><mn>i</mn> <mo>&#x2062;</mo><mi>y</mi>	
+			<mo>)</mo>
+		</mrow>
+		<mn>n</mn>
+	</msup>
+</mrow>
+</mrow>
+
+<mo>+</mo>
+
+<mrow> 
+<mrow>
+	 <mo>(</mo>
+ 	<msub>
+ 		<mi>a</mi>
+ 		<mrow><mn>n</mn><mo>-</mo><mn>1</mn></mrow>
+ 	</msub>
+ 	<mo>+</mo>
+ 	<mn>i</mn><mo>&#x2062;</mo>
+ 	<msub>
+ 		<mi>b</mi>
+ 		<mrow><mn>n</mn><mo>-</mo><mn>1</mn></mrow>
+ 	</msub>
+ 	<mo>)</mo>
+ </mrow>
+ <mo>&#x2062;</mo>
+<mrow>
+	<msup>
+		<mrow>
+			<mo>(</mo>
+				<mi><mi>x</mi><mo>+</mo><mn>i</mn> <mo>&#x2062;</mo><mi>y</mi>	
+			<mo>)</mo>
+		</mrow>
+		<mrow><mn>n</mn><mo>-</mo><mn>1</mn></mrow>
+	</msup>
+</mrow>
+</mrow>
+ 
+<mi>&#133;</mi>
+
+<mrow>
+	 <mo>(</mo>
+ 	<msub><mi>a</mi><mn>0</mn></msub>
+ 	<mo>+</mo>
+ 	<mn>i</mn><mo>&#x2062;</mo>
+ 	<msub><mi>b</mi><mn>0</mn></msub>
+ 	<mo>)</mo>
+</mrow> 
+ <mo>.</mo>
+ </math>
+(Определить процедуру выполнения арифметических операций над комплексными числами).
+</li>
+<li>Даны действительные числа  
+<math>
+<mfenced open='' close=''>
+	<msub><mi>u</mi><mn>1</mn></msub>
+	<msub><mi>u</mi><mn>2</mn></msub>
+	<msub><mi>v</mi><mn>1</mn></msub>
+	<msub><mi>v</mi><mn>2</mn></msub>
+	<msub><mi>w</mi><mn>1</mn></msub>
+	<msub><mi>w</mi><mn>2</mn></msub>
+</mfenced>
+</math>. Получить 
+<math display='block'>
+<mrow>
+	<mrow><mn>2</mn><mo>&#x2062;</mo><mi>u</mi></mrow>
+  <mo>+</mo>
+  <mfrac>
+    <mrow><mn>3</mn><mo>&#x2062;</mo><mi>u</mi><mo>&#x2062;</mo><mi>w</mi></mrow>
+    <mrow><mn>2</mn><mo>+</mo><mi>w</mi><mo>-</mo><mi>u</mi></mrow>
+  </mfrac>
+  <mo>-</mo>
+  <mn>7</mn>
+</mrow>  
+<mo>,</mo>
+</math>
+где 
+<math>
+<mfenced open='' close=''>
+	<mi>u</mi>
+	<mi>v</mi>
+	<mi>w</mi>
+</mfenced>
+</math> &#151; комплексные числа 
+<math>
+<mfenced open='' close=''>
+	<mrow>
+		<msub><mi>u</mi><mn>1</mn></msub>
+		<mo>+</mo><mn>i</mn><mo>&#x2062;</mo>
+		<msub><mi>u</mi><mn>2</mn></msub>
+	</mrow>
+	<mrow>
+		<msub><mi>v</mi><mn>1</mn></msub>
+		<mo>+</mo><mn>i</mn><mo>&#x2062;</mo>
+		<msub><mi>v</mi><mn>2</mn></msub>
+	</mrow>	
+	<mrow>
+		<msub><mi>w</mi><mn>1</mn></msub>
+		<mo>+</mo><mn>i</mn><mo>&#x2062;</mo>
+		<msub><mi>w</mi><mn>2</mn></msub>
+	</mrow>	
+</mfenced>
+</math>. (Определить процедуры выполнения арифметических операций над комплексными числами).
+</li>
+<li>Дано натуральное число <math><mi>n</mi></math>, целые числа 
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mi>n</mi></msub>
+</mfenced> 
+</math>. Рассмотреть отрезки последовательности 
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mi>n</mi></msub>
+</mfenced> 
+</math> (последовательности идущих подряд членов), состоящие из:
+<ol type='a'>
+<li>полных квадратов;</li>
+<li>степеней пятерки;</li>
+<li>простых чисел.</li>
+</ol>
+В каждом случае получить наибольшую из длин рассматриваемых отрезков. (Определить процедуры, позволяющие распознавать полные квадраты, степени пятерки, простые числа).
+</li>
+<li> Дано натуральное число <math ><mi>n</mi></math>. Среди чисел 
+<math>
+<mfenced open='' close=''>
+	<mn>1</mn><mn>2</mn>	<mi>&#133;</mi><mi>n</mi>
+</mfenced> 
+</math>
+найти все те, которые можно представить в виде суммы квадратов двух натуральных чисел. (Определить процедуры, позволяющие распознавать полные квадраты). 
+</li>
+<li>Даны действительные числа 
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<msub><mi>y</mi><mn>1</mn></msub>
+	<msub><mi>x</mi><mn>2</mn></msub>
+	<msub><mi>y</mi><mn>2</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>x</mi><mn>10</mn></msub>
+	<msub><mi>y</mi><mn>10</mn></msub>
+</mfenced>
+</math>
+Найти периметр десятиугольника, вершины которого имеют соответственно координаты
+<math>
+<mfenced open='' close=''>
+	<mrow>
+		<mo>(</mo>
+		<msub><mi>x</mi><mn>1</mn></msub>
+		<mo>,</mo>
+		<msub><mi>y</mi><mn>1</mn></msub>
+		<mo>)</mo>
+	</mrow>
+	<mrow>
+		<mo>(</mo>
+		<msub><mi>x</mi><mn>2</mn></msub>
+		<mo>,</mo>
+		<msub><mi>y</mi><mn>2</mn></msub>
+		<mo>)</mo>	
+	</mrow>
+	<mi>&#133;</mi>
+	<mrow>
+		<mo>(</mo>
+		<msub><mi>x</mi><mn>10</mn></msub>
+		<mo>,</mo>
+		<msub><mi>y</mi><mn>10</mn></msub>
+		<mo>)</mo>
+	</mrow>
+</mfenced>
+</math>. (Определить процедуру вычисления расстояния между двумя точками, заданными своими координатами). 
+</li>
+<li> Даны действительные числа 
+ <math>
+ <mfenced open='' close=''>
+ 	<mi>a</mi><mi>b</mi><mi>c</mi><mi>d</mi>
+ </mfenced>
+</math>. Найти площадь пятиугольника, изображенного на рис. 12.1. (Определить процедуру вычисления площади треугольника по трем его сторонам).<br/> 
+<svg width="440" height="200">
+  <line id="svg_1" y2="166" x2="159" y1="109" x1="232" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_3" y2="114" x2="55" y1="165" x1="159" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_5" y2="109" x2="231" y1="114" x1="55" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_6" y2="67" x2="192" y1="114" x1="55" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_7" y2="108" x2="230" y1="67" x1="191" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_9" y2="66" x2="100" y1="114" x1="56" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_10" y2="67" x2="191" y1="67" x1="99" stroke-width="2" stroke="#000000" fill="none"/>
+  <text transform="rotate(15, 97, 150)" xml:space="preserve" text-anchor="middle" font-family="serif" font-size="18" id="svg_11" y="157" x="97" stroke-width="0" stroke="#000000" fill="#000000">d</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="18" id="svg_12" y="152" x="199" stroke-width="0" stroke="#000000" fill="#000000">c</text>
+  <text transform="rotate(5, 216, 73)" xml:space="preserve" text-anchor="middle" font-family="serif" font-size="18" id="svg_13" y="80" x="216" stroke-width="0" stroke="#000000" fill="#000000">b</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="18" id="svg_14" y="59" x="138" stroke-width="0" stroke="#000000" fill="#000000">a</text>
+  <text transform="rotate(15, 64, 82.5)" xml:space="preserve" text-anchor="middle" font-family="serif" font-size="18" id="svg_15" y="89" x="64" stroke-width="0" stroke="#000000" fill="#000000">1</text>
+  <text font-weight="bold" transform="rotate(10, 115, 83)" xml:space="preserve" text-anchor="middle" font-family="serif" font-size="14" id="svg_16" y="88" x="115" stroke-width="0" stroke="#000000" fill="#000000">2</text>
+  <text font-weight="bold" xml:space="preserve" text-anchor="middle" font-family="serif" font-size="13" id="svg_17" y="104" x="158" stroke-width="0" stroke="#000000" fill="#000000">2.15</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="14" id="svg_18" y="191" x="142" stroke-width="0" stroke="#000000" fill="#000000">Рис. 12.1</text>
+</svg>
+</li>
+
+<li>Даны натуральное число 
+ <math >
+ <mi>n</mi>
+ <mo>,</mo>
+ </math>
+ действительные числа 
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<msub><mi>y</mi><mn>1</mn></msub>
+	<msub><mi>x</mi><mn>2</mn></msub>
+	<msub><mi>y</mi><mn>2</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>x</mi><mi>n</mi></msub>
+	<msub><mi>y</mi><mi>n</mi></msub>
+</mfenced>
+</math>.
+Найти площадь <math><mi>n</mi></math>-угольника, вершины которого при некотором последовательном обходе имеют координаты
+<math>
+<mfenced open='' close=''>
+	<mrow>
+		<mo>(</mo>
+		<msub><mi>x</mi><mn>1</mn></msub>
+		<mo>,</mo>
+		<msub><mi>y</mi><mn>1</mn></msub>
+		<mo>)</mo>
+	</mrow>
+	<mrow>
+		<mo>(</mo>
+		<msub><mi>x</mi><mn>2</mn></msub>
+		<mo>,</mo>
+		<msub><mi>y</mi><mn>2</mn></msub>
+		<mo>)</mo>	
+	</mrow>
+	<mi>&#133;</mi>
+	<mrow>
+		<mo>(</mo>
+		<msub><mi>x</mi><mi>n</mi></msub>
+		<mo>,</mo>
+		<msub><mi>y</mi><mi>n</mi></msub>
+		<mo>)</mo>
+	</mrow>
+</mfenced>
+</math>. (Определить процедуру вычисления площади треугольника по координатам его вершин). 
+</li>
+<li> Дано четное число <math><mi>n</mi></math>, большее 2. Проверить для этого числа гипотезу Гольдбаха. Эта гипотеза (по сегодняшний день не опровергнутая и полностью не доказанная) заключается в том, что каждое четное 
+<math><mi>n</mi></math>, большее двух, представляется в виде суммы двух простых чисел. (Определить процедуру, позволяющую распознавать простые числа). 
+</li>
+<li>Дано натуральное число <math><mi>n</mi></math>. Выяснить, имеются ли среди чисел 
+<math>
+<mfenced open='' close=''>
+	<mi>n</mi>
+	<mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow>
+	<mrow><mi>n</mi><mo>+</mo><mn>2</mn></mrow>
+	<mi>&#133;</mi>
+	<mrow><mn>2</mn><mo>&#x2062;</mo><mi>n</mi></mrow>	
+</mfenced>
+</math> близнецы, т.е. простые числа , разность между которыми равна двум. (Определить процедуру, позволяющую распознавать простые числа).
+ </li>
+<li>Дано натуральное число <math><mi>n</mi></math>, 
+целые числа 
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mi>n</mi></msub>
+</mfenced> 
+</math>. Рассмотреть все отрезки последовательности
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mi>n</mi></msub>
+</mfenced> 
+</math> (см. задачу 440), состоящие из совершенных чисел. (Определить процедуру, позволяющую распознавать совершенные числа). 
+</li>
+<li>Бесконечная последовательность рациональных чисел
+<math>
+<mfenced open='' close=''>
+	<msub><mi>v</mi><mn>0</mn></msub>
+	<msub><mi>v</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+</mfenced> 
+</math> образована по следующему закону: 
+<ol type='a'>
+<li>
+<math>
+	<mrow><msub><mi>v</mi><mn>0</mn></msub><mo>=</mo><mn>1</mn></mrow>
+  	<mo>;</mo>
+	<mrow>  	
+	<mrow>
+		<msub><mi>v</mi><mn>0</mn></msub><mo>+</mo>
+		<msubsup><mi>C</mi><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow><mn>1</mn></msubsup>
+		<mo>&#x2062;</mo>
+		<msub><mi>v</mi><mn>1</mn></msub>
+	</mrow>
+	<mo>+</mo>
+	<mi>&#133;</mi>
+	<mo>+</mo>
+	<mrow>
+		<msubsup><mi>C</mi><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow><mi>k</mi></msubsup>
+		<mo>&#x2062;</mo>
+		<msub><mi>v</mi><mi>k</mi></msub>
+	</mrow>	
+	<mo>=</mo>
+	<mn>0</mn>		
+	</mrow>
+	<mo>,</mo>
+	<mrow>
+	<mi>k</mi><mo>=</mo>
+	<mfenced open='' close=''>
+		<mn>1</mn><mn>2</mn><mi>&#133;</mi>
+	</mfencedw>
+</math>;
+</li>
+<li>
+<math>
+	<mrow><msub><mi>v</mi><mn>0</mn></msub><mo>=</mo><mn>1</mn></mrow>
+  	<mo>;</mo>
+	<mrow>  	
+	<mrow>
+		<msub><mi>v</mi><mn>0</mn></msub><mo>+</mo>
+		<msubsup><mi>C</mi><mrow><mn>2</mn><mo>&#x2062;</mo><mi>k</mi></mrow><mn>2</mn></msubsup>
+		<mo>&#x2062;</mo>
+		<msub><mi>v</mi><mn>1</mn></msub>
+	</mrow>
+	<mo>+</mo>
+	<mrow>
+		<msubsup><mi>C</mi><mrow><mn>2</mn><mo>&#x2062;</mo><mi>k</mi></mrow><mn>4</mn></msubsup>
+		<mo>&#x2062;</mo>
+		<msub><mi>v</mi><mn>2</mn></msub>
+	</mrow>
+	<mo>+</mo>
+	<mi>&#133;</mi>
+	<mo>+</mo>
+	<mrow>
+		<msubsup>
+			<mi>C</mi><mrow><mn>2</mn><mo>&#x2062;</mo><mi>k</mi></mrow>
+			<mrow><mn>2</mn><mo>&#x2062;</mo><mi>k</mi></mrow>
+		</msubsup>
+		<mo>&#x2062;</mo>
+		<msub><mi>v</mi><mi>k</mi></msub>
+	</mrow>	
+	<mo>=</mo>
+	<mn>0</mn>		
+	</mrow>
+	<mo>,</mo>
+	<mrow>
+	<mi>k</mi><mo>=</mo>
+	<mfenced open='' close=''>
+		<mn>1</mn><mn>2</mn><mi>&#133;</mi>
+	</mfenced>
+	</mrow>
+</math>
+</li>
+</ol>
+<p>Дано неотрицательное целое число <math><mi>n</mi></math>. Вычислить числитель и знаменатель несократимой формы числа <math><msub><mi>v</mi><mi>n</mi></msub></math>. (Определить процедуры полного сокращения рационального числа, заданного числителем и знаменателем, а также процедуры сложения и умножения рациональных чисел).</p>
+</li>
+<li> Даны действительные числа 
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<msub><mi>y</mi><mn>1</mn></msub>
+	<msub><mi>x</mi><mn>2</mn></msub>
+	<msub><mi>y</mi><mn>2</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>x</mi><mn>6</mn></msub>
+	<msub><mi>y</mi><mn>6</mn></msub>
+</mfenced>
+</math>. Точки с координатами 
+<math>
+<mfenced open='' close=''>
+	<mrow>
+		<mo>(</mo>
+		<msub><mi>x</mi><mn>1</mn></msub>
+		<mo>,</mo>
+		<msub><mi>y</mi><mn>1</mn></msub>
+		<mo>)</mo>
+	</mrow>
+	<mrow>
+		<mo>(</mo>
+		<msub><mi>x</mi><mn>2</mn></msub>
+		<mo>,</mo>
+		<msub><mi>y</mi><mn>2</mn></msub>
+		<mo>)</mo>	
+	</mrow>
+	<mrow>
+		<mo>(</mo>
+		<msub><mi>x</mi><mn>3</mn></msub>
+		<mo>,</mo>
+		<msub><mi>y</mi><mn>3</mn></msub>
+		<mo>)</mo>
+	</mrow>
+</mfenced>
+</math> рассматриваются как вершины первого треугольника, точки с координатами
+<math>
+<mfenced open='' close=''>
+	<mrow>
+		<mo>(</mo>
+		<msub><mi>x</mi><mn>4</mn></msub>
+		<mo>,</mo>
+		<msub><mi>y</mi><mn>4</mn></msub>
+		<mo>)</mo>
+	</mrow>
+	<mrow>
+		<mo>(</mo>
+		<msub><mi>x</mi><mn>5</mn></msub>
+		<mo>,</mo>
+		<msub><mi>y</mi><mn>5</mn></msub>
+		<mo>)</mo>	
+	</mrow>
+	<mrow>
+		<mo>(</mo>
+		<msub><mi>x</mi><mn>6</mn></msub>
+		<mo>,</mo>
+		<msub><mi>y</mi><mn>6</mn></msub>
+		<mo>)</mo>
+	</mrow>
+</mfenced>
+</math> &#151; второго треугольника. Выяснить, верно, ли что первый треугольник целиком содержится во втором, и если да, определить площадь области, принадлежащей внешнему треугольнику и не принадлежащей внутреннему (на рис. 12.2 область заштрихована). (Определить процедуру, позволяющую выяснить, лежат ли две точки в одной полуплоскости относительно заданной прямой (см. задачу 52), процедуру вычисления расстояния между двумя точками, а также процедуру вычисления площади треугольника по трем сторонам).<br/>
+<svg width='500' height='200' >
+  <path id="svg_1" d="m34,153l49,-126l242,128l-291,-2z" stroke-width="2" stroke="#000000" fill="#a3a1a1"/>
+  <path id="svg_3" d="m68.00003,114l27.99997,-30l47,55l-74.99997,-25z" stroke="#000000" fill="#ffffff"/>
+  <text xml:space="preserve" text-anchor="middle" id="svg_4" y="184" x="145" stroke-width="0" stroke="#000000" fill="#000000">Рис. 12.2</text>
+</svg>
+ </li>
+
+<li> Два треугольника заданы координатами своих вершин так, как указано в предыдущей задаче. Выяснить, лежит ли какой-либо из треугольников целиком внутри другого. Если да, построить стороны треугольника и закрасить область, принадлежащую внешнему треугольнику и не принадлежащую внутреннему (рис. 12.2). Построения сторон и закраску области выполнить одним цветом. Если ни один из треугольников не лежит целиком внутри другого, построить стороны треугольника, используя для каждого треугольника свой цвет. (Определить процедуру, позволяющую выяснить, лежат ли две точки в одной полуплоскости относительно заданной прямой (см. задачу 52) и процедуру построения сторон треугольника по заданным координатам вершин и номеру цвета). 
+</li>
+<li>Даны натуральные числа
+<math>
+<mfenced open='' close=''>
+	<msub><mi>x</mi><mn>1</mn></msub>
+	<msub><mi>y</mi><mn>1</mn></msub>
+	<msub><mi>x</mi><mn>2</mn></msub>
+	<msub><mi>y</mi><mn>2</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>x</mi><mn>6</mn></msub>
+	<msub><mi>y</mi><mn>6</mn></msub>
+</mfenced>
+</math>. Точки с координатами 
+<math>
+<mfenced open='' close=''>
+	<mrow>
+		<mo>(</mo>
+		<msub><mi>x</mi><mn>1</mn></msub>
+		<mo>,</mo>
+		<msub><mi>y</mi><mn>1</mn></msub>
+		<mo>)</mo>
+	</mrow>
+	<mrow>
+		<mo>(</mo>
+		<msub><mi>x</mi><mn>2</mn></msub>
+		<mo>,</mo>
+		<msub><mi>y</mi><mn>2</mn></msub>
+		<mo>)</mo>	
+	</mrow>
+	<mrow>
+		<mo>(</mo>
+		<msub><mi>x</mi><mn>3</mn></msub>
+		<mo>,</mo>
+		<msub><mi>y</mi><mn>3</mn></msub>
+		<mo>)</mo>
+	</mrow>
+</mfenced>
+</math> рассматриваются как три вершины первого прямоугольника, точки с координатами
+<math>
+<mfenced open='' close=''>
+	<mrow>
+		<mo>(</mo>
+		<msub><mi>x</mi><mn>4</mn></msub>
+		<mo>,</mo>
+		<msub><mi>y</mi><mn>4</mn></msub>
+		<mo>)</mo>
+	</mrow>
+	<mrow>
+		<mo>(</mo>
+		<msub><mi>x</mi><mn>5</mn></msub>
+		<mo>,</mo>
+		<msub><mi>y</mi><mn>5</mn></msub>
+		<mo>)</mo>	
+	</mrow>
+	<mrow>
+		<mo>(</mo>
+		<msub><mi>x</mi><mn>6</mn></msub>
+		<mo>,</mo>
+		<msub><mi>y</mi><mn>6</mn></msub>
+		<mo>)</mo>
+	</mrow>
+</mfenced>
+</math> &#151; второго. Провести построения, аналогичные тем, которые были описаны в предыдущей задаче в отношении треугольников. Стороны прямоугольников считаются параллельными осям экрана (рис. 12.3).<br/> 
+<svg width="640" height="230">
+  <rect id="svg_2" height="103" width="190" y="63" x="341" stroke="#000000" fill="#7f7f7f"/>
+  <rect id="svg_3" height="48" width="83" y="78" x="356" stroke="#000000" fill="#ffffff"/>
+  <rect id="svg_5" height="59" width="125" y="106" x="58" stroke="#000000" fill="none"/>
+  <rect id="svg_6" height="61" width="124" y="67" x="157" stroke="#000000" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" id="svg_7" y="205" x="299" stroke-width="0" stroke="#000000" fill="#000000">Рис. 12.3</text>
+</svg>
+</li>
+<li> Представим себе, что в центре экрана сидит жучок, который может перемещаться по прямой на указанное расстояние и поворачивать направо и налево. У жучка есть перо, которое может оставлять след, повторяющий движение жучка. Если перо опущено, след остается; если перо поднято, следа нет. Итак, жучок может выполнять следующие приказы: 
+<ol type='a'>
+<li>Forward &#151; переместиться на заданное расстояние; </li>
+<li>Left &#151; повернуть налево на заданный угол; </li>
+<li>Right &#151; повернуть направо на заданный угол;</li> 
+<li>Pen Up &#151; поднять перо;</li> 
+<li>Pen Down &#151; опустить перо;</li>
+</ol>
+Реализовать процедуры Forward, Left, Right, Pen Up, Pen Down. Процедуры должны взаимодействовать через глобальные переменные xPOS, yPOS &#151; координаты жучка на экране; Pen &#151; признак, говорящий о том, поднято перо или опущено; Angle &#151; угол, который образует текущее направление перемещения жучка с осью абсцисс. С помощью перечисленных процедур получить на экране: 
+<ol type='a'>
+<li>Квадрат со стороной <math><mi>75</mi></math> единиц и центром, совпадающим с центром экрана. </li>
+<li>Прямоугольник с отношением сторон <math><mn>1</mn><mo>:</mo><mn>2</mn></math> и со срезанными углами. Срезаются равнобедренные прямоугольные треугольники, катеты которых имеют длину, равную <math bevelled='true'><mfrac><mn>1</mn><mn>20</mn></mfrac></math> длины большей стороны (рис. 12.4). Длина меньшей стороны &#151; данная величина. Положение прямоугольника на экране может быть выбрано произвольно. <br/>
+<svg width="280" height="190">
+  <rect id="svg_7" height="15" width="14" y="145" x="245" stroke-width="0" stroke="#000000" fill="#ffffff"/>
+  <line id="svg_8" y2="39" x2="229" y1="39" x1="84" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_9" y2="125" x2="229" y1="125" x1="84" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_10" y2="114" x2="71" y1="51" x1="71" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_15" y2="114" x2="243" y1="51" x1="243" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_16" y2="112" x2="244" y1="126" x1="228" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_17" y2="39" x2="228" y1="52" x1="243" stroke-width="2" stroke="#000000" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" id="svg_18" y="161" x="148" stroke-width="0" stroke="#000000" fill="#000000">Рис. 12.4</text>
+  <line id="svg_12" y2="39" x2="84" y1="52" x1="70" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_14" y2="114" x2="70" y1="125" x1="84" stroke-width="2" stroke="#000000" fill="none"/>
+</svg>
+
+</li>
+<li>Фигуру, составленную из пятнадцати квадратов, которая изображена на рис. 12.5. 
+<br/> 
+
+<svg width="500"  height="470">
+  <rect
+     style="fill:none;stroke:#000000;stroke-width:1px;"
+     id="rect3801"
+     width="80"
+     height="80"
+     x="335.7182"
+     y="188.68314"
+     transform="matrix(0.99983189,-0.01833561,0.01833561,0.99983189,0,0)" />
+  <rect
+     style="fill:none;stroke:#000000;stroke-width:1px;"
+     id="rect3801-3"
+     width="80"
+     height="80"
+     x="245.5502"
+     y="240.25111"
+     transform="matrix(0.93265985,-0.36075698,0.36075698,0.93265985,0,0)"
+     inkscape:transform-center-x="-21.755949"
+     inkscape:transform-center-y="-1.0690573" />
+  <rect
+     style="fill:none;stroke:#000000;stroke-width:1px;"
+     id="rect3801-3-4"
+     width="80"
+     height="80"
+     x="107.02696"
+     y="278.76083"
+     transform="matrix(0.67964507,-0.73354112,0.73354112,0.67964507,0,0)"
+     inkscape:transform-center-x="-19.078614"
+     inkscape:transform-center-y="-10.510497" />
+  <rect
+     style="fill:none;stroke:#000000;stroke-width:1px;"
+     id="rect3801-3-2"
+     width="80"
+     height="80"
+     x="-34.748356"
+     y="252.297"
+     transform="matrix(0.28752225,-0.95777396,0.95777396,0.28752225,0,0)"
+     inkscape:transform-center-x="-12.507222"
+     inkscape:transform-center-y="-17.833496" />
+  <rect
+     style="fill:none;stroke:#000000;stroke-width:1px;"
+     id="rect3801-3-9"
+     width="80"
+     height="80"
+     x="171.32373"
+     y="51.63237"
+     transform="matrix(0.9960589,-0.08869424,0.08869424,0.9960589,0,0)"
+     inkscape:transform-center-x="-21.202784"
+     inkscape:transform-center-y="4.9906508" />
+  <rect
+     style="fill:none;stroke:#000000;stroke-width:1px;"
+     id="rect3801-3-27"
+     width="80"
+     height="80"
+     x="49.488728"
+     y="118.68975"
+     transform="matrix(0.86539196,-0.50109555,0.52673257,0.85003106,0,0)"
+     inkscape:transform-center-x="-22.221597"
+     inkscape:transform-center-y="-4.8173824" />
+  <rect
+     style="fill:none;stroke:#000000;stroke-width:1px;"
+     id="rect3801-3-93"
+     width="80"
+     height="80"
+     x="-67.151283"
+     y="130.2356"
+     transform="matrix(0.60112821,-0.7991526,0.7434423,0.66880008,0,0)"
+     inkscape:transform-center-x="-18.75836"
+     inkscape:transform-center-y="-12.962971" />
+  <rect
+     style="fill:none;stroke:#000000;stroke-width:1px;"
+     id="rect3801-3-93-0"
+     width="80"
+     height="80"
+     x="-201.55722"
+     y="84.9981"
+     transform="matrix(0.2123769,-0.97718783,0.96776232,0.25186523,0,0)"
+     inkscape:transform-center-x="-11.439896"
+     inkscape:transform-center-y="-19.33626" />
+  <rect
+     style="fill:none;stroke:#000000;stroke-width:1px;"
+     id="rect3801-3-93-7"
+     width="80"
+     height="80"
+     x="-301.53406"
+     y="0.9473272"
+     transform="matrix(-0.17411496,-0.98472533,0.99098104,-0.13400218,0,0)"
+     inkscape:transform-center-x="-3.2513755"
+     inkscape:transform-center-y="-22.23042" />
+  <rect
+     style="fill:none;stroke:#000000;stroke-width:1px;"
+     id="rect3801-3-93-02"
+     width="80"
+     height="80"
+     x="-358.45285"
+     y="-127.69055"
+     transform="matrix(-0.57798148,-0.81604988,0.83883724,-0.5443823,0,0)"
+     inkscape:transform-center-x="6.5538843"
+     inkscape:transform-center-y="-21.489743" />
+  <rect
+     style="fill:none;stroke:#000000;stroke-width:1px;"
+     id="rect3801-3-93-4"
+     width="80"
+     height="80"
+     x="-260.11795"
+     y="263.20609"
+     transform="matrix(0.48384961,-0.87515116,0.85907911,0.51184282,0,0)"
+     inkscape:transform-center-x="-16.603677"
+     inkscape:transform-center-y="-15.306797" />
+  <rect
+     style="fill:none;stroke:#000000;stroke-width:1px;"
+     id="rect3801-3-93-77"
+     width="80"
+     height="80"
+     x="-382.91229"
+     y="192.76247"
+     transform="matrix(0.06047395,-0.99816978,0.99435288,0.10612418,0,0)"
+     inkscape:transform-center-x="-8.1619818"
+     inkscape:transform-center-y="-20.840515" />
+  <rect
+     style="fill:none;stroke:#000000;stroke-width:1px;"
+     id="rect3801-3-93-77-3"
+     width="80"
+     height="80"
+     x="-469.26355"
+     y="83.708916"
+     transform="matrix(-0.36019112,-0.93287853,0.94812831,-0.3178879,0,0)"
+     inkscape:transform-center-x="1.215183"
+     inkscape:transform-center-y="-22.363964" />
+  <rect
+     style="fill:none;stroke:#000000;stroke-width:1px;"
+     id="rect3801-3-93-77-0"
+     width="80"
+     height="80"
+     x="-503.60684"
+     y="-46.542728"
+     transform="matrix(-0.71238687,-0.70178697,0.73310391,-0.68011665,0,0)"
+     inkscape:transform-center-x="10.316695"
+     inkscape:transform-center-y="-19.879367" />
+  <rect
+     style="fill:none;stroke:#000000;stroke-width:1px;"
+     id="rect3801-3-93-77-7"
+     width="80"
+     height="80"
+     x="-100.94408"
+     y="414.13727"
+     transform="matrix(0.46791282,-0.88377463,0.87206104,0.48939712,0,0)"
+     inkscape:transform-center-x="-15.339774"
+     inkscape:transform-center-y="-14.775554" />
+     <text y="445" x="240" xml:space="preserve" id="svg_2"  text-anchor="middle" stroke-width="0" stroke="#000000" fill="#000000">Рис. 12.5</text>
+</svg>
+</li>
+<li>Четыре крупные цифры &#151;текущий год; цифры должны быть написаны по девятисегментному шаблону (как на почтовых конвертах).
+</li>
+<li>Те же цифры, что и в задании г), но написанные по семисегментному шаблону (как на электронных часах).</li>
+<li>Кривые Серпинского порядка 1 и 2, изображенные на рис. 12.6. </li>
+</ol>
+ 
+<svg width="640" height="240">
+  <rect y="523.07145" x="493.33969" width="200" height="26" stroke-width="1" stroke="#ffffff" fill="none" id="svg_56"/>
+  <g id="svg_3">
+   <g id="svg_1">
+    <rect transform="matrix(0.707107 -0.679329 0.707107 0.679329 -50.9205 126.819)" y="258.60402" x="196.65992" width="150" id="svg_5" height="30"  stroke-width="1" stroke="#000000" fill="none"/>
+    <rect transform="matrix(0.707107 0.679329 -0.707107 0.679329 123.933 -42.5238)" y="-38.38076" x="199.60401" width="150" id="svg_5" height="30"  stroke-width="1" stroke="#000000" fill="none"/>
+    <rect y="94.51453" x="299.63959" width="70" id="svg_4" height="67.25015" stroke-width="1" stroke="#000000" fill="#ffffff"/>
+    <rect transform="matrix(0.707107 -0.679329 0.707107 0.679329 -48.8997 127.663)" y="258.60401" x="205.23135" width="137" id="svg_5" height="26"  stroke-width="1" stroke="#ffffff" fill="#ffffff"/>
+    <rect transform="matrix(0.707107 0.679329 -0.707107 0.679329 123.204 -42.2736)" y="-37.13075" x="205.42544" width="137" id="svg_5" height="26"  stroke-width="1" stroke="#ffffff" fill="#ffffff"/>
+   </g>
+   <g id="svg_83">
+    <g id="svg_46">
+     <rect transform="matrix(0.324389 -0.307861 0.324389 0.307861 149.472 154.091)" y="508.8612" x="436.6241" width="150" height="30"  stroke-width="1" stroke="#000000" fill="#ffffff" id="svg_47"/>
+     <rect transform="matrix(0.324389 0.307861 -0.324389 0.307861 226.444 -39.6399)" y="-93.34489" x="644.86143" width="150" height="30"  stroke-width="1" stroke="#000000" fill="#ffffff" id="svg_48"/>
+     <rect y="142.61939" x="469.31699" width="32.11287" height="30.47664" stroke-width="1" stroke="#000000" fill="#ffffff" id="svg_49"/>
+     <rect transform="matrix(0.324389 -0.307861 0.324389 0.307861 150.401 154.473)" y="508.86076" x="445.19542" width="137" height="26" stroke-width="1" stroke="#ffffff" fill="#ffffff" id="svg_50"/>
+     <rect y="-92.09504" x="650.68256" width="137" transform="matrix(0.324389 0.307861 -0.324389 0.307861 226.111 -39.5266)" height="26"  stroke-width="1" stroke="#ffffff" fill="#ffffff" id="svg_51"/>
+    </g>
+    <g id="svg_58">
+     <rect transform="matrix(0.324389 -0.307861 0.324389 0.307861 149.472 154.091)" y="616.58568" x="544.34861" width="150" height="30"  stroke-width="1" stroke="#000000" fill="#ffffff" id="svg_59"/>
+     <rect transform="matrix(0.324389 0.307861 -0.324389 0.307861 226.444 -39.6399)" y="-201.0694" x="752.58595" width="150" height="30"  stroke-width="1" stroke="#000000" fill="#ffffff" id="svg_60"/>
+     <rect y="142.61939" x="539.20627" width="32.11287" height="30.47664"  stroke-width="1" stroke="#000000" fill="#ffffff" id="svg_61"/>
+     <rect transform="matrix(0.324389 -0.307861 0.324389 0.307861 150.401 154.473)" y="616.58518" x="552.91996" width="137" height="26"  stroke-width="1" stroke="#ffffff" fill="#ffffff" id="svg_62"/>
+     <rect y="-199.81959" x="758.40703" width="137" transform="matrix(0.324389 0.307861 -0.324389 0.307861 226.111 -39.5266)" height="26"  stroke-width="1" stroke="#ffffff" fill="#ffffff" id="svg_63"/>
+    </g>
+    <g id="svg_64">
+     <rect transform="matrix(0.324389 -0.307861 0.324389 0.307861 149.472 154.091)" y="402.02885" x="543.45675" width="150" height="30"  stroke-width="1" stroke="#000000" fill="#ffffff" id="svg_65"/>
+     <rect transform="matrix(0.324389 0.307861 -0.324389 0.307861 226.444 -39.6399)" y="-200.17749" x="538.02911" width="150" height="30" stroke-width="1" stroke="#000000" fill="#ffffff" id="svg_66"/>
+     <rect y="76.84035" x="469.31699" width="32.11287" height="30.47664" stroke-width="1" stroke="#000000" fill="#ffffff" id="svg_67"/>
+     <rect transform="matrix(0.324389 -0.307861 0.324389 0.307861 150.401 154.473)" y="402.02817" x="552.02801" width="137" height="26"  stroke-width="1" stroke="#ffffff" fill="#ffffff" id="svg_68"/>
+     <rect y="-198.92771" x="543.85013" width="137" transform="matrix(0.324389 0.307861 -0.324389 0.307861 226.111 -39.5266)" height="26"  stroke-width="1" stroke="#ffffff" fill="#ffffff" id="svg_69"/>
+    </g>
+    <g id="svg_76">
+     <rect transform="matrix(0.324389 -0.307861 0.324389 0.307861 149.472 154.091)" y="509.20834" x="651.72644" width="150" height="30" stroke-width="1" stroke="#000000" fill="#ffffff" id="svg_77"/>
+     <rect transform="matrix(0.324389 0.307861 -0.324389 0.307861 226.444 -39.6399)" y="-308.4472" x="645.20869" width="150" height="30" stroke-width="1" stroke="#000000" fill="#ffffff" id="svg_78"/>
+     <rect y="76.50474" x="539.20627" width="32.11287" height="30.47664" stroke-width="1" stroke="#000000" fill="#ffffff" id="svg_79"/>
+     <rect transform="matrix(0.324389 -0.307861 0.324389 0.307861 150.401 154.473)" y="509.20747" x="660.29771" width="137" height="26" stroke-width="1" stroke="#ffffff" fill="#ffffff" id="svg_80"/>
+     <rect y="-307.19746" x="651.0296" width="137" transform="matrix(0.324389 0.307861 -0.324389 0.307861 226.111 -39.5266)" height="26" stroke-width="1" stroke="#ffffff" fill="#ffffff" id="svg_81"/>
+    </g>
+    <g id="svg_82">
+     <rect transform="matrix(0.324389 -0.307861 0.324389 0.307861 149.472 154.091)" y="509.30727" x="543.9027" width="150" height="30" stroke-width="1" stroke="#000000" fill="#ffffff" id="svg_71"/>
+     <rect transform="matrix(0.324389 0.307861 -0.324389 0.307861 226.444 -39.6399)" y="-200.62344" x="645.30752" width="150" height="30"  stroke-width="1" stroke="#000000" fill="#ffffff" id="svg_72"/>
+     <rect y="109.72987" x="504.26163" width="32.11287" height="30.47664" stroke-width="1" stroke="#000000" fill="#ffffff" id="svg_73"/>
+     <rect transform="matrix(0.324389 -0.307861 0.324389 0.307861 150.401 154.473)" y="509.13972" x="527.23418" width="200" height="26"   stroke-width="1" stroke="#ffffff" fill="#ffffff" id="svg_74"/>
+     <rect y="-199.34564" x="636.92887" width="200" transform="matrix(0.324389 0.307861 -0.324389 0.307861 226.111 -39.5266)" height="26" stroke-width="1" stroke="#ffffff" fill="#ffffff" id="svg_75"/>
+    </g>
+   </g>
+   <text y="235" x="430" id="svg_2" text-anchor="middle" stroke-width="0" stroke="#000000" fill="#000000">Рис. 12.6</text>
+  </g>
+ </g>
+ <g>
+ </svg>
+ </li>
+<li> Даны натуральные числа
+<math >
+<mi>k</mi>
+<mo>, </mo>
+<mi>l</mi>
+<mo>, </mo>
+<mi> m </mi>
+<mo>, </mo>
+</math> 
+символы 
+<math >
+<msub>
+<mi>s</mi>
+<mn>1</mn>
+</msub>
+<mo>,</mo>
+<mo>.</mo>
+<mo>.</mo>
+<mo>.</mo>
+<mo>,</mo>
+<msub>
+<mi>s</mi>
+<mn>30</mn>
+</msub>
+<mo>.</mo>
+</math>
+Вывести данные символы в следующем виде: 
+<br/>
+<svg width="440" height="180">
+ <g>
+   <rect fill="none" stroke="#000000" stroke-width="2" x="52" y="36" width="19" height="15" id="svg_5"/>
+  <rect fill="none" stroke="#000000" stroke-width="2" x="110" y="36" width="19" height="15" id="svg_6"/>
+  <rect fill="none" stroke="#000000" stroke-width="2" x="135" y="36" width="19" height="15" id="svg_7"/>
+  <circle fill="none" stroke="#000000" stroke-width="2" cx="90" cy="50" r="1.00003" id="svg_8"/>
+  <circle fill="none" stroke="#000000" stroke-width="2" cx="100" cy="50" r="1.00003" id="svg_9"/>
+  <circle fill="none" stroke="#000000" stroke-width="2" cx="80" cy="50" r="1.00003" id="svg_10"/>
+  <rect fill="none" stroke="#000000" stroke-width="2" x="267" y="36" width="19" height="15" id="svg_11"/>
+  <rect fill="none" stroke="#000000" stroke-width="2" x="190" y="36" width="19" height="15" id="svg_14"/>
+  <rect fill="none" stroke="#000000" stroke-width="2" x="215" y="36" width="19" height="15" id="svg_15"/>
+  <circle fill="none" stroke="#000000" stroke-width="2" cx="251" cy="50" r="1.00003" id="svg_16"/>
+  <circle fill="none" stroke="#000000" stroke-width="2" cx="261" cy="50" r="1.00003" id="svg_17"/>
+  <circle fill="none" stroke="#000000" stroke-width="2" cx="241" cy="50" r="1.00003" id="svg_18"/>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="165" y="51" id="svg_25" font-size="23" font-family="serif" text-anchor="middle" xml:space="preserve" font-style="italic">s</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="302" y="51" font-size="23" font-family="serif" text-anchor="middle" xml:space="preserve" font-style="italic" id="svg_27">s</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="315" y="57" font-size="14" font-family="serif" text-anchor="middle" xml:space="preserve" font-weight="bold" id="svg_28">16</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="174" y="57" id="svg_26" font-size="14" font-family="serif" text-anchor="middle" xml:space="preserve" font-weight="bold">1</text>
+  <g id="svg_29">
+   <rect fill="none" stroke="#000000" stroke-width="2" x="408" y="36" width="19" height="15" id="svg_19"/>
+   <rect fill="none" stroke="#000000" stroke-width="2" x="331" y="36" width="19" height="15" id="svg_20"/>
+   <rect fill="none" stroke="#000000" stroke-width="2" x="356" y="36" width="19" height="15" id="svg_21"/>
+   <circle fill="none" stroke="#000000" stroke-width="2" cx="392" cy="50" r="1.00003" id="svg_22"/>
+   <circle fill="none" stroke="#000000" stroke-width="2" cx="402" cy="50" r="1.00003" id="svg_23"/>
+   <circle fill="none" stroke="#000000" stroke-width="2" cx="382" cy="50" r="1.00003" id="svg_24"/>
+  </g>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="446" y="54" id="svg_30" font-size="19" font-family="serif" text-anchor="middle" xml:space="preserve" font-weight="bold">*</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="276.635" y="134.31" font-size="17" font-family="serif" text-anchor="middle" xml:space="preserve" transform="rotate(-90 -2824.14 1852) matrix(1.9432 0 0 6.53031 -101.354 -295.767)" font-weight="normal" id="svg_33">{</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" font-family="serif" font-size="20" id="svg_4" xml:space="preserve" transform="rotate(90 103.31 59.7418) matrix(1.7652 0 0 5.18593 -78.4302 -269.385)" x="103.01245" y="68.77013">}</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" font-family="serif" font-size="20" id="svg_13" xml:space="preserve" transform="rotate(90 241.559 60.191) matrix(1.7652 0 0 5.18593 -58.4302 -249.385)" x="170" y="65">}</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" text-anchor="middle" font-family="serif" font-size="20" id="svg_31" xml:space="preserve" transform="rotate(90 383.949 59.1911) matrix(1.7652 0 0 5.18593 -48.4302 -239.385)" x="245" y="62.87888">}</text>
+  <text font-style="italic" y="80" x="100" xml:space="preserve" id="svg_1" font-size="14" font-family="serif" text-anchor="middle" stroke-width="0" stroke="#000000" fill="#000000">k пробелов</text>
+  <text y="80" x="245" font-style="italic" xml:space="preserve" id="svg_2" font-size="14" font-family="serif" text-anchor="middle" stroke-width="0" stroke="#000000" fill="#000000">b пробелов</text>
+  <text y="80" x="385" font-style="italic" xml:space="preserve" id="svg_3" font-size="14" font-family="serif" text-anchor="middle" stroke-width="0" stroke="#000000" fill="#000000">m пробелов</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="165" y="105" font-size="23" font-family="serif" text-anchor="middle" xml:space="preserve" font-style="italic" id="svg_12">s</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="165" y="155" font-size="23" font-family="serif" text-anchor="middle" xml:space="preserve" font-style="italic" id="svg_32">s</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="302" y="155" font-size="23" font-family="serif" text-anchor="middle" xml:space="preserve" font-style="italic" id="svg_34">s</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="302" y="105" font-size="23" font-family="serif" text-anchor="middle" xml:space="preserve" font-style="italic" id="svg_35">s</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="174" y="110" font-size="14" font-family="serif" text-anchor="middle" xml:space="preserve" font-weight="bold" id="svg_36">2</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="315" y="110" font-size="14" font-family="serif" text-anchor="middle" xml:space="preserve" font-weight="bold" id="svg_37">17</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="315" y="160" font-size="14" font-family="serif" text-anchor="middle" xml:space="preserve" font-weight="bold" id="svg_38">30</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="174" y="160" font-size="14" font-family="serif" text-anchor="middle" xml:space="preserve" font-weight="bold" id="svg_39">15</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="446" y="110" font-size="19" font-family="serif" text-anchor="middle" xml:space="preserve" font-weight="bold" id="svg_40">*</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="446" y="160" font-size="19" font-family="serif" text-anchor="middle" xml:space="preserve" font-weight="bold" id="svg_41">*</text>
+  <g id="svg_56">
+   <circle fill="none" stroke="#000000" stroke-width="2" cx="271.00003" cy="126.00003" r="1.00003" id="svg_57"/>
+   <circle id="svg_58" fill="none" stroke="#000000" stroke-width="2" cx="286.00003" cy="126.00003" r="1.00003"/>
+   <circle id="svg_59" fill="none" stroke="#000000" stroke-width="2" cx="301.00003" cy="126.00003" r="1.00003"/>
+  </g>
+  <g id="svg_60">
+   <circle fill="none" stroke="#000000" stroke-width="2" cx="316.00003" cy="126.00003" r="1.00003" id="svg_61"/>
+   <circle id="svg_62" fill="none" stroke="#000000" stroke-width="2" cx="331.00003" cy="126.00003" r="1.00003"/>
+   <circle id="svg_63" fill="none" stroke="#000000" stroke-width="2" cx="346.00003" cy="126.00003" r="1.00003"/>
+  </g>
+  <g id="svg_64">
+   <circle fill="none" stroke="#000000" stroke-width="2" cx="361.00003" cy="126.00003" r="1.00003" id="svg_65"/>
+   <circle id="svg_66" fill="none" stroke="#000000" stroke-width="2" cx="376.00003" cy="126.00003" r="1.00003"/>
+   <circle id="svg_67" fill="none" stroke="#000000" stroke-width="2" cx="391.00003" cy="126.00003" r="1.00003"/>
+  </g>
+  <g id="svg_54">
+   <g id="svg_45">
+    <circle fill="none" stroke="#000000" stroke-width="2" cx="61.00003" cy="126.00003" r="1.00003" id="svg_42"/>
+    <circle id="svg_43" fill="none" stroke="#000000" stroke-width="2" cx="76.00003" cy="126.00003" r="1.00003"/>
+    <circle id="svg_44" fill="none" stroke="#000000" stroke-width="2" cx="91.00003" cy="126.00003" r="1.00003"/>
+   </g>
+   <g id="svg_46">
+    <circle fill="none" stroke="#000000" stroke-width="2" cx="106.00003" cy="126.00003" r="1.00003" id="svg_47"/>
+    <circle id="svg_48" fill="none" stroke="#000000" stroke-width="2" cx="121.00003" cy="126.00003" r="1.00003"/>
+    <circle id="svg_49" fill="none" stroke="#000000" stroke-width="2" cx="136.00003" cy="126.00003" r="1.00003"/>
+   </g>
+   <g id="svg_50">
+    <circle fill="none" stroke="#000000" stroke-width="2" cx="151.00003" cy="126.00003" r="1.00003" id="svg_51"/>
+    <circle id="svg_52" fill="none" stroke="#000000" stroke-width="2" cx="166.00003" cy="126.00003" r="1.00003"/>
+    <circle id="svg_53" fill="none" stroke="#000000" stroke-width="2" cx="181.00003" cy="126.00003" r="1.00003"/>
+   </g>
+  </g>
+  <g id="svg_68">
+   <g id="svg_69">
+    <circle fill="none" stroke="#000000" stroke-width="2" cx="181.00003" cy="126.00003" r="1.00003" id="svg_70"/>
+    <circle fill="none" stroke="#000000" stroke-width="2" cx="196.00003" cy="126.00003" r="1.00003" id="svg_71"/>
+    <circle fill="none" stroke="#000000" stroke-width="2" cx="211.00003" cy="126.00003" r="1.00003" id="svg_72"/>
+   </g>
+   <g id="svg_73">
+    <circle fill="none" stroke="#000000" stroke-width="2" cx="226.00003" cy="126.00003" r="1.00003" id="svg_74"/>
+    <circle fill="none" stroke="#000000" stroke-width="2" cx="241.00003" cy="126.00003" r="1.00003" id="svg_75"/>
+    <circle fill="none" stroke="#000000" stroke-width="2" cx="256.00003" cy="126.00003" r="1.00003" id="svg_76"/>
+   </g>
+   <g id="svg_77">
+    <circle fill="none" stroke="#000000" stroke-width="2" cx="271.00003" cy="126.00003" r="1.00003" id="svg_78"/>
+    <circle fill="none" stroke="#000000" stroke-width="2" cx="286.00003" cy="126.00003" r="1.00003" id="svg_79"/>
+    <circle fill="none" stroke="#000000" stroke-width="2" cx="301.00003" cy="126.00003" r="1.00003" id="svg_80"/>
+   </g>
+  </g>
+  <g id="svg_81">
+   <circle fill="none" stroke="#000000" stroke-width="2" cx="406.00003" cy="126.00003" r="1.00003" id="svg_82"/>
+   <circle id="svg_83" fill="none" stroke="#000000" stroke-width="2" cx="421.00003" cy="126.00003" r="1.00003"/>
+   <circle id="svg_84" fill="none" stroke="#000000" stroke-width="2" cx="436.00003" cy="126.00003" r="1.00003"/>
+  </g>
+ </g>
+</svg>
+<br/>
+(Определить процедуру, обращение к которой дает вывод символа <math><mi>t</mi></math>  после <math><mi>n</mi></math> пробелов.)
+</li>
+<li> Дано натуральное число <math ><mi>n</mi></math>. Найти
+<math><mi>n</mi><mo>!</mo></math>, используя рекурсию. Чем эта программа хуже нерекурсивной программы вычисления
+<math><mi>n</mi><mo>!</mo></math>?
+</li>
+<li> Для заданных натуральных чисел <math><mi>n</mi></math> и <math><mi>m</mi></math> найти их наибольший общий делитель 
+<math>
+<mi>НОД</mi><mo>&#x2061;</mo>
+<mrow>
+	<mo>(</mo>
+	<mi>n</mi>
+	<mo>,</mo>
+	<mi>m</mi>
+	<mo>)</mo>
+</mrow>
+</math>. Использовать программу, включающую рекурсивную процедуру вычисления НОД, основанную на соотношении 
+<math>
+<mrow>
+<mi>НОД</mi><mo>&#x2061;</mo>
+<mrow>
+	<mo>(</mo>
+	<mi>n</mi>
+	<mo>,</mo>
+	<mi>m</mi>
+	<mo>)</mo>
+</mrow>
+</mrow>
+<mo>=</mo>
+<mrow>
+<mi>НОД</mi><mo>&#x2061;</mo>
+<mrow>
+	<mo>(</mo>
+	<mi>m</mi>
+	<mo>,</mo>
+	<mi>r</mi>
+	<mo>)</mo>
+</mrow>
+</mrow>
+</math>, где <math><mi>r</mi></math> &#151; остаток от деления n на m (см. задачу 89). Чем эта программа хуже нерекурсивной программы вычисления
+<math>
+<mi>НОД</mi><mo>&#x2061;</mo>
+<mrow>
+	<mo>(</mo>
+	<mi>n</mi>
+	<mo>,</mo>
+	<mi>m</mi>
+	<mo>)</mo>
+</mrow>
+</math>?
+</li>
+<li> Числа Фибоначчи
+<math>
+<mfenced open='' close=''>
+	<msub><mi>u</mi><mn>0</mn></msub>
+	<msub><mi>u</mi><mn>1</mn></msub>
+	<msub><mi>u</mi><mn>3</mn></msub>
+	<mi>&#151;</mi>
+</mfenced>	
+</math> определяются следующим образом:
+<math>
+	<mrow>
+		<msub><mi>u</mi><mn>0</mn></msub><mo>=</mo><mn>0</mn>
+	</mrow>	
+	<mo>,</mo>
+	<mrow>
+		<msub><mi>u</mi><mn>1</mn></msub><mo>=</mo><mn>1</mn>
+	</mrow>	
+	<mo>,</mo>
+	<mrow>
+ 		<msub><mi>u</mi><mi>n</mi></msub><mo>=</mo>
+		<msub><mi>u</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub><mo>+</mo>
+		<msub><mi>u</mi><mrow><mi>n</mi><mo>-</mo><mn>2</mn></mrow></msub>
+	</mrow>
+	<mo>,</mo>
+	<mrow>
+		<mi>n</mi><mo>=</mo>
+		<mfenced open='' close=''>
+			<mn>2</mn><mn>3</mn><mi>&#133;</mi>
+		</mfenced>
+	</mrow>				
+</math> (см. задачу 144). Написать программу вычисления
+<math><msub><mi>u</mi><mi>n</mi></msub></math> для данного неотрицательного целого 
+<math><mi>n</mi></math>, включающую рекурсивную процедуру, которая основана на непосредственном использовании соотношения
+<math>
+	<mrow>
+ 		<msub><mi>u</mi><mi>n</mi></msub><mo>=</mo>
+		<msub><mi>u</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub><mo>+</mo>
+		<msub><mi>u</mi><mrow><mi>n</mi><mo>-</mo><mn>2</mn></mrow></msub>
+	</mrow>
+	<mo>,</mo>
+</math>
+Доказать по индукции, что при вычислении 
+<math><msub><mi>u</mi><mi>n</mi></msub></math> по этой программе придется выполнить 
+<math><msub><mi>u</mi><mi>n</mi></msub><mo>-</mo><mn>1</mn></math> сложение чисел Фибоначчи. Итак, для нерекурсивной программы количество сложений чисел Фибоначчи при вычислении <math><msub><mi>u</mi><mi>n</mi></msub></math> для 
+<math>
+	<mi>n</mi>
+	<mo>=</mo>
+	<mfenced open='' close=''>
+		<mn>0</mn>
+		<mn>1</mn>
+		<mi>&#133;</mi>
+		<mn>10</mn>
+	</mfenced>
+</math>
+есть соответственно 
+<math>
+	<mi>n</mi>
+	<mo>=</mo>
+	<mfenced open='' close=''>
+		<mn>0</mn><mn>0</mn><mn>1</mn><mn>2</mn><mn>3</mn><mn>4</mn><mn>5</mn><mn>6</mn><mn>7</mn><mn>8</mn>
+	</mfenced>
+</math>
+а для рекурсивной &#151;
+<math>
+	<mi>n</mi>
+	<mo>=</mo>
+	<mfenced open='' close=''>
+		<mn>0</mn><mn>0</mn><mn>1</mn><mn>2</mn><mn>4</mn><mn>7</mn><mn>12</mn><mn>20</mn><mn>30</mn><mn>54</mn>
+	</mfenced>
+</math>. Ввиду последнего обстоятельства никогда не следует пользоваться такого рода рекурсивными процедурами, основанными на непосредственном применении соотношений вида
+<math>
+  <msub><mi>x</mi><mi>n</mi></msub><mo>=</mo>
+  <mrow>
+  <mi>F</mi><mo>&#x2061;</mo>
+  <mfenced>
+		<msub><mi>x</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub>
+		<mi>&#133;</mi>  	
+		<msub><mi>x</mi><mrow><mi>n</mi><mo>-</mo><mi>k</mi></mrow></msub>
+  </mfenced>
+  </mrow>
+  <mo>,</mo>
+  <mrow><mi>k</mi><mo>&#8805;</mo><mn>2</mn></mrow>
+</math>.
+</li>
+<li>Даны натуральные числа
+<math><mfenced open='' close=''><mi>a</mi><mi>c</mi><mi>m</mi></math> и функция 
+<math>
+	<mrow>	
+		<mi>g</mi><mo>&#x2061;</mo>
+		<mrow><mo>(</mo><mi>n</mi><mo>)</mo></mrow>
+	</mrow>	
+	<mo>=</mo>
+	<mrow>
+		<mo>(</mo>
+		<msup><mi>a</mi><mi>n</mi></msup>
+		<mo>+</mo>
+		<mi>c</mi>
+		<mo>)</mo>
+		<mo>MOD</mo>
+		<mn>10</mn>
+	</mrow>
+</math>	
+. Получить
+<math>
+	<mrow>
+		<mi>f</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>m</mi><mo>)</mo></mrow>
+	</mrow>
+	<mo>=</mo>
+  	<mrow>
+    <mo>{</mo>
+      <mtable>
+        <mtr>
+          <mtd columnalign='left'>
+            <mi>n</mi>
+            <mo>,</mo>
+            <mtext>если</mtext><mspace width='1ex'/>
+            <mrow>
+              <mn>0</mn>
+              <mo>&#8804;</mo>
+              <mi>n</mi>
+              <mo>&#8804;</mo>
+              <mn>9</mn>
+            </mrow>
+            <mo>,</mo>
+          </mtd>
+        </mtr>
+        <mtr>
+          <mtd columnalign='left'>
+				<mrow>	
+					<mi>g</mi><mo>&#x2061;</mo>
+					<mrow><mo>(</mo><mi>n</mi><mo>)</mo></mrow>
+				</mrow>
+           	<mo>&#x2062;</mo>
+				<mrow>
+            	<mi>f</mi><mo>&#x2061;</mo>
+            	<mrow>
+            		<mo>(</mo>
+            		<mi>n</mi>
+            		<mo>-</mo>
+            		<mn>1</mn>
+            		<mo>-</mo>
+						<mrow>	
+							<mi>g</mi><mo>&#x2061;</mo>
+							<mrow><mo>(</mo><mi>n</mi><mo>)</mo></mrow>
+						</mrow>            		
+            		<mo>)</mo>
+            	<mo>+</mo>
+            	<mi>n</mi>
+            </mrow>
+            <mspace width='1ex'/>
+				<mtext>в противном случае.</mtext>
+          </mtd>
+        </mtr>
+      </mtable>
+   </mrow>
+</math>
+<p>Использовать программу, включающую рекурсивную процедуру вычисления 
+<math >
+<mi>f</mi>
+<mo>(</mo>
+<mi>n</mi>
+<mo>)</mo>
+<mo>.</mo>
+</math>
+</p>
+</li>
+<li> Даны неотрицательные целые числа
+<math><mi>m</mi></math> и <math><mi>n</mi></math>. Вычислить функцию Аккермана
+<math>
+	<mrow>
+	<mi>A</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>( </mo>
+		<mi>n</mi>
+		<mo>,</mo>
+		<mi>m</mi>
+		<mo>)</mo>
+	</mrow>
+	</mrow>
+	<mo>=</mo>
+	<mrow>
+   <mo>{</mo>
+      <mtable>
+        <mtr>
+          <mtd columnalign='left'>
+            <mi>m</mi>
+            <mo>+</mo>
+            <mn>1</mn>
+            <mo>,</mo>
+            <mtext>если</mtext>
+            <mspace width='1ex'/>
+            <mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow>
+            <mo>,</mo>
+          </mtd>
+        </mtr>
+        <mtr>
+          <mtd columnalign='left'>
+            <mi>A</mi><mo>&#x2061;</mo>
+				<mrow>
+            	<mo>(</mo>
+            	<mi>n</mi>
+            	<mo>-</mo>
+	            <mn>1</mn>
+   				<mo>,</mo>
+   				<mn>1</mn>         
+            	<mo>)</mo>
+            </mrow>	
+            <mo>,</mo>
+            <mi>если</mi>
+            <mspace width='1ex'/>
+            <mrow>
+              <mi>n</mi>
+              <mo>&#x2260;</mo>
+              <mn>0</mn>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+            	<mi>m</mi>
+                <mo>=</mo>
+                <mn>0</mn>
+				</mrow>           
+            <mo>,</mo>
+          </mtd>
+        </mtr>
+        <mtr>
+          <mtd>
+            <mi>A</mi><mo>&#x2061;</mo>
+				<mrow>
+            <mo>(</mo>
+					<mrow>            
+            		<mi>n</mi>
+            		<mo>-</mo>
+            		<mn>1</mn>
+            		<mo>,</mo>
+            		<mi>A</mi>
+            		<mo>(</mo><mo>&#x2061;</mo>
+						<mrow>
+            			<mo>(</mo>
+							<mrow> 
+            				<mi>n</mi>
+            				<mo>,</mo>
+            				<mi>m</mi>
+            				<mo>-</mo>
+            				<mn>1</mn>
+            			</mrow>	
+            			<mo>)</mo>		
+            		</mrow>
+            <mo>)</mo>			
+            </mrow>		
+            <mo>,</mo>
+            <mtext>если</mtext>
+            <mspace width='1ex'/>
+            <mrow>
+              <mi>n</mi>
+              <mo>&gt;</mo>
+              <mn>0</mn>
+            </mtext>  
+            <mo>,</mo>
+            <mrow>
+               <mi>m</mi>
+               <mo>&gt;</mo>
+               <mn>0</mn>
+               <mo>.</mo>
+            </mrow>
+          </mtd>
+        </mtr>
+      </mtable>
+  </mrow>
+</math>
+<p> Использовать программу, включающую рекурсивную процедуру.</p>
+</li>
+<li> Многие задачи, помещенные в параграфе 9, где речь идет о вложенных циклах, могут решаться с привлечением процедур-внутренние циклы могут быть заменены обращениями к должным образом определенным процедурам. Например, для решении задачи 317 можно определить процедуру вычисления <math><msup><mi>a</mi><mi>n</mi></msup></math>, для решения задачи 318 &#151; процедуру вычисления 
+<math display='block'>
+  <mfrac>
+    <mn>1</mn>
+    <mrow>
+      <msup><mi>i</mi><mn>2</mn></msup><mo>+</mo><mn>1</mn>
+    </mrow>
+  </mfrac>
+  <mo>+</mo>
+  <mfrac>
+    <mn>1</mn>
+    <mrow>
+    	<msup><mi>i</mi><mn>2</mn></msup><mo>+</mo><mn>2</mn>
+    </mrow>
+  </mfrac>
+  <mo>+</mo>
+  <mi>&#133;</mi>
+  <mo>+</mo>
+  <mfrac>
+    <mn>1</mn>
+    <mrow>
+      <msup><mi>i</mi><mn>2</mn></msup><mo>+</mo><mi>i</mi><mo>+</mo><mn>1</mn>
+    </mrow>
+  </mfrac>
+</math>
+и т.д. Посмотреть задачи параграфа 9 и сказать, какие процедуры были бы полезны для решения этих задач.
+</li>
+<li> Составить процедуру вычисления значения целого числа по заданной строке символов, являющейся записью этого числа: 
+<ol type='a'>
+<li>в десятичной системе счисления; </li>
+<li>в шестнадцатеричной системе счисления (шестнадцатеричные цифры &#151; это цифры от 0 до 9 и латинские буквы от A до F). </li>
+</ol>
+*) В этой и следующих задачах настоящего параграфа требуется составить отдельные процедуры, не включая их в какие-либо программы. На практике эти процедуры могут оказаться полезными в целом ряде программ.
+</li>
+<li> Составить процедуру построения строки символов, являющейся записью данного действительного числа в десятичной системе счисления; строка должна содержать указанное количество цифр после запятой. 
+</li>
+<li> Составить процедуру, результатом работы которой является истинное значение, если символ, заданный при обращении к процедуре, &#151; буква, и ложное значение в противном случае. 
+</li>
+<li> Составить процедуру, возвращающую небуквенный аргумент без изменения, а буквенный аргумент &#151;  в нижнем регистре.
+</li>
+<li> Составить процедуру &quot;сжатия&quot; исходной последовательности символов: каждая подпоследовательность состоящая из нескольких вложений одного и того же символа, заменяется на текст 
+<math><mi>x</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>k</mi><mo>)</mo></mrow></math>, где 
+<math><mi>x</mi></math> &#151; символ, а <math><mi>k</mi></math> &#151; строка, являющаяся записью числа вхождений символа 
+<math><mi>x</mi></math> в исходную последовательность. 
+</li>
+<li> Составить процедуру, позволяющую определить позицию самого правого вхождения заданного символа в исходную строку. Если строка не содержит символа, результатом работы процедуры должна быть -1. 
+</li>
+<li> Составить процедуру, заменяющую в исходной строке символов все единицы нулями и все нули единицами. Замена должна выполняться, начиная с заданной позиции строки.
+</li>
+<li> Составить процедуру, в результате обращения к которой из первой заданной строки удаляется каждый символ, принадлежащий и второй заданной строке.
+</li>
+<li> Составить процедуру, позволяющую определить позицию самого правого вхождения в заданную строку какого-либо символа из второй заданной строки. Результатом работы процедуры должна быть -1, если первая строка не содержит ни одного символа, принадлежащего и второй заданной строке. 
+</li>
+<li> Выравнивание строки заключается в том, что между ее отдельными словами (см. задачу 269) дополнительно вносятся пробелы так, чтобы длина строки стала равной заданной длине (предполагается, что требуемая длина не меньше исходной), а последнее слово строки сдвинулось к ее правому краю. Составить программу выравнивания заданной строки текста. 
+</li>
+<li>При выводе текстов на экран или печатающее устройство часто используются табуляционные остановки &#151; выделенные позиции строки. Например, при печати таблиц полезно зафиксировать положение столбцов таблицы. Если в исходном тексте встречается символ табуляции tab (например, символ с кодом 9), это означает, что текст, следующий за символом tab, должен печататься со следующей табуляционной остановки, а до нее следует выдавать пробелы. Составить процедуру печати текста с указанной интерпретацией символа tab (предложить зафиксированный набор табуляционных остановок). 
+</li>
+</ol>
+</body>
+</html>

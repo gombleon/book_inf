@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<link rel='stylesheet' type="text/css" href="style.css"></link>
+<meta name="author" content="leonid" />
+<meta name="description" content="Шина, центральный процессор, ввод, вывод, команда, адрес, данные"/>
+<meta name="keywords" content="память, шина, процессор, микросхема, ввод, вывод, адрес, данные" />
+<title>Микросхемы процессоров</title>
+</head>
+<body>
+<p><a href="7_8.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="7_10.html">К следующему</a> </p>
+<h1>7.9. Микросхемы процессоров</h1>
+<p>Всякая микросхема обменивается информацией с внешними устройствами через набор выводов. Изучение функций всех выводов позволит узнать принципы взаимодействия процесссора с памятью и устройствами ввода-вывода на цифровом логическом уровне. Выводы центрального процессора связаны с выводами памяти и устройств ввода-вывода посредством <a href='7_10.html#shina'>шин</a>, представляющих собой набор параллельных проводов.</p>
+<p>В зависимости от функций, выводы центрального процессора можно подразделить на три типа: <span class='teorema'>адресные, информационные и управляющие</span>. Для вызова команды центральный процессор по шине адреса посылает в память адрес команды. Затем процессор по шинам управления отправляет в память запрос на чтение требуемого команде слова. Память помещает требуемое слово на информационные выводы центрального процессора и отправляет сигнал исполнения запроса. Процессор, получив сигнал, считывает слово и исполняет команду. Команда, в свою очередь, тоже может потребовать чтения слов из памяти. В этом случае весь процесс повторяется для каждого дополнительного слова.</p>
+<p>Число адресных линий и число информационных линий в решающей степени определяют производительность центрального процессора. Процессор с m адресными выводами может обращаться к 
+<math   display='inline'>
+<msup><mn>2</mn><mi>m</mi></msup>
+</math>
+адресам памяти. Как правило, m может быть равно 16, 20, 32 или 64. Процессор с n адресными выводами за одну операцию может считать или записать n-разрядное слово. Обычно n равно 8, 16, 32 или 64. Процессору с 8 информационными выводами для чтения 32-разрядного слова потребуется 4 операции, тогда как процессор с 32 информационными выводами считает 32-разрядное слово за одну операцию.</p>
+<p>Управляющие выводы процессора выполняют синхронизацию и регулирование потока данных к процессору и от него, а также некоторые другие функции. Все процессоры содержат выводы питания (обычно +5 В или +3.3 В), земли и <a name='meandr'/> синхронизирующего сигнала (<span class='teorema'>меандра</span>). Управляющие выводы можно разделить на несколько основных категорий:
+<ul>
+<li>управление шиной;</li>
+<li>прерывания;</li>
+<li>арбитраж шины;</li>
+<li>сигналы сопроцессора;</li>
+<li>состояние;</li>
+<li>прочие сигналы.</li>
+</ul>
+</p>
+<p>Схема типичного процессора с такими типами сигналов изображена ниже на рис. 7.9.1:</p>
+<svg height = "320px"  width = "540px">
+<defs>
+    <marker id="Triangle"
+      viewBox="0 0 10 10" refX="0" refY="5" 
+      markerUnits="strokeWidth"
+      markerWidth="8" markerHeight="8"
+      orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" />
+    </marker>
+    <marker id="Triangle1"
+      viewBox="0 0 10 10" refX="0" refY="5" 
+      markerUnits="strokeWidth"
+      markerWidth="8" markerHeight="8"
+      orient="auto">
+      <path d="M 10 0 L 0 5 L 10 10 z" />
+    </marker>
+  </defs>
+<rect x='200' y='10' height='200' width='150' stroke="#000000" fill="none"/>
+<text x="238" y="108" stroke="none" fill="#000000" font-size="12">Процессор</text>
+<line x1="200px" y1="15px" x2="150px" y2="15px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+<text x="170" y="24" stroke="none" fill="#000000" font-size="12">&#8230;</text>
+<line x1="200px" y1="28px" x2="150px" y2="28px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+<text x="50" y="23" stroke="none" fill="#000000" font-size="12">Адресация</text>
+<line x1="200px" y1="58px" x2="150px" y2="58px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)" marker-start="url(#Triangle1)"/>
+<text x="167" y="68" stroke="none" fill="#000000" font-size="12">&#8230;</text>
+<line x1="200px" y1="73px" x2="150px" y2="73px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)" marker-start="url(#Triangle1)"/>
+<text x="65" y="68" stroke="none" fill="#000000" font-size="12">Данные</text>
+<line x1="200px" y1="105px" x2="150px" y2="105px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+<line x1="200px" y1="115px" x2="150px" y2="115px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+<line x2="193px" y1="125px" x1="143px" y2="125px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+<text x="40" y="112" stroke="none" fill="#000000" font-size="12">Управление</text>
+<text x="60" y="125" stroke="none" fill="#000000" font-size="12">шиной</text>
+<line x2="193px" y1="165px" x1="143px" y2="165px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+<line x2="193px" y1="175px" x1="143px" y2="175px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+<text x="40" y="175" stroke="none" fill="#000000" font-size="12">Прерывания</text>
+<line x1="350px" y1="20px" x2="400px" y2="20px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+<line x2="360px" y1="30px" x1="408px" y2="30px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+<text x="430" y="28" stroke="none" fill="#000000" font-size="12">Арбитраж шины</text>
+<line x2="360px" y1="60px" x1="408px" y2="60px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+<line x2="360px" y1="70px" x1="408px" y2="70px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+<line x1="352px" y1="80px" x2="402px" y2="80px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+<text x="430" y="75" stroke="none" fill="#000000" font-size="12">Сопроцессор</text>
+<line x1="352px" y1="120px" x2="402px" y2="120px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+<line x1="352px" y1="130px" x2="402px" y2="130px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+<text x="430" y="130" stroke="none" fill="#000000" font-size="12">Состояние</text>
+<line x2="360px" y1="170px" x1="408px" y2="170px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+<line x2="360px" y1="180px" x1="408px" y2="180px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+<text x="430" y="173" stroke="none" fill="#000000" font-size="12">Прочие</text>
+<text x="427" y="187" stroke="none" fill="#000000" font-size="12">сигналы</text>
+<line x2="210px" y1="240px" x1="210px" y2="217px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+<text x="182" y="254" stroke="none" fill="#000000" font-size="12">Меандр</text>
+<line x2="273px" y1="240px" x1="273px" y2="217px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+<text x="252" y="254" stroke="none" fill="#000000" font-size="12">+3.3 B</text>
+<text x="245" y="269" stroke="none" fill="#000000" font-size="12">Питание</text>
+<line x2="330px" y1="230px" x1="330px" y2="210px" stroke="#000000" stroke-width="1"/>
+<line x2="322px" y1="230px" x1="338px" y2="230px" stroke="#000000" stroke-width="1"/>
+<line x2="324px" y1="234px" x1="336px" y2="234px" stroke="#000000" stroke-width="1"/>
+<line x2="326px" y1="238px" x1="334px" y2="238px" stroke="#000000" stroke-width="1"/>
+<text x="315" y="254" stroke="none" fill="#000000" font-size="12">Земля</text>
+<text x="50" y="300" stroke="none" fill="#000000" font-size="14">Рис. 7.9.1. Схема типичного центрального процессора</text>
+</svg>
+<p><span class='teorema'>Выводы управления шиной</span> представляют собой выходы из центрального процессора в шину. Они могут служить, к примеру, для передачи сигналов в микросхемы памяти или устройств ввода-вывода.</p>
+<p><span class='teorema'>Выводы прерывания</span> представляют собой входы из устройств ввода-вывода в процессор. Работа процессора устроена таким образом, что он посылает сигнал устройству ввода-вывода на выполнение команды, после чего приступает к выполнению другой работы. После исполнения команды контроллер устройства ввода-вывода может послать сигнал процессору на вывод прерывания, чтобы процессор прервал работу и обслужил устройство ввода-вывода.</p>
+<p><span class='teorema'>Выводы арбитража шины</span> обеспечивают регулирование потока данных в шине и ее поочередное использование устройствами ввода-вывода. При арбитраже шины процессор считается одним из устройств ввода-вывода</p>
+<p>Центральный процессор может работать с различными сопроцессорами (графическим, математическим и т.д.). Выводы сопроцессора призваны обеспечить их взаимодействие.</p>
+<p>Кроме выводов, перечисленных выше, на процессоре могут быть и другие выводы, к примеру, для обеспечения совместимости с устаревшими устройствами ввода-вывода.</p>
+<p><a href="7_8.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="7_10.html">К следующему</a> </p>
+</body>
+</html>

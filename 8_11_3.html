@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<link rel='stylesheet' type='text/css' href='style.css' />
+<meta name='author' content='leonid' />
+<title>Алгоритм Бойера-Мура</title>
+<script type="text/javascript">
+
+function boier_mur(str,str1) {
+	var win=open("", "newWindow"),  html, head, title, body, h2, h3, p, n, m, i, j, len=0, mas=[], tab_suff={}, suff='', pref='', sdvig=0, tmp, b=0;
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Поиск шаблона в тексте по алгоритму Бойера-Мура";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h2=document.createElement("h2");
+	h2.textContent="Поиск шаблона в тексте по алгоритму Бойера-Мура";
+	body.appendChild(h2);
+	str=str+' ';
+	n=str.length;//длина текста
+	m=str1.length;// длина шаблона
+	p=document.createElement("p");
+	p.textContent="Текст: '"+str+"'.";
+	body.appendChild(p);
+	p=document.createElement("p");
+	p.textContent="Шаблон: '"+str1+"'.";
+	body.appendChild(p);
+	p=document.createElement("p");
+	p.textContent="Таблица суффиксов:";
+	body.appendChild(p);
+	i=0;
+	mas[0]=0;
+	//создаем суффиксы, сдвиги изначально приравниваем 0
+	while (i!=n) {
+		suff=str1.substr(n-1-i, i+1);
+		tab_suff[suff]=0;
+		i++;				
+	}
+	i=0;
+	while (i!=n-1) {
+		len=mas[i];
+		suff=str1.substr(n-1-i, i+1);
+		pref=str1.substr(n-mas[i], i+1);
+		if ((pref.length!=0) && (tab_suff[pref]==0)) {
+			tab_suff[pref]=suff.length-pref.length;
+		}
+		while ((str[n-1-len]!=str[n-1-i-1]) && (len>0)) {
+			len=mas[len-1];
+		}	
+		if (str[n-1-len]==str[n-1-i-1]) {
+			mas[i+1]=len+1;
+		}
+		else {
+			mas[i+1]=0;
+		}
+		i++;
+	}
+	
+	pref=str1.substring(0,mas[i]);
+	sdvig=str1.length-pref.length;
+
+	for (pref in tab_suff) {
+		if (tab_suff[pref]==0) {
+			if (pref.length>0) {
+				tab_suff[pref]=sdvig;	
+			}
+			else {
+				tab_suff[pref]=m;	
+			}
+		}
+		p=document.createElement("p");
+		p.textContent="Суффикс "+pref+" сдвиг "+ tab_suff[pref];
+		body.appendChild(p);	
+	}	
+	i=0;
+	b=0;
+	//поиск шаблона в тексте
+	h3=document.createElement("h3");
+	h3.textContent='Поиск';
+	body.appendChild(h3);
+	while ((i<n-m) && (b==0)) {
+		j=m-1;
+		p=document.createElement("p");
+		p.textContent='---------------------------------------';
+		body.appendChild(p);
+		p=document.createElement("p");
+		p.textContent=str.substring(i,i+m);
+		body.appendChild(p);	
+		p=document.createElement("p");
+		p.textContent=str1;
+		body.appendChild(p);				
+		suff='';		
+		while ((j>=0) && (str.substring(i+j, i+m)==str1.substring(j, m))) {
+			j--;
+			suff=str1.substring(j, m);
+		}
+		if (j==-1) {
+			b=1;		
+		}
+		else {
+			if (suff.length==0) {
+				sdvig=1;
+			}
+			else {
+				sdvig=tab_suff[suff];
+			}			
+			p=document.createElement("p");
+			p.textContent=str[i+j]+' # '+str1[j]+',';
+			body.appendChild(p);
+			p=document.createElement("p");
+			p.textContent='смещение '+sdvig+'.';
+			body.appendChild(p);			
+			i=i+sdvig;		
+		}
+	}
+	if (b==1) {
+		p=document.createElement("p");
+		p.textContent="'"+str1+"'"+' является подстрокой строки '+"'"+str+"'"+ ' с позиции '+ i;
+		body.appendChild(p);					
+	}
+	else {
+		p=document.createElement("p");
+		p.textContent="'"+str1+"'"+' не является подстрокой строки '+"'"+str+"'";
+		body.appendChild(p);			
+	}		
+	win.document.close();
+}
+
+
+
+function pref_suff(str) {
+	var win=open("", "newWindow"),  html, head, title, body, h2, p, i, n, len, mas=[], tab_suff={}, suff='', pref='', sdvig=0;
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Таблица суффиксов";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h2=document.createElement("h2");
+	h2.textContent="Таблица суффиксов";
+	body.appendChild(h2);
+	n=str.length;
+	p=document.createElement("p");
+	p.textContent="Слово: '"+str+"'.";
+	body.appendChild(p);
+	i=0;
+	mas[0]=0;
+	//создаем суффиксы, сдвиги изначально приравниваем 0
+	tab_suff['']=1;
+	while (i!=n) {
+		suff=str.substr(n-1-i, i+1);
+		tab_suff[suff]=0;
+		i++;				
+	}
+	i=0;
+	while (i!=n-1) {
+		len=mas[i];
+		suff=str.substr(n-1-i, i+1);tab_suff['']=1;
+		pref=str.substr(n-mas[i], i+1);
+		if ((pref.length!=0) && (tab_suff[pref]==0)) {
+			tab_suff[pref]=suff.length-pref.length;
+		}
+		while ((str[n-1-len]!=str[n-1-i-1]) && (len>0)) {
+			len=mas[len-1];
+		}	
+		if (str[n-1-len]==str[n-1-i-1]) {
+			mas[i+1]=len+1;
+		}
+		else {
+			mas[i+1]=0;
+		}
+		i++;
+	}
+	
+	pref=str.substring(0,mas[i]);
+	sdvig=str.length-pref.length;
+
+	for (pref in tab_suff) {
+		if (tab_suff[pref]==0) {
+			if (pref.length>0) {
+				tab_suff[pref]=sdvig;	
+			}
+			else {
+				tab_suff[pref]=n;	
+			}
+		}
+		p=document.createElement("p");
+		p.textContent="Суффикс "+pref+" сдвиг "+ tab_suff[pref];
+		body.appendChild(p);	
+	}	
+	win.document.close();
+}
+
+
+function f_stop(str) {
+	var win=open("", "newWindow"),  html, head, title, body, h2, h3, p, table, tr, td, n, m, j, alph={}, s='', tmp='';
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Таблица стоп-символов";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h2=document.createElement("h2");
+	h2.textContent="Таблица стоп-символов";
+	body.appendChild(h2);
+	n=str.length;
+	p=document.createElement("p");
+	p.textContent="Шаблон: '"+str+"'.";
+	body.appendChild(p);
+	for (j=0; j<n-1; j++) {
+		s=str[j];
+		alph[s]=j;
+	}
+	table=document.createElement("table");
+	table.border="1";
+	body.appendChild(table);
+	tr=document.createElement("tr");
+	table.appendChild(tr);
+	for (s in alph) {
+		td=document.createElement("td");
+		td.textContent=s;
+		tr.appendChild(td);		
+	}
+	td=document.createElement("td");
+	td.textContent='все остальные';
+	tr.appendChild(td);	
+	tr=document.createElement("tr");
+	table.appendChild(tr);
+	for (s in alph) {
+		td=document.createElement("td");
+		td.textContent=alph[s];
+		tr.appendChild(td);		
+	}		
+	td=document.createElement("td");
+	td.textContent='-1';
+	tr.appendChild(td);	
+	win.document.close();
+}
+function horsp(str,str1) {
+	var win=open("", "newWindow"),  html, head, title, body, h2, h3, p, n, m, i, j, alph={}, s='', b, tmp='';
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Поиск подстроки в строке по алгоритму Хорспула";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h2=document.createElement("h2");
+	h2.textContent="Поиск подстроки в строке по алгоритму Хорспула";
+	body.appendChild(h2);
+	str=str+' ';
+	n=str.length;
+	m=str1.length;
+	p=document.createElement("p");
+	p.textContent="Строка: '"+str+"'.";
+	body.appendChild(p);
+	p=document.createElement("p");
+	p.textContent="Искомая строка: '"+str1+"'.";
+	body.appendChild(p);	
+	for (i=0; i<n; i++) {
+		if (!(alph.hasOwnProperty(str[i]))) {
+			alph[str[i]]=m;
+		}	
+	}
+	for (j=0; j<m-1; j++) {
+		s=str1[j];
+		if (alph.hasOwnProperty(s)) {
+			alph[s]=m-j-1;
+		}				
+	} 
+	h3=document.createElement("h3");
+	h3.textContent='Таблица смещений';
+	body.appendChild(h3);
+	for (s in alph) {
+		tmp=tmp+s+'-'+alph[s]+'; '
+	}
+	p=document.createElement("p");
+	p.textContent=tmp;
+	body.appendChild(p);		
+	i=0;
+	b=0;	
+	h3=document.createElement("h3");
+	h3.textContent='Поиск';
+	body.appendChild(h3);	
+	while ((i<n-m) && (b==0)) {
+		j=m-1;
+		p=document.createElement("p");
+		p.textContent='---------------------------------------';
+		body.appendChild(p);
+		p=document.createElement("p");
+		p.textContent=str.substring(i,i+m);
+		body.appendChild(p);	
+		p=document.createElement("p");
+		p.textContent=str1;
+		body.appendChild(p);				
+				
+		while ((j>=0) && (str[i+j]==str1[j])) {
+			j--;
+		}
+		if (j==-1) {
+			b=1;		
+		}
+		else {
+			p=document.createElement("p");
+			p.textContent=str[i+j]+' # '+str1[j]+',';
+			body.appendChild(p);
+			p=document.createElement("p");
+			p.textContent='смещение '+alph[str[i+j]]+'.';
+			body.appendChild(p);			
+			i=i+alph[str[i+j]];		
+		}
+	}
+	if (b==1) {
+		p=document.createElement("p");
+		p.textContent="'"+str1+"'"+' является подстрокой строки '+"'"+str+"'"+ ' с позиции '+ i;
+		body.appendChild(p);					
+	}
+	else {
+		p=document.createElement("p");
+		p.textContent="'"+str1+"'"+' не является подстрокой строки '+"'"+str+"'";
+		body.appendChild(p);			
+	}		
+	win.document.close();
+}
+</script>
+</head>
+<body>
+<p><a href="8_11_2.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_12_1.html">К следующему</a> </p>
+<h2>8.11.3. Алгоритм Бойера-Мура</h2>
+
+<p>Алгоритм поиска строки Бойера-Мура, считается наиболее быстрым среди алгоритмов общего назначения, предназначенных для поиска строки (шаблона) в тексте. Был разработан Робертом Бойером и Джеем Муром в 1977 году. Преимущество этого алгоритма в том, что ценой некоторого количества предварительных вычислений над шаблоном (но не над текстом, в котором ведется поиск) шаблон сравнивается с исходным текстом не во всех позициях &#151; часть проверок пропускается как заведомо не дающая результата.
+</p>
+<p>
+Общая оценка вычислительной сложности алгоритма &#151; O(|текст|+|шаблон|+|алфавит|) на непериодических шаблонах и O(|текст|·|шаблон|+|алфавит|) &#151; на периодических, где |текст| &#151; длина текста, в котором выполняется поиск, |шаблон| &#151; длина шаблона поиска, |алфавит| &#151; размер алфавита, на котором проводится сравнение. В 1991 году Коул показал, что на непериодических шаблонах за полный проход по тексту алгоритм совершит не более 3·|текст| сравнений.
+</p>
+<p>Алгоритм основан на трех идеях:</p>
+<p>
+1. Сканирование слева направо, сравнение справа налево. Совмещается начало текста (строки) и шаблона, проверка начинается с последнего символа шаблона. Если символы совпадают, производится сравнение предпоследнего символа шаблона и т. д. Если все символы шаблона совпали с наложенными символами строки, значит, подстрока найдена, и поиск окончен. Если же какой-то символ шаблона не совпадает с соответствующим символом строки, шаблон сдвигается на несколько символов вправо, и проверка снова начинается с последнего символа.
+</p>
+<p>Эти &#034;несколько&#034;, упомянутые в предыдущем абзаце, вычисляются по двум эвристикам.</p>
+<p>2. Эвристика стоп-символа. Предположим, что мы производим поиск слова &#034;колокол&#034;. Первая же буква не совпала — &#034;к&#034; (назовём эту букву стоп-символом):</p>
+<table border="1" align='center'>
+<tr>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>к</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+</tr>
+<tr>
+<td>к</td>
+<td>о</td>
+<td>л</td>
+<td>о</td>
+<td>к</td>
+<td>о</td>
+<td>л</td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+</tr>
+</table>
+<p>Тогда можно сдвинуть шаблон вправо до последней его буквы &#034;к&#034;:</p>
+<table border="1" align='center'>
+<tr>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>к</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+</tr>
+<tr>
+<td> </td>
+<td> </td>
+<td>к</td>
+<td>о</td>
+<td>л</td>
+<td>о</td>
+<td>к</td>
+<td>о</td>
+<td>л</td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+</tr>
+</table>
+<p>Если стоп-символа в шаблоне вообще нет, шаблон смещается за этот стоп-символ. В примере ниже стоп-символ — &#034;а&#034;:</p>
+<table border="1" align='center'>
+<tr>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>а</td>
+<td>л</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+</tr>
+<tr>
+
+<td>к</td>
+<td>о</td>
+<td>л</td>
+<td>о</td>
+<td>к</td>
+<td>о</td>
+<td>л</td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+</tr>
+</table>
+<p>Шаблон сдвигается так, чтобы он оказался прямо за буквой &#034;а&#034;. В алгоритме Бойера-Мура эвристика стоп-символа вообще не смотрит на совпавший суффикс (см. ниже), так что первая буква шаблона (&#034;к&#034;) окажется под &#034;л&#034;, и будет проведена одна заведомо холостая проверка:</p>
+<table border="1" align='center'>
+<tr>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>а</td>
+<td>л</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+</tr>
+<tr>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td>к</td>
+<td>о</td>
+<td>л</td>
+<td>о</td>
+<td>к</td>
+<td>о</td>
+<td>л</td>
+<td> </td>
+<td> </td>
+</tr>
+</table>
+<p>Если стоп-символ &#034;к&#034; оказался перед другой буквой &#034;к&#034;, эвристика стоп-символа не работает:</p>
+<table border="1" align='center'>
+<tr>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>к</td>
+<td>к</td>
+<td>о</td>
+<td>л</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+</tr>
+<tr>
+<td> </td>
+
+<td>к</td>
+<td>о</td>
+<td>л</td>
+<td>о</td>
+<td>к</td>
+<td>о</td>
+<td>л</td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+</tr>
+</table>
+<p>Следующий шаг должен был бы быть таким:</p>
+<table border="1" align='center'>
+<tr>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>к</td>
+<td>к</td>
+<td>о</td>
+<td>л</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+</tr>
+<tr>
+<td>к</td>
+<td>о</td>
+<td>л</td>
+<td>о</td>
+<td>к</td>
+<td>о</td>
+<td>л</td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+</tr>
+</table>
+<p>В таких ситуациях выручает третья идея АБМ &#151; эвристика совпавшего суффикса.</p>
+<p>3. Эвристика совпавшего суффикса. Если при сравнении строки и шаблона совпало один или больше символов, шаблон сдвигается в зависимости от того, какой суффикс совпал.</p>
+<table border="1" align='center'>
+<tr>
+<td>*</td>
+<td>*</td>
+<td>т</td>
+<td>о</td>
+<td>к</td>
+<td>о</td>
+<td>л</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+</tr>
+<tr>
+<td>к</td>
+<td>о</td>
+<td>л</td>
+<td>о</td>
+<td>к</td>
+<td>о</td>
+<td>л</td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+</tr>
+</table>
+<p>В данном случае совпал суффикс &#034;окол&#034;, и шаблон сдвигается вправо до ближайшего &#034;окол&#034;. Если подстроки &#034;окол&#034; в шаблоне больше нет, но он начинается на &#034;кол&#034;, сдвигается до &#034;кол&#034;, и т. д.</p>
+<table border="1" align='center'>
+<tr>
+<td>*</td>
+<td>*</td>
+<td>т</td>
+<td>о</td>
+<td>к</td>
+<td>о</td>
+<td>л</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+<td>*</td>
+</tr>
+<tr>
+<td> </td>
+<td> </td>
+<td> </td>
+<td> </td>
+<td>к</td>
+<td>о</td>
+<td>л</td>
+<td>о</td>
+<td>к</td>
+<td>о</td>
+<td>л</td>
+<td> </td>
+</tr>
+</table>
+<p>Обе эвристики требуют предварительных вычислений &#151; в зависимости от шаблона поиска заполняются две таблицы. Таблица стоп-символов по размеру соответствует алфавиту (например, если алфавит состоит из 256 символов, то ее длина 256); таблица суффиксов &#151; искомому шаблону. Именно из-за этого алгоритм Бойера-Мура не учитывает совпавший суффикс и несовпавший символ одновременно &#151; это потребовало бы слишком много предварительных вычислений.</p>
+<p>Опишем подробнее обе таблицы.</p> 
+<p>Таблица стоп-символов.</p>
+<p>Будет считать, что нумерация начинается с 0. В таблице стоп-символов указывается последняя позиция в шаблоне (исключая последнюю букву) каждого из символов алфавита. Для всех символов, не вошедших в шаблон, пишем -1 (для нумерации с 1 &#151; соответственно, 0). Например, если шаблон=&#034;abcdadcd&#034;, таблица стоп-символов будет выглядеть так:
+</p>
+<table border="1">
+<tr>
+<td>a</td>
+<td>b</td>
+<td>c</td>
+<td>d</td>
+<td>[все остальные]</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1</td>
+<td>6</td>
+<td>5</td>
+<td>-1</td>
+</tr>
+</table>
+<p>Обратите внимание, для стоп-символа &#034;d&#034; последняя позиция будет 6, а не 8 &#151; последняя буква не учитывается. Это известная ошибка, приводящая к неоптимальности. Для алгоритма Бойера-Мура она не фатальна (благодаря эвристике суффикса), но фатальна для ее упрощенной версии &#151; алгоритма Хорспула.</p>
+<p>Ниже представлен демонстрационный калькулятор вычисления таблицы стоп-символов:</p>
+<form id='f_stop_simvol'>
+<p>Введите строку поиска</p>
+<textarea cols="50" rows="1" id="podstroka" title="Введите текст"></textarea>
+<input type="button" value="Найти" onclick="f_stop(podstroka.value)" />
+<input type="reset" value="Сброс" />
+</form>
+<p>Если несовпадение произошло на позиции i, а стоп-символ &#034;c&#034;, то сдвиг будет i-StopTable[c].</p>
+<p>Сценарий поиска вхождения строки в текст по алгоритму Хорспула:</p>
+<form id='f1'>
+<p>Введите текст</p>
+<textarea cols="80" rows="5" id="txt" title="Введите текст"></textarea><br />
+<p>Введите строку поиска</p>
+<textarea cols="80" rows="2" id="shablon" title="Введите текст"></textarea>
+<input type="button" value="Найти" onclick="horsp(txt.value, shablon.value)" />
+<input type="reset" value="Сброс" />
+</form>
+<p>Пример реализации алгоритма Хорспула в Компонентном Паскале:</p>
+<code>
+<p class='ind0'>MODULE poisk_podstr;</p>
+<p class='ind1'>IMPORT  Log := StdLog, In := i21sysIn, Strings ;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>TYPE stroka=POINTER TO ARRAY OF CHAR;</p>
+<p class='ind2'>VAR str, podstr: stroka;</p>
+<p class='ind4'>sd: ARRAY 256 OF INTEGER;</p>
+<p class='ind2'>PROCEDURE search(s, x: stroka);</p>
+<p class='ind3'>VAR i, j, n, m: INTEGER;</p>
+<p class='ind4'>bool: BOOLEAN; h: CHAR;</p>
+<p class='ind2'>BEGIN</p>
+<p class='ind3'>n:=LEN(s$); (*определим длину строки*)</p>
+<p class='ind3'>m:=LEN(x$); (*определим длину строки*)</p>
+<p class='ind3'>FOR i := 0 TO 255 DO</p>
+<p class='ind4'>sd[i]:=m</p>								
+<p class='ind3'>END;</p>
+<p class='ind3'>FOR i :=0 TO m-2 DO</p>
+<p class='ind4'>sd[ORD(x[i])]:=m-i-1</p>								
+<p class='ind3'>END;</p>
+<p class='ind3'>i:=0;</p>
+<p class='ind3'>bool:=FALSE;</p>
+<p class='ind3'>WHILE (i &lt;= n-m-1) & (~bool) DO</p>
+<p class='ind4'>j:=m-1;</p>
+<p class='ind4'>WHILE (j &gt;=0) & (s[i+j]=x[j]) DO</p>
+<p class='ind5'>DEC(j)</p>										
+<p class='ind4'>END;</p>
+<p class='ind4'>IF j=-1 THEN</p>
+<p class='ind5'>bool:=TRUE</p>
+<p class='ind4'>ELSE</p>
+<p class='ind5'>i:=i+sd[ORD(s[i+j])]</p>
+<p class='ind4'>END;</p>
+<p class='ind3'>END;</p>
+<p class='ind3'>IF bool THEN</p>
+<p class='ind4'>Log.String(podstr+' является подстрокой '+str+' с поззиции ');</p>
+<p class='ind4'>Log.Int(i)</p>									
+<p class='ind3'>ELSE</p>
+<p class='ind4'>Log.String(podstr+' не является подстрокой '+str)</p>									
+<p class='ind3'>END;</p>							
+<p class='ind2'>END search;</p>	
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>In.Open;</p>
+<p class='ind2'>ASSERT(In.Done);</p>
+<p class='ind2'>NEW(str,100);</p>
+<p class='ind2'>In.String(str);</p>
+<p class='ind2'>ASSERT(In.Done);</p>
+<p class='ind2'>NEW(podstr,100);</p>
+<p class='ind2'>In.String(podstr);</p>
+<p class='ind2'>ASSERT(In.Done);</p>		
+<p class='ind2'>search(str, podstr);</p>
+<p class='ind2'>Log.Ln</p>
+<p class='ind1'>END do;</p>
+<p class='ind0'>END poisk_podstr.</p>
+<p class='ind0'>poisk_podstr.do "водоворот" "вор"</p>
+</code>
+<p>Таблица суффиксов.</p>
+<p>Для каждого возможного суффикса S шаблона указываем наименьшую величину, на которую нужно сдвинуть вправо шаблон, чтобы он совпал с префиксом S. Если такой сдвиг невозможен, ставится длина шаблона. Поиск префикс-суффикса выполняется по алгоритму Кнута-Морриса-Пратта, описанному <a href="8_11_2.html#knut_morris_pratt">в предыдущем параграфе 8.11.2</a>. Например, для того же шаблона &#034;abcdadcd&#034; таблица суффиксов будет такой:</p>
+<table border="1" align='center'>
+<tr>
+<td>Суффикс</td><td>пустой</td><td>d</td><td>cd</td><td>dcd</td><td>&#133;</td><td>abcdadcd</td>
+</tr>
+<tr>
+<td>Сдвиг</td><td>1</td><td>2</td><td>4</td><td>8</td><td>&#133;</td><td>8</td>
+</tr>
+</table>
+<p>Проиллюстрируем сдвиги:</p>
+<table>
+<tr>
+<td>Строка</td><td>*</td><td>*</td><td>*</td><td>*</td><td>*</td><td>*</td><td>*</td><td>?</td><td>*</td>
+</tr>
+<tr>
+<td>Шаблон</td><td>a</td><td>b</td><td>c</td><td>d</td><td>a</td><td>d</td><td>c</td><td>d</td>
+<tr>
+<td>Сдвиг</td><td></td><td>a</td><td>b</td><td>c</td><td>d</td><td>a</td><td>d</td><td>c</td><td>d</td>
+</tr>
+</table>
+<table>
+<tr>
+<td>Строка</td><td>*</td><td>*</td><td>*</td><td>*</td><td>*</td><td>*</td><td>?</td><td>d</td><td>*</td><td>*</td>
+</tr>
+</tr>
+<tr>
+<td>Шаблон</td><td>a</td><td>b</td><td>c</td><td>d</td><td>a</td><td>d</td><td>c</td><td>d</td><td></td><td></td>
+</tr>
+</tr>
+<tr>
+<td>Сдвиг</td><td></td><td></td><td>a</td><td>b</td><td>c</td><td>d</td><td>a</td><td>d</td><td>c</td><td>d</td>
+</tr>
+</table>
+<table>
+<tr>
+<td>Строка</td><td>*</td><td>*</td><td>*</td><td>*</td><td>*</td><td>?</td><td>c</td><td>d</td><td>*</td><td>*</td><td>*</td><td>*</td>
+</tr>
+</tr>
+<tr>
+<td>Шаблон</td><td>a</td><td>b</td><td>c</td><td>d</td><td>a</td><td>d</td><td>c</td><td>d</td><td></td><td></td><td></td><td></td>
+</tr>
+</tr>
+<tr>
+<td>Сдвиг</td><td></td><td></td><td></td><td></td><td>a</td><td>b</td><td>c</td><td>d</td><td>a</td><td>d</td><td>c</td><td>d</td>
+</tr>
+</table>
+<table>
+<tr>
+<td>Строка</td><td>*</td><td>*</td><td>*</td><td>*</td><td>?</td><td>d</td><td>c</td><td>d</td><td>*</td><td>*</td><td>*</td><td>*</td><td>*</td><td>*</td><td>*</td><td>*</td>
+</tr>
+</tr>
+<tr>
+<td>Шаблон</td><td>a</td><td>b</td><td>c</td><td>d</td><td>a</td><td>d</td><td>c</td><td>d</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+</tr>
+</tr>
+<tr>
+<td>Сдвиг</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>a</td><td>b</td><td>c</td><td>d</td><td>a</td><td>d</td><td>c</td><td>d</td>
+</tr>
+</table>
+<p>Если шаблон начинается и заканчивается одной и той же комбинацией букв, сдвиг на длину шаблона вообще не появится в таблице. Например, для шаблона &#034;колокол&#034; для всех суффиксов (кроме, естественно, пустого) сдвиг будет равен 4.</p>
+<p>Таблица суффиксов:</p>
+<table border="1">
+<tr>
+<td>Суффикс</td><td>пустой</td><td>л</td><td>ол</td><td>кол</td><td>&#133;</td><td>олокол</td><td>колокол</td>
+</tr>
+<tr>
+<td>Шаблон</td><td>1</td><td>4</td><td>4</td><td>4</td><td>&#133;</td><td>4</td><td>4</td>
+</tr>
+</table>
+<p>Иллюстрация сдвигов:</p>
+<table>
+<tr>
+<td>Строка</td><td>*</td><td>*</td><td>*</td><td>*</td><td>*</td><td>*</td><td>?</td><td>*</td>
+</tr>
+<tr>
+<td>Шаблон</td><td>к</td><td>о</td><td>л</td><td>о</td><td>к</td><td>о</td><td>л</td><td></td>
+</tr>
+<tr>
+<td>Сдвиг</td><td></td><td>к</td><td>о</td><td>л</td><td>о</td><td>к</td><td>о</td><td>л</td>
+</tr>
+</table>
+<table>
+<tr>
+<td>Строка</td><td>*</td><td>*</td><td>*</td><td>*</td><td>*</td><td>?</td><td>л</td><td>*</td><td>*</td><td>*</td><td>*</td>
+</tr>
+<tr>
+<td>Шаблон</td><td>к</td><td>о</td><td>л</td><td>о</td><td>к</td><td>о</td><td>л</td><td></td><td></td><td></td><td></td>
+</tr>
+<tr>
+<td>Сдвиг</td><td></td><td></td><td></td><td></td><td>к</td><td>о</td><td>л</td><td>о</td><td>к</td><td>о</td><td>л</td>
+</tr>
+</table>
+<table>
+<tr>
+<td>Строка</td><td>*</td><td>*</td><td>*</td><td>*</td><td>?</td><td>о</td><td>л</td><td>*</td><td>*</td><td>*</td><td>*</td>
+</tr>
+<tr>
+<td>Шаблон</td><td>к</td><td>о</td><td>л</td><td>о</td><td>к</td><td>о</td><td>л</td><td></td><td></td><td></td><td></td>
+</tr>
+<tr>
+<td>Сдвиг</td><td></td><td></td><td></td><td></td><td>к</td><td>о</td><td>л</td><td>о</td><td>к</td><td>о</td><td>л</td>
+</tr>
+</table>
+<p>&#133;</p>
+<table>
+<tr>
+<td>Строка</td><td>?</td><td>о</td><td>л</td><td>о</td><td>к</td><td>о</td><td>л</td><td>*</td><td>*</td><td>*</td><td>*</td>
+</tr>
+<tr>
+<td>Шаблон</td><td>к</td><td>о</td><td>л</td><td>о</td><td>к</td><td>о</td><td>л</td><td></td><td></td><td></td><td></td>
+</tr>
+<tr>
+<td>Сдвиг</td><td></td><td></td><td></td><td></td><td>к</td><td>о</td><td>л</td><td>о</td><td>к</td><td>о</td><td>л</td>
+</tr>
+</table>
+<p>Демонстрационный калькулятор таблицы суффиксов:</p>
+<p>Введите слово</p>
+<form id='f2'>
+<textarea cols="80" rows="2" id="slovo" title="Введите текст"></textarea><br />
+<input type="button" value="Найти" onclick="pref_suff(slovo.value)" />
+<input type="reset" value="Сброс" />
+</form>
+<p>Сценарий поиска вхождения строки в текст по алгоритму Бойера-Мура:</p>
+<form id='f3'>
+<p>Введите текст</p>
+<textarea cols="80" rows="5" id="txt_mur" title="Введите текст"></textarea><br />
+<p>Введите строку поиска</p>
+<textarea cols="80" rows="2" id="shablon_mur" title="Введите текст"></textarea>
+<input type="button" value="Найти" onclick="boier_mur(txt_mur.value, shablon_mur.value)" />
+<input type="reset" value="Сброс" />
+</form>
+<h3>Задачи для самостоятельного решения из сборника задач по программированию под редакцией С.А. Абрамова, Г.Г. Гнездиловой, Е.Н. Капустиной, М.И. Селюн. Задачи по программированию:</h3>
+
+<a href="zadachi/27.html">§27. Тексты</a>
+<p><a href="8_11_2.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_12_1.html">К следующему</a> </p>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<link rel=stylesheet type="text/css" href="style.css"></link>
+<meta name="author" content="leonid" />
+<meta name="description" content="Шина, центральный процессор, ввод, вывод, команда, адрес, данные"/>
+<meta name="keywords" content="память, шина, процессор, микросхема, ввод, вывод, адрес, данные" />
+<title>Принципы работы шины</title>
+</head>
+<body>
+<p><a href="7_12.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_1.html">К следующему</a> </p>
+<h1>7.13. Принципы работы шины</h1>
+<p>Рассмотрим некоторые типы циклов шин. Согласно <a href='7_11.html#ris7_11_1'>схеме 7.11.1</a> (см. параграф 7.11), для передачи одного слова требуется три цикла шины. При использовании кэш-памяти желательно вызывать всю строку кэш-памяти (например, 16 последовательных 32-битных слова). Однако часто передача блоками может быть более эффективна, нежели последовательная передача данных. На рисунке 7.13.1 представлена схема передачи блока данных из четырех слов за шесть циклов, тогда как последовательная передача четырех слов потребовала бы двенадцать циклов шины (см. <a href='7_11.html#ris7_11_1'>рис. 7.11.1</a>).</p>
+<a id='ris7_13_1'/>
+<svg height = "370px"  width = "820px">
+<defs>
+    <marker id="Triangle"
+      viewBox="0 0 10 10" refX="0" refY="5" 
+      markerUnits="strokeWidth"
+      markerWidth="8" markerHeight="8"
+      orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" />
+    </marker>
+    <marker id="Triangle1"
+      viewBox="0 0 10 10" refX="0" refY="5" 
+      markerUnits="strokeWidth"
+      markerWidth="8" markerHeight="8"
+      orient="auto">
+      <path d="M 10 0 L 0 5 L 10 10 z" />
+    </marker>
+  </defs>
+<line x1='70' y1='20' x2='70' y2='80' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='70' y1='100' x2='70' y2='120' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='70' y1='140' x2='70' y2='310' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='110' y1='25' x2='78' y2='25' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+<line x1='128' y1='25' x2='162' y2='25' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+<text x='115' y='30' stroke="none" fill="#000000" font-size="12">T<tspan dy='5' font-size='10'>1</tspan></text>
+<line x1='170' y1='20' x2='170' y2='80' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='170' y1='100' x2='170' y2='120' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='170' y1='140' x2='170' y2='310' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='210' y1='25' x2='178' y2='25' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+<line x1='228' y1='25' x2='262' y2='25' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+<text x='215' y='30' stroke="none" fill="#000000" font-size="12">T<tspan dy='5' font-size='10'>2</tspan></text>
+<line x1='270' y1='20' x2='270' y2='80' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='270' y1='100' x2='270' y2='120' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='270' y1='140' x2='270' y2='310' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='310' y1='25' x2='278' y2='25' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+<line x1='328' y1='25' x2='362' y2='25' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+<text x='315' y='30' stroke="none" fill="#000000" font-size="12">T<tspan dy='5' font-size='10'>3</tspan></text>
+<line x1='370' y1='20' x2='370' y2='88' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='370' y1='94' x2='370' y2='120' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='370' y1='140' x2='370' y2='310' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='410' y1='25' x2='378' y2='25' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+<line x1='428' y1='25' x2='462' y2='25' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+<text x='415' y='30' stroke="none" fill="#000000" font-size="12">T<tspan dy='5' font-size='10'>4</tspan></text>
+<line x1='470' y1='20' x2='470' y2='80' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='470' y1='100' x2='470' y2='120' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='470' y1='140' x2='470' y2='310' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='510' y1='25' x2='478' y2='25' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+<line x1='528' y1='25' x2='562' y2='25' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+<text x='515' y='30' stroke="none" fill="#000000" font-size="12">T<tspan dy='5' font-size='10'>5</tspan></text>
+<line x1='570' y1='20' x2='570' y2='80' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='570' y1='100' x2='570' y2='120' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='570' y1='140' x2='570' y2='310' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='610' y1='25' x2='578' y2='25' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+<line x1='628' y1='25' x2='662' y2='25' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+<text x='615' y='30' stroke="none" fill="#000000" font-size="12">T<tspan dy='5' font-size='10'>6</tspan></text>
+<line x1='670' y1='20' x2='670' y2='80' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='670' y1='100' x2='670' y2='120' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='670' y1='140' x2='670' y2='310' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='710' y1='25' x2='678' y2='25' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+<line x1='728' y1='25' x2='762' y2='25' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+<text x='715' y='30' stroke="none" fill="#000000" font-size="12">T<tspan dy='5' font-size='10'>7</tspan></text>
+<line x1='770' y1='20' x2='770' y2='80' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='770' y1='100' x2='770' y2='120' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='770' y1='140' x2='770' y2='310' stroke="#000000" stroke-width="1" fill="none"/>
+<path d="M 60 55 L 66 55 74 40 116 40 124 55 166 55 174 40 216 40 224 55 266 55 274 40 316 40 324 55 366 55 374 40 416 40 424 55 466 55 474 40 516 40 524 55 566 55 574 40 616 40 624 55 666 55 674 40 716 40 724 55 766 55 774 40 800 40" stroke="#000000" stroke-width="1" fill="none" />
+<path d="M 60 80 L 90 80 95 90 90 100 60 100 z" stroke="#999999" stroke-width="1" fill="#999999" />
+<path d="M 95 90 L 100 80 365 80 370 90 365 100 100 100 z" stroke="#000000" stroke-width="1" fill="none" />
+<text x='10' y='54' stroke="none" fill="#000000" font-size="12">Циклы</text>
+<text x='10' y='94' stroke="none" fill="#000000" font-size="12">Адрес</text>
+<text x='130' y='94' stroke="none" fill="#000000" font-size="12">Считываемый адрес блока</text>
+<path d="M 370 90 375 80 800 80 800 100 375 100 z" stroke="#999999" stroke-width="1" fill="#999999" />
+<path d="M 60 120 L 95 120 100 130 95 140 60 140 z" stroke="#999999" stroke-width="1" fill="#999999" />
+<path d="M 190 130 L 195 120 290 120 295 130 290 140 195 140 z" stroke="#999999" stroke-width="1" fill="#999999" />
+<path d="M 355 130 360 120 385 120 390 130 385 140 360 140 z" stroke="#999999" stroke-width="1" fill="#999999" />
+<path d="M 450 130 L 455 120 475 120 480 130 475 140 455 140 z" stroke="#999999" stroke-width="1" fill="#999999" />
+<path d="M 550 130 L 555 120 575 120 580 130 575 140 555 140 z" stroke="#999999" stroke-width="1" fill="#999999" />
+<path d="M 650 130 L 655 120 800 120 800 140 655 140 z" stroke="#999999" stroke-width="1" fill="#999999" />
+<path d="M 100 130 L 105 120 185 120 190 130 185 140 105 140 z" stroke="#000000" stroke-width="1" fill="#FFFFFF" />
+<text x='3' y='133' stroke="none" fill="#000000" font-size="12">Данные</text>
+<text x='103' y='133' stroke="none" fill="#000000" font-size="12">Размер блока</text>
+<path d="M 290 130 L 295 120 350 120 355 130 350 140 295 140 z" stroke="#000000" stroke-width="1" fill="#FFFFFF" />
+<text x='298' y='133' stroke="none" fill="#000000" font-size="12">Слово 1</text>
+<path d="M 385 130 L 390 120 450 120 455 130 450 140 390 140 z" stroke="#000000" stroke-width="1" fill="#FFFFFF" />
+<text x='394' y='133' stroke="none" fill="#000000" font-size="12">Слово 2</text>
+<path d="M 475 130 480 120 550 120 555 130 550 140 480 140 z" stroke="#000000" stroke-width="1" fill="#FFFFFF" />
+<text x='486' y='133' stroke="none" fill="#000000" font-size="12">Слово 3</text>
+<path d="M 575 130 580 120 650 120 655 130 650 140 580 140 z" stroke="#000000" stroke-width="1" fill="#FFFFFF" />
+<text x='586' y='133' stroke="none" fill="#000000" font-size="12">Слово 4</text>
+<text x='13' y='175' stroke="none" fill="#000000" font-size="12">MREQ</text>
+<line x1='13' y1='162' x2='55' y2='162' stroke="#000000" stroke-width="1" fill="none"/>
+<path d="M 60 170 L 120 170 130 190 370 190 380 170 800 170" stroke="#000000" stroke-width="1" fill="none" />
+<text x='33' y='214' stroke="none" fill="#000000" font-size="12">RD</text>
+<line x1='33' y1='202' x2='52' y2='202' stroke="#000000" stroke-width="1" fill="none"/>
+<path d="M 60 210 L 120 210 130 230 370 230 380 210 800 210" stroke="#000000" stroke-width="1" fill="none" />
+<text x='17' y='253' stroke="none" fill="#000000" font-size="12">WAIT</text>
+<line x1='17' y1='239' x2='48' y2='239' stroke="#000000" stroke-width="1" fill="none"/>
+<path d="M 60 250 L 160 250 170 270 270 270 280 250 800 250" stroke="#000000" stroke-width="1" fill="none" />
+<text x='10' y='293' stroke="none" fill="#000000" font-size="12">BLOCK</text>
+<line x1='11' y1='279' x2='55' y2='279' stroke="#000000" stroke-width="1" fill="none"/>
+<path d="M 60 290 L 120 290 130 310 380 310 390 290 800 290" stroke="#000000" stroke-width="1" fill="none" />
+<text x='150' y='340' stroke="none" fill="#000000">Рис. 7.13.1. Передача блока из четырех слов</text>
+</svg>
+<p>Схема 7.13.1 аналогична <a href='7_11.html#ris7_11_1'>схеме 7.11.1</a>, за исключением дополнительного сигнала 
+<math   form='inline'>
+	<mover>
+		<mi>BLOCK</mi>
+		<mo>&#x203E;</mo>
+	</mover>
+</math>, указывающего на запрос передачи блока.  Процесс чтения блока задающее устройство начинает с того, что в период 
+<math   display='inline'>
+<msub>
+<mi>T</mi><mn>1</mn>
+</msub>
+</math>
+помещает на информационные линии размер блока, и тем самым сообщает подчиненному устройству количество слов, которые требуется передать. Параллельно считывается адрес блока, что занимает три первых цикла
+<math   display='inline'>
+<mfenced open="" close=''>
+<msub>
+<mi>T</mi><mn>1</mn>
+</msub>
+<msub>
+<mi>T</mi><mn>2</mn>
+</msub>
+<msub>
+<mi>T</mi><mn>3</mn>
+</msub>
+</mfenced>
+</math>. На третьем цикле
+<math   display='inline'>
+<msub>
+<mi>T</mi><mn>3</mn>
+</msub>
+</math>
+ задающее устройство уже может считать первое слово. Далее за каждый цикл оно считывает по одному слову.</p>
+<p>В многопроцессорных системах предусмотрен специальный цикл шины, позволяющий любому процессору считать из памяти слово, изменить его и сохранить в памяти в режиме монопольного владения шиной. Такой режим не позволяет другому процессору на последовательных циклах шины получить доступ к слову, считанному и еще не сохраненному первым процессором.</p>
+<p>Другим важным циклом шины является <span class='teorema'>обработка прерываний</span>. Сигнал прерывания посылается центральному процессору устройством ввода-вывода. Ситуация, когда прерывание запросят несколько устройств ввода-вывода, разрешается посредством механизма централизованного арбитража, при котором каждому устройству ввода-вывода присваивается определенный приоритет. </p>
+<p><a id='ris7_13_2'/>Рассмотрим стандартный контроллер прерываний на базе микросхемы Intel 8259A.</p>
+<svg height = "250px"  width = "820px">
+<defs>
+    <marker id="Triangle"
+      viewBox="0 0 10 10" refX="0" refY="5" 
+      markerUnits="strokeWidth"
+      markerWidth="8" markerHeight="8"
+      orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" />
+    </marker>
+    <marker id="Triangle1"
+      viewBox="0 0 10 10" refX="0" refY="5" 
+      markerUnits="strokeWidth"
+      markerWidth="8" markerHeight="8"
+      orient="auto">
+      <path d="M 10 0 L 0 5 L 10 10 z" />
+    </marker>
+  </defs>
+<rect x='20' y='10' width='80' height='200' stroke="#000000" stroke-width="1" fill="none"/>  
+<text x='24' y='110' stroke="none" fill="#000000" font-size="12">Процессор</text>
+<rect x='300' y='10' width='87' height='200' stroke="#000000" stroke-width="1" fill="none"/>
+<text x='304' y='95' stroke="none" fill="#000000" font-size="12">Контроллер</text>
+<text x='304' y='113' stroke="none" fill="#000000" font-size="12">прерываний</text>
+<text x='180' y='25' stroke="none" fill="#000000" font-size="12">INT</text>
+<line x1='300' y1='20' x2='208' y2='20' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='178' y1='20' x2='108' y2='20' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+<text x='180' y='48' stroke="none" fill="#000000" font-size="12">INTA</text>
+<line x1='180' y1='36' x2='210' y2='36' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='100' y1='42' x2='175' y2='42' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='212' y1='42' x2='292' y2='42' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+<text x='180' y='82' stroke="none" fill="#000000" font-size="12">RD</text>
+<line x1='180' y1='70' x2='200' y2='70' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='100' y1='76' x2='175' y2='76' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='212' y1='76' x2='292' y2='76' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+<text x='180' y='107' stroke="none" fill="#000000" font-size="12">WR</text>
+<line x1='180' y1='95' x2='200' y2='95' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='100' y1='101' x2='175' y2='101' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='212' y1='101' x2='292' y2='101' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+<text x='180' y='132' stroke="none" fill="#000000" font-size="12">CS</text>
+<line x1='180' y1='120' x2='198' y2='120' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='100' y1='126' x2='175' y2='126' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='212' y1='126' x2='292' y2='126' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+<text x='180' y='157' stroke="none" fill="#000000" font-size="12">A0</text>
+<line x1='180' y1='145' x2='198' y2='145' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='100' y1='151' x2='175' y2='151' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='212' y1='151' x2='292' y2='151' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+<text x='170' y='190' stroke="none" fill="#000000" font-size="12">D0-D7</text>
+<line x1='100' y1='185' x2='168' y2='185' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='212' y1='185' x2='292' y2='185' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+<text x='450' y='25' stroke="none" fill="#000000" font-size="12">IR0</text>
+<line x1='448' y1='19' x2='395' y2='19' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+<rect x='550' y='9' width='20' height='20' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='478' y1='19' x2='550' y2='19' stroke="#000000" stroke-width="1" fill="none"/>
+<text x='450' y='50' stroke="none" fill="#000000" font-size="12">IR1</text>
+<line x1='448' y1='46' x2='395' y2='46' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+<rect x='550' y='35' width='20' height='20' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='478' y1='45' x2='550' y2='45' stroke="#000000" stroke-width="1" fill="none"/>
+<text x='450' y='75' stroke="none" fill="#000000" font-size="12">IR2</text>
+<line x1='448' y1='71' x2='395' y2='71' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+<rect x='550' y='61' width='20' height='20' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='478' y1='71' x2='550' y2='71' stroke="#000000" stroke-width="1" fill="none"/>
+<text x='450' y='100' stroke="none" fill="#000000" font-size="12">IR3</text>
+<line x1='448' y1='96' x2='395' y2='96' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+<rect x='550' y='86' width='20' height='20' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='478' y1='96' x2='550' y2='96' stroke="#000000" stroke-width="1" fill="none"/>
+<text x='450' y='125' stroke="none" fill="#000000" font-size="12">IR4</text>
+<line x1='448' y1='121' x2='395' y2='121' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+<rect x='550' y='111' width='20' height='20' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='478' y1='121' x2='550' y2='121' stroke="#000000" stroke-width="1" fill="none"/>
+<text x='450' y='150' stroke="none" fill="#000000" font-size="12">IR5</text>
+<line x1='448' y1='146' x2='395' y2='146' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+<rect x='550' y='136' width='20' height='20' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='478' y1='146' x2='550' y2='146' stroke="#000000" stroke-width="1" fill="none"/>
+<text x='450' y='175' stroke="none" fill="#000000" font-size="12">IR6</text>
+<line x1='448' y1='171' x2='395' y2='171' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+<rect x='550' y='161' width='20' height='20' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='478' y1='171' x2='550' y2='171' stroke="#000000" stroke-width="1" fill="none"/>
+<text x='450' y='200' stroke="none" fill="#000000" font-size="12">IR7</text>
+<line x1='448' y1='196' x2='395' y2='196' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+<rect x='550' y='186' width='20' height='20' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='478' y1='196' x2='550' y2='196' stroke="#000000" stroke-width="1" fill="none"/>
+<text x='5' y='240' stroke="none" fill="#000000">Рис. 7.13.2. Схема функционирования контроллера прерываний INTEL 8259A</text>
+</svg>
+<p>С восемью входами IRx (Interrupt Request &#8212; запрос прерывания) могут быть связаны до восьми контроллеров входа-выхода. Каждое из устройств ввода-вывода для запроса прерывания активирует свою линию входа. При этом контроллер Intel 8259A отправляет процессору сигнал INT (INTerrupt &#8212; прерывание) на соответствующий вход центрального процессора. Центральный процессор, если может обработать запрос, возвращает импульс микросхеме Intel 8259A через вывод INTA (INTerrupt Acnowledge &#8212; подтверждение прерывания). Далее микросхема Intel 8259A помещает номер входа IRx на информационную шину. Центральный процессор по номеру входа обращается к таблице векторов прерываний, чтобы найти адрес процедуры обработки этого прерывания.</p>
+<p>Микросхема Intel 8259A содержит несколько регистров, содержимое которых центральный процессор считывает или обновляет, используя обычные циклы шины и выводы 
+<math form='inline'>
+<mfenced open='' close=''>
+	<mover>
+		<mi>RD</mi>
+		<mo>&#x203E;</mo>
+	</mover>
+	<mover>
+		<mi>WR</mi>
+		<mo>&#x203E;</mo>
+	</mover>
+	<mover>
+		<mi>CS</mi>
+		<mo>&#x203E;</mo>
+	</mover>
+	<mover>
+		<mi>A0</mi>
+		<mo>&#x203E;</mo>
+	</mover>	
+</mfenced>	
+</math>. По завершению обработки прерывания и отсутствии другого прерывания, процессор записывает в один из регистров специальный код, вызывающий сброс сигнала INT микросхемой Intel 8259A.   
+</p>
+<p>Микросхемы Intel 8259A допускают каскадные соединения, позволяющие связать более восьми устройств ввода-вывода. В пределе все восемь входов можно соединить с выходами еще восьми микросхем, соединяя 64 устройств ввода-вывода в двухступенчатую систему прерываний.</p>
+<p><a href="7_12.html">К предыдущему</a> <a href="index.html">К содержанию</a><a href="8_1.html">К следующему</a> </p>
+</body>
+</html>

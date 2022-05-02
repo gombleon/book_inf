@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<link rel='stylesheet' type='text/css' href='style.css' />
+<meta name='author' content='leonid' />
+<title>Некоторые приемы программирования</title>
+</head>
+<body>
+<h2>§36. Некоторые приемы программирования</h2> 
+<p>*) Задачи этого раздела предназначены тем, кто хочет дополнительно овладеть некоторыми приемами, которые используются в современном программировании не менее широко, чем, скажем, вложенные циклы. Это приемы работы с развитыми информационными структурами: линейными списками и деревьями, а также приемы управления динамической памятью.
+</p>
+<ol start='1047' type='1'>
+<li>
+<p>При программировании практических задач часто приходится работать с различными списками. Примерами могут служить список учеников 9а класса, список учителей, преподающих литературу во всех 10-х классах школы, список участников спортивной игры и т. п. Каждый элемент списка содержит, как правило, несколько полей. Например, элементы списка выпускников школы могут включать имя и фамилию ученика, а также его средний балл по аттестату.
+</p>
+<p>
+Представление списков в памяти ЭВМ может быть основано на последовательном и на связанном распределении памяти.При последовательном распределении элементы списка (будем также называть их узлами) размещаются последовательно, один за другим. При связанном распределении памяти местоположение каждого элемента заранее неизвестно &#8210; блок памяти, который отводится для размещения отдельного элемента, выделяется из одной большей области памяти по специальным алгоритмам (см. задачу 1052). Поэтому все узлы содержат, по крайней мере, одно дополнительное поле &#151; поле связи со следующим (рис. 120, a) или предыдущим узлом (рис. 120, b) (см. также задачи 531 и 532).
+</p>
+<p>На рис. 120 first &#151; это переменная, указывающая на первый узел в списке; last &#151; переменная, указывающая на последний узел в списке; стрелки обозначают связи между узлами; NIL &#151; значение поля связи, говорящее о том, что данный узел не связан ни с каким другим узлом (является последним на рис. 120,а и первым на рис. 120,б).</p>
+<svg width='600' height='220'>
+<defs>
+<g id='node'>
+	<rect height="20" width="60" y="25" x="100" stroke-width="1" stroke="#000000" fill="none"/>
+	<line x1='140' y1='25' x2='140' y2='45'stroke-width="1" stroke="#000000" fill="none"/>
+	<line x1='50' y1='35' x2='100' y2='35' stroke-width="1" stroke="#000000" fill="none"/>
+	<polyline points='93,32 100,35 93,38' stroke-width="1" stroke="#000000" fill="none"/>
+</g>
+<g id='node_1'>
+	<rect height="20" width="60" y="105" x="100" stroke-width="1" stroke="#000000" fill="none"/>
+	<line x1='120' y1='105' x2='120' y2='125'stroke-width="1" stroke="#000000" fill="none"/>
+	<line x1='50' y1='115' x2='110' y2='115' stroke-width="1" stroke="#000000" fill="none"/>
+	<polyline points='57,112 50,115 57,118' stroke-width="1" stroke="#000000" fill="none"/>
+</g>
+
+</defs>
+
+<text y='40' x='10' stroke-width="1" stroke="#000000" fill="none">first</text>
+<use xlink:href='#node' x='0' y='0'/>
+<use xlink:href='#node' x='100' y='0'/>
+<line x1='250' y1='35' x2='300' y2='35' stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='293,32 300,35 293,38' stroke-width="1" stroke="#000000" fill="none"/>
+<text y='40' x='310' stroke-width="1" stroke="#000000" fill="none">&#133;</text>
+<use xlink:href='#node' x='295' y='0'/>
+<line x1='445' y1='35' x2='500' y2='35' stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='493,32 500,35 493,38' stroke-width="1" stroke="#000000" fill="none"/>
+<text y='40' x='510' stroke-width="1" stroke="#000000" fill="none">NIL</text>
+
+<text y='120' x='10' stroke-width="1" stroke="#000000" fill="none">NIL</text>
+<use xlink:href='#node_1' x='0' y='0'/>
+<use xlink:href='#node_1' x='110' y='0'/>
+<line x1='270' y1='115' x2='320' y2='115' stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='277,112 270,115 277,118' stroke-width="1" stroke="#000000" fill="none"/>
+<text y='120' x='330' stroke-width="1" stroke="#000000" fill="none">&#133;</text>
+<use xlink:href='#node_1' x='310' y='0'/>
+
+<line x1='470' y1='115' x2='520' y2='115' stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='477,112 470,115 477,118' stroke-width="1" stroke="#000000" fill="none"/>
+<text y='120' x='530' stroke-width="1" stroke="#000000" fill="none">last</text>
+<text y='75' x='250' stroke-width="1" stroke="#000000" fill="none">a</text>
+<text y='160' x='250' stroke-width="1" stroke="#000000" fill="none">b</text>
+
+<text y='200' x='220' stroke-width="1" stroke="#000000" fill="none">Рис. 120</text>
+</svg>
+
+ <p> Связанное распределение памяти обеспечивает существенно более высокую гибкость при работе со списками, чем последовательное распределение, значительно упрощая включение нового узла в список и исключение из него. <br/> Наиболее часто используются следующие виды связанного распределения памяти (далее, под термином <a><b>список</b></a> мы будем понимать конкретное представление соответствующей информационной структуры в памяти ЭВМ на основе связанного распределения памяти):</p>
+<ol type='1'>
+<li>Односвязные списки, в которых каждый элемент содержит поле связи либо со следующим, либо с предыдущим элементом списка (рис. 120).
+</li>
+<li>Односвязные циклические списки, в которых последний элемент содержит поле связи с первым элементом (рис. 121) (см. задачу 545).
+<svg width="600" height="170">
+<defs>
+<g id='node_2'>
+	<rect height="20" width="60" y="25" x="100" stroke-width="1" stroke="#000000" fill="none"/>
+	<line x1='140' y1='25' x2='140' y2='45'stroke-width="1" stroke="#000000" fill="none"/>
+	<line x1='160' y1='35' x2='210' y2='35' stroke-width="1" stroke="#000000" fill="none"/>
+	<polyline points='203,32 210,35 203,38' stroke-width="1" stroke="#000000" fill="none"/>
+</g>
+</defs> 
+<text y='33' x='20' stroke-width="1" stroke="#000000" fill="none">first</text>
+<line x1='55' y1='28' x2='100' y2='28' stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='93,25 100,28 93,31' stroke-width="1" stroke="#000000" fill="none"/>
+
+<use xlink:href='#node_2' x='0' y='0'/>
+<text y='40' x='220' stroke-width="1" stroke="#000000" fill="none">&#133;</text>
+<use xlink:href='#node_2' x='200' y='0'/>
+
+<line x1='250' y1='35' x2='300' y2='35' stroke-width="1" stroke="#000000" fill="none"/>
+<polyline points='293,32 300,35 293,38' stroke-width="1" stroke="#000000" fill="none"/>
+
+<path d='M405,35 A30,30 0 0,1 405,95' stroke-width="1" stroke="#000000" fill="none"/>
+<line x1='100' y1='95' x2='405' y2='95' stroke-width="1" stroke="#000000" fill="none"/>
+<path d='M100,35 A30,30 0 1,0 100,95' stroke-width="1" stroke="#000000" fill="none"/>
+<text y='130' x='200' stroke-width="1" stroke="#000000" fill="none">Рис. 121</text>
+</svg> 
+</li>
+<li>
+Двусвязные списки, в которых каждый элемент содержит поле связи со следующим элементом и с предыдущим (рис. 122) (см. задачу 533). 
+<svg width="640" height="100" >
+<defs>
+<g id='node_3'>
+	<rect height="30" width="80" y="25" x="100" stroke-width="1" stroke="#000000" fill="none"/>
+	<line x1='60' y1='30' x2='100' y2='30'stroke-width="1" stroke="#000000" fill="none"/>
+	<path d='M93,27 L100,30 93,33' stroke-width="1" stroke="#000000" fill="none"/>
+	<line x1='60' y1='51' x2='100' y2='51'stroke-width="1" stroke="#000000" fill="none"/>
+	<path d='M67,48 L60,51 67,54' stroke-width="1" stroke="#000000" fill="none"/>
+	<line x1='120' y1='25' x2='120' y2='55'stroke-width="1" stroke="#000000" fill="none"/>
+	<line x1='160' y1='25' x2='160' y2='55'stroke-width="1" stroke="#000000" fill="none"/>
+</g>	
+</defs>
+	<use xlink:href='#node_3' x='0' y='0'/>
+	<text y='35' x='15' stroke-width="1" stroke="#000000" fill="none">first</text>
+	<text y='53' x='15' stroke-width="1" stroke="#000000" fill="none">NIL</text>
+	<use xlink:href='#node_3' x='120' y='0'/>
+	<line x1='300' y1='30' x2='340' y2='30'stroke-width="1" stroke="#000000" fill="none"/>
+	<path d='M333,27 L340,30 333,33' stroke-width="1" stroke="#000000" fill="none"/>
+	<line x1='300' y1='51' x2='340' y2='51'stroke-width="1" stroke="#000000" fill="none"/>
+	<path d='M307,48 L300,51 307,54' stroke-width="1" stroke="#000000" fill="none"/>
+	<text y='35' x='350' stroke-width="1" stroke="#000000" fill="none">&#133;</text>
+	<text y='53' x='350' stroke-width="1" stroke="#000000" fill="none">&#133;</text>
+	<use xlink:href='#node_3' x='322' y='0'/>
+	<line x1='501' y1='30' x2='540' y2='30'stroke-width="1" stroke="#000000" fill="none"/>
+	<path d='M533,27 L540,30 533,33' stroke-width="1" stroke="#000000" fill="none"/>	
+	<text y='35' x='545' stroke-width="1" stroke="#000000" fill="none">NIL</text>
+	<text y='90' x='200' stroke-width="1" stroke="#000000" fill="none">Рис. 122</text>
+</svg>
+</li>
+</ol>
+<p> При работе с линейными списками требуется, как правило, выполнять следующие операции:</p>
+<ol type='1'>
+<li>Получить доступ к k-му узлу списка, чтобы проанализировать и/или изменить содержимое его полей.</li>
+<li>Включить новый узел непосредственно перед k-м узлом.</li>
+<li>Исключить k-й узел.</li>
+<li>Объединить два (или более) списка в один список.</li>
+<li>Разбить список на два (или более) списка.</li>
+<li>Сделать копию списка.</li>
+<li>Определить число узлов в списке.</li>
+<li>Выполнить сортировку узлов списка по значениям некоторых полей.</li>
+<li>Найти в списке узел с заданным значением некоторого поля.</li>
+</ol>
+<p> Составить процедуры, реализующие перечисленные выше операции 1) &#151; 9) для работы с односвязными, односвязными циклическими и двусвязными списками.</p>
+ </p>
+ <li>Одним из наиболее часто встречающихся видов списка является стек &#151; список, в котором все включения и исключения элементов делаются только на одном его конце &#151; вершине стека (рис. 123). Механизм функционирования стека хорошо отражен в другом его названии &#151; список типа &quot;LIFO&quot; (last in first out &#151; &quot;последним вошел &#151; первым вышел&quot;). 
+ <p> При работе со стеком предполагаются две операции: занесение очередного элемента в вершину стека и удаление элемента, находящегося в вершине стека. Тем самым операция удаления элемента из стека может быть применена только к элементу, помещенному в стек самым последним. И, следовательно, любой элемент не может быть удален из стека раньше, чем будут удалены все элементы, помещенные в стек после него.</p>
+<svg width="340" height="320">
+<defs>
+	<g id='rect_stac'>
+		<rect height="30" width="50" y="20" x="200" stroke-width="1" stroke="#000000" fill="none"/>
+	</g>
+	<g id='arr'>
+	 	<line x1='225' y1='50' x2='225' y2='90'stroke-width="1" stroke="#000000" fill="none"/>
+	 	<path d='M222,82 L225,90 228,82' stroke-width="1" stroke="#000000" fill="none"/>
+	</g>
+</defs>
+	<text y='37' x='10' stroke-width="1" stroke="#000000" fill="none">Вершина стека</text>
+	<line x1='150' y1='33' x2='200' y2='33'stroke-width="1" stroke="#000000" fill="none"/>
+	<path d='M193,30 L200,33 193,36' stroke-width="1" stroke="#000000" fill="none"/>
+	<use xlink:href='#rect_stac' x='0' y='0'/>
+	<use xlink:href='#arr' x='0' y='0'/>
+	<use xlink:href='#rect_stac' x='0' y='70'/>
+	<use xlink:href='#arr' x='0' y='70'/>
+	<text y='178' x='216' stroke-width="1" stroke="#000000" fill="none">&#133;</text>
+	<use xlink:href='#arr' x='0' y='150'/>
+	<use xlink:href='#rect_stac' x='0' y='220'/>
+	<text y='257' x='100' stroke-width="1" stroke="#000000" fill="none">Низ стека</text>
+	<text y='305' x='140' stroke-width="1" stroke="#000000" fill="none">Рис. 123</text>
+</svg> 
+<p> Составить процедуры, реализующие операции занесения элемента в стек и удаления элемента из его вершины.</p>
+</li>
+<li>Еще один из наиболее важных видов структур, встречающихся в программировании, представляют собой деревья. Формально дерево (рис. 124) определяется как конечное множество T, состоящее из одного или более узлов таких, что
+<ol type='1'>
+<li>имеется один узел, называемый корнем дерева;</li>
+<li>остальные узлы (исключая корень) содержатся в <math><mi>m</mi><mo>&gt;</mo><mn>0</mn></math> попарно непересекающихся множествах 
+<math>
+	<msub><mi>T</mi><mn>1</mn></msub>   
+	<mo>,</mo><mi>&#133;</mi><mo>,</mo>
+	<msub><mi>T</mi><mi>m</mi></msub>
+</math>, каждое из которых, в свою очередь, является деревом; 
+деревья
+<math>
+	<msub><mi>T</mi><mn>1</mn></msub>   
+	<mo>,</mo><mi>&#133;</mi><mo>,</mo>
+	<msub><mi>T</mi><mi>m</mi></msub>
+</math> называются поддеревьями данного корня.
+</li>
+</ol>
+<svg width="600" height="300">
+<defs>
+	<g id='circle_tree'>
+		<circle r="10" cy="30" cx="140" stroke-width="1" stroke="#000000" fill="none"/>
+		<line y1="40" x1="140" y2="90" x2="140" stroke-width="1" stroke="#000000" fill="none"/>
+		<path d='M137,83 L140,90 143,83' stroke-width="1" stroke="#000000" fill="none"/>
+		<circle r="10" cy="100" cx="140" stroke-width="1" stroke="#000000" fill="none"/>
+		<line y1="40" x1="140" y2="90" x2="105" stroke-width="1" stroke="#000000" fill="none"/>
+		<path d='M107,82 L105,90 112,85' stroke-width="1" stroke="#000000" fill="none"/>
+		<circle r="10" cy="100" cx="100" stroke-width="1" stroke="#000000" fill="none"/>
+		<circle r="10" cy="100" cx="180" stroke-width="1" stroke="#000000" fill="none"/>
+		<line y1="40" x1="140" y2="90" x2="180" stroke-width="1" stroke="#000000" fill="none"/>
+		<path d='M173,86 L180,90 179,83' stroke-width="1" stroke="#000000" fill="none"/>
+	</g>
+</defs>
+	<use xlink:href='#circle_tree' x='0' y='0'/>
+	<use xlink:href='#circle_tree' x='-85' y='120'/>
+	<line y1="108" x1="92" y2="145" x2="63" stroke-width="1" stroke="#000000" fill="none"/>
+	<path d='M65,136 L63,145 72,140' stroke-width="1" stroke="#000000" fill="none"/>
+	<line y1="109" x1="180" y2="141" x2="164" stroke-width="1" stroke="#000000" fill="none"/>
+	<path d='M164,133 L164,141 171,135' stroke-width="1" stroke="#000000" fill="none"/>
+	<circle r="10" cy="150" cx="160" stroke-width="1" stroke="#000000" fill="none"/>
+	<circle r="10" cy="150" cx="210" stroke-width="1" stroke="#000000" fill="none"/>
+	<line y1="109" x1="181" y2="143" x2="205" stroke-width="1" stroke="#000000" fill="none"/>
+	<path d='M196,138 L205,143 204,134' stroke-width="1" stroke="#000000" fill="none"/>
+	<text y='275' x='105' stroke-width="1" stroke="#000000" fill="none">Рис. 124</text>	
+
+
+	<text y='30' x='450' stroke-width="1" stroke="#000000" fill="none">/</text>
+	<text y='100' x='375' stroke-width="1" stroke="#000000" fill="none">+</text>
+	<text y='170' x='325' stroke-width="1" stroke="#000000" fill="none">*</text>
+	<line y1="35" x1="450" y2="88" x2="384" stroke-width="1" stroke="#000000" fill="none"/>
+	<line y1="35" x1="450" y2="88" x2="525" stroke-width="1" stroke="#000000" fill="none"/>	
+	<line y1="105" x1="374" y2="157" x2="330" stroke-width="1" stroke="#000000" fill="none"/>
+	<line y1="105" x1="386" y2="157" x2="425" stroke-width="1" stroke="#000000" fill="none"/>
+	<text y='100' x='525' stroke-width="1" stroke="#000000" fill="none">*</text>
+	<text y='170' x='500' stroke-width="1" stroke="#000000" fill="none">B</text>
+	<text y='170' x='550' stroke-width="1" stroke="#000000" fill="none">C</text>		
+	
+	<line y1="102" x1="524" y2="156" x2="505" stroke-width="1" stroke="#000000" fill="none"/>
+	<line y1="102" x1="530" y2="156" x2="553" stroke-width="1" stroke="#000000" fill="none"/>
+	<text y='170' x='425' stroke-width="1" stroke="#000000" fill="none">*</text>
+	<line y1="172" x1="324" y2="225" x2="306" stroke-width="1" stroke="#000000" fill="none"/>	
+	<line y1="172" x1="333" y2="225" x2="352" stroke-width="1" stroke="#000000" fill="none"/>		
+
+	<line y1="172" x1="425" y2="225" x2="406" stroke-width="1" stroke="#000000" fill="none"/>
+	<line y1="172" x1="435" y2="225" x2="456" stroke-width="1" stroke="#000000" fill="none"/>
+		
+	<text y='240' x='300' stroke-width="1" stroke="#000000" fill="none">A</text>
+	<text y='240' x='350' stroke-width="1" stroke="#000000" fill="none">B</text>	
+			
+	<text y='240' x='400' stroke-width="1" stroke="#000000" fill="none">C</text>
+	<text y='240' x='450' stroke-width="1" stroke="#000000" fill="none">D</text>
+<text y='275' x='410' stroke-width="1" stroke="#000000" fill="none">Рис. 125</text>
+</svg>
+<p>Деревья, как правило, дают хорошее представление о структурных отношениях между элементами данных. Так, например, на рис. 125 показано дерево, представляющее формулу 
+<math>
+<mfrac bevelled="true">
+<mrow>
+	<mo>(</mo><mrow><mi>А</mi><mo>&#x2062;</mo><mi>В</mi></mrow><mo>+</mo><mrow><mi>C</mi><mo>&#x2062;</mo><mi>D</mi></mrow><mo>)</mo>
+</mrow>
+<mrow>
+	<mi>B</mi><mo>&#x2062;</mo><mi>C</mi>
+</mrow>
+</mfrac>
+</math>. Здесь ветвь, отходящая от вершины &quot;/&quot; влево, представляет числитель дроби, а ветвь, отходящая вправо, &#151; ее знаменатель и т. д. 
+</p>
+<p>Еще один пример &#151; фрагмент дерева (рис. 126), показывающего возможные ходы при игре в восемь (эта игра аналогична игре в пятнадцать); исходная и целевая позиции приведены соответственно на рис. 127,а и 127,б [41].</p>
+<svg width="900" height="600">
+<defs>
+<g id='rect_127'>
+	<rect height="90" width="90" y="10" x="140" stroke-width="1" stroke="#000000" fill="none"/>
+	<line x1='140' y1='40' x2='230' y2='40' stroke-width="1" stroke="#000000" fill="none"/>
+	<line x1='140' y1='70' x2='230' y2='70' stroke-width="1" stroke="#000000" fill="none"/>
+	<line x1='170' y1='10' x2='170' y2='100' stroke-width="1" stroke="#000000" fill="none"/>	
+	<line x1='200' y1='10' x2='200' y2='100' stroke-width="1" stroke="#000000" fill="none"/>
+</g>
+<g id='rect_128'>
+	<rect height="90" width="90" y="10" x="10" stroke-width="1" stroke="#000000" fill="none"/>
+	<line x1='10' y1='40' x2='100' y2='40' stroke-width="1" stroke="#000000" fill="none"/>
+	<line x1='10' y1='70' x2='100' y2='70' stroke-width="1" stroke="#000000" fill="none"/>
+	
+	<line x1='40' y1='10' x2='40' y2='100' stroke-width="1" stroke="#000000" fill="none"/>	
+	<line x1='70' y1='10' x2='70' y2='100' stroke-width="1" stroke="#000000" fill="none"/>
+</g>
+</defs>
+<g transform='translate(30,0)'>
+	<use xlink:href='#rect_127' x='0' y='0'/>
+	<text y='31' x='149' stroke-width="1" stroke="#000000" fill="none">2</text>
+	<text y='31' x='179' stroke-width="1" stroke="#000000" fill="none">8</text>
+	<text y='31' x='209' stroke-width="1" stroke="#000000" fill="none">3</text>
+	<text y='61' x='149' stroke-width="1" stroke="#000000" fill="none">1</text>
+	<text y='61' x='179' stroke-width="1" stroke="#000000" fill="none">6</text>
+	<text y='61' x='209' stroke-width="1" stroke="#000000" fill="none">4</text>
+	<text y='91' x='149' stroke-width="1" stroke="#000000" fill="none">7</text>
+	<text y='91' x='209' stroke-width="1" stroke="#000000" fill="none">5</text>			
+
+	<line x1='185' y1='100' x2='185' y2='140' stroke-width="1" stroke="#000000" fill="none"/>
+	<path d='M182,133 L185,140 188,133' stroke-width="1" stroke="#000000" fill="none"/>
+	<line x1='155' y1='105' x2='50' y2='135' stroke-width="1" stroke="#000000" fill="none"/>
+	<path d='M55,130 L50,135 57,137' stroke-width="1" stroke="#000000" fill="none"/>
+	<line x1='215' y1='105' x2='315' y2='135' stroke-width="1" stroke="#000000" fill="none"/>
+	<path d='M311,130 L315,135 309,137' stroke-width="1" stroke="#000000" fill="none"/>
+
+	<use xlink:href='#rect_127' x='-130' y='130'/>
+	<text y='161' x='18' stroke-width="1" stroke="#000000" fill="none">2</text>
+	<text y='161' x='47' stroke-width="1" stroke="#000000" fill="none">8</text>
+	<text y='161' x='77' stroke-width="1" stroke="#000000" fill="none">3</text>
+	<text y='191' x='18' stroke-width="1" stroke="#000000" fill="none">1</text>
+	<text y='191' x='47' stroke-width="1" stroke="#000000" fill="none">6</text>
+	<text y='191' x='77' stroke-width="1" stroke="#000000" fill="none">4</text>
+	<text y='221' x='47' stroke-width="1" stroke="#000000" fill="none">7</text>
+	<text y='221' x='77' stroke-width="1" stroke="#000000" fill="none">5</text>	
+
+	<line x1='185' y1='230' x2='185' y2='270' stroke-width="1" stroke="#000000" fill="none"/>
+	<path d='M182,263 L185,270 188,263' stroke-width="1" stroke="#000000" fill="none"/>
+	<line x1='155' y1='235' x2='50' y2='265' stroke-width="1" stroke="#000000" fill="none"/>
+	<path d='M55,260 L50,265 57,267' stroke-width="1" stroke="#000000" fill="none"/>
+	<line x1='215' y1='235' x2='315' y2='265' stroke-width="1" stroke="#000000" fill="none"/>
+	<path d='M311,260 L315,265 309,267' stroke-width="1" stroke="#000000" fill="none"/>
+	<use xlink:href='#rect_127' x='0' y='130'/>
+	<text y='161' x='149' stroke-width="1" stroke="#000000" fill="none">2</text>
+	<text y='161' x='179' stroke-width="1" stroke="#000000" fill="none">8</text>
+	<text y='161' x='209' stroke-width="1" stroke="#000000" fill="none">3</text>	
+	<text y='191' x='149' stroke-width="1" stroke="#000000" fill="none">1</text>
+	<text y='191' x='209' stroke-width="1" stroke="#000000" fill="none">4</text>
+	<text y='221' x='149' stroke-width="1" stroke="#000000" fill="none">7</text>
+	<text y='221' x='179' stroke-width="1" stroke="#000000" fill="none">6</text>	
+	<text y='221' x='209' stroke-width="1" stroke="#000000" fill="none">5</text>	
+	<line x1='185' y1='360' x2='185' y2='400' stroke-width="1" stroke="#000000" fill="none"/>
+	<path d='M182,393 L185,400 188,393' stroke-width="1" stroke="#000000" fill="none"/>
+	<line x1='155' y1='365' x2='50' y2='395' stroke-width="1" stroke="#000000" fill="none"/>
+	<path d='M55,390 L50,395 57,397' stroke-width="1" stroke="#000000" fill="none"/>
+	<text y='420' x='300' stroke-width="1" stroke="#000000" fill="none">&#133;</text>
+	<use xlink:href='#rect_127' x='130' y='130'/>
+	<text y='161' x='279' stroke-width="1" stroke="#000000" fill="none">2</text>
+	<text y='161' x='309' stroke-width="1" stroke="#000000" fill="none">8</text>
+	<text y='161' x='339' stroke-width="1" stroke="#000000" fill="none">3</text>	
+	<text y='191' x='279' stroke-width="1" stroke="#000000" fill="none">1</text>
+	<text y='191' x='309' stroke-width="1" stroke="#000000" fill="none">6</text>
+	<text y='191' x='339' stroke-width="1" stroke="#000000" fill="none">4</text>
+	<text y='221' x='279' stroke-width="1" stroke="#000000" fill="none">7</text>
+	<text y='221' x='309' stroke-width="1" stroke="#000000" fill="none">5</text>
+	<use xlink:href='#rect_127' x='-130' y='260'/>
+	<text y='292' x='18' stroke-width="1" stroke="#000000" fill="none">2</text>
+	<text y='292' x='48' stroke-width="1" stroke="#000000" fill="none">8</text>
+	<text y='292' x='78' stroke-width="1" stroke="#000000" fill="none">3</text>	
+	<text y='322' x='48' stroke-width="1" stroke="#000000" fill="none">1</text>
+	<text y='322' x='78' stroke-width="1" stroke="#000000" fill="none">4</text>	
+	<text y='352' x='18' stroke-width="1" stroke="#000000" fill="none">7</text>
+	<text y='352' x='48' stroke-width="1" stroke="#000000" fill="none">6</text>
+	<text y='352' x='78' stroke-width="1" stroke="#000000" fill="none">5</text>
+	<use xlink:href='#rect_127' x='0' y='260'/>
+	<text y='292' x='148' stroke-width="1" stroke="#000000" fill="none">2</text>
+	<text y='292' x='208' stroke-width="1" stroke="#000000" fill="none">3</text>
+	<text y='322' x='148' stroke-width="1" stroke="#000000" fill="none">1</text>
+	<text y='322' x='178' stroke-width="1" stroke="#000000" fill="none">8</text>
+	<text y='322' x='208' stroke-width="1" stroke="#000000" fill="none">4</text>
+	<text y='352' x='148' stroke-width="1" stroke="#000000" fill="none">7</text>
+	<text y='352' x='178' stroke-width="1" stroke="#000000" fill="none">6</text>
+	<text y='352' x='208' stroke-width="1" stroke="#000000" fill="none">5</text>	
+	<use xlink:href='#rect_127' x='130' y='260'/>
+	<text y='292' x='279' stroke-width="1" stroke="#000000" fill="none">2</text>
+	<text y='292' x='309' stroke-width="1" stroke="#000000" fill="none">8</text>
+	<text y='292' x='339' stroke-width="1" stroke="#000000" fill="none">3</text>
+	<text y='322' x='279' stroke-width="1" stroke="#000000" fill="none">1</text>
+	<text y='322' x='309' stroke-width="1" stroke="#000000" fill="none">4</text>
+	<text y='352' x='279' stroke-width="1" stroke="#000000" fill="none">7</text>
+	<text y='352' x='309' stroke-width="1" stroke="#000000" fill="none">6</text>
+	<text y='352' x='339' stroke-width="1" stroke="#000000" fill="none">5</text>
+	<use xlink:href='#rect_127' x='-130' y='390'/>
+	<text y='422' x='48' stroke-width="1" stroke="#000000" fill="none">2</text>
+	<text y='422' x='78' stroke-width="1" stroke="#000000" fill="none">3</text>
+	<text y='452' x='18' stroke-width="1" stroke="#000000" fill="none">1</text>
+	<text y='452' x='48' stroke-width="1" stroke="#000000" fill="none">8</text>
+	<text y='452' x='78' stroke-width="1" stroke="#000000" fill="none">4</text>
+	<text y='482' x='18' stroke-width="1" stroke="#000000" fill="none">7</text>
+	<text y='482' x='48' stroke-width="1" stroke="#000000" fill="none">6</text>
+	<text y='482' x='78' stroke-width="1" stroke="#000000" fill="none">5</text>
+	<use xlink:href='#rect_127' x='0' y='390'/>
+	<text y='422' x='148' stroke-width="1" stroke="#000000" fill="none">2</text>
+	<text y='422' x='178' stroke-width="1" stroke="#000000" fill="none">3</text>
+	<text y='452' x='148' stroke-width="1" stroke="#000000" fill="none">1</text>
+	<text y='452' x='178' stroke-width="1" stroke="#000000" fill="none">8</text>
+	<text y='452' x='208' stroke-width="1" stroke="#000000" fill="none">4</text>
+	<text y='482' x='148' stroke-width="1" stroke="#000000" fill="none">7</text>
+	<text y='482' x='178' stroke-width="1" stroke="#000000" fill="none">6</text>
+	<text y='482' x='208' stroke-width="1" stroke="#000000" fill="none">5</text>	
+	<text y='540' x='30' stroke-width="1" stroke="#000000" fill="none">&#133;</text>	
+</g>	
+	<text y='265' x='5' stroke-width="1" stroke="#000000" fill="none">&#133;</text>
+	<text y='265' x='415' stroke-width="1" stroke="#000000" fill="none">&#133;</text>
+	<text y='400' x='5' stroke-width="1" stroke="#000000" fill="none">&#133;</text>
+<text y='550' x='180' stroke-width="1" stroke="#000000" fill="none">Рис. 126</text>			
+<g transform='translate(500,380)'>
+	<use xlink:href='#rect_128' x='0' y='0'/>
+	<text y='30' x='20' stroke-width="1" stroke="#000000" fill="none">2</text>
+	<text y='30' x='50' stroke-width="1" stroke="#000000" fill="none">8</text>
+	<text y='30' x='80' stroke-width="1" stroke="#000000" fill="none">3</text>
+	<text y='60' x='20' stroke-width="1" stroke="#000000" fill="none">1</text>
+	<text y='60' x='50' stroke-width="1" stroke="#000000" fill="none">6</text>
+	<text y='60' x='80' stroke-width="1" stroke="#000000" fill="none">4</text>
+	<text y='90' x='20' stroke-width="1" stroke="#000000" fill="none">7</text>
+	<text y='90' x='80' stroke-width="1" stroke="#000000" fill="none">5</text>		
+	<use xlink:href='#rect_128' x='130' y='0'/>
+	<text y='30' x='150' stroke-width="1" stroke="#000000" fill="none">1</text>
+	<text y='30' x='180' stroke-width="1" stroke="#000000" fill="none">2</text>
+	<text y='30' x='210' stroke-width="1" stroke="#000000" fill="none">3</text>
+	<text y='60' x='150' stroke-width="1" stroke="#000000" fill="none">8</text>
+	<text y='60' x='210' stroke-width="1" stroke="#000000" fill="none">4</text>	
+	<text y='90' x='150' stroke-width="1" stroke="#000000" fill="none">7</text>
+	<text y='90' x='180' stroke-width="1" stroke="#000000" fill="none">6</text>
+	<text y='90' x='210' stroke-width="1" stroke="#000000" fill="none">5</text>
+	<text y='130' x='50' stroke-width="1" stroke="#000000" fill="none">a</text>
+	<text y='130' x='185' stroke-width="1" stroke="#000000" fill="none">b</text>
+	<text y='166' x='90' stroke-width="1" stroke="#000000" fill="none">Рис. 127</text>	
+</g>
+</svg>
+<p>Далее мы будем рассматривать только бинарные деревья. Бинарное дерево определяется как конечное множество узлов, которое либо пусто, либо состоит из корня и двух бинарных деревьев (рис. 128).</p>
+<svg width="640" height="240" >
+<circle r="20" cy="20" cx="300" stroke-width="1" stroke="#000000" fill="none"/>
+<text y='25' x='295' stroke-width="1" stroke="#000000" fill="none">A</text>
+<circle r="20" cy="60" cx="240" stroke-width="1" stroke="#000000" fill="none"/>
+<text y='65' x='235' stroke-width="1" stroke="#000000" fill="none">B</text>
+<line x1='285' y1='31' x2='255' y2='49' stroke-width="1" stroke="#000000" fill="none"/>
+<circle r="20" cy="100" cx="180" stroke-width="1" stroke="#000000" fill="none"/>
+<text y='105' x='175' stroke-width="1" stroke="#000000" fill="none">D</text>
+<circle r="20" cy="60" cx="360" stroke-width="1" stroke="#000000" fill="none"/>
+<text y='65' x='355' stroke-width="1" stroke="#000000" fill="none">C</text>
+<line x1='374' y1='73' x2='403' y2='92' stroke-width="1" stroke="#000000" fill="none"/>
+<line x1='318' y1='29' x2='346' y2='48' stroke-width="1" stroke="#000000" fill="none"/>
+<line x1='226' y1='72' x2='196' y2='91' stroke-width="1" stroke="#000000" fill="none"/>
+<circle r="20" cy="100" cx="300" stroke-width="1" stroke="#000000" fill="none"/>
+<text y='105' x='295' stroke-width="1" stroke="#000000" fill="none">E</text>
+<line x1='309' y1='117' x2='333' y2='141' stroke-width="1" stroke="#000000" fill="none"/>
+<line x1='256' y1='70' x2='285' y2='90' stroke-width="1" stroke="#000000" fill="none"/>
+<circle r="20" cy="100" cx="420" stroke-width="1" stroke="#000000" fill="none"/>
+<text y='105' x='415' stroke-width="1" stroke="#000000" fill="none">F</text>
+<line x1='430' y1='116' x2='462' y2='142' stroke-width="1" stroke="#000000" fill="none"/>
+<line x1='413' y1='118' x2='396' y2='141' stroke-width="1" stroke="#000000" fill="none"/>
+<circle r="20" cy="160" cx="340" stroke-width="1" stroke="#000000" fill="none"/>
+<text y='165' x='335' stroke-width="1" stroke="#000000" fill="none">G</text>
+<circle r="20" cy="160" cx="390" stroke-width="1" stroke="#000000" fill="none"/>
+<text y='165' x='385' stroke-width="1" stroke="#000000" fill="none">H</text>
+<circle r="20" cy="160" cx="470" stroke-width="1" stroke="#000000" fill="none"/>
+<text y='165' x='465' stroke-width="1" stroke="#000000" fill="none">J</text>
+<text y='220' x='290' stroke-width="1" stroke="#000000" fill="none">Рис. 128</text>	
+</svg>
+<p>При работе с древовидными структурами наиболее часто приходится решать задачу обхода дерева &#151; такого последовательного прохождения по узлам дерева, когда каждый узел встречается ровно один раз. Для обхода бинарного дерева можно воспользоваться одним из трех способов: можно проходить узлы в префиксном порядке, в инфиксном порядке и в суффиксном порядке.</p>
+<p>Префиксный порядок обхода дерева определяется в виде списка проходимых узлов следующим образом. Если дерево не пусто, префиксный порядок &#151; это</p>
+<ol type='a'>
+<li>корень дерева;</li>
+<li> узлы левого поддерева в префиксном порядке;</li>
+<li> узлы правого поддерева в префиксном порядке.</li>
+</ol>
+<p>Инфиксный порядок обхода дерева определяется следующим образом. Если дерево пусто, список узлов пуст. Если дерево не пусто, инфиксивный порядок &#151; это</p>
+<ol type='a'>
+<li> узлы левого поддерева в инфиксном порядке;</li>
+<li> корень дерева;</li>
+<li> узлы правого поддерева в инфиксном порядке.</li>
+</ol>
+<p>Суффиксный порядок обхода дерева определяется следующим образом. Если дерево пусто, список узлов пуст. Если дерево не пусто, суффиксный порядок &#151; это</p>
+<ol type='a'>
+<li>узлы левого поддерева в суффиксном порядке;</li>
+<li>узлы правого поддерева в суффиксном порядке;</li>
+<li> корень дерева.</li>
+</ol>
+<p>Составить процедуры обхода заданного бинарного дерева в префиксном, инфиксном и суффиксном порядке.</p>
+</li>
+<li> Составить процедуру подсчета числа узлов заданного бинарного дерева.</li>
+<li> Листом дерева называется вершина, не являющаяся корнем никакого поддерева. Составить процедуру подсчета числа листьев заданного бинарного дерева.</li>
+<li>
+<p>Алгоритмами динамического распределения памяти называют алгоритмы, позволяющие выделять и освобождать различные по размеру блоки памяти, беря их из одной большой области памяти. (Здесь и далее используются термины &quot;блок&quot; и &quot;область&quot;, обозначающие совокупность смежных ячеек памяти.)</p>
+<p>Будем считать, что вся имеющаяся свободная память представлена в виде списка свободных блоков. В начальный момент в списке только один блок, содержащий всю свободную память. Каждый блок содержит заголовок с размерами блока и указателем на следующий блок. Выделение свободной памяти по запросу часто выполняется либо по методу &quot;наиболее подходящего&quot;, либо по методу &quot;первого подходящего&quot;.</p>
+<p>Метод &quot;наиболее подходящего&quot; заключается в том, что среди всех блоков, имеющих размер, не меньший требуемого, выбирается блок с наименьшим размером. Метод &quot;первого подходящего&quot; заключается в том, что выделению подлежит первый в порядке просмотра элементов списка блок, размер которого не меньше требуемого.</p>  
+<p>Если блок, выбранный по одному из двух указанных методов, имеет размер, превышающий указанный при запросе, он расщепляется на два: первый блок имеет требуемый размер и предоставляется в ответ на запрос, второй блок-остаток остается в списке свободной памяти. При освобождении блока смежные блоки склеиваются.</p>
+<p>Реализовать процедуру для выделения блока свободной памяти заданного размера (результатом работы процедуры должна быть <math><mo>-</mo><mn>1</mn></math>, если блок такого размера выделен быть не может) и процедуру для освобождения &#151; повторного включения в список свободной памяти блока, выделенного ранее.</p>
+</li>
+</ol>         
+</body>
+</html>

@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<link rel='stylesheet' type="text/css" href="style.css"></link>
+<meta id="author" content="leonid"/>
+<meta id="description" content="криптосистема без передачи ключей" />
+<meta id="keywords" content="У. Диффи, М. Хеллман, Р. Меркль, криптосистема без передачи ключей" />
+<title>Криптосистема без передачи ключей</title>
+<script type="text/javascript">
+
+function f_alpha()	{
+var p=document.getElementById("prost").value, a=document.getElementById("sek1").value, alpha=1, i=2, gran=Math.sqrt(p)+1;
+	while((i<gran)&&(p%i >0))
+		i++; 
+	if (i<gran) {
+ 		alert("Ошибка! Введенное число составное.")
+		document.getElementById("prost").value='';	 
+	}
+	else {
+//проверим а
+		if((a>=p-1)||(nod(a, p-1)>1)) {
+  			alert("Ошибка! Ключ не подходит.")
+			document.getElementById("sek1").value='';	 
+		}
+		else { 
+ 			while((mod(alpha*a,1,p-1)>1)&&(alpha<p-1))
+ 				alpha++;
+ 				document.getElementById("alpha").value=alpha;
+		}
+	}
+}
+
+function nod1(m, n) {
+	document.getElementById("delit").value=nod(m, n);
+}
+
+function nod(a, b) {
+var t, s;
+	if (a < b) {
+		t=a;
+		a=b;
+		b=t;
+	} 
+	s=a%b;
+	while (s>0) {
+		a=b;
+		b=s;
+		s=a%b;
+	}
+	return b;
+}
+
+function erato(){
+var a=[], gran=document.getElementById("prav_gran").value, j, div=document.getElementById("prost"), spisok="Простые числа: ";
+
+	a[0]=2;
+	a[1]=3;
+	a[2]=5;
+	a[3]=7;
+	a[4]=11;
+	a[5]=13;
+	a[6]=17;
+	a[7]=19;
+	for(j=0;j< a.length;j++)
+		spisok+=a[j]+", ";
+	for (var i=23; i< gran;i++){
+		j = 0;
+		while((j< a.length)&&(i%a[j] >0))
+			j++;
+		if(j==a.length){
+			a[j]=i;
+			spisok+=+i+", ";	
+		}	
+	}
+	div.textContent=spisok+"\u2026";
+}
+
+//вычисляем двоичный код UTF-8
+function perevod(nm) {
+	var stroka='', ost=0, numb=nm, b1, b2;	
+	while (numb>=1) {
+		ost=numb%2;
+		numb=(numb-ost)/2;
+		stroka=ost+stroka;
+	}
+	if (nm<128) {
+		while (stroka.length<8)
+			stroka='0'+stroka;
+	}
+	else {
+		while (stroka.length<11) {
+			stroka='0'+stroka;
+		}
+		b1='110'+stroka.substring(0,5);
+		b2='10'+stroka.substring(5,11);
+		stroka=b1+b2;
+	}
+return stroka;
+}
+
+//вычисляем 10-чное значение 24-битного кода
+function f24(str){
+var val=0, bit;
+	for(var i=0;i< str.length;i++) {
+		bit=Number(str.charAt(i));
+		val=(2*val+bit);
+	}
+return val;
+}
+
+function mod(num, pokazatel, prost){
+var m=1;
+	for(var i=0;i< pokazatel;i++){
+		m=m*num;	
+		m=m%prost;
+	}
+	return m;
+}
+
+function mod2(m, a, p){
+document.getElementById("ost").value=mod(m,a,p);
+}
+
+function do_shifr() {
+var soob=document.getElementById("utf_stroka").value, win=open("", "newWindow"), bin_stroka="", j, k, nom_utf, m=[],m1=[], m2=[], m3=[], fragm=[], ost, e=16777259, a=9, alpha=9320699, b=11, html, head, title, body, table, caption, tr ,td ,th, h2, p;
+	win=open("", "newWindow");
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Криптосистема без передачи ключей";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h2=document.createElement("h2");
+	h2.textContent="Криптосистема без передачи ключей";
+	body.appendChild(h2);
+	p=document.createElement("p");
+	p.textContent="Характеристики криптосистемы: p=16777259, \u03C6(p)=16777258, a=9, \u03B1=9320699, b=11, \u03B2=10676437.";
+	body.appendChild(p);
+	p=document.createElement("p");
+	p.textContent="Сообщение: "+soob+".";
+	body.appendChild(p);
+
+	//переводим в двоичный код
+	for(var i=0;i< soob.length;i++) {
+		nom_utf=soob.charCodeAt(i);
+		bin_stroka+=perevod(nom_utf);
+	}
+	p=document.createElement("p");
+	p.textContent="Бинарный код сообщения: "+bin_stroka+".";
+	body.appendChild(p);
+	ost=bin_stroka.length%24;
+	//разбиваем на фрагменты по 24 бита и шифруем
+	j=0;
+	k=0;
+	table=document.createElement("table");
+	table.border="1";
+	body.appendChild(table);
+	caption=document.createElement("caption");
+	caption.textContent="Фрагментирование кода, шифрование и дешифрование фрагментов";
+	table.appendChild(caption);
+	tr=document.createElement("tr");
+	table.appendChild(tr);
+	td=document.createElement("td");
+	td.textContent="Фрагмент";
+	tr.appendChild(td);
+	td=document.createElement("td");
+	td.textContent="m";
+	tr.appendChild(td);
+	td=document.createElement("td");
+	td.textContent="m1";
+	tr.appendChild(td);
+	td=document.createElement("td");
+	td.textContent="m2";
+	tr.appendChild(td);
+	td=document.createElement("td");
+	td.textContent="m3";
+	tr.appendChild(td);
+	td=document.createElement("td");
+	td.textContent="m4";
+	tr.appendChild(td);
+	while(j< bin_stroka.length-ost) {
+		fragm[k]=bin_stroka.substring(j,j+24);
+		m[k]=f24(fragm[k]);
+		m1[k]=mod(m[k],a,e);
+		m2[k]=mod(m1[k],b,e);
+		m3[k]=mod(m2[k],alpha,e);
+		tr=document.createElement("tr");
+		table.appendChild(tr);
+		td=document.createElement("td");
+		td.textContent=fragm[k];
+		tr.appendChild(td);
+		td=document.createElement("td");
+		td.textContent=m[k];
+		tr.appendChild(td);
+		td=document.createElement("td");
+		td.textContent=m1[k];
+		tr.appendChild(td);
+		td=document.createElement("td");
+		td.textContent=m2[k];
+		tr.appendChild(td);
+		td=document.createElement("td");
+		td.textContent=m3[k];
+		tr.appendChild(td);
+		td=document.createElement("td");
+		td.textContent=m[k];
+		tr.appendChild(td);
+		k++;
+		j+=24;
+	}
+	if(ost>0) {
+		fragm[k]=bin_stroka.substring(bin_stroka.length-ost,bin_stroka.length);
+		m[k]=f24(fragm[k]);
+		m1[k]=mod(m[k],a,e);
+		m2[k]=mod(m1[k],b,e);
+		m3[k]=mod(m2[k],alpha,e);
+		tr=document.createElement("tr");
+		table.appendChild(tr);
+		td=document.createElement("td");
+		td.textContent=fragm[k];
+		tr.appendChild(td);
+		td=document.createElement("td");
+		td.textContent=m[k];
+		tr.appendChild(td);
+		td=document.createElement("td");
+		td.textContent=m1[k];
+		tr.appendChild(td);
+		td=document.createElement("td");
+		td.textContent=m2[k];
+		tr.appendChild(td);
+		td=document.createElement("td");
+		td.textContent=m3[k];
+		tr.appendChild(td);
+		td=document.createElement("td");
+		td.textContent=m[k];
+		tr.appendChild(td);
+	}
+	p=document.createElement("p");
+	p.textContent="Бинарный код сообщения: "+bin_stroka+".";
+	body.appendChild(p);
+	p=document.createElement("p");
+	p.textContent="Сообщение: "+soob+".";
+	body.appendChild(p);	
+	win.document.close();
+}
+
+</script>
+</head>
+<body>
+<p><a href="6_1.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="6_3.html">К следующему</a></p>
+<h2>6.2. Криптосистема без передачи ключей</h2>
+<p>Криптосистемы с ключами требуют передачи ключей по особо защищенным каналам связи, что затрудняет их использование. В 1976 году инженеры-электрики из Станфордского университета У. Диффи (Diffie W.) и М. Хеллман (Hellman M.), а так же студент Калифорнийского университета Р. Меркль (Merkle R.), предложили принципиально новый принцип построения криптосистем, не требующий сохранения в тайне способа шифрования и передачи по защищенным каналам связи ключа шифрования. Здесь и далее рассматриваются системы шифрования, основанные на идеях У. Диффи, М. Хеллмана и Р. Меркля.</p>
+<p>Нам понадобятся некоторые сведения из теории чисел. Как и ранее, 
+<math display='inline'>
+<mrow>
+<mi>mod</mi>
+	<mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+		<mi>a</mi><mo>,</mo><mi>b</mi>
+		<mo>)</mo>
+	</mrow>
+</mrow>
+</math>
+ есть остаток от деления a на b в математическом определении.</p>
+<a id="eiler"></a>
+<p>Дадим определение <span class="termin">функции Эйлера</span>:</p>
+<p><span class="teorema">Функция 
+<math display='inline'>
+<mrow>
+<mi>&#966;</mi><mo>&#x2061;</mo>
+<mrow>
+	<mo>(</mo>
+	<mi>N</mi>
+	<mo>)</mo>
+</mrow>
+</mrow>
+</math>, возвращающая количество натуральных чисел из числового отрезка от 1 до 
+<math display='inline'>
+<mrow>
+<mi>N</mi><mo>-</mo><mn>1</mn>
+</mrow>
+</math>, взаимно-простых с N, называется функцией Эйлера.</span></p>
+<p>Например, 
+<math display='inline'>
+<mrow>
+<mi>&#966;</mi><mo>&#x2061;</mo>
+<mrow>
+	<mo>(</mo>
+	<mn>5</mn>
+	<mo>)</mo>
+</mrow>
+<mo>=</mo>
+<mn>4</mn>
+</mrow><mo>,</mo>
+<mrow>
+<mi>&#966;</mi><mo>&#x2061;</mo>
+<mrow>
+	<mo>(</mo>
+	<mn>6</mn>
+	<mo>)</mo>
+</mrow>
+<mo>=</mo>
+<mn>2</mn>
+</mrow><mo>,</mo>
+<mrow>
+<mi>&#966;</mi><mo>&#x2061;</mo>
+<mrow>
+	<mo>(</mo>
+	<mn>10</mn>
+	<mo>)</mo>
+</mrow>
+<mo>=</mo>
+<mn>4</mn>
+</mrow>
+</math>.</p>
+<p>Некоторые очевидные свойства функции Эйлера:</p>
+<ol>
+<li>Если <var>p</var> простое число, то 
+<math display='inline'>
+<mrow>
+<mi>&#966;</mi><mo>&#x2061;</mo>
+<mrow>
+	<mo>(</mo>
+	<mi>p</mi>
+	<mo>)</mo>
+</mrow><mo>=</mo>
+<mrow><mi>p</mi><mo>-</mo><mn>1</mn></mrow>
+</mrow>
+</math>;</li>
+<li>Если <var>p</var> и <var>q</var> простые числа, то 
+<math display='inline'>
+<mrow>
+<mi>&#966;</mi><mo>&#x2061;</mo>
+<mrow>
+	<mo>(</mo>
+	<mrow><mi>p</mi><mo>&#x2062;</mo><mi>q</mi></mrow>
+	<mo>)</mo>
+</mrow><mo>=</mo>
+<mrow><mo>(</mo><mi>p</mi><mo>-</mo><mn>1</mn><mo>)</mo></mrow><mo>&#x2062;</mo>
+<mrow><mo>(</mo><mi>q</mi><mo>-</mo><mn>1</mn><mo>)</mo></mrow>
+</mrow>
+</math>.</li>
+</ol>
+<p>Приведем без доказательства следующую теорему:</p>
+<p><span class="name">Теорема 6.2.1 (Эйлера-Ферма)</span>. <span class="teorema">Если X и N взаимно-просты, то 
+<math display='inline'>
+<mi>mod</mi><mo>&#x2061;</mo>
+<mrow>
+	<mo>(</mo>
+		<msup>
+			<mi>X</mi>
+			<mrow>
+				<mi>&#966;</mi><mo>&#x2061;</mo>
+				<mrow>
+					<mo>(</mo><mi>N</mi><mo>)</mo>
+				</mrow>
+			</mrow>
+		</msup>
+		<mo>,</mo>
+		<mi>N</mi>
+	<mo>)</mo>
+</mrow>
+<mo>=</mo><mn>1</mn>
+</math>
+.</span>
+</p>
+<p>Пусть абоненты А и В решили организовать между собой секретную переписку. Для этого они выбирают достаточно большое простое число <var>p</var>. Критерии выбора <var>p</var> изложены ниже. Абонент А выбирает для себя в качестве первого своего секретного ключа некоторое число <var>a</var>, удовлетворяющее условиям 
+<math display='inline'>
+<mrow>
+<mn>1</mn><mo>&lt;</mo><mi>a</mi><mo>&lt;</mo><mrow><mi>p</mi><mo>-</mo><mn>1</mn></mrow>
+</mrow>
+</math>
+ и 
+<math display='inline'>
+<mrow>
+	<mi>НОД</mi><mo>&#x2061;</mo>
+	<mrow>
+	<mo>(</mo>
+		<mi>a</mi><mo>,</mo><mrow><mi>p</mi><mo>-</mo><mn>1</mn></mrow>
+	<mo>)</mo>
+	</mrow> 
+	<mo>=</mo>
+	<mn>1</mn> 
+</mrow>
+</math>. Заметим, что <var>a</var> &#8212; нечетное число. Второй секретный ключ &#945; он вычисляет из уравнения:
+<a id="f621"></a>
+<table class="formula"><tr>
+<td class="formula">
+<math display='inline'>
+<mi>mod</mi><mo>&#x2061;</mo>
+<mrow>
+	<mo>(</mo>
+	<mrow>
+		<mi>&#945;</mi><mo>&#x2062;</mo><mi>a</mi>
+	</mrow>	
+	<mo>,</mo>
+	<mi>&#966;</mi><mo>&#x2061;</mo>
+	<mrow>	
+		<mo>(</mo><mi>p</mi><mo>)</mo>
+	</mrow>
+<mo>)</mo>
+</mrow>
+<mo>=</mo>
+<mn>1</mn>
+<mo>,</mo>
+<mrow>
+	<mn>0</mn><mo>&lt;</mo><mi>&#945;</mi><mo>&lt;</mo><mrow><mi>p</mi><mo>-</mo><mn>1</mn></mrow>
+</mrow>
+</math>.</td>
+<td class="nomer">(6.2.1)</td>
+</tr></table>
+</p>
+<a id="f622"></a>
+<p>По свойству 1 функции Эйлера 
+<math display='inline'>
+<mrow>
+<mi>&#966;</mi><mo>&#x2061;</mo>
+<mrow>
+	<mo>(</mo>
+	<mi>p</mi>
+	<mo>)</mo>
+</mrow><mo>=</mo>
+<mrow><mi>p</mi><mo>-</mo><mn>1</mn></mrow>
+</mrow>
+</math>, поэтому уравнение (6.2.1) можем переписать так:
+<table class="formula"><tr>
+<td class="formula">
+<math display='inline'>
+<mi>mod</mi><mo>&#x2061;</mo>
+<mrow>
+	<mo>(</mo>
+	<mrow>
+		<mi>&#945;</mi><mo>&#x2062;</mo><mi>a</mi>
+	</mrow>	
+	<mo>,</mo>
+	<mrow><mi>p</mi><mo>-</mo><mn>1</mn></mrow>
+<mo>)</mo>
+</mrow>
+<mo>=</mo>
+<mn>1</mn>
+<mo>,</mo>
+<mrow>
+	<mn>0</mn><mo>&lt;</mo><mi>&#945;</mi><mo>&lt;</mo><mrow><mi>p</mi><mo>-</mo><mn>1</mn></mrow>
+</mrow>
+</math>.</td>
+<td class="nomer">(6.2.2)</td>
+</tr></table></p>
+<a id="f623"></a>
+<p>Аналогично абонент В выбирает себе первый секретный ключ <var>b</var>, где 
+<math display='inline'>
+<mrow>
+<mn>1</mn><mo>&lt;</mo><mi>b</mi><mo>&lt;</mo><mrow><mi>p</mi><mo>-</mo><mn>1</mn></mrow>
+</mrow>
+</math>
+ и 
+<math display='inline'>
+<mrow>
+	<mi>НОД</mi><mo>&#x2061;</mo>
+	<mrow>
+	<mo>(</mo>
+		<mi>b</mi><mo>,</mo><mrow><mi>p</mi><mo>-</mo><mn>1</mn></mrow>
+	<mo>)</mo>
+	</mrow> 
+	<mo>=</mo>
+	<mn>1</mn> 
+</mrow>
+</math>. Второй секретный ключ &#946; он вычисляет из уравнения:
+<table class="formula"><tr>
+<td class="formula">
+<math display='inline'>
+<mi>mod</mi><mo>&#x2061;</mo>
+<mrow>
+	<mo>(</mo>
+	<mrow>
+		<mi>&#946;</mi><mo>&#x2062;</mo><mi>b</mi>
+	</mrow>	
+	<mo>,</mo>
+	<mrow><mi>p</mi><mo>-</mo><mn>1</mn></mrow>
+<mo>)</mo>
+</mrow>
+<mo>=</mo>
+<mn>1</mn>
+<mo>,</mo>
+<mrow>
+	<mn>0</mn><mo>&lt;</mo><mi>&#946;</mi><mo>&lt;</mo><mrow><mi>p</mi><mo>-</mo><mn>1</mn></mrow>
+</mrow>
+</math>.</td>
+<td class="nomer">(6.2.3)</td>
+</tr></table>
+</p>
+<a id="f624"></a>
+<p>Прежде чем перейти к изложению шифрования текста, рассмотрим шифрование неких числовых кодов. Допустим, что абонент А посылает абоненту В код <var>m</var>, причем 
+<math display='inline'>
+<mrow>
+<mn>1</mn><mo>&lt;</mo><mi>m</mi><mo>&lt;</mo><mrow><mi>p</mi><mo>-</mo><mn>1</mn></mrow>
+</mrow>
+</math>. Для этого он шифрует числовой код <var>m</var> по формуле:
+<table class="formula"><tr>
+<td class="formula">
+<math display='inline'>
+<mrow>
+	<msub><mi>m</mi><mn>1</mn></msub>
+	<mo>=</mo>
+	<mi>mod</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo><msup><mi>m</mi><mi>a</mi></msup><mo>,</mo><mi>p</mi><mo>)</mo>	
+	</mrow>
+</mrow>
+</math>
+</td>
+<td class="nomer">(6.2.4)</td>
+</tr></table>
+и отправляет 
+<math display='inline'>
+<msub><mi>m</mi><mn>1</mn></msub>
+</math>
+ абоненту В.</p>
+<p>Если допустить 
+<math display='inline'>
+<mi>m</mi><mo>=</mo><mn>1</mn>
+</math>
+ или 
+<math display='inline'>
+<mrow>
+	<mi>m</mi><mo>=</mo><mrow><mi>p</mi><mo>-</mo><mn>1</mn></mrow>
+</mrow>
+</math>, то будем иметь 
+<math display='inline'>
+<msub><mi>m</mi><mn>1</mn></msub><mo>=</mo><mi>m</mi>
+</math>. Для 
+<math display='inline'>
+<mi>m</mi><mo>=</mo><mn>1</mn>
+</math>
+ это очевидно, а для 
+<math display='inline'>
+<mrow>
+	<mi>m</mi><mo>=</mo><mrow><mi>p</mi><mo>-</mo><mn>1</mn></mrow>
+</mrow>
+</math> 
+следует из разложения
+
+<math  display="block">
+<msup><mrow><mo>(</mo><mi>p</mi><mo>-</mo><mn>1</mn><mo>)</mo></mrow><mi>a</mi></msup><mo>=</mo>
+<munderover>
+<mi>&#931;</mi>
+<mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow>
+<mi>k</mi>
+</munderover>
+<msub><mi>b</mi><mi>i</mi></msub>
+<msup><mi>p</mi><mi>i</mi></msup>
+<mo>-</mo><mn>1</mn>
+</math>
+
+для всякого нечетного положительного <var>a</var>.</p>
+<a id="f625"></a>
+<p>Абонент В полученный код 
+<math display='inline'>
+<msub><mi>m</mi><mn>1</mn></msub>
+</math>
+ шифрует по формуле:
+<table class="formula"><tr>
+<td class="formula">
+<math display='inline'>
+<msub><mi>m</mi><mn>2</mn></msub><mo>=</mo>
+<mi>mod</mi><mo>&#x2061;</mo>
+<mrow>
+<mo>(</mo>
+	<msup>
+		<msub>
+			<mi>m</mi><mn>1</mn>
+		</msub>
+		<mi>b</mi>
+	</msup>
+	<mo>,</mo>
+	<mi>p</mi>
+<mo>)</mo>
+</mrow>
+</math>
+</td>
+<td class="nomer">(6.2.5)</td>
+</tr></table>
+и возвращает код 
+<math display='inline'>
+<msub><mi>m</mi><mn>2</mn></msub>
+</math>
+ абоненту А. Абонент А шифрует 
+<math display='inline'>
+<msub><mi>m</mi><mn>2</mn></msub>
+</math>
+ своим вторым секретным ключом:
+<a id="f626"></a>
+<table class="formula"><tr>
+<td class="formula">
+<math display='inline'>
+<msub><mi>m</mi><mn>3</mn></msub><mo>=</mo>
+<mi>mod</mi><mo>&#x2061;</mo>
+<mrow>
+	<mo>(</mo>
+	<msup><msub><mi>m</mi><mn>2</mn></msub><mi>&#945;</mi></msup><mo>,</mo><mi>p</mi>
+	<mo>)</mo>
+</mrow>
+</math>
+</td>
+<td class="nomer">(6.2.6)</td>
+</tr></table>
+и посылает 
+<math display='inline'>
+<msub><mi>m</mi><mn>3</mn></msub>
+</math>
+ абоненту В. Абонент В применяет к полученному коду 
+<math display='inline'>
+<msub><mi>m</mi><mn>3</mn></msub>
+</math>
+ свой второй секретный ключ:
+<a id="f627"></a>
+<table class="formula"><tr>
+<td class="formula">
+<math display='inline'>
+<msub><mi>m</mi><mn>4</mn></msub><mo>=</mo>
+<mi>mod</mi><mo>&#x2061;</mo>
+<mrow>
+	<mo>(</mo>
+	<msup><msub><mi>m</mi><mn>3</mn></msub><mi>&#946;</mi></msup><mo>,</mo><mi>p</mi>
+	<mo>)</mo>
+</mrow>
+</math>.</td>
+<td class="nomer">(6.2.7)</td>
+</tr></table>
+<a id="f628"></a></p>
+<p>Докажем, что 
+<math display='inline'>
+<mrow>
+	<msub><mi>m</mi><mn>4</mn></msub>
+	<mo>=</mo>
+	<mn>m</mn>
+</mrow>
+</math>. Имеем
+<table class="formula"><tr>
+<td class="formula">
+<math display='inline'>
+<mrow>
+	<msub><mi>m</mi><mn>4</mn></msub>
+	<mo>=</mo>
+	<mi>mod</mi><mo>&#x2061;</mo>
+	<mrow>	
+		<mo>(</mo>
+		<msup>
+			<msub><mi>m</mi><mn>3</mn></msub>
+			<mi>&#946;</mi>
+		</msup>
+		<mo>,</mo>
+		<mi>p</mi>
+		<mo>)</mo>
+	</mrow>
+	<mo>=</mo>
+	<mi>mod</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+		<msup>
+			<msub><mi>m</mi><mn>2</mn></msub>
+			<mrow>
+				<mi>&#945;</mi><mo>&#x2062;</mo><mi>&#946;</mi>
+			</mrow>
+		</msup>
+		<mo>,</mo>
+		<mi>p</mi>
+		<mo>)</mo>
+	</mrow>
+	<mo>=</mo>
+	<mi>mod</mi><mo>&#x2061;</mo>
+	<mrow>
+	<mo>(</mo>
+	<msup>
+		<msub><mi>m</mi><mn>1</mn></msub>
+		<mrow>
+			<mi>b</mi><mo>&#x2062;</mo><mi>&#945;</mi><mo>&#x2062;</mo><mi>&#946;</mi>
+		</mrow>
+	</msup>
+	<mo>,</mo>
+	<mi>p</mi>
+	<mo>)</mo>
+	</mrow>
+	<mo>=</mo>
+	<mi>mod</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+		<msup>
+			<mi>m</mi>
+			<mrow>
+				<mi>a</mi><mo>&#x2062;</mo><mi>b</mi><mo>&#x2062;</mo><mi>&#945;</mi><mo>&#x2062;</mo><mi>&#946;</mi>
+			</mrow>
+		</msup>
+		<mo>,</mo>
+		<mi>p</mi>
+		<mo>)</mo>
+	</mrow>	
+</mrow>
+</math>.</td>
+<td class="nomer">(6.2.8)</td>
+</tr></table></p>
+<p>Согласно (6.2.2) и (6.2.3), как 
+<math display='inline'>
+<mi>a</mi><mo>&#x2062;</mo><mi>&#945;</mi>
+</math>, так и 
+<math display='inline'>
+<mi>b</mi><mo>&#x2062;</mo><mi>&#946;</mi>
+</math>
+ при делении на 
+<math display='inline'>
+<mrow><mi>p</mi><mo>-</mo><mn>1</mn></mrow>
+</math> 
+ дают в остатке 1. Следовательно, найдется такое <var>k</var>, что 
+<math display='inline'>
+<mrow>
+<mrow>
+	<mi>b</mi><mo>&#x2062;</mo><mi>&#946;</mi><mo>&#x2062;</mo><mi>&#945;</mi><mo>&#x2062;</mo><mi>a</mi>
+</mrow>
+<mo>=</mo>
+<mrow>
+	<mrow>
+		<mi>k</mi><mo>&#x2062;</mo><mrow><mo>(</mo><mi>p</mi><mo>-</mo><mn>1</mn><mo>)</mo></mrow>
+	</mrow>
+	<mo>+</mo>
+	<mn>1</mn>
+</mrow>
+</mrow>
+</math>. Тогда (6.2.8) запишется так:
+<a id="f629"></a>
+<table class="formula"><tr>
+<td class="formula">
+<math display='inline'>
+<mrow>
+<msub><mi>m</mi><mn>4</mn></msub>
+<mo>=</mo>
+<mi>mod</mi><mo>&#x2061;</mo>
+<mrow>
+	<mo>(</mo>
+	<msup>
+		<mi>m</mi>
+		<mrow>
+			<mi>k</mi><mo>&#x2062;</mo><mo>(</mo><mi>p</mi><mo>-</mo><mn>1</mn><mo>)</mo><mo>+</mo><mn>1</mn>
+		</mrow>
+	</msup>
+	<mo>,</mo>
+	<mi>p</mi>
+	<mo>)</mo>
+</mrow>
+<mo>=</mo>
+<mi>mod</mi><mo>&#x2061;</mo>
+<mrow>
+	<mo>(</mo>
+	<mi>m</mi>
+	<mo>&#x2061;</mo>
+	<msup>
+		<mi>m</mi>
+		<mrow>
+			<mi>k</mi><mo>&#x2062;</mo><mo>(</mo><mi>p</mi><mo>-</mo><mn>1</mn><mo>)</mo>
+		</mrow>
+	</msup>
+	<mo>,</mo>
+	<mi>p</mi>
+	<mo>)</mo>
+</mrow>
+</mrow>
+</math>.</td>
+<td class="nomer">(6.2.9)</td>
+</tr>
+</table>
+</p>
+<p>Так как по теореме Эйлера-Ферма 
+<math display='inline'>
+<mrow>
+	<mrow>
+	<mi>mod</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+		<msup>
+			<mi>m</mi>
+			<mrow>
+				<mi>p</mi><mo>-</mo><mn>1</mn>
+			</mrow>
+		</msup>
+		<mo>,</mo>
+		<mi>p</mi>
+		<mo>)</mo>
+	</mrow>
+	</mrow>
+	<mo>=</mo>
+	<mn>1</mn>
+</mrow>
+</math>, то и 
+<math display='inline'>
+<mrow>
+	<mi>mod</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+		<msup>
+			<mi>m</mi>
+			<mrow>
+				<mi>k</mi><mo>&#x2062;</mo><mo>(</mo><mi>p</mi><mo>-</mo><mn>1</mn><mo>)</mo>
+			</mrow>
+		</msup>
+		<mo>,</mo>
+		<mi>p</mi>
+		<mo>)</mo>
+	</mrow>	
+	<mo>=</mo>
+	<mn>1</mn>
+</mrow>
+</math>. Поэтому из 
+<math display='inline'>
+<mrow>
+<mi>m</mi><mo>&lt;</mo><mi>p</mi>
+</mrow>
+</math>
+ и (6.2.9) вытекает:
+<table class="formula"><tr>
+<td class="formula">
+<math display='inline'>
+<mrow>
+<msub><mi>m</mi><mn>4</mn></msub>
+<mo>=</mo>
+	<mi>mod</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+		<mi>m</mi><mo>&#x2062;</mo>
+		<msup>
+			<mi>m</mi>
+			<mrow>
+				<mi>k</mi><mo>&#x2062;</mo><mo>(</mo><mi>p</mi><mo>-</mo><mn>1</mn><mo>)</mo>
+			</mrow>
+		</msup>
+		<mo>,</mo>
+		<mi>p</mi>
+		<mo>)</mo>
+	</mrow>	
+<mo>=</mo>
+<mi>m</mi>
+</mrow>
+</math>.</td>
+</tr></table></p>
+<p>Таким образом, абонент В расшифровал числовой код от абонента А.</p>
+<div class="examp">
+<p><span class="primer">Пример 6.2.1</span>. Пусть абоненты А и В для организации секретной переписки выбрали простое число 
+<math display='inline'>
+<mrow>
+	<mi>p</mi><mo>=</mo><mn>43</mn>
+</mrow>
+</math>. Абонент А выбрал в качестве первого секретного ключа число 
+<math display='inline'>
+<mrow>
+	<mi>a</mi><mo>=</mo><mn>5</mn>
+</mrow>
+</math>, взаимно-простое с 
+<math display='inline'>
+<mrow>
+	<mrow>
+		<mi>p</mi><mo>-</mo><mn>1</mn>
+	</mrow>
+	<mo>=</mo>
+	<mn>42</mn>
+	</mrow>
+</math>. Затем он вычисляет свой второй секретный ключ <var>&#945;</var> как решение уравнения <a href="#f622">(6.2.2)</a>. Нетрудно убедиться, что 
+<math display='inline'>
+<mrow>
+	<mi>&#945;</mi><mo>=</mo><mn>17</mn>
+</mrow>
+</math>. Абонент В выбрал своим первым секретным ключом 
+<math display='inline'>
+<mrow>
+	<mi>b</mi><mo>=</mo><mn>11</mn>
+</mrow>
+</math>, которое взаимно-просто с 
+<math display='inline'>
+<mrow>
+	<mrow>
+		<mi>p</mi><mo>-</mo><mn>1</mn>
+	</mrow>
+	<mo>=</mo>
+	<mn>42</mn>
+</mrow>
+</math>. Второй секретный ключ он вычислил как решение уравнения <a href="#f623">(6.2.3)</a>: 
+<math display='inline'>
+<mrow>
+	<mi>&#946;</mi><mo>=</mo><mn>23</mn>
+</mrow>
+</math>.</p>
+<p>Абонент А отправляет абоненту В сообщение 
+<math display='inline'>
+<mrow>
+	<mi>m</mi><mo>=</mo><mn>23</mn>
+</mrow>
+</math>, предварительно зашифровав его первым секретным ключом 
+<math display='inline'>
+<mrow>
+	<mi>a</mi><mo>=</mo><mn>5</mn>
+</mrow>
+</math> по формуле <a href="#f624">(6.2.4)</a>: 
+<math display='inline'>
+<mrow>
+	<msub><mi>m</mi><mn>1</mn></msub>
+	<mo>=</mo>
+	<mi>mod</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+		<msup>
+			<mn>23</mn><mn>5</mn>
+		</msup>
+		<mo>,</mo>
+		<mn>43</mn>
+		<mo>)</mo>
+	</mrow>
+	<mo>=</mo>
+	<mn>17</mn>
+</mrow>
+</math>. Абонент В возвращает абоненту А сообщение, зашифрованное по формуле <a href="#f625">(6.2.5)</a>:
+<math display='inline'>
+<mrow>
+	<msub><mi>m</mi><mn>2</mn></msub>
+	<mo>=</mo>
+	<mi>mod</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+		<msup>
+			<mn>17</mn><mn>11</mn>
+		</msup>
+		<mo>,</mo>
+		<mn>43</mn>
+		<mo>)</mo>
+	</mrow>
+	<mo>=</mo>
+	<mn>24</mn>
+</mrow>
+</math>. Во избежание переполнения разрядной сетки, при вычислении 
+<math display='inline'>
+<msup><mn>17</mn><mn>11</mn></msup>
+</math>, следует вычислить остаток от деления 
+<math display='inline'>
+<msup><mn>17</mn><mn>2</mn></msup>
+</math> на 43, что даст 31. Затем найти остаток от деления 
+<math display='inline'>
+<msup><mn>17</mn><mn>3</mn></msup>
+</math>
+на 43 как остаток от деления на 43 произведения 
+<math display='inline'>
+<mi>mod</mi><mo>&#x2061;</mo>
+<mrow>
+<mo>(</mo>
+	<msup><mn>17</mn><mn>2</mn></msup>
+	<mo>,</mo>
+	<mn>43</mn>
+<mo>)</mo>
+</mrow>
+</math>
+ и 17: 
+<math display='inline'>
+<mrow>
+<mi>mod</mi><mo>&#x2061;</mo>
+<mrow>
+<mo>(</mo>
+	<mrow>
+		<mn>31</mn>&#183;<mn>17</mn>
+	</mrow>
+	<mo>,</mo>
+	<mn>43</mn>
+<mo>)</mo>
+</mrow>
+<mo>=</mo>
+<mi>mod</mi><mo>&#x2061;</mo>
+<mrow>
+<mo>(</mo>
+	<mn>527</mn>
+	<mo>,</mo>
+	<mn>43</mn>
+<mo>)</mo>
+</mrow>
+<mo>=</mo>
+<mn>11</mn>
+</mrow>
+</math>. Последовательно вычисляя произведения текущего остатка на множитель 17 и остатка от деления этого произведения на 43 получаем 
+<math display='inline'>
+<mrow>
+	<msub><mi>m</mi><mn>2</mn></msub>
+	<mo>=</mo>
+	<mn>24</mn>
+</mrow>
+</math>. Абонент А получает сообщение 
+<math display='inline'>
+<mrow>
+	<msub><mi>m</mi><mn>2</mn></msub>
+	<mo>=</mo>
+	<mn>24</mn>
+</mrow>
+</math>
+и возвращает сообщение 
+<math display='inline'>
+	<msub><mi>m</mi><mn>3</mn></msub>
+</math>, которое вычисляет по формуле <a href="#f626">(6.2.6)</a>: 
+<math display='inline'>
+<mrow>
+	<msub><mi>m</mi><mn>3</mn></msub>
+	<mo>=</mo>
+	<mi>mod</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+		<msup><mn>24</mn><mn>17</mn></msup>
+		<mo>,</mo>
+		<mn>43</mn>
+		<mo>)</mo>
+	</mrow>
+	<mo>=</mo>
+	<mn>25</mn>
+</mrow>
+</math>. Абонент В расшифровывает полученное сообщение 
+<math display='inline'>
+<mrow>
+	<msub><mi>m</mi><mn>3</mn></msub>
+	<mo>=</mo>
+	<mn>25</mn>
+</mrow>
+</math>
+по формуле <a href="#f627">(6.2.7)</a>: 
+<math display='inline'>
+<mrow>
+	<mi>m</mi>
+	<mo>=</mo>
+	<mi>mod</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+		<msup><mn>25</mn><mn>23</mn></msup>
+		<mo>,</mo>
+		<mn>43</mn>
+		<mo>)</mo>
+	</mrow>
+	<mo>=</mo>
+	<mn>23</mn>
+</mrow>
+</math>.</p>
+</div>
+<p>Ниже приведен генератор простых чисел от 2 до заданной верхней границы, функционирующий по алгоритму Эратосфена:</p>
+<form id="f2">
+Введите верхнюю границу интервала <input type="text" id="prav_gran" /><br />
+<input type="button" value="Вычислить" onclick="erato()" />
+<input type="reset" value="Обновить" />
+</form>
+<div id='prost'></div>
+<p>Далее следует калькулятор для вычисления по алгоритму Евклида наибольшего общего делителя двух натуральных чисел для выбора первого секретного ключа:</p>
+<form id="f3">
+<table>
+<tr><td>Введите 1-ое натуральное число</td><td><input type="text" id="one" /></td></tr>
+<tr><td>Введите 2-ое натуральное число</td><td><input type="text" id="two" /></td></tr>
+<tr><td><input type="button" value="Вычислить" onclick="nod1(one.value,two.value)" /></td>
+<td><input type="reset" value="Обновить" /></td></tr>
+<tr><td>Наибольший общий делитель</td><td><input type="text" id="delit" /></td></tr>
+</table>
+
+</form>
+<p>Для вычисления второго секретного ключа можно воспользоваться следующим калькулятором:</p>
+<form id="f4">
+<table>
+<tr><td>Введите простое число <var>p</var></td><td><input type="text" id="prost" /></td></tr>
+<tr><td>Введите 1-ый секретный ключ <var>a</var></td><td><input type="text" id="sek1" /></td></tr>
+<tr>
+<td><input type="button" value="Вычислить" onclick="f_alpha()" /></td>
+<td><input type="reset" value="Обновить" /></td>
+</tr>
+<tr><td>2-ой секретный ключ &#945;</td><td><input type="text" id="alpha" /></td></tr>
+</table>
+</form>
+<p>Приведем калькулятор для вычисления остатка от деления степени на некоторый делитель:</p>
+<form id="f5">
+<table>
+<tr><td>Введите основание степени </td><td><input type="text" id="osn" /></td></tr>
+<tr><td>Введите показатель степени </td><td><input type="text" id="pok" /></td></tr>
+<tr><td>Введите делитель</td><td><input type="text" id="del" /></td></tr>
+<tr>
+<td><input type="button" value="Вычислить" onclick="mod2(osn.value,pok.value,del.value)" /></td>
+<td><input type="reset" value="Обновить" /></td>
+</tr>
+<tr><td>Остаток</td><td><input type="text" id="ost" /></td></tr>
+</table>
+</form>
+<p>Таким образом, мы рассмотрели процедуру шифрования и расшифровывания некоторого числа 
+<math display='inline'>
+<mrow>
+	<mi>m</mi><mo>&lt;</mo>
+	<mrow><mi>p</mi><mo>-</mo><mn>1</mn></mrow>
+</mrow>
+</math>. Теперь разберем методику шифрования текста. Двоичный код текста разбивается на фрагменты такой длины, чтобы числовое представление <var>m</var> каждого фрагмента было меньше 
+<math display='inline'>
+	<mrow><mi>p</mi><mo>-</mo><mn>1</mn></mrow>
+</math>. Например, если простое число <var>p</var> состоит из 200 десятичных цифр, то двоичный код текста должен разбивается на фрагменты длиной не более 660 бит каждый. Очевидно, что чем больше простое число, тем ниже скорость шифрования и расшифровывания текста, и тем выше криптостойкость шифра. Поэтому при выборе простого числа <var>p</var> следует учитывать объем шифруемого текста, производительность вычислительной системы, а также руководствоваться соображениями целесообразности повышения криптостойкости.</p>
+<div class="examp">
+<p><span class="primer">Пример 6.2.2</span>. Пусть выбрано простое число 
+<math display='inline'>
+<mrow>
+	<mi>p</mi><mo>=</mo><mn>16777259</mn>
+</mrow>
+</math>. Тогда двоичный код текстового сообщения можем разбить на фрагменты длиной 24 бита, так как числовое представление <var>m</var> фрагмента из 24 бит меньше 
+<math display='inline'>
+<mrow>
+	<mrow><mi>p</mi><mo>-</mo><mn>1</mn></mrow>
+	<mo>=</mo>
+	<mn>16777258</mn>
+</mrow>
+</math>
+ (максимальное значение 
+<math display='inline'>
+<mrow>
+	<mi>m</mi>	
+	<mo>=</mo>
+	<mrow>
+		<msup><mn>2</mn><mn>24</mn></msup>
+		<mo>-</mo>
+		<mn>1</mn>	
+	</mrow>
+	<mo>=</mo>
+	<mn>16777215</mn>
+</mrow>
+</math>. Функция Эйлера 
+<math display='inline'>
+<mi>&#966;</mi><mo>&#x2061;</mo>
+<mrow>
+	<mo>(</mo>
+		<mn>16777259</mn>
+	<mo>)</mo>
+</mrow>
+<mo>=</mo>
+<mn>16777258</mn>
+</math>. Пусть первый абонент выбрал своим первым ключом число 
+<math display='inline'>
+<mrow>
+	<mi>a</mi><mo>=</mo><mn>9</mn>
+</mrow>
+</math>, а второй ключ 
+<math display='inline'>
+<mrow>
+	<mi>&#945;</mi><mo>=</mo><mn>9320699</mn>
+</mrow>
+</math>
+ вычислил из уравнения <a href="#f621">(6.2.1)</a>. У второго абонента первый ключ 
+<math display='inline'>
+<mrow>
+	<mi>b</mi><mo>=</mo><mn>11</mn>
+</mrow>
+</math>, а второй ключ 
+<math display='inline'>
+<mrow>
+	<mi>&#946;</mi><mo>=</mo><mn>10676437</mn>
+</mrow>
+</math>
+ есть решение уравнения <a href="#f623">(6.2.3)</a>. Поскольку мы используем <a href="3_3.html">кодовую таблицу UTF-8</a>, то цифры, знаки препинания и латинские буквы кодируются 8 битами, а буквы кириллицы &#8212; 16 битами. Рассмотрим функционирование описанной  криптосистемы с ограничением длины текста, поскольку процесс шифрования и расшифрования может потребовать достаточно много времени.</p>
+<form id="f1">
+Введите текст для шифрования:
+<input type="text" id="utf_stroka" /><br />
+<input type="button" value="Вычислить" onclick="do_shifr()" />
+<input type="reset" value="Обновить" />
+</form>
+</div>
+<h3>Упражнения</h3>
+<ol>
+<li>Вычислите значения <a href="#eiler">функции Эйлера</a> 
+<math display='inline'>
+<mrow>
+	<mi>&#966;</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+		<mi>N</mi>
+		<mo>)</mo>
+	</mrow>
+</mrow>
+</math>
+ для 
+<math display='inline'>
+<mrow>
+	<mi>N</mi><mo>=</mo>
+	<mrow>
+		<mn>11</mn><mo>,</mo><mi>&#8230;</mi><mo>,</mo><mn>20</mn>	
+	</mrow>
+</mrow> 
+</math>.</li>
+<li>Подберите наименьшее простое число, достаточное для шифрования 8-битных (16-битных) фрагментов двоичного кода текста.</li>
+<li>Для шифрования порядковых номеров букв в алфавите в системе электронных таблиц постройте криптосистему без передачи ключей с простым числом <var>p</var>, не большим 97. Первые секретные ключи выберите самостоятельно. Зашифруйте последние буквы имени и фамилии, а затем расшифруйте полученную шифрограмму.</li>
+</ol>
+<p><a href="6_1.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="6_3.html">К следующему</a></p>
+</body>
+</html>

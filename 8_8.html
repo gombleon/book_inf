@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<link rel='stylesheet' type='text/css' href='style.css' />
+<meta name='author' content='leonid' />
+<title>Массивы</title>
+</head>
+<body>
+<p><a href="8_7.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_9_1.html">К следующему</a> </p>
+<h2>8.8. Массивы</h2>
+<p><span class="teorema">Массив &#151; структура, состоящая из некоторого количества элементов, имеющих один и тот же тип, называемый типом элементов. Количество элементов массива называется его длиной. Элементы массива выбираются с помощью индексов, являющихся целыми числами из диапазоне от 0 до длина минус 1.</span>
+</p>
+<p>Объявление массива:</p>
+массив: ARRAY [длина {«,» длина}] OF тип_элемента_массива.
+<p><span class="primer">Пример 8.8.1</span>. Дан массив из <math display='inline'><mi>n</mi></math> целых чисел. Найти количество различных чисел среди элементов этого массива. (Число действий должно быть порядка <math display='inline'><msup><mi>n</mi><mn>2</mn></msup></math>).</p>
+<p>Решение будет состоять в сравнении каждого <math display='inline'><mi>i</mi></math>-го числа с остальными
+<math display='inline'><mrow><mi>n</mi><mo>-</mo><mi>i</mi></mrow></math>
+ числами. Следовательно, для решения задачи потребуется 
+<math display='inline'>
+<mrow>
+<mrow><mo>(</mo><mi>n</mi><mo>-</mo><mn>1</mn><mo>)</mo></mrow>
+<mo>+</mo>
+<mrow><mo>(</mo><mi>n</mi><mo>-</mo><mn>2</mn><mo>)</mo></mrow>
+<mo>+</mo>
+<mi>&#133;</mi>
+<mo>+</mo>
+<mn>1</mn>
+</mrow>
+<mo>=</mo>
+<mfrac>
+<mrow>
+<mi>n</mi><mo>&#x2062;</mo>
+<mrow><mo>(</mo><mi>n</mi><mo>-</mo><mn>1</mn><mo>)</mo></mrow>
+</mrow>
+<mn>2</mn>
+</mfrac>
+</math> 
+ 
+ операций сравнения, из чего следует оценка вычислительной сложности алгоритма решения задачи
+<math>
+<mrow><mi>f</mi><mo>&#x2061;</mo><mo>(</mo><mi>n</mi><mo>)</mo></mrow>
+<mo>&#8712;</mo>
+<mrow>
+<mi>O</mi><mo>&#x2061;</mo><mo>(</mo>
+<msup><mi>n</mi><mn>2</mn></msup>
+<mo>)</mo>
+</mrow>
+</math>.
+</p>
+ <p>Реализуем алгоритм, например, так:</p>
+<code>
+<p class='ind0'>MODULE massiv1;</p>
+<p class='ind1'>	IMPORT  Log := StdLog,  In := i21sysIn,  Ran := i21eduRandom;</p>
+<p class='ind1'>	PROCEDURE do*;</p>
+<p class='ind2'>		CONST n=7;</p>
+<p class='ind2'>		VAR a: ARRAY n OF   INTEGER;</p>
+<p class='ind3'>			i, k, j: INTEGER;</p>
+<p class='ind1'>	BEGIN</p>
+<p class='ind2'>		FOR i :=0  TO n-1 DO</p>
+<p class='ind3'>			a[i]:=Ran.Int(100);</p>
+<p class='ind3'>			Log.Int(a[i])</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		Log.Ln;</p>
+<p class='ind2'>		k:=1;</p>
+<p class='ind2'>		FOR i :=0  TO n-2 DO</p>
+<p class='ind3'>			j:=i+1;</p>
+<p class='ind3'>			LOOP</p>
+<p class='ind4'>				IF (a[i]=a[j]) THEN</p>
+<p class='ind5'>					EXIT</p> 
+<p class='ind4'>				END;</p>
+<p class='ind4'>				INC(j);</p>
+<p class='ind4'>				IF j=n THEN</p>
+<p class='ind5'>					INC(k);</p>
+<p class='ind5'>					EXIT</p>
+<p class='ind4'>				END;</p>
+<p class='ind3'>			END;</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		Log.String('Всего различных элементов в массиве ');</p>
+<p class='ind2'>		Log.Int(k);</p>
+<p class='ind2'>		Log.Ln</p>
+<p class='ind1'>	END do;</p>
+<p class='ind0'>END massiv1.</p>
+<table>
+<tr>
+<td align='right' valign='bottom'>
+<svg width='35' height='40'>
+<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+</svg>
+</td>
+<td align='left' valign='middle'>massiv1.do </td>
+</tr>
+</table>
+</code>
+<p>Пространственная сложность алгоритма не обсуждается, поскольку алгоритм не требует использования дополнительного массива.</p>
+<p>Пусть теперь массив упорядочен, к примеру, по возрастанию. В этом случае для нахождения количества различных элементов в массиве потребуется всего 
+<math display='inline'>
+<mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow>
+</math>
+операция сравнения, и оценка вычислительной сложности алгоритма будет иметь вид 
+<math>
+<mrow><mi>f</mi><mo>&#x2061;</mo><mo>(</mo><mi>n</mi><mo>)</mo></mrow>
+<mo>&#8712;</mo>
+<mrow>
+<mi>O</mi><mo>&#x2061;</mo><mo>(</mo>
+<mi>n</mi>
+<mo>)</mo>
+</mrow>
+</math>.
+</p>
+<p>Пример реализации алгоритма для упорядоченного массива:</p>
+<code>
+<p class='ind0'>MODULE massiv2;</p>
+<p class='ind1'>	IMPORT  Log := StdLog,  In := i21sysIn,  Ran := i21eduRandom;</p>
+<p class='ind1'>	PROCEDURE do*;</p>
+<p class='ind2'>		CONST n=10;</p>
+<p class='ind2'>		VAR a: ARRAY n OF   INTEGER;</p>
+<p class='ind3'>			i, k: INTEGER;</p>
+<p class='ind1'>	BEGIN</p>
+<p class='ind2'>		a[0]:=1;</p>
+<p class='ind2'>		Log.Int(a[0]);</p>
+<p class='ind2'>		FOR i :=1  TO n-1 DO</p>
+<p class='ind3'>			a[i]:=a[i-1]+Ran.Int(2);</p>
+<p class='ind3'>			Log.Int(a[i])</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		Log.Ln;</p>
+<p class='ind2'>		k:=1;</p>
+<p class='ind2'>		FOR i :=0  TO n-2 DO</p>
+<p class='ind3'>			IF a[i]#a[i+1] THEN</p>
+<p class='ind4'>				INC(k)</p>
+<p class='ind3'>			END;</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		Log.String('Всего различных элементов в массиве ');</p>
+<p class='ind2'>		Log.Int(k);</p>
+<p class='ind2'>		Log.Ln</p>
+<p class='ind1'>	END do;</p>
+<p class='ind0'>END massiv2.</p>
+<table>
+<tr>
+<td align='right' valign='bottom'>
+<svg width='35' height='40'>
+<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+</svg>
+</td>
+<td align='left' valign='middle'>massiv2.do </td>
+</tr>
+</table>
+</code>
+<p><span class="primer">Пример 8.8.2</span>.Дан массив
+<math display='inline'>
+<mrow><mi>a</mi><mo>[</mo><mn>0</mn><mo>]</mo></mrow>
+<mi>&#133;</mi>
+<mrow><mi>a</mi><mo>[</mo>
+<mrow>
+<mi>n</mi><mo>-</mo><mn>1</mn>
+</mrow>
+<mo>]</mo></mrow>
+</math>
+ целых чисел. Не используя других массивов, переставить элементы массива в обратном порядке.</p>
+<code>
+<p class='ind0'>MODULE massiv3;</p>
+<p class='ind1'>	IMPORT  Log := StdLog,  In := i21sysIn,  Ran := i21eduRandom;</p>
+<p class='ind1'>	PROCEDURE do*;</p>
+<p class='ind2'>		VAR a: POINTER TO ARRAY OF INTEGER;</p>
+<p class='ind3'>			i, k, n: INTEGER;</p>
+<p class='ind1'>	BEGIN</p>
+<p class='ind2'>		In.Open;</p>
+<p class='ind2'>		ASSERT(In.Done);</p>
+<p class='ind2'>		In.Int(n);</p>
+<p class='ind2'>		ASSERT(In.Done & (n>0));</p>
+<p class='ind2'>		Log.String('Исходный массив:');</p>
+<p class='ind2'>		Log.Ln;</p>
+<p class='ind2'>		NEW(a, n);</p>
+<p class='ind2'>		FOR i :=0  TO n-1 DO</p>
+<p class='ind3'>			a[i]:=Ran.Int(10);</p>
+<p class='ind3'>			Log.Int(a[i])</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		Log.Ln;</p>
+<p class='ind2'>		i:=0;</p>
+<p class='ind2'>		WHILE i &lt; n-1-i DO</p>
+<p class='ind3'>			k:=a[i];</p>
+<p class='ind3'>			a[i]:=a[n-1-i];</p>
+<p class='ind3'>			a[n-1-i]:=k;</p>
+<p class='ind3'>			INC(i)</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		Log.String('Массив после перестановки:');</p>
+<p class='ind2'>		Log.Ln;</p>
+<p class='ind2'>		FOR i :=0  TO n-1 DO</p>
+<p class='ind3'>			Log.Int(a[i])</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		Log.Ln;</p>
+<p class='ind1'>	END do;</p>
+<p class='ind0'>END massiv3.</p>
+<table>
+<tr>
+<td align='right' valign='bottom'>
+<svg width='35' height='40'>
+<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+</svg>
+</td>
+<td align='left' valign='middle'>massiv3.do 7</td>
+</tr>
+</table>
+</code>
+
+<p><span class="primer">Пример 8.8.3</span>.(Из книги Д. Гриса) Дан массив целых чисел
+<math display='inline'>
+<mrow><mi>a</mi><mo>[</mo><mn>0</mn><mo>]</mo></mrow>
+<mi>&#133;</mi>
+<mrow><mi>a</mi><mo>[</mo>
+<mrow>
+<mi>n</mi><mo>+</mo><mi>m</mi><mo>-</mo><mn>1</mn>
+</mrow>
+<mo>]</mo></mrow>
+</math>,
+ рассматриваемый как соединение двух его отрезков: начала
+ <math display='inline'>
+<mrow><mi>a</mi><mo>[</mo><mn>0</mn><mo>]</mo></mrow>
+<mi>&#133;</mi>
+<mrow><mi>a</mi><mo>[</mo>
+<mrow>
+<mi>n</mi><mo>-</mo><mn>1</mn>
+</mrow>
+<mo>]</mo></mrow>
+</math>
+длины <math display='inline'><mi>n</mi></math> и конца
+<math display='inline'>
+<mrow><mi>a</mi><mo>[</mo><mi>n</mi><mo>]</mo></mrow>
+<mi>&#133;</mi>
+<mrow><mi>a</mi><mo>[</mo>
+<mrow>
+<mi>n</mi><mo>+</mo><mi>m</mi><mo>-</mo><mn>1</mn>
+</mrow>
+<mo>]</mo></mrow>
+</math>
+ длины 
+<math display='inline'><mi>m</mi></math>. Не используя дополнительных массивов, переставить начало и конец. (Число действий порядка m + n.)
+</p>
+<p>Вариант 1. Сохраним начальный элемент в переменной, затем каждый элемент, кроме последнего, заменим значением следующего элемента, а последний элемент &#151; сохраненным в переменной значением начального элемента. Повторим операцию 
+<math display='inline'><mi>n</mi><mo>-</mo><mn>1</mn></math>
+ раз.</p>
+<code>
+<p class='ind0'>MODULE massiv4;</p>
+<p class='ind1'>	IMPORT  Log := StdLog,  In := i21sysIn,  Ran := i21eduRandom;</p>
+<p class='ind1'>	PROCEDURE do*;</p>
+<p class='ind2'>		VAR a: POINTER TO ARRAY OF INTEGER;</p>
+<p class='ind3'>			i, k, n, m: INTEGER;</p>
+<p class='ind1'>	BEGIN</p>
+<p class='ind2'>		In.Open;</p>
+<p class='ind2'>		ASSERT(In.Done);</p>
+<p class='ind2'>		In.Int(n);</p>
+<p class='ind2'>		ASSERT(In.Done & (n>0));</p>
+<p class='ind2'>		In.Int(m);</p>
+<p class='ind2'>		ASSERT(In.Done & (m>0));</p>
+<p class='ind2'>		NEW(a, n+m);</p>
+<p class='ind2'>		FOR i :=0  TO n+m-1 DO</p>
+<p class='ind3'>			a[i]:=Ran.Int(10);</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		Log.Ln;</p>
+<p class='ind2'>		Log.String('Исходный массив:');</p>
+<p class='ind2'>		Log.Ln;</p>
+<p class='ind2'>		FOR i :=0  TO n-1 DO</p>
+<p class='ind3'>			Log.Int(a[i])</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		Log.Tab;</p>
+<p class='ind2'>		FOR i :=n  TO m+n-1 DO</p>
+<p class='ind3'>			Log.Int(a[i])</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		Log.Ln;</p>
+<p class='ind2'>		FOR i :=0  TO n-1 DO</p>
+<p class='ind3'>			k:=a[0];</p>
+<p class='ind3'>			FOR j :=0  TO n+m-2 DO</p>
+<p class='ind4'>				a[j]:=a[j+1]</p>
+<p class='ind3'>			END;</p>
+<p class='ind3'>			a[m+n-1]:=k;</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		Log.String('Массив после перестановки:');</p>
+<p class='ind2'>		Log.Ln;</p>
+<p class='ind2'>		FOR i :=0  TO m-1 DO</p>
+<p class='ind3'>			Log.Int(a[i])</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		Log.Tab;</p>
+<p class='ind2'>		FOR i :=m  TO m+n-1 DO</p>
+<p class='ind3'>			Log.Int(a[i])</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		Log.Ln;</p>
+<p class='ind1'>	END do;</p>
+<p class='ind0'>END massiv4.</p>
+<table>
+<tr>
+<td align='right' valign='bottom'>
+<svg width='35' height='40'>
+<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+</svg>
+</td>
+<td align='left' valign='middle'>massiv4.do 3 4</td>
+</tr>
+</table>
+</code>
+<p>Вариант 2. Перевернем (расположим в обратном порядке) отдельно начало и конец массива, а затем перевернем весь массив как единое целое.
+</p>
+<code>
+
+<p class='ind0'>MODULE massiv5;</p>
+<p class='ind1'>	IMPORT  Log := StdLog,  In := i21sysIn,  Ran := i21eduRandom;</p>
+<p class='ind1'>	PROCEDURE do*;</p>
+<p class='ind2'>		VAR a: POINTER TO ARRAY OF INTEGER;</p>
+<p class='ind3'>			i, k, n, m: INTEGER;</p>
+<p class='ind1'>	BEGIN</p>
+<p class='ind2'>		In.Open;</p>
+<p class='ind2'>		ASSERT(In.Done);</p>
+<p class='ind2'>		In.Int(n);</p>
+<p class='ind2'>		ASSERT(In.Done & (n>0));</p>
+<p class='ind2'>		In.Int(m);</p>
+<p class='ind2'>		ASSERT(In.Done & (m>0));</p>
+<p class='ind2'>		NEW(a, n+m);</p>
+<p class='ind2'>FOR i :=0  TO n+m-1 DO</p>
+<p class='ind3'>			a[i]:=Ran.Int(10);</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		Log.Ln;</p>
+<p class='ind2'>		Log.String('Исходный массив:');</p>
+<p class='ind2'>		Log.Ln;</p>
+<p class='ind2'>		FOR i :=0  TO n-1 DO</p>
+<p class='ind3'>			Log.Int(a[i])</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		Log.Tab;</p>
+<p class='ind2'>		FOR i :=n  TO m+n-1 DO</p>
+<p class='ind3'>			Log.Int(a[i])</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		Log.Ln;</p>
+<p class='ind2'>		i:=0;</p>
+<p class='ind2'>		WHILE i &lt; n-1-i DO</p>
+<p class='ind3'>			k:=a[i];</p>
+<p class='ind3'>			a[i]:=a[n-1-i];</p>
+<p class='ind3'>			a[n-1-i]:=k;</p>
+<p class='ind3'>			INC(i)</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		Log.Ln;</p>
+<p class='ind2'>		i:=n;</p>
+<p class='ind2'>		WHILE i &lt; n+m DIV 2 DO</p>
+<p class='ind3'>			k:=a[i];</p>
+<p class='ind3'>			a[i]:=a[2*n+m-1-i];</p>
+<p class='ind3'>			a[2*n+m-1-i]:=k;</p>
+<p class='ind3'>			INC(i)</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		i:=0;</p>
+<p class='ind2'>		WHILE i &lt; m+n-1-i DO</p>
+<p class='ind3'>			k:=a[i];</p>
+<p class='ind3'>			a[i]:=a[m+n-1-i];</p>
+<p class='ind3'>			a[m+n-1-i]:=k;</p>
+<p class='ind2'>			INC(i)</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		Log.String('Массив после перестановки:');</p>
+<p class='ind2'>		Log.Ln;</p>
+<p class='ind2'>		FOR i :=0  TO m-1 DO</p>
+<p class='ind3'>			Log.Int(a[i])</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		Log.Tab;</p>
+<p class='ind2'>		FOR i :=m  TO m+n-1 DO</p>
+<p class='ind3'>			Log.Int(a[i])</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		Log.Ln;</p>
+<p class='ind1'>	END do;</p>
+<p class='ind0'>END massiv5.</p>
+<table>
+<tr>
+<td align='right' valign='bottom'>
+<svg width='35' height='40'>
+<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+</svg>
+</td>
+<td align='left' valign='middle'>massiv5.do 4 6</td>
+</tr>
+</table>
+</code>
+
+<h3>Задачи для самостоятельного решения</h3>
+<p>Модифицируйте модуль massiv1 таким образом, чтобы начальное значение переменной 
+<math display='inline'><mi>k</mi></math> равнялось 
+<math display='inline'><mi>n</mi></math>, а при каждом совпадении элементов массива из 
+<math display='inline'><mi>k</mi></math> вычиталась бы 1. </p>
+<p>Задачи для самостоятельного решения из сборника задач по программированию под редакцией С. А. Абрамова, Г. Г. Гнездиловой, Е. Н. Капустиной, М. И. Селюн. Задачи по программированию:</p>
+<p><a href='zadachi/9.html'>§9. Вычисления с хранением последовательности значений</a></p>
+<p><a href='zadachi/11.html'>§11. Вложенные циклы в  матричных задачах</a></p>
+<p><a href='zadachi/20.html'>§20 Преобразование и построение матриц</a></p>
+<p><a href='zadachi/21.html'>§21 Матричная алгебра</a></p>
+<p><a href="8_7.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_9_1.html">К следующему</a> </p>
+</body>
+</html>

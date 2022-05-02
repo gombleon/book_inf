@@ -1,0 +1,1825 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Графика</title>
+</head>
+<span align="left" style="font-family: arial, helvetica, sans-serif; "></span>
+<body>
+<h2>§30 Графика</h2>
+<p> <b>843</b>  Построить графики*) линейной функции 
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>y</mi>
+<mo>=</mo>
+<mi>k</mi>
+<mo>&#183;</mo>
+<mi>x</mi>
+</math>
+для
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>k</mi>
+<mo>=</mo>
+<mn>0.1</mn>
+<mo>,</mo>
+<mn>0.2</mn>
+<mo>,</mo>
+<mn>0.3</mn>
+<mo>,</mo>
+<mi>...</mi>
+<mn>1</mn>
+<mo>.</mo>
+</math>
+</p>
+<p> <b>843 </b> Построить графики функций:
+a)
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>y</mi>
+<mo>=</mo>
+<mn>3</mn>
+<msup> 
+	<mi>x</mi>
+	<mn>2</mn>
+</msup> 
+</math>
+
+</p>
+<p>
+б) 
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>y</mi>
+<mo>=</mo>
+<mo>-</mo>
+<mn>6</mn>
+<msup> 
+	<mi>x</mi>
+	<mn>2</mn>
+</msup>
+ <mo>+</mo>
+ <mn>3</mn>
+ <mi>x</mi>
+</math>
+ </p>
+ <p>
+в) 
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>y</mi>
+<mo>=</mo>
+<msup> 
+	<mi>x</mi>
+	<mn>3</mn>
+</msup>
+ <mo>+</mo>
+ <mn>2</mn>
+<msup> 
+	<mi>x</mi>
+	<mn>2</mn>
+</msup>
+ <mo>+</mo>
+ <mi>x</mi>
+</math>
+  </p>
+  <p>
+г)
+ <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>y</mi>
+<mo>=</mo>
+<msup> 
+	<mi>x</mi>
+	<mn>5</mn>
+</msup> 
+</math>
+   </p>
+   <p> 
+д)
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+  <mi>y</mi>
+<mo>=</mo>
+<mi>sin</mi>
+<mi>x</mi>
+</math>  
+   </p>
+      <p> 
+е)
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+  <mi>y</mi>
+<mo>=</mo>
+<mi>cos</mi>
+<mo>(</mo>
+<mi>x</mi>
+<mo>-</mo>
+<mn>1</mn>
+<mo>)</mo>
+<mo>+</mo>
+<mo>|</mo>
+<mi>x</mi>
+<mo>|</mo>
+</math>  
+   </p>
+<p> <b> 845 </b>  Построить графики функций, указанных в задаче 337.
+
+</p> 
+<p> <b> 846 </b>
+Исследовать область определения и построить графики следующих функций:
+ </p>
+ <p>
+  <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>a</mi>
+<mo>)</mo>
+  <mi>y</mi>
+<mo>=</mo>
+<mfrac> 
+<mn>3</mn>
+<mi>x</mi>
+</mfrac> 
+<mo>;</mo>
+</math>  
+ </p>
+ <p>
+ <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>б</mi>
+<mo>)</mo>
+  <mi>y</mi>
+<mo>=</mo>
+<mfrac> 
+<mrou>
+ <mi>x</mi>
+ <mo>+</mo>
+ <mn>3</mn>
+</mrou>
+<mrou>
+ <mi>x</mi>
+ <mo>-</mo>
+ <mn>2</mn>
+</mrou>
+</mfrac> 
+<mo>;</mo>
+</math>  
+ </p>
+<p>
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>в</mi>
+<mo>)</mo>
+  <mi>y</mi>
+<mo>=</mo>
+<mn>3</mn>
+<mo>+</mo>
+<mfrac> 
+<mn>2</mn>
+<mi>x</mi>
+</mfrac> 
+<mo>+</mo>
+<mfrac> 
+<mn>3</mn>
+<msup> 
+	<mi>x</mi>
+	<mn>2</mn>
+</msup> 
+</mfrac> 
+<mo>;</mo>
+</math>  
+</p>
+<p>
+ <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>г</mi>
+<mo>)</mo>
+  <mi>y</mi>
+<mo>=</mo>
+<mn>3</mn>
+<mo>-</mo>
+<mfrac> 
+<mn>2</mn>
+<mi>x</mi>
+</mfrac> 
+<mo>-</mo>
+<mfrac> 
+<mn>3</mn>
+<msup> 
+	<mi>x</mi>
+	<mn>2</mn>
+</msup> 
+</mfrac> 
+<mo>;</mo>
+</math> 
+</p>
+<p>
+   <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>д</mi>
+<mo>)</mo>
+  <mi>y</mi>
+<mo>=</mo>
+<mfrac> 
+<mn>1</mn>
+ <mrou>
+  <mn>3</mn>
+  <msup> 
+	<mi>x</mi>
+	<mn>2</mn>
+</msup> 
+   <mo>+</mo>
+   <mn>2</mn>
+   <mi>x</mi>
+   <mo>+</mo>
+   <mn>1</mn>
+ </mrou>
+</mfrac> 
+<mo>;</mo>
+</math> 
+</p>
+<p> 
+    <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>е</mi>
+<mo>)</mo>
+  <mi>y</mi>
+<mo>=</mo>
+<mfrac> 
+<mn>1</mn>
+ <mrou>
+  <msup> 
+	<mi>x</mi>
+	<mn>2</mn>
+</msup> 
+   <mo>+</mo>
+   <mn>2</mn>
+   <mi>x</mi>
+   <mo>+</mo>
+   <mn>1</mn>
+ </mrou>
+</mfrac> 
+<mo>;</mo>
+</math>
+</p>
+<p>
+   <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>ж</mi>
+<mo>)</mo>
+  <mi>y</mi>
+<mo>=</mo>
+<mfrac> 
+<mn>1</mn>
+ <mrou>
+  <msup> 
+	<mi>x</mi>
+	<mn>2</mn>
+</msup> 
+   <mo>+</mo>
+   <mn>3</mn>
+   <mi>x</mi>
+   <mo>+</mo>
+   <mn>1</mn>
+ </mrou>
+</mfrac> 
+<mo>;</mo>
+</math>
+</p>
+<p>
+   <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>з</mi>
+<mo>)</mo>
+  <mi>y</mi>
+<mo>=</mo>
+<mfrac> 
+<mi>x</mi>
+ <mrou>
+  <mn>3</mn>
+  <msup> 
+	<mi>x</mi>
+	<mn>2</mn>
+</msup> 
+   <mo>+</mo>
+   <mn>2</mn>
+   <mi>x</mi>
+   <mo>+</mo>
+   <mn>1</mn>
+ </mrou>
+</mfrac> 
+<mo>;</mo>
+</math>
+</p>
+<p>
+   <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>и</mi>
+<mo>)</mo>
+  <mi>y</mi>
+<mo>=</mo>
+<mfrac> 
+<mi>x</mi>
+ <mrou>
+
+  <msup> 
+	<mi>x</mi>
+	<mn>2</mn>
+</msup> 
+   <mo>+</mo>
+   <mn>2</mn>
+   <mi>x</mi>
+   <mo>+</mo>
+   <mn>1</mn>
+ </mrou>
+</mfrac> 
+<mo>;</mo>
+</math>
+</p>
+<p>
+    <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>к</mi>
+<mo>)</mo>
+  <mi>y</mi>
+<mo>=</mo>
+<mfrac> 
+<mi>x</mi>
+ <mrou>
+  <msup> 
+	<mi>x</mi>
+	<mn>2</mn>
+</msup> 
+   <mo>-</mo>
+   <mn>2</mn>
+   <mi>x</mi>
+   <mo>+</mo>
+   <mn>1</mn>
+ </mrou>
+</mfrac> 
+<mo>;</mo>
+</math>
+</p>
+ <p>
+    <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>л</mi>
+<mo>)</mo>
+  <mi>y</mi>
+<mo>=</mo>
+<mfrac> 
+<mi>x</mi>
+ <mrou>
+  <msup> 
+	<mi>x</mi>
+	<mn>2</mn>
+</msup> 
+   <mo>+</mo>
+   <mn>3</mn>
+   <mi>x</mi>
+   <mo>+</mo>
+   <mn>1</mn>
+ </mrou>
+</mfrac> 
+<mo>;</mo>
+</math> 
+ </p>
+ <p>
+    <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>м</mi>
+<mo>)</mo>
+  <mi>y</mi>
+<mo>=</mo>
+<mfrac> 
+<mi>x</mi>
+ <mrou>
+  <msup> 
+	<mi>x</mi>
+	<mn>2</mn>
+</msup> 
+   <mo>-</mo>
+   <mn>2</mn>
+   <mi>x</mi>
+   <mo>+</mo>
+   <mn>1</mn>
+ </mrou>
+</mfrac> 
+<mo>;</mo>
+</math> 
+ </p>
+<p> <b> 847 </b>
+Построить кривые по заданному параметрическому представлению
+<br></br>
+а) Окружность радиуса
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>r</mi>
+</math>
+с центром в начале координат; 
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>x</mi>
+<mo>=</mo>
+<mi>r</mi>
+<mi>cos</mi>
+<mi>t</mi>
+<mo>,</mo> <mi>y</mi>
+<mo>=</mo>
+<mi>r</mi>
+<mi>sin</mi>
+<mi>t</mi>
+<mo>,</mo> <mi>t</mi>
+<mo>&#1013;</mo>
+<mo>[</mo>
+<mn>0</mn>
+<mo>,</mo> 
+<mn>2</mn>
+<mo>&#960;</mo>
+<mo>)</mo>
+</math>
+</p>
+<p>
+<br></br>
+б) Эллипс с большой и малой полуосями, равными соответственно
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>r</mi>
+<mn>1</mn>
+</msub>
+</math>
+ и 
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>r</mi>
+<mn>2</mn>
+</msub>
+</math>
+ расположенными параллельно осям координат:
+ <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>x</mi>
+<mo>=</mo>
+<msub>
+<mi>r</mi>
+<mn>1</mn>
+</msub>
+<mi>cos</mi>
+<mi>t</mi>
+<mo>,</mo> <mi>y</mi>
+<mo>=</mo>
+
+<msub>
+<mi>r</mi>
+<mn>2</mn>
+</msub>
+
+<mi>sin</mi>
+<mi>t</mi>
+<mo>,</mo> <mi>t</mi>
+<mo>&#1013;</mo>
+<mo>[</mo>
+<mn>0</mn>
+<mo>,</mo> 
+<mn>2</mn>
+<mo>&#960;</mo>
+<mo>)</mo>
+</math>
+</p>
+<p>
+<br></br>
+в) Улитка Паскаля (рис. 58):
+ <math  xmlns="http://www.w3.org/1998/Math/MathML">
+ <mi>x</mi>
+ <mo>=</mo>
+ <mi>a</mi>
+  <msup>
+	  <mi>cos</mi>
+  		<mn>2</mn>
+  </msup>
+ <mi>t</mi>
+ <mo>+</mo>
+ <mi>b</mi>
+ <mi>cos</mi>
+ <mi>t</mi>
+ <mo>,</mo> <mi>y</mi>
+ <mo>=</mo>
+ <mi>a</mi>
+ <mi>cos</mi>
+ <mi>t</mi>
+ <mo>&#183;</mo>
+ <mi>sin</mi>
+ <mi>t</mi>
+ <mo>+</mo>
+ <mi>b</mi>
+ <mi>sin</mi>
+ <mi>t</mi>
+ <mo>,</mo> <mi>a</mi>
+ <mo>&#183;</mo>
+ <mn>0</mn>
+ <mo>,</mo> <mi>b</mi>
+ <mo>&#183;</mo>
+ <mn>0</mn>
+ <mo>,</mo> <mi>t</mi>
+<mo>,</mo> <mi>t</mi>
+<mo>&#1013;</mo>
+<mo>[</mo>
+<mn>0</mn>
+<mo>,</mo> 
+<mn>2</mn>
+<mo>&#960;</mo>
+<mo>)</mo>
+</math>
+</p>
+<br></br>
+<p>
+Рассмотреть случаи. когда 
+
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>b</mi>
+<mo>&#8805;</mo>
+<mn>2</mn>
+<mi>a</mi>
+<mo>,</mo> <mi>a</mi>
+<mo>&#60;</mo> 
+<mi>b</mi>
+<mo>&#60;</mo> 
+<mn>2</mn>
+<mi>a</mi>
+<mo>,</mo> <mi>a</mi>
+
+<mi>b</mi>
+<mo>.</mo> 
+</math>
+</p>
+<table>
+<tr>
+<td>
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g transform="translate(0,0)"> 
+  <title>Layer 1</title>
+  <ellipse fill="#ffffff" stroke="#000000" stroke-width="2" cx="113" cy="121" id="svg_18" rx="81" ry="81"/>
+  <line fill="none" stroke="#000000" stroke-width="2" x1="50" y1="21" x2="49" y2="237" id="svg_19"/>
+  <line fill="none" stroke="#000000" stroke-width="2" x1="3.00003" y1="119" x2="254" y2="121" id="svg_20"/>
+  <line fill="none" stroke="#000000" stroke-width="2" x1="49" y1="22" x2="46" y2="40" id="svg_21"/>
+  <line fill="none" stroke="#000000" stroke-width="2" x1="50" y1="26" x2="54" y2="39" id="svg_22"/>
+  <line fill="none" stroke="#000000" stroke-width="2" x1="253" y1="121" x2="238" y2="116" id="svg_23"/>
+  <line fill="none" stroke="#000000" stroke-width="2" x1="252" y1="121" x2="240" y2="126" id="svg_24"/>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="62" y="31" id="svg_25" font-size="22" font-family="serif" text-anchor="middle" xml:space="preserve">y</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="245" y="138" id="svg_26" font-size="22" font-family="serif" text-anchor="middle" xml:space="preserve">x</text>
+  <polyline fill="none" stroke="#000000" stroke-width="0" stroke-linecap="round" points="140,281 93,219" id="svg_28"/>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="100" y="239" id="svg_29" font-size="22" font-family="serif" text-anchor="middle" xml:space="preserve">b&gt;2a</text>
+ </g>
+</svg>
+</td>
+<td>
+<svg width="400" height="370" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g transform="translate(-175,-35)">
+  <title>Layer 1</title>
+  <path transform="rotate(89.4564, 361.083, 187.749)" id="svg_2" d="m266.233398,240.714844c1.655304,-143.760887 191.023499,-135.061989 189.699249,-10.988129" stroke-width="2" stroke="#000000" fill="#ffffff"/>
+  <path transform="rotate(88.7588, 279.254, 142.729)" id="svg_3" d="m231.555084,111.082382c0.844208,81.019684 87.799377,84.787979 95.39743,8.478767" stroke-width="2" stroke="#000000" fill="#ffffff"/>
+  <path id="svg_4" d="m356.000031,345.000031" opacity="0.5" stroke-width="5" stroke="#000000" fill="#ffffff"/>
+  <path id="svg_5" transform="rotate(86.1257, 281.267, 238.842)" d="m233.845978,206.317993c0.839645,83.264832 87.287659,87.137573 94.842285,8.713959" stroke-width="2" stroke="#000000" fill="#ffffff"/>
+  <path id="svg_7" d="m306.000031,285.000031l16.999969,-0.000031" stroke-width="2" stroke="#000000" fill="#ffffff"/>
+  <line transform="rotate(3.56843e-05)" id="svg_8" y2="313" x2="320" y1="55" x1="312" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_9" y2="189" x2="459" y1="191" x1="213" stroke="#000000" fill="none"/>
+  <line id="svg_10" y2="185" x2="433" y1="188" x1="456" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_11" y2="195" x2="434" y1="190" x1="456" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_12" y2="78" x2="306" y1="57" x1="312" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_13" y2="78" x2="320" y1="56" x1="313" stroke-width="2" stroke="#000000" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_14" y="319" x="328" stroke-width="0" stroke="#000000" fill="#000000">y</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_15" y="204" x="447" stroke-width="0" stroke="#000000" fill="#000000">x</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_17" y="311" x="399" stroke-width="0" stroke="#000000" fill="#000000">a&lt;b&lt;2a</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="18" id="svg_19" y="369" x="352" stroke-width="0" stroke="#000000" fill="#000000">рис. 58</text>
+ </g> 
+</svg>
+</td>  
+<td>
+<svg width="200" height="300" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g transform="scale(3,3) translate(-59,-35)">
+  <title>Layer 1</title>
+  <line transform="rotate(0.000174853)" id="svg_12" y2="135.304" x2="76.5619" y1="4.06706" x1="73.8365" stroke="#000000" fill="none"/>
+  <line id="svg_13" y2="74.5073" x2="160.419" y1="75.1363" x1="8.63731" stroke="#000000" fill="none"/>
+  <line id="svg_14" y2="13.0817" x2="72.369" y1="4.69599" x1="73.6269" stroke="#000000" fill="none"/>
+  <line id="svg_15" y2="13.0817" x2="75.7233" y1="4.69599" x1="73.8365" stroke="#000000" fill="none"/>
+  <line id="svg_16" y2="72.8302" x2="151.824" y1="74.5073" x1="160.21" stroke="#000000" fill="none"/>
+  <line id="svg_17" y2="76.6037" x2="152.453" y1="74.9266" x1="160" stroke="#000000" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="14" id="svg_18" y="14.13" x="89.1405" stroke-width="0" stroke="#000000" fill="#000000">y</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="14" id="svg_19" y="90.0209" x="155.388" stroke-width="0" stroke="#000000" fill="#000000">x</text>
+  <path transform="rotate(89.7704, 90.5962, 74.7561)" id="svg_20" d="m70.1765,89.2686c-0.3265,-38.9108 40.9775,-38.305 40.8395,-0.5532" stroke="#000000" fill="#fcfcfc"/>
+  <path transform="rotate(-91.3871, 69.5798, 64.505)" id="svg_22" d="m79.4173,70.8623c-1.0682,-19.392 -20.0887,-13.9343 -19.675,-1.7369" stroke="#000000" fill="#fcfcfc"/>
+  <path id="svg_23" transform="rotate(-91.3871, 70.1514, 85.2763)" d="m80.4334,91.2823c0.2518,-13.2786 -18.4845,-19.5574 -20.5641,0.3387" stroke="#000000" fill="#fcfcfc"/>
+  <line id="svg_24" y2="106.583" x2="76.1426" y1="41.3836" x1="74.6751" stroke="#000000" fill="none"/>
+  <line id="svg_25" y2="74.7169" x2="108.637" y1="75.1362" x1="62.0965" stroke="#000000" fill="none"/>
+  <path id="svg_26" d="m75.304,74.2977c1.5234,-3.6618 10.8036,-5.0175 8.9727,0.3354" stroke="#000000" fill="#fcfcfc"/>
+  <path id="svg_27" d="m38.826,39.2872" opacity="0.5" stroke="#000000" fill="#fcfcfc"/>
+  <polyline id="svg_28" points="74.2558,74.7169 74.6751,74.7169" stroke-linecap="round" stroke="#000000" fill="none"/>
+  <polyline id="svg_29" points="74.6751,74.5073 74.4654,74.5073" stroke-linecap="round" stroke="#000000" fill="none"/>
+  <polyline id="svg_30" points="72.9979,74.5073 75.7233,74.2977" stroke-linecap="round" stroke="#000000" fill="none"/>
+  <path transform="rotate(-179.121, 79.8172, 76.7773)" id="svg_31" d="m75.3519,78.3587c-0.8081,-5.30331 8.0915,-4.13721 8.9727,0.3354" stroke="#000000" fill="#fcfcfc"/>
+  <line id="svg_32" y2="74.9266" x2="91.0273" y1="75.1362" x1="58.5325" stroke="#000000" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="14" id="svg_33" y="130.273" x="99.8323" stroke-width="0" stroke="#000000" fill="#000000">a&gt;b</text>
+  <rect id="svg_34" height="34.5" width="62.5" y="2.5" x="46" stroke="#fcfcfc" fill="none"/>
+  <ellipse ry="18.75" rx="26.25" id="svg_35" cy="23.25" cx="77.25" stroke="#fcfcfc" fill="#ffffff"/>
+  <line id="svg_36" y2="48.25" x2="73" y1="42.5" x1="74.25" stroke="#020000" fill="none"/>
+  <line id="svg_37" y2="49.75" x2="76.75" y1="43" x1="75" stroke="#020000" fill="none"/>
+  <line id="svg_38" y2="50" x2="72.5" y1="47" x1="73.25" stroke="#020000" fill="none"/>
+  <ellipse ry="19.9997" rx="29.25" id="svg_39" cy="123.498" cx="87.25" stroke="#ffffff" fill="#ffffff"/>
+  <ellipse ry="20.5" rx="23.5" id="svg_40" cy="75.5" cx="147.25" stroke="#ffffff" fill="#ffffff"/>
+  <ellipse ry="26.25" rx="23.625" id="svg_41" cy="76" cx="32.875" stroke="#ffffff" fill="#ffffff"/>
+  <line id="svg_42" y2="74" x2="127" y1="74.75" x1="122.75" stroke="#ffffff" fill="none"/>
+  <line id="svg_43" y2="73.75" x2="117" y1="74.25" x1="122.25" stroke="#070000" fill="none"/>
+  <line id="svg_44" y2="76.25" x2="117" y1="74.75" x1="121.75" stroke="#070000" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="10" id="svg_45" y="44.5" x="82.5" stroke-width="0" stroke="#070000" fill="#000000">y</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="10" id="svg_46" y="81" x="125" stroke-width="0" stroke="#070000" fill="#000000">x</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="10" id="svg_47" y="106.75" x="87" stroke-width="0" stroke="#070000" fill="#000000">a&gt;b</text>
+ </g>
+</svg>
+</td>
+<td>
+<svg width="300" height="400" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+<g transform="scale(2,2) translate(10,10)">
+  <title>Layer 1</title>
+  <line id="svg_2" y2="137" x2="58" y1="9.00003" x1="58" stroke="#000000" fill="none"/>
+  <line id="svg_3" y2="249.847" x2="224.257" y1="250.847" x1="226.257" stroke="#000000" fill="none"/>
+  <line id="svg_4" y2="76" x2="164" y1="76" x1="5.00003" stroke="#000000" fill="none"/>
+  <line id="svg_5" y2="18.718" x2="56.4102" y1="9.2308" x1="57.9487" stroke="#000000" fill="none"/>
+  <line id="svg_6" y2="18.4616" x2="59.7436" y1="9.2308" x1="58.2051" stroke="#000000" fill="none"/>
+  <line id="svg_7" y2="74.6154" x2="155.385" y1="75.6411" x1="163.59" stroke="#000000" fill="none"/>
+  <line id="svg_8" y2="78.2052" x2="156.154" y1="76.1539" x1="163.59" stroke="#000000" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="16" id="svg_9" y="10" x="46.9231" stroke-width="0" stroke="#000000" fill="#000000">y</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="16" id="svg_10" y="87.6923" x="164.103" stroke-width="0" stroke="#000000" fill="#000000">x</text>
+  <path transform="rotate(89.9602, 74.5991, 76.4708)" id="svg_13" d="m44.5532,95.6705c-12.9067,-50.2552 68.2908,-52.0476 61.0258,-0.287" stroke="#000000" fill="#fcfcfc"/>
+  <path transform="rotate(-179.067, 52.8341, 60.9033)" id="svg_14" d="m48.4262,45.719c11.6863,1.9156 16.3819,25.241 -1.5197,30.3687" stroke="#000000" fill="#fcfcfc"/>
+  <path id="svg_15" transform="rotate(-179.067, 52.1372, 91.6758)" d="m46.2549,76.0059c12.6826,0.1043 17.6804,26.2461 1.8299,31.3401" stroke="#000000" fill="#fcfcfc"/>
+  <line id="svg_16" y2="118.718" x2="57.9487" y1="41.7949" x1="57.9487" stroke="#000000" fill="none"/>
+  <line id="svg_17" y2="76.1539" x2="100.513" y1="76.1539" x1="39.2308" stroke="#000000" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="16" id="svg_18" y="154.103" x="90.7692" stroke-width="0" stroke="#000000" fill="#000000"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="13" id="svg_19" y="149.487" x="116.41" stroke-width="0" stroke="#000000" fill="#000000">Рис. 59</text>
+  <rect fill="#ffffff" stroke="#ffffff" x="129" y="39.5" width="46" height="75" id="svg_20"/>
+  <rect fill="#ffffff" stroke="#ffffff" x="111.963" y="44.5367" width="32" height="57" id="svg_21"/>
+  <line fill="none" stroke="#000000" x1="112.77" y1="75.7637" x2="105.642" y2="74.5418" id="svg_22"/>
+  <line fill="none" stroke="#000000" x1="113.075" y1="76.2729" x2="105.947" y2="77.6986" id="svg_23"/>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="109.613" y="82.1792" id="svg_24" font-size="13" font-family="serif" text-anchor="middle" xml:space="preserve"/>
+  <text fill="#000000" stroke="#ffffff" stroke-width="0" x="111.548" y="87.8819" id="svg_25" font-size="13" font-family="serif" text-anchor="middle" xml:space="preserve">x</text>
+  <rect id="svg_26" height="19.5" width="10" y="1" x="40.5" stroke="#ffffff" fill="#ffffff"/>
+  <rect id="svg_27" height="4" width="4" y="8" x="49.5" stroke="#ffffff" fill="#ffffff"/>
+  <rect id="svg_28" height="1" width="5.5" y="2" x="48.5" stroke="#ffffff" fill="#ffffff"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="13" id="svg_29" y="12" x="52.5" stroke-width="0" stroke="#050000" fill="#000000">y</text>
+ </g>
+</svg>
+</td>
+</tr>
+</table>
+г) Кардиоида (рис. 59):
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>x</mi>
+<mo>=</mo>
+<mi>acost</mi>
+<mo>(</mo>
+<mn>1</mn>
+<mo>+</mo>
+<mi>cost</mi>
+<mo>)</mo>
+<mo>,</mo> 
+<mi>y</mi>
+<mo>=</mo>
+<mi>asint</mi>
+<mo>(</mo>
+<mn>1</mn>
+<mo>+</mo>
+<mi>sint</mi>
+<mo>)</mo>
+<mo>,</mo> 
+<mi>a</mi>
+ <mo>&#62;</mo>
+ <mn>0</mn>
+ <mo>,</mo> 
+<mi>t</mi>
+<mo>&#1013;</mo>
+<mo>[</mo>
+<mn>0</mn>
+<mo>,</mo> 
+<mn>2</mn>
+<mo>&#960;</mo>
+<mo>)</mo>
+<mo>.</mo>
+<mo>.</mo>
+</math> 
+<br>
+</br>
+д) Эпициклоида (рис. 60): 
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>x</mi>
+<mo>=</mo>
+<mo>(</mo>
+<mi>a</mi>
+<mo>+</mo>
+<mi>b</mi>
+<mo>)</mo>
+<mi>cost</mi>
+<mo>-</mo>
+<mi>acos</mi>
+<mo>(</mo>
+<mo>(</mo>
+<mi>a</mi>
+<mo>+</mo>
+<mi>b</mi>
+<mo>)</mo>
+<mi>t</mi>
+<mo>/</mo>
+<mi>a</mi>
+<mo>)</mo>
+<mo>.</mo>
+</math>
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>y</mi>
+<mo>=</mo>
+<mo>(</mo>
+<mi>a</mi>
+<mo>+</mo>
+<mi>b</mi>
+<mo>)</mo>
+<mi>sint</mi>
+<mo>-</mo>
+<mi>asin</mi>
+<mo>(</mo>
+<mo>(</mo>
+<mi>a</mi>
+<mo>+</mo>
+<mi>b</mi>
+<mo>)</mo>
+<mi>t</mi>
+<mo>/</mo>
+<mi>a</mi>
+<mo>)</mo>
+<mo>,</mo> 
+<mi>a</mi>
+ <mo>&#62;</mo>
+ <mn>0</mn>
+ <mo>,</mo> 
+ <mi>b</mi>
+ <mo>&#62;</mo>
+ <mn>0</mn>
+  <mo>.</mo> 
+</math> 
+ Рассмотреть следующие случаи:  
+ <p>   
+   1) если
+ <math  xmlns="http://www.w3.org/1998/Math/MathML">
+  <mi>b</mi>
+  <mo>/</mo>
+  <mi>a</mi>
+  </math>
+  есть целое положительное число, 
+  <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>t</mi>
+<mo>&#1013;</mo>
+<mo>[</mo>
+<mn>0</mn>
+<mo>,</mo> 
+<mn>2</mn>
+<mo>&#960;</mo>
+<mo>)</mo>
+<mo>;</mo>
+</math>
+   </p> 
+   <p>
+   2) если 
+   <math  xmlns="http://www.w3.org/1998/Math/MathML">
+  <mi>b</mi>
+  <mo>/</mo>
+  <mi>a</mi>
+  <mo>=</mo>
+  <mi>p</mi>
+  <mo>/</mo>
+  <mi>q</mi>
+  <mo>,</mo> 
+  </math>
+где p и q - положительные целые взаимно простые числа, 
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>t</mi>
+<mo>&#1013;</mo>
+<mo>[</mo>
+<mn>0</mn>
+<mo>,</mo> 
+<mn>2</mn>
+<mi>q</mi>
+<mo>&#960;</mo>
+<mo>)</mo>
+<mo>;</mo>
+</math>
+</p> 
+<table>
+<tr>
+<td>
+<svg width="350" height="480" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g>
+  <title>Layer 1</title>
+  <path id="svg_2" d="m184.00003,106.00003" opacity="0.5" stroke="#000000" fill="#f9f7f7"/>
+  <ellipse ry="69" rx="71" id="svg_4" cy="193" cx="92" stroke="#000000" fill="#ffffff"/>
+  <rect id="svg_5" height="219" width="64" y="92" x="107" stroke="#ffffff" fill="#ffffff"/>
+  <ellipse id="svg_6" ry="69" rx="71" cy="131" cx="178" stroke="#000000" fill="#ffffff"/>
+  <ellipse id="svg_7" ry="69" rx="71" cy="249" cx="177" stroke="#000000" fill="#ffffff"/>
+  <rect id="svg_8" height="131" width="136" y="127" x="76" stroke="#ffffff" fill="#ffffff"/>
+  <line id="svg_10" y2="193" x2="-59" y1="190" x1="263" stroke="#000000" fill="none"/>
+  <line id="svg_11" y2="328" x2="129" y1="49" x1="127" stroke="#000000" fill="none"/>
+  <line id="svg_12" y2="64" x2="124" y1="50" x1="126" stroke="#000000" fill="none"/>
+  <line id="svg_13" y2="63" x2="130" y1="50" x1="127" stroke="#000000" fill="none"/>
+  <line id="svg_14" y2="186" x2="245" y1="189" x1="262" stroke="#000000" fill="none"/>
+  <line id="svg_15" y2="195" x2="245" y1="191" x1="261" stroke="#000000" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="14" id="svg_16" y="437" x="-294" stroke-width="0" stroke="#000000" fill="#000000">x</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="14" id="svg_17" y="203" x="263" stroke-width="0" stroke="#000000" fill="#000000">x</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="14" id="svg_18" y="53" x="130" stroke-width="0" stroke="#000000" fill="#000000"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="14" id="svg_19" y="53" x="135" stroke-width="0" stroke="#000000" fill="#000000">y</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="14" id="svg_20" y="336" x="183" stroke-width="0" stroke="#000000" fill="#000000">b/a=3</text>
+ </g>
+</svg>
+</td>
+<td>
+
+<svg width="640" height="479.99999999999994" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g transform="scale(1.8,1.8) translate(20,10)">
+  <title>Layer 1</title>
+  <line id="svg_1" y2="175.556" x2="128.148" y1="4.81486" x1="127.037" stroke="#000000" fill="none"/>
+  <line id="svg_2" y2="92.5926" x2="248.148" y1="92.963" x1="10.3704" stroke="#000000" fill="none"/>
+  <path id="svg_4" d="m107.03708,55.92597" opacity="0.5" stroke="#000000" fill="#ffffff"/>
+  <ellipse ry="44.9989" rx="45.5555" id="svg_5" cy="75.7419" cx="110" stroke="#000000" fill="#ffffff"/>
+  <ellipse transform="rotate(1.59649, 110.741, 112.023)" id="svg_6" ry="44.9989" rx="45.5555" cy="112.037" cx="110.742" stroke="#000000" fill="#ffffff"/>
+  <rect id="svg_7" height="69.6296" width="87.4073" y="57.4074" x="76.667" stroke="#ffffff" fill="#ffffff"/>
+  <rect id="svg_8" height="17.7778" width="35.5556" y="123.704" x="134.073" stroke="#ffffff" fill="#ffffff"/>
+  <rect id="svg_9" height="14.4444" width="32.5926" y="46.2963" x="131.111" stroke="#ffffff" fill="#ffffff"/>
+  <rect id="svg_10" height="39.2591" width="22.2222" y="75.5557" x="64.0741" stroke="#ffffff" fill="#ffffff"/>
+  <line id="svg_12" y2="117.037" x2="65.1852" y1="72.5926" x1="64.0741" stroke="#000000" fill="none"/>
+  <ellipse id="svg_13" transform="rotate(1.59649, 131.852, 94.2615)" ry="49.5138" rx="48.0233" cy="94.2609" cx="131.851" stroke="#000000" fill="#ffffff"/>
+  <rect id="svg_14" height="97.7778" width="58.8889" y="45.5556" x="80" stroke="#ffffff" fill="#ffffff"/>
+  <rect id="svg_15" height="17.037" width="20.7407" y="38.5186" x="112.222" stroke="#ffffff" fill="#ffffff"/>
+  <rect id="svg_16" height="10.3704" width="10.7407" y="42.2223" x="125.185" stroke="#ffffff" fill="#ffffff"/>
+  <rect id="svg_17" height="3.7037" width="3.7037" y="44.4445" x="135.556" stroke="#ffffff" fill="#ffffff"/>
+  <rect id="svg_18" height="9.25926" width="7.40741" y="44.4445" x="133.704" stroke="#ffffff" fill="#ffffff"/>
+  <rect id="svg_19" height="4.81481" width="0.74074" y="45.5556" x="138.519" stroke="#ffffff" fill="#ffffff"/>
+  <rect id="svg_20" height="0.74074" width="1.85185" y="48.1482" x="141.111" stroke="#ffffff" fill="#ffffff"/>
+  <rect id="svg_21" height="2.22222" width="2.22222" y="46.6667" x="140.741" stroke="#ffffff" fill="#ffffff"/>
+  <rect id="svg_22" height="14.8148" width="20.7407" y="129.63" x="120.741" stroke="#ffffff" fill="#ffffff"/>
+  <rect id="svg_23" height="2.96296" width="3.7037" y="140.37" x="139.259" stroke="#ffffff" fill="#ffffff"/>
+  <path transform="rotate(-14.8361, 85.5653, 76.7323)" id="svg_24" d="m61.72181,86.37667c16.18054,-22.77635 39.87661,-24.53814 47.68707,-9.78632" stroke="#000000" fill="none"/>
+  <path id="svg_25" d="m57.03708,38.88893" opacity="0.5" stroke="#000000" fill="none"/>
+  <path transform="rotate(-28.373, 88.1533, 105.1)" id="svg_27" d="m73.81911,83.80179c-1.37192,20.26359 7.0821,41.57059 28.80953,42.59644" stroke="#000000" fill="none"/>
+  <path id="svg_28" d="m53.70375,18.14819" opacity="0.5" stroke="#000000" fill="none"/>
+  <path id="svg_29" transform="rotate(-28.373, 126.569, 130.571)" d="m118.77114,112.10208c-6.70455,9.17373 4.21547,36.03613 17.60822,36.93794" stroke="#000000" fill="none"/>
+  <path id="svg_30" transform="rotate(-14.8361, 124.888, 55.1389)" d="m103.81874,64.34882c5.58535,-15.62265 25.5836,-24.88902 42.13892,-13.06175" stroke="#000000" fill="none"/>
+  <path transform="rotate(90.5731, 151.465, 118.181)" id="svg_31" d="m126.27943,123.35502c6.33444,-16.89201 36.30818,-18.60819 50.37071,2.63556" stroke="#000000" fill="none"/>
+  <path id="svg_32" d="m67.77782,19.2593" opacity="0.5" stroke="#000000" fill="none"/>
+  <line id="svg_33" y2="92.963" x2="57.7778" y1="93.3334" x1="180.741" stroke="#000000" fill="none"/>
+  <path id="svg_34" transform="rotate(90.5731, 151.517, 69.6598)" d="m127.4794,78.20761c6.33501,-16.89199 34.01283,-25.9928 48.07483,-4.74879" stroke="#000000" fill="none"/>
+  <line id="svg_35" y2="164.074" x2="128.148" y1="32.963" x1="127.037" stroke="#000000" fill="none"/>
+  <line id="svg_36" y2="12.963" x2="125.556" y1="5.5556" x1="127.037" stroke="#000000" fill="none"/>
+  <line id="svg_37" y2="13.3334" x2="128.889" y1="5.5556" x1="127.407" stroke="#000000" fill="none"/>
+  <line id="svg_38" y2="90.7408" x2="239.259" y1="92.5926" x1="247.407" stroke="#000000" fill="none"/>
+  <line id="svg_39" y2="94.4445" x2="240" y1="92.5926" x1="247.778" stroke="#000000" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="14" id="svg_40" y="17.7778" x="142.593" stroke-width="0" stroke="#000000" fill="#000000">y</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="14" id="svg_41" y="107.778" x="248.889" stroke-width="0" stroke="#000000" fill="#000000">x</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="12" id="svg_42" y="183.704" x="14.0741" stroke-width="0" stroke="#000000" fill="#000000"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="12" id="svg_43" y="190.741" x="30.3704" stroke-width="0" stroke="#000000" fill="#000000">Рис.60</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="12" id="svg_44" y="177.778" x="174.444" stroke-width="0" stroke="#000000" fill="#000000">b/a=3/2</text>
+ </g>
+</svg>
+</td>
+</tr>
+</table>
+<p>
+е) Астроида (рис. 61): 
+</p>
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>x</mi>
+<mo>=</mo>
+<mi>b</mi>
+<msup> 
+	<mi>cos</mi>
+	<mn>3</mn>
+</msup> 
+<mi>t</mi>
+<mo>,</mo> 
+<mi>y</mi>
+<mo>=</mo>
+<mi>b</mi>
+<msup> 
+	<mi>sin</mi>
+	<mn>3</mn>
+</msup> 
+<mi>t</mi>
+<mo>,</mo> 
+<mi>t</mi>
+<mo>&#1013;</mo>
+<mo>[</mo>
+<mn>0</mn>
+<mo>,</mo> 
+<mn>2</mn>
+<mo>&#960;</mo>
+<mo>)</mo>
+<mo>;</mo>
+</math>
+<p> 
+<table>
+<tr>
+<td>
+<svg width="200" height="240" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g transform="scale(1.8,1.8) translate(0,2)">
+  <title>Layer 1</title>
+  <line id="svg_1" y2="84" x2="47.6924" y1="3.38465" x1="46.7693" stroke="#000000" fill="none"/>
+  <line id="svg_2" y2="13.8462" x2="45.5385" y1="4.30773" x1="46.4616" stroke="#000000" fill="none"/>
+  <line id="svg_3" y2="14.1539" x2="48.3077" y1="4.00004" x1="47.3847" stroke="#000000" fill="none"/>
+  <line id="svg_4" y2="45.8462" x2="111.385" y1="46.4616" x1="0.00004" stroke="#000000" fill="none"/>
+  <path id="svg_5" d="m17.8462,46.46158c13.64101,-4.3077 21.74356,-10.46156 28.92303,-24.92312" stroke="#000000" fill="#ffffff"/>
+  <path id="svg_6" d="m46.76928,21.5385" opacity="0.5" stroke="#000000" fill="#ffffff"/>
+  <path id="svg_7" d="m48.30774,71.07699c7.79485,-15.07693 12.51282,-19.69238 28.923,-24.9231" stroke="#000000" fill="#ffffff"/>
+  <path id="svg_8" d="m76.9231,45.5385c-16.1616,-3.3673 -20.202,-7.9973 -30.7692,-24.3077" stroke="#000000" fill="#ffffff"/>
+  <path id="svg_9" d="m46.15389,21.84619" opacity="0.5" stroke="#000000" fill="#ffffff"/>
+  <path id="svg_10" d="m48.00003,70.15388c-6.62315,-13.82885 -13.74046,-18.45885 -30.7692,-24.3077" stroke="#000000" fill="#ffffff"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="12" id="svg_11" y="9.5385" x="52" stroke-width="0" stroke="#000000" fill="#000000">y</text>
+  <line id="svg_12" y2="44.9231" x2="104" y1="46.1539" x1="111.077" stroke="#000000" fill="none"/>
+  <line id="svg_13" y2="47.6923" x2="104.308" y1="45.5385" x1="110.462" stroke="#000000" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="12" id="svg_14" y="51.3847" x="114.769" stroke-width="0" stroke="#000000" fill="#000000">x</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="12" id="svg_15" y="93.2308" x="54.1539" stroke-width="0" stroke="#000000" fill="#000000">Рис. 61</text>
+ </g>
+</svg>
+</td>
+<td> 
+<svg width="190" height="240" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g transform="scale(2,2) translate(10,5)"> 
+  <title>Layer 1</title>
+  <line id="svg_1" y2="69.3151" x2="18.2192" y1="1.96352" x1="17.7626" stroke="#000000" fill="none"/>
+  <line id="svg_2" y2="37.58" x2="72.1005" y1="37.58" x1="0.63933" stroke="#000000" fill="none"/>
+  <path id="svg_3" d="m17.99093,38.03658c12.57228,-4.00306 18.98016,-21.0198 23.33327,-32.32882" stroke="#000000" fill="#ffffff"/>
+  <path id="svg_5" d="m17.99093,38.26489c11.56283,4.39592 19.94943,21.06541 23.33327,31.14149" stroke="#000000" fill="#ffffff"/>
+  <path id="svg_6" d="m38.9955,66.11877" opacity="0.5" stroke="#000000" fill="#ffffff"/>
+  <line id="svg_7" y2="6.07311" x2="48.5845" y1="1.27859" x1="48.5845" stroke="#000000" fill="none"/>
+  <line id="svg_8" y2="12.9224" x2="48.8128" y1="8.12791" x1="48.8128" stroke="#000000" fill="none"/>
+  <line id="svg_9" y2="20.4566" x2="49.0411" y1="15.6621" x1="49.0411" stroke="#000000" fill="none"/>
+  <line id="svg_10" y2="27.9909" x2="49.2694" y1="23.1964" x1="49.2694" stroke="#000000" fill="none"/>
+  <line id="svg_11" y2="34.6119" x2="49.2694" y1="29.8174" x1="49.2694" stroke="#000000" fill="none"/>
+  <line id="svg_12" y2="41.4612" x2="49.2694" y1="36.6667" x1="49.2694" stroke="#000000" fill="none"/>
+  <line id="svg_13" y2="48.9954" x2="49.4977" y1="44.2009" x1="49.4977" stroke="#000000" fill="none"/>
+  <line id="svg_14" y2="56.9863" x2="49.726" y1="52.1918" x1="49.726" stroke="#000000" fill="none"/>
+  <line id="svg_15" y2="65.4338" x2="49.9543" y1="60.6393" x1="49.9543" stroke="#000000" fill="none"/>
+  <line id="svg_16" y2="73.4246" x2="50.1826" y1="68.6301" x1="50.1826" stroke="#000000" fill="none"/>
+  <line id="svg_17" y2="7.89959" x2="16.3928" y1="2.64845" x1="17.5343" stroke="#000000" fill="none"/>
+  <line id="svg_18" y2="7.89959" x2="19.1325" y1="2.42014" x1="17.7626" stroke="#000000" fill="none"/>
+  <line id="svg_19" y2="36.2101" x2="67.0777" y1="37.58" x1="71.6439" stroke="#000000" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="9" id="svg_20" y="4.47494" x="21.4156" stroke-width="0" stroke="#000000" fill="#000000">y</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="9" id="svg_21" y="42.1462" x="71.4156" stroke-width="0" stroke="#000000" fill="#000000"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="9" id="svg_22" y="39.1781" x="75.5252" stroke-width="0" stroke="#000000" fill="#000000">x</text>
+  <line id="svg_23" y2="39.1781" x2="67.306" y1="37.8083" x1="72.1005" stroke="#000000" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="9" id="svg_24" y="35.2969" x="51.096" stroke-width="0" stroke="#000000" fill="#000000"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="9" id="svg_25" y="33.6987" x="54.7489" stroke-width="0" stroke="#000000" fill="#000000">a</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="9" id="svg_26" y="77.9909" x="35.7992" stroke-width="0" stroke="#000000" fill="#000000">Рис. 62</text>
+ </g>
+</svg>
+</td>
+<td>
+<svg width="300" height="240" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g transform="scale(2,2) translate(10,-2)">
+  <title>Layer 1</title>
+  <line id="svg_1" y2="93.9558" x2="29.2875" y1="2.30962" x1="28.7961" stroke="#000000" fill="none"/>
+  <line id="svg_2" y2="54.3981" x2="105.209" y1="54.3981" x1="2.01473" stroke="#000000" fill="none"/>
+  <path id="svg_3" d="m29.04175,54.15237c12.92384,-3.88207 17.98527,-25.45457 21.5725,-41.86736" stroke="#000000" fill="none"/>
+  <path id="svg_4" d="m52.38328,12.38333" opacity="0.5" stroke="#000000" fill="none"/>
+  <path id="svg_5" d="m29.5332,54.3981c12.62941,3.47656 18.31262,22.30413 20.344,38.47658" stroke="#000000" fill="none"/>
+  <line id="svg_6" y2="15.5774" x2="59.7543" y1="10.9091" x1="59.7543" stroke="#000000" fill="none"/>
+  <line id="svg_7" y2="22.9484" x2="59.7543" y1="18.2801" x1="59.7543" stroke="#000000" fill="none"/>
+  <line id="svg_8" y2="31.0565" x2="59.7543" y1="26.3882" x1="59.7543" stroke="#000000" fill="none"/>
+  <line id="svg_9" y2="38.1818" x2="60" y1="33.5135" x1="60" stroke="#000000" fill="none"/>
+  <line id="svg_10" y2="45.7985" x2="60" y1="41.1302" x1="60" stroke="#000000" fill="none"/>
+  <line id="svg_11" y2="52.4324" x2="60" y1="47.7641" x1="60" stroke="#000000" fill="none"/>
+  <line id="svg_12" y2="60.5405" x2="60" y1="55.8722" x1="60" stroke="#000000" fill="none"/>
+  <line id="svg_13" y2="67.6658" x2="60" y1="62.9975" x1="60" stroke="#000000" fill="none"/>
+  <line id="svg_14" y2="74.7911" x2="60" y1="70.1228" x1="60" stroke="#000000" fill="none"/>
+  <line id="svg_15" y2="82.8992" x2="60.0004" y1="78.2309" x1="60.0004" stroke="#000000" fill="none"/>
+  <line id="svg_16" y2="90.0245" x2="60.0004" y1="85.3562" x1="60.0004" stroke="#000000" fill="none"/>
+  <line id="svg_17" y2="96.6584" x2="60.0004" y1="91.9901" x1="60.0004" stroke="#000000" fill="none"/>
+  <path id="svg_18" d="m13.07124,54.15237c-0.18017,-7.40379 12.41607,-3.75106 15.6757,-0.09834" stroke="#000000" fill="none"/>
+  <path id="svg_19" d="m18.23094,25.40544" opacity="0.5" stroke="#000000" fill="none"/>
+  <path id="svg_20" d="m13.3169,54.8895c-0.1801,6.7281 12.4161,3.40876 15.6757,0.08942" stroke="#000000" fill="none"/>
+  <rect id="svg_23" height="57.7396" width="33.1695" y="13.3661" x="77.6904" stroke="#ffffff" fill="#ffffff"/>
+  <line id="svg_24" y2="52.6782" x2="70.3194" y1="53.9067" x1="76.9533" stroke="#000000" fill="none"/>
+  <line id="svg_25" y2="55.8723" x2="71.0565" y1="54.6438" x1="76.7076" stroke="#000000" fill="none"/>
+  <line id="svg_26" y2="8.20642" x2="27.0762" y1="2.55532" x1="28.7961" stroke="#000000" fill="none"/>
+  <line id="svg_27" y2="8.45212" x2="30.2703" y1="2.80102" x1="28.7961" stroke="#000000" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="8" id="svg_28" y="6.97792" x="36.6585" stroke-width="0" stroke="#000000" fill="#000000">y</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="8" id="svg_29" y="58.575" x="80.1474" stroke-width="0" stroke="#000000" fill="#000000">x</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="8" id="svg_30" y="49.2384" x="65.6511" stroke-width="0" stroke="#000000" fill="#000000"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="8" id="svg_31" y="44.5701" x="66.1425" stroke-width="0" stroke="#000000" fill="#000000"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="8" id="svg_32" y="58.575" x="63.1941" stroke-width="0" stroke="#000000" fill="#000000">a</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="8" id="svg_33" y="105.995" x="42.3096" stroke-width="0" stroke="#000000" fill="#000000">Рис. 63</text>
+ </g>
+</svg>
+
+</td>
+</tr>
+</table>
+</p>
+<p>
+ж) Циссоида (рис. 62): x = at2/(1 + t2), y = at3/(1 + t2), t Є ( -∞, ∞), a > 0.
+</p> 
+<p>
+з) Строфоида (рис. 63): x = a(t2 - 1)/(t2 + 1), y = at(t2 - 1)/(t2 + 1), t Є (-∞, ∞), a > 0.
+</p>
+<p>
+и) Конхоида Никомеда (рис. 64): x = a + lcos t, y = a tg t + lsin t, t Є (-π/2, π/2) - правая ветвь, t Є (π/2, 3π/2) - левая ветвь, a > 0, l > 0.
+</p>
+<p>
+Рассмотреть случаи, когда 
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>l</mi>
+<mo>&#62;</mo>
+<mn>0</mn>
+<mo>,</mo> 
+<mi>l</mi>
+<mo>&#60;</mo>
+<mn>0</mn>
+<mo>,</mo> 
+<mi>l</mi>
+<mo>=</mo>
+<mn>0</mn>
+<mo>.</mo>
+</math> 
+</p>
+<p>
+<table>
+<tr>
+<td> 
+<svg width="300" height="370" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g transform="scale(3,3.5) translate(0,0)">
+    <title>Слой 1</title> 
+  <line fill="none" stroke="#000000" x1="16.3536" y1="2.1363" x2="16.1694" y2="67.8822" id="svg_1"/>
+  <line fill="none" stroke="#000000" x1="2.72561" y1="36.7588" x2="78.4162" y2="36.3904" id="svg_2"/>
+  <path fill="none" stroke="#000000" d="m19.0643,29.1077c12.5807,-0.0016 21.382,-10.6397 29.2352,-16.6683" id="svg_3" transform="rotate(-42.2006, 33.6809, 20.7727)"/>
+  <path fill="none" stroke="#000000" d="m29.7974,36.5746c6.151,4.3308 7.1455,19.4591 7.7716,34.1435" id="svg_4"/>
+  <line fill="none" stroke="#000000" x1="42.5046" y1="4.89873" x2="42.5046" y2="9.31862" id="svg_5"/>
+  <line fill="none" stroke="#000000" x1="42.6888" y1="12.4494" x2="42.6888" y2="16.8693" id="svg_6"/>
+  <line fill="none" stroke="#000000" x1="42.6888" y1="19.6317" x2="42.6888" y2="24.0516" id="svg_7"/>
+  <line fill="none" stroke="#000000" x1="42.6888" y1="27.1823" x2="42.6888" y2="31.6022" id="svg_8"/>
+  <line fill="none" stroke="#000000" x1="42.6888" y1="34.9171" x2="42.6888" y2="39.337" id="svg_9"/>
+  <line fill="none" stroke="#000000" x1="42.8729" y1="44.1253" x2="42.8729" y2="48.5451" id="svg_10"/>
+  <line fill="none" stroke="#000000" x1="42.8729" y1="52.965" x2="42.8729" y2="57.3849" id="svg_11"/>
+  <line fill="none" stroke="#000000" x1="42.8729" y1="61.4365" x2="42.8729" y2="65.8564" id="svg_12"/>
+  <line fill="none" stroke="#000000" x1="42.8729" y1="68.803" x2="42.8729" y2="73.2228" id="svg_13"/>
+  <path fill="none" stroke="#000000" d="m45.6356,5.26729c15.0693,26.82151 14.8596,39.45851 0.0449,64.34581" id="svg_17"/>
+  <line fill="none" stroke="#000000" x1="15.9853" y1="2.50462" x2="14.3278" y2="14.4752" id="svg_18"/>
+  <line fill="none" stroke="#000000" x1="16.3536" y1="3.79376" x2="17.6427" y2="13.0019" id="svg_19"/>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="41.768" y="85.3775" id="svg_20" font-size="10" font-family="serif" text-anchor="middle" xml:space="preserve">l&lt;a</text>
+  <line fill="none" stroke="#000000" x1="17.4586" y1="10.4236" x2="18.1952" y2="14.4752" id="svg_21"/>
+  <line fill="none" stroke="#000000" x1="78.232" y1="36.3904" x2="67.1823" y2="34.9171" id="svg_22"/>
+  <line fill="none" stroke="#000000" x1="78.0479" y1="36.7588" x2="67.919" y2="38.4162" id="svg_23"/>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="24.0884" y="8.39781" id="svg_24" font-size="10" font-family="serif" text-anchor="middle" xml:space="preserve">y</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="81.3628" y="43.0203" id="svg_25" font-size="10" font-family="serif" text-anchor="middle" xml:space="preserve">x</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="45.6354" y="40.6261" id="svg_26" font-size="5" font-family="serif" text-anchor="middle" xml:space="preserve">a</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="85.0461" y="61.989" id="svg_27" font-size="5" font-family="serif" text-anchor="middle" xml:space="preserve"/>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="71.0497" y="31.0497" id="svg_28" font-size="5" font-family="serif" text-anchor="middle" xml:space="preserve">l+a</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="13" id="svg_14" y="67.8765" x="9.61395" stroke-width="0" stroke="#000000" fill="#000000"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="13" id="svg_15" y="82.5483" x="-0.23161" stroke-width="0" stroke="#000000" fill="#000000"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="13" id="svg_16" y="72.8958" x="0.73364" stroke-width="0" stroke="#000000" fill="#000000"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="13" id="svg_29" y="79.2664" x="2.66414" stroke-width="0" stroke="#000000" fill="#000000"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="13" id="svg_30" y="85.444" x="7.1043" stroke-width="0" stroke="#000000" fill="#000000">a)</text>
+ </g>
+</svg>
+</td>
+<td> 
+<svg width="300" height="370" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g transform="scale(3,3.5) translate(0,0)">
+<title>Layer 1</title>
+  <line id="svg_1" y2="67.8822" x2="16.1694" y1="2.1363" x1="16.3536" stroke="#000000" fill="none"/>
+  <line id="svg_2" y2="36.3904" x2="78.4162" y1="36.7588" x1="2.72561" stroke="#000000" fill="none"/>
+  <path transform="rotate(-42.2006, 22.0046, 20.5612)" id="svg_3" d="m7.38702,28.8954c12.58068,-0.0016 21.38198,-10.6397 29.23518,-16.6683" stroke="#000000" fill="none"/>
+  <path id="svg_4" d="m16.8462,36.9993c6.289,4.3875 9.0424,17.9929 9.6825,32.8695" stroke="#000000" fill="none"/>
+  <line id="svg_5" y2="5.92159" x2="28.9164" y1="1.5017" x1="28.9164" stroke="#000000" fill="none"/>
+  <line id="svg_6" y2="12.8354" x2="28.8884" y1="8.41544" x1="28.8884" stroke="#000000" fill="none"/>
+  <line id="svg_7" y2="20.0176" x2="28.8884" y1="15.5977" x1="28.8884" stroke="#000000" fill="none"/>
+  <line id="svg_8" y2="27.3559" x2="28.8884" y1="22.936" x1="28.8884" stroke="#000000" fill="none"/>
+  <line id="svg_9" y2="35.0907" x2="28.8884" y1="30.6708" x1="28.8884" stroke="#000000" fill="none"/>
+  <line id="svg_10" y2="43.025" x2="28.8602" y1="38.6052" x1="28.8602" stroke="#000000" fill="none"/>
+  <line id="svg_11" y2="50.8031" x2="28.8602" y1="46.3832" x1="28.8602" stroke="#000000" fill="none"/>
+  <line id="svg_12" y2="58.4254" x2="28.8602" y1="54.0055" x1="28.8602" stroke="#000000" fill="none"/>
+  <line id="svg_13" y2="66.004" x2="28.8602" y1="61.5842" x1="28.8602" stroke="#000000" fill="none"/>
+  <path id="svg_17" d="m32.4721,4.63035c15.6392,27.08705 15.4216,39.84915 0.0466,64.98275" stroke="#000000" fill="none"/>
+  <line id="svg_18" y2="14.4752" x2="14.3278" y1="2.50462" x1="15.9853" stroke="#000000" fill="none"/>
+  <line id="svg_19" y2="13.0019" x2="17.6427" y1="3.79376" x1="16.3536" stroke="#000000" fill="none"/>
+  <line id="svg_21" y2="14.4752" x2="18.1952" y1="10.4236" x1="17.4586" stroke="#000000" fill="none"/>
+  <line id="svg_22" y2="34.9171" x2="67.1823" y1="36.3904" x1="78.232" stroke="#000000" fill="none"/>
+  <line id="svg_23" y2="38.4162" x2="67.919" y1="36.7588" x1="78.0479" stroke="#000000" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="10" id="svg_24" y="8.39781" x="24.0884" stroke-width="0" stroke="#000000" fill="#000000">y</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="10" id="svg_25" y="43.0203" x="81.3628" stroke-width="0" stroke="#000000" fill="#000000">x</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="5" id="svg_26" y="40.8384" x="31.835" stroke-width="0" stroke="#000000" fill="#000000">a</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="5" id="svg_27" y="61.989" x="85.0461" stroke-width="0" stroke="#000000" fill="#000000"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="5" id="svg_28" y="34.659" x="50.8798" stroke-width="0" stroke="#000000" fill="#000000">l+a</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="9.61395" y="67.8765" id="svg_14" font-size="13" font-family="serif" text-anchor="middle" xml:space="preserve"/>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="-0.23161" y="82.5483" id="svg_15" font-size="13" font-family="serif" text-anchor="middle" xml:space="preserve"/>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="0.73364" y="72.8958" id="svg_16" font-size="13" font-family="serif" text-anchor="middle" xml:space="preserve"/>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="2.66414" y="79.2664" id="svg_29" font-size="13" font-family="serif" text-anchor="middle" xml:space="preserve"/>
+  <line id="svg_20" y2="72.5858" x2="28.8602" y1="68.166" x1="28.8602" stroke="#000000" fill="none"/>
+  <rect id="svg_30" height="41.189" width="31.8471" y="9.5966" x="65.0956" stroke="#ffffff" fill="#ffffff"/>
+  <line id="svg_31" y2="35.4989" x2="58.7262" y1="36.3482" x1="64.2464" stroke="#000000" fill="none"/>
+  <line id="svg_32" y2="37.8344" x2="58.9385" y1="36.9851" x1="64.034" stroke="#000000" fill="none"/>
+  <line id="svg_33" y2="36.9851" x2="64.034" y1="37.1975" x1="63.8217" stroke="#000000" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="6" id="svg_34" y="33.8004" x="71.2527" stroke-width="0" stroke="#000000" fill="#000000"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="6" id="svg_35" y="40.8068" x="60.4247" stroke-width="0" stroke="#ffffff" fill="#000000"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="13" id="svg_36" y="34.4374" x="62.1232" stroke-width="0" stroke="#ffffff" fill="#000000"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="13" id="svg_37" y="32.5265" x="62.5478" stroke-width="0" stroke="#ffffff" fill="#000000">x</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="13" id="svg_38" y="76.6879" x="2.67523" stroke-width="0" stroke="#ffffff" fill="#000000"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="13" id="svg_39" y="83.6943" x="3.31217" stroke-width="0" stroke="#ffffff" fill="#000000"/>
+  <polyline id="svg_40" points="93.758,34.862 97.3674,48.8747" stroke-linecap="round" stroke="#ffffff" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="13" id="svg_41" y="82.2081" x="3.94911" stroke-width="0" stroke="#000000" fill="#000000"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="13" id="svg_42" y="83.6943" x="6.49688" stroke-width="0" stroke="#000000" fill="#000000">б)</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="13" id="svg_43" y="84.3312" x="48.1105" stroke-width="0" stroke="#000000" fill="#000000"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="13" id="svg_44" y="86.879" x="32.6115" stroke-width="0" stroke="#000000" fill="#000000">l&gt;a</text>
+  <path fill="#ffffff" stroke="#000000" d="m4.37375,36.9427c-0.46712,-7.0772 9.89385,-2.0524 11.76215,-0.8493" id="svg_45"/>
+  <path fill="#000000" stroke="#000000" opacity="0.5" d="m13.0786,32.6964" id="svg_46"/>
+  <path fill="#ffffff" stroke="#000000" d="m4.37375,36.7304c-0.46712,7.5581 9.89375,2.1918 11.76215,0.907" id="svg_47"/>
+  <line fill="none" stroke="#000000" x1="0.55209" y1="36.7304" x2="14.1402" y2="36.7304" id="svg_48"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="12" id="svg_54" y="105.337" x="23.0618" stroke-width="0" stroke="#000000" fill="#000000">Рис 64</text>
+ </g>
+</svg>
+</td> 
+<td>
+<svg width="640" height="370" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g transform="scale(3,3.5) translate(0,0)">
+  <title>Layer 1</title>
+  <line fill="none" stroke="#000000" x1="16.3536" y1="2.1363" x2="16.1694" y2="67.8822" id="svg_1"/>
+  <line fill="none" stroke="#000000" x1="2.72561" y1="36.7588" x2="78.4162" y2="36.3904" id="svg_2"/>
+  <path fill="none" stroke="#000000" d="m6.59642,29.24574c13.67763,-2.15955 22.08041,-11.72601 29.11786,-19.0675" id="svg_3" transform="rotate(-42.2006, 21.1554, 19.712)"/>
+  <line fill="none" stroke="#000000" x1="28.9164" y1="1.5017" x2="28.9164" y2="5.92159" id="svg_5"/>
+  <line fill="none" stroke="#000000" x1="28.8884" y1="8.41544" x2="28.8884" y2="12.8354" id="svg_6"/>
+  <line fill="none" stroke="#000000" x1="28.8884" y1="15.5977" x2="28.8884" y2="20.0176" id="svg_7"/>
+  <line fill="none" stroke="#000000" x1="28.8884" y1="22.936" x2="28.8884" y2="27.3559" id="svg_8"/>
+  <line fill="none" stroke="#000000" x1="28.8884" y1="30.6708" x2="28.8884" y2="35.0907" id="svg_9"/>
+  <line fill="none" stroke="#000000" x1="28.8602" y1="38.6052" x2="28.8602" y2="43.025" id="svg_10"/>
+  <line fill="none" stroke="#000000" x1="28.8602" y1="46.3832" x2="28.8602" y2="50.8031" id="svg_11"/>
+  <line fill="none" stroke="#000000" x1="28.8602" y1="54.0055" x2="28.8602" y2="58.4254" id="svg_12"/>
+  <line fill="none" stroke="#000000" x1="28.8602" y1="61.5842" x2="28.8602" y2="66.004" id="svg_13"/>
+  <path fill="none" stroke="#000000" d="m35.01987,4.63035c15.6392,27.08705 15.4216,39.84915 0.0466,64.98275" id="svg_17"/>
+  <line fill="none" stroke="#000000" x1="15.9853" y1="2.50462" x2="14.3278" y2="14.4752" id="svg_18"/>
+  <line fill="none" stroke="#000000" x1="16.3536" y1="3.79376" x2="17.6427" y2="13.0019" id="svg_19"/>
+  <line fill="none" stroke="#000000" x1="17.4586" y1="10.4236" x2="18.1952" y2="14.4752" id="svg_21"/>
+  <line fill="none" stroke="#000000" x1="78.232" y1="36.3904" x2="67.1823" y2="34.9171" id="svg_22"/>
+  <line fill="none" stroke="#000000" x1="78.0479" y1="36.7588" x2="67.919" y2="38.4162" id="svg_23"/>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="20.6914" y="5.63773" id="svg_24" font-size="10" font-family="serif" text-anchor="middle" xml:space="preserve">y</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="81.3628" y="43.0203" id="svg_25" font-size="10" font-family="serif" text-anchor="middle" xml:space="preserve">x</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="85.0461" y="61.989" id="svg_27" font-size="5" font-family="serif" text-anchor="middle" xml:space="preserve"/>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="52.366" y="35.2959" id="svg_28" font-size="5" font-family="serif" text-anchor="middle" xml:space="preserve">l+a</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="13" id="svg_14" y="67.8765" x="9.61395" stroke-width="0" stroke="#000000" fill="#000000"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="13" id="svg_15" y="82.5483" x="-0.23161" stroke-width="0" stroke="#000000" fill="#000000"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="13" id="svg_16" y="72.8958" x="0.73364" stroke-width="0" stroke="#000000" fill="#000000"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="13" id="svg_29" y="79.2664" x="2.66414" stroke-width="0" stroke="#000000" fill="#000000"/>
+  <line fill="none" stroke="#000000" x1="28.8602" y1="68.166" x2="28.8602" y2="72.5858" id="svg_20"/>
+  <rect fill="#ffffff" stroke="#ffffff" x="65.0956" y="9.5966" width="31.8471" height="41.189" id="svg_30"/>
+  <line fill="none" stroke="#000000" x1="64.2464" y1="36.3482" x2="58.7262" y2="35.4989" id="svg_31"/>
+  <line fill="none" stroke="#000000" x1="64.034" y1="36.9851" x2="58.9385" y2="37.8344" id="svg_32"/>
+  <line fill="none" stroke="#000000" x1="63.8217" y1="37.1975" x2="64.034" y2="36.9851" id="svg_33"/>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="71.2527" y="33.8004" id="svg_34" font-size="6" font-family="serif" text-anchor="middle" xml:space="preserve"/>
+  <text fill="#000000" stroke="#ffffff" stroke-width="0" x="60.4247" y="40.8068" id="svg_35" font-size="6" font-family="serif" text-anchor="middle" xml:space="preserve"/>
+  <text fill="#000000" stroke="#ffffff" stroke-width="0" x="62.1232" y="34.4374" id="svg_36" font-size="13" font-family="serif" text-anchor="middle" xml:space="preserve"/>
+  <text fill="#000000" stroke="#ffffff" stroke-width="0" x="62.5478" y="32.5265" id="svg_37" font-size="13" font-family="serif" text-anchor="middle" xml:space="preserve">x</text>
+  <text fill="#000000" stroke="#ffffff" stroke-width="0" x="2.67523" y="76.6879" id="svg_38" font-size="13" font-family="serif" text-anchor="middle" xml:space="preserve"/>
+  <text fill="#000000" stroke="#ffffff" stroke-width="0" x="3.31217" y="83.6943" id="svg_39" font-size="13" font-family="serif" text-anchor="middle" xml:space="preserve"/>
+  <polyline fill="none" stroke="#ffffff" stroke-linecap="round" points="93.758,34.862 97.3674,48.8747" id="svg_40"/>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="3.94911" y="82.2081" id="svg_41" font-size="13" font-family="serif" text-anchor="middle" xml:space="preserve"/>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="48.1105" y="84.3312" id="svg_43" font-size="13" font-family="serif" text-anchor="middle" xml:space="preserve"/>
+  <path id="svg_46" d="m13.07863,32.69641" opacity="0.5" stroke="#000000" fill="#000000"/>
+  <line id="svg_48" y2="36.7304" x2="14.1402" y1="36.7304" x1="0.55209" stroke="#000000" fill="none"/>
+  <path transform="rotate(88.7914)" id="svg_50" d="m246.83658,4.88326l34.26746,0.42461" stroke="#000000" fill="none"/>
+  <path id="svg_51" d="m25.81748,70.91301c0.45292,-15.9944 -2.70351,-26.8932 -9.46928,-33.97034" stroke="#000000" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="13" id="svg_52" y="85.9873" x="10.1062" stroke-width="0" stroke="#000000" fill="#000000"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="13" id="svg_53" y="85.9873" x="7.34615" stroke-width="0" stroke="#000000" fill="#000000">в)</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="13" id="svg_54" y="87.2611" x="28.5775" stroke-width="0" stroke="#000000" fill="#000000">l=a</text>
+ </g>
+</svg>
+</td>
+</tr>
+</table>
+</p>
+<p>
+<b>848</b>
+Построить кривые по их уравнениям в полярных координатах.
+<table>
+<tr>
+<td>
+<svg width="300" height="270" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g transform="scale(1,1) translate(-70,-40)">
+  <title>Layer 1</title>
+  <ellipse ry="67" rx="113" id="svg_2" cy="194.5" cx="185.84998" stroke="#000000" fill="#ffffff"/>
+  <line id="svg_3" y2="193.5" x2="371.09998" y1="195.5" x1="185.09998" stroke="#000000" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_4" y="214.5" x="363.1" stroke-width="0" stroke="#000000" fill="#000000">p</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_5" y="206.5" x="171.1" stroke-width="0" stroke="#000000" fill="#000000">u</text>
+  <line id="svg_7" y2="280.625" x2="197.67499" y1="280.625" x1="192.92499" stroke="#000000" fill="none"/>
+  <line id="svg_8" y2="286.375" x2="198.67499" y1="280.375" x1="197.67499" stroke="#000000" fill="none"/>
+  <line id="svg_9" y2="269.125" x2="202.42499" y1="286.125" x1="198.92499" stroke="#000000" fill="none"/>
+  <line id="svg_10" y2="269.375" x2="212.17499" y1="269.375" x1="202.17499" stroke="#000000" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_11" y="287.825" x="184.325" stroke-width="0" stroke="#000000" fill="#000000">a&gt;c  2</text>
+ </g>
+</svg>
+</td>
+<td>
+<svg width="435" height="400" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g transform="scale(1,1) translate(-60,34)">
+  <title>Layer 1</title>
+  <path id="svg_15" d="m102.925,156.95l1.825,-4.2l2.75,-4.5l3,-4.75l5.5,-6.75l4.5,-4.25l4.5,-3.75l4.5,-2.75l5,-3l6.25,-2l4.75,-2.25l6.75,-2.25l5.5,-1l5.5,-0.5l5.25,0l6,0.25l6.5,1.25l6.75,2.25l6.25,1.75l7,3.5l5,3.5l5,3.75l7,5.5l5.75,4l7.75,3.75l6,2.75l7,2.25l10,1.25l5.75,0.75l6.25,0l6.5,-1l7.5,-2.25l8,-2.25l4.75,-2.5l5,-3l5.5,-4.25l5.25,-3.75l4.75,-3.5l4.5,-1.75l4,-2.5l5.25,-3l7.25,-2.25l7.75,-1.75l6.75,-0.75l5.75,0.25l6,0.75l4.25,0.75l6,0.75l5.25,1.75l6.25,2.75l5.25,2.5l5.25,3.5l4.25,4.25l4.75,3.25l3.5,3.75l4.5,5.25l3.5,6l3,5.25l2.75,7.75l2.25,8l1,10l-0.25,9l-0.75,8l-2.5,9.75l-3.25,8l-3.5,6l-4.25,5.25l-4.25,5l-4.5,4.5l-6.75,6l-7,4.25l-7.25,3.75l-6.25,1.75l-8,1.5l-9.75,1l-7.5,0l-9.25,-1.25l-10,-3l-5.75,-3l-8,-5l-9,-5.25l-5.25,-4l-9.75,-5.75l-9.25,-4.25l-9,-2l-9.5,-1l-11.75,0l-8,1.75l-8,2.25l-8.25,3.25l-7.25,4.75l-6.25,3.5l-8.5,6.25l-7.25,4l-6.75,2.75l-7,2.5l-7.75,1.25l-7.5,0.25l-7.25,-0.5l-7.75,-0.25l-7,-2.25l-6.75,-2.25l-6,-3.25l-7.25,-4.25l-6,-5.25l-6.5,-6.5l-6,-8.5l-4,-6.75l-3.25,-8.5l-2.25,-8.75l-1,-7.75l-0.25,-8l1.25,-6.5l1,-7.75l1.75,-6.5l2.175,-4.8z" stroke="#000000" fill="#ffffff"/>
+  <line transform="rotate(0.00419062, 371.199, 186.398)" id="svg_16" y2="185.9" x2="483.7" y1="186.9" x1="258.7" stroke="#000000" fill="none"/>
+  <line id="svg_17" y2="190.05" x2="258.7" y1="184.55" x1="258.7" stroke="#000000" fill="none"/>
+  <line id="svg_18" y2="189.55" x2="483.2" y1="182.55" x1="483.2" stroke="#000000" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_19" y="196.1" x="246.4" stroke-width="0" stroke="#000000" fill="#000000">0</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_20" y="206.1" x="487.4" stroke-width="0" stroke="#000000" fill="#000000">p</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_21" y="296.1" x="265.4" stroke-width="0" stroke="#000000" fill="#000000">c&lt;a&lt;  2</text>
+  <line id="svg_22" y2="290.467" x2="283.767" y1="290.467" x1="280.1" stroke="#000000" fill="none"/>
+  <line id="svg_23" y2="297.467" x2="285.433" y1="290.133" x1="284.1" stroke="#000000" fill="none"/>
+  <line id="svg_24" y2="277.133" x2="289.1" y1="297.8" x1="285.767" stroke="#000000" fill="none"/>
+  <line id="svg_25" y2="277.467" x2="300.433" y1="277.467" x1="289.433" stroke="#000000" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_54" y="343" x="275" stroke-width="0" stroke="#000000" fill="#000000">Рис. 65</text>
+ </g>
+</svg>
+</td>
+<td>
+<svg width="500" height="270" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g transform="scale(1,1) translate(-70,-17)">
+  <title>Layer 1</title>
+  <circle fill="none" stroke="#000000" cx="135.1" cy="171.5" r="47.4121" id="svg_27"/>
+  <circle fill="none" stroke="#000000" cx="295.1" cy="171.5" r="47.4121" id="svg_28"/>
+  <line fill="none" stroke="#000000" x1="222.1" y1="173.5" x2="392.1" y2="172.5" id="svg_29"/>
+  <line fill="none" stroke="#000000" x1="222.1" y1="168.5" x2="222.1" y2="179.5" id="svg_30"/>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="221.1" y="203.5" id="svg_31" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve">0</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="390.1" y="194.5" id="svg_32" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve">p</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="231.1" y="253.5" id="svg_33" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve">a&lt;c</text>
+ </g>
+</svg>
+</td>
+</tr>
+</table>
+</p>
+<p>
+а) Овалы Кассини (рис. 65):
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msup>
+<mi>q</mi>
+<mn>2</mn>
+</msup>
+<mo>=</mo>
+<msup>
+<mi>c</mi>
+<mn>2</mn>
+</msup>
+<mi>cos</mi>
+<mn>2</mn>
+<mo>&#7529;</mo>
+<msqrt>
+<mrow>
+<msup>
+<mi>c</mi>
+<mn>4</mn>
+</msup>
+<msup>
+<mo>cos</mo>
+<mn>2</mn>
+</msup>
+<mn>2</mn>
+<mo>&#7529;</mo>
+<mo>+</mo>
+<mo>(</mo>
+<msup>
+<mo>a</mo>
+<mn>4</mn>
+</msup>
+<mo>-</mo>
+<msup>
+<mo>c</mo>
+<mn>4</mn>
+</msup>
+<mo>)</mo>
+</mrow>
+</msqrt>
+</math>
+</p>
+
+
+<p>Рассмотреть случаи, когда 
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>a</mi>
+<mo>&#62;</mo>
+<mi>c</mi>
+<msqrt>
+<mn>2</mn>
+</msqrt>
+<mo>&#62;</mo>
+<mn>0</mn>
+<mo>,</mo>
+<mn>0</mn>
+<mo>&#60;</mo>
+<mi>c</mi>
+<mo>&#60;</mo>
+<mi>a</mi>
+<mo>&#60;</mo>
+<mi>c</mi>
+<msqrt>
+<mn>2</mn>
+</msqrt>
+<mo>,</mo>
+<mn>0</mn>
+<mo>&#60;</mo>
+<mi>a</mi>
+<mo>&#60;</mo>
+<mi>c</mi>
+<mo>.</mo>
+</math>
+</p>
+
+<p>б) Лемниската (рис. 66):
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>q</mi>
+<mo>=</mo>
+<mi>a</mi>
+<msqrt>
+<mn>2</mn>
+<mo>&#x2062;</mo>
+<mo>cos</mo>
+<mrow>
+<mn>2</mn>
+<mo>&#7529;</mo>
+</mrow>
+</msqrt>
+<mo>,</mo>
+<mi>a</mi>
+<mo>&#62;</mo>
+<mn>0</mn>
+</math>
+</p>
+<p>
+<table>
+<tr>
+<td>
+<svg width="300" height="180" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g transform="scale(2.5,2.5) translate(0,0)">
+  <title>Layer 1</title>
+  <line fill="none" stroke="#000000" x1="6.80005" y1="29" x2="133.4" y2="29" id="svg_1"/>
+  <path fill="#ffffff" stroke="#000000" d="m53.2001,28.4c-14.0668,-8.4667 -42.7334,-18.53333 -44.0001,0.4" id="svg_2"/>
+  <path fill="#ffffff" stroke="#000000" opacity="0.5" d="m9.20005,22.2" id="svg_3"/>
+  <path fill="#ffffff" stroke="#000000" d="m53.4001,29.0253c-14.0668,9.0015 -42.7334,19.704 -44.0001,-0.4253" id="svg_4"/>
+  <path fill="#ffffff" stroke="#000000" d="m53.0001,28.5475c13.4674,-8.9662 42.3542,-19.94574 43.3999,0.4525" id="svg_5"/>
+  <path fill="#ffffff" stroke="#000000" d="m53.0001,29.2249c13.4675,8.4211 42.3542,18.7329 43.3999,-0.4249" id="svg_6"/>
+  <line fill="none" stroke="#000000" x1="54" y1="29.2" x2="97.4" y2="29" id="svg_7"/>
+  <rect fill="#ffffff" stroke="#ffffff" x="3.20005" y="25.2" width="5" height="6.2" id="svg_8"/>
+  <rect fill="#ffffff" stroke="#ffffff" x="13" y="25" width="29.2" height="6" id="svg_9"/>
+  <rect fill="#ffffff" stroke="#ffffff" x="41.2001" y="27.4" width="4.4" height="2" id="svg_10"/>
+  <rect fill="#ffffff" stroke="#ffffff" x="46" y="28.6" width="1.8" height="0.6" id="svg_11"/>
+  <rect fill="#ffffff" stroke="#ffffff" x="48" y="28.6" width="1" height="0.4" id="svg_12"/>
+  <rect fill="#ffffff" stroke="#ffffff" x="49" y="28.2" width="1.2" height="0.6" id="svg_13"/>
+  <rect fill="#ffffff" stroke="#ffffff" x="50.4" y="29" width="0.4" height="0.4" id="svg_14"/>
+  <rect fill="#ffffff" stroke="#ffffff" x="50.6" y="29" width="0.8" height="0" id="svg_15"/>
+  <rect fill="#ffffff" stroke="#ffffff" x="110.4" y="11.4" width="23" height="34.4" id="svg_16"/>
+  <text fill="#000000" stroke="#ffffff" stroke-width="0" x="52" y="37.8" id="svg_17" font-size="9" font-family="serif" text-anchor="middle" xml:space="preserve">0</text>
+  <text fill="#000000" stroke="#ffffff" stroke-width="0" x="108.8" y="23.8" id="svg_18" font-size="9" font-family="serif" text-anchor="middle" xml:space="preserve">p</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="9" id="svg_19" y="54.7926" x="56.5093" stroke-width="0" stroke="#ffffff" fill="#000000">Рис. 66</text>
+ </g>
+</svg>
+</td>
+<td>
+<svg width="640" height="300" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g transform="scale(1,1) translate(0,-100)">
+  <title>Layer 1</title>
+  <line fill="none" stroke="#000000" x1="147" y1="311" x2="505" y2="310" id="svg_1"/>
+  <line fill="none" stroke="#000000" x1="504" y1="309" x2="242" y2="144" id="svg_2"/>
+  <path fill="none" stroke="#000000" d="m210.66701,204l5,3.33299l6,3l8,3.33401l7.33299,1.66599l7.66701,0.33401l7,0l7.99998,-2l6,-2.33401l7.33301,-3.66599l5.33301,-4l4.66699,-5.33401l4.66699,-4.33299l3.33301,-5.66701l3.33301,-7l1,-3.66599" id="svg_6"/>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="315" y="337" id="svg_7" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve">x+2</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="400" y="220" id="svg_8" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve">x+1</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="188" y="217" id="svg_9" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve">x</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="304" y="375" id="svg_10" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve">Рис. 67</text>
+  <line fill="none" stroke="#000000" x1="244" y1="145" x2="148" y2="312" id="svg_11" transform="rotate(5.29858e-05)"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_4" y="194" x="256" stroke="#000000" fill="none">α</text>
+ </g>
+</svg>
+</td>
+</tr>
+</table>
+</p>
+<p>
+<b>849</b>
+Рассмотрим треугольник ос сторонами x, x+1, x+2, где x - некоторое действительное число (рис. 67). Угол α между сторонами x и x+1 является функцией от x. Исследовать область определения и построить график этой функции.
+</p>
+<p>
+<b>850</b>
+Вычерчивание окружности, заданной параметрическими уравнениями  
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>x</mi>
+<mo>=</mo>
+<mi>rcost</mi>
+<mo>,</mo> 
+<mi>y</mi>
+<mo>-</mo>
+<mi>rsint</mi>
+<mo>,</mo> 
+<mi>t</mi>
+<mo>&#1013;</mo>
+<mo>[</mo>
+<mn>0</mn>
+<mo>,</mo> 
+<mn>2</mn>
+<mo>&#960;</mo>
+<mo>)</mo> 
+</math>
+(см. предыдущую задачу), 
+выполняется довольно медленно в связи с необходимостью вычисления тригонометрических функций. Процесс можно ускорить, если воспользоваться параметрическими уравнениями
+</p>
+<p>
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>x</mi>
+<mo>=</mo>
+<msub>
+<mi>x</mi>
+<mi>c</mi>
+</msub>
+<mo>+</mo>
+<mi>r</mi>
+
+<mfrac>
+<mrou>
+<mn>1</mn>
+<mo>-</mo>
+<msup>
+<mi>t</mi>
+<mn>2</mn>
+</msup>
+</mrou>
+<mrou>
+<mn>1</mn>
+<mo>+</mo>
+<msup>
+<mi>t</mi>
+<mn>2</mn>
+</msup>
+</mrou>
+</mfrac>
+</math>
+</p>
+<p>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="200"
+   height="200"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.46"
+   sodipodi:docname="sazonov1.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <defs
+     id="defs4">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective10" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="4"
+     inkscape:cx="113.65787"
+     inkscape:cy="995.35871"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1280"
+     inkscape:window-height="726"
+     inkscape:window-x="0"
+     inkscape:window-y="25" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="path2383"
+       sodipodi:cx="23.5"
+       sodipodi:cy="16.862183"
+       sodipodi:expansion="1"
+       sodipodi:revolution="3"
+       sodipodi:radius="36.124783"
+       sodipodi:argument="-18.122913"
+       sodipodi:t0="0"
+       d="M 23.5,16.862183 C 24.853737,18.065505 22.545832,19.280669 21.5,19.112182 C 18.665859,18.655592 18.00534,15.098667 19.000001,12.862182 C 20.779216,8.8616346 25.965747,8.1001432 29.500001,10.112184 C 34.686661,13.064935 35.564131,20.069181 32.499998,24.862184 C 28.41599,31.250505 19.538036,32.243024 13.499998,28.11218 C 5.9017435,22.913934 4.7949206,12.138748 10.000003,4.86218 C 16.304055,-3.9507182 28.988563,-5.1714869 37.500003,1.1121862 C 47.530441,8.5172775 48.864991,23.118152 41.499996,32.862186 C 32.996818,44.11206 16.475103,45.560318 5.4999961,37.112178 C -6.9706184,27.512865 -8.5325537,9.0672901 1.0000051,-3.1378217 C 11.694095,-16.830113 32.065668,-18.505716 45.500005,-7.8878117 C 60.414664,3.9000741 62.203936,26.199214 50.499994,40.862188"
+       transform="translate(34.5,42.5)" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 11.25,60.362183 L 115.75,59.862183 L 115.75,59.862183"
+       id="path2385"
+       sodipodi:nodetypes="ccc" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 58.5,10.362183 C 58.5,106.36218 58.5,105.86218 58.5,105.86218"
+       id="path2387"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 110.25,56.362182 L 116,60.112182 L 110.75,63.362182 L 110.75,63.362182"
+       id="path2395" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 58.5,10.362182 C 55.75,14.862182 55.75,15.112182 55.75,15.112182"
+       id="path2397" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 58.5,10.112182 C 60.5,14.862182 60.75,15.112182 60.75,15.112182"
+       id="path2399" />
+  </g>
+</svg>
+
+</p>
+<p>
+<b>851</b>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="300"
+   height="300"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.46"
+   sodipodi:docname="sazonov3.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <defs
+     id="defs4">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective10" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8284271"
+     inkscape:cx="146.18503"
+     inkscape:cy="975.90395"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1280"
+     inkscape:window-height="726"
+     inkscape:window-x="0"
+     inkscape:window-y="25" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g2395">
+      <g
+         id="g2392">
+        <path
+           sodipodi:type="spiral"
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           id="path2383"
+           sodipodi:cx="80.5"
+           sodipodi:cy="69.362183"
+           sodipodi:expansion="1"
+           sodipodi:revolution="3"
+           sodipodi:radius="72.294533"
+           sodipodi:argument="-18.132677"
+           sodipodi:t0="0"
+           d="M 80.5,69.362183 C 83.232541,71.743759 78.637822,74.22058 76.541664,73.903846 C 70.861203,73.045518 69.469907,65.940486 71.416673,61.44551 C 74.898979,53.405053 85.263125,51.779854 92.375009,55.737192 C 102.81198,61.544744 104.70479,75.54414 98.666655,85.195528 C 90.618769,98.059309 72.872048,100.21896 60.708319,92.070501 C 45.401507,81.816499 42.976049,60.275367 53.250018,45.612165 C 65.693171,27.853062 91.052912,25.162276 108.20835,37.570537 C 128.42545,52.193243 131.38137,81.385698 116.83331,101.02887 C 100.03699,123.7077 67.002873,126.9287 44.874973,110.23716 C 19.731847,91.271163 16.245768,54.389331 35.083363,29.77882 C 56.216298,2.1695452 96.950119,-1.5816326 124.0417,19.403882 C 154.11849,42.701781 158.1348,87.29073 134.99996,116.86222"
+           transform="matrix(1,0,0,-1,14,145.68756)" />
+      </g>
+      <g
+         id="g2389">
+        <path
+           sodipodi:type="spiral"
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           id="path2385"
+           sodipodi:cx="201"
+           sodipodi:cy="9.8621826"
+           sodipodi:expansion="1"
+           sodipodi:revolution="3"
+           sodipodi:radius="70.911919"
+           sodipodi:argument="-18.224388"
+           sodipodi:t0="0"
+           d="M 201,9.8621826 C 203.88296,11.942928 199.61755,14.774918 197.54167,14.653848 C 191.91615,14.325756 189.91895,7.5108744 191.41667,2.9455127 C 194.09574,-5.2208482 204.07296,-7.7392884 211.375,-4.5128144 C 222.09105,0.22216604 225.19744,13.726087 220.16666,23.695522 C 213.46143,36.983211 196.32127,40.686861 183.70833,33.820511 C 167.83622,25.179909 163.53209,4.3574228 172.25001,-10.887827 C 182.80858,-29.351867 207.33707,-34.258194 225.20834,-23.679477 C 246.26903,-11.212826 251.77863,17.035461 239.33333,37.528862 C 224.96473,61.189304 192.9879,67.302919 169.87499,52.987174 C 143.61262,36.720714 136.89445,1.009428 153.08334,-24.721167 C 171.24483,-53.587005 210.69475,-60.910142 239.04168,-42.84614 C 270.51216,-22.791674 278.44057,20.399933 258.49999,51.362202"
+           transform="matrix(-1,0,0,1,295.75575,66)" />
+      </g>
+    </g>
+    <g
+       id="g2401"
+       transform="matrix(0,-0.9846858,1.0027761,0,17.317266,168.93367)">
+      <g
+         id="g2403">
+        <path
+           transform="matrix(1,0,0,-1,14,145.68756)"
+           d="M 80.5,69.362183 C 83.232541,71.743759 78.637822,74.22058 76.541664,73.903846 C 70.861203,73.045518 69.469907,65.940486 71.416673,61.44551 C 74.898979,53.405053 85.263125,51.779854 92.375009,55.737192 C 102.81198,61.544744 104.70479,75.54414 98.666655,85.195528 C 90.618769,98.059309 72.872048,100.21896 60.708319,92.070501 C 45.401507,81.816499 42.976049,60.275367 53.250018,45.612165 C 65.693171,27.853062 91.052912,25.162276 108.20835,37.570537 C 128.42545,52.193243 131.38137,81.385698 116.83331,101.02887 C 100.03699,123.7077 67.002873,126.9287 44.874973,110.23716 C 19.731847,91.271163 16.245768,54.389331 35.083363,29.77882 C 56.216298,2.1695452 96.950119,-1.5816326 124.0417,19.403882 C 154.11849,42.701781 158.1348,87.29073 134.99996,116.86222"
+           sodipodi:t0="0"
+           sodipodi:argument="-18.132677"
+           sodipodi:radius="72.294533"
+           sodipodi:revolution="3"
+           sodipodi:expansion="1"
+           sodipodi:cy="69.362183"
+           sodipodi:cx="80.5"
+           id="path2405"
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           sodipodi:type="spiral" />
+      </g>
+      <g
+         id="g2407">
+        <path
+           transform="matrix(-1,0,0,1,295.75575,66)"
+           d="M 201,9.8621826 C 203.88296,11.942928 199.61755,14.774918 197.54167,14.653848 C 191.91615,14.325756 189.91895,7.5108744 191.41667,2.9455127 C 194.09574,-5.2208482 204.07296,-7.7392884 211.375,-4.5128144 C 222.09105,0.22216604 225.19744,13.726087 220.16666,23.695522 C 213.46143,36.983211 196.32127,40.686861 183.70833,33.820511 C 167.83622,25.179909 163.53209,4.3574228 172.25001,-10.887827 C 182.80858,-29.351867 207.33707,-34.258194 225.20834,-23.679477 C 246.26903,-11.212826 251.77863,17.035461 239.33333,37.528862 C 224.96473,61.189304 192.9879,67.302919 169.87499,52.987174 C 143.61262,36.720714 136.89445,1.009428 153.08334,-24.721167 C 171.24483,-53.587005 210.69475,-60.910142 239.04168,-42.84614 C 270.51216,-22.791674 278.44057,20.399933 258.49999,51.362202"
+           sodipodi:t0="0"
+           sodipodi:argument="-18.224388"
+           sodipodi:radius="70.911919"
+           sodipodi:revolution="3"
+           sodipodi:expansion="1"
+           sodipodi:cy="9.8621826"
+           sodipodi:cx="201"
+           id="path2409"
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           sodipodi:type="spiral" />
+      </g>
+    </g>
+    <path
+       sodipodi:type="arc"
+       style="fill:#ff0000;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;opacity:0"
+       id="path2411"
+       sodipodi:cx="267.81668"
+       sodipodi:cy="90.873734"
+       sodipodi:rx="82.201164"
+       sodipodi:ry="73.715881"
+       d="M 350.01785,90.873734 A 82.201164,73.715881 0 1 1 185.61552,90.873734 A 82.201164,73.715881 0 1 1 350.01785,90.873734 z" />
+ 
+<circle cx="94" cy="74" r="70" stroke="#000000" stroke-width="3" fill="none" /> 
+  </g>
+</svg>
+ 
+
+</p>
+<p>
+<b>853</b>
+<svg width="640" height="550" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(50,50), scale(0.5)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168" />
+<g transform="rotate(10,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g>
+ <g transform="rotate(20,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g>
+<g transform="rotate(30,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g> 
+<g transform="rotate(40,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g> 
+<g transform="rotate(50,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g> 
+<g transform="rotate(60,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g>
+<g transform="rotate(70,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g> 
+<g transform="rotate(80,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g>
+<g transform="rotate(90,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g>
+<g transform="rotate(100,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g>
+<g transform="rotate(110,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g>
+<g transform="rotate(120,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g>
+<g transform="rotate(130,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g>
+<g transform="rotate(140,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g>
+<g transform="rotate(150,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g>
+<g transform="rotate(160,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g>
+<g transform="rotate(170,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g>
+<g transform="rotate(180,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g> 
+<g transform="rotate(180,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168" />
+<g transform="rotate(10,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g>
+ <g transform="rotate(20,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g>
+<g transform="rotate(30,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g> 
+<g transform="rotate(40,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g> 
+<g transform="rotate(50,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g> 
+<g transform="rotate(60,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g>
+<g transform="rotate(70,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g> 
+<g transform="rotate(80,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g>
+<g transform="rotate(90,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g>
+<g transform="rotate(100,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g>
+<g transform="rotate(110,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g>
+<g transform="rotate(120,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g>
+<g transform="rotate(130,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g>
+<g transform="rotate(140,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g>
+<g transform="rotate(150,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g>
+<g transform="rotate(160,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g>
+<g transform="rotate(170,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g>
+<g transform="rotate(180,235,231)">
+<path fill="none" stroke="#000000" stroke-width="1" d="m242,220c-68,-16.33333 -149,-58.66667 -197,-114c-30,-29 -14,-55 24,-33c71,36.33334 131,109.66667 157,168"/>
+ </g> 
+</g>
+
+
+ 
+ </g>
+</svg>
+</p>
+</body>
+</html>

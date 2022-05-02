@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<link rel='stylesheet' type='text/css' href='style.css' />
+<meta name='author' content='leonid' />
+<title>8.10.8. Сравнение алгоритмов сортировки</title>
+<script type="text/javascript">
+function analis_sel(n) {
+	var win=open("", "newWindow"),  html, head, title, body, h2, p, mass_a=new Array(n), i, j, x=[], k=0, str='', count=0, comp=0, tt_n, t_n, tt_k, t_k;
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Оценка вычислительной сложности алгоритма сортировки двумерного массива из 8 столбцов простым выбором";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h2=document.createElement("h2");
+	h2.textContent="Оценка вычислительной сложности алгоритма сортировки двумерного массива из 8 столбцов простым выбором";
+	body.appendChild(h2);
+	for (i=0; i<n; i++) {
+		mass_a[i]=new Array(8);	
+		mass_a[i][0]=Math.round(Math.random()*100);
+		for (j=1; j<8;j++) {
+			mass_a[i][j]=j+i;
+		}
+	}	
+	t_n= new Date();
+	tt_n=t_n.valueOf();
+	for (i=0; i<n-1; i++){
+		k=i;
+		x=mass_a[i];
+		count++;
+		for (j=i+1;j<n;j++) {
+			if (mass_a[j][0]<x[0]) {
+				k=j;				
+				x=mass_a[j];
+				count++;
+			}
+			comp++;
+		}
+		if (k!==j) {
+			mass_a[k]=mass_a[i];
+			mass_a[i]=x;
+			count=count+2;
+		}
+	}
+	t_k= new Date();
+	tt_k=t_k.valueOf();		
+	p=document.createElement("p");
+	p.textContent='Всего строк в массиве '+n+'.';
+	body.appendChild(p);
+	p=document.createElement("p");
+	p.textContent='Всего операций сравнения '+comp+'.';
+	body.appendChild(p);	
+	p=document.createElement("p");
+	p.textContent='Всего операций присваивания '+count+'.';
+	body.appendChild(p);
+	p=document.createElement("p");
+	i=tt_k.valueOf()-tt_n.valueOf();
+	p.textContent='Продолжительность сортировки t='+i+' миллисекунд.';
+	body.appendChild(p);		
+	win.document.close();
+}
+
+function analis_bin(n) {
+	var win=open("", "newWindow"),  html, head, title, body, h2, p, mass_a=new Array(n), i, j, l, r, m, x=[], k, count=0, str='', comp=0, tt_n, t_n, tt_k, t_k;
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Оценка вычислительной сложности алгоритма сортировки двумерного массива из 8 столбцов методом половинного деления";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h2=document.createElement("h2");
+	h2.textContent="Оценка вычислительной сложности алгоритма сортировки двумерного массива из 8 столбцов методом половинного деления";
+	body.appendChild(h2);
+	for (i=0; i<n; i++) {
+		mass_a[i]=new Array(8);	
+		mass_a[i][0]=Math.round(Math.random()*100);
+		for (j=1; j<8;j++) {
+			mass_a[i][j]=j+i;
+		}
+	}
+
+	t_n= new Date();
+	tt_n=t_n.valueOf();
+	for (i=1; i<n; i++){
+		x=mass_a[i];
+		count++;
+		l=0;
+		r=i-1;
+		while (l<=r) {
+			m=(l+r -(l+r)%2)/2;
+			comp++;
+			if	(x[0]<mass_a[m][0]) {
+				r=m-1;
+			}
+			else {
+				l=m+1;			
+			}
+		}
+		for (j=i-1; j>=l; j--) {
+			mass_a[j+1]=mass_a[j];
+			count++;
+		}
+
+		mass_a[l]=x;
+		count++;
+	}
+	
+	t_k= new Date();
+	tt_k=t_k.valueOf();		
+	p=document.createElement("p");
+	p.textContent='Всего строк в массиве: '+n+'.';
+	body.appendChild(p);
+	p=document.createElement("p");
+	p.textContent='Всего операций сравнения: '+comp+'.';
+	body.appendChild(p);	
+	p=document.createElement("p");
+	p.textContent='Всего операций присваивания: '+count+'.';
+	body.appendChild(p);
+	i=comp/(n*Math.LOG2E*Math.log(n));
+	p=document.createElement("p");
+	p.textContent='Оценка количества операций сравнения C='+i.toPrecision(4)+'*'+n+'*ln('+n+').';
+	body.appendChild(p);
+	i=count/(n*n);
+	p=document.createElement("p");
+	p.textContent='Оценка количества операций присваивания M='+i.toPrecision(4)+'*'+n+'*'+n+'.';
+	body.appendChild(p);	
+	p=document.createElement("p");
+	i=tt_k.valueOf()-tt_n.valueOf();
+	p.textContent='Продолжительность сортировки t='+i+' миллисекунд.';
+	body.appendChild(p);		
+	win.document.close();
+}
+
+function analis_vcl(n) {
+	var win=open("", "newWindow"),  html, head, title, body, h2, p, mass_a=new Array(n), i, j, k=0, x=[], count=0, str='', comp=0, tt_n, t_n, tt_k, t_k;
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Оценка вычислительной сложности алгоритма сортировки простыми включениями двумерного массива из 8 столбцов";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h2=document.createElement("h2");
+	h2.textContent="Оценка вычислительной сложности алгоритма сортировки простыми включениями двумерного массива из 8 столбцов";
+	body.appendChild(h2);
+	for (i=0; i<n; i++) {
+		mass_a[i]=new Array(8);	
+		mass_a[i][0]=Math.round(Math.random()*100);
+		for (j=1; j<8;j++) {
+			mass_a[i][j]=j+i;
+		}
+	}
+	t_n= new Date();
+	tt_n=t_n.valueOf();
+	for (i=1; i<n; i++){
+		j=i-1;
+		x=mass_a[i];
+		count++;
+		while ((j>=0)&&(x[0]<mass_a[j][0])) {
+			mass_a[j+1]=mass_a[j];
+			count++;
+			comp++;
+			j--;
+		} 
+		mass_a[j+1]=x;		
+		count++;
+	}
+	t_k= new Date();
+	tt_k=t_k.valueOf();
+		
+	p=document.createElement("p");
+	p.textContent='Всего строк в массиве '+n+'.';
+	body.appendChild(p);
+	p=document.createElement("p");
+	p.textContent='Всего операций сравнения '+comp+'.';
+	body.appendChild(p);	
+	p=document.createElement("p");
+	p.textContent='Всего операций присваивания '+count+'.';
+	body.appendChild(p);
+	i=comp/(n*n);
+	p=document.createElement("p");
+	p.textContent='Оценка количества операций сравнения C='+i.toPrecision(4)+'*'+n+'*'+n+'.';
+	body.appendChild(p);	
+	i=count/(n*n);
+	p=document.createElement("p");
+	p.textContent='Оценка количества операций присваивания M='+i.toPrecision(4)+'*'+n+'*'+n+'.';
+	body.appendChild(p);	
+	p=document.createElement("p");
+	i=tt_k.valueOf()-tt_n.valueOf();
+	p.textContent='затраченное время t='+i+' миллисекунд.';
+	body.appendChild(p);	
+	win.document.close();
+}
+
+function analis_change(n) {
+	var win=open("", "newWindow"),  html, head, title, body, h2, p, mass_a=new Array(n), i, j, x=[], count=0, str='', comp=0, tt_n, t_n, tt_k, t_k;
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Оценка вычислительной сложности сортировки методом пузырька";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h2=document.createElement("h2");
+	h2.textContent="Оценка вычислительной сложности сортировки методом пузырька";
+	body.appendChild(h2);
+	for (i=0; i<n; i++) {
+		mass_a[i]=new Array(8);	
+		mass_a[i][0]=Math.round(Math.random()*100);
+		for (j=1; j<8;j++) {
+			mass_a[i][j]=j+i;
+		}
+	}
+	t_n= new Date();
+	tt_n=t_n.valueOf();	
+	for (i=1; i<n; i++){
+		for (j=n-1;j>=i;j--) {
+			if (mass_a[j-1][0]>mass_a[j][0]) {
+				x=mass_a[j-1];
+				mass_a[j-1]=mass_a[j];
+				mass_a[j]=x;
+				count++;			
+			}
+			comp++;
+		}	
+	}
+	t_k= new Date();
+	tt_k=t_k.valueOf();	
+	p=document.createElement("p");
+	p.textContent='Всего строк в массиве '+n+'.';
+	body.appendChild(p);
+	p=document.createElement("p");
+	p.textContent='Всего операций сравнения '+comp+'.';
+	body.appendChild(p);
+	j=n-1;
+	i=comp/(n*j);
+	p=document.createElement("p");
+	p.textContent='Оценка количества операций сравнения: '+i+'*'+n+'*'+j+'.'				
+	body.appendChild(p);
+	p=document.createElement("p");
+	p.textContent='Всего операций обмена '+count+'.';
+	body.appendChild(p);
+	str='Оценка количества операций присваивания: ';
+	p=document.createElement("p");
+	i=(3*count)/(n*n);
+	p.textContent=str+i.toPrecision(4)+ '*n'; 
+	sup=document.createElement("sup");
+	sup.textContent='2';
+	p.appendChild(sup);
+	body.appendChild(p);	
+	p=document.createElement("p");
+	i=tt_k.valueOf()-tt_n.valueOf();
+	p.textContent='Продолжительность сортировки t='+i+' миллисекунд.';
+	body.appendChild(p);	
+	win.document.close();
+}
+function analis_shaker(n) {
+
+	var win=open("", "newWindow"),  html, head, title, body, h2, p, mass_a=new Array(), i, j, x=[], r, l, k, str='', count=0, comp=0, tt_n, t_n, tt_k, t_k;
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Оценка вычислительной сложности шейкер-сортировки";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h2=document.createElement("h2");
+	h2.textContent="Оценка вычислительной сложности шейкер-сортировки";
+	body.appendChild(h2);
+	for (i=0; i<n; i++) {
+		mass_a[i]=new Array(8);	
+		mass_a[i][0]=Math.round(Math.random()*100);
+		for (j=1; j<8;j++) {
+			mass_a[i][j]=j+i;
+		}
+	}
+	l=1;
+	r=n-1;
+	k=n-1;
+	t_n= new Date();
+	tt_n=t_n.valueOf();	
+	do {
+		for (j=r; j>=l; j--) {
+			if (mass_a[j-1][0]>mass_a[j][0]) {
+				x=mass_a[j-1];
+				mass_a[j-1]=mass_a[j];
+				mass_a[j]=x;
+				k=j;
+				count++;				
+			}
+			comp++;	
+		}
+		l=k+1;
+		for (j=l;j<=r;j++) {
+			if (mass_a[j-1][0]>mass_a[j][0]) {
+				x=mass_a[j-1];
+				mass_a[j-1]=mass_a[j];
+				mass_a[j]=x;
+				count++;
+				k=j;			
+			}
+			comp++;		
+		}
+		r=k-1;
+	} while (l<=r)
+	t_k= new Date();
+	tt_k=t_k.valueOf();	
+	p=document.createElement("p");
+	p.textContent='Всего строк в массиве '+n+'.';
+	body.appendChild(p);	
+	p=document.createElement("p");
+	p.textContent='Всего операций сравнения '+comp+'.';
+	body.appendChild(p);
+	j=n-1;
+	i=comp/(n*j);
+	p=document.createElement("p");
+	p.textContent='Оценка количества операций сравнения: '+i.toPrecision(4)+'*'+n+'*'+j+'.'				
+	body.appendChild(p);	
+	p=document.createElement("p");
+	p.textContent='Всего операций обмена '+count+'.';
+	body.appendChild(p);
+	str='Оценка количества операций присваивания: ';
+	p=document.createElement("p");
+	i=(3*count)/(n*n);
+	p.textContent=str+i.toPrecision(4)+ '*n'; 
+	sup=document.createElement("sup");
+	sup.textContent='2';
+	p.appendChild(sup);
+	body.appendChild(p);	
+	p=document.createElement("p");
+	i=tt_k.valueOf()-tt_n.valueOf();
+	p.textContent='Продолжительность сортировки t='+i+' миллисекунд.';
+	body.appendChild(p);		
+	win.document.close();
+}	
+function analis_shell(n) {
+	var win=open("", "newWindow"),  html, head, title, body, h2, p, mass_a=new Array(n), i, j, x=[], k, s, h=[], count=0, comp=0, prir=0, t, tt_n, t_n, tt_k, t_k;
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Оценка вычислительной сложности алгоритма сортировки включениями с убывающим приращением";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h2=document.createElement("h2");
+	h2.textContent="Оценка вычислительной сложности алгоритма сортировки включениями с убывающим приращением";
+	body.appendChild(h2);
+	t=Math.round(Math.log(n)*Math.LN2);
+	h[t-1]=1;
+	for (i=t-2; i>=0; i--) {
+		h[i]=2*h[i+1]+1;
+	}
+	for (i=0; i<n; i++) {
+		mass_a[i]=new Array(8);	
+		mass_a[i][0]=Math.round(Math.random()*100);
+		for (j=1; j<8;j++) {
+			mass_a[i][j]=j+i;
+		}
+	}
+	t_n= new Date();
+	tt_n=t_n.valueOf();	
+	k=t-1;
+	while (k>=0) {
+		s=h[k];
+		i=s;
+		while (i<n) {
+			x=mass_a[i];
+			count++;
+			j=i-s;
+			prir=0;
+			while ((j>=0)&&(mass_a[j][0]>x[0])) {
+				m=j+s;
+				mass_a[m]=mass_a[j];
+				prir++;
+				j=j-s;			
+			}
+			comp=comp+prir;
+			count=count+prir;
+			m=j+s;
+			mass_a[m]=x;
+			count++;
+			i=i+s;
+		}
+		k=k-1;
+	}
+	t_k= new Date();
+	tt_k=t_k.valueOf();	
+	p=document.createElement("p");
+	p.textContent='Количество элементов в последовательности: '+n+'.';
+	body.appendChild(p);
+	p=document.createElement("p");
+	p.textContent='Операций сравнения: '+comp+'.';
+	body.appendChild(p);
+	p=document.createElement("p");
+	i=(comp)/(Math.pow(n,1.82));	
+	p.textContent='Оценка количества операций сравнения: '+i.toPrecision(4)+'*n';
+	sup=document.createElement('sup');
+	sup.textContent='1.82';
+	p.appendChild(sup);
+	body.appendChild(p);	
+	p=document.createElement("p");
+	p.textContent='Операций присваивания: '+count+'.';
+	body.appendChild(p);
+	p=document.createElement("p");
+	i=(count)/(Math.pow(n,1.82));	
+	p.textContent='Оценка количества операций присваивания: '+i.toPrecision(4)+'*n';
+	sup=document.createElement('sup');
+	sup.textContent='1.82';
+	p.appendChild(sup);	
+	body.appendChild(p);	
+	p=document.createElement("p");
+	i=tt_k.valueOf()-tt_n.valueOf();
+	p.textContent='Продолжительность сортировки t='+i+' миллисекунд.';
+	body.appendChild(p);		
+	win.document.close();
+}
+function analis_heap(n) {
+	var win=open("", "newWindow"),  html, head, title, body, h2, p,  str='', mass_a=new Array(n), i, j, k, count=0, comp=0, tt_n, t_n, tt_k, t_k, y=[];
+	function create_heap(l, r) {
+		var t=0, x=[], z;
+		t=2*l+1;
+		while (t<=r) {
+			x=mass_a[l];
+			if ((t<r)&&(mass_a[t][0]<mass_a[t+1][0])) {
+				t++;			
+			}
+			if (x[0]<mass_a[t][0]) {
+				mass_a[l]=mass_a[t];
+				mass_a[t]=x;
+				count++;
+				l=t;
+				t=2*t+1;
+			}				
+			else {
+				t=r+1;
+			}
+			comp=comp+2;
+		}
+	}
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Оценка вычислительной сложности алгоритма пирамидальной сортировки";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h2=document.createElement("h2");
+	h2.textContent="Оценка вычислительной сложности алгоритма пирамидальной сортировки";
+	body.appendChild(h2);
+	
+	for (i=0; i<n; i++) {
+		mass_a[i]=new Array(8);	
+		mass_a[i][0]=Math.round(Math.random()*100);
+		for (j=1; j<8;j++) {
+			mass_a[i][j]=j+i;
+		}
+	}
+	t_n= new Date();
+	tt_n=t_n.valueOf();	
+	i=(n-(n % 2))/2-1;
+	k=n-1;
+	while (i>=0) {
+		create_heap(i, k);
+		i--;
+	}
+	i=0;
+	i=0;
+	k=n-1;
+	while (k>0) {
+		y=mass_a[k];
+		mass_a[k]=mass_a[0];
+		mass_a[0]=y;
+		count++;
+		k--;
+		create_heap(0, k);
+	}
+	t_k= new Date();
+	tt_k=t_k.valueOf();	
+	p=document.createElement("p");
+	p.textContent='Всего элементов в последовательности: '+n+'.';
+	body.appendChild(p);
+	p=document.createElement("p");
+	p.textContent='Всего операций сравнения: '+comp+'.';
+	body.appendChild(p);	
+	p=document.createElement("p");
+	i=(comp)/(n*Math.LOG2E*Math.log(n));	
+	p.textContent='Оценка количества операций сравнения: '+i.toPrecision(4)+'*'+n+'*ln('+n+').';	
+	body.appendChild(p);	
+	p=document.createElement("p");
+	p.textContent='Всего операций обмена: '+count+'.';
+	body.appendChild(p);
+	p=document.createElement("p");
+	i=(3*count)/(n*Math.LOG2E*Math.log(n));	
+	p.textContent='Оценка количества операций присваивания: '+i.toPrecision(4)+'*'+n+'*ln('+n+').';	
+	body.appendChild(p);	
+	p=document.createElement("p");
+	i=tt_k.valueOf()-tt_n.valueOf();
+	p.textContent='Продолжительность сортировки t='+i+' миллисекунд.';
+	body.appendChild(p);		
+	win.document.close();
+}
+
+function analis_quick(n) {
+var win=open("", "newWindow"),  html, head, title, body, h2, p, mass_a=new Array(n), obmen=0, comp=0, tt_n, t_n, tt_k, t_k; 
+	function sorting(l, r) {
+		var i, j, w=[], x=[], k, ind_bar, s='';
+		i=l;
+		j=r;
+		ind_bar=(l+r-(l+r)%2)/2;
+		x=mass_a[ind_bar];
+		do {
+			while (mass_a[i][0]<x[0]){
+				i++;
+				comp++;
+			}
+			while (mass_a[j][0]>x[0]){
+				j--;
+				comp++;	
+			}
+			if (i<=j) {
+				w=mass_a[i];
+				mass_a[i]=mass_a[j];
+				mass_a[j]=w;
+				i++;
+				j--;
+				obmen++;
+			}
+		} while (i<=j);
+		if (l<j) {
+			sorting(l,j);		
+		}
+		if (i<r) {
+			sorting(i,r)
+		}
+	}
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Оценка вычислительной сложности алгоритма рекурсивной быстрой сортировки";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h2=document.createElement("h2");
+	h2.textContent="Оценка вычислительной сложности алгоритма рекурсивной быстрой сортировки";
+	body.appendChild(h2);
+	p=document.createElement("p");
+	
+	for (i=0; i<n; i++) {
+		mass_a[i]=new Array(8);	
+		mass_a[i][0]=Math.round(Math.random()*100);
+		for (j=1; j<8;j++) {
+			mass_a[i][j]=j+i;
+		}
+	}
+
+	t_n= new Date();
+	tt_n=t_n.valueOf();	
+	p.textContent='Исходный массив из '+n + ' элементов.';
+	body.appendChild(p);	
+	sorting(0, n-1);
+	t_k= new Date();
+	tt_k=t_k.valueOf();	
+	p=document.createElement("p");
+	p.textContent='Потребовалось операций сравнения: '+' '+ comp + '.';
+	body.appendChild(p);
+	p=document.createElement("p");	
+	i=comp/(n*Math.LOG2E*Math.log(n));
+	p.textContent='Оценка количества операций сравнения: '+i.toPrecision(4)+'*'+n+'*ln('+n+').';	
+	body.appendChild(p);	
+	p=document.createElement("p");
+	p.textContent='Потребовалось операций обмена: '+' '+ obmen + '.';
+	body.appendChild(p);	
+	
+	p=document.createElement("p");	
+	i=(3*obmen)/(n*Math.LOG2E*Math.log(n));
+	p.textContent='Оценка количества операций присваивания: '+i.toPrecision(4)+'*'+n+'*ln('+n+').';	
+	body.appendChild(p);		
+	p=document.createElement("p");
+	i=tt_k.valueOf()-tt_n.valueOf();
+	p.textContent='Продолжительность сортировки t='+i+' миллисекунд.';
+	body.appendChild(p);		
+	win.document.close();
+}
+
+
+
+</script>
+
+</head>
+<body>
+<p><a href="8_10_7.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_11_1.html">К следующему</a> </p>
+<h2>8.10.8. Сравнение методов сортировки</h2>
+<p>Пусть <math><mi>n</mi></math> &#151; количество элементов в сортируемом массиве, <math><mi>С</mi></math> и <math><mi>M</mi></math>  &#151; количество необходимых для сортировки сравнений ключей и операций присваивания соответственно. Для всех трех простых методов сортировки в таблице 8.10.8.1 приведены аналитические формулы оценки их эффективности:</p>
+<table border='1'>
+<caption>Таблица 8.10.8.1. Эффективность простых методов сортировки</caption>
+<th>Метод</th>
+<th>Минимальная оценка</th>
+<th>Средняя оценка</th>
+<th>Максимальная оценка</th>
+<tr><td>Сортировка простыми включениями</td>
+<td>
+<math>
+	<mtable>
+		<mtr>
+			<mtd>
+				<mi>C</mi><mo>=</mo><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow><mo>,</mo>
+			</mtd>
+		</mtr>
+		<mtr>
+			<mtd>
+				<mi>M</mi><mo>=</mo><mn>2</mn><mo>&#x2062;</mo><mrow><mo>(</mo><mi>n</mi><mo>-</mo><mn>1</mn><mo>)</mo></mrow>
+			</mtd>
+		</mtr>
+	</mtable>
+</math>
+</td>
+<td>
+<math>
+	<mtable>
+		<mtr>
+			<mtd>
+				<mi>C</mi><mo>=</mo>
+				<mrow><mfrac><mn>1</mn><mn>4</mn></mfrac><mo>&#x2062;</mo>
+					<mrow><mo>(</mo>
+						<msup><mi>n</mi><mn>2</mn></msup>
+						<mo>+</mo><mi>n</mi>
+						<mo>-</mo><mn>2</mn>				
+						<mo>)</mo>
+					</mrow>				
+				</mrow><mo>,</mo>
+			</mtd>
+		</mtr>
+		<mtr>
+			<mtd>
+				<mi>M</mi><mo>=</mo>
+				<mrow><mfrac><mn>1</mn><mn>4</mn></mfrac><mo>&#x2062;</mo>
+					<mrow><mo>(</mo>
+						<msup><mi>n</mi><mn>2</mn></msup>
+						<mo>-</mo><mrow><mn>9</mn><mo>&#x2062;</mo><mi>n</mi></mrow>
+						<mo>-</mo><mn>10</mn>				
+						<mo>)</mo>
+					</mrow>				
+				</mrow>
+			</mtd>
+		</mtr>
+	</mtable>
+</math>
+</td>
+<td>
+<math>
+	<mtable>
+		<mtr>
+			<mtd>
+				<mi>C</mi><mo>=</mo>
+				<mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>&#x2062;</mo>
+					<mrow><mo>(</mo>
+						<msup><mi>n</mi><mn>2</mn></msup>
+						<mo>-</mo><mi>n</mi>
+						<mo>-</mo><mn>2</mn>				
+						<mo>)</mo>
+					</mrow>				
+				</mrow><mo>,</mo>
+			</mtd>
+		</mtr>
+		<mtr>
+			<mtd>
+				<mi>M</mi><mo>=</mo>
+				<mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>&#x2062;</mo>
+					<mrow><mo>(</mo>
+						<msup><mi>n</mi><mn>2</mn></msup>
+						<mo>+</mo><mrow><mn>3</mn><mo>&#x2062;</mo><mi>n</mi></mrow>
+						<mo>-</mo><mn>4</mn>				
+						<mo>)</mo>
+					</mrow>				
+				</mrow>
+			</mtd>
+		</mtr>
+	</mtable>
+</math>
+</td>
+</tr>
+<tr><td>Сортировка простым выбором</td>
+<td>
+<math>
+	<mtable>
+		<mtr>
+			<mtd>
+				<mi>C</mi><mo>=</mo>
+				<mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>&#x2062;</mo>
+					<mrow><mo>(</mo>
+						<msup><mi>n</mi><mn>2</mn></msup>
+						<mo>-</mo><mi>n</mi>
+						<mo>)</mo>
+					</mrow>				
+				</mrow><mo>,</mo>
+			</mtd>
+		</mtr>
+		<mtr>
+			<mtd>
+				<mi>M</mi><mo>=</mo>
+				<mrow><mn>3</mn><mo>&#x2062;</mo>
+					<mrow><mo>(</mo>
+						<mi>n</mi><mo>-</mo><mn>1</mn>				
+						<mo>)</mo>
+					</mrow>				
+				</mrow>
+			</mtd>
+		</mtr>
+	</mtable>
+</math>
+</td>
+<td>
+<math>
+	<mtable>
+		<mtr>
+			<mtd>
+				<mi>C</mi><mo>=</mo>
+				<mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>&#x2062;</mo>
+					<mrow><mo>(</mo>
+						<msup><mi>n</mi><mn>2</mn></msup>
+						<mo>-</mo><mi>n</mi>
+						<mo>)</mo>
+					</mrow>				
+				</mrow><mo>,</mo>
+			</mtd>
+		</mtr>
+		<mtr>
+			<mtd>
+				<mi>M</mi><mo>=</mo>
+				<mrow><mi>n</mi><mo>&#x2062;</mo>
+					<mrow><mo>(</mo>
+						<mrow><mi>ln</mi><mo>&#x2061;</mo><mi>n</mi><mo>+</mo><mn>0.57</mn>				
+						<mo>)</mo>
+					</mrow>				
+				</mrow>
+			</mtd>
+		</mtr>
+	</mtable>
+</math>
+</td>
+<td>
+<math>
+	<mtable>
+		<mtr>
+			<mtd>
+				<mi>C</mi><mo>=</mo>
+				<mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>&#x2062;</mo>
+					<mrow><mo>(</mo>
+						<msup><mi>n</mi><mn>2</mn></msup>
+						<mo>-</mo><mi>n</mi>
+						<mo>)</mo>
+					</mrow>				
+				</mrow><mo>,</mo>
+			</mtd>
+		</mtr>
+		<mtr>
+			<mtd>
+				<mi>M</mi><mo>=</mo>
+				<mrow>
+					<mfrac>
+						<msup><mi>n</mi><mn>2</mn></msup>
+						<mn>4</mn>
+					</mfrac>
+					<mo>+</mo>
+					<mn>3</mn><mo>&#x2062;</mo>
+					<mrow><mo>(</mo>
+						<mi>n</mi><mo>-</mo><mn>1</mn>				
+						<mo>)</mo>
+					</mrow>				
+				</mrow>
+			</mtd>
+		</mtr>
+	</mtable>
+</math>
+
+</td>
+</tr>
+<tr><td>Сортировка пузырьком</td>
+<td>
+<math>
+	<mtable>
+		<mtr>
+			<mtd>
+				<mi>C</mi><mo>=</mo>
+				<mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>&#x2062;</mo>
+					<mrow><mo>(</mo>
+						<msup><mi>n</mi><mn>2</mn></msup>
+						<mo>-</mo><mi>n</mi>
+						<mo>)</mo>
+					</mrow>				
+				</mrow><mo>,</mo>
+			</mtd>
+		</mtr>
+		<mtr>
+			<mtd>
+				<mi>M</mi><mo>=</mo><mn>0</mn>
+			</mtd>
+		</mtr>
+	</mtable>
+</math>
+</td>
+<td>
+<math>
+	<mtable>
+		<mtr>
+			<mtd>
+				<mi>C</mi><mo>=</mo>
+				<mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>&#x2062;</mo>
+					<mrow><mo>(</mo>
+						<msup><mi>n</mi><mn>2</mn></msup>
+						<mo>-</mo><mi>n</mi>
+						<mo>)</mo>
+					</mrow>				
+				</mrow><mo>,</mo>
+			</mtd>
+		</mtr>
+		<mtr>
+			<mtd>
+				<mi>M</mi><mo>=</mo>
+				<mrow><mfrac><mn>3</mn><mn>4</mn></mfrac><mo>&#x2062;</mo>
+					<mrow><mo>(</mo>
+						<msup><mi>n</mi><mn>2</mn></msup>
+						<mo>-</mo><mi>n</mi>
+						<mo>)</mo>
+					</mrow>				
+				</mrow>
+			</mtd>
+		</mtr>
+	</mtable>
+</math>
+</td>
+<td>
+<math>
+	<mtable>
+		<mtr>
+			<mtd>
+				<mi>C</mi><mo>=</mo>
+				<mrow><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>&#x2062;</mo>
+					<mrow><mo>(</mo>
+						<msup><mi>n</mi><mn>2</mn></msup>
+						<mo>-</mo><mi>n</mi>
+						<mo>)</mo>
+					</mrow>				
+				</mrow><mo>,</mo>
+			</mtd>
+		</mtr>
+		<mtr>
+			<mtd>
+				<mi>M</mi><mo>=</mo>
+				<mrow><mfrac><mn>3</mn><mn>2</mn></mfrac><mo>&#x2062;</mo>
+					<mrow><mo>(</mo>
+						<msup><mi>n</mi><mn>2</mn></msup>
+						<mo>-</mo><mi>n</mi>
+						<mo>)</mo>
+					</mrow>				
+				</mrow>
+			</mtd>
+		</mtr>
+	</mtable>
+</math>
+</td>
+</tr>
+</table>
+
+<p>Для усовершенствованных методов сортировки существуют лишь асимптотические оценки вычислительной сложности:
+для сортировки Шелла (включениями с убывающим приращением) имеет место оценка 
+<math>
+<msub><mi>c</mi><mi>i</mi></msub>
+<mo>&#x2062;</mo>
+<msup><mi>n</mi><mn>1.8</mn></msup>
+</math>, а в случаях же пирамидальной и быстрой сортировки &#151;
+<math>
+	<msub><mi>c</mi><mi>i</mi></msub>
+	<mo>&#x2062;</mo>
+	<mi>n</mi>
+	<mo>&#x2062;</mo>
+	<mrow>
+		<mi>log</mi><mo>&#x2061;</mo><mi>n</mi>	
+	</mrow>
+</math>.
+</p>
+<p>Приведенные асимптотические оценки позволяют классифицировать методы сортировки на квадратичные (субквадратичные) и логарифмические 
+<math>
+	<mo>(</mo>
+	<mrow>
+		<mi>n</mi><mo>&#x2062;</mo>
+		<mrow><mi>log</mi><mo>&#x2061;</mo><mi>n</mi></mrow>
+	</mrow>
+	<mo>)</mo>
+</math>.</p>
+<p>В таблице 8.10.8.2 приведены экспериментальные данные сортировки последовательности <math><mn>100000</mn></math> целых чисел в Компонентном Паскале:</p>
+<table border='1'>
+<caption>Таблица 8.10.8.2. Продолжительность сортировки последовательности целых чисел в миллисекундах</caption>
+<tr>
+<th>Алгоритм</th><th>Последовательность псевдослучайных чисел</th>
+<th>Упорядоченная последовательность</th><th>Последовательность с обратным порядком</th>
+</tr>
+<tr>
+<td>Метод пузырька</td><td>56521-56540</td><td>25208-25221</td><td>51167-51176</td>
+</tr>
+<tr>
+<td>Шейкер-сортировка</td><td>41454-41580</td><td>1</td><td>53714-53745</td>
+</tr>
+<tr>
+<td>Сортировка простым выбором</td><td>23124-23138</td><td>23114-23118</td><td>23188-23214</td>
+</tr>
+<tr>
+<td>Сортировка бинарными включениями</td><td>13902-13961</td><td>13-14</td><td>28419-28424</td>
+</tr>
+<tr>
+<td>Сортировка простыми включениями с барьером</td><td>15273-15297</td><td>1</td><td>25822-25852</td>
+</tr>
+<tr>
+<td>Сортировка Шелла</td><td>16873-17105</td><td>2-6</td><td>34172-34180</td>
+</tr>
+<tr>
+<td>Пирамидальная сортировка</td><td>30-60</td><td>31-54</td><td>31-54</td>
+</tr>
+<tr>
+<td>Быстрая сортировка</td><td>15-16</td><td>7-12</td><td>7-9</td>
+</tr>
+</table>
+<p>Данные таблицы 8.10.7.2 позволяют утверждать, что при сортировке одномерного массива целых чисел в Компонентном Паскале:</p>
+<ol>
+<li>из простых методов сортировки случайных массивов лучшую эффективность демонстрирует метод сортировки простыми включениями, а худшую &#151; метод пузырька;</li>
+<li>из простых методов сортировки массивов с обратным порядком лучшую эффективность демонстрирует метод сортировки простым выбором, а худшую &#151; шейкер-сортировка;</li> 
+<li>при сортировке упорядоченной последовательности худшие показатели при использовании метода пузырька и сортировки выбором;</li>
+<li>быстрая сортировка превосходит пирамидальную сортировку в отношении 1 к 3. Она сортирует массив с элементами, расположенными в обратном порядке, практически так же, как уже рассортированный.</li>
+</ol>
+
+<p>Для практических целей было бы полезно получить оценки значений коэффициентов <math><msub><mi>c</mi><mi>i</mi></msub></math> опытным путем. Следует учитывать и вспомогательные операции, используемые при сортировке массивов, такие, как управление циклами, вызов процедур и т.д., а также  использование вспомогательных переменных. Очевидно, что на эффективность алгоритма сортировки будет оказывать влияние и тип элементов массива. Например, сортировка последовательности записей потребует больших вычислительных ресурсов, нежели сортировка числовой последовательности. Наконец, не последнюю роль играет язык программирования, на котором реализован алгоритм сортировки.
+</p>
+<p>В таблице 8.10.8.3 приведены результаты сортировки в Компонентном Паскале массива из 100000 записей. Первое поле типа INTEGER является ключевым, остальные 7 полей имеют тип CHAR.</p>
+<table border='1'>
+<caption>Таблица 8.10.8.3. Продолжительность сортировки последовательности записей в миллисекундах</caption>
+<tr>
+<th>Алгоритм</th><th>Последовательность псевдослучайных чисел</th>
+<th>Упорядоченная последовательность</th><th>Последовательность с обратным порядком</th>
+</tr>
+<tr>
+<td>Метод пузырька</td><td>174500-174695</td><td>284552-285300</td><td>284517-284542</td>
+</tr>
+<tr>
+<td>Шейкер-сортировка</td><td>155875-156243</td><td>1</td><td>285118-287157</td>
+</tr>
+<tr>
+<td>Сортировка простым выбором</td><td>23425-23438</td><td>23402-23447</td><td>62425-66498</td>
+</tr>
+<tr>
+<td>Сортировка бинарными включениями</td><td>47652-47839</td><td>19-38</td><td>98488-100183</td>
+</tr>
+<tr>
+<td>Сортировка простыми включениями с барьером</td><td>48711-48854</td><td>3-10</td><td>100728-103662</td>
+</tr>
+<tr>
+<td>Сортировка Шелла</td><td>16932-17105</td><td>2-6</td><td>34161-38242</td>
+</tr>
+<tr>
+<td>Пирамидальная сортировка</td><td>110-178</td><td>125-169</td><td>117-198</td>
+</tr>
+<tr>
+<td>Быстрая сортировка</td><td>15-28</td><td>7-14</td><td>7-14</td>
+</tr>
+</table>
+<p>Из простых методов, применительно к случайным ключам или ключам с обратным порядком, наилучшим является алгоритм сортировки простым выбором, а наихудшими &#151; метод пузырька и шейкер-сортировка. Наилучшим алгоритмом сортировки оказался метод быстрой сортировки, который на последовательностях записей превосходит пирамидальную сортировку, по меньшей мере, в 7 раз.  
+</p>
+<p>При сортировке массива на языке со слабой типизацией эффективность алгоритма будет определяться, в первую очередь, количеством операций сравнения, как более затратной, а не присваивания. Ниже представлены сценарии для оценки эффективности алгоритмов сортировки двумерных массивов целых чисел по элементам первого столбца на Java Script:</p>
+<table id='t1'>
+<tr>
+<td>
+Введите n (10 &lt; n &lt; 100000):<input type="text" id="kolich" maxlength="5" size="5" value='10000'/>
+</td>
+</tr>
+<tr>
+<td>
+<input type='button' value="Простыми включениями" onclick="analis_vcl(kolich.value)" />
+</td>
+<td>
+<input type='button' value="Бинарными включениями" onclick="analis_bin(kolich.value)" />
+</td>
+</tr>
+<tr>
+<td>
+<input type='button' value="Сортировка простым выбором" onclick="analis_sel(kolich.value)" />
+</td>
+</tr>
+<tr>
+<td><input type='button' value="Сортировка пузырьком" onclick="analis_change(kolich.value)" /></td>
+<td><input type='button' value="Шейкер-сортировка" onclick="analis_shaker(kolich.value)" /></td>
+</tr>
+<tr>
+<td><input type='button' value="Сортировка Шелла" onclick="analis_shell(kolich.value)" /></td>
+<td><input type='button' value="Пирамидальная сортировка" onclick="analis_heap(kolich.value)" /></td>
+<td><input type='button' value="Быстрая сортировка" onclick="analis_quick(kolich.value)" /></td>
+</tr>
+</table>
+
+<p>Результаты экспериментов дают основание утверждать:</p>
+<ol>
+<li>Сортировка выбором дает существенный выигрыш и оказывается лучшим из простых методов.</li>
+<li>Сортировка методом пузырька по-прежнему является наихудшим методом, и лишь ее усовершенствованная версия, шейкер-сортировка, еще чуть хуже ее, в случае массива с обратным порядком.</li>
+<li>Быстрая сортировка продемонстрировала еще более впечатлительные результаты и оказалась действительно самым лучшим алгоритмом сортировки.</li>
+</ol>
+
+<h3>Вопросы и задачи</h3>
+<ol>
+<li>Перечислите факторы, оказывающие влияние на эффективность реализации алгоритма сортировки массива.</li>
+<li>Какая модификация сортировки простым выбором наиболее эффективная?</li>
+<li>Создайте программы сортировки массива записей, вычисляющей количество операций сравнения, обмена, продолжительности процесса сортировки методами Шелла, пирамидальной сортировки, быстрой сортировки.</li>
+<li>Экспериментально сравните эффективности быстрой сортировки одномерного массива со случайным выбором опорного элемента с выбором в качестве опорного элемента серединного элемента на последовательности:
+<ul>
+<li>псевдослучайных чисел;</li>
+<li>монотонно возрастающих чисел;</li>
+<li>монотонно убывающих чисел;</li>
+<li>с равными элементами.</li>
+</ul>
+</li>
+</ol>
+
+<p><a href="8_10_7.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_11_1.html">К следующему</a> </p>
+</body>
+</html>

@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Игры</title>
+</head>
+<body>
+<p><div align="center">§33 Игры</div></p>
+<p>Игровые программы, которые предлагается составить в этом разделе, можно условно разделить на три группы. В задачах с 972 по 966 рассматриваюся программы, основное значение которых &#8212; поддержка необходимой игровой обстановки. Играющему предлагается исходная ситуация, пораждаемая, как правило, с помощью датчика случайных чисел, все его ходы контролируются: если ход сделан по правилам игры, ситуация (например, в задачах 972 &#8212; 975 смена игровой ситуации означает смену положений цветных шаров на игровой доске, а в задаче 983 &#8212; обмен местами четырех или двух букв), в противном случае выдается соответствующее сообщение, ситуация остается неизменной. Программа также обязана отслеживать достижение целевой ситуации, например, угадано ли задуманное число (задача 986), расставлены ли требуемым образом буквы (задача 983), перемещены ли все диски (задача 978) и т. д. Программы второй группы (задачи с 997 по 1006), так называемые обучающие программы, имеют целью закрепление у обучающегося тех или иных знаний или навыков. При написании программы важно правильно чередовать предполагаемые вопросы (один из возможных алгоритмов выбора вопросов дан в разделе "Случайные числа"), и своевременно повышать уровень их сложности. Например, в программе для обучения устному счету (задача 997) повышение уровня сложности предполагаемого задания может быть связано с переходом от арифметических действий над однозначными числами к действиям над двух &#8212; , трех &#8212; , четырех &#8212; и т. д. значными числами. В программе обучения работе с клавиатурой (задача 1000) &#8212; с переходом от отдельных букв и цифр к словам и фразам, а также с уменьшением времени, выделяемого для набора на клавиатуре того или иного слова и т. п. 
+ Каждая из программ третьей группы (задачи 1007 &#8212; 1013) является равноправным партнером в той или иной игре, например, в шахматы, "ним", "100 спичек" и др. Помимо всех действий, выполняемых программами первой группы, эти программы должны делать игровые ходы.</p>
+ <p> 972. "Семь лунок". Вдоль доски расположено 7 лунок, в которых лежат три черных и три белых шара так, как показано на рис. 106. Передвинуть черные шары на место белых, а белые &#8212; на место черных. Шар можно передвинуть либо в соседнюю с ним пустую лунку, либо в пустую лунку, находящуюся непосредственно за ближайшим шаром.
+</p>
+<svg width="450" height="100" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g>
+  <title>Layer 1</title>
+  <rect id="svg_1" height="36.25" width="340.25" y="20" x="84.00" stroke-width="2" stroke="#000000" fill="none"/>
+  <circle r="16" cx="113" cy="38" fill="none" stroke="black"/> 
+  <circle r="16" cx="159" cy="38" fill="none" stroke="black"/>
+  <circle r="16" cx="209" cy="38" fill="none" stroke="black"/>
+  <circle r="16" cx="257" cy="38" fill="none" stroke="black"/>
+  <circle r="16" cx="303" cy="38" fill="none" stroke="black"/>
+  <circle r="16" cx="350" cy="38" fill="none" stroke="black"/>
+  <circle r="16" cx="399" cy="38" fill="none" stroke="black"/>
+ <circle r="5" cx="113" cy="38" fill="black" stroke-width="2" stroke="black"/>
+ <circle r="5" cx="159" cy="38" fill="black" stroke-width="2" stroke="black"/>  
+ <circle r="5" cx="209" cy="38" fill="black" stroke-width="2" stroke="black"/>
+ <circle r="5" cx="303" cy="38" fill="none" stroke-width="2" stroke="black"/>
+ <circle r="5" cx="350" cy="38" fill="none" stroke-width="2" stroke="black"/>
+  <circle r="5" cx="399" cy="38" fill="none" stroke-width="2" stroke="black"/>
+ <text x="220" y="95">Рис.1.</text>
+ </g>
+</svg>
+<svg width="450" height="100" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g>
+  <title>Layer 1</title>
+  <rect id="svg_1" height="36.25" width="390" y="20" x="10" stroke-width="2" stroke="#000000" fill="none"/>
+   <circle r="16" cx="33" cy="38" fill="none" stroke="black"/> 
+   <circle r="16" cx="79" cy="38" fill="none" stroke="black"/> 
+   <circle r="16" cx="129" cy="38" fill="none" stroke="black"/> 
+   <circle r="16" cx="177" cy="38" fill="none" stroke="black"/> 
+   <circle r="16" cx="223" cy="38" fill="none" stroke="black"/> 
+   <circle r="16" cx="270" cy="38" fill="none" stroke="black"/>
+   <circle r="16" cx="319" cy="38" fill="none" stroke="black"/>
+     <circle r="16" cx="370" cy="38" fill="none" stroke="black"/>  
+    <circle r="5" cx="33" cy="38" fill="black" stroke-width="2" stroke="black"/>
+ <circle r="5" cx="79" cy="38" fill="black" stroke-width="2" stroke="black"/>  
+ <circle r="5" cx="129" cy="38" fill="black" stroke-width="2" stroke="black"/>
+ <circle r="5" cx="177" cy="38" fill="black" stroke-width="2" stroke="black"/>
+ <circle r="5" cx="270" cy="38" fill="none" stroke-width="2" stroke="black"/>
+  <circle r="5" cx="319" cy="38" fill="none" stroke-width="2" stroke="black"/>
+  <circle r="5" cx="370" cy="38" fill="none" stroke-width="2" stroke="black"/>
+<text x="170" y="95">Рис.2.</text>
+  </g>
+</svg>
+<p>973. "Прыгающие шарики". Эта игра похожа на предыдущую. Исходная позиция &#8212; 8 лунок, в которых расставлены 4 черных и 4 белых шара (рис. 107). Поменять местами черные и белые шары. В отличие от предыдущей игры черные шары можно передвигать только вправо, а белые только влево.</p>
+<p>974. Вдоль доски расположены лунки и в каждой лунке лежит шар черного или белого цвета (пример приведен на рис. 108, а). Одним ходом разрешается менять местами два любых шара. Добиться того, чтобы сначала шли белые шары, а за ними &#8212; черные (рис. 108, б). Если общее число лунок равно n, то для решения задачи достаточно сделать не более &#91; n/2 &#93; ходов.</p>
+
+<svg width="450" height="100" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g>
+  <title>Layer 1</title>
+  <rect id="svg_1" height="36.25" width="430" y="20" x="10" stroke-width="2" stroke="#000000" fill="none"/>
+   <circle r="16" cx="33" cy="38" fill="none" stroke="black"/> 
+   <circle r="16" cx="79" cy="38" fill="none" stroke="black"/> 
+   <circle r="16" cx="129" cy="38" fill="none" stroke="black"/> 
+   <circle r="16" cx="177" cy="38" fill="none" stroke="black"/> 
+   <circle r="16" cx="223" cy="38" fill="none" stroke="black"/> 
+   <circle r="16" cx="270" cy="38" fill="none" stroke="black"/>
+   <circle r="16" cx="319" cy="38" fill="none" stroke="black"/>
+   <circle r="16" cx="370" cy="38" fill="none" stroke="black"/>  
+   <circle r="16" cx="419" cy="38" fill="none" stroke="black"/> 
+ <circle r="5" cx="33" cy="38" fill="black" stroke-width="2" stroke="black"/>
+ <circle r="5" cx="79" cy="38" fill="none" stroke-width="2" stroke="black"/>  
+ <circle r="5" cx="129" cy="38" fill="none" stroke-width="2" stroke="black"/>
+ <circle r="5" cx="177" cy="38" fill="black" stroke-width="2" stroke="black"/>
+ <circle r="5" cx="223" cy="38" fill="black" stroke-width="2" stroke="black"/>
+ <circle r="5" cx="270" cy="38" fill="none" stroke-width="2" stroke="black"/>
+  <circle r="5" cx="319" cy="38" fill="black" stroke-width="2" stroke="black"/>
+  <circle r="5" cx="370" cy="38" fill="none" stroke-width="2" stroke="black"/>
+  <circle r="5" cx="419" cy="38" fill="none" stroke-width="2" stroke="black"/>
+  
+<text x="170" y="95">Рис.3.</text>
+  </g>
+</svg>
+<svg width="450" height="100" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g>
+  <title>Layer 1</title>
+  <rect id="svg_1" height="36.25" width="430" y="20" x="10" stroke-width="2" stroke="#000000" fill="none"/>
+   <circle r="16" cx="33" cy="38" fill="none" stroke="black"/> 
+   <circle r="16" cx="79" cy="38" fill="none" stroke="black"/> 
+   <circle r="16" cx="129" cy="38" fill="none" stroke="black"/> 
+   <circle r="16" cx="177" cy="38" fill="none" stroke="black"/> 
+   <circle r="16" cx="223" cy="38" fill="none" stroke="black"/> 
+   <circle r="16" cx="270" cy="38" fill="none" stroke="black"/>
+   <circle r="16" cx="319" cy="38" fill="none" stroke="black"/>
+   <circle r="16" cx="370" cy="38" fill="none" stroke="black"/>  
+   <circle r="16" cx="419" cy="38" fill="none" stroke="black"/> 
+ <circle r="5" cx="33" cy="38" fill="none" stroke-width="2" stroke="black"/>
+ <circle r="5" cx="79" cy="38" fill="none" stroke-width="2" stroke="black"/>  
+ <circle r="5" cx="129" cy="38" fill="none" stroke-width="2" stroke="black"/>
+ <circle r="5" cx="177" cy="38" fill="none" stroke-width="2" stroke="black"/>
+ <circle r="5" cx="223" cy="38" fill="none" stroke-width="2" stroke="black"/>
+ <circle r="5" cx="270" cy="38" fill="black" stroke-width="2" stroke="black"/>
+  <circle r="5" cx="319" cy="38" fill="black" stroke-width="2" stroke="black"/>
+  <circle r="5" cx="370" cy="38" fill="black" stroke-width="2" stroke="black"/>
+  <circle r="5" cx="419" cy="38" fill="black" stroke-width="2" stroke="black"/>
+  
+<text x="170" y="95">Рис.4.</text>
+  </g>
+</svg>
+<p>975. Пусть теперь, в отличае от предыдущей задачи, в каждой лунке лежит красный, белый или синий шар. Одним ходом разрешается менять местами два любых шара. Добиться того, чтобы все красные шары шли первыми, все синие &#8212; последними, а белые &#8212; посередине. Это вариант "задачи о голландском флаге" (поле голландского флага разделено на три полосы &#8212; синюю, белую, красную). Если общее число лунок равно n, то для решения задачи достаточно сделать не более n &#8212; 1 хода.</p>
+<p>976. Железнодорожный сортировочный узел устроен так, как показано на рис.109. На первой стороне собрано некоторое число вагонов двух типов (на рис. 109 &#8212; черные и белые), обоих типов по n штук. Тупик может вмещать все 2n вагонов. Пользуясь тремя сортировочными операциями: В,ИЗ, МИМО, собрать вагоны на левой стороне так, чтобы типы чередовались. Для решения задачи достаточно 3n &#8212; 1 сортировочных операций.</p>
+<svg width="640" height="370" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <text x="170" y="85">Мимо</text>
+ <defs>
+  <marker refY="50" refX="50" markerHeight="10" markerWidth="10" viewBox="0 0 100 100" se_type="rightarrow" orient="auto" markerUnits="strokeWidth" id="se_marker_end_svg_26">
+   <path stroke-width="5" stroke="#000000" fill="#000000" d="m100,50l-100,40l30,-40l-30,-40z"/>
+  </marker>
+  <marker refY="50" refX="50" markerHeight="" markerWidth="10" viewBox="0 0 100 100" se_type="triangle" orient="auto" markerUnits="strokeWidth" id="se_marker_end_svg_37">
+   <path stroke-width="5" stroke="#000000" fill="#000000" d="m10,80l40,-60l30,60z"/>
+  </marker>
+ </defs>
+ <g>
+  <title>Layer 1</title>
+  <line id="svg_1" y2="121" x2="330" y1="121" x1="10" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_2" y2="135" x2="407" y1="135" x1="370" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_3" y2="135" x2="480" y1="135" x1="451" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_4" y2="119" x2="619" y1="119" x1="595" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_5" y2="119" x2="551" y1="119" x1="523" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_6" y2="119" x2="383" y1="118" x1="382" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_7" y2="135" x2="13" y1="121" x1="12" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_8" y2="134" x2="328" y1="134" x1="11" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_9" y2="120" x2="408" y1="120" x1="377" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_10" y2="119" x2="481" y1="119" x1="452" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_11" y2="130" x2="621" y1="130" x1="593" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_12" y2="130" x2="550" y1="130" x1="523" stroke-width="1" stroke="#000000" fill="none"/>
+  <rect id="svg_13" height="33" width="45" y="110" x="327" stroke-width="1" stroke="#000000" fill="none"/>
+  <rect id="svg_14" height="33" width="45" y="110" x="405" stroke-width="1" stroke="#000000" fill="none"/>
+  <rect id="svg_15" height="33" width="45" y="110" x="477" stroke-width="1" stroke="#000000" fill="none"/>
+  <rect id="svg_16" height="33" width="45" y="110" x="550" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_17" y2="325" x2="217" y1="325" x1="175" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_18" y2="209" x2="189" y1="326" x1="188" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_19" y2="210" x2="201" y1="324" x1="200" stroke-width="1" stroke="#000000" fill="none"/>
+  <line marker-end="url(#se_marker_end_svg_26)" id="svg_26" y2="91" x2="150" y1="91" x1="244" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_29" y2="134" x2="328" y1="111" x1="347" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_30" y2="143" x2="339" y1="113" x1="364" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_31" y2="142" x2="357" y1="121" x1="375" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_32" y2="138" x2="551" y1="112" x1="566" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_33" y2="141" x2="570" y1="113" x1="585" stroke-width="1" stroke="#000000" fill="none"/>
+  <path id="svg_36" d="m148,123c31,3 55,37 52,88." stroke-width="1" stroke="#000000" fill="none"/>
+  <path id="svg_36" d="m188,222c4,-48 -8,-72 -35,-86" stroke-width="1" stroke="#000000" fill="none"/>
+  <path marker-end="url(#se_marker_end_svg_26)" id="svg_37" d="m174.00003,218.00003c5.66666,-28.66669 -1.66669,-61.33336 -45.00003,-63.00003" stroke-width="1" stroke="#000000" fill="none"/>
+  <text x="140" y="190">из</text>
+  <path id="svg_38" d="m189.00003,213.00003c-2.33334,-32.33334 10.33331,-84.66669 55.99997,-91.00003" stroke-width="1" stroke="#000000" fill="none"/>
+  <path id="svg_39" d="m201.00003,210.00003c0.33331,-30.66669 14.66666,-72.33336 45.99997,-75.00003" stroke-width="1" stroke="#000000" fill="none"/>
+  <path marker-end="url(#se_marker_end_svg_26)" id="svg_40" d="m255,153c-33.66701,-0.33299 -40.33299,51.33299 -39,59" stroke-width="1" stroke="#000000" fill="none"/>
+  <text x="240" y="190">в</text>
+  <text x="230" y="320">Тупик</text>
+  <text x="150" y="350">Рис. 109.</text>
+ </g>
+</svg>
+
+<p>977. "Расстановка мебели". Площадь разделена на шесть квадратов, пять из них заняты мебелью, шестая &#8212; свободна (рис. 110). Переместиь мебель так, чтобы шкаф и кресло поменялись местами, при этом ни какие два предмета не могут стоять на одном квадрате. </p>
+<svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g>
+  <title>Layer 1</title>
+  <rect fill="#ffffff" stroke="#000000" stroke-width="1" x="68" y="99" width="470" height="200" id="svg_1"/>
+  <line fill="none" stroke="#000000" stroke-width="1" x1="69" y1="200" x2="537" y2="200" id="svg_2"/>
+  <line fill="none" stroke="#000000" stroke-width="1" x1="220" y1="100" x2="220" y2="300" id="svg_3"/>
+  <line fill="none" stroke="#000000" stroke-width="1" x1="385" y1="100" x2="385" y2="300" id="svg_4"/>
+  <text x="120" y="155">Стол</text>
+  <text x="280" y="155">Стул</text>
+  <text x="430" y="155">Шкаф</text>
+  <text x="120" y="250">Стул</text>
+  <text x="430" y="250">Кресло</text>
+  <text x="250" y="350">Рис. 110.</text>
+ </g>
+</svg>
+<p>978. "Ханойская башня". Доска имеет три колышка. На первом нанизано m дисков убывающего вверх диаметра (рис. 111). Расположить диски в том же порядке на другом колышке. Диски можно перекладывать с колышка на колышек по одному. Класть больший диск на меньший не разрешается.</p>
+<svg width="640" height="480" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g>
+  <title>Layer 1</title>
+  <rect id="svg_1" height="19" width="591" y="320" x="43" stroke-width="1" stroke="#000000" fill="#ffffff"/>
+  <rect id="svg_3" height="287" width="15" y="33" x="163" stroke-width="1" stroke="#000000" fill="#ffffff"/>
+  <rect id="svg_4" height="289" width="16" y="31" x="342" stroke-width="1" stroke="#000000" fill="#ffffff"/>
+  <rect id="svg_5" height="286" width="14" y="33" x="508" stroke-width="1" stroke="#000000" fill="#ffffff"/>
+  <rect id="svg_6" height="19" width="217" y="284" x="59" stroke-width="1" stroke="#000000" fill="#ffffff"/>
+  <rect id="svg_7" height="20" width="179" y="244" x="79" stroke-width="1" stroke="#000000" fill="#ffffff"/>
+  <rect id="svg_8" height="20" width="150" y="206" x="94" stroke-width="1" stroke="#000000" fill="#ffffff"/>
+  <rect id="svg_9" height="19" width="123" y="170" x="107" stroke-width="1" stroke="#000000" fill="#ffffff"/>
+  <rect id="svg_10" height="18" width="89" y="135" x="124" stroke-width="1" stroke="#000000" fill="#ffffff"/>
+  <rect id="svg_11" height="19" width="65" y="100" x="137" stroke-width="1" stroke="#000000" fill="#ffffff"/>
+  <rect id="svg_12" height="17" width="46" y="67" x="146" stroke-width="1" stroke="#000000" fill="#ffffff"/>
+  <rect id="svg_13" height="40" width="112" y="355" x="281" stroke-width="1" stroke="#000000" fill="#ffffff"/>
+  <text x="295" y="380">Рис. 111.</text>
+ </g>
+</svg>
+<p>979. "Пятнадцать". На квадратном поле размером 4x4 с помощью датчика чисел расставлены 15 фишек с номерами от 1 до 15 (рис. 112, а). Имеется одна свободная позиция. Расставить фишки по возрастанию их номеров так, как показано на рис. 112, б или в. Передвигать фишки можно только на соседнюю свободную позицию.</p>
+<svg width="900" height="390" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g>
+  <title>Layer 1</title>
+  <rect id="svg_1" height="197" width="240" y="108" x="98" stroke-width="1" stroke="#000000" fill="#ffffff"/>
+  <line id="svg_2" y2="153" x2="337" y1="153" x1="99" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_3" y2="199" x2="337" y1="199" x1="99" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_4" y2="254" x2="336" y1="254" x1="100" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_5" y2="306" x2="155" y1="110" x1="158" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_6" y2="306" x2="216" y1="111" x1="218" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_7" y2="304" x2="272" y1="110" x1="272" stroke-width="1" stroke="#000000" fill="none"/>
+  <text x="125" y="140">1</text>
+  <text x="175" y="140">13</text>
+  <text x="230" y="140">12</text>
+  <text x="295" y="140">2</text>
+  <text x="120" y="180">11</text>
+  <text x="175" y="180">7</text>
+  <text x="230" y="180">6</text>
+  <text x="295" y="180">10</text>
+  <text x="125" y="230">9</text>
+  <text x="175" y="230">3</text>
+  <text x="230" y="230">5</text>
+  <text x="295" y="230">15</text>
+  <text x="175" y="280">4</text>
+  <text x="230" y="280">8</text>
+  <text x="295" y="280">14</text>
+  <title>Layer 1</title>
+  <rect id="svg_1" height="197" width="240" y="108" x="360" stroke-width="1" stroke="#000000" fill="#ffffff"/>
+  <line id="svg_2" y2="153" x2="599" y1="153" x1="361" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_3" y2="199" x2="599" y1="199" x1="361" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_4" y2="254" x2="598" y1="254" x1="362" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_5" y2="306" x2="417" y1="110" x1="420" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_6" y2="306" x2="478" y1="111" x1="480" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_7" y2="304" x2="534" y1="110" x1="534" stroke-width="1" stroke="#000000" fill="none"/>
+  <text x="390" y="140">1</text>
+  <text x="440" y="140">2</text>
+  <text x="495" y="140">3</text>
+  <text x="560" y="140">4</text>
+  <text x="390" y="180">5</text>
+  <text x="440" y="180">6</text>
+  <text x="495" y="180">7</text>
+  <text x="560" y="180">8</text>
+  <text x="390" y="230">9</text>
+  <text x="440" y="230">10</text>
+  <text x="495" y="230">11</text>
+  <text x="560" y="230">12</text>
+  <text x="390" y="280">13</text>
+  <text x="440" y="280">14</text>
+  <text x="495" y="280">15</text>
+  <text x="560" y="280">16</text>
+  <title>Layer 1</title>
+  <rect id="svg_1" height="197" width="240" y="108" x="622" stroke-width="1" stroke="#000000" fill="#ffffff"/>
+  <line id="svg_2" y2="153" x2="861" y1="153" x1="623" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_3" y2="199" x2="861" y1="199" x1="623" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_4" y2="254" x2="860" y1="254" x1="624" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_5" y2="306" x2="679" y1="110" x1="682" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_6" y2="306" x2="740" y1="111" x1="742" stroke-width="1" stroke="#000000" fill="none"/>
+  <line id="svg_7" y2="304" x2="796" y1="110" x1="796" stroke-width="1" stroke="#000000" fill="none"/>
+  <text x="655" y="140">1</text>
+  <text x="705" y="140">2</text>
+  <text x="760" y="140">3</text>
+  <text x="825" y="140">4</text>
+  <text x="655" y="180">5</text>
+  <text x="705" y="180">6</text>
+  <text x="760" y="180">7</text>
+  <text x="825" y="180">8</text>
+  <text x="655" y="230">9</text>
+  <text x="705" y="230">10</text>
+  <text x="760" y="230">11</text>
+  <text x="825" y="230">12</text>
+  <text x="655" y="280">13</text>
+  <text x="705" y="280">14</text>
+  <text x="760" y="280">15</text>
+  <text x="200" y="330">a</text>
+  <text x="475" y="330">б</text>
+  <text x="730" y="330">в</text>
+ <text x="450" y="365">Рис. 112.</text>
+ </g>
+ </svg>
+ <p>980. "Расстановка 16 букв". В квадрате размером клетки 4x4  расставить 16 букв (четыре a, четыре b, четыре c, четыре d) так, чтобы в каждом горизонтальном и в каждом вертикальном ряду любая буква встречалась только один раз.</p>
+ <p>981. "Расстановка трех чисел". В каждой из 9 клеток квадрата размером 3x3 клетки поставить одно из чисел 1, 2, 3 так, чтобы сумма чисел, стоящих в каждом вертикальном ряду, в каждом горизонтальном ряду, а также по любой диагонали равнялось 6.</p>
+ <p>982. "Расстановка девяти чисел". В квадрате размером 3x3 клетки расставить числа 1, 2, 3, 4, 5, 6, 7, 8, 9 так, чтобы сумма чисел, стоящих в каждом вертикальном ряду, в каждом горизонтальном ряду, а также по любой диагонали были равны.</p>
+ <p>983."Вращающийся квадрат". Дан квадрат размером 4x4 клетки, в которых с помощью датчика случайных чисел расставлены буквы от A до P (рис. 113, а). Упорядочить буквы в квадрате по алфавиту (рис. 113, б). Квадрат имеет подквадраты, которые можно вращать по часовой стрелке на одну клетку. Подквадраты имеют размер 2x2 и указываются номером левой верхней клетки. Имеется операция, которая может быть выполнена только один раз: обмен местами двух букв.
+</p>
+  <svg width="960" height="430" xmlns="http://www.w3.org/2000/svg">
+  
+  <g>
+  <title>Слой 1</title>
+  <rect id="svg_1" height="226" width="280" y="69" x="111" stroke="#000000" fill="#ffffff"/>
+  <line id="svg_2" y2="294" x2="177" y1="68" x1="177" stroke="#000000" fill="none"/>
+  <line id="svg_3" y2="294" x2="252" y1="68" x1="252" stroke="#000000" fill="none"/>
+  <line id="svg_4" y2="294" x2="318" y1="68" x1="318" stroke="#000000" fill="none"/>
+  <line id="svg_5" y2="127" x2="392" y1="127" x1="112" stroke="#000000" fill="none"/>
+  <line id="svg_6" y2="183" x2="392" y1="183" x1="112" stroke="#000000" fill="none"/>
+  <line id="svg_7" y2="237" x2="392" y1="237" x1="112" stroke="#000000" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_8" y="105" x="147" stroke-width="0" stroke="#000000" fill="#000000">А</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_9" y="105" x="211" stroke-width="0" stroke="#000000" fill="#000000">С</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_10" y="105" x="283" stroke-width="0" stroke="#000000" fill="#000000">P</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_11" y="105" x="356" stroke-width="0" stroke="#000000" fill="#000000">B</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_12" y="163" x="147" stroke-width="0" stroke="#000000" fill="#000000">E</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_13" y="163" x="211" stroke-width="0" stroke="#000000" fill="#000000">G</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_14" y="163" x="283" stroke-width="0" stroke="#000000" fill="#000000">M</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_15" y="163" x="356" stroke-width="0" stroke="#000000" fill="#000000">O</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_16" y="216" x="147" stroke-width="0" stroke="#000000" fill="#000000">N</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_17" y="216" x="211" stroke-width="0" stroke="#000000" fill="#000000">D</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_18" y="216" x="283" stroke-width="0" stroke="#000000" fill="#000000">I</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_19" y="216" x="356" stroke-width="0" stroke="#000000" fill="#000000">F</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_20" y="269" x="147" stroke-width="0" stroke="#000000" fill="#000000">K</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_21" y="269" x="211" stroke-width="0" stroke="#000000" fill="#000000">L</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_22" y="269" x="283" stroke-width="0" stroke="#000000" fill="#000000">H</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_23" y="269" x="356" stroke-width="0" stroke="#000000" fill="#000000">J</text>
+ </g>
+ <g>
+  <title>Слой 1</title>
+  <rect id="svg_1" height="226" width="280" y="69" x="511" stroke="#000000" fill="#ffffff"/>
+  <line id="svg_2" y2="294" x2="577" y1="68" x1="577" stroke="#000000" fill="none"/>
+  <line id="svg_3" y2="294" x2="652" y1="68" x1="652" stroke="#000000" fill="none"/>
+  <line id="svg_4" y2="294" x2="718" y1="68" x1="718" stroke="#000000" fill="none"/>
+  <line id="svg_5" y2="127" x2="792" y1="127" x1="512" stroke="#000000" fill="none"/>
+  <line id="svg_6" y2="183" x2="792" y1="183" x1="512" stroke="#000000" fill="none"/>
+  <line id="svg_7" y2="237" x2="792" y1="237" x1="512" stroke="#000000" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_8" y="105" x="547" stroke-width="0" stroke="#000000" fill="#000000">А</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_9" y="105" x="611" stroke-width="0" stroke="#000000" fill="#000000">B</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_10" y="105" x="683" stroke-width="0" stroke="#000000" fill="#000000">C</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_11" y="105" x="756" stroke-width="0" stroke="#000000" fill="#000000">D</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_12" y="163" x="547" stroke-width="0" stroke="#000000" fill="#000000">E</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_13" y="163" x="611" stroke-width="0" stroke="#000000" fill="#000000">F</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_14" y="163" x="683" stroke-width="0" stroke="#000000" fill="#000000">G</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_15" y="163" x="756" stroke-width="0" stroke="#000000" fill="#000000">H</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_16" y="216" x="547" stroke-width="0" stroke="#000000" fill="#000000">I</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_17" y="216" x="611" stroke-width="0" stroke="#000000" fill="#000000">J</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_18" y="216" x="683" stroke-width="0" stroke="#000000" fill="#000000">K</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_19" y="216" x="756" stroke-width="0" stroke="#000000" fill="#000000">L</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_20" y="269" x="547" stroke-width="0" stroke="#000000" fill="#000000">M</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_21" y="269" x="611" stroke-width="0" stroke="#000000" fill="#000000">N</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_22" y="269" x="683" stroke-width="0" stroke="#000000" fill="#000000">O</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_23" y="269" x="756" stroke-width="0" stroke="#000000" fill="#000000">P</text>
+  <text x="250" y="330">a</text>
+  <text x="640" y="330">б</text>
+  <text x="450" y="365">Рис. 113.</text>
+ </g>
+ </svg>
+ <p>984. "Угадывание дробей". К канату прикреплены три аэростата (рис. 114). Если считать, что один конец каната имеет координату 0, а второй &#8212; координату 1, то координаты аэростатов задаются некоторыми числами из интервала (0,1). Определить эти числа с погрешностью, не выводящей за пределы аэростата (см. примечание к § 33).</p>
+ <svg width="900" height="450" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g>
+  <title>Слой 1</title>
+  <ellipse ry="17" rx="57" id="svg_1" cy="85" cx="93" stroke="#000000" fill="#ffffff"/>
+  <ellipse ry="17" rx="57" id="svg_2" cy="149" cx="94" stroke="#000000" fill="#ffffff"/>
+  <ellipse ry="16" rx="57" id="svg_3" cy="313" cx="93" stroke="#000000" fill="#ffffff"/>
+  <line id="svg_4" y2="84" x2="243" y1="84" x1="150" stroke="#000000" fill="none"/>
+  <line id="svg_5" y2="150" x2="243" y1="150" x1="150" stroke="#000000" fill="none"/>
+  <line id="svg_6" y2="313" x2="243" y1="313" x1="150" stroke="#000000" fill="none"/>
+  <line id="svg_7" y2="440" x2="243" y1="33" x1="244" stroke="#000000" fill="none"/>
+  <line id="svg_8" y2="440" x2="262" y1="440" x1="225" stroke="#000000" fill="none"/>
+  <line id="svg_9" y2="34" x2="224" y1="34" x1="264" stroke="#000000" fill="none"/>
+  <line id="svg_10" y2="59" x2="296" y1="59" x1="296" stroke="#000000" fill="none"/>
+  <text x="300" y="300">Рис. 114.</text>
+ </g>
+ </svg>
+ <p>985. "Зеленые шары". Дано поле с осями координат (рис. 115). По полю разбросаны небольшие круги. Указать набор функций, графики которых перечеркивают все круги.</p>
+ <svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <defs>
+  <marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" orient="auto" markerUnits="strokeWidth" id="se_marker_start_svg_1">
+   <path stroke-width="10" stroke="#000000" fill="#000000" d="m0,50l100,40l-30,-40l30,-40l-100,40z"/>
+  </marker>
+  <marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" orient="auto" markerUnits="strokeWidth" id="se_marker_end_svg_2">
+   <path stroke-width="10" stroke="#000000" fill="#000000" d="m100,50l-100,40l30,-40l-30,-40l100,40z"/>
+  </marker>
+  <marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" orient="auto" markerUnits="strokeWidth" id="se_marker_start_svg_24">
+   <path stroke-width="10" stroke="#000000" fill="#000000" d="m0,50l100,40l-30,-40l30,-40l-100,40z"/>
+  </marker>
+  <marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" orient="auto" markerUnits="strokeWidth" id="se_marker_end_svg_25">
+   <path stroke-width="10" stroke="#000000" fill="#000000" d="m100,50l-100,40l30,-40l-30,-40l100,40z"/>
+  </marker>
+ </defs>
+ <g>
+  <title>Слой 1</title>
+  <path stroke-width="2" marker-start="url(#se_marker_start_svg_1)" id="svg_1" stroke="#000000" fill="none"/>
+  <line stroke-width="2" marker-end="url(#se_marker_end_svg_2)" fill="none" stroke="#000000" x1="52" y1="349" x2="328" y2="349" id="svg_2"/>
+  <line marker-start="url(#se_marker_start_svg_24)" stroke-width="2" fill="none" stroke="#000000" x1="52" y1="44" x2="52" y2="351" id="svg_24"/>
+  <line fill="none" stroke="#000000" x1="53" y1="320" x2="69" y2="320" id="svg_4"/>
+  <line fill="none" stroke="#000000" x1="53" y1="294" x2="69" y2="294" id="svg_5"/>
+  <line fill="none" stroke="#000000" x1="53" y1="266" x2="69" y2="266" id="svg_6"/>
+  <line fill="none" stroke="#000000" x1="53" y1="240" x2="69" y2="240" id="svg_7"/>
+  <line fill="none" stroke="#000000" x1="53" y1="212" x2="69" y2="212" id="svg_8"/>
+  <line fill="none" stroke="#000000" x1="53" y1="183" x2="69" y2="183" id="svg_9"/>
+  <line fill="none" stroke="#000000" x1="53" y1="155" x2="69" y2="155" id="svg_10"/>
+  <line fill="none" stroke="#000000" x1="53" y1="129" x2="69" y2="129" id="svg_11"/>
+  <line fill="none" stroke="#000000" x1="53" y1="104" x2="69" y2="104" id="svg_12"/>
+  <line fill="none" stroke="#000000" x1="53" y1="79" x2="69" y2="79" id="svg_13"/>
+  <line fill="none" stroke="#000000" x1="82" y1="326" x2="82" y2="348" id="svg_14"/>
+  <line fill="none" stroke="#000000" x1="103" y1="326" x2="104" y2="348" id="svg_15"/>
+  <line fill="none" stroke="#000000" x1="126" y1="326" x2="126" y2="349" id="svg_16"/>
+  <line fill="none" stroke="#000000" x1="151" y1="326" x2="151" y2="347" id="svg_17"/>
+  <line fill="none" stroke="#000000" x1="174" y1="327" x2="173" y2="346" id="svg_18"/>
+  <line fill="none" stroke="#000000" x1="197" y1="325" x2="197" y2="348" id="svg_19"/>
+  <line fill="none" stroke="#000000" x1="219" y1="325" x2="219" y2="347" id="svg_20"/>
+  <line fill="none" stroke="#000000" x1="241" y1="326" x2="240" y2="347" id="svg_21"/>
+  <line fill="none" stroke="#000000" x1="261" y1="324" x2="261" y2="347" id="svg_22"/>
+  <line fill="none" stroke="#000000" x1="285" y1="323" x2="284" y2="347" id="svg_23"/>
+  <line marker-start="url(#se_marker_start_svg_24)" stroke-width="2" fill="none" stroke="#000000" x1="368" y1="44" x2="368" y2="351" id="svg_24"/>
+  <line stroke-width="2" marker-end="url(#se_marker_end_svg_25)" fill="none" stroke="#000000" x1="366" y1="347" x2="625" y2="347" id="svg_25"/>
+  <line fill="none" stroke="#000000" x1="368" y1="319" x2="389" y2="320" id="svg_26"/>
+  <line fill="none" stroke="#000000" x1="370" y1="296" x2="389" y2="297" id="svg_27"/>
+  <line fill="none" stroke="#000000" x1="370" y1="271" x2="388" y2="272" id="svg_28"/>
+  <line fill="none" stroke="#000000" x1="371" y1="249" x2="390" y2="250" id="svg_29"/>
+  <line fill="none" stroke="#000000" x1="371" y1="224" x2="390" y2="225" id="svg_30"/>
+  <line fill="none" stroke="#000000" x1="371" y1="197" x2="391" y2="198" id="svg_31"/>
+  <line fill="none" stroke="#000000" x1="371" y1="172" x2="391" y2="172" id="svg_32"/>
+  <line fill="none" stroke="#000000" x1="372" y1="150" x2="390" y2="150" id="svg_33"/>
+  <line fill="none" stroke="#000000" x1="373" y1="122" x2="392" y2="123" id="svg_34"/>
+  <line fill="none" stroke="#000000" x1="371" y1="95" x2="391" y2="95" id="svg_35"/>
+  <line fill="none" stroke="#000000" x1="395" y1="323" x2="396" y2="345" id="svg_36"/>
+  <line fill="none" stroke="#000000" x1="415" y1="323" x2="414" y2="345" id="svg_37"/>
+  <line fill="none" stroke="#000000" x1="435" y1="324" x2="435" y2="346" id="svg_38"/>
+  <line fill="none" stroke="#000000" x1="453" y1="323" x2="453" y2="345" id="svg_39"/>
+  <line fill="none" stroke="#000000" x1="473" y1="324" x2="472" y2="347" id="svg_40"/>
+  <line fill="none" stroke="#000000" x1="494" y1="323" x2="492" y2="346" id="svg_41"/>
+  <line fill="none" stroke="#000000" x1="514" y1="322" x2="513" y2="347" id="svg_42"/>
+  <line fill="none" stroke="#000000" x1="533" y1="324" x2="532" y2="347" id="svg_43"/>
+  <line fill="none" stroke="#000000" x1="551" y1="324" x2="551" y2="345" id="svg_44"/>
+  <line fill="none" stroke="#000000" x1="569" y1="324" x2="567" y2="347" id="svg_45"/>
+  <ellipse fill="none" stroke="#000000" stroke-width="5" cx="82" cy="101" id="svg_46" rx="2" ry="2"/>
+  <ellipse fill="none" stroke="#000000" stroke-width="5" cx="104" cy="180" id="svg_47" rx="2" ry="2"/>
+  <ellipse fill="none" stroke="#000000" stroke-width="5" cx="91" cy="302" id="svg_48" rx="2"/>
+  <ellipse fill="none" stroke="#000000" stroke-width="5" cx="95" cy="304" id="svg_49" rx="2" ry="2"/>
+  <ellipse fill="none" stroke="#000000" stroke-width="5" cx="125" cy="292" id="svg_50" rx="2" ry="2"/>
+  <ellipse fill="none" stroke="#000000" stroke-width="5" cx="299" cy="314" id="svg_51" rx="2" ry="2"/>
+  <path fill="none" stroke="#000000" stroke-width="3" d="m369,347c88.33334,-65.66669 124.66666,-42.33331 142,-287" id="svg_52"/>
+  <path fill="none" stroke="#000000" stroke-width="3" d="m401,75c43,182.33331 11,195.66669 225,247" id="svg_53"/>
+  <line fill="none" stroke="#000000" x1="369" y1="343" x2="613" y2="81" id="svg_54"/>
+  <ellipse fill="none" stroke="#000000" stroke-width="5" cx="408" cy="118" id="svg_55" rx="2" ry="2"/>
+  <ellipse fill="none" stroke="#000000" stroke-width="5" cx="425" cy="192" id="svg_56" rx="2" ry="2"/>
+  <ellipse fill="none" stroke="#000000" stroke-width="5" cx="401" cy="300" id="svg_57" rx="2" ry="2"/>
+  <ellipse fill="none" stroke="#000000" stroke-width="5" cx="440" cy="294" id="svg_58" rx="2" ry="2"/>
+  <ellipse fill="none" stroke="#000000" stroke-width="5" cx="583" cy="307" id="svg_59" rx="2"/>
+  <ellipse fill="none" stroke="#000000" stroke-width="5" cx="582" cy="306" id="svg_60" rx="2" ry="2"/>
+  <ellipse fill="none" stroke="#000000" stroke-width="5" cx="493" cy="179" id="svg_61" rx="2" ry="2"/>
+  <ellipse fill="none" stroke="#000000" stroke-width="5" cx="504" cy="93" id="svg_62" rx="2" ry="2"/>
+  <ellipse fill="none" stroke="#000000" stroke-width="5" cx="535" cy="157" id="svg_63" rx="2" ry="2"/>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="26" y="45" id="svg_64" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve">y</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="82" y="375" id="svg_66" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve">1</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="319" y="374" id="svg_67" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve">x</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="344" y="55" id="svg_68" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve">y</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="615" y="373" id="svg_69" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve">x</text>
+    <text fill="#000000" stroke="#000000" stroke-width="0" x="34" y="327" id="svg_65" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve">1</text>
+
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="346" y="405" id="svg_70" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve">Рис. 115.</text>
+ </g>
+</svg>
+ <p>986. "Угадай число". Программа с помощью датчика случайных чисел выбирает число в диапазоне от 0 до 9. Угадать это число за три попытки. После каждой попытки сообщается, больше или меньше названное число задуманного.</p>
+ <p>987. "Кости". Играющий называет любое число в диапазоне от 2 до 12 и ставку, которую он делает в этот ход. Программа с помощью датчика случайных чисел дважды выбирает числа от 1 до 6 ("бросает кубик", на гранях которого цифры от 1 до 6). Если сумма выпавших цифр меньше 7 и играющий задумал число меньше 7, он выигрывает сделанную ставку. Если сумма выпавших цифр больше 7 и играющий задумал число больше 7, он также выигрывает сделанную ставку. Если играющий угадал сумму цифр, он получает в четыре раза больше очков, чем сделанная ставка. Ставка проиграна, если не имеет место ни одна из описанных ситуаций. В начальный момент у играющего 100 очков.</p>
+ <p>988. "Ипподром". Играющий выбирает одну из трех лошадей, состязающихся в бегах, и выигрывает, если его лошадь приходит первой. Скорость передвижения лошадей на разных этапах выбирается программой с помощью датчика случайных чисел.</p>
+ <p>989. Игра в слова. Программа выбирает слово и рисует на экране столько прочерков, сколько букв в этом слове. Отгадать, какое слово загадано программой. В каждый ход играющий указывает одну букву. Если названа буква, входящая в состав слова, она подставляется вместо соответствующего прочерка. В противном случае играющий теряет одно очко. В начальный момент у играющего 15 очков.</p>
+ <p>990. "Коровы и быки". Программа выбирает с помощью датчика случайных чисел четырехзначное число с разными цмфрами. Угадать это число. На каждом шаге играющий называет четырехзначное число, а программа сообщает, сколько цифр числа угадано (быки) и сколько цифр угадано и стоит на нужном месте (коровы). Например, если программой задано число 1294, а играющий назвал 1423, он получает ответ "1 корова, 3 быка".</p>
+ <p>991. "Жизнь". Игра моделирует жизнь поколений гипотетической колонии живых клеток, которые выживают, размножаются и погибают в соответствии со следующими правилами. Клетка выживает, если и только если она имеет двух или трех соседей из восьми возможных (рис. 116, а). Если у клетки только один сосед или вовсе ни одного, то она погибает в изоляции (рис, 116, б). Если клетка имеет четырех и более соседей, она погибает от перенаселения (рис. 116в). В любой пустой позиции, у которой ровно три соседа, в следующем поколении появляется новая клетка (рис. 116, г).</p>
+ <svg width="680" height="300" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g>
+  <title>Слой 1</title>
+  <rect id="svg_1" height="133" width="164" y="72" x="11" stroke-width="2" stroke="#000000" fill="#ffffff"/>
+  <rect id="svg_2" height="1" width="0" y="87" x="65" stroke-width="5" stroke="#000000" fill="#FF0000"/>
+  <rect id="svg_3" height="134" width="158" y="71" x="184" stroke-width="2" stroke="#000000" fill="#ffffff"/>
+  <rect id="svg_4" height="132" width="159" y="72" x="353" stroke-width="2" stroke="#000000" fill="#ffffff"/>
+  <rect id="svg_5" height="135" width="153" y="70" x="520" stroke-width="2" stroke="#000000" fill="#ffffff"/>
+  <line id="svg_6" y2="112" x2="172" y1="112" x1="10" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_7" y2="156" x2="173" y1="155" x1="10" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_8" y2="112" x2="340" y1="111" x1="185" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_9" y2="158" x2="342" y1="154" x1="186" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_10" y2="112" x2="513" y1="113" x1="355" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_11" y2="159" x2="510" y1="159" x1="355" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_12" y2="114" x2="672" y1="114" x1="521" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_13" y2="158" x2="673" y1="158" x1="521" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_14" y2="203" x2="62" y1="72" x1="63" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_15" y2="206" x2="115" y1="74" x1="113" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_16" y2="205" x2="229" y1="73" x1="229" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_17" y2="205" x2="282" y1="70" x1="281" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_18" y2="204" x2="400" y1="72" x1="396" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_19" y2="203" x2="455" y1="73" x1="455" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_20" y2="207" x2="569" y1="73" x1="569" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_21" y2="204" x2="617" y1="70" x1="619" stroke-width="2" stroke="#000000" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="39" id="svg_22" y="101" x="36" stroke-width="0" stroke="#000000" fill="#000000">x</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="39" id="svg_23" y="142" x="86" stroke-width="0" stroke="#000000" fill="#000000">x</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="39" id="svg_24" y="143" x="143" stroke-width="0" stroke="#000000" fill="#000000">x</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="39" id="svg_25" y="140" x="255" stroke-width="0" stroke="#000000" fill="#000000">x</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="39" id="svg_26" y="101" x="375" stroke-width="0" stroke="#000000" fill="#000000">x</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="39" id="svg_27" y="101" x="422" stroke-width="0" stroke="#000000" fill="#000000">x</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="39" id="svg_28" y="143" x="425" stroke-width="0" stroke="#000000" fill="#000000">x</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="39" id="svg_29" y="142" x="482" stroke-width="0" stroke="#000000" fill="#000000">x</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="39" id="svg_30" y="189" x="374" stroke-width="0" stroke="#000000" fill="#000000">x</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="39" id="svg_31" y="100" x="542" stroke-width="0" stroke="#000000" fill="#000000">x</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="39" id="svg_32" y="100" x="643" stroke-width="0" stroke="#000000" fill="#000000">x</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="39" id="svg_33" y="189" x="591" stroke-width="0" stroke="#000000" fill="#000000">x</text>
+  <text x="100" y="250">а</text>
+  <text x="250" y="250">б</text>
+  <text x="430" y="250">в</text>
+  <text x="580" y="250">г</text>
+  <text x="300" y="300">Рис. 116.</text>
+ 
+ 
+ </g>
+</svg>
+<p>992. "Подбери ключи". Перед играющим четыре запертые двери. Открыть все двери, используя 10 ключей, каждым из которых можно открыть несколько дверей. Предоставляется 14 попыток.</p>
+<p>993. Требуется ввести курсор в область экрана (небольшой круг), расположение которого не известно играющему. Передвижение курсора сопровождается звуковым сигналом: если курсор приближается к области, то звук становится выше; если удаляется &#8212; ниже.</p>
+<p>994. "Морской бой". На поле 10x10 позиций стоят невидимые вражеские корабли: 4 корабля по 1 клетке, 3 по 2 клетки, 2 по 3 клетки, 1 корабль в 4 клетки (рис. 117). Необходимо поразить каждую из клеток кораблей. Позиции указываются русскими буквами от А до К (по строкам) и цифрами от 1 до 10 (по столбцам). Конфигурация и расположение кораблей на поле выбирается с помощью датчика случайных чисел. Если клетка корабля угадана играющим верно, она помечается крестиком; в противном случае точкой.</p>
+<svg width="201" height="260" xmlns="http://www.w3.org/2000/svg">
+<g>
+<rect x="1" y="1" height="200" width="200" fill="none" stroke="#000000"/>
+<line  y2="21" x2="1" y1="21" x1="201" stroke="#000000"/>
+<line y2="41" x2="1" y1="41" x1="201" stroke="#000000"/>
+<line y2="61" x2="1" y1="61" x1="201" stroke="#000000"/>
+<line y2="81" x2="1" y1="81" x1="201" stroke="#000000"/>
+<line y2="101" x2="1" y1="101" x1="201" stroke="#000000"/>
+<line y2="121" x2="1" y1="121" x1="201" stroke="#000000"/>
+<line y2="141" x2="1" y1="141" x1="201" stroke="#000000"/>
+<line y2="161" x2="1" y1="161" x1="201" stroke="#000000"/>
+<line y2="181" x2="1" y1="181" x1="201" stroke="#000000"/>
+<line y2="1" x2="21" y1="201" x1="21" stroke="#000000"/>
+<line y2="1" x2="41" y1="201" x1="41" stroke="#000000"/>
+<line y2="1" x2="61" y1="201" x1="61" stroke="#000000"/>
+<line y2="1" x2="81" y1="201" x1="81" stroke="#000000"/>
+<line y2="1" x2="101" y1="201" x1="101" stroke="#000000"/>
+<line y2="1" x2="121" y1="201" x1="121" stroke="#000000"/>
+<line y2="1" x2="141" y1="201" x1="141" stroke="#000000"/>
+<line y2="1" x2="161" y1="201" x1="161" stroke="#000000"/>
+<line y2="1" x2="181" y1="201" x1="181" stroke="#000000"/>
+<rect x="1" y="1" height="20" width="20" fill="none" stroke="#000000" stroke-width="3"/>
+<rect x="2" y="40" height="40" width="20" fill="none" stroke="#000000" stroke-width="3"/>
+<rect x="2" y="100" height="40" width="20" fill="none" stroke="#000000" stroke-width="3"/>
+<rect x="60" y="20" height="20" width="20" fill="none" stroke="#000000" stroke-width="3"/>
+<rect x="140" y="20" height="20" width="20" fill="none" stroke="#000000" stroke-width="3"/> 
+<rect x="60" y="60" height="20" width="40" fill="none" stroke="#000000" stroke-width="3"/>
+<rect x="160" y="60" height="20" width="20" fill="none" stroke="#000000" stroke-width="3"/>
+<rect x="140" y="100" height="20" width="60" fill="none" stroke="#000000" stroke-width="3"/>
+<rect x="40" y="120" height="20" width="60" fill="none" stroke="#000000" stroke-width="3"/>
+<rect x="100" y="180" height="20" width="80" fill="none" stroke="#000000" stroke-width="3"/>
+ <text x="90" y="220">Рис. 117.</text>
+</g>
+</svg>
+<p>995 "Мост". Дан мост с арками разной ширины (рис. 118), в нижней строке экрана расположен мяч, которым можно управлять: мяч можно передвигать по строке, останавливать в нужной позиции строки и катить к мосту. Очки начисляются, если мяч проходит через арку.</p>
+ <svg width="640" height="300" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g>
+  <title>Layer 1</title>
+  <line id="svg_49" y2="220" x2="293" y1="220" x1="293" stroke-width="2" stroke="#000000" fill="none"/>
+  <path id="svg_50" d="m56.82537,258.09525c146.40216,-151.11115 185.66144,-155.3968 353.4921,-0.95239" stroke-width="2" stroke="#000000" fill="#ffffff"/>
+  <path id="svg_51" d="m76.66665,258.88889c18.35979,-15.3969 24.02119,-15.71434 43.17462,1.42856" stroke-width="2" stroke="#000000" fill="#ffffff"/>
+  <path id="svg_52" d="m389.36499,258.095c-21.85199,-16.71899 -29.418,-16.772 -51.26999,-0.159" stroke-width="2" stroke="#000000" fill="#ffffff"/>
+  <path id="svg_53" d="m136.19,258.88901c9.366,-44.49701 17.14299,-44.55 25.715,-0.159" stroke-width="2" stroke="#000000" fill="#ffffff"/>
+  <path id="svg_54" d="m314.76199,258.095c-11.005,-44.49699 -17.24899,-42.963 -28.254,-0.159" stroke-width="2" stroke="#000000" fill="#ffffff"/>
+  <path id="svg_55" d="m216.3492,258.09525c-16.56099,-33.38637 -25.97884,-34.23288 -42.53967,-0.15875" stroke-width="2" stroke="#000000" fill="#ffffff"/>
+  <path id="svg_56" d="m233.80949,258.09528c15.97887,-33.38635 24.81499,-33.43924 40.00002,0.63489" stroke-width="2" stroke="#000000" fill="#ffffff"/>
+  <line id="svg_57" y2="258.8889" x2="76.66665" y1="258.09525" x1="56.82538" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_58" y2="258.8889" x2="136.19046" y1="259.68255" x1="118.73014" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_59" y2="257.3016" x2="175.873" y1="257.3016" x1="159.99998" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_60" y2="257.3016" x2="233.80951" y1="257.3016" x1="216.34919" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_61" y2="258.09525" x2="287.77776" y1="258.8889" x1="272.6984" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_62" y2="257.3016" x2="339.36507" y1="257.3016" x1="314.76189" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_63" y2="257.3016" x2="409.99999" y1="257.3016" x1="388.57142" stroke-width="2" stroke="#000000" fill="none"/>
+  <text x="300" y="300">Рис. 118.</text>
+  
+ </g>
+</svg>
+<p>986. "Угадай число". Программа с помощью датчика случайных чисел выбирает число в диапазоне от 0 до 9. Угадать это число за три попытки. После каждой попытки сообщается, больше или меньше названное число задуманного.</p>
+<p>997. Составить программу для обучения устному счету. На каждом шаге должны предлагаться числа и арифметические действия, которые следует выполнять над этими числами.</p>
+<p>998. Составить программу для обучения переводу чисел из десятичной системы счисления в двоичную и обратно. Программа должна предлагать десятичное (двоичное) число, выбранное с помощью датчика случайных чисел, обучающийся &#8212; назвать это число в двоичной (десятичной) системе счисления.</p>
+<p>999. Составить программу для обучения переводу чисел из двоичной системы счисления в восьмеричную и шестиричную и обратно (см. предыдущую задачу)</p>
+<p>1000. Составить программу обучения работе с клавиатурой. Программа должна выдавать на экран буквы, цифры, слова и фразы, которые следует набрать на клавиатуре.</p>
+<p>1001. Составить программу, помогающую в запоминании исторических дат. Программа должна предлагать вопросы, контролирующие знание дат исторических событий, например, "В каком году была Куликовская битва?" Если ответ правильный, должен быть предложен следующий вопрос. Если ответ не верен, программа подскажет правильный ответ, а позднее повторит этот же вопрос еще раз.</p>
+<p>1002. Составить программу для заучивания слов иностранного языка. Программа должна предлагать слова из некоторого списка на одном языке, обучающийся &#8212; дать перевод этого слова на другой язык.</p>
+<p>1003. Составить программу для изучения созвездий. Программа должна строить на экране изображение созвездия, обучающийся &#8212; назвать его.</p>
+<p>1004. Составить программу для тренировки памяти. Программа должна высветить на экране несколько точек, играющий &#8212; указать, в каком порядке эти точки были высвечены. Координаты точек выбираются в программе с помощью датчика случайных чисел.</p>
+<p>1005. Составить программу, помогающую в изучении колебаний математического маятника. Маятник должен двигаться на экране, совершая гармонические колебания, период которых выбран с помощью датчика случайных чисел. Играющий должен указать длину нити, на которой подвешен маятник. Ответ считается правильным, если ошибка не превышает 10 %.</p>
+<p>1006. Составить программу, помогающую в изучении движения тела, брошенного под углом к горизонту с некоторой начальной скоростью. Играющий, зная расстояние от человека, бросающего камень, до лунки и ширину лунки, должен задать такие значения угла а и начальной скорости и, чтобы камень попал в лунку. На экране должны изображаться поверхность земли, лунка, камень и траектория полета камня. Расстояние от человека, бросающего камень, до лунки и ширину лунки следует выбирать с помощью датчика случайных чисел.</p>
+<p>1007. Написать программу, играющую в "крестики &#8212; нолики".</p>
+<p>1008. Написать шахматную программу, играющую за белых: а) королем и ферзем против короля; б) королем и двумя ладьями против короля.</p>
+<p>1009. "100 спичек". Из кучки, первоначально содержащей 100 спичек, двое играющих поочередно берут по несколько спичек: не менее одной и не более десяти. Проигрывает взявший последнюю спичку.</p>
+<p>1010. В условие предыдущей задачи вносится изменение: взявший последнюю спичку выигрывает.</p>
+<p>1011. "Угадай число". Один из играющих задумывает число от 1 до 1000, другой пытается угадать его за десять вопросов вида: верно ли, что задуманное число больше такогото числа. Написать программу, играющую за отгадчика.</p>
+<p>1012. "Ним". Имеются три кучки спичек. Двое играющих по очереди делают ходы. Каждый ход заключается в том, что из одной какой &#8212; то кучки берется произвольное ненулевое число спичек. Выигрывает взявший последнюю спичку.</p>
+<p>1013 "Цзяньшидзы". Имеются две кучки камней. Двое играющих по очереди делают ходы. Каждый ход может состоять в одном из двух:
+1) берется произвольное ненулевое число камней из какой &#8212; то одной кучки;
+2) берется одновременно по одинаковому ненулевому числу камней из обеих кучек.</p>
+<p>Выигрывает взявший последний камень. Пара (а, V), где а и Ь &#8212; количество камней в кучках при a &lt; b, является проигрышной, если число а оканчивается в "фибоначчиевой" системе (см. задачу 604) четным числом нулей, а число Ь получается из а приписыванием еще одного нуля в конце.</p>
+</body>
+</html>

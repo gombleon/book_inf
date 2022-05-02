@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<link rel='stylesheet' type="text/css" href="style.css"></link>
+<meta name="author" content="leonid" />
+<meta name="description" content="триггер, защелка, память, регистр"/>
+<meta name="keywords" content="память" />
+<title>Защелки, триггеры, регистры</title>
+</head>
+<body>
+<p><a href="7_6.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="7_8.html">К следующему</a></p>
+<h1>7.7. Защелки, триггеры, регистры</h1>
+<p><a id='sr-zash'>Рассмотрим цифровую схему</a>, реализующую один бит памяти посредством &#34;запоминания&#34; предыдущих входных значений. Примером такой схемы является  <span class='teorema'>SR-защелка</span> на рис. 7.7.1, сконструированная из двух вентилей <a href='7_1.html#ne_ili'>НЕ-ИЛИ</a>. Аналогичные схемы можно построить из <a href='7_1.html#ne_i'>вентилей НЕ-И</a>. SR-защелка имеет два входа: S (Setting &#8212; установка), R (Resetting &#8212; сброс). Она также имеет два комплиментарных выхода: 
+<math   display='inline'>
+<mrow>
+<mi>Q</mi><mo>,</mo><mover><mi>Q</mi><mo>&#818;</mo></mover>
+</mrow>
+</math>.
+</p>
+<svg  height = "220px"  width = "250px">
+	<path stroke="#000000" fill="none" d="M80,60 Q100,40 80,20 Q120,20 140,40 Q120,60 80,60"/>
+	<text x="2" y="30" stroke="none" fill="#000000" font-size="14">S</text>
+	<circle cx="144" cy="40" r="4" fill="none" stroke="#000000" stroke-width="1" />
+	<line stroke="#000000" fill="none" x1='148' y1='40' x2='220' y2='40'/>
+	<line stroke="#000000" fill="none" x1='12' y1='25' x2='84' y2='25'/>
+	<polyline stroke="#000000" fill="none" points="84,135 50,135 50,110 180,65 180,40" /> 
+	<circle cx="180px" cy="40px" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+	<polyline stroke="#000000" fill="none" points="84,55 50,55 50,80 180,125 180,150" /> 
+	<circle cx="180px" cy="150px" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+	<line stroke="#000000" fill="none" x1='12' y1='165' x2='84' y2='165'/>	
+	<text x="2" y="168" stroke="none" fill="#000000" font-size="14">R</text>
+	<path stroke="#000000" fill="none" d="M80,170 Q100,150 80,130 Q120,130 140,150 Q120,170 80,170"/>
+	<circle cx="144" cy="150" r="4" fill="none" stroke="#000000" stroke-width="1" />
+	<line stroke="#000000" fill="none" x1='148' y1='150' x2='220' y2='150'/>
+	<text x="225" y="155" stroke="none" fill="#000000" font-size="14">Q</text>
+	<text x="225" y="45" stroke="none" fill="#000000" font-size="14">Q<tspan dy="-15" dx="-10">_</tspan></text>
+	<text x="45" y="200" stroke="none" fill="#000000" font-size="14">Рис. 7.7.1. SR-защелка</text>
+</svg>
+
+<p>Если 
+<math   display='inline'>
+	<mrow><mi>S</mi><mo>=</mo><mo>0</mo></mrow>
+	<mo>,</mo>
+	<mrow><mi>R</mi><mo>=</mo><mo>0</mo></mrow>
+</math>, то состояние защелки не детерминировано: она может находиться как в состоянии
+<math   display='inline'>
+	<mrow><mi>Q</mi><mo>=</mo><mo>0</mo></mrow>
+</math> (рис. 7.7.2), так и в состоянии
+<math   display='inline'>
+	<mrow><mi>Q</mi><mo>=</mo><mo>1</mo></mrow>
+</math> (рис. 7.7.3).   
+</p>
+<svg  height = "220px"  width = "300px">
+	<path stroke="#000000" fill="none" d="M80,60 Q100,40 80,20 Q120,20 140,40 Q120,60 80,60"/>
+	<text x="2" y="30" stroke="none" fill="#000000" font-size="14">0</text>
+	<circle cx="144" cy="40" r="4" fill="none" stroke="#000000" stroke-width="1" />
+	<line stroke="#000000" fill="none" x1='148' y1='40' x2='220' y2='40'/>
+	<line stroke="#000000" fill="none" x1='12' y1='25' x2='84' y2='25'/>
+	<polyline stroke="#000000" fill="none" points="84,135 50,135 50,110 180,65 180,40" /> 
+	<circle cx="180px" cy="40px" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+	<polyline stroke="#000000" fill="none" points="84,55 50,55 50,80 180,125 180,150" /> 
+	<circle cx="180px" cy="150px" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+	<line stroke="#000000" fill="none" x1='12' y1='165' x2='84' y2='165'/>	
+	<text x="2" y="168" stroke="none" fill="#000000" font-size="14">0</text>
+	<path stroke="#000000" fill="none" d="M80,170 Q100,150 80,130 Q120,130 140,150 Q120,170 80,170"/>
+	<circle cx="144" cy="150" r="4" fill="none" stroke="#000000" stroke-width="1" />
+	<line stroke="#000000" fill="none" x1='148' y1='150' x2='220' y2='150'/>
+	<text x="225" y="155" stroke="none" fill="#000000" font-size="14">0</text>
+	<text x="225" y="45" stroke="none" fill="#000000" font-size="14">1</text>
+	<text x="5" y="200" stroke="none" fill="#000000" font-size="14">Рис. 7.7.2. SR-защелка в состоянии 0</text>
+</svg>
+<svg  height = "220px"  width = "300px">
+	<path stroke="#000000" fill="none" d="M80,60 Q100,40 80,20 Q120,20 140,40 Q120,60 80,60"/>
+	<text x="2" y="30" stroke="none" fill="#000000" font-size="14">0</text>
+	<circle cx="144" cy="40" r="4" fill="none" stroke="#000000" stroke-width="1" />
+	<line stroke="#000000" fill="none" x1='148' y1='40' x2='220' y2='40'/>
+	<line stroke="#000000" fill="none" x1='12' y1='25' x2='84' y2='25'/>
+	<polyline stroke="#000000" fill="none" points="84,135 50,135 50,110 180,65 180,40" /> 
+	<circle cx="180px" cy="40px" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+	<polyline stroke="#000000" fill="none" points="84,55 50,55 50,80 180,125 180,150" /> 
+	<circle cx="180px" cy="150px" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+	<line stroke="#000000" fill="none" x1='12' y1='165' x2='84' y2='165'/>	
+	<text x="2" y="168" stroke="none" fill="#000000" font-size="14">0</text>
+	<path stroke="#000000" fill="none" d="M80,170 Q100,150 80,130 Q120,130 140,150 Q120,170 80,170"/>
+	<circle cx="144" cy="150" r="4" fill="none" stroke="#000000" stroke-width="1" />
+	<line stroke="#000000" fill="none" x1='148' y1='150' x2='220' y2='150'/>
+	<text x="225" y="155" stroke="none" fill="#000000" font-size="14">1</text>
+	<text x="225" y="45" stroke="none" fill="#000000" font-size="14">0</text>
+	<text x="5" y="200" stroke="none" fill="#000000" font-size="14">Рис. 7.7.3. SR-защелка в состоянии 1</text>
+</svg>
+<p>Входные сигналы
+<math   display='inline'>
+	<mrow><mi>S</mi><mo>=</mo><mo>1</mo></mrow>
+	<mo>,</mo>
+	<mrow><mi>R</mi><mo>=</mo><mo>0</mo></mrow>
+</math>
+определяют состояние защелки
+<math   display='inline'>
+<mrow>
+	<mrow><mi>Q</mi><mo>=</mo><mo>1</mo></mrow>
+	<mo>,</mo>
+	<mrow>
+		<mover><mi>Q</mi><mo>&#818;</mo></mover>
+		<mo>=</mo><mn>0</mn>
+	</mrow>
+</mrow>	
+</math>, а
+<math   display='inline'>
+	<mrow><mi>S</mi><mo>=</mo><mo>0</mo></mrow>
+	<mo>,</mo>
+	<mrow><mi>R</mi><mo>=</mo><mo>1</mo></mrow>
+</math> &#8212; состояние
+<math   display='inline'>
+<mrow>
+	<mrow><mi>Q</mi><mo>=</mo><mo>0</mo></mrow>
+	<mo>,</mo>
+	<mrow>
+		<mover><mi>Q</mi><mo>&#818;</mo></mover>
+		<mo>=</mo><mn>1</mn>
+	</mrow>
+</mrow>	
+</math> (см. интерактивную схему на рис. 7.7.4).
+</p>
+
+<p>Для входных сигналов
+<math   display='inline'>
+<mrow>
+	<mrow><mi>S</mi><mo>=</mo><mo>1</mo></mrow>
+	<mo>,</mo>
+	<mrow><mi>R</mi><mo>=</mo><mo>1</mo></mrow>
+</mrow>
+</math>
+единственным приемлемым вариантом состояния защелки будет
+<math   display='inline'>
+<mrow>
+	<mrow><mi>Q</mi><mo>=</mo><mo>0</mo></mrow>
+	<mo>,</mo>
+	<mrow>
+		<mover><mi>Q</mi><mo>&#818;</mo></mover>
+		<mo>=</mo><mn>0</mn>
+	</mrow>
+</mrow>	
+</math>.
+Одновременный перевод входных сигналов в 0 (что маловероятно) приводит схему в состояние неопределенности, и защелка выбирает устойчивое состояние произвольным образом. Если же один из входных сигналов принимает значение 0 раньше другого, то состояние защелки определяется оставшейся 1:
+<math   display='inline'>
+	<mrow><mi>S</mi><mo>=</mo><mo>1</mo></mrow>
+	<mo>,</mo>
+	<mrow><mi>R</mi><mo>=</mo><mo>0</mo></mrow>
+</math>
+определяют состояние защелки
+<math   display='inline'>
+<mrow>
+	<mrow><mi>Q</mi><mo>=</mo><mo>1</mo></mrow>
+	<mo>,</mo>
+	<mrow>
+		<mover><mi>Q</mi><mo>&#818;</mo></mover>
+		<mo>=</mo><mn>0</mn>
+	</mrow>
+</mrow>	
+</math>, а
+<math   display='inline'>
+	<mrow><mi>S</mi><mo>=</mo><mo>0</mo></mrow>
+	<mo>,</mo>
+	<mrow><mi>R</mi><mo>=</mo><mo>1</mo></mrow>
+</math> &#8212; состояние 
+<math   display='inline'>
+<mrow>
+	<mrow><mi>Q</mi><mo>=</mo><mo>0</mo></mrow>
+	<mo>,</mo>
+	<mrow>
+		<mover><mi>Q</mi><mo>&#818;</mo></mover>
+		<mo>=</mo><mn>1</mn>
+	</mrow>
+</mrow>	
+</math>.
+</p>
+
+<svg  height = "220px"  width = "350px">
+<script><![CDATA[
+
+function dd() {
+	idS=document.getElementById('idS');
+	idR=document.getElementById('idR');
+	idQ=document.getElementById('idQ');
+	idneQ=document.getElementById('idneQ');
+	if ((idS.firstChild.nodeValue=='1') && (idR.firstChild.nodeValue=='0')){
+			idQ.firstChild.nodeValue='1';	
+			idneQ.firstChild.nodeValue='0';
+	}
+	else {
+			if ((idS.firstChild.nodeValue=='0') && (idR.firstChild.nodeValue=='1')){
+				idQ.firstChild.nodeValue='0';	
+				idneQ.firstChild.nodeValue='1';
+			}
+			else {
+				if ((idS.firstChild.nodeValue=='1') && (idR.firstChild.nodeValue=='1')){
+					idQ.firstChild.nodeValue='0';	
+					idneQ.firstChild.nodeValue='0';
+				}			
+			}
+		}
+}
+
+	function calcS() {
+		idS=document.getElementById('idS');
+		idR=document.getElementById('idR');
+		idQ=document.getElementById('idQ');
+		idneQ=document.getElementById('idneQ');
+		if (idS.firstChild.nodeValue=='0')
+			idS.firstChild.nodeValue='1';
+		else
+			idS.firstChild.nodeValue='0';	
+		dd();
+}
+function calcR() {
+		idS=document.getElementById('idS');
+		idR=document.getElementById('idR');
+		idQ=document.getElementById('idQ');
+		idneQ=document.getElementById('idneQ');
+		if (idR.firstChild.nodeValue=='0')
+			idR.firstChild.nodeValue='1';
+		else
+			idR.firstChild.nodeValue='0';	
+		dd();
+
+} 
+]]></script>
+	<path stroke="#000000" fill="none" d="M80,60 Q100,40 80,20 Q120,20 140,40 Q120,60 80,60"/>
+	<text onclick="calcS()" id='idS' x="2" y="30" stroke="none" fill="#000000" font-size="14">0</text>
+	<circle cx="144" cy="40" r="4" fill="none" stroke="#000000" stroke-width="1" />
+	<line stroke="#000000" fill="none" x1='148' y1='40' x2='220' y2='40'/>
+	<line stroke="#000000" fill="none" x1='12' y1='25' x2='84' y2='25'/>
+	<polyline stroke="#000000" fill="none" points="84,135 50,135 50,110 180,65 180,40" /> 
+	<circle cx="180px" cy="40px" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+	<polyline stroke="#000000" fill="none" points="84,55 50,55 50,80 180,125 180,150" /> 
+	<circle cx="180px" cy="150px" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+	<line stroke="#000000" fill="none" x1='12' y1='165' x2='84' y2='165'/>	
+	<text onclick="calcR()" id='idR' x="2" y="168" stroke="none" fill="#000000" font-size="14">0</text>
+	<path stroke="#000000" fill="none" d="M80,170 Q100,150 80,130 Q120,130 140,150 Q120,170 80,170"/>
+	<circle cx="144" cy="150" r="4" fill="none" stroke="#000000" stroke-width="1" />
+	<line stroke="#000000" fill="none" x1='148' y1='150' x2='220' y2='150'/>
+	<text id='idQ' x="225" y="155" stroke="none" fill="#000000" font-size="14">0</text>
+	<text id='idneQ' x="225" y="45" stroke="none" fill="#000000" font-size="14">1</text>
+	<text x="2" y="200" stroke="none" fill="#000000" font-size="14">Рис. 7.7.4. Интерактивная схема SR-защелки</text>
+</svg>
+<p><a id='sr_sinh'>На рис. 7.7.5 представлена схема</a> <span class='teorema'>синхронной SR-защелки</span>, меняющей состояние только в определенные моменты:</p>
+
+<svg  height = "220px"  width = "450px">
+<path stroke="#000000" fill="none" d="M 160,10 C 188,10 188,38  160,38"  />
+<polyline stroke="#000000" fill="none" points="160,10 135,10 135,38 160,38" /> 
+<text x="70" y="20" stroke="none" fill="#000000" font-size="14">S</text>
+<text x="70" y="178" stroke="none" fill="#000000" font-size="14">R</text>
+<path stroke="#000000" fill="none" d="M 160,150 C 188,150 188,178  160,178"  />
+<polyline stroke="#000000" fill="none" points="160,150 135,150 135,178 160,178" />
+<polyline stroke="#000000" fill="none" points="135,33 120,33 120,155 135,155" />
+<line stroke="#000000" fill="none" x1='100' y1='94' x2='120' y2='94'/>
+<polyline stroke="#000000" fill="none" points="80,100 85,100 85,90 90,90 90,100 95,100" />
+<text x="10" y="90" stroke="none" fill="#000000" font-size="12">Тактовый<tspan dx='-63' dy='15'>генератор</tspan></text>
+<line stroke="#000000" fill="none" x1='80' y1='15' x2='135' y2='15'/>
+<line stroke="#000000" fill="none" x1='80' y1='173' x2='135' y2='173'/>
+<g transform='translate(150)'>
+	<path stroke="#000000" fill="none" d="M80,60 Q100,40 80,20 Q120,20 140,40 Q120,60 80,60"/>
+	<circle cx="144" cy="40" r="4" fill="none" stroke="#000000" stroke-width="1" />
+	<line stroke="#000000" fill="none" x1='148' y1='40' x2='220' y2='40'/>
+	<line stroke="#000000" fill="none" x1='32' y1='25' x2='84' y2='25'/>
+	<polyline stroke="#000000" fill="none" points="84,135 50,135 50,110 180,65 180,40" /> 
+	<circle cx="180px" cy="40px" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+	<polyline stroke="#000000" fill="none" points="84,55 50,55 50,80 180,125 180,150" /> 
+	<circle cx="180px" cy="150px" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+	<line stroke="#000000" fill="none" x1='32' y1='165' x2='84' y2='165'/>	
+	<path stroke="#000000" fill="none" d="M80,170 Q100,150 80,130 Q120,130 140,150 Q120,170 80,170"/>
+	<circle cx="144" cy="150" r="4" fill="none" stroke="#000000" stroke-width="1" />
+	<line stroke="#000000" fill="none" x1='148' y1='150' x2='220' y2='150'/>
+	<text x="225" y="155" stroke="none" fill="#000000" font-size="14">Q</text>
+	<text x="225" y="45" stroke="none" fill="#000000" font-size="14">Q<tspan dy="-15" dx="-10">_</tspan></text>
+</g>
+<text x="60" y="210" stroke="none" fill="#000000" font-size="14">Рис. 7.7.5. Синхронная SR-защелка</text>
+</svg>
+<p>Если на синхронизирующий вход подается сигнал <math   display='inline'><mn>0</mn></math>, то <a href='7_1.html#i'> вентили <math   display='inline'><mi>И</mi></math></a> на выход будут передавать сигнал <math   display='inline'><mn>0</mn></math>, и состояние защелки не будет зависеть от входов <math   display='inline'><mi>S</mi></math> и <math   display='inline'><mi>R</mi></math>. Если же на синхронизирующий вход подать <math   display='inline'><mn>1</mn></math>, то состояние защелки будет определяться входами <math   display='inline'><mi>S</mi></math> и <math   display='inline'><mi>R</mi></math>.</p>
+<p>На рис. 7.7.6 представлена интерактивная схема синхронной SR-защелки:</p>
+<script><![CDATA[
+
+function ddo() {
+	SS=document.getElementById('SS');
+	SR=document.getElementById('SR');
+	SQ=document.getElementById('SQ');
+	SneQ=document.getElementById('SneQ');
+	gen=document.getElementById('gen');
+	if (gen.firstChild.nodeValue=='1') {
+		if ((SS.firstChild.nodeValue=='1') && (SR.firstChild.nodeValue=='0')){
+			SQ.firstChild.nodeValue='1';	
+			SneQ.firstChild.nodeValue='0';
+		}
+		else {
+			if ((SS.firstChild.nodeValue=='0') && (SR.firstChild.nodeValue=='1')){
+				SQ.firstChild.nodeValue='0';	
+				SneQ.firstChild.nodeValue='1';
+			}
+			else {
+				if ((SS.firstChild.nodeValue=='1') && (SR.firstChild.nodeValue=='1')){
+					SQ.firstChild.nodeValue='0';	
+					SneQ.firstChild.nodeValue='0';
+				}			
+			}
+		}
+	}
+}
+
+function calcSS() {
+	SS=document.getElementById('SS');
+	SR=document.getElementById('SR');
+	SQ=document.getElementById('SQ');
+	SneQ=document.getElementById('SneQ');
+	gen=document.getElementById('gen');
+	if (SS.firstChild.nodeValue=='0') {
+		SS.firstChild.nodeValue='1';
+	}	 		
+  	else {	 		
+		SS.firstChild.nodeValue='0';
+	}
+	ddo();
+}
+function calcSR() {
+	SS=document.getElementById('SS');
+	SR=document.getElementById('SR');
+	SQ=document.getElementById('SQ');
+	SneQ=document.getElementById('SneQ');
+	gen=document.getElementById('gen');
+	if (SR.firstChild.nodeValue=='0') {
+		SR.firstChild.nodeValue='1';
+		}	 		
+  	else {	 		
+		SR.firstChild.nodeValue='0';
+	}
+	ddo();
+}
+function calcgen() {
+	SS=document.getElementById('SS');
+	SR=document.getElementById('SR');
+	SQ=document.getElementById('SQ');
+	SneQ=document.getElementById('SneQ');
+	gen=document.getElementById('gen');
+	if (gen.firstChild.nodeValue=='0') {
+		gen.firstChild.nodeValue='1';
+		}	 		
+  	else {	 		
+		gen.firstChild.nodeValue='0';
+	}
+	ddo();
+}
+
+]]></script>
+<svg  height = "220px"  width = "450px">
+<path stroke="#000000" fill="none" d="M 160,10 C 188,10 188,38  160,38"  />
+<polyline stroke="#000000" fill="none" points="160,10 135,10 135,38 160,38" /> 
+<text id='SS' onclick="calcSS('SS','SR','SQ','SneQ','gen')" x="70" y="20" stroke="none" fill="#000000" font-size="14">0</text>
+<text id='SR' onclick="calcSR('SS','SR','SQ','SneQ','gen')" x="70" y="178" stroke="none" fill="#000000" font-size="14">0</text>
+<path stroke="#000000" fill="none" d="M 160,150 C 188,150 188,178  160,178"  />
+<polyline stroke="#000000" fill="none" points="160,150 135,150 135,178 160,178" />
+<polyline stroke="#000000" fill="none" points="135,33 120,33 120,155 135,155" />
+<line stroke="#000000" fill="none" x1='100' y1='94' x2='120' y2='94'/>
+<polyline stroke="#000000" fill="none" points="70,100 75,100 75,90 80,90 80,100 85,100" />
+<text x="1" y="90" stroke="none" fill="#000000" font-size="12">Тактовый<tspan dx='-63' dy='15'>генератор</tspan></text>
+<text id='gen' onclick="calcgen('SS','SR','SQ','SneQ','gen')" x="87" y="98" stroke="none" fill="#000000" font-size="14">0</text>
+<line stroke="#000000" fill="none" x1='80' y1='15' x2='135' y2='15'/>
+<line stroke="#000000" fill="none" x1='80' y1='173' x2='135' y2='173'/>
+<g transform='translate(150)'>
+	<path stroke="#000000" fill="none" d="M80,60 Q100,40 80,20 Q120,20 140,40 Q120,60 80,60"/>
+	<circle cx="144" cy="40" r="4" fill="none" stroke="#000000" stroke-width="1" />
+	<line stroke="#000000" fill="none" x1='148' y1='40' x2='220' y2='40'/>
+	<line stroke="#000000" fill="none" x1='32' y1='25' x2='84' y2='25'/>
+	<polyline stroke="#000000" fill="none" points="84,135 50,135 50,110 180,65 180,40" /> 
+	<circle cx="180px" cy="40px" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+	<polyline stroke="#000000" fill="none" points="84,55 50,55 50,80 180,125 180,150" /> 
+	<circle cx="180px" cy="150px" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+	<line stroke="#000000" fill="none" x1='32' y1='165' x2='84' y2='165'/>	
+	<path stroke="#000000" fill="none" d="M80,170 Q100,150 80,130 Q120,130 140,150 Q120,170 80,170"/>
+	<circle cx="144" cy="150" r="4" fill="none" stroke="#000000" stroke-width="1" />
+	<line stroke="#000000" fill="none" x1='148' y1='150' x2='220' y2='150'/>
+	<text id='SQ' x="225" y="155" stroke="none" fill="#000000" font-size="14">0</text>
+	<text id='SneQ' x="225" y="45" stroke="none" fill="#000000" font-size="14">1</text>
+</g>
+<text x="60" y="210" stroke="none" fill="#000000" font-size="14">Рис. 7.7.6. Синхронная SR-защелка</text>
+</svg>
+<p><a id='sinh_d'>Для разрешения неопределенности</a>, связанной с входными сигналами 
+<math   display='inline'>
+	<mrow><mi>S</mi><mo>=</mo><mo>0</mo></mrow>
+	<mo>,</mo>
+	<mrow><mi>R</mi><mo>=</mo><mo>0</mo></mrow>
+</math> или 
+<math   display='inline'>
+	<mrow><mi>S</mi><mo>=</mo><mo>1</mo></mrow>
+	<mo>,</mo>
+	<mrow><mi>R</mi><mo>=</mo><mo>1</mo></mrow>
+</math>, используют так называемую <span class='teorema'>синхронную D-защелку</span> (см. рис. 7.7.7), которая имеет только один вход 
+<math   display='inline'>
+	<mi>D</mi>
+</math>. Если синхронизирующий вход хранит 1, то при подаче сигнала 1 на вход 
+<math   display='inline'>
+	<mi>D</mi>
+</math> защелка перейдет в состояние 1, а передача на вход
+ <math   display='inline'>
+	<mi>D</mi>
+</math>
+ сигнала 0 переводит защелку в состояние 0. Синхронная D-защелка представляет собой память в 1 бит. Для записи в память текущего значения входа 
+<math   display='inline'>
+	<mi>D</mi>
+</math> требуется положительный импульс по линии синхронизирующего сигнала.
+</p>
+
+<svg  height = "220px"  width = "450px">
+<path stroke="#000000" fill="none" d="M 160,10 C 188,10 188,38  160,38"  />
+<polyline stroke="#000000" fill="none" points="160,10 135,10 135,38 160,38" /> 
+<text x="10" y="20" stroke="none" fill="#000000" font-size="14">D</text>
+<path stroke="#000000" fill="none" d="M 160,150 C 188,150 188,178  160,178"  />
+<polyline stroke="#000000" fill="none" points="160,150 135,150 135,178 160,178" />
+<polyline stroke="#000000" fill="none" points="135,33 120,33 120,155 135,155" />
+<line stroke="#000000" fill="none" x1='100' y1='94' x2='120' y2='94'/>
+<circle cx="120" cy="94" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
+<polyline stroke="#000000" fill="none" points="80,100 85,100 85,90 90,90 90,100 95,100" />
+<polyline stroke="#000000" fill="none" points="40,15 40,173 60,173" />
+<polyline stroke="#000000" fill="none" points="60,167 60,179 67,173 60,167" />
+<circle cx="40" cy="15" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
+<circle cx="71" cy="173" r="4" fill="none" stroke="#000000" stroke-width="1" />
+<line stroke="#000000" fill="none" x1='25' y1='15' x2='135' y2='15'/>
+<line stroke="#000000" fill="none" x1='74' y1='173' x2='135' y2='173'/>
+<g transform='translate(150)'>
+	<path stroke="#000000" fill="none" d="M80,60 Q100,40 80,20 Q120,20 140,40 Q120,60 80,60"/>
+	<circle cx="144" cy="40" r="4" fill="none" stroke="#000000" stroke-width="1" />
+	<line stroke="#000000" fill="none" x1='148' y1='40' x2='220' y2='40'/>
+	<line stroke="#000000" fill="none" x1='32' y1='25' x2='84' y2='25'/>
+	<polyline stroke="#000000" fill="none" points="84,135 50,135 50,110 180,65 180,40" /> 
+	<circle cx="180px" cy="40px" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+	<polyline stroke="#000000" fill="none" points="84,55 50,55 50,80 180,125 180,150" /> 
+	<circle cx="180px" cy="150px" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+	<line stroke="#000000" fill="none" x1='32' y1='165' x2='84' y2='165'/>	
+	<path stroke="#000000" fill="none" d="M80,170 Q100,150 80,130 Q120,130 140,150 Q120,170 80,170"/>
+	<circle cx="144" cy="150" r="4" fill="none" stroke="#000000" stroke-width="1" />
+	<line stroke="#000000" fill="none" x1='148' y1='150' x2='220' y2='150'/>
+	<text x="225" y="155" stroke="none" fill="#000000" font-size="14">Q</text>
+	<text x="225" y="45" stroke="none" fill="#000000" font-size="14">Q<tspan dy="-15" dx="-10">_</tspan></text>
+</g>
+<text x="60" y="210" stroke="none" fill="#000000" font-size="14">Рис. 7.7.7. Синхронная D-защелка</text>
+</svg>
+<p>На рисунке 7.7.8 представлена интерактивная схема синхронной D-защелки:</p>
+<svg  height = "220px"  width = "450px">
+<script><![CDATA[
+
+function dz() {
+	DS=document.getElementById('DS');
+	DQ=document.getElementById('DQ');
+	DneQ=document.getElementById('DneQ');
+	Dgen=document.getElementById('Dgen');
+	if (Dgen.firstChild.nodeValue=='1') {
+		if (DS.firstChild.nodeValue=='1') {
+			DQ.firstChild.nodeValue='1';
+			DneQ.firstChild.nodeValue='0';
+		}	
+		else {
+			DQ.firstChild.nodeValue='0';
+			DneQ.firstChild.nodeValue='1';
+		}
+	}
+}
+
+function do_gen() {
+	Dgen=document.getElementById('Dgen');
+	if (Dgen.firstChild.nodeValue=='0')
+		Dgen.firstChild.nodeValue='1';
+	else
+		Dgen.firstChild.nodeValue='0';
+	dz();	
+}
+
+function do_S() {
+	DS=document.getElementById('DS');
+	if (DS.firstChild.nodeValue=='0')
+		DS.firstChild.nodeValue='1';
+	else
+		DS.firstChild.nodeValue='0';
+	dz();	
+}
+]]></script>
+<path stroke="#000000" fill="none" d="M 160,10 C 188,10 188,38  160,38"  />
+<polyline stroke="#000000" fill="none" points="160,10 135,10 135,38 160,38" /> 
+<text onclick='do_S()' id='DS' x="10" y="20" stroke="none" fill="#000000" font-size="14">0</text>
+<path stroke="#000000" fill="none" d="M 160,150 C 188,150 188,178  160,178"  />
+<polyline stroke="#000000" fill="none" points="160,150 135,150 135,178 160,178" />
+<polyline stroke="#000000" fill="none" points="135,33 120,33 120,155 135,155" />
+<line stroke="#000000" fill="none" x1='100' y1='94' x2='120' y2='94'/>
+<circle cx="120" cy="94" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
+<polyline stroke="#000000" fill="none" points="60,100 65,100 65,90 70,90 70,100 75,100" />
+<text onclick='do_gen()' id='Dgen' x="84" y="98" stroke="none" fill="#000000" font-size="14">0</text>
+<polyline stroke="#000000" fill="none" points="40,15 40,173 60,173" />
+<polyline stroke="#000000" fill="none" points="60,167 60,179 67,173 60,167" />
+<circle cx="40" cy="15" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
+<circle cx="71" cy="173" r="4" fill="none" stroke="#000000" stroke-width="1" />
+<line stroke="#000000" fill="none" x1='25' y1='15' x2='135' y2='15'/>
+<line stroke="#000000" fill="none" x1='74' y1='173' x2='135' y2='173'/>
+<g transform='translate(150)'>
+	<path stroke="#000000" fill="none" d="M80,60 Q100,40 80,20 Q120,20 140,40 Q120,60 80,60"/>
+	<circle cx="144" cy="40" r="4" fill="none" stroke="#000000" stroke-width="1" />
+	<line stroke="#000000" fill="none" x1='148' y1='40' x2='220' y2='40'/>
+	<line stroke="#000000" fill="none" x1='32' y1='25' x2='84' y2='25'/>
+	<polyline stroke="#000000" fill="none" points="84,135 50,135 50,110 180,65 180,40" /> 
+	<circle cx="180px" cy="40px" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+	<polyline stroke="#000000" fill="none" points="84,55 50,55 50,80 180,125 180,150" /> 
+	<circle cx="180px" cy="150px" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+	<line stroke="#000000" fill="none" x1='32' y1='165' x2='84' y2='165'/>	
+	<path stroke="#000000" fill="none" d="M80,170 Q100,150 80,130 Q120,130 140,150 Q120,170 80,170"/>
+	<circle cx="144" cy="150" r="4" fill="none" stroke="#000000" stroke-width="1" />
+	<line stroke="#000000" fill="none" x1='148' y1='150' x2='220' y2='150'/>
+	<text id='DQ' x="225" y="155" stroke="none" fill="#000000" font-size="14">0</text>
+	<text id='DneQ' x="225" y="45" stroke="none" fill="#000000" font-size="14">1</text>
+</g>
+<text x="10" y="210" stroke="none" fill="#000000" font-size="14">Рис. 7.7.8. Интерактивная схема синхронной D-защелки</text>
+</svg>
+<p>Всякая защелка запускается уровнем синхронизирующего сигнала. <span class='teorema'>Схема памяти, называемая <a id='trigger'>триггером</a> (flip-flop), меняет состояния при переходе синхронизирующего сигнала с 0 на 1 (на фронте) или с 1 на 0 (на спаде)</span>. В триггере длина синхронизирующего сигнала не имеет значения, важны только перепады сигнала. Поэтому возникает необходимость в генерировании коротких импульсов. На рисунке 7.7.9 представлена  схема, генерирующая короткие синхронизирующие импульсы:</p>
+<svg  height = "90px"  width = "400px">
+<g transform='translate(40)'>
+<path stroke="#000000" fill="none" d="M 160,10 C 188,10 188,38  160,38"  />
+<polyline stroke="#000000" fill="none" points="160,10 135,10 135,38 160,38" /> 
+<line stroke="#000000" fill="none" x1='180' y1='24' x2='220' y2='24'/>
+<text x="225" y="28" stroke="none" fill="#000000" font-size="14">d</text>
+<line stroke="#000000" fill="none" x1='100' y1='14' x2='135' y2='14'/>
+<text x="120" y="11" stroke="none" fill="#000000" font-size="14">b</text>
+<text x="120" y="45" stroke="none" fill="#000000" font-size="14">c</text>
+<circle cx="96" cy="14" r="4" fill="none" stroke="#000000" stroke-width="1" />
+<polyline stroke="#000000" fill="none" points="92,14 85,8 85,20 92,14" /> 
+<line stroke="#000000" fill="none" x1='20' y1='14' x2='85' y2='14'/>
+<text x="5" y="16" stroke="none" fill="#000000" font-size="14">a</text>
+<polyline stroke="#000000" fill="none" points="45,14 45,34 135,34" /> 
+<circle cx="45px" cy="14px" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+</g>
+<text x="2" y="70" stroke="none" fill="#000000" font-size="14">Рис. 7.7.9. Cхема генератора коротких импульсов</text>
+</svg>
+<p>При уровне сигнала 0 (отсутствии импульса) на входе <math   display='inline'><mi>a</mi></math> в точке входа <math   display='inline'><mi>b</mi></math> уровень сигнала будет равен 1, а в точке <math   display='inline'><mi>c</mi></math>, очевидно, уровень сигнала будет равен 0. Длинный импульс на вход <math   display='inline'><mi>c</mi></math> пройдет инвертор с некоторой задержкой. Сигнал в точку <math   display='inline'><mi>a</mi></math> придет с гораздо меньшей задержкой. Поэтому до прихода с инвертора сигнала 0 из точек <math   display='inline'><mi>b</mi></math> и <math   display='inline'><mi>c</mi></math> в вентиль <math   display='inline'><mi>И</mi></math> будут поступать сигналы уровня 1.  Так будет <a href='7_1.html#i'>вентилем <math   display='inline'><mi>И</mi></math></a> сгенерирован короткий импульс, длина &#57517; которого равна задержке инвертора. <a id='d_trigger'>Схема D-триггера</a> представлена на рисунке 7.7.10.</p>
+
+<svg  height = "220px"  width = "650px">
+<polyline stroke="#000000" fill="none" points="10,90 15,90 15,80 20,80 20,90 25,90" />
+<g transform='translate(100)'>
+<path stroke="#000000" fill="none" d="M 160,10 C 188,10 188,38  160,38"  />
+<polyline stroke="#000000" fill="none" points="160,10 135,10 135,38 160,38" /> 
+<text x="10" y="20" stroke="none" fill="#000000" font-size="14">D</text>
+<path stroke="#000000" fill="none" d="M 160,150 C 188,150 188,178  160,178"  />
+<polyline stroke="#000000" fill="none" points="160,150 135,150 135,178 160,178" />
+<polyline stroke="#000000" fill="none" points="135,33 120,33 120,155 135,155" />
+<line stroke="#000000" fill="none" x1='100' y1='94' x2='120' y2='94'/>
+<circle cx="120" cy="94" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
+
+<polyline stroke="#000000" fill="none" points="90,15 90,173 100,173" />
+<line stroke="#000000" fill="none" x1='115' y1='173' x2='135' y2='173'/>
+
+<polyline stroke="#000000" fill="none" points="100,167 100,179 107,173 100,167" />
+<circle cx="90" cy="15" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
+<circle cx="112" cy="173" r="4" fill="none" stroke="#000000" stroke-width="1" />
+<line stroke="#000000" fill="none" x1='25' y1='15' x2='135' y2='15'/>
+<g transform='translate(150)'>
+	<path stroke="#000000" fill="none" d="M80,60 Q100,40 80,20 Q120,20 140,40 Q120,60 80,60"/>
+	<circle cx="144" cy="40" r="4" fill="none" stroke="#000000" stroke-width="1" />
+	<line stroke="#000000" fill="none" x1='148' y1='40' x2='220' y2='40'/>
+	<line stroke="#000000" fill="none" x1='32' y1='25' x2='84' y2='25'/>
+	<polyline stroke="#000000" fill="none" points="84,135 50,135 50,110 180,65 180,40" /> 
+	<circle cx="180px" cy="40px" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+	<polyline stroke="#000000" fill="none" points="84,55 50,55 50,80 180,125 180,150" /> 
+	<circle cx="180px" cy="150px" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+	<line stroke="#000000" fill="none" x1='32' y1='165' x2='84' y2='165'/>	
+	<path stroke="#000000" fill="none" d="M80,170 Q100,150 80,130 Q120,130 140,150 Q120,170 80,170"/>
+	<circle cx="144" cy="150" r="4" fill="none" stroke="#000000" stroke-width="1" />
+	<line stroke="#000000" fill="none" x1='148' y1='150' x2='220' y2='150'/>
+	<text x="225" y="155" stroke="none" fill="#000000" font-size="14">Q</text>
+	<text x="225" y="45" stroke="none" fill="#000000" font-size="14">Q<tspan dy="-15" dx="-10">_</tspan></text>
+</g>
+</g>
+<g transform='translate(0,70)'>
+<path stroke="#000000" fill="none" d="M 160,10 C 188,10 188,38  160,38"  />
+<polyline stroke="#000000" fill="none" points="160,10 135,10 135,38 160,38" /> 
+<line stroke="#000000" fill="none" x1='180' y1='24' x2='220' y2='24'/>
+<line stroke="#000000" fill="none" x1='100' y1='14' x2='135' y2='14'/>
+<text x="120" y="11" stroke="none" fill="#000000" font-size="14">b</text>
+<text x="120" y="45" stroke="none" fill="#000000" font-size="14">c</text>
+<circle cx="96" cy="14" r="4" fill="none" stroke="#000000" stroke-width="1" />
+<polyline stroke="#000000" fill="none" points="92,14 85,8 85,20 92,14" /> 
+<line stroke="#000000" fill="none" x1='30' y1='14' x2='85' y2='14'/>
+<polyline stroke="#000000" fill="none" points="45,14 45,34 135,34" /> 
+<circle cx="45px" cy="14px" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+</g>
+<text x="160" y="210" stroke="none" fill="#000000" font-size="14">Рис. 7.7.10. Схема D-триггера</text>
+</svg>
+
+<p>На рисунке 7.7.11 размещена интерактивная схема D-триггера, изменяющего состояние на фронте синхронизирующего сигнала:</p>
+
+<svg  height = "220px"  width = "650px">
+<script><![CDATA[
+function signal() {
+	id11D=document.getElementById('id11D');
+	if (id11D.firstChild.nodeValue=='1') 
+		id11D.firstChild.nodeValue='0'
+	else 
+		id11D.firstChild.nodeValue='1';
+}
+function fin() {
+	id11a=document.getElementById('id11a');
+	id11b=document.getElementById('id11b');
+	id11c=document.getElementById('id11c');
+	id11a.firstChild.nodeValue='0';
+	id11c.firstChild.nodeValue='0';
+	id11b.firstChild.nodeValue='1';
+
+}
+function smena() {
+	id11b=document.getElementById('id11b');
+	if (id11b.firstChild.nodeValue=='1') 
+		id11b.firstChild.nodeValue='0';
+	else
+		id11b.firstChild.nodeValue='1';
+		setTimeout("fin()",1000);	
+}
+function impuls() {
+	id11D=document.getElementById('id11D');
+	id11a=document.getElementById('id11a');
+	id11b=document.getElementById('id11b');
+	id11c=document.getElementById('id11c');
+	id11Q=document.getElementById('id11Q');
+	id11neQ=document.getElementById('id11neQ');	
+	if (id11a.firstChild.nodeValue=='0') {
+		id11a.firstChild.nodeValue='1';
+		id11c.firstChild.nodeValue='1';
+		id11Q.firstChild.nodeValue=id11D.firstChild.nodeValue;
+		if (id11Q.firstChild.nodeValue=='0')
+			id11neQ.firstChild.nodeValue='1';
+		else
+			id11neQ.firstChild.nodeValue='0';	
+		setTimeout("smena()",2000);
+	}	
+	else {
+		id11a.firstChild.nodeValue='0';
+		id11c.firstChild.nodeValue='0';
+		setTimeout("smena()",2000);		
+	}	
+}
+
+]]></script>
+
+<text onclick='impuls()' id='id11a' x="12" y="88" stroke="none" fill="#000000" font-size="14">0</text>
+<g transform='translate(100)'>
+<path stroke="#000000" fill="none" d="M 160,10 C 188,10 188,38  160,38"  />
+<polyline stroke="#000000" fill="none" points="160,10 135,10 135,38 160,38" /> 
+<text onclick='signal()' id='id11D' x="10" y="20" stroke="none" fill="#000000" font-size="14">0</text>
+<path stroke="#000000" fill="none" d="M 160,150 C 188,150 188,178  160,178"  />
+<polyline stroke="#000000" fill="none" points="160,150 135,150 135,178 160,178" />
+<polyline stroke="#000000" fill="none" points="135,33 120,33 120,155 135,155" />
+<line stroke="#000000" fill="none" x1='100' y1='94' x2='120' y2='94'/>
+<circle cx="120" cy="94" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
+
+<polyline stroke="#000000" fill="none" points="90,15 90,173 100,173" />
+<line stroke="#000000" fill="none" x1='115' y1='173' x2='135' y2='173'/>
+
+<polyline stroke="#000000" fill="none" points="100,167 100,179 107,173 100,167" />
+<circle cx="90" cy="15" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
+<circle cx="112" cy="173" r="4" fill="none" stroke="#000000" stroke-width="1" />
+<line stroke="#000000" fill="none" x1='25' y1='15' x2='135' y2='15'/>
+<g transform='translate(150)'>
+	<path stroke="#000000" fill="none" d="M80,60 Q100,40 80,20 Q120,20 140,40 Q120,60 80,60"/>
+	<circle cx="144" cy="40" r="4" fill="none" stroke="#000000" stroke-width="1" />
+	<line stroke="#000000" fill="none" x1='148' y1='40' x2='220' y2='40'/>
+	<line stroke="#000000" fill="none" x1='32' y1='25' x2='84' y2='25'/>
+	<polyline stroke="#000000" fill="none" points="84,135 50,135 50,110 180,65 180,40" /> 
+	<circle cx="180px" cy="40px" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+	<polyline stroke="#000000" fill="none" points="84,55 50,55 50,80 180,125 180,150" /> 
+	<circle cx="180px" cy="150px" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+	<line stroke="#000000" fill="none" x1='32' y1='165' x2='84' y2='165'/>	
+	<path stroke="#000000" fill="none" d="M80,170 Q100,150 80,130 Q120,130 140,150 Q120,170 80,170"/>
+	<circle cx="144" cy="150" r="4" fill="none" stroke="#000000" stroke-width="1" />
+	<line stroke="#000000" fill="none" x1='148' y1='150' x2='220' y2='150'/>
+	<text id='id11Q' x="225" y="155" stroke="none" fill="#000000" font-size="14">0</text>
+	<text id='id11neQ' x="225" y="45" stroke="none" fill="#000000" font-size="14">1</text>
+</g>
+</g>
+<g transform='translate(0,70)'>
+<path stroke="#000000" fill="none" d="M 160,10 C 188,10 188,38  160,38"  />
+<polyline stroke="#000000" fill="none" points="160,10 135,10 135,38 160,38" /> 
+<line stroke="#000000" fill="none" x1='180' y1='24' x2='220' y2='24'/>
+<line stroke="#000000" fill="none" x1='100' y1='14' x2='135' y2='14'/>
+<text id='id11b' x="120" y="11" stroke="none" fill="#000000" font-size="14">1</text>
+<text id='id11c' x="120" y="45" stroke="none" fill="#000000" font-size="14">0</text>
+<circle cx="96" cy="14" r="4" fill="none" stroke="#000000" stroke-width="1" />
+<polyline stroke="#000000" fill="none" points="92,14 85,8 85,20 92,14" /> 
+<line stroke="#000000" fill="none" x1='30' y1='14' x2='85' y2='14'/>
+<polyline stroke="#000000" fill="none" points="45,14 45,34 135,34" /> 
+<circle cx="45px" cy="14px" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+</g>
+<text x="100" y="210" stroke="none" fill="#000000" font-size="14">Рис. 7.7.11. Интерактивная схема D-триггера</text>
+</svg>
+<p>На рисунке 7.7.12 представлены обозначения схем защелок: на рис. 7.7.12, а загружает состояние из линии D на фронте синхронизирующего импульса CK (Clock), а на рис. 7.7.12, б &#8212; на ее спаде:</p>
+<svg  height = "235px"  width = "400px">
+<rect x='30' y='30' height='150' width='100' stroke="#000000" fill="none"/>
+<line stroke="#000000" fill="none" x1='10' y1='60' x2='30' y2='60'/>
+<line stroke="#000000" fill="none" x1='10' y1='150' x2='30' y2='150'/>
+<line stroke="#000000" fill="none" x1='130' y1='60' x2='160' y2='60'/>
+<text x="40" y="65" stroke="none" fill="#000000" font-size="14">D</text>
+<text x="40" y="155" stroke="none" fill="#000000" font-size="14">CK</text>
+<text x="115" y="65" stroke="none" fill="#000000" font-size="14">Q</text>
+<g transform='translate(200)'>
+<rect x='30' y='30' height='150' width='100' stroke="#000000" fill="none"/>
+<line stroke="#000000" fill="none" x1='10' y1='60' x2='30' y2='60'/>
+<line stroke="#000000" fill="none" x1='10' y1='150' x2='22' y2='150'/>
+<line stroke="#000000" fill="none" x1='130' y1='60' x2='160' y2='60'/>
+<circle cx="26px" cy="150px" r="4" fill="none" stroke="#000000" stroke-width="1"/>
+<text x="40" y="65" stroke="none" fill="#000000" font-size="14">D</text>
+<text x="40" y="155" stroke="none" fill="#000000" font-size="14">CK</text>
+<text x="115" y="65" stroke="none" fill="#000000" font-size="14">Q</text>
+</g>
+<text x="70" y="200" stroke="none" fill="#000000" font-size="14">a</text>
+<text x="270" y="200" stroke="none" fill="#000000" font-size="14">б</text>
+<text x="50" y="230" stroke="none" fill="#000000" font-size="14">Рис. 7.7.12. Обозначения защелок</text>
+</svg>
+<p>На рисунке 7.7.13, а изображено обозначение триггера, изменяющего свое состояние на фронте синхронизирующего сигнала, а на рисунке 7.7.13, б &#8212; обозначение триггера изменяющего свое состояние на спаде синхронизирующего импульса:</p>
+<svg  height = "235px"  width = "400px">
+<rect x='30' y='30' height='150' width='100' stroke="#000000" fill="none"/>
+<line stroke="#000000" fill="none" x1='10' y1='60' x2='30' y2='60'/>
+<line stroke="#000000" fill="none" x1='10' y1='150' x2='30' y2='150'/>
+<line stroke="#000000" fill="none" x1='130' y1='60' x2='160' y2='60'/>
+<text x="40" y="65" stroke="none" fill="#000000" font-size="14">D</text>
+<text x="45" y="155" stroke="none" fill="#000000" font-size="14">CK</text>
+<polyline stroke="#000000" fill="none" points="30,145 40,150 30,155" /> 
+<text x="115" y="65" stroke="none" fill="#000000" font-size="14">Q</text>
+<g transform='translate(200)'>
+<rect x='30' y='30' height='150' width='100' stroke="#000000" fill="none"/>
+<line stroke="#000000" fill="none" x1='10' y1='60' x2='30' y2='60'/>
+<line stroke="#000000" fill="none" x1='10' y1='150' x2='22' y2='150'/>
+<line stroke="#000000" fill="none" x1='130' y1='60' x2='160' y2='60'/>
+<circle cx="26px" cy="150px" r="4" fill="none" stroke="#000000" stroke-width="1"/>
+<text x="40" y="65" stroke="none" fill="#000000" font-size="14">D</text>
+<text x="45" y="155" stroke="none" fill="#000000" font-size="14">CK</text>
+<polyline stroke="#000000" fill="none" points="30,145 40,150 30,155" /> 
+<text x="115" y="65" stroke="none" fill="#000000" font-size="14">Q</text>
+</g>
+<text x="70" y="200" stroke="none" fill="#000000" font-size="14">a</text>
+<text x="270" y="200" stroke="none" fill="#000000" font-size="14">б</text>
+<text x="50" y="230" stroke="none" fill="#000000" font-size="14">Рис. 7.7.13. Обозначения триггеров</text>
+</svg>
+<p>Многие защелки и триггеры имеют дополнительные входы: Set (установка) или Preset (предварительная установка), Reset (сброс) или Clear (очистка). Первый вход (Set или Preset) устанавливает 
+<math   display='inline'><mi>Q</mi><mo>=</mo><mn>1</mn></math>, а второй (Reset или Clear) &#8212; <math   display='inline'><mi>Q</mi><mo>=</mo><mn>0</mn></math>.
+</p>
+<h3>Упражнения</h3>
+<ol>
+<li>Каково состояние покоя входов S и R SR-защелки, построенной из двух <a href='7_1.html#ne_i'>вентилей НЕ-И</a>?</li>
+<li>Схема на рис. 7.7.10 представляет собой <a href='#trigger'>триггер</a>, который запускается на фронте синхронизирующего сигнала. Преобразуйте эту схему так, чтобы получить триггер, который запускается на спаде синхронизирующего сигнала.</li>
+<li>Дайте профессиональную оценку микросхеме из четырех D-триггеров.</li>
+</ol>
+
+
+<p><a href="7_6.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="7_8.html">К следующему</a></p>
+</body>			
+</html>

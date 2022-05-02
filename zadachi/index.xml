@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding= "UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Обложка</title> </head><body>
+<svg width="620" height="840" xmlns="http://www.w3.org/2000/svg">
+ <g transform="scale(2,2)">
+  <polygon points="1,80 80,419 299,419 299,80" fill="green" stroke="green"/>
+  <line x1="0" y1="40" x2="300" y2="40" fill="green" stroke-dasharray="1,10" stroke-width="3" stroke="green" stroke-linecap="round"/>
+  <text x="10" y="37" font-weight="bold" font-size="18">БИБЛИОТЕЧКА</text>
+  <text font-weight="bold" x="10" y="55" font-size="17">ПРОГРАММИСТА</text>
+  <text font-size="20" x="200" y="150" fill="white">Задачи</text>
+  <text font-size="20" x="40" y="170" fill="white">по программированию</text>
+  <line x1="200" y1="18" x2="225" y2="18" fill="green" stroke-dasharray="1,8" stroke-width="5" stroke="green" stroke-linecap="round"/>
+  <line x1="200" y1="26" x2="218" y2="26" fill="green" stroke-dasharray="1,8" stroke-width="5" stroke="green" stroke-linecap="round"/>
+  <line x1="200" y1="34" x2="242" y2="34" fill="green" stroke-dasharray="1,8" stroke-width="5" stroke="green" stroke-linecap="round"/>
+  <line x1="242" y1="18" x2="256" y2="34" fill="green" stroke-dasharray="1,8" stroke-width="5" stroke="green" stroke-linecap="round"/>
+  <line x1="260" y1="18" x2="300" y2="18" fill="green" stroke-dasharray="1,8" stroke-width="5" stroke="green" stroke-linecap="round"/>
+  <line x1="260" y1="26" x2="266" y2="26" fill="green" stroke-dasharray="1,8" stroke-width="5" stroke="green" stroke-linecap="round"/>
+  <line x1="278" y1="26" x2="300" y2="26" fill="green" stroke-dasharray="1,8" stroke-width="5" stroke="green" stroke-linecap="round"/>
+  <line x1="278" y1="34" x2="300" y2="34" fill="green" stroke-dasharray="1,8" stroke-width="5" stroke="green" stroke-linecap="round"/>
+  <line x1="200" y1="46" x2="225" y2="46" fill="green" stroke-dasharray="1,8" stroke-width="5" stroke="green" stroke-linecap="round"/>
+  <line x1="200" y1="54" x2="215" y2="54" fill="green" stroke-dasharray="1,8" stroke-width="5" stroke="green" stroke-linecap="round"/>
+  <line x1="200" y1="62" x2="215" y2="62" fill="green" stroke-dasharray="1,8" stroke-width="5" stroke="green" stroke-linecap="round"/>
+  <line x1="225" y1="54" x2="240" y2="54" fill="green" stroke-dasharray="1,8" stroke-width="5" stroke="green" stroke-linecap="round"/>
+  <line x1="225" y1="62" x2="255" y2="62" fill="green" stroke-dasharray="1,8" stroke-width="5" stroke="green" stroke-linecap="round"/>
+  <line x1="200" y1="54" x2="215" y2="54" fill="green" stroke-dasharray="1,8" stroke-width="5" stroke="green" stroke-linecap="round"/>
+  <line x1="253" y1="55" x2="253" y2="44" fill="green" stroke-dasharray="1,8" stroke-width="5" stroke="green" stroke-linecap="round"/>
+  <line x1="268" y1="46" x2="280" y2="46" fill="green" stroke-dasharray="1,8" stroke-width="5" stroke="green" stroke-linecap="round"/>
+  <line x1="276" y1="62" x2="298" y2="62" fill="green" stroke-dasharray="1,8" stroke-width="5" stroke="green" stroke-linecap="round"/>
+  <line x1="285" y1="54" x2="298" y2="54" fill="green" stroke-dasharray="1,8" stroke-width="5" stroke="green" stroke-linecap="round"/>
+  <line x1="294" y1="46" x2="298" y2="46" fill="green" stroke-dasharray="1,8" stroke-width="5" stroke="green" stroke-linecap="round"/>
+  <line x1="2" y1="95" x2="74" y2="420" fill="green" stroke-dasharray="1,8" stroke-width="5" stroke="green" stroke-linecap="round"/>
+  <line x1="1" y1="125" x2="66" y2="420" fill="green" stroke-dasharray="1,8" stroke-width="5" stroke="green" stroke-linecap="round"/>
+  <line x1="0" y1="155" x2="58" y2="420" fill="green" stroke-dasharray="1,8" stroke-width="5" stroke="green" stroke-linecap="round"/>
+  <line x1="0" y1="182" x2="50" y2="420" fill="green" stroke-dasharray="1,10" stroke-width="3" stroke="green" stroke-linecap="round"/>
+  <line x1="0" y1="215" x2="42" y2="420" fill="green" stroke-dasharray="1,8" stroke-width="5" stroke="green" stroke-linecap="round"/>
+  <line x1="0" y1="246" x2="34" y2="420" fill="green" stroke-dasharray="1,8" stroke-width="5" stroke="green" stroke-linecap="round"/>
+  <line x1="0" y1="282" x2="26" y2="420" fill="green" stroke-dasharray="1,8" stroke-width="5" stroke="green" stroke-linecap="round"/>
+  <polygon points="1,81 1,178 20,169" fill="white" stroke="white"/>
+  <polygon points="16,202 22,230 14,232 14,240 35,232 26,197" fill="white" stroke="white"/>
+  <polygon points="36,240 23,247 26,256 18,259 21,266 40,258" fill="white" stroke="white"/>
+  <polygon points="36,240 23,247 26,256 18,259 21,266 40,258" fill="white" stroke="white"/>
+  <polygon points="36,268 23,277 27,292 34,289 32,281 39,278" fill="white" stroke="white"/>
+  <polygon points="50,301 44,305 46,313 39,316 43,334 57,327" fill="white" stroke="white"/>
+  <polygon points="42,363 56,357 58,366 51,369 53,379 45,381" fill="white" stroke="white"/>
+  <polygon points="54,419 51,408 66,401 70,419" fill="white" stroke="white"/>
+  <polygon points="1,202 20,289 13,292 9,296 1,296" fill="white" stroke="white"/>
+  <polygon points="4,324 12,322 13,332 20,329 23,348 8,349" fill="white" stroke="white"/>
+  <polygon points="35,368 22,377 23,384 30,382 33,389 40,385" fill="white" stroke="white"/>
+  <polygon points="47,419 43,404 28,411 30,420" fill="white" stroke="white"/>
+  <rect x="0" y="0" width="300" height="420" fill="none" stroke="black"/>
+ </g>
+</svg>
+<br></br>
+<svg width="620" height="840" xmlns="http://www.w3.org/2000/svg">
+ <g transform="scale(2,2)">
+  <rect x="0" y="0" width="300" height="420" fill="none" stroke="black"/>
+  <text font-size="12" x="185" y="35">БИБЛИОТЕЧКА</text>
+  <text font-size="12" x="180" y="50">ПРОГРАММИСТА</text>
+  <line x1="10" y1="60" x2="290" y2="60" fill="none" stroke="black"/>
+  <text font-size="10" x="105" y="82">С.А. АБРАМОВ, Г.Г. ГНЕЗДИЛОВА</text>
+  <text font-size="10" x="115" y="95">Е.Н. КАПУСТИНА, М.И. СЕЛЮН</text>
+  <text font-size="20" x="10" y="150" font-weight="bold">ЗАДАЧИ</text>
+  <text font-size="20" x="10" y="175" font-weight="bold">ПО</text>
+  <text font-size="20" x="10" y="200" font-weight="bold">ПРОГРАММИРОВАНИЮ</text>
+  <text font-size="7" x="10" y="380">МОСКВА «НАУКА»</text>
+  <text font-size="7" x="10" y="390">ГЛАВНАЯ РЕДАКЦИЯ</text>
+  <text font-size="7" x="10" y="400">ФИЗИКО-МАТЕМАТИЧЕСКОЙ ЛИТЕРАТУРЫ</text>
+  <text font-size="7" x="10" y="410">1988</text>
+  <rect x="10" y="325" width="20" height="30" fill="none" stroke="black" stroke-linejoin="round" stroke-width="1"/>
+  <rect x="12" y="327" width="16" height="26" fill="none" stroke="black" stroke-linejoin="round" stroke-width="1"/>
+  <circle cx="21" cy="334" r="5" fill="none" stroke="black"/>
+  <line x1="17" y1="331" x2="13" y2="336" stroke-width="1" stroke="black"/>
+  <line x1="25" y1="337" x2="19" y2="343" stroke-width="1" stroke="black"/>
+  <line x1="16" y1="337" x2="13" y2="340" stroke-width="1" stroke="black"/>
+  <line x1="18" y1="338" x2="15" y2="342" stroke-width="1" stroke="black"/>
+  <polyline points="13,345 15,351 25,351 27,345" stroke-width="1" stroke="black" fill="none"/>
+  <polygon points="14,344 16,350 24,350 27,344" stroke-width="1" stroke="black" fill="none"/>
+  <line x1="20" y1="343" x2="20" y2="350" stroke-width="1" stroke="black"/>
+ </g>
+</svg>
+<br></br><br></br>
+ББК  22.18<br></br>
+     А16<br></br>
+УДК 519.6<br></br><br></br>
+С.А. Абрамов, Г.Г. Гнездилова, Е.Н. Капустина<br></br>
+М.И. Селюн. <b>Задачи по программированию</b> - М.: Наука. Гл.<br></br>
+ред. физ.-мат. лит., 1988. - 224 с.-ISBN 5-02-013774-X.<br></br>
+<font size="-1">Содержит подбор задач (более тысячи), предназначенных для<br></br>
+отработки основных приемов программирования. Большую часть <br></br>
+книги составляет раздел, содержащий задачи, не ориентированные на <br></br>
+какой-либо конкретный язык; соответствующие программы могут <br></br>
+быть написаны на том языке, который изучает читатель. Меньшая <br></br>
+часть посвящена задачам по языкам бейсик и паскаль.<br></br></font>
+       Для начинающих программистов, студентов вузов, пользовате-<br></br>
+лей ЭВМ.<br></br>
+       Ил. 128. Библиогр. 57 назв.<br></br><br></br>
+       Рецензент<br></br>
+       кандидат физико-математических наук <i>В.Н. Пильщиков<br></br><br></br>
+Абрамов Сергей Александрович, Гнездилова Галина Георгиевна<br></br>
+Капустина Елена Николаевна, Селюн Михаил Иванович</i><br></br><br></br>
+ЗАДАЧИ ПО ПРОГРАММИРОВАНИЮ<br></br>
+«Библиотечка программиста», выпуск 56<br></br>
+Редакторы <i>И.А. Руднев, О.И. Сухова</i><br></br>
+Художественный редактор <i>Г.М. Коровина</i><br></br>
+Технический редактор <i>В.М. Кондакова</i><br></br>
+Корректоры <i>Г.В. Подвольская, Т.С. Вайсберг</i><br></br><br></br>
+ИБ № 32643<br></br>
+<b>_____________________________________________________________________________</b><br></br>
+<font size="-1">Сдано в набор 23.02.88. Подписано к печати 11.08.88. Т-17759.<br></br>
+Формат 84х108/32. Бумага тип. № 2. Гарнитура<br></br>
+литературная. Печать высокая. Усл. печ. л. 11,76.<br></br>
+Усл. кр.-отт. 12,8. Уч.-изд. л. 13,1.<br></br>
+Тираж 180 000 экз. Заказ № 8-454. Цена 80 к.<br></br>
+<b>_____________________________________________________________________________</b><br></br>
+Ордена Трудового Красного Знамени издательство «НАУКА»<br></br>
+Главная редакция физико-математической литературы<br></br>
+117071 Москва В-71, Ленинский проспект, 15<br></br>
+<b>_____________________________________________________________________________</b><br></br>
+Ордена Октябрьской Революции и ордена Трудового<br></br>
+Красного Знамени МПО «Первая Образцовая<br></br>
+типография» имени А.А. Жданова Союзполиграфпрома<br></br>
+при Государственном комитете СССР по делам<br></br>
+издательств, полиграфии и книжной торговли.<br></br>
+113054 Москва, Валовая, 28<br></br>
+<b>_____________________________________________________________________________</b><br></br>
+Отпечатано в полиграфкомбинате ЦК ЛКСМУ «Молодь» ордена<br></br>
+Трудового Красного Знамени ИПО ЦК ВЛКСМ «Молодая гвардия»<br></br>
+252119 Киев, ул. Пархоменко, 38-44.<br></br><br></br></font>
+<svg width="700" height="100" xmlns="http://www.w3.org/2000/svg">
+ <g>
+  <text x="5" y="24" font-size="20">A</text>
+  <text x="25" y="15" font-size="20">_________________</text>
+  <text x="25" y="16" font-size="20">1702070000-171</text>
+  <text x="45" y="36" font-size="20">053(02)-88</text>
+  <text x="205" y="22" font-size="20">18-88</text>
+  <text x="5" y="70" font-size="25">ISBN 5-02-013774-X</text>
+  <text x="350" y="22" font-size="25">©</text>
+  <text x="380" y="20" font-size="16">Издательство «Наука».</text>
+  <text x="380" y="38" font-size="16">Главная редакция</text>
+  <text x="380" y="56" font-size="16">физико-математической</text>
+  <text x="380" y="74" font-size="16">литературы, 1988</text>
+ </g>
+</svg><br></br><br></br><br></br>
+<center><font size="+3">Оглавление</font></center><br></br><br></br>
+§1 <a href="1.html">Арифметика действительных чисел. Вычисления по формулам</a><br></br>
+§2 <a href="2.html">Разветвления</a><br></br>
+§3 <a href="3.html">Простейшая целочисленная арифметика</a><br></br>
+§4 <a href="4.html">Простейшие циклы</a><br></br>
+§5 <a href="5.html">Простейшие графические построения</a><br></br>
+§6 <a href="6.html">Пошаговый ввод данных и вывод результатов</a><br></br>
+§7 <a href="7.html">Сочетания цикла и разветвления</a><br></br>
+§8 <a href="8.html">Обработка последовательностей символов</a><br></br>
+§9 <a href="9.html">Вычисления с хранением последовательности значений</a><br></br>
+§10 <a href="10.html">Вложенные циклы</a><br></br>
+§11 <a href="11.html">Вложенные циклы в матричных задачах</a><br></br>
+§12 <a href="12.html">Использoвание процедур</a><br></br>
+§13 <a href="13.html">Файлы</a><br></br>
+§14 <a href="14.html">Вычисление с хранением последовательностей, число членов которых зависит от исходных данных</a><br></br>
+§15 <a href="15.html">Целые числа</a><br></br>
+§16 <a href="16.html">Системы счисления</a><br></br>
+§17 <a href="17.ml">Геометрия</a><br></br>
+§18 <a href="18.html">Сортировка массивов и файлов</a><br></br>
+§19 <a href="19.xml">Многочлены</a><br></br>
+§20 <a href="20.html">Преобразование и построение матриц</a><br></br>
+§21 <a href="21.html">Матричная алгебра</a><br></br>
+§22 <a href="22.html">Численные методы</a><br></br>
+§23 <a href="23.xml">Случайные числа</a><br></br>
+§24 <a href="24.xml">Вычисления с некоторой точностью</a><br></br>
+§25 <a href="25.xml">Физика</a><br></br>
+§26 <a href="26.xml">Биология</a><br></br>
+§27 <a href="27.html">Тексты</a><br></br>
+§30 <a href="30.xml">Графика</a><br></br>
+§31 <a href="31.xml">Звукогенерация</a><br></br>
+§32 <a href="32.xml">Графика и движение. Мультипликация</a><br></br>
+§33 <a href="33.xml">Игры</a><br></br>
+§34 <a href="34.xml">Предметы и группы предметов с фиксированными свойствами</a><br></br>
+§35 <a href="35.html">Перебор и его сокращение</a><br></br>
+§36 <a href="36.ntml">Некоторые примеры программирования</a><br></br>
+</body>
+</html>

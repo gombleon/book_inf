@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<link rel='stylesheet' type='text/css' href='style.css' />
+<meta name='author' content='leonid' />
+<title>Циклы</title>
+</head>
+<body>
+<p><a href="8_6.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_8.html">К следующему</a> </p>
+<h2>8.7. Циклы</h2>
+<p>Оператор цикла FOR описывает выполнение операторной последовательности, повторяющееся для последовательности значений, присваиваемых целой переменной, называемой управляющей переменной цикла (или индексом).</p>
+<p>Синтаксис оператора цикла <span class="termin">FOR</span>:</p>
+<p class='ind0'><span class="termin">FOR индекс:= начальное_значение TO конечное_значение [BY шаг] DO</span></p>
+<p class='ind1'><span class="termin">последовательность_операторов</span></p>
+<p class='ind0'><span class="termin">END;</span></p>
+<p>Оператор цикла WHILE описывает выполнение операторной последовательности, повторяющееся, пока некое логическое выражение (его охрана) дает TRUE. Охрана проверяется заново перед каждым вычислением операторной последовательности..</p>
+<p>Синтаксис оператора цикла <span class="termin">WHILE</span>:</p>
+<p class='ind0'><span class="termin">WHILE охрана DO</span></p>
+<p class='ind1'><span class="termin">последовательность_операторов</span></p>
+<p class='ind0'><span class="termin">END;</span></p>
+<p>Оператор цикла REPEAT описывает выполнение операторной последователь­ности, повторяющееся до тех пор, пока некое логическое выражение не даст TRUE. Последовательность выполняется хотя бы один раз.</p>
+<p>Синтаксис оператора цикла <span class="termin">REPEAT</span>:</p>
+<p class='ind0'><span class="termin">REPEAT</span></p>
+<p class='ind1'><span class="termin">последовательность_операторов</span></p>
+<p class='ind0'><span class="termin">UNTIL логическое_выражение;</span></p>
+<p>Оператор LOOP описывает повторяющееся выполнение операторной после­довательности. Оно прекращается выполнением оператора выхода EXIT внутри этой последовательности.</p>
+<p>Синтаксис оператора цикла <span class="termin">LOOP</span>:</p>
+<p class='ind0'><span class="termin">LOOP</span></p>
+<p class='ind1'><span class="termin">последовательность_операторов</span></p>
+<p class='ind0'><span class="termin">END;</span></p>
+<p><span class="primer">Пример 8.7.1</span>. Дано целое число а и натуральное (целое положительное) число n. Составить программу вычисления степени
+<math display='inline'><msup><mi>a</mi><mi>n</mi></msup></math>.</p>
+<p>Самый простой вариант программы:</p>
+<code>
+<p class='ind0'>MODULE  степень;</p>
+<p class='ind1'>IMPORT  Log := StdLog,  In := i21sysIn,  Math;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>VAR stepen, a, n, i: INTEGER;</p>  
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>In.Open;</p>
+<p class='ind2'>ASSERT(In.Done);</p>
+<p class='ind2'>In.Int(n);</p>
+<p class='ind2'>ASSERT(In.Done & (n>0));</p>
+<p class='ind2'>In.Int(a);</p>
+<p class='ind2'>ASSERT(In.Done);</p>
+<p class='ind2'>stepen:=1;</p>
+<p class='ind2'>i:=0;</p>
+<p class='ind2'>WHILE (i &lt; n) DO</p>
+<p class='ind3'>stepen:=stepen*a;</p>
+<p class='ind3'>INC(i)</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>Log.Int(a);</p>
+<p class='ind2'>Log.String('^');</p>
+<p class='ind2'>Log.Int(n);</p>
+<p class='ind2'>Log.String(' = ');</p>
+<p class='ind2'>Log.Int(stepen);</p>
+<p class='ind2'>Log.Ln</p>
+<p class='ind1'>END do;</p>
+<p class='ind0'>END степень.</p>
+<table>
+<tr>
+<td align='right' valign='bottom'>
+<svg width='35' height='40'>
+<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+</svg>
+</td>
+<td align='left' valign='middle'>степень.do 4 5</td>
+</tr>
+</table>
+</code>
+<p>Для реализации программы требуется n операций присваивания и n+1 операция сравнения.</p>
+<p>Известно, что компьютер операцию сравнения двух чисел выполняет быстрее, если одно из чисел совпадает с нулем. Поэтому более оптимальный вариант программы такой:</p>
+<code>
+<p class='ind0'>MODULE  степень1;</p>
+<p class='ind1'>IMPORT  Log := StdLog,  In := i21sysIn,  Math;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>VAR stepen, a, n, i: INTEGER;</p>  
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>In.Open;</p>
+<p class='ind2'>ASSERT(In.Done);</p>
+<p class='ind2'>In.Int(n);</p>
+<p class='ind2'>ASSERT(In.Done & (n>0));</p>
+<p class='ind2'>In.Int(a);</p>
+<p class='ind2'>ASSERT(In.Done);</p>
+<p class='ind2'>stepen:=1;</p>
+<p class='ind2'>i:=n;</p>
+<p class='ind2'>WHILE (i#0) DO</p>
+<p class='ind3'>stepen:=stepen*a;</p>
+<p class='ind3'>DEC(i)</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>Log.Int(a);</p>
+<p class='ind2'>Log.String('^');</p>
+<p class='ind2'>Log.Int(n);</p>
+<p class='ind2'>Log.String(' = ');</p>
+<p class='ind2'>Log.Int(stepen);</p>
+<p class='ind2'>Log.Ln</p>
+<p class='ind1'>END do;</p>
+<p class='ind0'>END степень1.</p>
+<table>
+<tr>
+<td align='right' valign='bottom'>
+<svg width='35' height='40'>
+<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+</svg>
+</td>
+<td align='left' valign='middle'>степень1.do 4 5</td>
+</tr>
+</table>
+</code>
+<p>Самый оптимальный вариант программы:</p>
+<code>
+<p class='ind0'>MODULE  степень1;</p>
+<p class='ind1'>IMPORT  Log := StdLog,  In := i21sysIn,  Math;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>VAR stepen, a, n, i, b: INTEGER;</p>  
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>In.Open;</p>
+<p class='ind2'>ASSERT(In.Done);</p>
+<p class='ind2'>In.Int(n);</p>
+<p class='ind2'>ASSERT(In.Done & (n>0));</p>
+<p class='ind2'>In.Int(a);</p>
+<p class='ind2'>ASSERT(In.Done);</p>
+<p class='ind2'>stepen:=1;</p>
+<p class='ind2'>i:=n;</p>
+<p class='ind2'>b:=a;</p>
+<p class='ind2'>WHILE (i#0) DO</p>
+<p class='ind3'>IF (i MOD 2=0) THEN</p>
+<p class='ind4'>b:=b*b;</p>
+<p class='ind4'>i:=i DIV 2;</p>
+<p class='ind3'>ELSE</p>
+<p class='ind4'>stepen:=stepen*b;</p>
+<p class='ind4'>DEC(i)</p>
+<p class='ind3'>END;</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>Log.Int(a);</p>
+<p class='ind2'>Log.String('^');</p>
+<p class='ind2'>Log.Int(n);</p>
+<p class='ind2'>Log.String(' = ');</p>
+<p class='ind2'>Log.Int(stepen);</p>
+<p class='ind2'>Log.Ln</p>
+<p class='ind1'>END do;</p>
+<table>
+<tr>
+<td align='right' valign='bottom'>
+<svg width='35' height='40'>
+<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+</svg>
+</td>
+<td align='left' valign='middle'>степень1.do 4 5</td>
+</tr>
+</table>
+
+<p class='ind0'>степень1.do 4 5</p>
+</code>
+<p>Каждый второй раз (не реже) будет выполняться первый вариант оператора выбора (если k нечётно, то после вычитания единицы становится чётным), так что за два цикла величина k уменьшается по крайней мере вдвое. Тем самым для вычисления степени
+<math display='inline'>
+	<msup><mi>a</mi><mi>n</mi></msup>
+</math> потребуется
+<math display='inline'>
+	<mi>C</mi>
+	<mo>&#x2061;</mo>
+	<msub><mi>log</mi><mn>2</mn></msub>
+	<mo>&#x2061;</mo>
+	<mi>n</mi>
+</math>
+ операций присваивания для некоторой константы C. Такого же порядка будет количество операций сравнения. Другими словами, при росте показателя n количество операций присваивания (сравнения) будет расти с логарифмической скоростью.</p>
+ <p>Наименьшее количество операций присваивания, равное 
+ <math display='inline'>
+	<msub><mi>log</mi><mn>2</mn></msub>
+	<mo>&#x2061;</mo>
+	<mi>n</mi>
+</math>,
+ потребуется в случае, когда показатель <math display='inline'><mi>n</mi></math> есть степень числа 2.</p>
+ <p>Таким образом, для функции сложности алгоритма справедлива асимптотическая оценка 
+ <math>
+<mrow><mi>f</mi><mo>&#x2061;</mo><mo>(</mo><mi>n</mi><mo>)</mo></mrow>
+<mo>&#8712;</mo>
+<mrow>
+<mi>&#952;</mi><mo>&#x2061;</mo><mo>(</mo>
+<mrow><msub><mi>log</mi><mn>2</mn></msub>
+	<mo>&#x2061;</mo>
+	<mi>n</mi></mrow>
+<mo>)</mo>
+</mrow>
+</math>.
+ 
+ </p>
+<p><span class="primer">Пример 8.7.2</span>. Составить программу вычисления наибольшего общего делителя заданных целых неотрицательных чисел 
+<math display='inline'><mi>a</mi></math> и <math display='inline'><mi>b</mi></math>, не равных нулю одновременно.
+</p>
+<p>Самый простой вариант программы такой:</p>
+<code>
+<p class='ind0'>MODULE z13;</p>
+<p class='ind1'>IMPORT  Log := StdLog,  In := i21sysIn,  Math;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>VAR  a, b, k: INTEGER;</p>
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>In.Open;</p>
+<p class='ind2'>ASSERT(In.Done);</p>
+<p class='ind2'>In.Int(a);</p>
+<p class='ind2'>ASSERT(In.Done & (a>=0));</p>
+<p class='ind2'>In.Int(b);</p>
+<p class='ind2'>ASSERT(In.Done & (b>0));</p>
+<p class='ind2'>IF a>b THEN</p>
+<p class='ind3'>k:=a</p>		
+<p class='ind2'>ELSE</p>
+<p class='ind3'>k:=b</p>		
+<p class='ind2'>END;</p>
+<p class='ind2'>WHILE  ~((a MOD k=0) & (b MOD k=0)) DO</p>
+<p class='ind3'>DEC(k)</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>Log.Int(k);</p>
+<p class='ind2'>Log.Ln</p>
+<p class='ind1'>END do;</p>
+<p class='ind0'>END z13.</p>
+<table>
+<tr>
+<td align='right' valign='bottom'>
+<svg width='35' height='40'>
+<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+</svg>
+</td>
+<td align='left' valign='middle'>z13.do 64 76</td>
+</tr>
+</table>
+</code>
+<p>Функция временной сложности программы будет асимптотически ограничена сверху некоторой линейной функцией от максимума заданных чисел <math display='inline'><mi>a</mi></math> и <math display='inline'><mi>b</mi></math>.</p>
+
+<p>В следующем варианте программы используем цикл REPEAT, что несколько упростит охрану цикла:</p>
+<code>
+<p class='ind0'>MODULE z13_1;</p>
+<p class='ind1'>IMPORT  Log := StdLog,  In := i21sysIn,  Math;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>VAR  a, b, k: INTEGER;</p>
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>In.Open;</p>
+<p class='ind2'>ASSERT(In.Done);</p>
+<p class='ind2'>In.Int(a);</p>
+<p class='ind2'>ASSERT(In.Done & (a>=0));</p>
+<p class='ind2'>In.Int(b);</p>
+<p class='ind2'>ASSERT(In.Done & (b>0));</p>
+<p class='ind2'>IF a>b THEN</p>
+<p class='ind3'>k:=a</p>		
+<p class='ind2'>ELSE</p>
+<p class='ind3'>k:=b</p>		
+<p class='ind2'>END;</p>
+<p class='ind2'>REPEAT</p>
+<p class='ind3'>DEC(k);</p>					
+<p class='ind2'>UNTIL (a MOD k=0) & (b MOD k=0);</p>		
+<p class='ind2'>Log.Int(k);</p>
+<p class='ind2'>Log.Ln</p>
+<p class='ind1'>END do;</p>
+<p class='ind0'>END z13_1.</p>
+<table>
+<tr>
+<td align='right' valign='bottom'>
+<svg width='35' height='40'>
+<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+</svg>
+</td>
+<td align='left' valign='middle'>z13_1.do 64 76</td>
+</tr>
+</table>
+</code>
+
+<p>Рассмотрим алгоритм Евклида вычисления наибольшего общего делителя
+<math display='inline'><mi>НОД</mi><mo>&#x2061;</mo><mfenced><mi>a</mi><mi>b</mi></mfenced></math>
+ натуральных чисел 
+<math display='inline'><mi>a</mi></math> и <math display='inline'><mi>b</mi></math>. Без ограничения общности полагаем, что 
+<math display='inline'><mi>a</mi><mo>&#8805;</mo><mi>b</mi></math>. Последовательным вычитанием из числа 
+<math display='inline'><mi>a</mi></math> число <math display='inline'><mi>b</mi></math>
+получим представление  
+<math display='inline'>
+	<mi>a</mi><mo>=</mo>
+	<mrow>
+		<mi>b</mi><mo>&#x2062;</mo><mi>d</mi><mo>+</mo><mi>r</mi>
+	</mrow>
+</math>, где <math display='inline'><mi>r</mi><mo>&lt;</mo><mi>b</mi></math>.
+Если <math display='inline'><mi>r</mi><mo>=</mo><mn>0</mn></math>, то 
+<math display='inline'><mi>НОД</mi><mo>&#x2061;</mo><mfenced><mi>a</mi><mi>b</mi></mfenced>
+<mo>=</mo>
+<mi>b</mi>
+</math>, в противном случае
+<math display='inline'>
+	<mi>НОД</mi><mo>&#x2061;</mo><mfenced><mi>a</mi><mi>b</mi></mfenced>
+	<mo>=</mo>
+	<mi>НОД</mi><mo>&#x2061;</mo><mfenced><mi>b</mi><mi>r</mi></mfenced>
+</math>, и задача сводится к нахождению 
+<math display='inline'><mi>НОД</mi><mo>&#x2061;</mo><mfenced><mi>b</mi><mi>r</mi></mfenced></math>. Описанный процесс продолжается до тех пор, пока не получим искомое значение <math display='inline'><mi>НОД</mi><mo>&#x2061;</mo><mfenced><mi>a</mi><mi>b</mi></mfenced></math>.
+</p>
+<p>Вариант реализации алгоритма Евклида:</p>
+<code>
+<p class='ind0'>MODULE z13_2;</p>
+<p class='ind1'>IMPORT  Log := StdLog,  In := i21sysIn,  Math;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>VAR  a, b, k: INTEGER;</p>
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>In.Open;</p>
+<p class='ind2'>ASSERT(In.Done);</p>
+<p class='ind2'>In.Int(a);</p>
+<p class='ind2'>ASSERT(In.Done & (a>0));</p>
+<p class='ind2'>In.Int(b);</p>
+<p class='ind2'>ASSERT(In.Done & (b>0));</p>
+<p class='ind2'>REPEAT</p>
+<p class='ind3'>IF a>b THEN</p>
+<p class='ind4'>a:=a-b</p>
+<p class='ind3'>ELSE</p>
+<p class='ind4'>b:=b-a</p>
+<p class='ind3'>END;</p>
+<p class='ind2'>UNTIL ((a=0) OR (b=0));</p>
+<p class='ind2'>IF a=0 THEN</p>
+<p class='ind3'>k:=b</p>
+<p class='ind2'>ELSE</p>
+<p class='ind3'>k:=a</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>Log.Int(k);</p>
+<p class='ind2'>Log.Ln</p>
+<p class='ind1'>END do;</p>
+<p class='ind0'>END z13_2.</p>
+<table>
+<tr>
+<td align='right' valign='bottom'>
+<svg width='35' height='40'>
+<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+</svg>
+</td>
+<td align='left' valign='middle'>z13_2.do 64 76</td>
+</tr>
+</table>
+</code>
+<p>В худшем случае алгоритм Евклида потребует столько же операций, что и предыдущая программа.</p>
+<p>Ниже приведен вариант алгоритма Евклида, использующий соотношения 
+<math display='inline'>
+	<mi>НОД</mi><mo>&#x2061;</mo>
+	<mfenced>
+		<mrow><mn>2</mn><mo>&#x2062;</mo><mi>a</mi></mrow>
+		<mrow><mn>2</mn><mo>&#x2062;</mo><mi>b</mi></mrow>
+	</mfenced>
+	<mo>=</mo>
+	<mrow>
+		<mn>2</mn><mo>&#x2062;</mo>
+		<mrow>
+			<mi>НОД</mi><mo>&#x2061;</mo><mfenced><mi>a</mi><mi>b</mi></mfenced>
+		</mrow>	
+	</mrow>
+</math>,
+<math display='inline'>
+	<mi>НОД</mi><mo>&#x2061;</mo>
+	<mfenced>
+		<mrow><mn>2</mn><mo>&#x2062;</mo><mi>a</mi></mrow>
+		<mi>b</mi>
+	</mfenced>
+	<mo>=</mo>
+	<mrow>
+		<mi>НОД</mi><mo>&#x2061;</mo><mfenced><mi>a</mi><mi>b</mi></mfenced>
+	</mrow>
+</math>
+ при нечетном b, не включающий деления с остатком, а использующий лишь деление на 2 и проверку четности. (Число действий будет порядка <math display='inline'>
+	<mi>log</mi><mo>&#x2061;</mo><mi>n</mi>
+</math>
+для исходных данных, не превосходящих n.)
+</p>
+<code>
+<p class='ind0'>MODULE z13_3;</p>
+<p class='ind1'>IMPORT  Log := StdLog,  In := i21sysIn,  Math;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>VAR  a, b, k: INTEGER;</p>
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>In.Open;</p>
+<p class='ind2'>ASSERT(In.Done);</p>
+<p class='ind2'>In.Int(a);</p>
+<p class='ind2'>ASSERT(In.Done & (a>0));</p>
+<p class='ind2'>In.Int(b);</p>
+<p class='ind2'>ASSERT(In.Done & (b>0));</p>
+<p class='ind2'>k:=1;</p>
+<p class='ind2'>REPEAT</p>
+<p class='ind3'>IF (a MOD 2=0) & (b MOD 2=0) THEN</p>
+<p class='ind4'>k:=2*k;</p>
+<p class='ind4'>a:=a DIV 2;</p>
+<p class='ind4'>b:=b DIV 2;</p>
+<p class='ind3'>ELSIF (a MOD 2=0) & (b MOD 2=1) THEN</p>	
+<p class='ind4'>a:= a DIV 2;</p>
+<p class='ind3'>ELSIF (a MOD 2=1) & (b MOD 2=0) THEN</p>	
+<p class='ind4'>b:= b DIV 2;</p>
+<p class='ind3'>ELSE</p>
+<p class='ind4'>IF a>b THEN</p>
+<p class='ind5'>a:=a-b</p>
+<p class='ind4'>ELSE</p>
+<p class='ind5'>b:=b-a</p>	
+<p class='ind4'>END;</p>
+<p class='ind3'>END;</p>
+<p class='ind2'>UNTIL (a=0) OR (b =0);</p>		
+<p class='ind2'>IF a=0 THEN</p>
+<p class='ind3'>k:=k*b</p>
+<p class='ind2'>ELSE</p>
+<p class='ind3'>k:=k*a</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>Log.Int(k);</p>
+<p class='ind2'>Log.Ln</p>
+<p class='ind1'>END do;</p>
+<p class='ind0'>END z13_3.</p>
+<table>
+<tr>
+<td align='left' valign='bottom'>
+<svg width='35' height='40'>
+<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+</svg>
+</td>
+<td align='left' valign='middle'>z13_3.do 64 76</td>
+</tr>
+</table>
+</code>
+<p><span class="primer">Пример 8.7.3</span>. Составить программу, печатающую разложение на простые
+множители заданного натурального числа <math display='inline'><mi>n</mi></math>.</p>
+<code>
+<p class='ind0'>MODULE простые1;</p>
+<p class='ind1'>IMPORT  Log := StdLog,  In := i21sysIn,  Math;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>VAR n, i: INTEGER;</p>
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>In.Open;</p>
+<p class='ind2'>ASSERT(In.Done);</p>
+<p class='ind2'>In.Int(n);</p>
+<p class='ind2'>ASSERT(In.Done & (n>0));</p>
+<p class='ind2'>Log.Int(n);</p>
+<p class='ind2'>Log.Char("=");</p>
+<p class='ind2'>WHILE (n#1) DO</p>
+<p class='ind3'>i:=2;</p>
+<p class='ind3'>WHILE n MOD i#0 DO</p>
+<p class='ind4'>INC(i)</p>
+<p class='ind3'>END;</p>
+<p class='ind3'>Log.Int(i);</p>
+<p class='ind3'>Log.Char(" ");</p>
+<p class='ind3'>n:=n DIV i</p>
+<p class='ind2'>END;</p>
+<p class='ind1'>END do;</p>
+<p class='ind0'>END простые1.</p>
+<table>
+<tr>
+<td align='left' valign='bottom'>
+<svg width='35' height='40'>
+<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+</svg>
+</td>
+<td align='left' valign='middle'>простые1.do 44</td>
+</tr>
+</table>
+</code>
+<p>Наибольшее количество операций, равное <math><mi>n</mi><mo>+</mo><mi>C</mi></math> (<math><mi>C</mi></math> некоторая константа),  потребуется в случае простого <math><mi>n</mi></math>. Следовательно, имеет место следующая асимптотическая оценка сложности алгоритма: 
+<math>
+<mrow><mi>f</mi><mo>&#x2061;</mo><mo>(</mo><mi>n</mi><mo>)</mo></mrow>
+<mo>&#8712;</mo>
+<mrow>
+<mi>O</mi><mo>&#x2061;</mo><mo>(</mo><mi>n</mi><mo>)</mo>
+</mrow>
+</math>.
+</p>
+<p>Ниже приводится другой вариант алгоритма решения задачи, асимптотическая сложность которой совпадает с оценкой сложности предыдущего алгоритма.</p>
+<code>
+<p class='ind0'>MODULE простые2;</p>
+<p class='ind1'>IMPORT  Log := StdLog,  In := i21sysIn,  Math;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>VAR n, i: INTEGER;</p>
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>In.Open;</p>
+<p class='ind2'>ASSERT(In.Done);</p>
+<p class='ind2'>In.Int(n);</p>
+<p class='ind2'>ASSERT(In.Done & (n>0));</p>
+<p class='ind2'>Log.Int(n);</p>
+<p class='ind2'>Log.Char("=");</p>
+<p class='ind2'>i:=2;</p>
+<p class='ind2'>WHILE (n#1) DO</p>
+<p class='ind3'>IF n MOD i=0 THEN</p>
+<p class='ind4'>n:=n DIV i;</p>
+<p class='ind4'>Log.Int(i);</p>
+<p class='ind3'>ELSE</p>
+<p class='ind4'>INC(i)</p>
+<p class='ind3'>END;</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>Log.Ln</p>
+<p class='ind1'>END do;</p>
+<p class='ind0'>END простые2.</p>
+<table>
+<tr>
+<td align='left' valign='bottom'>
+<svg width='35' height='40'>
+<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+</svg>
+</td>
+<td align='left' valign='middle'>простые2.do 819</td>
+</tr>
+</table>
+</code>
+<p>Составить программу решения предыдущей задачи, используя тот факт, что составное число имеет делитель, не превосходящий квадратного корня из этого числа.
+</p>
+<code>
+<p class='ind0'>MODULE простые3;</p>
+<p class='ind1'>IMPORT  Log := StdLog,  In := i21sysIn,  Math;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>VAR n, i: INTEGER;</p>
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>In.Open;</p>
+<p class='ind2'>ASSERT(In.Done);</p>
+<p class='ind2'>In.Int(n);</p>
+<p class='ind2'>ASSERT(In.Done & (n>0));</p>
+<p class='ind2'>Log.Int(n);</p>
+<p class='ind2'>Log.Char("=");</p>
+<p class='ind2'>i:=2;</p>
+<p class='ind2'>WHILE (n#1) DO</p>
+<p class='ind3'>IF n MOD i=0 THEN</p>
+<p class='ind4'>n:=n DIV i;</p>
+<p class='ind4'>Log.Int(i);</p>
+<p class='ind3'>ELSE</p>
+<p class='ind4'>IF i*i>n THEN</p>
+<p class='ind5'>i:=n</p>
+<p class='ind4'>ELSE</p>
+<p class='ind5'>INC(i)</p>
+<p class='ind4'>END;</p>
+<p class='ind3'>END;</p>
+<p class='ind2'>END;</p>
+<p class='ind1'>END do;</p>
+<p class='ind0'>END простые3.</p>
+<table>
+<tr>
+<td align='left' valign='bottom'>
+<svg width='35' height='40'>
+<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+</svg>
+</td>
+<td align='left' valign='middle'>простые3.do 819</td>
+</tr>
+</table>
+</code>
+<p>Наибольшее количество операций потребуется для простого числа <math><mi>n</mi></math> (для всех 
+<math><mi>i</mi></math> таких, что
+<math><msup><mi>i</mi><mn>2</mn></msup><mo>&lt;</mo><mi>n</mi></math>
+).  Поэтому асимптотическая оценка сложности алгоритма будет такой:
+<math>
+<mrow><mi>f</mi><mo>&#x2061;</mo><mo>(</mo><mi>n</mi><mo>)</mo></mrow>
+<mo>&#8712;</mo>
+<mrow>
+<mi>O</mi><mo>&#x2061;</mo><mo>(</mo>
+	<msqrt>
+		<mi>n</mi>
+	</msqrt>
+<mo>)</mo>
+</mrow>
+</math>.
+</p>
+<p>Рассмотрим многоветочный вариант цикла WHILE, введенный в программирование Дейкстрой [6, с. 296], как альтернатива цикла WHILE с вложенными циклами, призванный упростить построение и отладку сложных циклов. В версии Оберон-07 синтаксис этого цикла выглядит так:</p>
+<code>
+<p class="ind0">WHILE охрана DO</p>
+<p class="ind1">последовательность операторов</p>
+<p class="ind0">{ELSIF охрана DO</p>
+<p class="ind1">последовательность операторов}</p>
+<p class="ind0">END.</p>
+</code>
+<p>В цикле выполняется та последовательность операторов, чья охрана принимает значение TRUE. Вычисление охран и выполнение последовательности операторов повторяются до тех пор, пока все охраны не примут значение FALSE.</p>
+<p>Эффективный способ построения цикла Дейкстры заключается в том, чтобы перечислить все возможные ситуации, описывая их соответствующими охранами, и для каждой ситуации, независимо от остальных, строить последовательность алгоритмов, обеспечивающий продвижение по данным, вместе с операциями, обеспечивающими восстановление инварианта. Выход из цикла произойдет в том случае, когда все охраны примут значение FALSE.</p>
+<p>Во многих языках программирования цикл Дейкстры конструируется. В Компонентном Паскаде достаточно использовать цикл LOOP, тело которого состоит из многоветочного условного оператора IF с оператором выхода EXIT в ветке ELSE:</p>
+<code>
+<p class="ind0">LOOP</p>
+<p class="ind1">IF охрана THEN</p>
+<p class="ind2">последовательность операторов</p>
+<p class="ind1">{ELSIF охрана THEN</p>
+<p class="ind2">последовательность операторов}</p>
+<p class="ind1">ELSE</p>
+<p class="ind2">EXIT</p>
+<p class="ind1">END</p>
+<p class="ind0">END.</p>
+</code>
+<p><span class="primer">Пример 8.7.4</span> реализации алгоритма Евклида вычисления наибольшего общего делителя натуральных чисел n и m посредством цикла Дейкстры:</p>
+<code>
+<p class="ind0">MODULE nod;</p>
+<p class="ind1">IMPORT  Log := StdLog,  In := i21sysIn;</p>
+<p class="ind1">PROCEDURE do*;</p>
+<p class="ind2">VAR n, m: INTEGER;</p> 
+<p class="ind1">BEGIN</p>
+<p class="ind2">In.Open;</p>
+<p class="ind2">ASSERT( In.Done );</p>
+<p class="ind2">In.Int(n);</p>
+<p class="ind2">ASSERT( In.Done & (&gt;>0));</p>
+<p class="ind2">In.Int(m);</p>
+<p class="ind2">ASSERT( In.Done & (m&gt;0));</p>
+<p class="ind2">LOOP</p>
+<p class="ind3">IF n&gt;m THEN</p>
+<p class="ind4">n:=n-m</p>
+<p class="ind3">ELSIF m&gt;n THEN</p>
+<p class="ind4">m:=m-n</p>
+<p class="ind3">ELSE</p>
+<p class="ind4">EXIT
+<p class="ind3">END;</p>
+<p class="ind2">END;</p>
+<p class="ind2">Log.String('Наибольший общий делитель равен ');</p>
+<p class="ind2">Log.Int(n);</p>
+<p class="ind2">Log.Ln</p>
+<p class="ind1">END do;</p>
+<p class="ind0">END nod.</p>
+</code>
+<h3>Задачи для самостоятельного решения из сборника задач по программированию под редакцией С.А. Абрамова, Г.Г. Гнездиловой, Е.Н. Капустиной, М.И. Селюн. Задачи по программированию:</h3>
+<p><a href='zadachi/4.html'>§4. Простейшие циклы</a></p>
+<p><a href='zadachi/7.html'>§7. Сочетание цикла и разветвления</a></p>
+<p><a href='zadachi/10.html'>§10. Вложенные циклы</a></p>
+<p><a href="8_6.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_8.html">К следующему</a> </p>
+</body>
+</html>

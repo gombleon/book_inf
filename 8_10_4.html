@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<link rel='stylesheet' type='text/css' href='style.css' />
+<meta name='author' content='leonid' />
+<title>Сортировка обменом</title>
+<script type="text/javascript">
+function sort_change() {
+	var win=open("", "newWindow"),  html, head, title, body, h2, p, n=7, mass_a=[], i, j, x, k=0, str='';
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Сортировка методом пузырька";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h2=document.createElement("h2");
+	h2.textContent="Сортировка методом пузырька";
+	body.appendChild(h2);
+	for (i=0; i<n; i++) {
+		mass_a[i]=Math.round(Math.random()*100);
+		str=str+mass_a[i]+' ';
+	}
+	p=document.createElement("p");
+	p.textContent='Исходный массив: '+str;
+	body.appendChild(p);
+	for (i=1; i<n; i++){
+		p=document.createElement("p");
+		p.textContent='Проход '+i+':';
+		body.appendChild(p);
+		for (j=n-1;j>=i;j--) {
+			p=document.createElement("p");
+			p.textContent='a['+j+']='+mass_a[j];
+			body.appendChild(p);
+			if (mass_a[j-1]>mass_a[j]) {
+				x=mass_a[j-1];
+				mass_a[j-1]=mass_a[j];
+				mass_a[j]=x;			
+			}
+			str='';
+			for (k=0; k<n; k++) {
+				str=str+mass_a[k]+' ';
+			}
+			p=document.createElement("p");
+			p.textContent=str;
+			body.appendChild(p);					
+		}	
+	}
+	str='Отсортированный массив: ';	
+	for (i=0; i<n; i++) {
+		str=str+mass_a[i]+' ';
+	}
+	p=document.createElement("p");
+	p.textContent=str;
+	body.appendChild(p);
+	win.document.close();
+}
+function analis_change(n) {
+	var win=open("", "newWindow"),  html, head, title, body, h2, p, mass_a=[], i, j, x, count=0, str='', comp=0, tt_n, t_n, tt_k, t_k;
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Оценка вычислительной сложности сортировки методом пузырька";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h2=document.createElement("h2");
+	h2.textContent="Оценка вычислительной сложности сортировки методом пузырька";
+	body.appendChild(h2);
+	if (n<10) {
+		n=10;	
+	}
+	for (i=0; i<n; i++) {
+		mass_a[i]=Math.round(Math.random()*100);
+	}
+	t_n= new Date();
+	tt_n=t_n.valueOf();	
+	for (i=1; i<n; i++){
+		for (j=n-1;j>=i;j--) {
+			if (mass_a[j-1]>mass_a[j]) {
+				x=mass_a[j-1];
+				mass_a[j-1]=mass_a[j];
+				mass_a[j]=x;
+				count++;			
+			}
+			comp++;
+		}	
+	}
+	t_k= new Date();
+	tt_k=t_k.valueOf();	
+	p=document.createElement("p");
+	p.textContent='Всего элементов в массиве '+n+'.';
+	body.appendChild(p);
+	p=document.createElement("p");
+	p.textContent='Всего операций сравнения '+comp+'.';
+	body.appendChild(p);
+	j=n-1;
+	i=comp/(n*j);
+	p=document.createElement("p");
+	p.textContent='Оценка количества операций сравнения: '+i+'*'+n+'*'+j+'.'				
+	body.appendChild(p);
+	p=document.createElement("p");
+	p.textContent='Всего операций обмена '+count+'.';
+	body.appendChild(p);
+	str='Оценка количества операций присваивания: ';
+	p=document.createElement("p");
+	i=(3*count)/(n*n);
+	p.textContent=str+i.toPrecision(4)+ '*n'; 
+	sup=document.createElement("sup");
+	sup.textContent='2';
+	p.appendChild(sup);
+	body.appendChild(p);	
+	p=document.createElement("p");
+	i=tt_k.valueOf()-tt_n.valueOf();
+	p.textContent='Продолжительность сортировки t='+i+' миллисекунд.';
+	body.appendChild(p);	
+	win.document.close();
+}
+function shaker() {
+	var win=open("", "newWindow"),  html, head, title, body, h2, p, n=7, mass_a=[], i, j, x, r, l, k, str='', d=0;
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Шейкер-сортировка";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h2=document.createElement("h2");
+	h2.textContent="Шейкер-сортировка";
+	body.appendChild(h2);
+	for (i=0; i<n; i++) {
+		mass_a[i]=Math.round(Math.random()*100);
+		str=str+mass_a[i]+' ';
+	}
+	p=document.createElement("p");
+	p.textContent='Исходный массив: '+str;
+	body.appendChild(p);
+	l=1;
+	r=n-1;
+	str='Левая граница l='+l+', правая граница r='+r+'.'
+	p=document.createElement("p");
+	p.textContent=str;
+	body.appendChild(p);	
+	k=n-1;
+	do {
+		for (j=r; j>=l; j--) {
+			if (mass_a[j-1]>mass_a[j]) {
+				p=document.createElement("p");
+				d=j-1;
+				p.textContent='a['+d+']='+mass_a[j-1]+'<--->'+'a['+j+']='+mass_a[j];
+				body.appendChild(p);
+				x=mass_a[j-1];
+				mass_a[j-1]=mass_a[j];
+				mass_a[j]=x;
+				k=j;				
+				p=document.createElement("p");
+				p.textContent='Место последнего обмена '+k+'.';
+				body.appendChild(p);				
+			}	
+		}
+		str='Массив: ';
+		for (d=0; d<n; d++) {
+			str=str+mass_a[d]+' ';
+		}
+		p=document.createElement("p");
+		p.textContent=str;
+		body.appendChild(p);
+		l=k+1;
+		str='Левая граница l='+l+'.'
+		p=document.createElement("p");
+		p.textContent=str;
+		body.appendChild(p);
+		for (j=l;j<=r;j++) {
+			if (mass_a[j-1]>mass_a[j]) {
+				p=document.createElement("p");
+				d=j-1;
+				p.textContent='a['+d+']='+mass_a[j-1]+'<--->'+'a['+j+']='+mass_a[j];
+				body.appendChild(p);
+				x=mass_a[j-1];
+				mass_a[j-1]=mass_a[j];
+				mass_a[j]=x;
+				k=j;			
+				p=document.createElement("p");
+				p.textContent='Место последнего обмена '+k+'.';
+				body.appendChild(p);	
+			}		
+		}
+		str='Массив: ';
+		for (d=0; d<n; d++) {
+			str=str+mass_a[d]+' ';
+		}
+		p=document.createElement("p");
+		p.textContent=str;
+		body.appendChild(p);	
+		r=k-1;
+		str='Правая граница l='+r+'.'
+		p=document.createElement("p");
+		p.textContent=str;
+		body.appendChild(p);		
+	} while (l<=r)
+	str='Отсортированный массив: ';	
+	for (i=0; i<n; i++) {
+		str=str+mass_a[i]+' ';
+	}
+	p=document.createElement("p");
+	p.textContent=str;
+	body.appendChild(p);
+	win.document.close();
+}
+
+function analis_shaker(n) {
+
+	var win=open("", "newWindow"),  html, head, title, body, h2, p, mass_a=[], i, j, x, r, l, k, str='', count=0, comp=0, tt_n, t_n, tt_k, t_k;
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Оценка вычислительной сложности шейкер-сортировки";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h2=document.createElement("h2");
+	h2.textContent="Оценка вычислительной сложности шейкер-сортировки";
+	body.appendChild(h2);
+	if (n<10) {
+		n=10;	
+	}	
+	for (i=0; i<n; i++) {
+		mass_a[i]=Math.round(Math.random()*100);
+	}
+	l=1;
+	r=n-1;
+	k=n-1;
+	t_n= new Date();
+	tt_n=t_n.valueOf();	
+	do {
+		for (j=r; j>=l; j--) {
+			if (mass_a[j-1]>mass_a[j]) {
+				x=mass_a[j-1];
+				mass_a[j-1]=mass_a[j];
+				mass_a[j]=x;
+				k=j;
+				count++;				
+			}
+			comp++;	
+		}
+		l=k+1;
+		for (j=l;j<=r;j++) {
+			if (mass_a[j-1]>mass_a[j]) {
+				x=mass_a[j-1];
+				mass_a[j-1]=mass_a[j];
+				mass_a[j]=x;
+				count++;
+				k=j;			
+			}
+			comp++;		
+		}
+		r=k-1;
+	} while (l<=r)
+	t_k= new Date();
+	tt_k=t_k.valueOf();	
+	p=document.createElement("p");
+	p.textContent='Всего элементов в массиве '+n+'.';
+	body.appendChild(p);	
+	p=document.createElement("p");
+	p.textContent='Всего операций сравнения '+comp+'.';
+	body.appendChild(p);
+	j=n-1;
+	i=comp/(n*j);
+	p=document.createElement("p");
+	p.textContent='Оценка количества операций сравнения: '+i.toPrecision(4)+'*'+n+'*'+j+'.'				
+	body.appendChild(p);	
+	p=document.createElement("p");
+	p.textContent='Всего операций обмена '+count+'.';
+	body.appendChild(p);
+	str='Оценка количества операций присваивания: ';
+	p=document.createElement("p");
+	i=(3*count)/(n*n);
+	p.textContent=str+i.toPrecision(4)+ '*n'; 
+	sup=document.createElement("sup");
+	sup.textContent='2';
+	p.appendChild(sup);
+	body.appendChild(p);	
+	p=document.createElement("p");
+	i=tt_k.valueOf()-tt_n.valueOf();
+	p.textContent='Продолжительность сортировки t='+i+' миллисекунд.';
+	body.appendChild(p);		
+	win.document.close();
+
+}
+</script>
+</head>
+<body>
+<p><a href="8_10_3.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_10_5.html">К следующему</a> </p>
+<h2>8.10.4. Сортировка обменом</h2>
+<p>Рассмотрим сортировку методом пузырька и шейкер-сортировку. Существенной характеристикой этих методов является операция обмена, поэтому их называют алгоритмами сортировки простым обменом.</p>
+<p>Идея метода пузырька заключается в сравнении двух соседних элементов и, в случае неправильного порядка следования, перестановке их местами до тех пор, пока последовательность не будет упорядочена. Пусть требуется упорядочить числовую последовательность 
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>0</mn></msub>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub>
+</mfenced>
+</math>
+по возрастанию. Первый проход последовательности начинается, к примеру, со сравнения последнего элемента
+<math><msub><mi>a</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub></math>
+ с предпоследним <math><msub><mi>a</mi><mrow><mi>n</mi><mo>-</mo><mn>2</mn></mrow></msub></math>. При необходимости они переставляются местами. Затем предпоследний элемент <math><msub><mi>a</mi><mrow><mi>n</mi><mo>-</mo><mn>2</mn></mrow></msub></math> сравнивается с предшествующим ему элементом <math><msub><mi>a</mi><mrow><mi>n</mi><mo>-</mo><mn>3</mn></mrow></msub></math>. По результатам  сравнения совершается (или не совершается) перестановка этих элементов. Проход последовательности продолжается до тех пор, пока не будет пройдена вся последовательность.</p>
+<p>В результате первого прохода минимальный элемент последовательности займет начальное положение <math><msub><mi>a</mi><mn>0</mn></msub></math> (&#147;всплывет&#148; наверх подобно пузырьку).</p>
+<p>В результате второго прохода от <math><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></math>-го до 1-го элемента подпоследовательности 
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub>
+</mfenced>
+</math>
+ее минимальный элемент переместится на место элемента <math><msub><mi>a</mi><mn>1</mn></msub></math>, и элементы 
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>0</mn></msub>
+	<msub><mi>a</mi><mn>1</mn></msub>
+</mfenced>
+</math> будут занимать правильное положение.</p>
+<p>Для упорядочения всей последовательности потребуется не более <math><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></math> прохода.</p>
+<form id='f1'>
+<input type='button' value="Сортировать" onclick="sort_change()" />
+</form>
+
+<p><span class='primer'>Пример 8.10.4.1</span> сортировки последовательности методом пузырька:</p>
+<table border='1' rules='groups'>
+<colgroup span="1">
+<colgroup span="1">
+<colgroup span="1">
+<colgroup span="1">
+<colgroup span="1">
+<thead>
+<tr><th></th><th>Проход 1</th><th>Проход 2</th><th>Проход 3</th><th>Проход 4</th><th>Проход 5</th></tr>
+</thead>
+<tr>
+	<td>19</td>
+	<td bgcolor='#EEEEEE'>5</td>
+	<td bgcolor='#EEEEEE'>5</td>
+	<td bgcolor='#EEEEEE'>5</td>
+	<td bgcolor='#EEEEEE'>5</td>
+	<td bgcolor='#EEEEEE'>5</td>
+</tr>
+<tr>
+	<td>20</td>
+	<td>19</td>
+	<td bgcolor='#EEEEEE'>9</td>
+	<td bgcolor='#EEEEEE'>9</td>
+	<td bgcolor='#EEEEEE'>9</td>
+	<td bgcolor='#EEEEEE'>9</td>	
+</tr>
+<tr>
+	<td>21</td>
+	<td>20</td>
+	<td>19</td>
+	<td bgcolor='#EEEEEE'>18</td>
+	<td bgcolor='#EEEEEE'>18</td>
+	<td bgcolor='#EEEEEE'>18</td>	
+</tr>
+<tr>
+	<td>18</td>
+	<td>21</td>
+	<td>20</td>
+	<td>19</td>
+	<td bgcolor='#EEEEEE'>19</td>
+	<td bgcolor='#EEEEEE'>19</td>	
+</tr>
+<tr>
+	<td>5</td><td>18</td><td>21</td><td>20</td><td>20</td>
+	<td bgcolor='#EEEEEE'>20</td>
+</tr>
+<tr>
+	<td>9</td><td>9</td><td>18</td><td>21</td><td>21</td><td>21</td>
+</tr>
+</colgroup>
+</colgroup>
+</colgroup>
+</colgroup>
+</colgroup>
+</table>
+<p>При первом проходе минимальный элемент 5 поднимается на самый верх. При втором проходе элемент 9 располагается под элементом 5. При третьем проходе элемент 18 с самого низа поднимается до элемента 9. При проходах 4 и 5 взаимное расположение элементов 20 и 21 не изменяется.</p>
+<p><span class='primer'>Пример 8.10.4.2</span> реализации метода пузырька:</p>
+<code>
+<p class='ind0'>MODULE sort_bubble;</p>
+<p class='ind1'>IMPORT Log:=StdLog, Ran:= i21eduRandom;</p>
+<p class='ind1'>CONST n=11;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>VAR a: ARRAY n OF INTEGER;</p> 
+<p class='ind3'>i, j, x: INTEGER;</p>
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>Log.String('Исходная последовательность: ');</p>
+<p class='ind2'>FOR  i:=0  TO n-1  DO</p>
+<p class='ind3'>a[i]:=Ran.Int(40);</p>
+<p class='ind3'>Log.Int(a[i]);</p>
+<p class='ind3'>Log.Char(',');</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>Log.Ln;</p>
+<p class='ind2'>FOR i := 1 TO n-1 DO</p>
+<p class='ind3'>FOR j :=n-1 TO i BY -1 DO</p>
+<p class='ind4'>IF a[j-1]>a[j] THEN</p>
+<p class='ind5'>x:=a[j-1];</p>
+<p class='ind5'>a[j-1]:=a[j];</p>
+<p class='ind5'>a[j]:=x</p>
+<p class='ind4'>END;</p>
+<p class='ind3'>END;</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>Log.String('Отсортированная последовательность:');</p>
+<p class='ind2'>FOR i:=0 TO n-1 DO</p>
+<p class='ind3'>Log.Int(a[i]);</p>
+<p class='ind3'>Log.Char(',');</p>
+<p class='ind2'>END;</p>
+<p class='ind1'>END do;</p>
+<p class='ind0'>END sort_bubble.</p>
+sort_bubble.do
+</code>
+<p>Если на каком-то проходе не происходит перемещение элементов, то дальнейшие проходы уже будут лишними (см. в примере 8.10.4.1 проходы 4 и 5). Кроме этого, при каждом проходе снизу вверх минимальный элемент поднимается вверх до требуемой позиции, тогда как большие числа опускаются вниз лишь на одну позицию. Поэтому имеет смысл чередовать проходы необработанной части последовательности снизу вверх и сверху вниз. Улучшение сортировки пузырьком называют шейкер-сортировкой.</p>
+<form id='f3'>
+<input type='button' value="Сортировать" onclick="shaker()" />
+</form>
+<p><span class='primer'>Пример 8.10.4.3</span> шейкер-сортировки:</p>
+<code>
+<p class='ind0'>MODULE sort_shaker;</p>
+<p class='ind1'>IMPORT Log:= StdLog, Ran:=i21eduRandom;</p>
+<p class='ind1'>CONST n=11;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>VAR a: ARRAY n OF INTEGER;</p> 
+<p class='ind3'>i, j, x, r, l, k: INTEGER;</p>
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>Log.String('Исходная последовательность:');</p>
+<p class='ind2'>FOR i:=0 TO n-1 DO</p>
+<p class='ind3'>a[i]:=Ran.Int(40);</p>
+<p class='ind3'>Log.Int(a[i]);</p>
+<p class='ind3'>Log.Char(',');</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>Log.Ln;</p>
+<p class='ind2'>l:=1; (*левая граница*)</p>
+<p class='ind2'>r:=n-1; (*правая граница*)</p>
+<p class='ind2'>k:=n-1; (*место последнего обмена*)</p>
+<p class='ind2'>REPEAT</p>
+<p class='ind3'>FOR j:=r  TO l BY -1 DO</p>
+<p class='ind4'>IF a[j-1]>a[j] THEN</p>
+<p class='ind5'>x:=a[j-1];</p>
+<p class='ind5'>a[j-1]:=a[j];</p>
+<p class='ind5'>a[j]:=x;</p>
+<p class='ind5'>k:=j (*место последнего обмена*)</p>
+<p class='ind4'>END;</p>
+<p class='ind3'>END;</p>
+<p class='ind3'>l:=k+1; (*левая граница*)</p>
+<p class='ind3'>FOR j := l TO r DO</p>
+<p class='ind4'>IF a[j-1]>a[j] THEN</p>
+<p class='ind5'>x:=a[j-1];</p>
+<p class='ind5'>a[j-1]:=a[j];</p>
+<p class='ind5'>a[j]:=x;</p>
+<p class='ind5'>k:=j (*место последнего обмена*)</p>
+<p class='ind4'>END;</p>
+<p class='ind3'>END;</p>
+<p class='ind3'>r:=k-1 (*правая граница*)</p>
+<p class='ind2'>UNTIL l>r;</p>
+<p class='ind2'>Log.String('Отсортированная последовательность:');</p>
+<p class='ind2'>FOR  i:=0  TO n-1 DO</p>
+<p class='ind3'>Log.Int(a[i]);</p>
+<p class='ind3'>Log.Char(',');</p>
+<p class='ind2'>END;</p>
+<p class='ind1'>END do;</p>
+<p class='ind0'>BEGIN</p>
+<p class='ind0'>END sort_shaker.</p>
+sort_shaker.do
+</code>
+<p>Максимальное количество сравнений как в алгоритме сортировки методом пузырька, так и в шейкер-сортировке равно
+<math display='block'>
+	<msub><mi>C</mi><mi>max</mi></msub><mo>=</mo>
+	<mrow>
+		<mrow><mo>(</mo><mi>n</mi><mo>-</mo><mn>1</mn><mo>)</mo></mrow>
+		<mo>+</mo>
+		<mrow><mo>(</mo><mi>n</mi><mo>-</mo><mn>2</mn><mo>)</mo></mrow>
+		<mo>+</mo>
+		<mi>&#133;</mi>		
+		<mo>+</mo>
+		<mn>1</mn>
+	</mrow>
+	<mo>=</mo>
+	<mrow>
+		<mfrac><mn>1</mn><mn>2</mn></mfrac>
+		<mo>&#x2062;</mo>
+		<mi>n</mi>
+		<mo>&#x2062;</mo>
+		<mrow><mo>(</mo><mi>n</mi><mo>-</mo><mn>1</mn><mo>)</mo></mrow>
+	</mrow>
+	<mo>.</mo>
+</math></p>
+<p>Если последовательность упорядочена, то потребуется всего  
+<math><msub><mi>C</mi><mi>min</mi></msub><mo>=</mo>
+<mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow>
+</math> операций сравнения, и ни одна операция присваивания не будет выполнена
+<math><msub><mi>M</mi><mi>min</mi></msub><mo>=</mo><mn>0</mn><mo>.</mo></math>
+</p>
+<p>Пусть каждая операция сравнения завершается операцией обмена. Каждый обмен совершается посредством трех операций присваивания. Следовательно, максимальное количество операций присваивания равно
+<math display='block'>
+	<msub><mi>M</mi><mi>max</mi></msub><mo>=</mo>
+	<mrow>
+		<mfrac><mn>3</mn><mn>2</mn></mfrac>
+		<mo>&#x2062;</mo>
+		<mi>n</mi>
+		<mo>&#x2062;</mo>
+		<mrow><mo>(</mo><mi>n</mi><mo>-</mo><mn>1</mn><mo>)</mo></mrow>
+	</mrow>
+	<mo>.</mo>
+</math>
+</p>
+<form id='f2'>
+Введите n &gt; 10:<input type="text" id="kolich" maxlength="5" size="5" value='1000'/>
+<input type='button' value="Сортировать пузырьком" onclick="analis_change(kolich.value)" />
+</form>
+<p>Переход от метода пузырька к шейкер-сортировке уменьшает количество операций сравнения, но не количество операций обмена. С учетом того, что обмен является гораздо более трудоемкой операцией, нежели сравнение, шейкер-сортировка не намного эффективнее метода пузырька.</p>
+<p>Замечено, что шейкер-сортировка менее эффективна, чем сортировка включениями и выбором. Рекомендуют использовать шейкер-сортировку на почти упорядоченных последовательностях.</p>
+<form id='f4'>
+Введите n &gt; 10:<input type="text" id="kolich1" maxlength="5" size="5" value='1000'/>
+<input type='button' value="Шейкер-сортировка" onclick="analis_shaker(kolich1.value)" />
+</form>
+<p>Все рассмотренные нами простые методы сортировки перемещают каждый элемент на одну позицию на каждом элементарном шаге, и поэтому требуют порядка <math><msup><mi>n</mi><mn>2</mn></msup></math> таких шагов. Более эффективные методы сортировки должны перемещать элементы за один цикл на большее расстояние.</p>
+<p>В следующих параграфах рассмотрим улучшения методов сортировки включением, выбором и обменом.</p>
+<h3>Вопросы и задачи</h3>
+<ol>
+<li>Сгенерируйте последовательность
+<input type='button' value="сгенерировать" onclick="create()" />
+и отсортируйте ее в тетради методом пузырька (шейкер-сортировкой). Вычислите количество операций присваивания и сравнения. Как зависят количества операций сравнения и присваивания от количества <math><mi>n</mi></math> элементов в последовательности?
+</li>
+<li>Отсортируйте по убыванию в тетради последовательность цифр даты рождения методом пузырька (шейкер-сортировкой). Вычислите вычислительную сложность метода пузырька (шейкер-сортировки).</li>
+<li>Отсортируйте в алфавитном порядке (в обратном порядке) буквы фамилии методом пузырька (шейкер-сортировкой).</li>
+<li>Примените к последовательности чисел от 1 до 7 метод пузырька (шейкер-сортировку) и вычислите количества операций сравнения и присваивания. Как зависит количество операций от количества <math><mi>n</mi></math> элементов в последовательности?</li>
+<li>Отсортируйте по возрастанию последовательность чисел от 7 до 1 методом пузырька (шейкер-сортировкой) и вычислите количество операций сравнения и присваивания.  Как зависит количество операций сравнения и присваивания от количества <math><mi>n</mi></math> элементов в последовательности? Как проявляется естественность поведения алгоритма сортировки простым выбором?</li>
+<li>Составьте программу оценки вычислительной сложности алгоритма сортировки методом пузырька (шейкер-сортировкой) последовательности целых чисел. Сравните оценку среднего количества операций присваивания (полученную путем многократного исполнения программы.
+</li>
+<li>Опишите асимптотическую сложность алгоритма сортировки простым обменом согласно <a href='8_2.html#t8_2_1'> таблице 8.2.1.</a></li>
+<li>Составьте программы сортировки методом пузырька (шейкер-сортировкой) последовательности записей из целых чисел и букв по целочисленному ключевому полю. Является ли алгоритм устойчивым?</li>
+<li>Составьте программу оценки вычислительной сложности и затраченного времени (в миллисекундах) алгоритма сортировки методом пузырька (шейкер-сортировкой) последовательности записей из нескольких полей.</li>
+</ol>
+<p>Задачи для самостоятельного решения из сборника задач по программированию под редакцией С.А. Абрамова, Г.Г. Гнездиловой, Е.Н. Капустиной, М.И. Селюн. Задачи по программированию:</p>
+<p><a href='zadachi/18.html'>§18. Сортировка массивов и файлов</a></p>
+<p><a href="8_10_3.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_10_5.html">К следующему</a> </p>
+</body>
+</html>

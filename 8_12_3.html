@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<link rel='stylesheet' type='text/css' href='style.css' />
+<meta name='author' content='leonid' />
+<title>Рекурсивное порождение комбинаторных объектов</title>
+<script type="text/javascript">
+function ex_1(n, k) {
+	var win=open("", "newWindow"),  html, head, title, body, h3, p, t, i, a=[], sch_rec=0, sch_cyc=0;
+	function gen() {
+		var i, j, stroka='';
+		if (t==n-1) {
+			p=document.createElement("p");
+			p.textContent="t= "+t+', печать последовательности:';
+			body.appendChild(p);
+			for (i=0;i<n;i++) {
+				if (i==n-1) {
+					stroka=stroka+a[i]+'.'	
+				}
+				else {
+					stroka=stroka+a[i]+', ';	
+				}
+			}
+			p=document.createElement("p");
+			p.textContent=stroka;
+			body.appendChild(p);
+		}
+		else {
+			t++;
+			sch_cyc++;
+			p=document.createElement("p");
+			p.textContent='begin for'+sch_cyc;
+			body.appendChild(p);	
+			for (j=1;j<=k;j++) {
+				p=document.createElement("p");
+				p.textContent="t= "+t+', j='+j+', a['+t+']='+j+';';
+				body.appendChild(p);
+				a[t]=j;
+				sch_rec++;
+				p=document.createElement("p");
+				p.textContent='begin generate'+sch_rec;
+				body.appendChild(p);
+				gen();
+				p=document.createElement("p");
+				p.textContent='end generate'+sch_rec;
+				body.appendChild(p);
+				sch_rec--;				
+			}
+			t--;
+			p=document.createElement("p");
+			p.textContent='end for'+sch_cyc;
+			body.appendChild(p);
+			sch_cyc--;
+		}
+	}	
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Демонстрация порядка вызова и исполнения рекурсивной программы ";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h3=document.createElement("h3");
+	h3.textContent="Демонстрация порядка вызова и исполнения ";
+	body.appendChild(h3);
+	p=document.createElement("p");
+	p.textContent="n="+n+", k="+k;
+	body.appendChild(p);
+	t=-1;
+	p=document.createElement("p");
+	sch_rec++;
+	p.textContent='begin generate'+sch_rec;
+	body.appendChild(p);
+	gen();
+	p=document.createElement("p");
+	p.textContent='end for'+sch_cyc;
+	body.appendChild(p);
+	p.textContent='end generate'+sch_rec;
+	win.document.close();	
+}
+
+function example2(n) {
+	var win=open("", "newWindow"), html, head, title, body, h3, p, t, i, a=[], sch_rec=0, sch_for=0, s=0;
+	function gen1() {
+		var k, j, stroka='';
+		if (t==n-1) {
+			for (k=0;k<n;k++) {
+				if (k==n-1) {
+					stroka=stroka+a[k]+'.';	
+				}
+				else {
+					stroka=stroka+a[k]+', ';	
+				}
+			}
+			p=document.createElement("p");
+			p.textContent=stroka;
+			body.appendChild(p);
+		}
+		else {
+			sch_for++;
+			p=document.createElement("p");
+			p.textContent='begin for '+sch_for;
+			body.appendChild(p);
+			for (j=t+1;j<=n-1;j++) {
+				if (a[t+1]!=a[j]) {
+					s=t+1;
+					p=document.createElement("p");
+					p.textContent='a['+s+'] <-> a['+j+']';
+					body.appendChild(p);					
+					k=a[t+1];
+					a[t+1]=a[j];				
+					a[j]=k;
+				}				
+				t++;
+				sch_rec++;
+				p=document.createElement("p");
+				p.textContent='begin generate'+sch_rec;
+				body.appendChild(p);	
+				gen1();
+				p=document.createElement("p");
+				p.textContent='end generate'+sch_rec;
+				body.appendChild(p);
+				sch_rec--;
+				t--;
+				if (a[t+1]!=a[j]) {
+					s=t+1;
+					p=document.createElement("p");
+					p.textContent='a['+s+'] <-> a['+j+']';
+					body.appendChild(p);	
+					k=a[t+1];
+					a[t+1]=a[j];				
+					a[j]=k;
+				}				
+			}
+			p=document.createElement("p");			
+			p.textContent='end for '+sch_for;
+			body.appendChild(p);
+			sch_for--;
+		}
+	}	
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Демонстрация порядка вызова и исполнения рекурсивной процедуры";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h3=document.createElement("h3");
+	h3.textContent="Демонстрация порядка вызова и исполнения рекурсивной процедуры";
+	body.appendChild(h3);
+	p=document.createElement("p");
+	p.textContent="n="+n;
+	body.appendChild(p);
+	stroka='';	
+	for (i=0;i<=n-1;i++) {
+		a[i]=i+1;
+		stroka=stroka+' '+a[i];
+	}
+	p=document.createElement("p");
+	p.textContent=stroka;
+	body.appendChild(p);	
+	t=-1;
+	sch_rec++;
+	p=document.createElement("p");
+	p.textContent='begin generate'+sch_rec;
+	body.appendChild(p);	
+	gen1();
+	p=document.createElement("p");
+	p.textContent='end generate'+sch_rec;
+	body.appendChild(p);
+	stroka='';
+	for (k=0;k<n;k++) {
+		if (k==n-1) {
+			stroka=stroka+a[k]+'.';	
+		}
+		else {
+			stroka=stroka+a[k]+', ';	
+		}
+	}
+	p=document.createElement("p");
+	p.textContent=stroka;
+	body.appendChild(p);	
+	win.document.close();	
+}
+
+function example3(n, k) {
+	var win=open("", "newWindow"), html, head, title, body, h3, p, t=1, j, a=[], sch_rec=0, sch_for=0;
+	function gener3() {
+		var i, stroka='';
+		if (t==k) {
+			for (i=1;i<=k;i++) {
+				stroka=stroka+a[i]+', ';	
+			}
+			p=document.createElement("p");
+			p.textContent=stroka;
+			body.appendChild(p);
+		}
+		else {
+			t++;
+			s=a[t-1]+1;
+			sch_for++;
+			p=document.createElement("p");
+			p.textContent='begin for'+sch_cyc;
+			body.appendChild(p);				
+			for (i=a[t-1]+1; i<n-k+t+1; i++) {
+				a[t]=i;
+				sch_rec++;
+				p=document.createElement("p");
+				p.textContent='begin generate'+sch_rec;
+				body.appendChild(p);
+				gener3();
+				p=document.createElement("p");
+				p.textContent='end generate'+sch_rec;
+				body.appendChild(p);
+				sch_rec--;
+			}
+			p=document.createElement("p");
+			p.textContent='end for'+sch_for;
+			body.appendChild(p);
+			sch_for--;
+			t--;	
+		}
+	}	
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Демонстрация порядка вызова и исполнения рекурсивной процедуры";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h3=document.createElement("h3");
+	h3.textContent="Демонстрация порядка вызова и исполнения рекурсивной процедуры";
+	body.appendChild(h3);
+	p=document.createElement("p");
+	p.textContent="n="+n+", k="+k;
+	body.appendChild(p);
+	sch_cyc++;
+	p=document.createElement("p");
+	p.textContent='begin for'+sch_for;
+	body.appendChild(p);
+	for (j=1; j<n-k+2; j++) {
+		a[1]=j;
+		sch_rec++;
+		p=document.createElement("p");
+		p.textContent='j='+j;
+		body.appendChild(p);		
+		p=document.createElement("p");
+		p.textContent='begin generate'+sch_rec;
+		body.appendChild(p);
+		gener3();
+		p=document.createElement("p");
+		p.textContent='end generate'+sch_rec;
+		body.appendChild(p);
+		sch_rec--;	
+	}
+	p=document.createElement("p");
+	p.textContent='end for'+sch_for;
+	body.appendChild(p);
+	win.document.close();	
+}
+
+function example4(n) {
+	var win=open("", "newWindow"), html, head, title, body, h3, p, t=0, i, s, j, a=[], sch_rec=0, sch_for=0;
+	function gener4() {
+		var k, stroka='';
+		if (s==n) {
+			for (k=0;k<=t;k++) {
+				stroka=stroka+a[k]+', ';	
+			}
+			p=document.createElement("p");
+			p.textContent=stroka;
+			body.appendChild(p);
+		}
+		else {
+			sch_for++;
+			p=document.createElement("p");
+			p.textContent='begin for'+sch_for;
+			body.appendChild(p);		
+			for (k=1;k<=Math.min(a[t], n-s); k++) {
+				t++;
+				a[t]=k;
+				s=s+k;
+				sch_rec++;
+				p=document.createElement("p");
+				p.textContent='begin generate'+sch_rec;
+				body.appendChild(p);
+				gener4();
+				p=document.createElement("p");
+				p.textContent='end generate'+sch_rec;
+				body.appendChild(p);
+				sch_rec--;				
+				s--;
+				t--;
+			}
+			p=document.createElement("p");
+			p.textContent='end for'+sch_for;
+			body.appendChild(p);
+			sch_for--;			
+		}
+	}
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Демонстрация порядка вызова и исполнения рекурсивной процедуры";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h3=document.createElement("h3");
+	h3.textContent="Демонстрация порядка вызова и исполнения рекурсивной процедуры";
+	body.appendChild(h3);
+	p=document.createElement("p");
+	p.textContent="n="+n;
+	body.appendChild(p);
+	p=document.createElement("p");
+	p.textContent='begin for'+sch_for;
+	body.appendChild(p);
+	for (j=1; j<=n; j++) {
+		a[t]=j;
+		s=j;
+		sch_rec++;
+		p=document.createElement("p");
+		p.textContent='begin generate'+sch_rec;
+		body.appendChild(p);
+		gener4();
+		p=document.createElement("p");
+		p.textContent='end generate'+sch_rec;
+		body.appendChild(p);
+		sch_rec--;				
+	}
+	p=document.createElement("p");
+	p.textContent='end for'+sch_for;
+	body.appendChild(p);
+	win.document.close();	
+}
+
+
+</script>
+</head>
+<body>
+<p><a href="8_12_2.html">К предыдущему</a> <a href="index.html">К содержанию</a><a href="8_12_4.html">К следующему</a></p>
+<h2>8.12.3. Рекурсивное порождение комбинаторных объектов</h2>
+<p>Рассмотрим примеры рекурсивного порождения комбинаторных объектов из <a href='litra.html#40'>[41], с. 122 &#151; 126</a>.</p>
+<p><span class="primer">Пример 8.12.3.1.</span> Написать программу, которая печатает по одному разу все последовательности длины <math><mi>n</mi></math>, составленные из чисел <math><mfenced open='' close=''><mn>1</mn><mi>&#133;</mi><mi>k</mi></mfenced></math> (их количество равно <math><msup><mi>k</mi><mi>n</mi></msup></math>).
+</p>
+<code>
+<p class='ind0'>MODULE seq1;</p>
+<p class='ind1'>IMPORT  Log := StdLog,  In := i21sysIn;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>CONST n=2;k=3;</p>
+<p class='ind2'>VAR a: ARRAY n OF INTEGER;</p>
+<p class='ind3'>t, i: INTEGER;</p>
+<p class='ind2'>PROCEDURE generate;</p>
+<p class='ind3'>VAR  i, j: INTEGER;</p>
+<p class='ind2'>BEGIN</p>
+<p class='ind3'>IF t=n-1 THEN</p>
+<p class='ind4'>FOR i :=0 TO n-1 DO</p>
+<p class='ind5'>Log.Int(a[i]);</p>
+<p class='ind5'>Log.Tab</p>
+<p class='ind4'>END;</p>
+<p class='ind4'>Log.Ln;</p>
+<p class='ind3'>ELSE</p>
+<p class='ind4'>INC(t);</p>
+<p class='ind4'>FOR j:=1 TO k DO</p>
+<p class='ind5'>a[t]:=j;</p>
+<p class='ind5'>generate;</p>
+<p class='ind4'>END;</p>
+<p class='ind4'>DEC(t);</p>
+<p class='ind3'>END;</p>
+<p class='ind2'>END generate;</p>
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>In.Open;</p>
+<p class='ind2'>ASSERT(In.Done);</p>
+<p class='ind2'>t:=-1;</p>
+<p class='ind2'>generate;</p>
+<p class='ind1'>END do;</p>
+<p class='ind0'>END seq1.</p>
+</code>
+<p>Демонстрация алгоритма решения примера 8.12.3.1:</p>
+<form id='f1'>
+Введите n <input type="text" id='num_n' size='1' /><br/>
+Введите k <input type="text" id='num_k' size='1' /><br/>
+<input type="button" value="Найти" onclick="ex_1(f1.num_n.value, f1.num_k.value)" />
+<input type="reset" value="Сброс" />
+</form>
+<p><span class="primer"><a id='example8_12_3_2'>Пример 8.12.3.2.</a></span> Написать программу, которая печатала бы все перестановки
+чисел <math><mfenced open='' close='' separators=''><mn>1</mn><mi>&#133;</mi><mi>n</mi></mfenced></math> по одному разу.
+</p>
+<code>
+<p class='ind0'>MODULE seq2;</p>
+<p class='ind1'>IMPORT  Log:=StdLog, In:=i21sysIn;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>CONST n=4;</p>
+<p class='ind2'>VAR a: ARRAY n OF INTEGER;</p>
+<p class='ind3'>t, i: INTEGER;</p>
+<p class='ind2'>PROCEDURE generate;</p>
+<p class='ind3'>VAR  i, j: INTEGER;</p>
+<p class='ind2'>BEGIN</p>
+<p class='ind3'>IF t=n-1 THEN</p>
+<p class='ind4'>FOR i:=0 TO n-1 DO</p>
+<p class='ind5'>Log.Int(a[i]);</p>
+<p class='ind5'>Log.Tab</p>
+<p class='ind4'>END;</p>
+<p class='ind4'>Log.Ln;</p>
+<p class='ind3'>ELSE</p>
+<p class='ind4'>FOR j:=t+1 TO n-1 DO</p>
+<p class='ind5'>i:=a[t+1];</p>
+<p class='ind5'>a[t+1]:=a[j];</p>
+<p class='ind5'>a[j]:=i;</p>
+<p class='ind5'>INC(t);</p>
+<p class='ind5'>generate;</p>
+<p class='ind5'>DEC(t);</p>
+<p class='ind5'>i:=a[t+1];</p>
+<p class='ind5'>a[t+1]:=a[j];</p>
+<p class='ind5'>a[j]:=i;</p>
+<p class='ind4'>END;</p>
+<p class='ind3'>END;</p>
+<p class='ind2'>END generate;</p>
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>FOR i:=0 TO n-1 DO</p>
+<p class='ind3'>a[i]:=i+1</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>t:=-1;</p>
+<p class='ind2'>generate;</p>
+<p class='ind1'>END do;</p>
+<p class='ind0'>END seq2.</p>
+</code>
+
+<p>Демонстрация алгоритма решения примера 8.12.3.2:</p>
+<form id='f2'>
+Введите n <input type="text" id='num_n' size='1' /><br/>
+<input type="button" value="Найти" onclick="example2(f2.num_n.value)" />
+<input type="reset" value="Сброс" />
+</form>
+
+
+<p><span class="primer">Пример 8.12.3.3.</span> 
+Напечатать все возрастающие последовательности длины <math><mi>k</mi></math>, элементами которых являются натуральные числа от 1 до <math><mi>n</mi></math>. (Предполагается, что <math><mrow><mi>k</mi><mo>&#8804;</mo><mi>n</mi></mrow></math>, иначе таких последовательностей не существует.)</p>
+<code>
+<p class='ind0'>MODULE seq3;</p>
+<p class='ind1'>IMPORT  Log := StdLog,  In := i21sysIn;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>CONST n=4;k=3;</p>
+<p class='ind2'>VAR a: ARRAY n OF INTEGER;</p>
+<p class='ind3'>t, i, j: INTEGER;</p>
+<p class='ind2'>PROCEDURE generate;</p>
+<p class='ind3'>VAR i: INTEGER;</p>
+<p class='ind2'>BEGIN</p>
+<p class='ind3'>IF t=k THEN</p>
+<p class='ind4'>FOR i :=1 TO k DO</p>
+<p class='ind5'>Log.Int(a[i]);</p>
+<p class='ind5'>Log.Tab</p>
+<p class='ind4'>END;</p>
+<p class='ind4'>Log.Ln;</p>
+<p class='ind3'>ELSE</p>
+<p class='ind4'>INC(t);</p>
+<p class='ind4'>FOR i:=a[t-1]+1 TO t-k+n DO</p>
+<p class='ind5'>a[t]:=i;</p>
+<p class='ind5'>generate;</p>
+<p class='ind4'>END;</p>
+<p class='ind4'>DEC(t)</p>
+<p class='ind3'>END;</p>
+<p class='ind2'>END generate;</p>
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>t:=1;</p>
+<p class='ind2'>FOR j:=1 TO 1-k+n DO</p>
+<p class='ind3'>a[1]:=j;</p>
+<p class='ind3'>generate</p>
+<p class='ind2'>END;</p>
+<p class='ind1'>END do;</p>
+<p class='ind0'>END seq3.</p>
+</code>
+<p>Демонстрация алгоритма решения примера 8.12.3.3:</p>
+<form id='f3'>
+Введите n <input type="text" id='num_n' size='1' /><br/>
+Введите k <input type="text" id='num_k' size='1' /><br/>
+<input type="button" value="Найти" onclick="example3(f3.num_n.value, f3.num_k.value)" />
+<input type="reset" value="Сброс" />
+</form>
+
+<p><span class="primer">Пример 8.12.3.4.</span> Перечислить все представления положительного целого числа <math><mi>n</mi></math> в виде суммы последовательности невозрастающих целых положительных слагаемых.</p>
+<code>
+<p class='ind0'>MODULE seq4;</p>
+<p class='ind1'>IMPORT  Log:= StdLog, In:= i21sysIn;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>CONST n=4;</p>
+<p class='ind2'>VAR a: ARRAY n OF INTEGER;</p>
+<p class='ind3'>t, i, s, j: INTEGER;</p>
+<p class='ind2'>PROCEDURE generate;</p>
+<p class='ind3'>VAR  i: INTEGER;</p>
+<p class='ind2'>BEGIN</p>
+<p class='ind3'>IF s=n THEN</p>
+<p class='ind4'>FOR i :=0  TO t DO</p>
+<p class='ind5'>Log.String('a[');Log.Int(i);Log.String(']=');Log.Int(a[i]);</p>
+<p class='ind5'>Log.Tab</p>
+<p class='ind4'>END;</p>
+<p class='ind4'>Log.Ln;</p>
+<p class='ind3'>ELSE</p>
+<p class='ind4'>FOR i:=1 TO MIN(a[t], n-s) DO</p>
+<p class='ind5'>INC(t);</p>
+<p class='ind5'>a[t]:=i;</p>
+<p class='ind5'>s:=s+i;</p>
+<p class='ind5'>generate;</p>
+<p class='ind5'>DEC(s);</p>
+<p class='ind5'>DEC(t);</p>
+<p class='ind4'>END;</p>
+<p class='ind3'>END;</p>
+<p class='ind2'>END generate;</p>
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>t:=0;</p>
+<p class='ind2'>Log.Clear;</p>
+<p class='ind2'>FOR j:=1  TO n DO</p>
+<p class='ind3'>a[t]:=j;</p>
+<p class='ind3'>s:=j;</p>
+<p class='ind3'>generate</p>
+<p class='ind2'>END;</p>
+<p class='ind1'>END do;</p>
+<p class='ind0'>END seq4.</p>
+</code>
+<p>Демонстрация алгоритма решения примера 8.12.3.4:</p>
+<form id='f4'>
+Введите n <input type="text" id='num_n' size='1' /><br/>
+<input type="button" value="Найти" onclick="example4(f4.num_n.value)" />
+<input type="reset" value="Сброс" />
+</form>
+<h3>Задачи для самостоятельного решения</h3>
+<ol>
+<li>В примерах текущего параграфа оцените количество вызовов рекурсивной процедуры в зависимости от входных <math><mi>n</mi></math> и <math><mi>k</mi></math>.</li>
+</ol>
+<p>Задачи для самостоятельного решения из сборника задач по программированию под редакцией С.А. Абрамова, Г.Г. Гнездиловой, Е.Н. Капустиной, М.И. Селюн. Задачи по программированию:</p>
+<p><a href='zadachi/35.html'>§35. Перебор и его сокращение</a></p>
+<p><a href='zadachi/36.html'>§36. Некоторые приемы программирования</a></p>
+<p><a href="8_12_2.html">К предыдущему</a> <a href="index.html">К содержанию</a><a href="8_12_4.html">К следующему</a></p>
+</body>
+</html>

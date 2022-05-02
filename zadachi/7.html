@@ -1,0 +1,2846 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<link rel='stylesheet' type='text/css' href='style.css' />
+<meta name='author' content='leonid' />
+<title>Сочетания цикла и разветвления</title>
+</head>
+<body>
+<h2>§ 7. Сочетания цикла и разветвления</h2>
+<ol start='178' type='1'>
+<li>Даны натуральные числа
+<math>
+<mfenced open='' close=''>
+	<mi>n</mi>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mi>n</mi></msub>
+</mfenced>
+</math>.
+Определить количество членов
+<math>
+	<msub><mi>a</mi><mi>k</mi></msub>
+</math> последовательности
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mi>n</mi></msub>
+</mfenced>
+</math>:
+</li>
+<ol type='a'>
+	<li>являющихся нечетными числами;</li>
+	<li>кратных <var>3</var> и не кратных <var>5</var>;</li>
+	<li>являющихся квадратами четных чисел;</li>
+	<li>удовлетворяющих условию
+	<math>
+		<msub><mi>a</mi><mi>k</mi></msub>
+		<mo>&lt;</mo>
+		<mfrac>
+			<mrow>
+				<msub><mi>a</mi><mrow><mi>k</mi><mo>-</mo><mn>1</mn></mrow></msub>
+				<mo>+</mo>
+				<msub><mi>a</mi><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msub>			
+			</mrow>
+			<mn>2</mn>
+		</mfrac>
+	</math>;
+	</li>
+	<li>удовлетворяющих условию
+	<math>
+		<msup><mn>2</mn><mi>k</mi></msup>
+		<mo>&lt;</mo>
+		<msub><mi>a</mi><mi>k</mi></msub>
+		<mo>&lt;</mo>
+		<mi>k!</mi>
+	</math>;
+	
+	</li>	
+	<li>имеющих четные порядковые номера и являющихся нечетными числами.</li>	
+</ol>
+<li>Даны натуральные числа
+	<math>
+		<mfenced open='' close=''>
+			<mi>n</mi>
+			<msub><mi>q</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>q</mi><mi>n</mi></msub>
+		</mfenced>
+	</math>. Найти те члены
+	<math>
+			<msub><mi>q</mi><mi>i</mi></msub>
+	</math> последовательности 
+		<math>
+		<mfenced open='' close=''>
+			<msub><mi>q</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>q</mi><mi>n</mi></msub>
+		</mfenced>
+	</math>, которые
+	<ol type='a'>
+    <li>являются удвоенными нечетными числами;</li>
+    <li>при делении на <var>7</var> дают остаток <var>1</var>, <var>2</var> или <var>5</var>;</li>
+    <li>обладают тем свойством, что корни уравнения
+		<math>
+			<mrow>
+				<msup><mi>x</mi><mn>2</mn></msup>
+				<mo>+</mo>
+				<mrow>
+					<mn>3</mn>
+					<mo>&#x2062;</mo>
+					<msub><mi>q</mi><mi>i</mi></msub>
+					<mo>&#x2062;</mo>
+					<mi>x</mi>
+				</mrow>
+				<mo>-</mo>	
+				<mn>5</mn>		
+			</mrow>
+			<mo>=</mo>
+			<mn>0</mn>		
+		</math>
+		действительны и положительны.</li>
+	</ol>
+</li>
+<li>Дано натуральное число <var>n</var>. Получить сумму тех чисел вида
+	<math>
+		<mrow>
+			<msup><mi>i</mi><mn>3</mn></msup>
+			<mo>-</mo>
+			<mrow>
+				<mn>3</mn>
+				<mo>&#x2062;</mo>
+				<mi>i</mi>
+				<mo>&#x2062;</mo>
+				<msup><mi>n</mi><mn>2</mn></msup>
+			</mrow>
+			<mo>+</mo>
+			<mi>n</mi>
+		</mrow>
+		<mspace width="1ex"/>
+		<mrow>
+			<mo>(</mo>
+			<mi>i</mi><mo>=</mo>			
+			<mrow>
+				<mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo>
+				<mi>&#133;</mi><mo>,</mo>
+				<mi>n</mi>
+			</mrow>
+			<mo>)</mo>
+		</mrow>
+	</math>, которые являются утроенными нечетными числами *).
+	<p>*) В ряде задач этого и следующих параграфов требуется вычислить
+сумму или произведение тех членов последовательности, которые
+обладают заданным свойством. Можно условиться, что при отсутствии
+таких членов искомая сумма равна нулю, а произведение - единице.
+Можно усложнить условия задач, приняв соглашение, что в подобных
+случаях должно выдаваться сообщение об отсутствии
+соответствующих членов.</p>
+</li>
+<li>Даны целые числа 
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mn>50</mn></msub>
+		</mfenced>
+	</math>. Получить сумму тех чисел данной последовательности, которые
+	<ol type='a'>
+		<li>кратны <var>5</var>;</li>	
+		<li>нечетны и отрицательны;</li>
+		<li>удовлетворяют условию
+		<math>
+			<mrow><mo>|</mo>
+				<msub><mi>a</mi><mi>i</mi></msub>			
+			<mo>|</mo></mrow>
+			<mo>&lt;</mo>
+			<msup><mi>i</mi><mn>2</mn></msup>
+		</math>.
+		</li>
+	</ol>	
+</li>
+	<li>Даны натуральное число <var>n</var>, целые числа
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mi>n</mi></msub>
+		</mfenced>
+	</math>. Найти количество и сумму тех членов данной последовательности, которые делятся на <var>5</var> и не делятся на <var>7</var>.
+</li>
+<li>Даны натуральные числа 
+<math><mfenced open='' close=''><mi>n</mi><mi>p</mi></mfenced></math>, целые числа
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mi>n</mi></msub>
+		</mfenced>
+	</math>.
+Получить произведение членов последовательности
+<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mi>n</mi></msub>
+		</mfenced>
+	</math>, кратных <var>p</var>.
+</li>
+<li>Даны целые числа
+	<math>
+		<mfenced open='' close=''>
+			<mi>p</mi><mi>q</mi>
+			<msub><mi>a</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mn>67</mn></msub>
+		</mfenced>
+		<mspace width='1ex'/>
+		<mrow>
+			<mo>(</mo>
+				<mi>p</mi><mo>&gt;</mo><mi>q</mi><mo>&#8805;</mo><mn>0</mn>
+			<mo>)</mo>		
+		</mrow>
+	</math>. В последовательности
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mn>67</mn></msub>
+		</mfenced>
+	</math> заменить нулями члены, модуль которых при делении на <var>p</var> дает в остатке <var>q</var>.
+</li>
+<li>Даны натуральное число <var>n</var>, действительные числа
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mi>n</mi></msub>
+		</mfenced>
+	</math>. Получить удвоенную сумму всех положительных членов последовательности
+		<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mi>n</mi></msub>
+		</mfenced>
+	</math>.
+</li>
+<li>Даны натуральное число <var>n</var>, действительные числа
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mi>n</mi></msub>
+		</mfenced>
+	</math>. Вычислить обратную величину произведения тех членов
+	<math>
+		<msub><mi>a</mi><mi>i</mi></msub>
+	</math> последовательности 
+		<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mi>n</mi></msub>
+		</mfenced>
+	</math>, для которых выполнено
+	<math>
+		<mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow>
+		<mo>&gt;</mo>
+		<msub><mi>a</mi><mi>i</mi></msub>
+		<mo>&gt;</mo>
+		<mi>i!</mi>
+	</math>.
+</li>
+<li>Даны натуральное число <var>n</var>, действительные числа
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mi>n</mi></msub>
+		</mfenced>
+	</math>. В последовательности
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mi>n</mi></msub>
+		</mfenced>
+	</math> все отрицательные члены увеличить на <var>0.5</var>, а все неотрицательные заменить на <var>0.1</var>.
+</li>
+<li>Даны натуральное число <var>n</var>, действительные числа 
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>x</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>x</mi><mi>n</mi></msub>
+		</mfenced>
+	</math>. В последовательности
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>x</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>x</mi><mi>n</mi></msub>
+		</mfenced>
+	</math> все члены, меньшие двух, заменить нулями. Кроме того, получить сумму членов, принадлежащих отрезку
+	<math>
+		<mfenced open='[' close=']'>
+			<mn>3</mn>
+			<mn>7</mn>
+		</mfenced>
+	</math>, а также число таких членов.
+</li>
+<li>Даны натуральное число <var>n</var>, действительные числа 
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mi>n</mi></msub>
+		</mfenced>
+	</math>. В последовательности
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mi>n</mi></msub>
+		</mfenced>
+	</math> все неотрицательные члены, не принадлежащие отрезку 
+	<math>
+		<mfenced open='[' close=']'>
+			<mn>1</mn>
+			<mn>2</mn>
+		</mfenced>
+	</math>, заменить на единицу. Кроме того, получить число отрицательных членов и число членов, принадлежащих отрезку 
+	<math>
+		<mfenced open='[' close=']'>
+			<mn>1</mn>
+			<mn>2</mn>
+		</mfenced>
+	</math>.
+</li>
+<li>Даны натуральное число <var>n</var>, целые числа
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mi>n</mi></msub>
+		</mfenced>
+	</math>. Получить сумму положительных и число отрицательных членов последовательности
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mi>n</mi></msub>
+		</mfenced>
+	</math>.
+</li>
+<li>Даны натуральное число <var>n</var>, целые числа
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mi>n</mi></msub>
+		</mfenced>
+	</math>. Заменить все большие семи члены последовательности
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mi>n</mi></msub>
+		</mfenced>
+	</math> числом 7. Вычислить количество таких членов.
+</li>
+<li>Даны целые числа 
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mn>45</mn></msub>
+		</mfenced>
+	</math>. Получить число отрицательных членов последовательности
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mn>35</mn></msub>
+		</mfenced>
+	</math> и число нулевых членов всей последовательности
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mn>45</mn></msub>
+		</mfenced>
+	</math>.
+</li>
+<li>Пусть 
+	<math>
+		<mrow>
+			<msub><mi>x</mi><mn>0</mn></msub>
+			<mo>=</mo>	
+			<mi>a</mi>
+		</mrow>
+		<mo>,</mo>
+		<mrow>
+			<msub><mi>x</mi><mi>k</mi></msub>
+			<mo>=</mo>	
+			<mi>q</mi>
+			<mo>&#x2062;</mo>
+			<msub><mi>x</mi><mrow><mi>k</mi><mo>-</mo><mn>1</mn></mrow></msub>
+			<mo>+</mo>
+			<mi>b</mi>
+		</mrow>
+		<mspace width="1ex"/>
+		<mrow>		
+			<mo>(</mo>
+				<mi>k</mi><mo>=</mo>
+				<mrow><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mi>&#133;</mo></mrow>
+			<mo>)</mo>
+		</mrow>		
+	</math>. Даны неотрицательное целое <var>n</var>, действительные
+	<math>
+		<mfenced open='' close=''>
+			<mi>a</mi><mi>b</mi><mi>c</mi><mi>d</mi><mi>q</mi>
+		</mfenced>
+		<mspace width="1ex"/>
+		<mrow><mo>(</mo><mi>c</mi><mo>&lt;</mo><mi>d</mi><mo>)</mo></mrow>
+	</math>. Принадлежит ли 
+	<math><msub><mi>x</mi><mi>n</mi></msub></math> интервалу
+		<math>
+		<mfenced>
+			<mi>c</mi><mi>d</mi></mfenced>
+		</math>?
+</li>
+<li>Даны натуральное число <var>n</var>, целые числа
+	<math>
+		<mfenced open='' close=''>
+			<mi>a</mi>
+			<msub><mi>x</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>x</mi><mi>n</mi></msub>
+		</mfenced>
+	</math>. Если в последовательности
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>x</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>x</mi><mi>n</mi></msub>
+		</mfenced>
+	</math> есть хотя бы один член, равный <var>a</var>, то получить сумму всех членов, следующих за первым таким членом; в противном случае ответом должно быть число <var>–10</var>.
+</li>
+<li>Даны натуральное число <var>n</var>, действительные числа
+	<math>
+		<mfenced open='' close=''>
+			<mi>a</mi><mi>b</mi>
+			<msub><mi>c</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>c</mi><mi>n</mi></msub>
+		</mfenced>
+	</math>. Верно ли *), что при 
+	<math>
+		<mn>1</mn><mo>&#8804;</mo><mi>k</mi><mo>&#8804;</mo><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow>
+	</math>  всякий раз, когда
+	<math>
+		<msub><mi>c</mi><mi>k</mi></msub>
+		<mo>&lt;</mo>
+		<mi>a</mi>
+	</math>, выполнено
+	<math>
+		<msub><mi>c</mi><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msub>
+		<mo>&gt;</mo>
+		<mi>b</mi>
+	</math>?
+	<p>*) В качестве ответов к этой и ряду других задач, в которых требуется определить истинность какого-либо утверждения, должны быть получены соответствующие текстовые сообщения.</p>
+</li>
+<li>Даны целые числа 
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mn>50</mn></msub>
+		</mfenced>
+	</math>. Получить последовательность 
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>b</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>b</mi><mn>50</mn></msub>
+		</mfenced>
+	</math>, которая отличается от исходной тем, что все нечетные члены удвоены.
+</li>
+<li>Вычислить
+<math>
+		<munderover>
+   		<mo>&#931;</mo>
+   			<mrow>
+        			<mi>i</mi>
+        			<mo>=</mo>
+        			<mn>1</mn>
+   			</mrow>
+   			<mn>30</mn>
+		</munderover>
+	<msup>
+		<mrow>
+			<mo>(</mo>
+				<msub><mi>a</mi><mi>i</mi></msub>
+				<mo>-</mo>
+				<msub><mi>b</mi><mi>i</mi></msub>
+			<mo>)</mo>
+		</mrow>
+		<mn>2</mn>
+	</msup>
+</math>, где
+<math display="block">
+<mrow>
+	<msub><mi>a</mi><mi>i</mi></msub>
+	<mo>=</mo>
+	<mrow>
+	<mo>{</mo>
+	<mtable>
+		<mtr>
+			<mtd columnalign='left'>
+				<mi>i</mi>
+				<mo>,</mo>
+				<mtext>если</mtext>
+				<mspace width='1ex'/>
+				<mi>i</mi>
+				<mspace width='1ex'/>
+				<mtext>нечетная,</mtext>
+			</mtd>
+		</mtr>
+		<mtr>
+			<mtd>
+				<mfrac><mi>i</mi><mn>2</mn></mfrac>
+				<mspace width='1ex'/>
+				<mtext>в противном случае,</mtext>
+			</mtd>
+		</mtr>
+	</mtable>
+	</mrow>
+</mrow>
+</math>
+<math display="block">
+<mrow>
+	<msub><mi>b</mi><mi>i</mi></msub>
+	<mo>=</mo>
+	<mrow>
+	<mo>{</mo>
+	<mtable>
+		<mtr>
+			<mtd columnalign='left'>
+				<msup><mi>i</mi><mn>2</mn></msup>
+				<mo>,</mo>
+				<mtext>если</mtext>
+				<mspace width='1ex'/>
+				<mi>i</mi>
+				<mspace width='1ex'/>
+				<mtext>нечетная,</mtext>
+			</mtd>
+		</mtr>
+		<mtr>
+			<mtd>
+				<msup><mi>i</mi><mn>3</mn></msup>
+				<mspace width='1ex'/>
+				<mtext>в противном случае.</mtext>
+			</mtd>
+		</mtr>
+	</mtable>
+	</mrow>
+</mrow>
+</math>
+</li>
+<li>Даны натуральные числа
+	<math>
+		<mfenced open='' close=''>
+			<mi>n</mi>
+			<msub><mi>b</mi><mn>0</mn></msub>			
+			<msub><mi>b</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>b</mi><mi>n</mi></msub>
+		</mfenced>
+	</math>. Вычислить
+	<math>
+		<mrow>
+			<mi>f</mi><mo>&#x2061;</mo>
+			<mrow>
+				<mo>(</mo>
+					<msub><mi>b</mi><mn>0</mn></msub>
+				<mo>)</mo>
+			</mrow>
+		</mrow>				
+		<mo>+</mo>		
+		<mrow>
+			<mi>f</mi><mo>&#x2061;</mo>
+			<mrow>			
+				<mo>(</mo>
+					<msub><mi>b</mi><mn>1</mn></msub>
+				<mo>)</mo>
+			</mrow>	
+		</mrow>				
+		<mo>+</mo>
+		<mi>&#133;</mi>		
+		<mrow>
+			<mi>f</mi><mo>&#x2061;</mo>
+			<mrow>			
+				<mo>(</mo>
+					<msub><mi>b</mi><mi>n</mi></msub>
+				<mo>)</mo>
+			</mrow>	
+		</mrow>		
+	</math>, где
+	<math display="block">
+		<mrow>
+			<mi>f</mi><mo>&#x2061;</mo>
+			<mrow><mo>(</mo><mi>x</mi><mo>)</mo></mrow>
+		</mrow>
+		<mo>=</mo>
+		<mrow>
+			<mo>{</mo>
+			<mtable>
+				<mtr>
+					<mtd columnalign='left'>
+						<msup><mi>x</mi><mn>2</mn></msup><mo>,</mo>
+						<mtext>если x кратно 3,</mtext>
+					</mtd>			
+				</mtr>
+				<mtr>
+					<mtd columnalign='left'>
+						<mi>x</mi><mo>,</mo>
+						<mtext>если x при делении на 3 дает остаток 1,</mtext>
+					</mtd>			
+				</mtr>
+				<mtr>
+					<mtd columnalign='left'>
+						<mrow>
+						<mo>[</mo>
+							<mfrac><mi>x</mi><mn>3</mn></mfrac>
+						<mo>]</mo>
+						</mrow><mspace width='1ex'/>
+						<mtext>в остальных случаях.</mtext>
+					</mtd>			
+				</mtr>				
+			</mtable>
+		</mrow>			
+	</math>
+</li>
+<li>Даны натуральное число <var>n</var>, действительные числа
+	<math>
+		<mfenced open='' close=''>
+			<mi>r</mi>
+			<msub><mi>a</mi><mn>1</mn></msub>			
+			<msub><mi>a</mi><mn>2</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mi>n</mi></msub>
+		</mfenced>
+		<mspace width='1ex'/>
+		<mrow><mo>(</mo><mi>n</mi><mo>&#8805;</mo><mn>2</mn><mo>)</mo></mrow>
+	</math>. Сколько среди точек
+		<math>
+		<mfenced open='' close=''>
+			<mfenced>
+				<msub><mi>a</mi><mn>1</mn></msub>
+				<msub><mi>a</mi><mi>n</mi></msub>
+			</mfenced>
+			<mfenced>
+				<msub><mi>a</mi><mn>2</mn></msub>
+				<msub><mi>a</mi><mrow><mi>n</mi><mo>-</mo><mi>1</mn></mrow></msub>
+			</mfenced>						
+			<mi>&#133;</mi>
+			<mfenced>
+				<msub><mi>a</mi><mi>n</mi></msub>
+				<msub><mi>a</mi><mn>1</mn></msub>
+			</mfenced>
+		</mfenced>
+	</math> таких, которые принадлежат кругу радиуса <var>r</var> с центром в начале координат?
+</li>
+<li>Даны целые числа
+	<math>
+		<mfenced open='' close=''>
+			<mi>a</mi><mi>n</mi>
+			<msub><mi>x</mi><mn>1</mn></msub>			
+			<msub><mi>x</mi><mn>2</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>x</mi><mi>n</mi></msub>
+		</mfenced>
+		<mspace width='1ex'/>
+		<mrow><mo>(</mo><mi>n</mi><mo>&gt;</mo><mn>0</mn><mo>)</mo></mrow>
+	</math>. Определить, каким по счету идет в последовательности
+		<math>
+		<mfenced open='' close=''>
+			<msub><mi>x</mi><mn>1</mn></msub>			
+			<msub><mi>x</mi><mn>2</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>x</mi><mi>n</mi></msub>
+		</mfenced>
+	</math> член, равный <var>a</var>. Если такого члена нет, то ответом должно быть число <var>0</var>.
+</li>
+<li>Даны натуральное число <var>n</var>, действительные числа 
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>			
+			<msub><mi>a</mi><mn>2</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mi>n</mi></msub>
+		</mfenced>
+	</math>. Получить:
+	<ol type='a'>
+		<li>
+			<math>
+				<mi>max</mi><mo>&#x2061;</mo>
+				<mfenced>
+					<msub><mi>a</mi><mn>1</mn></msub>			
+					<msub><mi>a</mi><mn>2</mn></msub>
+					<mi>&#133;</mi>
+					<msub><mi>a</mi><mi>n</mi></msub>
+				</mfenced>
+			</math>;
+		</li>	
+		<li>
+			<math>
+				<mi>min</mi><mo>&#x2061;</mo>
+				<mfenced>
+					<msub><mi>a</mi><mn>1</mn></msub>			
+					<msub><mi>a</mi><mn>2</mn></msub>
+					<mi>&#133;</mi>
+					<msub><mi>a</mi><mi>n</mi></msub>
+				</mfenced>
+			</math>;
+		</li>
+		<li>
+			<math>
+				<mi>max</mi><mo>&#x2061;</mo>
+				<mfenced>
+					<msub><mi>a</mi><mn>2</mn></msub>			
+					<msub><mi>a</mi><mn>4</mn></msub>
+					<mi>&#133;</mi>
+				</mfenced>
+			</math>;
+		</li>	
+		<li>
+			<math>
+				<mi>min</mi><mo>&#x2061;</mo>
+				<mfenced>
+					<msub><mi>a</mi><mn>1</mn></msub>			
+					<msub><mi>a</mi><mn>3</mn></msub>
+					<mi>&#133;</mi>
+				</mfenced>
+			</math>;
+		</li>
+		<li>
+			<math>
+				<mrow>
+					<mi>max</mi><mo>&#x2061;</mo>
+					<mfenced>
+						<msub><mi>a</mi><mn>2</mn></msub>			
+						<msub><mi>a</mi><mn>4</mn></msub>
+						<mi>&#133;</mi>
+					</mfenced>
+				</mrow>
+				<mo>+</mo>
+				<mrow>
+					<mi>min</mi><mo>&#x2061;</mo>
+					<mfenced>
+						<msub><mi>a</mi><mn>1</mn></msub>			
+						<msub><mi>a</mi><mn>3</mn></msub>
+						<mi>&#133;</mi>
+					</mfenced>
+				</mrow>
+			</math>;
+		</li>	
+		<li>
+			<math>
+				<mi>max</mi><mo>&#x2061;</mo>
+				<mfenced>
+					<mrow>
+						<mo>|</mo>
+						<msub><mi>a</mi><mn>1</mn></msub>
+						<mo>|</mo>
+					</mrow>
+					<mrow>
+						<mo>|</mo>
+						<msub><mi>a</mi><mn>2</mn></msub>
+						<mo>|</mo>
+					</mrow>
+					<mi>&#133;</mi>
+					<mrow>
+						<mo>|</mo>
+						<msub><mi>a</mi><mi>n</mi></msub>
+						<mo>|</mo>
+					</mrow>
+				</mfenced>
+			</math>;
+		</li>	
+		<li>
+			<math>
+				<mi>max</mi><mo>&#x2061;</mo>
+				<mfenced>
+					<mrow>
+						<mo>-</mo>
+						<msub><mi>a</mi><mn>1</mn></msub>
+					</mrow>			
+					<msub><mi>a</mi><mn>2</mn></msub>
+					<mrow>
+						<mo>-</mo>
+						<msub><mi>a</mi><mn>3</mn></msub>
+					</mrow>			
+					<mi>&#133;</mi>
+					<mrow>
+						<msup>
+							<mrow><mo>(</mo><mo>-</mo><mn>1</mn><mo>)</mo></mrow>
+							<mi>n</mi>
+						</msup>
+						<mo>&#x2061;</mo>
+						<msub><mi>a</mi><mi>n</mi></msub>
+					</mrow>
+				</mfenced>
+			</math>;
+		</li>
+		<li>
+			<math>
+				<msup>
+				<mrow>
+					<mo>(</mo>
+					<mi>min</mi><mo>&#x2061;</mo>
+					<mfenced>
+						<msub><mi>a</mi><mn>1</mn></msub>			
+						<msub><mi>a</mi><mn>2</mn></msub>
+						<mi>&#133;</mi>
+						<msub><mi>a</mi><mi>n</mi></msub>
+					</mfenced>
+					<mo>)</mo>
+				</mrow>
+				<mn>2</mn>
+				</msup>
+				<mo>+</mo>
+				<mrow>
+					<mi>min</mi><mo>&#x2061;</mo>
+					<mfenced>
+						<msup>
+							<msub><mi>a</mi><mn>1</mn></msub>
+							<mn>2</mn>
+						</msup>
+						<msup>										
+							<msub><mi>a</mi><mn>2</mn></msub>
+							<mn>2</mn>
+						</msup>								
+						<mi>&#133;</mi>
+						<msup>						
+							<msub><mi>a</mi><mi>n</mi></msub>
+							<mn>2</mn>
+						</msup>	
+					</mfenced>
+				</mrow>
+			</math>.		
+		</li>
+	</ol>	
+</li>
+<li>Даны натуральное число <var>n</var>, действительные числа 
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>			
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mi>n</mi></msub>
+		</mfenced>
+	</math>.
+	<ol type='a'>
+		<li>Верно ли, что отрицательных членов в последовательности 
+		<math>
+			<mfenced open='' close=''>
+				<msub><mi>a</mi><mn>1</mn></msub>			
+				<mi>&#133;</mi>
+				<msub><mi>a</mi><mi>n</mi></msub>
+			</mfenced>
+		</math> больше, чем положительных?
+		</li>	
+		<li>Верно ли, что наибольший член последовательности
+		<math>
+			<mfenced open='' close=''>
+				<msub><mi>a</mi><mn>1</mn></msub>			
+				<mi>&#133;</mi>
+				<msub><mi>a</mi><mi>n</mi></msub>
+			</mfenced>
+		</math> по модулю больше единицы?
+		</li>
+	</ol>
+</li>
+<li>У прилавка в магазине выстроилась очередь из <var>n</var> покупателей. Время обслуживания продавцом <var>i</var>–го покупателя равно
+<math>
+	<msub><mi>t</mi><mi>i</mi></msub>
+	<mspace width='1ex'/>
+	<mrow>
+		<mo>(</mo>
+			<mi>i</mi><mo>=</mo>
+			<mfenced open='' close=''>
+				<mn>1</mn><mi>&#133;</mi><mi>n</mi>
+			</mfenced>		
+		<mo>)</mo>	
+	</mrow>
+</math>. Пусть даны натуральное <var>n</var> и действительные
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>t</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>t</mi><mi>n</mi></msub>
+	</mfenced>		
+</math>. Получить 
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>c</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>c</mi><mi>n</mi></msub>
+	</mfenced>		
+</math>, где
+<math>
+	<msub><mi>c</mi><mi>i</mi></msub>
+</math> – время пребывания <var>i</var>–го покупателя в очереди
+<math>
+	<mrow>
+		<mo>(</mo>
+			<mi>i</mi><mo>=</mo>
+			<mfenced open='' close=''>
+				<mn>1</mn><mi>&#133;</mi><mi>n</mi>
+			</mfenced>		
+		<mo>)</mo>	
+	</mrow>
+</math>. Указать номер покупателя, для обслуживания которого продавцу потребовалось самое малое время.
+</li>
+<li><p>В некоторых видах спортивных состязаний выступление каждого спортсмена независимо оценивается несколькими судьями, затем из всей совокупности оценок удаляются наиболее высокая и наиболее низкая, а для оставшихся оценок вычисляется среднее арифметическое, которое и идет в зачет спортсмену. Если наиболее высокую оценку выставило несколько судей, то из совокупности оценок удаляется только одна такая оценка; аналогично поступают с наиболее низкими оценками.</p>
+<p>Даны натуральное число <var>n</var>, действительные положительные числа
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>			
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mi>n</mi></msub>
+		</mfenced><mspace width='1ex'/>
+		<mrow><mo>(</mo><mi>n</mi><mo>&gt;</mo><mn>2</mn><mo>)</mo></mrow>
+	</math>. Считая, что числа
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>			
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mi>n</mi></msub>
+		</mfenced>
+	</math> – это оценки, выставленные судьями одному из участников соревнований, определить оценку, которая пойдет в зачет этому спортсмену.
+</p>
+</li>
+<li>Даны натуральное число <var>n</var>, действительные числа
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>			
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mi>n</mi></msub>
+		</mfenced>
+	</math>. Получить
+	<math>
+		<mi>max</mi><mo>&#x2061;</mo>
+		<mfenced>
+			<msub><mi>a</mi><mn>1</mn></msub>			
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mi>n</mi></msub>
+		</mfenced>
+	</math> и
+	<math>
+		<msqrt>
+			<msup>
+				<msub><mi>a</mi><mn>1</mn></msub>
+				<mn>2</mn>
+			</msup>
+			<mo>+</mo>			
+			<mi>&#133;</mi>
+			<mo>+</mo>
+			<msup>
+				<msub><mi>a</mi><mi>n</mi></msub>
+				<mn>2</mn>
+			</msup>
+		</msqrt>
+	</math>.
+</li>
+<li>Дано натуральное число <var>n</var>. Найти наибольшее среди чисел
+<math>
+<mi>k</mi><mo>&#x2062;</mo>
+<msup>
+	<mi>e</mi>
+	<mrow>
+		<msup><mi>sin</mi><mn>2</mn></msup>	
+		<mo>&#x2061;</mo>
+		<mrow><mo>(</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo>)</mo></mrow>
+	</mrow>
+</msup>
+	<mspace width='1ex'/>
+	<mrow>
+		<mo>(</mo>
+			<mi>k</mi><mo>=</mo>
+			<mfenced open='' close=''>
+				<mn>1</mn><mi>&#133;</mi><mi>n</mi>
+			</mfenced>
+		<mo>)</mo>
+	</mrow>
+</math>, а также сумму всех этих чисел.
+</li>
+<li>Дано натуральное число <var>n</var>. Выбросить из записи числа <var>n</var> цифры <var>0</var> и <var>5</var>, оставив прежним порядок остальных цифр. Например, из числа <var>59015509</var> должно получиться <var>919</var>.
+</li>
+<li>Даны натуральное число <var>n</var>, целые числа
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>			
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mi>n</mi></msub>
+		</mfenced>
+	</math>. Найти:
+	<ol type='a'>
+		<li>наименьшее из четных чисел, входящих в последовательность
+		<math>
+			<mfenced open='' close=''>
+				<mrow>			
+					<msub><mi>a</mi><mn>1</mn></msub>
+					<mo>-</mo>
+					<mn>1</mn>
+				</mrow>			
+				<msub><mi>a</mi><mn>2</mn></msub>
+				<mi>&#133;</mi>
+				<msub><mi>a</mi><mi>n</mi></msub>
+			</mfenced>
+		</math>.;
+		</li>		
+		<li>наибольшее из нечетных и количество четных чисел, входящих в последовательность
+		<math>
+			<mfenced open='' close=''>
+				<msub><mi>a</mi><mn>1</mn></msub>			
+				<mi>&#133;</mi>
+				<mrow>			
+					<msub><mi>a</mi><mi>n</mi></msub>
+					<mo>+</mo>
+					<mn>1</mn>
+				</mrow>
+			</mfenced>
+		</math>.		
+		</li>
+	</ol>
+</li>
+<li>Даны натуральное число <var>n</var>, действительное число <var>x</var>. Среди чисел
+<math>
+	<msup>
+		<mi>e</mi>
+		<mrow>
+			<mi>cos</mi><mo>&#x2061;</mo>
+			<mrow>
+				<mo>(</mo>
+				<msup><mi>x</mi><mrow><mn>2</mn><mo>&#x2062;</mo><mi>k</mi></mrow></msup>
+				<mo>)</mo>
+			</mrow>
+		</mrow>
+	</msup>
+	<mo>&#x2062;</mo>
+	<mrow>
+		<mi>cos</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<msup><mi>x</mi><mrow><mn>3</mn><mo>&#x2062;</mo><mi>k</mi></mrow></msup>
+			<mo>)</mo>
+		</mrow>		
+	</mrow>
+	<mspace width='1ex'/>
+	<mrow>
+		<mo>(</mo>
+			<mi>k</mi><mo>=</mo>
+			<mfenced open='' close=''>
+				<mn>1</mn><mi>&#133;</mi><mi>n</mi>
+			</mfenced>
+		<mo>)</mo>
+	</mrow>	
+</math> найти ближайшее к какому–нибудь целому.
+</li>
+<li>Даны натуральное число <var>n</var>, действительные числа 
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>			
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mi>n</mi></msub>
+		</mfenced>
+	</math>. Получить все натуральные
+	<math>
+		<mi>j</mi>
+		<mspace width='1ex'/>
+		<mrow>
+		<mo>(</mo>
+			<mn>1</mn><mo>&lt;</mo><mi>j</mi><mo>&lt;</mo><mi>n</mi>		
+		<mo>)</mo>
+	</mrow>
+	</math>, для которых
+	<math>
+		<msub><mi>a</mi><mrow><mi>j</mi><mo>-</mo><mn>1</mn></mrow></msub>
+		<mo>&#8804;</mo>
+		<msub><mi>a</mi><mi>j</mi></msub>	
+		<mo>&#8804;</mo>		
+		<msub><mi>a</mi><mrow><mi>j</mi><mo>+</mo><mn>1</mn></mrow></msub>
+	</math>.
+</li>
+<li>Пусть
+	<math>
+		<mrow>
+			<msub><mi>x</mi><mn>1</mn></msub>
+			<mo>=</mo>
+			<mn>0.3</mn>
+		</mrow>
+		<mo>;</mo>
+		<mrow>
+			<msub><mi>x</mi><mn>2</mn></msub>
+			<mo>=</mo>
+			<mrow><mo>-</mo><mn>0.3</mn></mrow>
+		</mrow>
+		<mo>;</mo>
+		<mrow>
+			<msub><mi>x</mi><mi>i</mi></msub>
+			<mo>=</mo>
+			<mi>sin</mi><mo>&#x2061;</mo>
+			<mrow>
+				<mo>(</mo>
+				<msub><mi>x</mi><mi>i</mi></msub>
+				<mo>-</mo>
+				<mn>2</mn>
+				<mo>)</mo>
+			</mrow>
+		</mrow>
+		<mo>,</mo>
+		<mrow>
+			<mi>i</mi><mo>=</mo>
+			<mfenced open='' close=''>
+				<mn>3</mn>
+				<mn>4</mn>
+				<mi>&#133;</mi>
+			</mfenced>
+		</mrow>
+	</math>
+	Среди
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>x</mi><mn>1</mn></msub>			
+			<mi>&#133;</mi>
+			<msub><mi>x</mi><mn>100</mn></msub>
+		</mfenced>
+	</math>
+	 найти ближайшее к какому–нибудь целому.
+</li>
+<li>Пусть
+	<math display='block'>
+		<mrow>
+			<msub><mi>x</mi><mn>1</mn></msub><mo>=</mo>
+			<msub><mi>y</mi><mn>1</mn></msub><mo>=</mo>
+			<mn>1</mn>		
+		</mrow><mo>;</mo>
+		<mrow>
+			<msub><mi>x</mi><mi>i</mi></msub><mo>=</mo>
+			<mrow>
+				<msub><mi>x</mi><mrow><mi>i</mi><mo>-</mo><mn>1</mn></mrow></msub>
+				<mo>+</mo>
+				<mfrac>
+					<msub><mi>y</mi><mrow><mi>i</mi><mo>-</mo><mn>1</mn></mrow></msub>
+					<msup><mi>i</mi><mn>2</mn></msup>
+				</mfrac>
+			</mrow>
+		</mrow><mo>;</mo>
+		<mrow>
+			<msub><mi>y</mi><mi>i</mi></msub><mo>=</mo>
+			<mrow>
+				<msub><mi>y</mi><mrow><mi>i</mi><mo>-</mo><mn>1</mn></mrow></msub>
+				<mo>+</mo>
+				<mfrac>
+					<msub><mi>x</mi><mrow><mi>i</mi><mo>-</mo><mn>1</mn></mrow></msub>
+					<mi>i</mi>
+				</mfrac>
+			</mrow>
+		</mrow>
+		<mo>,</mo>
+		<mrow>
+			<mi>i</mi><mo>=</mo>
+			<mfenced open='' close=''>
+				<mn>2</mn>
+				<mn>3</mn>
+				<mi>&#133;</mi>
+			</mfenced>
+		</mrow>
+	</math> Получить
+	<math>
+		<msub><mi>x</mi><mn>8</mn></msub>
+		<mo>,</mo>
+		<msub><mi>x</mi><mn>18</mn></msub>
+	</math>.
+</li>
+<li>Пусть
+	<math display='block'>
+		<mrow>
+			<msub><mi>a</mi><mi>i</mi></msub><mo>=</mo>
+			<mfrac>
+				<mrow><mi>i</mi><mo>-</mo><mn>1</mn></mrow>
+				<mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow>			
+			</mfrac>		
+		</mrow>
+		<mo>+</mo>
+		<mrow>
+			<mi>sin</mi><mo>&#x2061;</mo>
+				<mfrac>
+					<msup>
+						<mrow><mo>(</mo><mi>i</mi><mo>-</mo><mn>1</mn><mo>)</mo></mrow>
+						<mn>2</mn>
+					</msup>
+					<mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow>			
+				</mfrac>		
+		</mrow>
+		<mo>,</mo>
+		<mrow>
+			<mi>i</mi><mo>=</mo>
+			<mfenced open='' close=''>
+				<mn>1</mn>
+				<mn>2</mn>
+				<mi>&#133;</mi>
+			</mfenced>
+		</mrow>
+	</math>
+Дано натуральное <var>n</var>. Среди
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>			
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mi>n</mi></msub>
+		</mfenced>
+	</math> найти все положительные числа, среди положительных
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>			
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mi>n</mi></msub>
+		</mfenced>
+	</math> выбрать наименьшее число.
+</li>
+<li>Пусть
+<math display='block'>
+<mrow>
+	<msub><mi>a</mi><mn>0</mn></msub>
+	<mo>=</mo>
+	<msup><mi>cos</mi><mn>2</mn></msup><mo>&#x2061;</mo>	
+	<mn>1</mn>
+</mrow><mo>;</mo>
+<mrow>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mo>=</mo><mo>-</mo>
+	<msup><mi>sin</mi><mn>2</mn></msup><mo>&#x2061;</mo>	
+	<mn>1</mn>
+</mrow><mo>;</mo>
+<mrow>
+	<msub><mi>a</mi><mi>k</mi></msub>
+	<mo>=</mo>
+	<mrow>	
+		<mn>2</mn><mo>&#x2062;</mo>
+		<msub><mi>a</mi><mrow><mi>k</mi><mo>-</mo><mn>1</mn></mrow></msub>
+	</mrow>
+	<mo>-</mo>
+	<msub><mi>a</mi><mrow><mi>k</mi><mo>-</mo><mn>2</mn></mrow></msub>
+</mrow>
+<mo>,</mo>
+<mrow>
+	<mi>k</mi><mo>=</mo>
+	<mrow>
+		<mn>2</mn><mo>,</mo><mn>3</mn><mi>&#133;</mo>
+	</mrow>
+</mrow>	
+</math> Найти сумму квадратов тех чисел
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>			
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mn>100</mn></msub>
+		</mfenced>
+	</math>, которые не превосходят двух.
+
+</li>
+<li>Даны натуральное n, действительные числа
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>			
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mi>n</mi></msub>
+		</mfenced>
+	</math>. В последовательности
+		<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>			
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mi>n</mi></msub>
+		</mfenced>
+	</math> определить число соседств:
+	<ol type='a'>
+		<li>двух положительных чисел;</li>	
+		<li>двух чисел разного знака;</li>
+		<li>двух чисел одного знака, причем модуль первого числа должен быть больше модуля второго числа.</li>
+	</ol>	
+</li>
+<li>Даны целые числа 
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>c</mi><mn>1</mn></msub>			
+			<mi>&#133;</mi>
+			<msub><mi>c</mi><mn>95</mn></msub>
+		</mfenced>
+	</math>. Имеются ли в последовательности
+		<math>
+		<mfenced open='' close=''>
+			<msub><mi>c</mi><mn>1</mn></msub>			
+			<mi>&#133;</mi>
+			<msub><mi>c</mi><mn>95</mn></msub>
+		</mfenced>
+	</math>:
+	<ol type='a'>
+		<li>два идущих подряд нулевых члена;</li>	
+		<li>три идущих подряд нулевых члена?</li>
+	</ol>	
+</li>
+<li>Даны натуральное число <var>n</var>, действительные числа
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>x</mi><mn>1</mn></msub>			
+			<mi>&#133;</mi>
+			<msub><mi>x</mi><mrow><mn>3</mn><mo>&#x2062;</mo><mi>n</mi></mrow></msub>
+		</mfenced>
+	</math>. Последовательность чисел
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>x</mi><mn>1</mn></msub>			
+			<mi>&#133;</mi>
+			<msub><mi>x</mi><mrow><mn>3</mn><mo>&#x2062;</mo><mi>n</mi></mrow></msub>
+		</mfenced>
+	</math> определяет на плоскости <var>n</var> квадратов со сторонами, параллельными координатным осям: так,
+	<math><mfenced><msub><mi>x</mi><mn>1</mn></msub><msub><mi>x</mi><mn>2</mn></msub></mfenced></math> – координаты центра первого квадрата, <math><msub><mi>x</mi><mn>3</mn></msub></math> – длина его стороны; аналогично, числа
+	<math>
+		<mfenced>
+			<msub><mi>x</mi><mn>4</mn></msub>
+			<msub><mi>x</mi><mn>5</mn></msub>
+			<msub><mi>x</mi><mn>6</mn></msub>
+		</mfenced>
+	</math> определяют второй квадрат, 
+		<math>
+		<mfenced>
+			<msub><mi>x</mi><mn>7</mn></msub>
+			<msub><mi>x</mi><mn>8</mn></msub>
+			<msub><mi>x</mi><mn>9</mn></msub>
+		</mfenced>
+	</math> – третий и т. д. Имеются ли точки, принадлежащие всем квадратам? Если да, то указать координаты одной из них.
+</li>
+<li>Даны натуральное число <var>n</var>, действительные числа
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>x</mi><mn>1</mn></msub>			
+			<mi>&#133;</mi>
+			<msub><mi>x</mi><mrow><mn>3</mn><mo>&#x2062;</mo><mi>n</mi></mrow></msub>
+		</mfenced>
+	</math>. Вычислить сумму чисел из
+		<math>
+		<mfenced open='' close=''>
+			<msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub>			
+			<mi>&#133;</mi>
+			<msub><mi>x</mi><mrow><mn>3</mn><mo>&#x2062;</mo><mi>n</mi></mrow></msub>
+		</mfenced>
+	</math>, которые превосходят по величине все числа
+		<math>
+		<mfenced open='' close=''>
+			<msub><mi>x</mi><mn>1</mn></msub>			
+			<mi>&#133;</mi>
+			<msub><mi>x</mi><mi>n</mi></msub>
+		</mfenced>
+	</math>.
+</li>
+<li>
+Даны действительные числа 
+<math>
+	<mrow>
+		<mi>a</mi><mo>,</mo><mi>b</mi>
+	</mrow>
+	<mspace width='1ex'/>
+	<mrow><mo>(</mo><mi>a</mi><mo>&lt;</mo><mi>b</mi><mo>)</mo></mrow>
+</math>, натуральное число <var>n</var>, функция
+<math>
+	<mi>y</mi><mo>=</mo>
+	<mrow>
+		<mi>f</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo><mi>x</mi><mo>)</mo>
+		</mrow>
+	</mrow>	
+</math>, определенная на отрезке 
+<math>
+	<mfenced open='[' close=']'>
+		<mi>a</mi><mi>b</mi>
+	</mfenced>	
+</math>. Для значений аргумента
+<math>
+<mrow>
+	<msub><mi>x</mi><mi>i</mi></msub>
+	<mo>=</mo>
+	<mrow>
+		<mi>a</mi><mo>+</mo>
+		<mrow><mi>i</mi><mo>&#x2062;</mo><mi>h</mi></mrow>	
+	</mrow>
+</mrow>
+<mspace width='1ex'/>
+<mrow>
+	<mo>(</mo>
+		<mi>i</mi><mo>=</mo>
+		<mfenced open='' close=''>
+			<mn>0</mn><mn>1</mn><mi>&#133;</mi><mi>n</mi>
+		</mfenced>
+	<mo>)</mo>
+</mrow>
+<mo>,</mo>
+<mrow>
+	<mi>h</mi><mo>=</mo>
+	<mfrac><mrow><mi>b</mi><mo>-</mo><mi>a</mi></mrow><mi>n</mi></mfrac>
+</mrow>
+</math> вычислить значения функции
+<math>
+	<msub><mi>y</mi><mi>i</mi></msub><mo>=</mo>
+	<mrow>
+		<mi>f</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo><msub><mi>x</mi><mi>i</mi></msub><mo>)</mo>
+		</mrow>
+	</mrow>
+	<mspace width='1ex'/>
+	<mrow>
+	<mo>(</mo>
+		<mi>i</mi><mo>=</mo>
+		<mfenced open='' close=''>
+			<mn>0</mn><mn>1</mn><mi>&#133;</mi><mi>n</mi>
+		</mfenced>
+	<mo>)</mo>
+</mrow>	
+</math>. Вывести
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>x</mi><mi>i</mi></msub>
+		<msub><mi>y</mi><mi>i</mi></msub>
+	</mfenced>	
+	<mspace width='1ex'/>
+	<mrow>
+		<mo>(</mo>
+		<mi>i</mi><mo>=</mo>
+		<mfenced open='' close=''>
+			<mn>0</mn><mn>1</mn><mi>&#133;</mi><mi>n</mi>
+		</mfenced>
+		<mo>)</mo>
+	</mrow>	
+</math> в виде таблицы из двух колонок. В <var>i</var>-ю строку таблицу заносятся соответствующие значения
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>x</mi><mi>i</mi></msub>
+		<msub><mi>y</mi><mi>i</mi></msub>
+	</mfenced>	
+</math>. Рассмотреть следующие функции:
+	<ol type='a'>
+		<li>
+		<math>
+		<mrow>
+			<mi>y</mi><mo>=</mo>
+			<mrow>
+				<mi>sin</mi><mo>&#x2061;</mo>
+				<mrow>
+					<mo>(</mo><mi>x</mi><mo>)</mo>
+				</mrow>
+			</mrow>			
+			<mo>+</mo>
+			<mrow>
+				<mi>cos</mi><mo>&#x2061;</mo>
+				<mrow>
+					<mo>(</mo><mrow><mn>2</mn><mo>&#x2062;</mo><mi>x</mi></mrow><mo>)</mo>
+				</mrow>
+			</mrow>			
+		</mrow>		
+		<mo>,</mo>		
+		<mrow>
+			<mi>a</mi><mo>=</mo><mrow><mo>-</mo><mn>&#960;</mn></mrow>
+		</mrow>
+		<mo>,</mo>
+		<mrow>
+			<mi>b</mi><mo>=</mo><mn>&#960;</mn>
+		</mrow>
+		<mo>,</mo>
+		<mrow><mi>n</mi><mo>=</mo><mn>50</mn></mrow>		
+		</math>;
+		</li>	
+		<li>
+		<math>
+		<mrow>
+			<mi>y</mi><mo>=</mo>
+			<mrow>
+				<mi>sin</mi><mo>&#x2061;</mo>
+				<msqrt>
+					<mn>2</mn><mo>&#x2062;</mo><mi>x</mi>
+				</msqrt>
+			</mrow>			
+			<mo>+</mo>
+			<mrow>
+				<mi>cos</mi><mo>&#x2061;</mo>
+				<mrow>
+					<mo>(</mo><mi>x</mi><mo>)</mo>
+				</mrow>
+			</mrow>			
+		</mrow>		
+		<mo>,</mo>		
+		<mrow>
+			<mi>a</mi><mo>=</mo><mn>0</mn>
+		</mrow>
+		<mo>,</mo>
+		<mrow>
+			<mi>b</mi><mo>=</mo><mrow><mn>2</mn><mo>&#x2062;</mo><mn>&#960;</mn></mrow>
+		</mrow>
+		<mo>,</mo>
+		<mrow><mi>n</mi><mo>=</mo><mn>50</mn></mrow>		
+		</math>;		
+		</li>
+		<li>
+		<math>
+			<mrow>
+				<mi>y</mi><mo>=</mo>
+				<msqrt>
+					<mrow><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mn>2</mn></mrow>
+				</msqrt>
+			</mrow>
+			<mo>,</mo>
+			<mrow>
+				<mrow><mi>a</mi><mo>=</mo><mrow><mo>-</mo><mn>3</mn></mrow></mrow>
+			</mrow>
+			<mo>,</mo>
+			<mrow>
+				<mrow><mi>b</mi><mo>=</mo><mn>5</mn></mrow>
+			</mrow>
+			<mo>,</mo>
+			<mrow>
+				<mrow><mi>n</mi><mo>=</mo><mn>40</mn></mrow>
+			</mrow>
+		</math>;
+		</li>
+		<li>
+		<math>
+			<mrow>
+				<mi>y</mi><mo>=</mo>
+				<mrow>
+					<mi>x</mi><mo>&#x2062;</mo>
+					<mrow><mo>|</mo><mi>x</mi><mo>+</mo><mn>1</mn><mo>|</mo></mrow>
+				</mrow>
+			</mrow>
+			<mo>,</mo>
+			<mrow>
+				<mrow><mi>a</mi><mo>=</mo><mrow><mo>-</mo><mn>1</mn></mrow></mrow>
+			</mrow>
+			<mo>,</mo>
+			<mrow>
+				<mrow><mi>b</mi><mo>=</mo><mn>2</mn></mrow>
+			</mrow>
+			<mo>,</mo>
+			<mrow>
+				<mrow><mi>n</mi><mo>=</mo><mn>30</mn></mrow>
+			</mrow>
+		</math>;		
+		</li>
+		<li>
+		<math>
+			<mrow>
+				<mi>y</mi><mo>=</mo>
+				<mrow>
+					<mi>x</mi><mo>&#x2062;</mo>
+					<msup>
+						<mi>e</mi>
+						<mrow><mo>-</mo><mi>x</mi></mrow>
+					</msup>
+				</mrow>
+			</mrow>
+			<mo>,</mo>
+			<mrow>
+				<mrow><mi>a</mi><mo>=</mo><mrow><mo>-</mo><mn>1</mn></mrow></mrow>
+			</mrow>
+			<mo>,</mo>
+			<mrow>
+				<mrow><mi>b</mi><mo>=</mo><mn>3</mn></mrow>
+			</mrow>
+			<mo>,</mo>
+			<mrow>
+				<mrow><mi>n</mi><mo>=</mo><mn>40</mn></mrow>
+			</mrow>
+		</math>.		
+		</li>
+	</ol>
+	<li>Рассматривается последовательность
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mn>1000</mn></msub>
+		</mfenced>
+	</math>. Требуется определить, сколько членов последовательности с номерами <var>1, 2, 4, 8, 16, ...</var> имеют значение, меньшее, чем <var>0.25</var>. При этом считать, что
+	<ol type='a'>
+		<li>
+			<math>
+				<msub><mi>a</mi><mi>k</mi></msub><mo>=</mo>			
+				<mrow>				
+					<msup><mi>sin</mi><mn>2</mn></msup><mo>&#x2061;</mo>
+					<mrow><mo>(</mo><mrow><mn>3</mn><mo>&#x2062;</mo><mi>k</mi></mrow><mo>+</mo><mn>5</mn><mo>)</mo></mrow>
+				</mrow>
+				<mo>+</mo>
+				<mrow>
+					<msup><mi>cos</mi><mn>2</mn></msup><mo>&#x2061;</mo>
+					<mrow><mo>(</mo><msup><mi>k</mi><mn>2</mn></msup><mo>-</mo><mn>15</mn><mo>)</mo></mrow>
+				</mrow>
+				<mo>,</mo>
+				<mrow>
+					<mi>k</mi><mo>=</mo>
+					<mfenced open='' close=''>
+						<mn>1</mn><mn>2</mn><mi>&#133;</mi><mn>1000</mn>
+					</mfenced>
+				</mrow>
+			</math>;
+		</li>	
+		<li>
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>a</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>a</mi><mn>1000</mn></msub>
+		</mfenced>
+	</math> – заданные действительные числа;
+	</li>
+	<li>
+	<math>
+		<mrow><msub><mi>a</mi><mn>1</mn></msub><mo>=</mo><mn>0.01</mn></mrow><mo>;</mo>
+		<mrow>
+			<msub><mi>a</mi><mi>k</mi></msub><mo>=</mo>
+			<mi>sin</mi><mo>&#x2061;</mo>
+			<mrow>
+				<mo>(</mo
+					<mi>k</mi><mo>+</mo><msub><mi>a</mi><mrow><mi>k</mi><mo>-</mo><mn>1</mn></mrow></msub>
+				<mo>)</mo>
+			</mrow>
+		</mrow>
+		<mo>,</mo>
+		<mrow>
+			<mi>k</mi><mo>=</mo>
+			<mfenced open='' close=''>
+				<mn>2</mn><mi>&#133;</mi><mn>1000</mn>
+			</mfenced>
+		</mrow>
+
+	</math>.	
+	</li>
+	</ol>
+	<li>Даны натуральное число <var>n</var>, действительные числа
+		<math>
+		<mfenced open='' close=''>
+			<msub><mi>x</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>x</mi><mi>n</mi></msub>
+		</mfenced>
+	</math>. Получить
+	<math><mfrac>
+		<mrow><mn>1</mn><mo>+</mo><mi>r</mi></mrow>
+		<mrow><mn>1</mn><mo>+</mo><mi>s</mi></mrow>
+	</mfrac></math>, где <var>r</var> – сумма всех тех членов последовательности
+	<math>
+		<mfenced open='' close=''>
+			<msub><mi>x</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>x</mi><mi>n</mi></msub>
+		</mfenced>
+	</math>, которые не превосходят <var>1</var>, а <var>s</var> – сумма членов, больших <var>1</var>.
+	</li>
+	<li>Даны натуральное число <var>n</var>, действительные числа
+			<math>
+		<mfenced open='' close=''>
+			<msub><mi>y</mi><mn>1</mn></msub>
+			<mi>&#133;</mi>
+			<msub><mi>y</mi><mi>n</mi></msub>
+		</mfenced>
+	</math>. Найти:
+	<ol type='a'>
+		<li>
+			<math>
+				<mi>max</mi><mo>&#x2061;</mo>
+				<mfenced>
+					<msub><mi>z</mi><mn>1</mn></msub>
+					<mi>&#133;</mi>
+					<msub><mi>z</mi><mi>n</mi></msub>
+				</mfenced>			
+			</math>, где
+			<math>
+				<msub><mi>z</mi><mi>i</mi></msub>
+				<mo>=</mo>
+				<mrow>
+				<mo>{</mo>
+				<mtable>
+					<mtr>
+						<mtd columnalign='left'>
+							<msub><mi>y</mi><mi>i</mi></msub><mspace width='1ex'/>
+							<mtext>при</mtext><mspace width='1ex'/>
+							<mrow>
+								<mrow>
+									<mo>|</mo><msub><mi>y</mi><mi>i</mi></msub><mo>|</mo>
+								</mrow>
+								<mo>&#8804;</mo>
+								<mn>2</mn>
+							</mrow><mo>,</mo>
+						</mtd>					
+					</mtr>
+					<mtr>
+						<mtd><mn>0.5</mn><mspace width='1ex'/><mtext>в противном случае;</mtext></mtd>					
+					</mtr>
+
+				</mtable>
+				</mrow>
+			</math>
+		</li>	
+		<li>
+			<math>
+				<mi>min</mi><mo>&#x2061;</mo>
+				<mfenced>
+					<msub><mi>z</mi><mn>1</mn></msub>
+					<mi>&#133;</mi>
+					<msub><mi>z</mi><mi>n</mi></msub>
+				</mfenced>			
+			</math>, где
+			<math>
+				<msub><mi>z</mi><mi>i</mi></msub>
+				<mo>=</mo>
+				<mrow>
+				<mo>{</mo>
+				<mtable>
+					<mtr>
+						<mtd columnalign='left'>
+							<msub><mi>y</mi><mi>i</mi></msub><mspace width='1ex'/>
+							<mtext>при</mtext><mspace width='1ex'/>
+							<mrow>
+								<mrow>
+									<mo>|</mo><msub><mi>y</mi><mi>i</mi></msub><mo>|</mo>
+								</mrow>
+								<mo>&gt;</mo>
+								<mn>1</mn>
+							</mrow><mo>,</mo>
+						</mtd>					
+					</mtr>
+					<mtr>
+						<mtd><mn>2</mn><mspace width='1ex'/><mtext>в противном случае;</mtext></mtd>					
+					</mtr>
+
+				</mtable>
+				</mrow>
+			</math>		
+		
+		</li>
+		<li>
+		<math>
+			<mrow>			
+				<msub><mi>z</mi><mn>1</mn></msub>
+				<mo>+</mo>
+				<mi>&#133;</mi>
+				<msub><mi>z</mi><mi>n</mi></msub>
+			</mrow>			
+		</math>, где
+			<math>
+				<msub><mi>z</mi><mi>i</mi></msub>
+				<mo>=</mo>
+				<mrow>
+				<mo>{</mo>
+				<mtable>
+					<mtr>
+						<mtd columnalign='left'>
+							<msub><mi>y</mi><mi>i</mi></msub><mspace width='1ex'/>
+							<mtext>при</mtext><mspace width='1ex'/>
+							<mrow>
+								<mrow>
+									<mn>0</mn>
+									<mo>&lt;</mo>
+									<msub><mi>y</mi><mi>i</mi></msub>
+									<mo>&lt;</mo><mn>10</mn>
+								</mrow>
+								
+							</mrow><mo>,</mo>
+						</mtd>					
+					</mtr>
+					<mtr>
+						<mtd><mn>1</mn><mspace width='1ex'/><mtext>в противном случае;</mtext></mtd>					
+					</mtr>
+
+				</mtable>
+				</mrow>
+			</math>
+		</li>
+		<li>
+			<math>
+				<msup>
+					<mrow><mo>(</mo>
+						<msqrt><msub><mi>z</mi><mn>1</mn></msub></msqrt>
+						<mo>-</mo>
+						<msub><mi>z</mi><mn>1</mn></msub>
+						<mo>)</mo></mrow>
+					<mn>2</mn>
+				</msup>
+				<mo>+</mo>
+				<mi>&#133;</mi>
+				<mo>+</mo>
+				<msup>
+					<mrow><mo>(</mo>
+						<msqrt><msub><mi>z</mi><mi>n</mi></msub></msqrt>
+						<mo>-</mo>
+						<msub><mi>z</mi><mi>n</mi></msub>
+						<mo>)</mo></mrow>
+					<mn>2</mn>
+				</msup>
+			</math>, где
+			<math>
+				<msub><mi>z</mi><mi>i</mi></msub>
+				<mo>=</mo>
+				<mrow>
+				<mo>{</mo>
+				<mtable>
+					<mtr>
+						<mtd columnalign='left'>
+							<msub><mi>y</mi><mi>i</mi></msub><mspace width='1ex'/>
+							<mtext>при</mtext><mspace width='1ex'/>
+							<mrow>
+								<mrow>
+									<mn>0</mn>
+									<mo>&lt;</mo>
+									<msub><mi>y</mi><mi>i</mi></msub>
+									<mo>&#8804;</mo><mn>15</mn>
+								</mrow>
+								
+							</mrow><mo>,</mo>
+						</mtd>					
+					</mtr>
+					<mtr>
+						<mtd><mn>2.7</mn><mspace width='1ex'/><mtext>в противном случае;</mtext></mtd>					
+					</mtr>
+
+				</mtable>
+				</mrow>
+			</math>			
+		</li>
+		<li>
+			<math>
+				<msup><msub><mi>z</mi><mn>1</mn></msub><mn>2</mn></msup>
+				<mo>+</mo>
+				<mi>&#133;</mi>
+				<mo>+</mo>
+				<msup><msub><mi>z</mi><mi>n</mi></msub><mn>2</mn></msup>
+			</math>, где		
+			<math>
+				<msub><mi>z</mi><mi>i</mi></msub>
+				<mo>=</mo>
+				<mrow>
+				<mo>{</mo>
+				<mtable>
+					<mtr>
+						<mtd columnalign='left'>
+							<msub><mi>y</mi><mi>i</mi></msub><mspace width='1ex'/>
+							<mtext>при</mtext><mspace width='1ex'/>
+							<mrow>
+								<mrow>
+									<mo>|</mo><msub><mi>y</mi><mi>i</mi></msub><mo>|</mo>
+								</mrow>
+								<mo>&lt;</mo>
+								<mn>1</mn>
+							</mrow><mo>,</mo>
+						</mtd>					
+					</mtr>
+					<mtr>
+						<mtd>
+							<mfrac><mn>1</mn><msub><mi>y</mi><mi>i</mi></msub></mfrac>
+							<mspace width='1ex'/><mtext>в противном случае;</mtext></mtd>					
+					</mtr>
+
+				</mtable>
+				</mrow>
+			</math>
+		</li>		
+		
+	</ol>
+</li>
+<li>
+Даны целые числа 
+<math>
+	<mfenced open='' close=''>			
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<msub><mi>a</mi><mn>2</mn></msub>
+		<mi>&#133;</mi>
+	</mfenced>			
+</math> Известно, что
+<math>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mo>&gt;</mo>
+	<mn>0</mn>			
+</math> и что среди
+<math>
+	<mfenced open='' close=''>			
+		<msub><mi>a</mi><mn>2</mn></msub>
+		<msub><mi>a</mi><mn>3</mn></msub>
+		<mi>&#133;</mi>
+	</mfenced>			
+</math>  есть хотя бы одно отрицательное число. Пусть
+<math>
+	<mfenced open='' close=''>			
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>a</mi><mi>n</mi></msub>
+	</mfenced>			
+</math> – члены данной последовательности, предшествующие первому отрицательному члену (<var>n</var> заранее неизвестно). Получить:
+	<ol type='a'>
+		<li>
+		<math>
+			<mi>max</mi><mo>&#x2061;</mo>
+			<mfenced>
+				<msup><msub><mi>a</mi><mn>1</mn></msub><mn>2</mn></msup>
+				<mi>&#133;</mi>
+				<msup><msub><mi>a</mi><mi>n</mi></msub><mn>2</mn></msup>
+			</mfenced>			
+		</math>;
+			
+		</li>
+		<li>
+		<math>
+			<mi>max</mi><mo>&#x2061;</mo>
+			<mfenced>
+				<msup><msub><mi>a</mi><mn>1</mn></msub><mn>3</mn></msup>
+				<mi>&#133;</mi>
+				<msup><msub><mi>a</mi><mi>n</mi></msub><mn>3</mn></msup>
+			</mfenced>			
+		</math>;		
+		</li>
+		<li>
+		<math>
+			<mi>min</mi><mo>&#x2061;</mo>
+			<mfenced>
+				<msub><mi>a</mi><mn>1</mn></msub>
+				<mrow><mn>2</mn><mo>&#x2062;</mo><msub><mi>a</mi><mn>2</mn></msub></mrow>
+				<mi>&#133;</mi>
+				<mrow><mi>n</mi><mo>&#x2062;</mo><msub><mi>a</mi><mi>n</mi></msub></mrow>
+			</mfenced>			
+		</math>;		
+		</li>
+		<li>
+		<math>
+			<mi>min</mi><mo>&#x2061;</mo>
+			<mfenced>
+				<mrow>
+					<msub><mi>a</mi><mn>1</mn></msub><mo>+</mo><msub><mi>a</mi><mn>2</mn></msub>
+				</mrow>
+				<mrow>
+					<msub><mi>a</mi><mn>2</mn></msub><mo>+</mo><msub><mi>a</mi><mn>3</mn></msub>
+				</mrow>
+				<mi>&#133;</mi>
+				<mrow>
+					<msub><mi>a</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub>
+					<mo>+</mo>
+					<msub><mi>a</mi><mi>n</mi></msub>
+				</mrow>
+			</mfenced>			
+		</math>;		
+		</li>
+		<li>
+		<math>
+			<mi>min</mi><mo>&#x2061;</mo>
+			<mfenced>
+				<msub><mi>a</mi><mn>1</mn></msub>
+				<mrow>				
+					<msub><mi>a</mi><mn>1</mn></msub><mo>&#x2062;</mo><msub><mi>a</mi><mn>2</mn></msub>
+				</mrow>
+				<mi>&#133;</mi>
+				<mrow>
+					<msub><mi>a</mi><mn>1</mn></msub>
+					<mo>&#x2062;</mo>
+					<msub><mi>a</mi><mn>2</mn></msub>
+					<mo>&#x2062;</mo>
+					<mi>&#133;</mi>
+					<mo>&#x2062;</mo>
+					<msub><mi>a</mi><mi>n</mi></msub>	
+				</mrow>
+			</mfenced>			
+		</math>;		
+		</li>
+		<li>количество четных среди
+		<math>
+			<mfenced open='' close=''>
+				<msub><mi>a</mi><mn>1</mn></msub>
+				<mi>&#133;</mi>
+				<msub><mi>a</mi><mi>n</mi></msub>
+			</mfenced>			
+		</math>;		 
+		</li>
+		<li>количество удвоенных нечетных среди
+		<math>
+			<mfenced open='' close=''>
+				<msub><mi>a</mi><mn>1</mn></msub>
+				<mi>&#133;</mi>
+				<msub><mi>a</mi><mi>n</mi></msub>
+			</mfenced>			
+		</math>;		 
+		</li>
+		<li>количество полных квадратов среди
+		<math>
+			<mfenced open='' close=''>
+				<msub><mi>a</mi><mn>1</mn></msub>
+				<mi>&#133;</mi>
+				<msub><mi>a</mi><mi>n</mi></msub>
+			</mfenced>			
+		</math>;	
+		</li>
+		<li>количество квадратов нечетных среди
+		<math>
+			<mfenced open='' close=''>
+				<msub><mi>a</mi><mn>1</mn></msub>
+				<mi>&#133;</mi>
+				<msub><mi>a</mi><mi>n</mi></msub>
+			</mfenced>			
+		</math>;	
+		</li>
+	</ol>
+</li>
+<li>Дано натуральное число <var>n</var>. Получить все его натуральные делители.</li>
+<li>Дано натуральное число <var>n</var>. Получить все такие натуральные <var>q</var>, что <var>n</var> делится на
+<math><msup><mi>q</mi><mn>2</mn></msup></math> и не делится на <math><msup><mi>q</mi><mn>3</mn></msup></math>.
+</li>
+<li>Даны натуральные числа <var>m, n</var>. Получить все их натуральные общие кратные, меньшие <math><mi>m</mi><mo>&#x2062;</mo><mi>n</mi></math>.
+</li>
+<li>Даны целые числа
+<math>
+	<mrow>	
+		<mi>m</mi><mo>,</mo> <mi>n</mi>
+	</mrow><mspace width='1ex'/>
+	<mrow>
+		<mo>(</mo>
+		<mrow><mi>m</mi><mo>&#8800;</mo><mn>0</mn></mrow>
+		<mo>,</mo>
+		<mrow> <mi>n</mi> <mo>&#8800;</mo> <mn>0</mn></mrow>
+		<mo>)</mo>
+	</mrow>
+</math>. Получить все их общие делители (положительные и отрицательные).
+</li>
+<li>Даны натуральное число <var>n</var>, действительные числа
+		<math>
+			<mfenced open='' close=''>
+				<msub><mi>a</mi><mn>1</mn></msub>
+				<mi>&#133;</mi>
+				<msub><mi>a</mi><mi>n</mi></msub>
+			</mfenced>.
+		</math>		
+			 Выяснить, является ли последовательность
+		<math>
+			<mfenced open='' close=''>
+				<msub><mi>a</mi><mn>1</mn></msub>
+				<mi>&#133;</mi>
+				<msub><mi>a</mi><mi>n</mi></msub>
+			</mfenced>			
+		</math> упорядоченной по убыванию.
+</li>
+<li>Даны действительные числа
+<math>
+	<mrow>	
+		<mi>x</mi><mo>,</mo><mi>y</mi>
+	</mrow><mspace width='1ex'/>
+	<mrow>
+		<mo>(</mo>
+		<mrow><mi>x</mi><mo>&gt;</mo><mn>0</mn></mrow>
+		<mo>,</mo>
+		<mrow><mi>y</mi> <mo>&gt;</mo><mn>1</mn></mrow>
+		<mo>)</mo>
+	</mrow>
+</math>. Получить целое число <var>k</var> (положительное, отрицательное или равное нулю), удовлетворяющее условию
+<math>
+	<msup><mi>y</mi><mrow><mi>k</mi><mo>-</mo><mn>1</mn></mrow></msup>
+	<mo>&#8804;</mo>
+	<mi>x</mi>
+	<mo>&lt;</mo>
+	<msup><mi>y</mi><mi>k</mi></msup>
+</math>.
+</li>
+<li>Даны натуральное число <var>n</var>, действительные числа
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>a</mi><mi>n</mi></msub>
+	</mfenced>			
+</math>.
+Найти длину наименьшего отрезка числовой оси, содержащего числа
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>a</mi><mi>n</mi></msub>
+	</mfenced>			
+</math>.</li>
+<li>Даны действительные числа
+<math>
+	<mfenced open='' close=''>
+		<mi>x</mi>
+		<msub><mi>y</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>y</mi><mn>12</mn></msub>
+	</mfenced>			
+</math>. Выяснить, во-первых, верно ли, что 
+<math>
+	<msub><mi>y</mi><mn>1</mn></msub>
+	<mo>&#8804;</mo>
+	<mi>x</mi>
+	<mo>&#8804;</mo>
+	<msub><mi>y</mi><mn>12</mn></msub>
+</math>, и, во-вторых, верно ли, что
+<math>
+	<msub><mi>t</mi><mn>1</mn></msub>
+	<mo>&#8804;</mo>
+	<mi>x</mi>
+	<mo>&#8804;</mo>
+	<msub><mi>t</mi><mn>2</mn></msub>
+</math>, где
+<math>
+	<msub><mi>t</mi><mn>1</mn></msub>
+</math> – наименьшее, а
+<math>
+	<msub><mi>t</mi><mn>2</mn></msub>
+</math> – наибольшее среди
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>y</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>y</mi><mn>12</mn></msub>
+	</mfenced>			
+</math>. (Какие комбинации ответов на первый и второй вопросы возможны?)
+</li>
+<li>Даны натуральное число <var>n</var>, действительные числа
+<math>
+	<mfenced open='' close=''>
+		<mi>a</mi>
+		<msub><mi>x</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>x</mi><mi>n</mi></msub>
+	</mfenced>
+	<mspace width='1ex'/>
+	<mrow>
+		<mo>(</mo>
+		<msub><mi>x</mi><mn>1</mn></msub>
+		<mo>&#8804;</mo>
+		<msub><mi>x</mi><mn>2</mn></msub>
+		<mo>&#8804;</mo>
+		<mi>&#133;</mi>		
+		<mo>&#8804;</mo>
+		<msub><mi>x</mi><mi>n</mi></msub>
+		<mo>)</mo>
+	</mrow>			
+</math>. Получить последовательность 
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>y</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>y</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub>
+	</mfenced>
+</math>, членами которой являются члены последовательности
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>x</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>x</mi><mi>n</mi></msub>
+	</mfenced>
+</math> и значение <var>а</var>, такую, что
+<math>
+	<mrow>
+		<msub><mi>y</mi><mn>1</mn></msub>
+		<mo>&#8804;</mo>
+		<msub><mi>y</mi><mn>2</mn></msub>
+		<mo>&#8804;</mo>
+		<mi>&#133;</mi>		
+		<mo>&#8804;</mo>
+		<msub><mi>y</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub>
+	</mrow>			
+</math>.
+</li>
+<li>Дано натуральное число <var>n</var>, целые числа
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>a</mi><mi>n</mi></msub>
+	</mfenced>
+</math>. Оставить без изменения последовательность
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>a</mi><mi>n</mi></msub>
+	</mfenced>
+</math>, если ее члены упорядочены по неубыванию или по невозрастанию. В противном
+случае получить подпоследовательность
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>a</mi><mi>m</mi></msub>
+	</mfenced>
+	<mrow>
+		<mo>(</mo>
+		<mi>m</mi><mo>&lt;</mo><mi>n</mi>	
+		<mo>)</mo>
+	</mrow>
+</math>, где <var>m</var> таково, что либо
+<math>
+	<mrow>
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<mo>&#8804;</mo>
+		<msub><mi>a</mi><mn>2</mn></msub>
+		<mo>&#8804;</mo>
+		<mi>&#133;</mi>		
+		<mo>&#8804;</mo>
+		<msub><mi>a</mi><mi>m</mi></msub>
+	</mrow>			
+</math> и 
+<math>
+	<mrow>
+		<msub><mi>a</mi><mi>m</mi></msub>
+		<mo>&#8804;</mo>
+		<msub><mi>a</mi><mrow><mi>m</mi><mo>+</mo><mn>1</mn></mrow></msub>
+	</mrow>			
+</math>, либо
+<math>
+	<mrow>
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<mo>&#8805;</mo>
+		<msub><mi>a</mi><mn>2</mn></msub>
+		<mo>&#8805;</mo>
+		<mi>&#133;</mi>		
+		<mo>&#8805;</mo>
+		<msub><mi>a</mi><mi>m</mi></msub>
+	</mrow>			
+</math> и 
+<math>
+	<mrow>
+		<msub><mi>a</mi><mi>m</mi></msub>
+		<mo>&#8805;</mo>
+		<msub><mi>a</mi><mrow><mi>m</mi><mo>+</mo><mn>1</mn></mrow></msub>
+	</mrow>			
+</math>.
+</li>
+<li>Дано натуральное число <var>n</var>, действительные числа
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>x</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>x</mi><mi>n</mi></msub>
+	</mfenced>
+</math>. Получить в порядке следования все 
+<math>
+	<msub><mi>x</mi><mi>k</mi></msub>
+</math>, удовлетворяющие неравенствам
+<math>
+	<mrow>
+		<msub><mi>x</mi><mi>k</mi></msub>
+		<mo>&gt;</mo>
+		<msub><mi>x</mi><mn>1</mn></msub>
+	</mrow>
+	<mo>,</mo>
+	<mrow>
+		<msub><mi>x</mi><mi>k</mi></msub>
+		<mo>&gt;</mo>
+		<msub><mi>x</mi><mn>2</mn></msub>
+	</mrow>
+	<mo>,</mo>
+	<mi>&#133;</mi>
+	<mo>,</mo>
+	<mrow>
+		<msub>
+			<mi>x</mi>
+			<mi>k</mi>
+		</msub>
+		<mo>&gt;</mo>
+		<msub>
+			<mi>x</mi>
+			<mrow>
+				<mi>k</mi><mo>-</mo><mn>1</mn>
+			</mrow>
+		</msub>
+	</mrow>		
+</math>.
+</li>
+<li>Даны натуральные числа <var>n</var> и <var>m</var>. Получить
+<math display='block'>
+	<mfrac>
+		<mrow><mrow><mi>m</mi><mi>!</mi></mrow><mo>+</mo><mrow><mi>n</mi><mi>!</mi></mrow></mrow>
+		<mrow><mo>(</mo><mi>m</mi><mo>+</mo><mi>n</mi><mo>)</mo><mi>!</mi></mrow>
+	</mfrac><mo>.</mo>
+</math>
+</li>
+<li>Даны натуральное число <var>n</var>, действительное число <var>x</var>. Получить
+<math  display='block'>
+	<munderover>
+   	<mo>&#931;</mo>
+   	<mrow>
+   		<mi>s</mi>
+   		<mo>=</mo>
+   		<mn>0</mn>
+   	</mrow>
+   	<mn>10</mn>
+	</munderover>
+	<mfrac>
+		<mn>1</mn>
+		<mrow>
+			<mrow><mi>s</mi><mi>!</mi></mrow><mo>&#x2062;</mo>
+			<mrow><mo>(</mo><mi>n</mi><mo>+</mo><mi>s</mi><mo>)</mo><mi>!</mi></mrow>		
+		</mrow>
+	</mfrac>
+	<mo>&#x2062;</mo>
+	<msup>
+		<mrow><mo>(</mo><mfrac><mi>x</mi><mn>2</mn></mfrac><mo>)</mo></mrow>
+		<mrow><mrow><mn>2</mn><mo>&#x2062;</mo><mi>s</mi></mrow><mo>+</mo><mi>n</mi></mrow>	
+	</msup><mo>.</mo>
+</math>
+</li>
+<li>Даны натуральное число <var>n</var>, действительное число <var>r</var>. Вычислить
+<math display='block'>
+<mfrac>
+	<msup><mrow><mo>(</mo><mn>2</mn><mo>&#x2062;</mo><mi>r</mi><mo>)</mo></mrow><mi>n</mi></msup>
+	<mrow><mi>n</mi><mi>!!</mi></mrow>
+</mfrac>
+<mo>&#x2062;</mo>
+<msup>
+	<mrow><mo>(</mo><mfrac><mi>&#x3C0;</mi><mn>2</mn></mfrac><mo>)</mo></mrow>
+	<mrow><mo>[</mo><mfrac><mi>n</mi><mn>2</mn></mfrac><mo>]</mo></mrow>
+</msup>
+</math> (см. задачу 113).
+</li>
+<li>Дано натуральное число <var>n</var>. Вычислить произведение первых <var>n</var> сомножителей
+<math display='block'>
+<mfrac><mn>2</mn><mn>1</mn></mfrac><mo>&#x2062;</mo>
+<mfrac><mn>2</mn><mn>3</mn></mfrac><mo>&#x2062;</mo>
+<mfrac><mn>4</mn><mn>3</mn></mfrac><mo>&#x2062;</mo>
+<mfrac><mn>4</mn><mn>5</mn></mfrac><mo>&#x2062;</mo>
+<mfrac><mn>6</mn><mn>5</mn></mfrac><mo>&#x2062;</mo>
+<mfrac><mn>6</mn><mn>7</mn></mfrac><mo>&#x2062;</mo>
+<mi>&#133;</mi>
+</math>
+</li>
+<li>Дано натуральное число <var>n</var>. Вычислить
+<math display='block'>
+<mfrac>
+<msup>
+	<mrow><mo>(</mo><mo>-</mo><mn>1</mn><mo>)</mo></mrow>
+	<mrow><mo>[</mo><mi>ln</mi><mo>&#x2061;</mo><mn>1</mn><mo>]</mo></mrow>	
+</msup>
+<mn>1</mn>
+</mfrac>
+<mo>+</mo>
+<mfrac>
+<msup>
+	<mrow><mo>(</mo><mo>-</mo><mn>1</mn><mo>)</mo></mrow>
+	<mrow><mo>[</mo><mi>ln</mi><mo>&#x2061;</mo><mn>2</mn><mo>]</mo></mrow>		
+</msup>
+<mn>2</mn>
+</mfrac>
+<mo>+</mo>
+<mi>&#133;</mi>
+<mo>+</mo>
+<mfrac>
+<msup>
+	<mrow><mo>(</mo><mo>-</mo><mn>1</mn><mo>)</mo></mrow>
+	<mrow><mo>[</mo><mi>ln</mi><mo>&#x2061;</mo><mi>n</mi><mo>]</mo></mrow>		
+</msup>
+<mi>n</mi>
+</mfrac><mo>.</mo>
+</math>
+</li>
+<li>Для любого целого <var>k</var> обозначим количество цифр в его десятичной записи через 
+<math><mi>C</mi><mo>&#x2061;</mo><mo>(</mo><mi>k</mi><mo>)</mo></math>.
+<ol type='a'>
+<li>Дано натуральное число n. Вычислить
+<math display='block'>
+<mfrac>
+	<mrow><mi>C</mi><mo>&#x2061;</mo><mo>(</mo><mn>1</mn><mo>)</mo></mrow>
+	<msup><mn>1</mn><mn>2</mn></msup>
+</mfrac>
+<mo>+</mo>
+<mfrac>
+	<mrow><mi>C</mi><mo>&#x2061;</mo><mo>(</mo><mn>2</mn><mo>)</mo></mrow>
+	<msup><mn>2</mn><mn>2</mn></msup>
+</mfrac>
+<mo>+</mo>
+<mi>&#133;</mi>
+<mo>+</mo>
+<mfrac>
+	<mrow><mi>C</mi><mo>&#x2061;</mo><mo>(</mo><mi>n</mi><mo>)</mo></mrow>
+	<msup><mi>n</mi><mn>2</mn></msup>
+</mfrac><mo>.</mo>
+</math>
+</li>
+<li>Даны натуральное число <var>n</var>, действительное число <var>x</var>. Вычислить
+<math display='block'>
+<mrow>
+	<mfrac>
+		<msup>
+			<mn>10</mn>
+			<mrow><mi>C</mi><mo>&#x2061;</mo><mo>(</mo><mn>1</mn><mo>)</mo></mrow>		
+		</msup>
+		<mn>1</mn>
+	</mfrac>
+	<mo>&#x2062;</mo>
+	<mrow><mo>(</mo><mn>1</mn><mo>-</mo><mi>x</mi><mo>)</mo></mrow>
+</mrow>
+<mo>+</mo>
+<mrow>
+	<mfrac>
+		<msup>
+			<mn>10</mn>
+			<mrow><mi>C</mi><mo>&#x2061;</mo><mo>(</mo><mn>2</mn><mo>)</mo></mrow>		
+		</msup>
+		<mn>2</mn>
+	</mfrac>
+	<mo>&#x2062;</mo>
+	<msup><mrow><mo>(</mo><mn>1</mn><mo>-</mo><mi>x</mi><mo>)</mo></mrow><mn>2</mn></msup>
+</mrow>
+<mo>+</mo>
+<mi>&#133;</mi>
+<mo>+</mo>
+<mrow>
+	<mfrac>
+		<msup>
+			<mn>10</mn>
+			<mrow><mi>C</mi><mo>&#x2061;</mo><mo>(</mo><mi>n</mi><mo>)</mo></mrow>		
+		</msup>
+		<mn>n</mn>
+	</mfrac>
+	<mo>&#x2062;</mo>
+	<msup><mrow><mo>(</mo><mn>1</mn><mo>-</mo><mi>x</mi><mo>)</mo></mrow><mi>n</mi></msup>
+</mrow><mo>.</mo>
+</math>
+</li>
+</ol>
+</li>
+<li>
+Даны натуральное число <var>n</var>, действительное число <var>x</var>. Вычислить
+<math display='block'>
+	<mrow>
+	<mfrac>
+		<msup>
+			<mrow><mo>(</mo><mo>-</mo><mn>1</mn><mo>)</mo></mrow>
+			<mrow><mo>[</mo><msqrt><mn>1</mn></msqrt><mo>]</mo></mrow>
+		</msup>
+		<mn>1</mn>
+	</mfrac>
+	<mo>&#x2062;</mo>
+	<mi>x</mi>
+	</mrow>
+	<mo>+</mo>
+	<mrow>
+	<mfrac>
+		<msup>
+			<mrow><mo>(</mo><mo>-</mo><mn>1</mn><mo>)</mo></mrow>
+			<mrow><mo>[</mo><msqrt><mn>2</mn></msqrt><mo>]</mo></mrow>
+		</msup>
+		<mn>2</mn>
+	</mfrac>
+	<mo>&#x2062;</mo>
+	<msup><mi>x</mi><mn>2</mn></msup>
+	</mrow>
+	<mo>+</mo>
+	<mi>&#133;</mi>
+	<mo>+</mo>
+	<mrow>
+	<mfrac>
+		<msup>
+			<mrow><mo>(</mo><mo>-</mo><mn>1</mn><mo>)</mo></mrow>
+			<mrow><mo>[</mo><msqrt><mi>n</mi></msqrt><mo>]</mo></mrow>
+		</msup>
+		<mi>n</mi>
+	</mfrac>
+	<mo>&#x2062;</mo>
+	<msup><mi>x</mi><mi>n</mi></msup>
+	</mrow><mo>.</mo>
+</math>
+</li>
+<li>Дано натуральное число <var>n</var>. Вычислить
+<math  display='block'>
+	<munderover>
+   	<mo>&#931;</mo>
+   	<mrow>
+   		<mi>k</mi>
+   		<mo>=</mo>
+   		<mn>0</mn>
+   	</mrow>
+   	<mi>n</mi>
+	</munderover>
+	<mfrac>
+		<msup>
+			<mrow><mo>(</mo><mo>-</mo><mn>1</mn><mo>)</mo></mrow>
+			<mfrac>
+				<mrow>
+					<mi>k</mi><mo>&#x2062;</mo>
+					<mrow><mo>(</mo><mi>k</mi><mo>-</mo><mn>1</mn><mo>)</mo></mrow>
+				</mrow>
+				<mn>2</mn>
+			</mfrac>
+		</msup>
+		<mrow><mi>k</mi><mi>!</mi></mrow>
+	</mfrac>
+	<mo>.</mo>
+</math>
+</li>
+<li>Дано натуральное число <var>n</var>. Можно ли представить его в виде суммы двух квадратов натуральных чисел? Если можно, то
+<ol type='a'>
+<li>указать пару <var>x, y</var> таких натуральных чисел, что 
+<math>
+<mi>n</mi><mo>=</mo>
+<mrow>
+	<msup><mi>x</mi><mn>2</mn></msup>
+	<mo>+</mo>
+	<msup><mi>y</mi><mn>2</mn></msup>
+</mrow>
+</math>;
+</li>
+<li>указать все пары <var>x, y</var> таких натуральных чисел, что
+<math>
+<mi>n</mi><mo>=</mo>
+<mrow>
+	<msup><mi>x</mi><mn>2</mn></msup>
+	<mo>+</mo>
+	<msup><mi>y</mi><mn>2</mn></msup>
+</mrow>
+<mo>,</mo>
+<mrow>
+<mi>x</mi><mo>&#8805;</mo><mi>y</mi>
+</mrow>
+</math>.
+</li>
+</ol>
+
+</li>
+<li>Даны натуральное число <var>n</var>, действительные числа 
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>a</mi><mi>n</mi></msub>
+	</mfenced>
+</math>.
+<ol type='a'>
+<li>Выяснить, какое число встречается в последовательности
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>a</mi><mi>n</mi></msub>
+	</mfenced>
+</math> раньше – положительное или отрицательное. Если все члены последовательности равны нулю, то сообщить об этом.
+</li>
+<li>Найти номер первого четного члена последовательности
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>a</mi><mi>n</mi></msub>
+	</mfenced>
+</math>; если четных членов нет, то ответом должно быть число <var>0</var>.
+</li>
+<li>Найти номер последнего нечетного члена последовательности
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>a</mi><mi>n</mi></msub>
+	</mfenced>
+</math>; если нечетных членов нет, то ответом должно быть число
+<math><mi>n</mi><mo>+</mo><mn>1</mn></math>.
+</li>
+</ol>
+</li>
+<li>Даны натуральное число <var>n</var>, целые числа
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>a</mi><mn>30</mn></msub>
+		<msub><mi>b</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>b</mi><mn>40</mn></msub>
+		<msub><mi>c</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>c</mi><mi>n</mi></msub>
+	</mfenced>
+</math>. Верно ли, что отрицательный член в последовательности
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>c</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>c</mi><mi>n</mi></msub>
+	</mfenced>
+</math> встречается раньше, чем в последовательностях
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>a</mi><mn>30</mn></msub>
+	</mfenced>
+</math> и
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>b</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>b</mi><mn>40</mn></msub>
+	</mfenced>
+</math>? Предполагается, что каждая из последовательностей содержит хотя бы один отрицательный член.
+</li>
+<li>Даны натуральное число <var>n</var>, действительные числа
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>a</mi><mi>n</mi></msub>
+	</mfenced>
+</math>. Выяснить, образуют ли возрастающую последовательность числа:
+<ol type='a'>
+<li>
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>a</mi><mi>n</mi></msub>
+		<mrow><mn>2</mn><mo>&#x2062;</mo><msub><mi>a</mi><mn>1</mn></msub></mrow>
+		<mrow><mn>3</mn><mo>&#x2062;</mo><msub><mi>a</mi><mn>2</mn></msub></mrow>
+		<mi>&#133;</mi>
+		<mrow>
+			<mrow><mo>(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo>)</mo></mrow>
+			<mo>&#x2062;</mo><msub><mi>a</mi><mi>n</mi></msub>
+		</mrow>
+	</mfenced>
+</math>;
+</li>
+<li>
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>a</mi><mi>n</mi></msub>
+		<mrow><msub><mi>a</mi><mi>n</mi></msub><mo>+</mo><mn>1</mn></mrow>
+		<mrow><msub><mi>a</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub><mo>+</mo><mn>2</mn></mrow>
+		<mi>&#133;</mi>
+		<mrow>
+			<msub><mi>a</mi><mn>1</mn></msub><mo>+</mo><mi>n</mi>
+		</mrow>
+	</mfenced>
+</math>;
+</li>
+<li>
+
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>a</mi><mi>n</mi></msub>
+		<mrow>
+			<mi>n</mi><mo>&#x2062;</mo>
+			<mrow>
+				<mo>(</mo>
+				<msub><mi>a</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub>
+				<mo>+</mo><mn>1</mn>
+				<mo>)</mo>	
+			</mrow>
+		</mrow>
+		<mrow>
+			<mrow><mo>(</mo><mi>n</mi><mo>-</mo><mn>1</mn><mo>)</mo></mrow>
+			<mo>&#x2062;</mo>
+			<mrow>
+				<mo>(</mo>
+				<msub><mi>a</mi><mrow><mi>n</mi><mo>-</mo><mn>2</mn></mrow></msub>
+				<mo>+</mo><mn>2</mn>				
+				<mo>)</mo>	
+			</mrow>
+		</mrow>
+		<mi>&#133;</mi>
+		<mrow>
+			<mn>2</mn>
+			<mo>&#x2062;</mo>
+			<mrow>
+				<mo>(</mo>
+				<msub><mi>a</mi><mn>1</mn></msub>
+				<mo>+</mo>				
+				<mi>n</mi>
+				<mo>-</mo><mn>1</mn>				
+				<mo>)</mo>	
+			</mrow>
+		</mrow>
+	</mfenced>
+</math>.
+</li>
+</ol>
+</li>
+<li>Даны натуральные числа
+<math>
+	<mfenced open='' close=''>
+		<mi>n</mi><mi>r</mi>
+		<msub><mi>x</mi><mn>0</mn></msub>
+		<msub><mi>y</mi><mn>0</mn></msub>
+		<msub><mi>x</mi><mn>1</mn></msub>
+		<msub><mi>y</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>x</mi><mi>n</mi></msub>
+		<msub><mi>y</mi><mi>n</mi></msub>
+	</mfenced>
+</math>. Построить на экране точки с координатами
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>x</mi><mi>i</mi></msub>
+		<msub><mi>y</mi><mi>i</mi></msub>
+	</mfenced>
+	<mspace width='1ex'/>
+	<mrow><mo>(</mo>
+		<mi>i</mi>		
+		<mo>=</mo>
+		<mrow>
+			<mn>1</mn>
+			<mo>,</mo>
+			<mi>&#133;</mi>
+			<mo>,</mo>
+			<mi>n</mi>
+		</mrow>
+		<mo>)</mo>
+	</mrow>
+</math>:
+<ol type='a'>
+<li>принадлежащие кругу с центром в точке
+<math>
+	<mfenced>
+		<msub><mi>x</mi><mn>0</mn></msub>
+		<msub><mi>y</mi><mn>0</mn></msub>
+	</mfenced>
+</math> и радиусом <var>r</var>;
+</li>
+<li>не принадлежащие кругу с центром в точке 
+<math>
+	<mfenced>
+		<msub><mi>x</mi><mn>0</mn></msub>
+		<msub><mi>y</mi><mn>0</mn></msub>
+	</mfenced>
+</math> и радиусом <var>r</var>.
+</li>
+</ol>
+</li>
+<li>Даны натуральные числа
+<math>
+	<mfenced open='' close=''>
+		<mi>n</mi>
+		<msub><mi>x</mi><mn>1</mn></msub>
+		<msub><mi>y</mi><mn>1</mn></msub>
+		<msub><mi>x</mi><mn>2</mn></msub>
+		<msub><mi>y</mi><mn>2</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>x</mi><mi>n</mi></msub>
+		<msub><mi>y</mi><mi>n</mi></msub>
+	</mfenced>
+</math>. Построить
+на экране точки с координатами
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>x</mi><mi>i</mi></msub>
+		<msub><mi>y</mi><mi>i</mi></msub>
+	</mfenced>
+	<mspace width='1ex'/>
+	<mrow><mo>(</mo>
+		<mi>i</mi>		
+		<mo>=</mo>
+		<mrow>
+			<mn>1</mn>
+			<mo>,</mo>
+			<mi>&#133;</mi>
+			<mo>,</mo>
+			<mi>n</mi>
+		</mrow>
+		<mo>)</mo>
+	</mrow>
+</math>:
+<ol type='a'>
+<li>расположенные в верхней половине экрана;</li>
+<li>расположенные в нижней половине экрана.</li>
+</ol>
+</li>
+<li>Даны натуральные числа
+<math>
+	<mfenced open='' close=''>
+		<mi>n</mi>
+		<msub><mi>x</mi><mn>1</mn></msub>
+		<msub><mi>y</mi><mn>1</mn></msub>
+		<msub><mi>r</mi><mn>1</mn></msub>
+		<msub><mi>x</mi><mn>2</mn></msub>
+		<msub><mi>y</mi><mn>2</mn></msub>
+		<msub><mi>r</mi><mn>2</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>x</mi><mi>n</mi></msub>
+		<msub><mi>y</mi><mi>n</mi></msub>
+		<msub><mi>r</mi><mi>n</mi></msub>		
+	</mfenced>
+</math>. Построить на экране окружности с центрами в точках 
+<math>
+	<mfenced>
+		<msub><mi>x</mi><mi>i</mi></msub>
+		<msub><mi>y</mi><mi>i</mi></msub>
+	</mfenced>
+</math> и радиусами
+<math>
+	<msub><mi>r</mi><mi>i</mi></msub>
+</math>, для которых выполнено условие
+<math>
+	<mrow>
+	<msub><mi>r</mi><mi>i</mi></msub>
+	<mo>&gt;</mo>
+	<mn>5</mn>
+	</mrow>
+	<mo>,</mo>
+	<mrow>
+		<mi>i</mi><mo>=</mo>
+		<mn>1</mn><mo>,</mo><mi>&#133;<mo>,</mo></mi><mi>n</mi>
+	</mrow>
+</math>.
+</li>
+<li>Даны натуральные числа
+<math>
+	<mfenced open='' close=''>
+		<mi>n</mi>
+		<msub><mi>x</mi><mn>1</mn></msub>
+		<msub><mi>y</mi><mn>1</mn></msub>
+		<msub><mi>r</mi><mn>1</mn></msub>
+		<msub><mi>x</mi><mn>2</mn></msub>
+		<msub><mi>y</mi><mn>2</mn></msub>
+		<msub><mi>r</mi><mn>2</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>x</mi><mi>n</mi></msub>
+		<msub><mi>y</mi><mi>n</mi></msub>
+		<msub><mi>r</mi><mi>n</mi></msub>		
+	</mfenced>
+</math>. Построить на экране окружности с центрами в точках
+<math>
+	<mfenced>
+		<msub><mi>x</mi><mi>i</mi></msub>
+		<msub><mi>y</mi><mi>i</mi></msub>
+	</mfenced>
+</math> и радиусами 
+<math>
+	<msub><mi>r</mi><mi>i</mi></msub>
+</math>, если 
+<math>
+	<mrow>
+	<msub><mi>r</mi><mi>i</mi></msub>
+	<mo>&gt;</mo>
+	<mn>5</mn>
+	</mrow>
+</math>, и радиусами
+<math>
+	<mn>2</mn><mo>&#x2062;</mo><msub><mi>r</mi><mi>i</mi></msub>
+</math> - в противном случае, 
+<math>
+	<mrow>
+		<mi>i</mi><mo>=</mo>
+		<mn>1</mn><mo>,</mo><mi>&#133;<mo>,</mo></mi><mi>n</mi>
+	</mrow>
+</math>.
+</li>
+</ol>
+</body>
+</html>

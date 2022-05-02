@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<link rel='stylesheet' type="text/css" href="style.css"></link>
+<meta name="author" content="Rinchin" />
+<meta name="description" content="интегральная схема, микросхемы, вентили"/>
+<meta name="keywords" content="цифровые логические схемы" />
+<title>Основные цифровые логические схемы</title>
+</head>
+<body>
+<p><a href="7_2.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="7_4.html">К следующему</a></p>
+<h1>7.3. Интегральные схемы</h1>
+<p>Основными строительными блоками цифровых логических схем являются модули, объединяющие множество <a href='7_1.html'>вентилей</a>. Эти модули называют интегральными схемами (ИС) или микросхемами. Интегральная схема обычно представляет собой кремниевую пластину с множеством вентилей, помещенную в пластмассовый или керамический корпус. На ребрах или плоской грани располагаются выводы, которыми можно вставлять схему в разъем или впаивать в печатную плату. Каждый вывод соединяется с входом или выходом какого-либо вентиля, с источником питания или с &quot;землей&quot;.</p>
+<p>В зависимости от количества вентилей различают малые интегральные схемы (МИС), содержащие до 10 вентилей, средние интегральные схемы (СИС), содердащие до 100 вентилей, большие интегральные схемы (БИС), содержащие до 100000 вентилей, и схерхбольшие интегральные схемы (СБИС), содержащие более 100000 вентилей.</p>
+<p>Рассмотрим пример МИС, включающей в себя четыре независимых друг от друга вентиля <a href='7_1.html#ne_i'>НЕ-И</a>, питание 
+<math display='inline'>
+<mrow><mo>(</mo><mo>+</mo><msub><mi>v</mi><mi>cc</mi></msub><mo>)</mo></mrow>
+</math>, заземление, четыре вывода и восемь входов:
+</p>
+<svg height = "290px"  width = "370px">
+<g transform="translate(20, 20)"> 
+	<path d="M30,30 H330 V210 H30 L30,120 A10,10 0 0 0 30,100 z" stroke="#000000" stroke-width="1" fill="none"/>
+	<text x="1" y="113" stroke="#000000" fill="none" font-size="14">Паз</text>
+	<rect x="50" y="10" width="20" height="20" stroke="#000000" stroke-width="1" fill="none" />
+	<text x="50" y="25" stroke="#000000" fill="none" font-size="14">14</text>
+	<text x="30" y="1" stroke="#000000" fill="none" font-size="14">+V<tspan dy="7">cc</tspan></text>
+	<rect x="90" y="10" width="20" height="20" stroke="#000000" stroke-width="1" fill="none" />
+	<text x="90" y="25" stroke="#000000" fill="none" font-size="14">13</text>
+	<rect x="130" y="10" width="20" height="20" stroke="#000000" stroke-width="1" fill="none" />
+	<text x="130" y="25" stroke="#000000" fill="none" font-size="14">12</text>
+	<rect x="170" y="10" width="20" height="20" stroke="#000000" stroke-width="1" fill="none" />
+	<text x="170" y="25" stroke="#000000" fill="none" font-size="14">11</text>
+	<rect x="210" y="10" width="20" height="20" stroke="#000000" stroke-width="1" fill="none" />
+	<text x="210" y="25" stroke="#000000" fill="none" font-size="14">10</text>
+	<rect x="250" y="10" width="20" height="20" stroke="#000000" stroke-width="1" fill="none" />
+	<text x="252" y="25" stroke="#000000" fill="none" font-size="14">9</text>
+	<rect x="290" y="10" width="20" height="20" stroke="#000000" stroke-width="1" fill="none" />
+	<text x="292" y="25" stroke="#000000" fill="none" font-size="14">8</text>	
+	<text x="300" y="5" stroke="#000000" fill="none" font-size="14">Вывод</text>
+<g transform="translate(0, 200)"> 	
+	<rect x="50" y="10" width="20" height="20" stroke="#000000" stroke-width="1" fill="none" />
+	<text x="52" y="25" stroke="#000000" fill="none" font-size="14">1</text>
+	<rect x="90" y="10" width="20" height="20" stroke="#000000" stroke-width="1" fill="none" />
+	<text x="92" y="25" stroke="#000000" fill="none" font-size="14">2</text>
+	<rect x="130" y="10" width="20" height="20" stroke="#000000" stroke-width="1" fill="none" />
+	<text x="132" y="25" stroke="#000000" fill="none" font-size="14">3</text>
+	<rect x="170" y="10" width="20" height="20" stroke="#000000" stroke-width="1" fill="none" />
+	<text x="172" y="25" stroke="#000000" fill="none" font-size="14">4</text>
+	<rect x="210" y="10" width="20" height="20" stroke="#000000" stroke-width="1" fill="none" />
+	<text x="212" y="25" stroke="#000000" fill="none" font-size="14">5</text>
+	<rect x="250" y="10" width="20" height="20" stroke="#000000" stroke-width="1" fill="none" />
+	<text x="252" y="25" stroke="#000000" fill="none" font-size="14">6</text>
+	<rect x="290" y="10" width="20" height="20" stroke="#000000" stroke-width="1" fill="none" />
+	<text x="292" y="25" stroke="#000000" fill="none" font-size="14">7</text>
+	<text x="300" y="43" stroke="#000000" fill="none" font-size="14">Земля</text>
+</g>
+	<path d="M150,60 A10,10 0 0 1 150,80 H130 V60 z" stroke="#000000" stroke-width="1" fill="none"/>
+	<circle cx="163" cy="70" r="3" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="100,30 100,77 130,77" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="140,30 140,50 120,50 120,65 130,65" stroke="#000000" stroke-width="1" fill="none"/>	
+	<polyline points="166,70 175,70 175,30" stroke="#000000" stroke-width="1" fill="none"/>
+<g transform="translate(122, 0)">	
+	<path d="M150,60 A10,10 0 0 1 150,80 H130 V60 z" stroke="#000000" stroke-width="1" fill="none"/>
+	<circle cx="163" cy="70" r="3" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="100,30 100,77 130,77" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="140,30 140,50 120,50 120,65 130,65" stroke="#000000" stroke-width="1" fill="none"/>	
+	<polyline points="166,70 175,70 175,30" stroke="#000000" stroke-width="1" fill="none"/>	
+</g>	
+	<path d="M150,140 A10,10 0 0 1 150,160 H130 V140 z" stroke="#000000" stroke-width="1" fill="none"/>
+	<circle cx="163" cy="150" r="3" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="60,210 60,145 130,145" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="100,210 100,155 130,155" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="140,210 140,180 170,180 170,150 166,150" stroke="#000000" stroke-width="1" fill="none"/>
+<g transform="translate(122, 0)">
+	<path d="M150,140 A10,10 0 0 1 150,160 H130 V140 z" stroke="#000000" stroke-width="1" fill="none"/>
+	<circle cx="163" cy="150" r="3" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="60,210 60,145 130,145" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="100,210 100,155 130,155" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="140,210 140,180 170,180 170,150 166,150" stroke="#000000" stroke-width="1" fill="none"/>
+</g>
+</g>
+<text x="60" y="285" stroke="none" fill="#000000" font-size="14" font-family="serif">Рис. 7.3.1. Малая интегральная схема.</text>
+</svg>
+<p>На рисунке 7.3.2 представлен интерактивный вариант этой интегральной схемы:</p>
+
+<svg  height = "270px"  width = "370px">
+<script>
+function funcA1(A1,B1,Out1) {
+var A1=document.getElementById(A1), B1=document.getElementById(B1), Out1=document.getElementById(Out1);
+	if (A1.firstChild.nodeValue=='0') 
+  		A1.firstChild.nodeValue='1';
+   else   	 		
+  	  	A1.firstChild.nodeValue='0';
+  	if ((A1.firstChild.nodeValue=='1') && (B1.firstChild.nodeValue=='1')) 
+  	  	Out1.firstChild.nodeValue='0';
+  	else 
+  		Out1.firstChild.nodeValue='1';
+}
+function funcB1(A1,B1,Out1) {
+var A1=document.getElementById(A1), B1=document.getElementById(B1), Out1=document.getElementById(Out1);
+	if (B1.firstChild.nodeValue=='0') 
+  		B1.firstChild.nodeValue='1';
+   else   	 		
+  	  	B1.firstChild.nodeValue='0';
+  	if ((A1.firstChild.nodeValue=='1') && (B1.firstChild.nodeValue=='1')) 
+  	  	Out1.firstChild.nodeValue='0';
+  	else 
+  		Out1.firstChild.nodeValue='1';
+}
+function funcA2(A2,B2,Out2) {
+var A2=document.getElementById(A2), B2=document.getElementById(B2), Out2=document.getElementById(Out2);
+	if (A2.firstChild.nodeValue=='0') 
+  		A2.firstChild.nodeValue='1';
+   else   	 		
+  	  	A2.firstChild.nodeValue='0';
+  	if ((A2.firstChild.nodeValue=='1') && (B2.firstChild.nodeValue=='1')) 
+  	  	Out2.firstChild.nodeValue='0';
+  	else 
+  		Out2.firstChild.nodeValue='1';
+}
+function funcB2(A2,B2,Out2) {
+var A2=document.getElementById(A2), B2=document.getElementById(B2), Out2=document.getElementById(Out2);
+	if (B2.firstChild.nodeValue=='0') 
+  		B2.firstChild.nodeValue='1';
+   else   	 		
+  	  	B2.firstChild.nodeValue='0';
+  	if ((A2.firstChild.nodeValue=='1') && (B2.firstChild.nodeValue=='1')) 
+  	  	Out2.firstChild.nodeValue='0';
+  	else 
+  		Out2.firstChild.nodeValue='1';
+}
+function funcA3(A3,B3,Out3) {
+var A3=document.getElementById(A3),	B3=document.getElementById(B3), Out3=document.getElementById(Out3);
+	if (A3.firstChild.nodeValue=='0') 
+  		A3.firstChild.nodeValue='1';
+   else   	 		
+  	  	A3.firstChild.nodeValue='0';
+  	if ((A3.firstChild.nodeValue=='1') && (B3.firstChild.nodeValue=='1')) 
+  	  	Out3.firstChild.nodeValue='0';
+  	else 
+  		Out3.firstChild.nodeValue='1';
+}
+function funcB3(A3,B3,Out3) {
+var A3=document.getElementById(A3),	B3=document.getElementById(B3), Out3=document.getElementById(Out3);
+	if (B3.firstChild.nodeValue=='0') 
+  		B3.firstChild.nodeValue='1';
+   else   	 		
+  	  	B3.firstChild.nodeValue='0';
+  	if ((A3.firstChild.nodeValue=='1') && (B3.firstChild.nodeValue=='1')) 
+  	  	Out3.firstChild.nodeValue='0';
+  	else 
+  		Out3.firstChild.nodeValue='1';
+}
+function funcA4(A4,B4,Out4) {
+var A4=document.getElementById(A4), B4=document.getElementById(B4), Out4=document.getElementById(Out4);
+	if (A4.firstChild.nodeValue=='0') 
+  		A4.firstChild.nodeValue='1';
+   else   	 		
+  	  	A4.firstChild.nodeValue='0';
+  	if ((A4.firstChild.nodeValue=='1') && (B4.firstChild.nodeValue=='1')) 
+  	  	Out4.firstChild.nodeValue='0';
+  	else 
+  		Out4.firstChild.nodeValue='1';
+}
+function funcB4(A4,B4,Out4) {
+var A4=document.getElementById(A4), B4=document.getElementById(B4), Out4=document.getElementById(Out4);
+	if (B4.firstChild.nodeValue=='0') 
+  		B4.firstChild.nodeValue='1';
+   else   	 		
+  	  	B4.firstChild.nodeValue='0';
+  	if ((A4.firstChild.nodeValue=='1') && (B4.firstChild.nodeValue=='1')) 
+  	  	Out4.firstChild.nodeValue='0';
+  	else 
+  		Out4.firstChild.nodeValue='1';
+}
+</script>
+
+
+<g transform="translate(20, 20)"> 
+	<path d="M30,30 H330 V210 H30 L30,120 A10,10 0 0 0 30,100 z" stroke="#000000" stroke-width="1" fill="none"/>
+	<text x="1" y="113" stroke="#000000" fill="none" font-size="14">Паз</text>
+	<rect x="50" y="10" width="20" height="20" stroke="#000000" stroke-width="1" fill="none" />
+	<text x="50" y="25" stroke="#000000" fill="none" font-size="14">14</text>
+	<text x="30" y="1" stroke="#000000" fill="none" font-size="14">+V<tspan dy="7">cc</tspan></text>
+	<rect x="90" y="10" width="20" height="20" stroke="#000000" stroke-width="1" fill="none" />
+	<text onclick="funcA4('A4732','B4732','Out4732')" id="A4732" x="90" y="25" stroke="#000000" fill="none" font-size="14">1</text>
+	<rect x="130" y="10" width="20" height="20" stroke="#000000" stroke-width="1" fill="none" />
+	<text onclick="funcB4('A4732','B4732','Out4732')" id="B4732" x="130" y="25" stroke="#000000" fill="none" font-size="14">1</text>
+	<rect x="170" y="10" width="20" height="20" stroke="#000000" stroke-width="1" fill="none" />
+	<text id="Out4732" x="170" y="25" stroke="#000000" fill="none" font-size="14">0</text>
+	<rect x="210" y="10" width="20" height="20" stroke="#000000" stroke-width="1" fill="none" />
+	<text onclick="funcA3('A3732','B3732','Out3732')" id="A3732" x="210" y="25" stroke="#000000" fill="none" font-size="14">1</text>
+	<rect x="250" y="10" width="20" height="20" stroke="#000000" stroke-width="1" fill="none" />
+	<text onclick="funcB3('A3732','B3732','Out3732')" id="B3732" x="252" y="25" stroke="#000000" fill="none" font-size="14">1</text>
+	<rect x="290" y="10" width="20" height="20" stroke="#000000" stroke-width="1" fill="none" />
+	<text id="Out3732" x="292" y="25" stroke="#000000" fill="none" font-size="14">0</text>	
+	<text x="300" y="5" stroke="#000000" fill="none" font-size="14">Вывод</text>
+<g transform="translate(0, 200)"> 	
+	<rect x="50" y="10" width="20" height="20" stroke="#000000" stroke-width="1" fill="none" />
+	<text onclick="funcA1('A1732','B1732','Out1732')" id="A1732" x="52" y="25" stroke="#000000" fill="none" font-size="14">1</text>
+	<rect x="90" y="10" width="20" height="20" stroke="#000000" stroke-width="1" fill="none" />
+	<text onclick="funcB1('A1732','B1732','Out1732')" id="B1732" x="92" y="25" stroke="#000000" fill="none" font-size="14">1</text>
+	<rect x="130" y="10" width="20" height="20" stroke="#000000" stroke-width="1" fill="none" />
+	<text id="Out1732" x="132" y="25" stroke="#000000" fill="none" font-size="14">0</text>
+	<rect x="170" y="10" width="20" height="20" stroke="#000000" stroke-width="1" fill="none" />
+	<text onclick="funcA2('A2732','B2732','Out2732')" id="A2732" x="172" y="25" stroke="#000000" fill="none" font-size="14">1</text>
+	<rect x="210" y="10" width="20" height="20" stroke="#000000" stroke-width="1" fill="none" />
+	<text onclick="funcB2('A2732','B2732','Out2732')" id="B2732" x="212" y="25" stroke="#000000" fill="none" font-size="14">1</text>
+	<rect x="250" y="10" width="20" height="20" stroke="#000000" stroke-width="1" fill="none" />
+	<text id="Out2732" x="252" y="25" stroke="#000000" fill="none" font-size="14">0</text>
+	<rect x="290" y="10" width="20" height="20" stroke="#000000" stroke-width="1" fill="none" />
+	<text x="292" y="25" stroke="#000000" fill="none" font-size="14">7</text>
+	<text x="300" y="43" stroke="#000000" fill="none" font-size="14">Земля</text>
+</g>
+	<path d="M150,60 A10,10 0 0 1 150,80 H130 V60 z" stroke="#000000" stroke-width="1" fill="none"/>
+	<circle cx="163" cy="70" r="3" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="100,30 100,77 130,77" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="140,30 140,50 120,50 120,65 130,65" stroke="#000000" stroke-width="1" fill="none"/>	
+	<polyline points="166,70 175,70 175,30" stroke="#000000" stroke-width="1" fill="none"/>
+<g transform="translate(122, 0)">	
+	<path d="M150,60 A10,10 0 0 1 150,80 H130 V60 z" stroke="#000000" stroke-width="1" fill="none"/>
+	<circle cx="163" cy="70" r="3" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="100,30 100,77 130,77" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="140,30 140,50 120,50 120,65 130,65" stroke="#000000" stroke-width="1" fill="none"/>	
+	<polyline points="166,70 175,70 175,30" stroke="#000000" stroke-width="1" fill="none"/>	
+</g>	
+	<path d="M150,140 A10,10 0 0 1 150,160 H130 V140 z" stroke="#000000" stroke-width="1" fill="none"/>
+	<circle cx="163" cy="150" r="3" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="60,210 60,145 130,145" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="100,210 100,155 130,155" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="140,210 140,180 170,180 170,150 166,150" stroke="#000000" stroke-width="1" fill="none"/>
+<g transform="translate(122, 0)">
+	<path d="M150,140 A10,10 0 0 1 150,160 H130 V140 z" stroke="#000000" stroke-width="1" fill="none"/>
+	<circle cx="163" cy="150" r="3" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="60,210 60,145 130,145" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="100,210 100,155 130,155" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="140,210 140,180 170,180 170,150 166,150" stroke="#000000" stroke-width="1" fill="none"/>
+</g>
+</g>
+</svg>
+<p>В настоящее время микросхемы могут содержать десятки миллионов вентилей. Размер вывода (входа) составляет десятую часть дюйма, и поэтому количество выводов (входов) должно быть небольшим, в противном случае размеры микросхемы будут недопустимо большими. Достигается это использованием определенных комбинаторных схем, которым посвящается следующий параграф.</p>
+<p><a href="7_2.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="7_4.html">К следующему</a></p>
+</body>			
+</html>

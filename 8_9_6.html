@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<link rel='stylesheet' type='text/css' href='style.css' />
+<meta name='author' content='leonid' />
+<title>Деревья</title>
+</head>
+<body>
+<p><a href="8_9_5.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_9_7.html">К следующему</a> </p>
+<h2>8.9.6. Деревья</h2>
+<p><span class='teorema'>Дерево &#151; это совокупность элементов, называемых узлами, один из которых определен как корень, и отношений, образующих иерархическую структуру узлов.</span> Дерево отличается от списка тем, что система связей не носит линейного характера, а образует ветви, подобно природному дереву.</p>
+<p><span class='teorema'>Формально дерево определяется как конечное множество <math><mi>T</mi></math> одного или более узлов со следующими свойствами:</span>
+<span class='teorema'>
+<ul>
+<li><span class='teorema'>существует один выделенный узел, а именно &#151; корень данного дерева;</span></li>
+<li><span class='teorema'>остальные узлы, за исключением корня, распределены среди m &gt; 0 непересекающихся множеств
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>T</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>T</mi><mi>m</mi></msub>
+	</mfenced>
+</math>, и каждое из этих множеств, в свою очередь, является деревом;</span>
+</li>
+<li><span class='teorema'>деревья 
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>T</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>T</mi><mi>m</mi></msub>
+	</mfenced>
+</math> называются поддеревьями данного корня.</span></li>
+</ul>
+</p>
+<p>Очевидно, это определение является рекурсивным: дерево определено на основе понятия дерево.</p>
+<p>Другое определение дерева:
+<ul>
+<li><span class='teorema'>Один узел является деревом. Этот же узел также является корнем этого дерева.</span></li>
+<li><span class='teorema'>Пусть <math><mi>n</mi></math> &#151; это узел, а 
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>T</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>T</mi><mi>m</mi></msub>
+	</mfenced>
+</math> &#151;  деревья с корнями 
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>n</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>n</mi><mi>m</mi></msub>
+	</mfenced>
+</math> соответственно. Можно построить новое дерево, сделав <math><mi>n</mi></math> родителем узлов 
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>n</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>n</mi><mi>m</mi></msub>
+	</mfenced>
+</math>. В этом дереве <math><mi>n</mi></math> будет корнем, а 
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>T</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>T</mi><mi>m</mi></msub>
+	</mfenced>
+</math> &#151; поддеревьями этого корня. Узлы 
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>n</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>n</mi><mi>m</mi></msub>
+	</mfenced>
+</math> называются сыновьями узла <math><mi>n</mi></math>.</span></li>
+</ul>
+</p>
+<p>Из приведенных выше определений следует, что каждый узел дерева является корнем некоторого поддерева данного дерева. Количество поддеревьев узла называется степенью этого узла. Узел с нулевой степенью называется концевым узлом или листом. Неконцевой узел называется узлом ветвления. Каждый узел имеет уровень, который определяется следующим образом: уровень корня дерева равен нулю, а уровень любого другого узла на единицу выше, чем уровень корня ближайшего поддерева, содержащего данный узел.</p>
+<p>Рассмотрим на рис. 8.9.6.1 дерево с семью узлами:</p>
+<svg height = "210px"  width = "300px">
+<g transform="translate(0,-30)">
+<circle cx="100" cy="200" r="12" stroke="#000000" stroke-width="1" fill="none" />
+<text x='96' y='203' stroke="none" fill="#000000" font-size="12">A</text>
+<circle cx="70" cy="150" r="12" stroke="#000000" stroke-width="1" fill="none" />
+<text x='66' y='154' stroke="none" fill="#000000" font-size="12">B</text>
+<circle cx="130" cy="150" r="12" stroke="#000000" stroke-width="1" fill="none" />
+<text x='126' y='154' stroke="none" fill="#000000" font-size="12">C</text>
+<circle cx="90" cy="100" r="12" stroke="#000000" stroke-width="1" fill="none" />
+<text x='86' y='104' stroke="none" fill="#000000" font-size="12">D</text>
+<circle cx="130" cy="100" r="12" stroke="#000000" stroke-width="1" fill="none" />
+<text x='126' y='104' stroke="none" fill="#000000" font-size="12">E</text>
+<circle cx="170" cy="100" r="12" stroke="#000000" stroke-width="1" fill="none" />
+<text x='166' y='104' stroke="none" fill="#000000" font-size="12">F</text>
+<circle cx="170" cy="50" r="12" stroke="#000000" stroke-width="1" fill="none" />
+<text x='166' y='54' stroke="none" fill="#000000" font-size="12">G</text>
+<line x1='100' y1='188' x2='75' y2='160' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='100' y1='188' x2='126' y2='160' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='130' y1='138' x2='98' y2='108' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='130' y1='138' x2='130' y2='112' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='130' y1='138' x2='160' y2='106' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='170' y1='88' x2='170' y2='62' stroke="#000000" stroke-width="1" fill="none"/>
+<text x='200' y='204' stroke="none" fill="#000000" font-size="12">Уровень 1</text>
+<text x='200' y='154' stroke="none" fill="#000000" font-size="12">Уровень 2</text>
+<text x='200' y='104' stroke="none" fill="#000000" font-size="12">Уровень 3</text>
+<text x='200' y='54' stroke="none" fill="#000000" font-size="12">Уровень 4</text>
+<text x='45' y='235' stroke="none" fill="#000000" font-size="12">Рис. 8.9.6.1. Дерево с семью узлами</text>
+</g>
+</svg>
+<p>Узел <math><mi>A</mi></math> является корнем, который имеет два поддерева <math><mo>{</mo> <mi>B</mi><mi><mo>}</mo></math> и <math><mfenced open='{' close='}'><mi>C</mi><mi>D</mi><mi>E</mi><mi>F</mi><mi>G</mi></mfenced></math>. Корнем дерева <math><mfenced open='{' close='}'> <mi>C</mi><mi>D</mi><mi>E</mi><mi>F</mi><mi>G</mi></mfenced></math>
+ является узел <math><mi>C</mi></math>. Уровень узла <math><mi>C</mi></math> равен 1 по отношению ко всему дереву. Он имеет три поддерева <math><mo>{</mo><mi>D</mi><mi><mo>}</mo></math>, <math><mo>{</mo><mi>E</mi><mi><mo>}</mo></math>  
+ и <math><mfenced open='{' close='}'><mi>F</mi><mi>G</mi></mfenced></math>, поэтому степень узла <math><mi>C</mi></math> равна 3. Концевыми узлами (листьями) являются узлы <math><mfenced open='' close=''><mi>B</mi><mi>D</mi><mi>E</mi><mi>G</mi></mfenced></math>.</p>
+<p>Путем из узла <math><msub><mi>n</mi><mn>1</mn></msub></math> в узел <math><msub><mi>n</mi><mi>k</mi></msub></math>  называется последовательность узлов 
+<math><mfenced open='{' close='}'>
+	<msub><mi>n</mi><mn>1</mn></msub>
+	<msub><mi>n</mi><mn>2</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>n</mi><mi>k</mi></msub>
+</mfenced>
+</math>, где для всех <math><mi>i</mi><mo>,</mo><mrow><mn>1</mn><mo>&#8804;</mo><mi>i</mi><mo>&lt;</mo><mi>k</mi></mrow></math>, узел <math><msub><mi>n</mi><mi>i</mi></msub></math> является родителем узла 
+<math><msub><mi>n</mi><mrow><mi>i</mi><mi>+</mi><mn>1</mn></mrow></msub></math>. Длиной пути называется число, на единицу меньшее числа узлов, составляющего этот путь. Таким образом, путем нулевой длины будет путь из любого узла к самому себе. Например, на рисунке 8.9.6.1 путем длины 2 будет путь от узла A к узлу F или от узла C к узлу G.</p>
+<p>Если существует путь из узла <math><mi>a</mi></math> в узел <math><mi>b</mi></math>, то в этом случае узел <math><mi>a</mi></math> называется предком узла <math><mi>b</mi></math>, а узел <math><mi>b</mi></math> &#151; потомком узла <math><mi>a</mi></math>. Отметим, что любой узел одновременно является предком и потомком самого себя. Например, на рисунке 8.9.6.1 предками узла <math><mi>G</mi></math> будут сам узел <math><mi>G</mi></math> и узлы <math><mi>F</mi><mo>,</mo><mi>C</mi></math> и <math><mi>A</mi></math>. Потомками узла <math><mi>C</mi></math> будут являться сам узел <math><mi>C</mi></math> и узлы <math><mi>D</mi><mo>,</mo><mi>E</mi><mo>,</mo><mi>F</mi><mo>,</mo><mi>G</mi></math>. В дереве только корень не имеет предков, а листья не имеют потомков.</p>
+<p><span class='teorema'>Предок узла, имеющий уровень на единицу меньше уровня самого узла, называется родителем. Потомки узла, уровень которых на единицу больше относительно самого узла, называются сыновьями или детьми. Узлы, являющиеся сыновьями одного родителя, принято называть братьями.</span></p>
+<p><span class='teorema'>Высотой узла дерева называется длина самого длинного пути от этого узла до какого-либо листа. Глубина узла определяется как длина пути от корня до этого узла.</span></p>
+<p><span class='teorema'>Лес &#151; это множество (обычно упорядоченное), содержащее несколько непересекающихся деревьев. Узлы дерева при  исключении корня образуют лес.</span></p>
+<p>Если в определении дерева имеет значение порядок поддеревьев 
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>T</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>T</mi><mi>m</mi></msub>
+	</mfenced>
+</math>, то дерево является упорядоченным.</p>
+<p>Поэтому упорядоченные деревья, приведенные на рисунке 8.9.6.2, являются различными:</p>
+<svg height = "100px"  width = "300px">
+<circle cx="80" cy="15" r="12" stroke="#000000" stroke-width="1" fill="none" />
+<text x='76' y='18' stroke="none" fill="#000000" font-size="12">A</text>
+<circle cx="40" cy="55" r="12" stroke="#000000" stroke-width="1" fill="none" />
+<text x='36' y='58' stroke="none" fill="#000000" font-size="12">B</text>
+<circle cx="120" cy="55" r="12" stroke="#000000" stroke-width="1" fill="none" />
+<text x='116' y='58' stroke="none" fill="#000000" font-size="12">C</text>
+<line x1='72' y1='23' x2='48' y2='47' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='88' y1='23' x2='112' y2='47' stroke="#000000" stroke-width="1" fill="none"/>
+<g transform="translate(150,0)">
+<circle cx="80" cy="15" r="12" stroke="#000000" stroke-width="1" fill="none" />
+<text x='76' y='18' stroke="none" fill="#000000" font-size="12">A</text>
+<circle cx="40" cy="55" r="12" stroke="#000000" stroke-width="1" fill="none" />
+<text x='36' y='58' stroke="none" fill="#000000" font-size="12">C</text>
+<circle cx="120" cy="55" r="12" stroke="#000000" stroke-width="1" fill="none" />
+<text x='116' y='58' stroke="none" fill="#000000" font-size="12">B</text>
+<line x1='72' y1='23' x2='48' y2='47' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='88' y1='23' x2='112' y2='47' stroke="#000000" stroke-width="1" fill="none"/>
+</g>
+<text x='40' y='95' stroke="none" fill="#000000" font-size="12">Рис. 8.9.6.2. Упорядоченные деревья</text>0
+</svg>
+<p><span class='teorema'>Бинарное дерево &#151; это конечное множество узлов, которое является либо пустым, либо состоит из корня и двух непересекающихся бинарных деревьев, которые называются левым и правым поддеревьями данного корня.</span> Далее ограничимся рассмотрением только бинарных деревьев.</p>
+<p>Очевидно, что для описания бинарного дерева требуется задать тип узла дерева и два поля для ссылок на левое и правое поддеревья. К примеру, бинарное дерево с одним полем данных <math><mi>data</mi></math> можно описать так:</p>
+<a id='tree'>
+<code>
+<p class='ind1'>TYPE</p>
+<p class='ind2'>Node=POINTER TO RECORD</p>
+<p class='ind3'>left, right: Node;</p>
+<p class='ind3'>data: INTEGER</p>
+<p class='ind2'>END;</p>
+</code>
+</a>
+<p>Корень <math><mi>tr</mi></math> дерева опишем в разделе описания переменных:</p>
+<code>
+<p class='ind1'>VAR tr: Node;</p>
+</code>
+<p>К основным операциям над деревьями относятся:</p>
+<ul>
+<li>занесение узла в дерево;</li>
+<li>обход дерева;</li>
+<li>удаление узла из дерева.</li>
+</ul>
+<h3>Задачи для самостоятельного решения из сборника задач по программированию под редакцией С.А. Абрамова, Г.Г. Гнездиловой, Е.Н. Капустиной, М.И. Селюн. Задачи по программированию:</h3>
+<p><a href='zadachi/14.html'>§14 Вычисление с хранением последовательностей, число членов которых зависит от исходных данных</a></p>
+<p><a href='zadachi/36.html'>§36. Некоторые приемы программирования</a></p>
+
+<p><a href="8_9_5.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_9_7.html">К следующему</a> </p>
+</body>
+</html>

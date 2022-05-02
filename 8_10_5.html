@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<link rel='stylesheet' type='text/css' href='style.css' />
+<meta name='author' content='leonid' />
+<title>Сортировка включениями с убывающим приращением</title>
+<script type="text/javascript">
+function analis(n) {
+	var win=open("", "newWindow"),  html, head, title, body, h2, p, mass_a=[], i, j, x, k, s, h=[], count=0, comp=0, prir=0, tt_n, t_n, tt_k, t_k;
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Оценка вычислительной сложности алгоритма сортировки включениями с убывающим приращением";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h2=document.createElement("h2");
+	h2.textContent="Оценка вычислительной сложности алгоритма сортировки включениями с убывающим приращением";
+	body.appendChild(h2);
+	t=Math.round(Math.log(n)*Math.LN2);
+	h[t-1]=1;
+	for (i=t-2; i>=0; i--) {
+		h[i]=2*h[i+1]+1;
+	}
+	for (i=0; i<n; i++) {
+		mass_a[i]=Math.round(Math.random()*100);
+	}
+	t_n= new Date();
+	tt_n=t_n.valueOf();	
+	k=t-1;
+	while (k>=0) {
+		s=h[k];
+		i=s;
+		while (i<n) {
+			x=mass_a[i];
+			count++;
+			j=i-s;
+			prir=0;
+			while ((j>=0)&&(mass_a[j]>x)) {
+				m=j+s;
+				mass_a[m]=mass_a[j];
+				prir++;
+				j=j-s;			
+			}
+			comp=comp+prir;
+			count=count+prir;
+			m=j+s;
+			mass_a[m]=x;
+			count++;
+			i=i+s;
+		}
+		k=k-1;
+	}
+	t_k= new Date();
+	tt_k=t_k.valueOf();	
+	p=document.createElement("p");
+	p.textContent='Количество элементов в последовательности: '+n+'.';
+	body.appendChild(p);
+	p=document.createElement("p");
+	p.textContent='Операций сравнения: '+comp+'.';
+	body.appendChild(p);
+	p=document.createElement("p");
+	i=(comp)/(Math.pow(n,1.82));	
+	p.textContent='Оценка количества операций сравнения: '+i.toPrecision(4)+'*n';
+	sup=document.createElement('sup');
+	sup.textContent='1.82';
+	p.appendChild(sup);
+	body.appendChild(p);	
+	p=document.createElement("p");
+	p.textContent='Операций присваивания: '+count+'.';
+	body.appendChild(p);
+	p=document.createElement("p");
+	i=(count)/(Math.pow(n,1.82));	
+	p.textContent='Оценка количества операций присваивания: '+i.toPrecision(4)+'*n';
+	sup=document.createElement('sup');
+	sup.textContent='1.82';
+	p.appendChild(sup);	
+	body.appendChild(p);	
+	p=document.createElement("p");
+	i=tt_k.valueOf()-tt_n.valueOf();
+	p.textContent='Продолжительность сортировки t='+i+' миллисекунд.';
+	body.appendChild(p);		
+	win.document.close();
+
+}
+
+function sort_vkluch() {
+	var win=open("", "newWindow"),  html, head, title, body, h2, p,  str='', n=15, mass_a=[],i , j, x, k, s, h=[], m=0;
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Сортировка включениями с убывающим приращением";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h2=document.createElement("h2");
+	h2.textContent="Сортировка включениями с убывающим приращением";
+	body.appendChild(h2);
+	h[t-1]=1;
+	for (i=t-2; i>=0; i--) {
+		h[i]=2*h[i+1]+1;
+	}	
+	for (i=0; i<n; i++) {
+		mass_a[i]=Math.round(Math.random()*100);
+		str=str+mass_a[i]+' ';
+	}
+	p=document.createElement("p");
+	p.textContent='Исходный массив: '+str;
+	body.appendChild(p);		
+	k=t-1;
+	while (k>=0) {
+		s=h[k];
+		i=s;
+		p=document.createElement("p");
+		p.textContent='Приращение: '+s;
+		body.appendChild(p);	
+		while (i<n) {
+			x=mass_a[i];
+			p=document.createElement("p");
+			p.textContent='a['+i+']='+x;
+			body.appendChild(p);
+			j=i-s;
+			while ((j>=0)&&(mass_a[j]>x)) {
+				m=j+s;
+				mass_a[m]=mass_a[j];
+				p=document.createElement("p");
+				p.textContent='a['+m+']=a['+j+']='+mass_a[j];
+				body.appendChild(p);
+				j=j-s;			
+			}
+			m=j+s;
+			mass_a[m]=x;
+			p=document.createElement("p");
+			p.textContent='a['+m+']='+x;
+			body.appendChild(p);
+			i=i+s;
+			str='Массив: ';
+			for (m=0;m<n;m++) {
+				str=str+mass_a[m]+' ';			
+			}
+			p=document.createElement("p");
+			p.textContent=str+'.';
+			body.appendChild(p);
+		}
+		k=k-1;
+	}
+	str='';
+	for (i=0; i<n; i++) {
+		str=str+mass_a[i]+' ';
+	}
+	p=document.createElement("p");
+	p.textContent='Отсортированный массив: '+str;
+	body.appendChild(p);
+	win.document.close();			
+}
+</script>
+</head>
+<body>
+<p><a href="8_10_4.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_10_6.html">К следующему</a> </p>
+<h2>8.10.5. Сортировка включениями с убывающим приращением</h2>
+<p>Идея пересылки элементов за один проход на большие расстояния была реализована в 1959 году Д. Л. Шеллом для усовершенствования метода сортировки простыми включениями.</p>
+<p><span class='primer'>Пример 8.10.5.1</span> сортировки методом Шелла. Пусть требуется упорядочить по возрастанию последовательность 
+<math><mfenced open='{' close='}'>
+	<mn>37</mn><mo>,</mo><mn>28</mn><mo>,</mo><mn>44</mn><mo>,</mo><mn>28</mn><mo>,</mo><mn>32</mn><mo>,</mo><mn>96</mn><mo>,</mo><mn>10</mn><mo>,</mo><mn>6</mn>
+</mfenced></math>.</p>
+<p>На первом проходе группируются и сортируются элементы, отстоящие друг от друга на четыре позиции (4-сортировка). Формируем четыре группы по два элемента в каждой и сортируем включениями элементы внутри каждой группы:
+<table border='border'>
+<tr>
+	<td>№ группы</td><td>1</td><td>2</td><td>3</td><td>4</td><td>1</td><td>2</td><td>3</td><td>4</td>
+</tr>
+<tr>
+	<td>До сортировки</td>
+	<td>37</td><td>28</td><td>44</td><td>28</td><td>32</td><td>96</td><td>10</td><td>6</td>
+</tr>
+<tr>
+	<td>После 1-го прохода</td>
+	<td>32</td><td>28</td><td>10</td><td>6</td><td>37</td><td>96</td><td>44</td><td>28</td>
+</tr>	
+</table>
+</p>
+<p>На втором проходе группируются и сортируются включениями элементы, отстоящие друг от друга на две позиции (2-сортировка). Сортировка включениями первой группы элементов 
+<math><mfenced open='{' close='}'><mn>32</mn><mo>,</mo><mn>10</mn><mo>,</mo><mn>37</mn><mo>,</mo><mn>44</mn></mfenced></math> дает упорядоченную последовательность <math><mfenced open='{' close='}'><mn>10</mn><mo>,</mo><mn>32</mn><mo>,</mo><mn>37</mn><mo>,</mo><mn>44</mn></mfenced></math>. Сортировка включениями второй группы элементов <math><mfenced open='{' close='}'><mn>28</mn><mo>,</mo><mn>6</mn><mo>,</mo><mn>96</mn><mo>,</mo><mn>28</mn></mfenced></math>  приводит к такой последовательности: <math><mfenced open='{' close='}'><mn>6</mn><mo>,</mo><mn>28</mn><mo>,</mo><mn>28</mn><mo>,</mo><mn>96</mn></mfenced></math>. 
+</p>
+<table border='border'>
+<tr>
+	<td>№ группы</td><td>1</td><td>2</td><td>1</td><td>2</td><td>1</td><td>2</td><td>1</td><td>2</td>
+</tr>
+<tr>
+	<td>После 1-го прохода</td>
+	<td>32</td><td>28</td><td>10</td><td>6</td><td>37</td><td>96</td><td>44</td><td>28</td>
+</tr>
+<tr>
+	<td>После 2-го прохода</td>
+	<td>10</td><td>6</td><td>32</td><td>28</td><td>37</td><td>28</td><td>44</td><td>96</td>
+</tr>	
+</table>
+<p>На третьем проходе все элементы сортируются методом простого включения (1-сортировка), что дает последовательность 
+<math><mfenced open='{' close='}'>
+	<mn>6</mn><mo>,</mo><mn>10</mn><mo>,</mo><mn>28</mn><mo>,</mo><mn>28</mn><mo>,</mo><mn>32</mn><mo>,</mo><mn>37</mn><mo>,</mo><mn>44</mn><mo>,</mo><mn>96</mn>
+</mfenced></math>.
+</p>
+<p>Эффективность метода объясняется тем, что в каждом проходе либо участвует сравнительно мало элементов, либо они уже довольно хорошо упорядочены и требуют относительно мало перестановок, и каждый проход использует результаты предыдущего прохода. В методе может быть использована любая последовательность приращений. Единственное требование в том, чтобы последнее приращение должно равняться 1, иначе в последнем проходе потребуется выполнить основной объем вычислений. Известно, что лучшие результаты достигаются в том случае, когда приращения не являются степенями двойки.</p>
+<p>Сформулируем условия сортировки включениями с убывающими приращениями. Последовательность приращений
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>h</mi><mn>1</mn></msub>
+		<msub><mi>h</mi><mn>2</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>h</mi><mi>t</mi></msub>		
+	</mfenced>
+</math> должна быть убывающей, причем последнее приращение <math><msub><mi>h</mi><mi>t</mi></msub></math>  равным 1. Каждая h-сортировка должна быть сортировкой простыми включениями.. 
+</p>
+
+<form id='f1'>
+<input type='button' value="Сортировать" onclick="sort_vkluch()" />
+</form>
+
+<p><span class='primer'>Пример 8.10.5.2</span> реализации алгоритма Шелла:</p>
+<code>
+<p class='ind0'>MODULE sort_shell;</p>
+<p class='ind1'>IMPORT  Log := StdLog,  Ran := i21eduRandom;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>CONST n=21;</p>
+<p class='ind2'>VAR a: ARRAY n OF INTEGER; h: POINTER TO ARRAY OF INTEGER;</p> 
+<p class='ind3'>i, j, x, k, s, t: INTEGER;</p>
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>FOR i :=0  TO n-1 DO</p>
+<p class='ind3'>a[i]:=Ran.Int(40);</p>
+<p class='ind3'>Log.Int(a[i]);</p>
+<p class='ind3'>Log.Char(',');</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>t:=SHORT(ENTIER(Math.Ln(n)/Math.Ln(2)));</p>
+<p class='ind2'>NEW(h, t);</p>
+<p class='ind2'>h[t-1]:=1;</p>
+<p class='ind2'>FOR i:=t-2 TO 0 BY -1 DO</p>
+<p class='ind3'>h[i]:=2*h[i+1]+1;</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>Log.Ln;</p>
+<p class='ind2'>FOR k:=t-1 TO 0 BY -1 DO</p>
+<p class='ind3'>s:=h[k];</p>
+<p class='ind3'>i:=s;</p>
+<p class='ind3'>WHILE (i &lt; n) DO</p>
+<p class='ind4'>x:=a[i];</p>
+<p class='ind4'>j:=i-s;</p>
+<p class='ind4'>WHILE (j&#8805; 0)&(a[j] &gt; x) DO</p>
+<p class='ind5'>a[j+s]:=a[j];</p>
+<p class='ind5'>DEC(j,s)</p>
+<p class='ind4'>END;</p>
+<p class='ind4'>a[j+s]:=x;</p>
+<p class='ind4'>INC(i,s);</p>
+<p class='ind3'>END;</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>FOR i:=0 TO n-1 DO</p>
+<p class='ind3'>Log.Int(a[i]);</p>
+<p class='ind3'>Log.Char(',');</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>Log.Ln;</p>
+<p class='ind1'>END do;</p>
+<p class='ind0'>BEGIN</p>
+<p class='ind0'>END sort_shell.</p>
+sort_shell.do
+</code>
+<p>До сих пор неизвестно, какая последовательность приращений дает лучшие результаты сортировки. Практика указывает на то, что они не должны быть кратны друг другу. Это позволяет избежать явления, когда каждый проход объединяет две цепочки, которые ранее никак не взаимодействовали. В частности, в примере 8.10.5.1 не следовало выбирать кратные друг другу приращения 4 и 2. Желательно, чтобы взаимодействие между разными цепочками происходило как можно чаще.</p>
+<p>Имеет место <span class='teorema'>теорема 8.10.5.1. Если k-рассортированная последовательность i-сортируется, то она остается k-рассортированной.</span></p>
+<p>Кнут рекомендует следующую последовательность приращений:
+<math>
+<mfenced open='' close=''>
+	<mi>&#133;</mi>
+	<mn>121</mn>
+	<mn>40</mn>
+	<mn>13</mn>
+	<mn>4</mn>
+	<mn>1</mn>				
+</mfenced>
+</math>, где
+<math>
+<mrow>
+	<msub><mi>h</mi><mrow><mi>k</mi><mo>-</mo><mn>1</mn></mrow></msub>
+	<mo>=</mo>
+	<mrow>
+		<mrow><mn>3</mn><mo>&#x2062;</mo><msub><mi>h</mi><mi>k</mi></msub></mrow>
+		<mo>+</mo>
+		<mn>1</mn>
+	</mrow>
+</mrow>
+<mo>,</mo>
+<mrow><msub><mi>h</mi><mi>t</mi></msub><mo>=</mo><mn>1</mn></mrow>
+<mo>,</mo>
+<mrow>
+	<mi>t</mi><mo>=</mo>
+	<mrow><mo>[</mo><mrow><msub><mi>log</mi><mn>3</mi></msub><mo>&#x2061;</mo><mi>n</mi></mrow><mo>]</mo><mo>-</mo><mn>1</mn></mrow>
+</mrow>
+</math>. Им рекомендуется также последовательность
+<math>
+<mfenced open='' close=''>
+	<mi>&#133;</mi>
+	<mn>31</mn>
+	<mn>15</mn>
+	<mn>7</mn>
+	<mn>3</mn>
+	<mn>1</mn>				
+</mfenced>
+</math>, где
+<math>
+<mrow>
+	<msub><mi>h</mi><mrow><mi>k</mi><mo>-</mo><mn>1</mn></mrow></msub>
+	<mo>=</mo>
+	<mrow>
+		<mrow><mn>2</mn><mo>&#x2062;</mo><msub><mi>h</mi><mi>k</mi></msub></mrow>
+		<mo>+</mo>
+		<mn>1</mn>
+	</mrow>
+</mrow>
+<mo>,</mo>
+<mrow><msub><mi>h</mi><mi>t</mi></msub><mo>=</mo><mn>1</mn></mrow>
+<mo>,</mo>
+<mrow>
+	<mi>t</mi><mo>=</mo>
+	<mrow><mo>[</mo><mrow><msub><mi>log</mi><mn>2</mi></msub><mo>&#x2061;</mo><mi>n</mi></mrow><mo>]</mo><mo>-</mo><mn>1</mn></mrow>
+</mrow>
+</math>.
+</p>
+<p>Анализ затрат на сортировку методом Шелла последовательности из <math><mi>n</mi></math> элементов показывает, что они пропорциональны <math><msup><mi>n</mi><mn>1.8</mn></msup></math>.</p>
+<p>Следующий скрипт служит для оценки вычислительной сложности алгоритма сортировки включениями с убывающим приращением:</p>
+<form id='f2'>
+Введите n &gt; 10:<input type="text" id="kolich" maxlength="5" size="5" value='1000'/>
+<input type='button' value="Сортировать" onclick="analis(kolich.value)" />
+</form>
+<h3>Вопросы и задачи</h3>
+<ol>
+<li>Сгенерируйте последовательность
+<input type='button' value="сгенерировать" onclick="create()" />
+и отсортируйте ее в тетради методом сортировки включениями с убывающим приращением. Вычислите количество операций присваивания и сравнения. Как зависят количества операций сравнения и присваивания от количества <math><mi>n</mi></math> элементов в последовательности?
+</li>
+<li>Отсортируйте по убыванию в тетради последовательность цифр даты рождения методом пузырька (шейкер-сортировкой). Вычислите вычислительную сложность метода пузырька (шейкер-сортировки).</li>
+<li>Отсортируйте в алфавитном порядке (в обратном порядке) буквы фамилии методом сортировки включениями с убывающим приращением.</li>
+<li>Примените к последовательности чисел от 1 до 7 метод сортировки включениями с убывающим приращением и вычислите количества операций сравнения и присваивания. Как зависит количество операций от количества <math><mi>n</mi></math> элементов в последовательности?</li>
+<li>Отсортируйте по возрастанию последовательность чисел от 7 до 1 методом сортировки включениями с убывающим приращением и вычислите количество операций сравнения и присваивания.  Как зависит количество операций сравнения и присваивания от количества <math><mi>n</mi></math> элементов в последовательности?</li>
+<li>Составьте программу оценки вычислительной сложности алгоритма сортировки включениями с убывающим приращением последовательности целых чисел. Сравните оценку среднего количества операций присваивания (полученную путем многократного исполнения программы.
+</li>
+<li>Является ли поведение алгоритма сортировки включениями с убывающим приращением естественным?</li>
+<li>Обладает ли алгоритм сортировки включениями с убывающим приращением устойчивостью?</li>
+<li>Опишите асимптотическую сложность алгоритма сортировки включениями с убывающим приращением согласно <a href='8_2.html#t8_2_1'> таблице 8.2.1.</a></li>
+<li>Чем объяснить меньшую вычислительную сложность алгоритма сортировки включениями с убывающим приращением, нежели алгоритма сортировки простыми включениями?</li>
+<li>Какие требования предъявляются к приращениям для обеспечения большей эффективности сортировки включениями с убывающим приращением?</li>
+<li>Составьте программу сортировки включениями с убывающим приращением последовательности записей из целых чисел и букв по целочисленному ключевому полю. Является ли алгоритм устойчивым?</li>
+<li>Составьте программу оценки вычислительной сложности и затраченного времени (в миллисекундах) алгоритма сортировки  включениями с убывающим приращением последовательности записей из нескольких полей.</li>
+</ol>
+<p>Задачи для самостоятельного решения из сборника задач по программированию под редакцией С.А. Абрамова, Г.Г. Гнездиловой, Е.Н. Капустиной, М.И. Селюн. Задачи по программированию:</p>
+<p><a href='zadachi/18.html'>§18. Сортировка массивов и файлов</a></p>
+
+<p><a href="8_10_4.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_10_6.html">К следующему</a> </p>
+</body>,
+</html>

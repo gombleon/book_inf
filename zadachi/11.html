@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<link rel='stylesheet' type='text/css' href='style.css' />
+<meta name='author' content='leonid' />
+<title>Вложенные циклы в матричных задачах</title>
+</head>
+<body>
+<h2>§ 11. Вложенные циклы в матричных задачах</h2>
+<ol start='367' type='1'>
+<li>Даны целые числа 
+<math><mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub><msub><mi>a</mi><mn>2</mn></msub><msub><mi>a</mi><mn>3</mn></msub>
+</mfenced></math>. Получить целочисленную матрицу
+<math>
+	<msub>
+		<mrow>		
+		<mo>[</mo>
+				<msub>
+					<mi>b</mi>
+					<mrow>
+						<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+					</mrow>
+				</msub>
+		<mo>]</mo>
+		</mrow>	
+		<mrow>
+			<mi>i</mi><mo>,</mo><mi>j</mi><mo>=</mo>
+			<mfenced open='' close=''><mn>1</mn><mn>2</mn><mn>3</mn></mfenced>
+		</mrow>
+	</msub>
+</math>, для которой
+<math>
+	<msub>
+		<mi>b</mi>
+		<mrow>
+			<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+		</mrow>
+	</msub>
+	<mo>=</mo>
+	<mrow>
+		<msub><mi>a</mi><mi>i</mi></msub><mo>-</mo>
+		<mrow>
+			<mn>3</mn><mo>&#x2062;</mo>
+			<msub><mi>a</mi><mi>j</mi></msub>
+		</mrow>
+	</mrow>
+</math>.
+</li>
+<li>Даны действительные числа
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>a</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>a</mi><mn>10</mn></msub>
+		<msub><mi>b</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>b</mi><mn>20</mn></msub>
+	</mfenced>
+</math>. Получить действительную матрицу 
+<math>
+	<msub>
+		<mrow>		
+		<mo>[</mo>
+				<msub>
+					<mi>c</mi>
+					<mrow>
+						<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+					</mrow>
+				</msub>
+		<mo>]</mo>
+		</mrow>	
+		<mrow>
+			<mi>i</mi><mo>=</mo><mfenced open='' close=''><mn>1</mn><mi>&#133;</mi><mn>20</mn></mfenced>
+			<mo>,</mo><mi>j</mi><mo>=</mo>
+			<mfenced open='' close=''><mn>1</mn><mi>&#133;</mi><mn>10</mn></mfenced>
+		</mrow>
+	</msub>
+</math>, для которой
+<math>
+	<msub>
+		<mi>c</mi>
+		<mrow>
+			<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+		</mrow>
+	</msub>
+	<mo>=</mo>
+	<mfrac>
+		<msub><mi>a</mi><mi>j</mi></msub>
+		<mrow>
+			<mn>1</mn><mo>+</mo>
+			<mrow>
+				<mo>|</mo><msub><mi>b</mi><mi>i</mi></msub><mo>|</mo>
+			</mrow>	
+		</mrow>
+	</mfrac>
+</math>.
+</li>
+<li>Получить
+<math>
+	<msub>
+		<mrow>		
+		<mo>[</mo>
+				<msub>
+					<mi>a</mi>
+					<mrow>
+						<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+					</mrow>
+				</msub>
+		<mo>]</mo>
+		</mrow>	
+		<mrow>
+			<mi>i</mi><mo>=</mo><mfenced open='' close=''><mn>1</mn><mi>&#133;</mi><mn>10</mn></mfenced>
+			<mo>,</mo><mi>j</mi><mo>=</mo>
+			<mfenced open='' close=''><mn>1</mn><mi>&#133;</mi><mn>12</mn></mfenced>
+		</mrow>
+	</msub>
+</math> &#151; целочисленную матрицу, для которой 
+<math>
+	<msub>
+		<mi>a</mi>
+		<mrow>
+			<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+		</mrow>
+	</msub>
+	<mo>=</mo>
+	<mrow>
+		<mi>i</mi>
+		<mo>+</mo>
+		<mrow><mn>2</mn><mo>&#x2062;</mo><mi>j</mi></mrow>
+	</mrow>
+</math>.
+</li>
+<li>Дано натуральное число <var>n</var>. Получить действительную матрицу
+<math>
+	<msub>
+		<mrow>		
+		<mo>[</mo>
+				<msub>
+					<mi>a</mi>
+					<mrow>
+						<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+					</mrow>
+				</msub>
+		<mo>]</mo>
+		</mrow>	
+		<mrow>
+			<mi>i</mi><mo>,</mo><mi>j</mi><mo>=</mo>
+			<mfenced open='' close=''><mn>1</mn><mi>&#133;</mi><mi>n</mi></mfenced>
+		</mrow>
+	</msub>
+</math>, для которой
+<ol type='a'>
+<li>
+<math>
+	<msub>
+		<mi>a</mi>
+		<mrow>
+			<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+		</mrow>
+	</msub>
+	<mo>=</mo>
+	<mfrac>
+		<mn>1</mn>	
+		<mrow><mi>i</mi><mo>+</mo><mi>j</mi></mrow>
+	</mfrac>
+</math>;
+</li>
+<li>
+<math>
+	<msub>
+		<mi>a</mi>
+		<mrow>
+			<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+		</mrow>
+	</msub>
+	<mo>=</mo>
+	<mrow>
+	<mo>{</mo>
+	<mtable>
+		<mtr>
+		<mtd columnalign='left'>
+			<mi>sin</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>i</mi><mo>+</mo><mi>j</mi><mo>)</mo></mrow>	
+			<mspace width='1ex'/><mtext>при</mtext><mspace width='1ex'/><mrow><mi>i</mi><mo>&lt;</mo><mi>j</mi><mo>;</mo></mrow>	
+		</mtd>		
+		</mtr>
+		<mtr>
+		<mtd columnalign='left'>
+			<mn>1</mn>
+			<mspace width='1ex'/><mtext>при</mtext><mspace width='1ex'/><mrow><mi>i</mi><mo>=</mo><mi>j</mi><mo>;</mo></mrow>		
+		</mtd>		
+		</mtr>
+		<mtr>
+		<mtd columnalign='left'>
+			<mi>arcsin</mi><mo>&#x2061;</mo>
+				<mfrac>
+					<mrow><mi>i</mi><mo>+</mo><mi>j</mi></mrow>
+					<mrow><mrow><mn>2</mn><mo>&#x2062;</mo><mi>i</mi></mrow>
+					<mo>+</mo>
+					<mrow><mn>3</mn><mo>&#x2062;</mo><mi>j</mi></mrow></mrow>
+				</mfrac>	
+			<mspace width='1ex'/><mtext>в остальных случаях.</mtext>			
+		</mtd>		
+		</mtr>
+	</mtable>
+	</mrow>
+</math>
+</li>
+</ol>
+</li>
+<li>Дана действительная квадратная матрица
+<math>
+	<msub>
+		<mrow>		
+		<mo>[</mo>
+				<msub>
+					<mi>a</mi>
+					<mrow>
+						<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+					</mrow>
+				</msub>
+		<mo>]</mo>
+		</mrow>	
+		<mrow>
+			<mi>i</mi><mo>,</mo><mi>j</mi><mo>=</mo>
+			<mfenced open='' close=''><mn>1</mn><mi>&#133;</mi><mi>n</mi></mfenced>
+		</mrow>
+	</msub>
+</math>. Получить две квадратные матрицы
+<math>
+	<msub>
+		<mrow>		
+		<mo>[</mo>
+				<msub>
+					<mi>b</mi>
+					<mrow>
+						<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+					</mrow>
+				</msub>
+		<mo>]</mo>
+		</mrow>	
+		<mrow>
+			<mi>i</mi><mo>,</mo><mi>j</mi><mo>=</mo>
+			<mfenced open='' close=''><mn>1</mn><mi>&#133;</mi><mi>n</mi></mfenced>
+		</mrow>
+	</msub>
+</math>,
+<math>
+	<msub>
+		<mrow>		
+		<mo>[</mo>
+				<msub>
+					<mi>c</mi>
+					<mrow>
+						<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+					</mrow>
+				</msub>
+		<mo>]</mo>
+		</mrow>	
+		<mrow>
+			<mi>i</mi><mo>,</mo><mi>j</mi><mo>=</mo>
+			<mfenced open='' close=''><mn>1</mn><mi>&#133;</mi><mi>n</mi></mfenced>
+		</mrow>
+	</msub>
+</math>,
+для которых
+<math>
+	<msub>
+		<mi>b</mi>
+		<mrow><mi>i</mi><mo>&#x2063;</mo><mi>j</mi></mrow>
+	</msub>
+	<mo>=</mo>
+	<mrow>
+	<mo>{</mo>
+	<mtable>
+		<mtr><mtd>
+			<msub>
+				<mi>a</mi>
+				<mrow><mi>i</mi><mo>&#x2063;</mo><mi>j</mi></mrow>
+			</msub>
+			<mspace width='1ex'/><mtext>при</mtext><mspace width='1ex'/><mrow><mi>j</mi><mo>&#8805;</mo><mi>i</mi><mo>,</mo></mrow>		
+		</mtd></mtr>
+		<mtr><mtd>
+			<msub>
+				<mi>a</mi>
+				<mrow><mi>j</mi><mo>&#x2063;</mo><mi>i</mi></mrow>
+			</msub>
+			<mspace width='1ex'/><mtext>при</mtext><mspace width='1ex'/><mrow><mi>j</mi><mo>&lt;</mo><mi>i</mi><mo>,</mo></mrow>		
+		</mtd>
+		</mtr>
+	</mtable>
+	</mrow>
+	<mspace width='3ex'/>
+</math>
+и 
+<math>
+	<msub>
+		<mi>c</mi>
+		<mrow><mi>i</mi><mo>&#x2063;</mo><mi>j</mi></mrow>
+	</msub>
+	<mo>=</mo>
+	<mrow>
+	<mo>{</mo>
+	<mtable>
+		<mtr><mtd>
+			<msub>
+				<mi>a</mi>
+				<mrow><mi>i</mi><mo>&#x2063;</mo><mi>j</mi></mrow>
+			</msub>
+			<mspace width='1ex'/><mtext>при</mtext><mspace width='1ex'/><mrow><mi>j</mi><mo>&lt;</mo><mi>i</mi><mo>,</mo></mrow>		
+		</mtd></mtr>
+		<mtr><mtd>
+			<msub>
+				<mrow><mo>-</mo><mi>a</mi></mrow>
+				<mrow><mi>i</mi><mo>&#x2063;</mo><mi>j</mi></mrow>
+			</msub>
+			<mspace width='1ex'/><mtext>при</mtext><mspace width='1ex'/><mrow><mi>j</mi><mo>&#8805;</mo><mi>i</mi><mo>.</mo></mrow>		
+		</mtd></mtr>
+	</mtable>
+	</mrow>
+</math>
+</li>
+<li>Получить действительную матрицу
+<math>
+	<msub>
+		<mrow>		
+		<mo>[</mo>
+				<msub>
+					<mi>a</mi>
+					<mrow>
+						<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+					</mrow>
+				</msub>
+		<mo>]</mo>
+		</mrow>	
+		<mrow>
+			<mi>i</mi><mo>,</mo><mi>j</mi><mo>=</mo>
+			<mfenced open='' close=''><mn>1</mn><mi>&#133;</mi><mn>7</mn></mfenced>
+		</mrow>
+	</msub>
+</math>,
+ первая строка которой задается формулой
+<math>
+	<msub>
+		<mi>a</mi>
+		<mrow>
+			<mn>1</mn><mo>&#x2063;</mo><mi>j</mi>
+		</mrow>
+	</msub>
+	<mo>=</mo>
+	<mrow><mrow><mn>2</mn><mo>&#x2062;</mo><mi>j</mi></mrow><mo>+</mo><mn>3</mn></mrow><mo>,</mo>
+	<mrow><mi>j</mi><mo>=</mo><mrow><mn>1</mn><mo>,</mo><mi>&#133;</mi><mo>,</mo><mn>7</mn></mrow></mrow>
+</math>, вторая строка задается формулой
+<math>
+	<msub>
+		<mi>a</mi>
+		<mrow>
+			<mn>2</mn><mo>&#x2063;</mo><mi>j</mi>
+		</mrow>
+	</msub>
+	<mo>=</mo>
+	<mrow>
+		<mi>j</mi><mo>-</mo>
+		<mfrac>
+			<mn>3</mn>
+			<mrow><mn>2</mn><mo>+</mo><mfrac bevelled='true'><mn>1</mn><mi>j</mi></mfrac></mrow>
+		</mrac>
+	</mrow>
+	<mo>,</mo>
+	<mrow><mi>j</mi><mo>=</mo><mrow><mn>1</mn><mo>,</mo><mi>&#133;</mi><mo>,</mo><mn>7</mn></mrow></mrow>
+</math>, а каждая
+следующая строка есть сумма двух предыдущих.
+</li>
+<li>Даны натуральное число <math><mi>n</mi></math>, действительная матрица размером
+<math><mi>n</mi><mo>&#57641;</mo><mn>9</mn></math>. Найти среднее арифметическое:
+<ol type='a'>
+<li>каждого из столбцов;</li>
+<li>каждого из столбцов, имеющих четные номера.</li>
+</ol>
+</li>
+<li>Дано натуральное число <math><mi>n</mi></math>. Выяснить, сколько положительных элементов содержит матрица
+<math>
+	<msub>
+		<mrow>		
+		<mo>[</mo>
+				<msub>
+					<mi>a</mi>
+					<mrow>
+						<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+					</mrow>
+				</msub>
+		<mo>]</mo>
+		</mrow>	
+		<mrow>
+			<mi>i</mi><mo>,</mo><mi>j</mi><mo>=</mo>
+			<mfenced open='' close=''><mn>1</mn><mi>&#133;</mi><mi>n</mi></mfenced>
+		</mrow>
+	</msub>
+</math>, если
+<ol type='a'>
+<li>
+<math>
+	<msub>
+		<mi>a</mi>
+		<mrow>
+			<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+		</mrow>
+	</msub>
+	<mo>=</mo>
+	<mi>sin</mi><mo>&#x2061;</mo>
+	<mrow><mo>(</mo><mi>i</mi><mo>+</mo><mfrac bevelled='true'><mi>j</mi><mn>2</mn></mfrac><mo>)</mo></mrow>
+</math>;</li>
+<li>
+<math>
+	<msub>
+		<mi>a</mi>
+		<mrow>
+			<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+		</mrow>
+	</msub>
+	<mo>=</mo>
+	<mi>cos</mi><mo>&#x2061;</mo>
+	<mrow><mo>(</mo><msup><mi>i</mi><mn>2</mn></msup><mo>+</mo><mi>n</mi><mo>)</mo></mrow>
+</math>;</li>
+<li>
+<math>
+	<msub>
+		<mi>a</mi>
+		<mrow>
+			<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+		</mrow>
+	</msub>
+	<mo>=</mo>
+	<mi>sin</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+		<mfrac>
+			<mrow><msup><mi>i</mi><mn>2</mn></msup><mo>-</mo><msup><mi>j</mi><mn>2</mn></msup></mrow>
+			<mi>n</mi>
+		</mfrac>
+		<mo>)</mo>
+	</mrow>
+</math>.</li>
+</ol>
+</li>
+<li>Дана действительная матрица размера <math><mi>n</mi><mo>&#57641;</mo><mi>m</mi></math>, в которой не все элементы равны нулю. Получить новую матрицу путем деления всех элементов данной матрицы на ее наибольший по модулю элемент.
+</li>
+<li>Даны натуральное число <math><mi>m</mi></math>, целые числа
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>a</mi><mn>1</mn></msub><mi>&#133;</mi><msub><mi>a</mi><mi>m</mi></msub>
+	</mfenced>
+</math> и целочисленная квадратная матрица порядка <math><mi>m</mi></math>. Строку с номером <math><mi>i</mi></math>
+матрицы назовем отмеченной, если 
+<math><msub><mi>a</mi><mi>i</mi></msub><mo>&gt;</mo><mn>0</mn></math>, и не отмеченной в противном случае.
+<ol type='a'>
+<li>Нужно все элементы, расположенные в отмеченных строках матрицы, преобразовать по правилу: отрицательные элементы
+заменить на <math><mo>-</mo><mn>1</mn></math>, положительные &#151; на <math><mn>1</mn></math>, а нулевые оставить без изменения.</li>
+<li>Подсчитать число отрицательных элементов матрицы, расположенных в отмеченных строках.</li>
+</ol>
+</li>
+<li>Дана действительная квадратная матрица порядка <math><mn>12</mn></math>. Заменить нулями все ее элементы, расположенные на главной диагонали и выше нее.
+</li>
+<li>Даны действительные числа
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>x</mi><mn>1</mn></msub><mi>&#133;</mi><msub><mi>x</mi><mn>8</mn></msub>
+	</mfenced>
+</math>. Получить действительную квадратную матрицу порядка <math><mn>8</mn></math>:
+</li>
+<ol type='a'>
+<li>
+<math>
+<mrow>
+<mo>[</mo>
+<mtable>
+<mtr>
+	<mtd><msub><mi>x</mi><mn>1</mn></msub></mtd>
+	<mtd><msub><mi>x</mi><mn>2</mn></msub></mtd>
+	<mtd>&#133;</mtd>
+	<mtd><msub><mi>x</mi><mn>8</mn></msub></mtd>
+</mtr>
+<mtr>
+	<mtd><msup><msub><mi>x</mi><mn>1</mn></msub><mn>2</mn></msup></mtd>
+	<mtd><msup><msub><mi>x</mi><mn>2</mn></msub><mn>2</mn></msup></mtd>
+	<mtd>&#133;</mtd>
+	<mtd><msup><msub><mi>x</mi><mn>8</mn></msub><mn>2</mn></msup></mtd>
+</mtr>
+<mtr>
+	<mtd>&#133;</mtd>
+	<mtd>&#133;</mtd>
+	<mtd>&#133;</mtd>
+	<mtd>&#133;</mtd>
+</mtr>
+<mtr>
+	<mtd><msup><msub><mi>x</mi><mn>1</mn></msub><mn>8</mn></msup></mtd>
+	<mtd><msup><msub><mi>x</mi><mn>2</mn></msub><mn>8</mn></msup></mtd>
+	<mtd>&#133;</mtd>
+	<mtd><msup><msub><mi>x</mi><mn>8</mn></msub><mn>8</mn></msup></mtd>
+</mtr>
+</mtable>
+<mo>]</mo>
+</mrow>
+</math>;
+</li>
+<li>
+<math>
+<mrow>
+<mo>[</mo>
+<mtable>
+<mtr>
+	<mtd>1</mtd>
+	<mtd>1</mtd>
+	<mtd>&#133;</mtd>	
+	<mtd>1</mtd>
+</mtr>
+<mtr>
+	<mtd><msub><mi>x</mi><mn>1</mn></msub></mtd>
+	<mtd><msub><mi>x</mi><mn>2</mn></msub></mtd>
+	<mtd>&#133;</mtd>
+	<mtd><msub><mi>x</mi><mn>8</mn></msub></mtd>
+</mtr>
+<mtr>
+	<mtd>&#133;</mtd>
+	<mtd>&#133;</mtd>
+	<mtd>&#133;</mtd>
+	<mtd>&#133;</mtd>
+</mtr>
+<mtr>
+	<mtd><msup><msub><mi>x</mi><mn>1</mn></msub><mn>7</mn></msup></mtd>
+	<mtd><msup><msub><mi>x</mi><mn>2</mn></msub><mn>7</mn></msup></mtd>
+	<mtd>&#133;</mtd>
+	<mtd><msup><msub><mi>x</mi><mn>8</mn></msub><mn>7</mn></msup></mtd>
+</mtr>
+</mtable>
+<mo>]</mo>
+</mrow>
+</math>.
+</li>
+</ol>
+<li>Дана действительная матрица размера
+<math><mi>m</mi><mo>&#57641;</mo><mi>n</mi></math>. Определить числа
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>b</mi><mn>1</mn></msub><mi>&#133;</mi><msub><mi>b</mi><mi>m</mi></msub>
+	</mfenced>
+</math>, равные соответственно:
+<ol type='a'>
+<li>суммам элементов строк;</li>
+<li>произведениям элементов строк;</li>
+<li>наименьшим значениям элементов строк;</li>
+<li>значениям средних арифметических элементов строк;</li>
+<li>разностям наибольших и наименьших значений элементов строк.</li>
+</ol>
+</li>
+<li>Даны натуральное число <math><mi>n</mi></math>, действительная матрица
+<math>
+	<msub>
+		<mrow>		
+		<mo>[</mo>
+				<msub>
+					<mi>a</mi>
+					<mrow>
+						<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+					</mrow>
+				</msub>
+		<mo>]</mo>
+		</mrow>	
+		<mrow>
+			<mi>i</mi><mo>,</mo><mi>j</mi><mo>=</mo>
+			<mfenced open='' close=''><mn>1</mn><mi>&#133;</mi><mi>n</mi></mfenced>
+		</mrow>
+	</msub>
+</math>. Получить последовательность элементов главной диагонали
+<math>
+<mfenced open='' close=''>
+<msub>
+	<mi>a</mi>
+	<mrow>
+		<mn>1</mn><mo>&#x2063;</mo><mn>1</mn>
+	</mrow>
+</msub>
+<msub>
+	<mi>a</mi>
+	<mrow>
+		<mn>2</mn><mo>&#x2063;</mo><mn>2</mn>
+	</mrow>
+</msub>
+<mi>&#133;</mi>
+<msub>
+	<mi>a</mi>
+	<mrow>
+		<mi>n</mi><mo>&#x2063;</mo><mi>n</mi>
+	</mrow>
+</msub>
+</mfenced>
+</math>.
+</li>
+<li>Все элементы с наибольшим значением в данной целочисленной квадратной матрице порядка <var>10</var> заменить нулями.</li>
+<li>Дана действительная матрица размера <math><mn>6</mn><mo>&#57641;</mo><mn>9</mn></math>. Найти среднее арифметическое наибольшего и наименьшего значений ее элементов.
+</li>
+<li>Дана действительная матрица размера <math><mn>18</mn><mo>&#57641;</mo><mi>n</mi></math>. Найти значение наибольшего по модулю элемента матрицы, а также индексы какого-нибудь элемента с найденным значением модуля.</li>
+<li>Дана действительная матрица размера <math><mi>m</mi><mo>&#57641;</mo><mi>n</mi></math>. Найти сумму наибольших значений элементов ее строк.</li>
+<li>В данной действительной квадратной матрице порядка <math><mi>n</mi></math> найти сумму элементов строки, в которой расположен элемент с наименьшим значением. Предполагается, что такой элемент единственный.</li>
+<li>В данной действительной матрице размера <math><mn>6</mn><mo>&#57641;</mo><mn>9</mn></math> поменять местами строку, содержащую элемент с наибольшим значением, со строкой, содержащей элемент с наименьшим значением. Предполагается, что эти элементы единственны.
+</li>
+<li>Даны натуральное число <math><mi>n</mi></math>, действительная квадратная матрица порядка <math><mi>n</mi></math>, действительные
+<math>
+	<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mrow><mi>n</mi><mo>+</mo><mn>5</mn></mrow></msub>
+	</mfenced>
+</math>. Элементы последовательности
+<math>
+	<mfenced open='' close=''>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mrow><mi>n</mi><mo>+</mo><mn>5</mn></mrow></msub>
+	</mfenced>
+</math> домножить на <math><mn>10</mn></math>, если наибольший элемент матрицы (в предположении, что такой элемент единственный) находится на главной диагонали, и на <math><mn>0.5</mn></math> в противном случае.
+</li>
+<li>В данной квадратной целочисленной матрице порядка <math><mn>17</mn></math> указать индексы всех элементов с наибольшим значением.
+</li>
+<li>Дана действительная матрица размера <math><mi>n</mi><mo>&#57641;</mo><mi>m</mi></math>, все элементы
+которой различны. В каждой строке выбирается элемент с наименьшим значением, затем среди этих чисел выбирается наибольшее. Указать индексы элемента с найденным значением.
+</li>
+<li>Дана действительная матрица размера <math><mi>n</mi><mo>&#57641;</mo><mi>m</mi></math>. Получить последовательность 
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>b</mi><mn>1</mn></msub><mi>&#133;</mi><msub><mi>b</mi><mi>n</mi></msub>
+	</mfenced>
+</math>, где 
+<math><msub><mi>b</mi><mi>k</mi></msub></math> &#151; это
+<ol type='a'>
+<li>наибольшее из значений элементов <math><mi>k</mi></math>-й строки;</li>
+<li>сумма наибольшего и наименьшего из значений элементов <math><mi>k</mi></math>-й строки;</li>
+<li>число отрицательных элементов в <math><mi>k</mi></math>-й строки;</li>
+<li>произведение квадратов тех элементов <math><mi>k</mi></math>-й строки, модули которых принадлежат отрезку
+<math><mfenced open='[' close=']'><mn>1</mn><mn>1.5</mn></mfenced></math>.
+</li>
+</ol>
+<li>Даны натуральное число <math><mi>n</mi></math>, целочисленная матрица
+<math>
+	<msub>
+		<mrow>		
+		<mo>[</mo>
+				<msub>
+					<mi>a</mi>
+					<mrow>
+						<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+					</mrow>
+				</msub>
+		<mo>]</mo>
+		</mrow>	
+		<mrow>
+			<mrow><mi>i</mi><mo>=</mo><mfenced open='' close=''><mn>1</mn><mn>2</mn></mfenced></mrow>
+			<mo>;</mo>			
+			<mrow><mi>j</mi><mo>=</mo><mfenced open='' close=''><mn>1</mn><mi>&#133;</mi><mi>m</mi></mfenced></mrow>
+		</mrow>
+	</msub>
+</math>. Найти сумму тех элементов 
+<math>
+	<msub><mi>a</mi><mrow><mn>2</mn><mo>&#x2063;</mo><mi>j</mi></mrow></msub>
+	<mspace width='1ex'/>
+	<mrow><mo>(</mo><mi>j</mi><mo>=</mo><mfenced open='' close=''><mn>1</mn><mi>&#133;</mi><mi>m</mi></mfenced><mo>)</mo></mrow>
+</math>, для которых
+<math>
+	<msub><mi>a</mi><mrow><mn>1</mn><mo>&#x2063;</mo><mi>j</mi></mrow></msub>
+</math> имеет значение наибольшего среди значений
+<math>
+<mfenced open='' close=''>
+	<msub><mi>a</mi><mrow><mn>1</mn><mo>&#x2063;</mo><mn>1</mn></mrow></msub>
+	<msub><mi>a</mi><mrow><mn>1</mn><mo>&#x2063;</mo><mn>2</mn></mrow></msub>
+	<mi>&#133;</mi>
+	<msub><mi>a</mi><mrow><mn>1</mn><mo>&#x2063;</mo><mi>m</mi></mrow></msub>
+</mfenced>
+</math>.
+</li>
+</li>
+<li>Дана целочисленная квадратная матрица порядка <math><mn>8</mn></math>. Найти наименьшее из значений элементов столбца, который обладает наибольшей суммой модулей элементов. Если таких столбцов несколько, то взять первый из них.
+</li>
+<li>Даны натуральное число <math><mn>n</mn></math>, целочисленная квадратная
+матрица порядка <math><mn>n</mn></math>. Получить
+<math><mfenced open='' close=''><msub><mi>b</mi><mn>1</mn></msub><mi>&#133;</mi><msub><mi>b</mi><mi>n</mi></msub></mfenced></math>, где 
+<math><msub><mi>b</mi><mi>i</mi></msub></math> &#151; это
+<ol type='a'>
+<li>наименьшее из значений элементов, находящихся в начале <var>i</var>-й строки матрицы до элемента, принадлежащего главной диагонали, включительно;</li>
+<li>значение первого по порядку положительного элемента <var>i</var>-й строки (если таких элементов нет, то принять 
+<math><msub><mi>b</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn></math>);
+</li>
+<li>сумма элементов, расположенных за первым отрицательным элементом в <var>i</var>-й строке (если все элементы строки неотрицательны, то принять <math><msub><mi>b</mi><mi>i</mi></msub><mo>=</mo><mn>100</mn></math>);
+</li>
+<li>сумма элементов, предшествующих последнему отрицательному элементу <var>i</var>-й строки (если все элементы строки
+неотрицательны, то принять <math><msub><mi>b</mi><mi>i</mi></msub><mo>=</mo><mrow><mo>-</mo><mn>1</mn></mrow></math>).
+</li>
+</ol>
+</li>
+<li>Дана целочисленная квадратная матрица порядка <math><mn>n</mn></math>. Найти номера строк:
+<ol type='a'>
+<li>все элементы которых &#151; нули;</li>
+<li>элементы в каждой из которых одинаковы;</li>
+<li>все элементы которых четны;</li>
+<li>элементы каждой из которых образуют монотонную последовательность (монотонно убывающую или монотонно возрастающую);</li>
+<li>элементы которых образуют симметричные последовательности (палиндромы).</li>
+</ol>
+</li>
+<li>Даны натуральное число <math><mi>n</mi></math>, действительное число <math><mi>x</mi></math>, действительная матрица размера 
+<math><mi>n</mi><mo>&#57641;</mo><mrow><mn>2</mn><mo>&#x2062;</mo><mi>n</mi></mrow></math>. Получить последовательность
+<math><mfenced open='' close=''><msub><mi>b</mi><mn>1</mn></msub><mi>&#133;</mi><msub><mi>b</mi><mi>n</mi></msub></mfenced></math>
+ из нулей и единиц, где
+<math><msub><mi>b</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn></math>, если элементы <var>i</var>-й строки матрицы не превосходят <math><mi>x</mi></math>, и <math><msub><mi>b</mi><mi>i</mi></msub><mo>=</mo><mn>0</mn></math> в противном случае.
+</li>
+<li>Дана действительная квадратная матрица порядка <math><mi>n</mi></math>. Построить последовательность действительных чисел 
+<math><mfenced open='' close=''><msub><mi>a</mi><mn>1</mn></msub><mi>&#133;</mi><msub><mi>a</mi><mi>n</mi></msub></mfenced></math>
+ по правилу: если в <var>i</var>-й строке матрицы элемент, принадлежащий главной диагонали, отрицателен, то 
+ <math><msub><mi>a</mi><mi>i</mi></msub></math> равно сумме элементов <var>i</var>-й строки, предшествующих первому отрицательному элементу; в противном случае <math><msub><mi>a</mi><mi>i</mi></msub></math> равно сумме последних элементов <var>i</var>-й строки, начиная с первого по порядку неотрицательного элемента.
+</li>
+<li>Дана действительная квадратная матрица порядка <math><mn>10</mn></math>. В строках с отрицательным элементом на главной диагонали найти:
+<ol type='a'>
+<li>сумму всех элементов;</li>
+<li>наибольший из всех элементов.</li>
+</ol>
+</li>
+<li>Дана действительная квадратная матрица порядка <math><mi>n</mi></math>. Рассмотрим те элементы, которые расположены в строках, начинающихся с отрицательного элемента. Найти суммы тех из них, которые расположены соответственно ниже, выше и на главной диагонали.
+</li>
+<li>Дана действительная квадратная матрица порядка <math><mn>9</mn></math>. Получить целочисленную квадратную матрицу того же порядка, в которой элемент равен единице, если соответствующий ему элемент исходной матрицы больше элемента, расположенного в его строке на главной диагонали, и равен нулю в противном случае.
+</li>
+<li>Дана действительная квадратная матрица порядка <math><mi>n</mi></math>. Получить
+<math>
+	<mrow><msub><mi>x</mi><mn>1</mn></msub><mo>&#x2062;</mo><msub><mi>x</mi><mi>n</mi></msub></mrow>
+	<mo>+</mo>
+	<mrow><msub><mi>x</mi><mn>2</mn></msub><mo>&#x2062;</mo><msub><mi>x</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub></mrow>
+	<mo>+</mo>
+	<mi>&#133;</mi>
+	<mo>+</mo>
+	<mrow><msub><mi>x</mi><mi>n</mi></msub><mo>&#x2062;</mo><msub><mi>x</mi><mn>1</mn></msub></mrow>					
+</math>, где 
+<math><msub><mi>x</mi><mi>k</mi></msub></math> &#151; наибольшее значение элементов <math><mi>k</mi></math>-й строки данной матрицы.
+</li>
+<li>Дана действительная квадратная матрица порядка <math><mi>n</mi></math>, натуральные числа 
+<math>
+	<mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow>
+	<mo>,</mo>
+	<mrow>
+		<mo>(</mo>
+			<mrow><mn>1</mn><mo>&#8804;</mo><mi>i</mi><mo>&#8804;</mo><mi>n</mi></mrow><mo>,</mo>
+			<mrow><mn>1</mn><mo>&#8804;</mo><mi>j</mi><mo>&#8804;</mo><mi>n</mi></mrow>
+		<mo>)</mo>
+	</mrow>	
+</math>. Из матрицы удалить <math><mi>i</mi></math>-строку и <math><mi>j</mi></math>-столбец.
+</li>
+<li>Даны натуральное число
+<math>
+	<mi>n</mi><mo>&#8805;</mo><mn>2</mn>
+</math> и действительная квадратная матрица порядка <math><mi>n</mi></math>. Построить последовательность
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>b</mi><mn>1</mn></msub>
+		<msub><mi>b</mi><mn>2</mn></msub>
+		<mi>&#133;</mi>			
+		<msub><mi>b</mi><mi>n</mi></msub>
+	</mfenced>	
+</math> из нулей и единиц, в которой 
+<math>
+	<msub><mi>b</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn>
+</math> тогда и только тогда, когда
+<ol type='a'>
+<li>элементы <math><mi>i</mi></math>-строки матрицы образуют возрастающую последовательность;</li>
+<li>элементы <math><mi>i</mi></math>-строки матрицы образуют возрастающую или убывающую последовательность.</li>
+</ol>
+</li>
+<li>Дана целочисленная квадратная матрица порядка <math><mn>15</mn></math>. Выяснить, имеются ли в матрице ненулевые элементы, и если имеются, то указать индексы:
+<ol type='a'>
+<li>одного из ненулевых элементов;</li>
+<li>всех ненулевых элементов.</li>
+</ol>
+</li>
+<li>Даны натуральные числа
+<math><mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></math>, действительная матрица размера
+<math>
+	<mrow><mn>18</mn><mo>&#57641;</mo><mn>24</mn></mrow>
+	<mspace width='1ex'/>
+	<mrow>
+		<mo>(</mo>
+		<mn>1</mn><mo>&#8804;</mo><mi>i</mi><mo>&lt;</mo><mi>j</mi><mo>&#8804;</mo><mn>24</mn>
+		<mo>)</mo>	
+	</mrow>
+</math>. Поменять в матрице местами <math><mi>i</mi></math>-й и <math><mi>j</mi></math>-й столбцы.
+</li>
+<li>Даны натуральное число <math><mi>n</mi></math>, действительная квадратная матрица порядка <math><mi>n</mi></math>. Построить последовательность
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>b</mi><mn>1</mn></msub>
+		<msub><mi>b</mi><mn>2</mn></msub>
+		<mi>&#133;</mi>			
+		<msub><mi>b</mi><mi>n</mi></msub>
+	</mfenced>	
+</math> из нулей и единиц, в которой 
+<math>
+	<msub><mi>b</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn>
+</math> тогда и только тогда, когда в <math><mi>i</mi></math>-строке матрицы есть хотя бы один отрицательный элемент.
+</li>
+<li>С помощью матрицы
+<math>
+	<msub>
+		<mrow>		
+		<mo>[</mo>
+				<msub>
+					<mi>x</mi>
+					<mrow>
+						<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+					</mrow>
+				</msub>
+		<mo>]</mo>
+		</mrow>	
+		<mrow>
+			<mrow><mi>i</mi><mo>=</mo><mfenced open='' close=''><mn>1</mn><mn>2</mn></mfenced></mrow>
+			<mo>;</mo>			
+			<mrow><mi>j</mi><mo>=</mo><mfenced open='' close=''><mn>1</mn><mi>&#133;</mi><mi>n</mi></mfenced></mrow>
+		</mrow>
+	</msub>
+</math> из действительных чисел на плоскости заданы <math><mi>n</mi></math> точек так, что 
+<math>
+	<msub>
+		<mi>x</mi>
+		<mrow>
+			<mn>1</mn><mo>&#x2063;</mo><mi>j</mi>
+		</mrow>
+	</msub>
+	<mo>,</mo>
+	<msub>
+		<mi>x</mi>
+		<mrow>
+			<mn>2</mn><mo>&#x2063;</mo><mi>j</mi>
+		</mrow>
+	</msub>
+</math> &#151; координаты <math><mi>j</mi></math>-точки. Точки попарно соединены отрезками. Найти длину наибольшего отрезка.</li>
+<li>Даны натуральные числа <math><mi>т</mi></math> и <math><mi>ь</mi></math>, действительное число <math><mi>k</mi></math>, действительная матрица размера
+<math>
+	<mrow><mi>n</mi><mo>&#57641;</mo><mi>m</mi></mrow>
+</math>. Получить значение
+<math>
+	<mrow>
+		<msub><mi>b</mi><mn>1</mn></msub>
+		<mo>&#x2062;</mo>
+		<msup><mi>r</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msup>
+	</mrow>
+	<mo>+</mo>
+	<mrow>
+		<msub><mi>b</mi><mn>2</mn></msub>
+		<mo>&#x2062;</mo>
+		<msup><mi>r</mi><mrow><mi>n</mi><mo>-</mo><mn>2</mn></mrow></msup>
+	</mrow>
+	<mo>+</mo>
+	<mi>&#133;</mi>
+	<mo>+</mo>
+	<msub><mi>b</mi><mi>n</mi></msub>	
+</math>, где 
+<math><msub><mi>b</mi><mi>k</mi></msub></math> &#151; первый по порядку положительный элемент в <math><mi>k</mi></math>-й строке матрицы
+<math>
+	<mo>(</mo>
+	<mi>k</mi><mo>=</mo>
+	<mfenced open='' close=''>
+		<mn>1</mn><mi>&#133;</mi><mi>n</mi>
+	</mfenced>
+	<mo>)</mo>
+</math>; если в <math><mi>k</mi></math>-строке нет положительных элементов, то 
+<math><msub><mi>b</mi><mi>k</mi></msub><mo>=</mo><mn>0.5</mn></math>.
+</li>
+<li>Найти сумму квадратов тех элементов
+<math>
+	<msub>
+		<mi>a</mi>
+		<mrow>
+			<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+		</mrow>
+	</msub>
+</math> матрицы 
+<math>
+	<msub>
+		<mrow>		
+		<mo>[</mo>
+				<msub>
+					<mi>a</mi>
+					<mrow>
+						<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+					</mrow>
+				</msub>
+		<mo>]</mo>
+		</mrow>	
+		<mrow>
+			<mi>i</mi><mo>,</mo><mi>j</mi><mo>=</mo><mfenced open='' close=''><mn>1</mn><mi>&#133;</mi><mn>10</mn></mfenced>
+		</mrow>
+	</msub>
+</math>, для которых выполнены условия 
+<math>
+	<mrow>
+		<mn>2</mn><mo>&#8804;</mo><mi>i</mi><mo>&#8804;</mo><mn>9</mn>
+	</mrow>
+	<mo>,</mo>
+	<mrow>
+		<mn>2</mn><mo>&#8804;</mo><mi>j</mi><mo>&#8804;</mo><mn>9</mn>
+	</mrow>
+</math> и  
+<math display='block'>
+	<msub>
+		<mi>a</mi>
+		<mrow>
+			<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+		</mrow>
+	</msub>
+	<mo>&#8805;</mo>
+	<mfrac>
+		<mrow>
+			<msub>
+				<mi>a</mi>
+				<mrow>
+					<mrow><mi>i</mi><mo>-</mo><mn>1</mn></mrow><mo>&#x2063;</mo><mi>j</mi>
+				</mrow>
+			</msub>
+			<mo>+</mo>
+			<msub>
+				<mi>a</mi>
+				<mrow>
+					<mi>i</mi><mo>&#x2063;</mo><mrow><mi>j</mi><mo>-</mo><mn>1</mn></mrow>
+				</mrow>
+			</msub>
+			<mo>+</mo>
+			<msub>
+				<mi>a</mi>
+				<mrow>
+					<mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow><mo>&#x2063;</mo><mi>j</mi>
+				</mrow>
+			</msub>
+			<mo>+</mo>
+			<msub>
+				<mi>a</mi>
+				<mrow>
+					<mi>i</mi><mo>&#x2063;</mo><mrow><mi>j</mi><mo>+</mo><mn>1</mn></mrow>
+				</mrow>
+			</msub>			
+		</mrow>
+		<mn>4</mn>			
+	</mfrac>
+	<mo>.</mo>
+</math>
+</li>
+<li>Дана действительная квадратная матрица порядка <math><mn>9</mn></math>. Вычислить сумму тех из ее элементов, расположенных на главной диагонали и выше нее, которые превосходят по величине все элементы, расположенные ниже главной диагонали. Если на главной диагонали и выше нее нет элементов с указанным свойством, то ответом должно служить сообщение об этом.
+</li>
+<li>Дана целочисленная матрица
+<math>
+	<msub>
+		<mrow>		
+		<mo>[</mo>
+				<msub>
+					<mi>a</mi>
+					<mrow>
+						<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+					</mrow>
+				</msub>
+		<mo>]</mo>
+		</mrow>	
+		<mrow>
+			<mi>i</mi><mo>,</mo><mi>j</mi><mo>=</mo><mfenced open='' close=''><mn>1</mn><mi>&#133;</mi><mi>n</mi></mfenced>
+		</mrow>
+	</msub>
+</math>. Получить 
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>b</mi><mn>1</mn></msub>
+		<msub><mi>b</mi><mn>2</mn></msub>
+		<mi>&#133;</mi>			
+		<msub><mi>b</mi><mi>n</mi></msub>
+	</mfenced>	
+</math>, где 
+<math>
+	<msub><mi>b</mi><mi>i</mi></msub>
+</math> &#151; это
+<ol type='a'>
+<li>
+<math>
+	<munderover>
+		<mo>&#931;</mo>
+		<mrow>
+  			<mi>j</mi>
+  			<mo>=</mo>
+  			<mn>1</mn>
+  		</mrow>
+  		<mi>n</mi>
+	</munderover>
+	<msup>
+		<msub>
+			<mi>a</mi>
+			<mrow>
+				<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+			</mrow>
+		</msub>
+		<mn>2</mn>
+	</msup>
+</math>;
+</li>
+<li>
+<math>
+	<munderover>
+		<mo>&#931;</mo>
+		<mrow>
+  			<mi>j</mi>
+  			<mo>=</mo>
+  			<mn>1</mn>
+  		</mrow>
+  		<mi>n</mi>
+	</munderover>
+	<mrow>
+		<msup>
+			<mrow><mo>(</mo><mo>-</mo><mn>1</mn><mo>)</mo></mrow>			
+			<mrow><mi>i</mi><mo>+</mo><mi>j</mi></mrow>
+		</msup>
+		<mo>&#x2062;</mo>
+		<msub>
+			<mi>a</mi>
+			<mrow>
+				<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+			</mrow>
+		</msub>
+	</mrow>	
+</math>;
+</li>
+<li>
+<math>
+	<munderover>
+		<mo>&#928;</mo>
+		<mrow>
+  			<mi>j</mi>
+  			<mo>=</mo>
+  			<mn>1</mn>
+  		</mrow>
+  		<mi>n</mi>
+	</munderover>
+		<msub>
+			<mi>a</mi>
+			<mrow>
+				<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+			</mrow>
+		</msub>
+</math>;
+</li>
+<li>
+<math>
+	<munderover>
+		<mo>&#931;</mo>
+		<mrow>
+  			<mi>j</mi>
+  			<mo>=</mo>
+  			<mn>1</mn>
+  		</mrow>
+  		<mi>n</mi>
+	</munderover>
+	<mrow>
+	<mo>|</mo>	
+	<msub>
+		<mi>a</mi>
+		<mrow>
+			<mi>j</mi><mo>&#x2063;</mo><mi>i</mi>
+		</mrow>
+	</msub>
+	<mo>|</mo>
+	</mrow>
+</math>;
+</li>
+<li>
+<math>
+	<munder>
+		<mo>&#928;</mo>
+		<mi>j</mi>
+  	</munder>
+	<msub>
+		<mi>a</mi>
+		<mrow>
+			<mi>j</mi><mo>&#x2063;</mo><mi>i</mi>
+		</mrow>
+	</msub>
+</math> для всех таких <math><mi>j</mi></math>, что 
+<math>
+	<mrow>
+		<mn>1</mn>
+		<mo>&#8804;</mo>
+		<msub>
+			<mi>a</mi>
+			<mrow>
+				<mi>j</mi><mo>&#x2063;</mo><mi>i</mi>
+			</mrow>
+		</msub>
+		<mo>&#8804;</mo>
+		<mi>n</mi>
+	</mrow>
+</math>;
+</li>
+<li>
+<math>
+	<mrow>
+	<munder>
+		<mi>max</mi>
+		<mrow>
+			<mn>1</mn><mo>&#8804;</mo><mi>j</mi><mo>&#8804;</mo><mi>n</mi>
+		</mrow>
+	</munder>
+	<msub>
+		<mi>a</mi>
+		<mrow>
+			<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+		</mrow>
+	</msub>
+	</mrow>
+	<mo>&#8729;</mo>
+	<mrow>
+	<munder>
+		<mi>min</mi>
+		<mrow>
+			<mn>1</mn><mo>&#8804;</mo><mi>j</mi><mo>&#8804;</mo><mi>n</mi>
+		</mrow>
+	</munder>
+	<msub>
+		<mi>a</mi>
+		<mrow>
+			<mi>j</mi><mo>&#x2063;</mo><mi>i</mi>
+		</mrow>
+	</msub>
+	</mrow>	
+</math>.
+</li>
+</ol>
+</li>
+<li>Будем называть соседями элемента с индексами <math><mfenced open='' close=''><mi>i</mi><mi>j</mi></mfenced></math>
+некоторой матрицы такие элементы этой матрицы, соответствующие индексы которых отличаются от 
+<math><mi>i</mi></math> и <math><mi>j</mi></math> не более чем на единицу. Для данной целочисленной матрицы 
+<math>
+	<msub>
+		<mrow>		
+		<mo>[</mo>
+				<msub>
+					<mi>a</mi>
+					<mrow>
+						<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+					</mrow>
+				</msub>
+		<mo>]</mo>
+		</mrow>	
+		<mrow>
+			<mrow>
+				<mi>i</mi>
+				<mo>=</mo>
+				<mfenced open='' close=''><mn>1</mn><mi>&#133;</mi><mi>n</mi></mfenced>
+			</mrow>
+			<mo>,</mo>
+			<mrow>
+				<mi>j</mi>
+				<mo>=</mo>
+				<mfenced open='' close=''><mn>1</mn><mi>&#133;</mi><mi>m</mi></mfenced>
+			</mrow>
+		</mrow>
+	</msub>
+</math> найти матрицу из нулей и единиц
+<math>
+	<msub>
+		<mrow>		
+		<mo>[</mo>
+				<msub>
+					<mi>b</mi>
+					<mrow>
+						<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+					</mrow>
+				</msub>
+		<mo>]</mo>
+		</mrow>	
+		<mrow>
+			<mrow>
+				<mi>i</mi>
+				<mo>=</mo>
+				<mfenced open='' close=''><mn>1</mn><mi>&#133;</mi><mi>n</mi></mfenced>
+			</mrow>
+			<mo>,</mo>
+			<mrow>
+				<mi>j</mi>
+				<mo>=</mo>
+				<mfenced open='' close=''><mn>1</mn><mi>&#133;</mi><mi>m</mi></mfenced>
+			</mrow>
+		</mrow>
+	</msub>
+</math>, элемент которой
+<math>
+	<msub>
+		<mi>b</mi>
+		<mrow>
+			<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+		</mrow>
+	</msub>
+</math> равен единице, когда
+<ol type='a'>
+<li>все соседи 
+<math>
+	<msub>
+		<mi>a</mi>
+		<mrow>
+			<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+		</mrow>
+	</msub>
+</math> меньше самого
+<math>
+	<msub>
+		<mi>a</mi>
+		<mrow>
+			<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+		</mrow>
+	</msub>
+</math>;
+</li>
+<li>все соседи 
+<math>
+	<msub>
+		<mi>a</mi>
+		<mrow>
+			<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+		</mrow>
+	</msub>
+</math>  и само 
+<math>
+	<msub>
+		<mi>a</mi>
+		<mrow>
+			<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+		</mrow>
+	</msub>
+</math> равны нулю;</li>
+<li>среди соседей 
+<math>
+	<msub>
+		<mi>a</mi>
+		<mrow>
+			<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+		</mrow>
+	</msub>
+</math> есть не менее двух совпадающих с 
+<math>
+	<msub>
+		<mi>a</mi>
+		<mrow>
+			<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+		</mrow>
+	</msub>
+</math>.</li>
+</ol>
+</li>
+<li>Даны две целочисленные квадратные матрицы порядка <math><mn>6</mn></math>. Найти последовательность из нулей и единиц 
+<math><mfenced open='' close=''><msub><mi>b</mi><mn>1</mn></msub><mi>&#133;</mi><msub><mi>b</mi><mn>6</mn></msub></math> такую, что 
+<math><msub><mi>b</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn></math>, когда
+<ol type='a'>
+<li>все элементы <math><mi>i</mi></math>-строки первой матрицы больше соответствующих элементов <math><mi>i</mi></math>-строки второй матрицы;</li>
+<li>все элементы <math><mi>i</mi></math>-х строк первой и второй матриц отрицательны;</li>
+<li><math><mi>i</mi></math>-е строки первой и второй матриц содержат вместе не более трех положительных элементов;</li>
+<li>количество отрицательных и неотрицательных элементов <math><mi>i</mi></math>-строки первой матрицы совпадает соответственно с количеством отрицательных и неотрицательных элементов <math><mi>i</mi></math>-строки второй матрицы.
+</li>
+</ol>
+</li>
+<li>Таблица футбольного чемпионата задана квадратной матрицей порядка <math><mi>n</mi></math>, в которой все элементы, принадлежащие главной диагонали, равны нулю, а каждый элемент, не принадлежащий главной диагонали, равен <math><mn>2</mn></math>, <math><mn>1</mn></math> или <math><mn>0</mn></math> (числу очков, набранных в игре: 2 &#151; выигрыш, 1 &#151; ничья, 0 &#151; проигрыш).
+<ol type='a'>
+<li>Найти число команд, имеющих больше побед, чем поражений.</li>
+<li>Определить номера команд, прошедших чемпионат без поражений.</li>
+<li>Выяснить, имеется ли хотя бы одна команда, выигравшая более половины игр.</li>
+</ol>
+</li>
+<li>Даны натуральные числа 
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>x</mi><mn>1</mn></msub>
+		<msub><mi>y</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>x</mi><mi>n</mi></msub>
+		<msub><mi>y</mi><mi>n</mi></msub>
+	</mfenced>
+</math>. Числа 
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>x</mi><mi>i</mi></msub>
+		<msub><mi>y</mi><mi>i</mi></msub>
+	</mfenced>
+</math> рассматриваются как координаты 
+<math><mi>i</mi></math>-й точки 
+<math>
+	<mo>(</mo><mi>i</mi><mo>=</mo>
+	<mfenced open='' close=''><mn>1</mn><mi>&#133;</mi><mi>n</mi></mfenced>
+	<mo>)</mo>
+</math>. Обозначим через 
+<math>
+	<msub>
+		<mi>r</mi>
+		<mrow>
+			<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+		</mrow>
+	</msub>
+</math> расстояние от <math><mi>i</mi></math>-й точки до <math><mi>j</mi></math>-й. Получить на экране заданные точки и соединить отрезком <math><mi>i</mi></math>-ю точку с <math><mi>j</mi></math>-й в том случае, если выполняется по крайней мере одно условие:
+<ol type='a'>
+<li>
+<math>
+	<msub>
+		<mi>r</mi>
+		<mrow>
+			<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+		</mrow>
+	</msub>
+</math> имеет наибольшее значение из 
+<math>
+<mfenced open='' close=''>
+	<msub>
+		<mi>r</mi>
+		<mrow>
+			<mi>i</mi><mo>&#x2063;</mo><mn>1</mn>
+		</mrow>
+	</msub>
+	<msub>
+		<mi>r</mi>
+		<mrow>
+			<mi>i</mi><mo>&#x2063;</mo><mn>1</mn>
+		</mrow>
+	</msub>
+	<mi>&#133;</mi>
+	<msub>
+		<mi>r</mi>
+		<mrow>
+			<mi>i</mi><mo>&#x2063;</mo><mi>n</mi>
+		</mrow>
+	</msub>	
+</mfenced>	
+</math>;
+</li>
+<li>
+<math>
+	<msub>
+		<mi>r</mi>
+		<mrow>
+			<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+		</mrow>
+	</msub>
+</math> имеет наибольшее значение из 
+<math>
+<mfenced open='' close=''>
+	<msub>
+		<mi>r</mi>
+		<mrow>
+			<mi>j</mi><mo>&#x2063;</mo><mn>1</mn>
+		</mrow>
+	</msub>
+	<msub>
+		<mi>r</mi>
+		<mrow>
+			<mi>j</mi><mo>&#x2063;</mo><mn>1</mn>
+		</mrow>
+	</msub>
+	<mi>&#133;</mi>
+	<msub>
+		<mi>r</mi>
+		<mrow>
+			<mi>j</mi><mo>&#x2063;</mo><mi>n</mi>
+		</mrow>
+	</msub>	
+</mfenced>	
+</math>.
+</li>
+</ol>
+</li>
+<li>Дана целочисленная квадратная матрица порядка <math><mi>n</mi></math>. Каждый элемент матрицы ставится в соответствие точке, принадлежащей квадратной области экрана размером <math><mi>n</mi><mo>&#57641;</mo><mi>n</mi></math> точек. Левый верхний угол области имеет координаты 
+<math><mn>0</mn><mo>&#57641;</mo><mn>0</mn></math>. Соответствие между элементами матрицы и точками области экрана устанавливается следующим образом: элемент матрицы, стоящий в строке с номером <math><mi>i</mi></math> и в столбце с номером <math><mi>j</mi></math>, соответствует точке экрана, находящейся на пересечении строки точек области с номером <math><mi>i</mi></math> и столбца точек области с номером <math><mi>j</mi></math>. Полагая, что каждый элемент матрицы задаёт цвет
+соответствующей точки экрана, получить на экране изображение, закодированное в матрице <math><mi>A</mi></math>.
+</li>
+<li>Даны две целочисленные квадратные матрицы порядка <math><mi>n</mi></math>. В каждой из матриц закодировано изображение прямоугольной области экрана размером <math><mi>n</mi><mo>&#57641;</mo><mi>n</mi></math> точек с координатами левого верхнего угла <math><mn>0</mn><mo>,</mo><mn>0</mn></math> (см. предыдущую задачу). В отличие от предыдущей задачи, все элементы обеих матриц &#151; это числа, равные нулю, если точка &#151; часть изображения. Получить на экране изображение, являющееся:
+<ol type='a'>
+<li>пересечением изображений, закодированных в первой и второй матрицах;</li>
+<li>объединением изображений, закодированных в первой и второй матрицах.</li>
+</ol>
+</li>
+<li>Даны натуральные числа 
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>x</mi><mn>1</mn></msub>
+		<msub><mi>y</mi><mn>1</mn></msub>
+		<msub><mi>x</mi><mn>2</mn></msub>
+		<msub><mi>y</mi><mn>2</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>x</mi><mi>n</mi></msub>
+		<msub><mi>y</mi><mi>n</mi></msub>
+	</mfenced>
+</math>, целочисленная матрица
+<math>
+	<msub>
+		<mrow>		
+		<mo>[</mo>
+				<msub>
+					<mi>a</mi>
+					<mrow>
+						<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+					</mrow>
+				</msub>
+		<mo>]</mo>
+		</mrow>	
+		<mrow>
+			<mrow>
+				<mi>i</mi>
+				<mo>=</mo>
+				<mfenced open='' close=''><mn>1</mn><mi>&#133;</mi><mi>n</mi></mfenced>
+			</mrow>
+			<mo>,</mo>
+			<mrow>
+				<mi>j</mi>
+				<mo>=</mo>
+				<mfenced open='' close=''><mn>1</mn><mi>&#133;</mi><mi>n</mi></mfenced>
+			</mrow>
+		</mrow>
+	</msub>
+</math>. Последовательность 
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>x</mi><mn>1</mn></msub>
+		<msub><mi>y</mi><mn>1</mn></msub>
+		<msub><mi>x</mi><mn>2</mn></msub>
+		<msub><mi>y</mi><mn>2</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>x</mi><mi>n</mi></msub>
+		<msub><mi>y</mi><mi>n</mi></msub>
+	</mfenced>
+</math> задаёт координаты <math><mi>n</mi></math> точек. Матрица указывает, как соединены между собой точки: 
+<math>
+	<msub>
+		<mi>a</mi>
+		<mrow>
+			<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+		</mrow>
+	</msub>
+	<mo>=</mo>
+	<mn>1</mn>
+</math>, если <math><mi>i</mi></math>-я точка соединена с <math><mi>j</mi></math>-й, и
+<math>
+	<msub>
+		<mi>a</mi>
+		<mrow>
+			<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+		</mrow>
+	</msub>
+	<mo>=</mo>
+	<mn>0</mn>
+</math> в противном случае 
+<math><mo>(</mo>
+	<msub>
+		<mi>a</mi>
+		<mrow>
+			<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+		</mrow>
+	</msub>
+	<mo>=</mo>
+	<msub>
+		<mi>a</mi>
+		<mrow>
+			<mi>j</mi><mo>&#x2063;</mo><mi>i</mi>
+		</mrow>
+	</msub>
+<mo>)</mo>
+</math>. Получить на экране точки, заданные последовательностью 
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>x</mi><mn>1</mn></msub>
+		<msub><mi>y</mi><mn>1</mn></msub>
+		<msub><mi>x</mi><mn>2</mn></msub>
+		<msub><mi>y</mi><mn>2</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>x</mi><mi>n</mi></msub>
+		<msub><mi>y</mi><mi>n</mi></msub>
+	</mfenced>
+</math> и соединить их между собой так, как указано в данной матрице.
+</li>
+<li>Пусть 
+<math><mfenced open='' close=''><msub><mi>A</mi><mn>1</mn></msub><msub><mi>A</mi><mn>2</mn></msub><mi>&#133;</mi></mfenced></math> &#151; последовательность квадратных матриц из нулей и единиц такая, что порядок матрицы 
+<math><msub><mi>A</mi><mi>i</mi></msub></math> равен 
+<math><msup><mn>3</mn><mi>i</mi></msup></math> и
+<ol type='1'>
+<li>
+<math>
+	<msub><mi>A</mi><mn>1</mn></msub>
+	<mo>=</mo>
+	<mrow>
+	<mo>[</mo>
+	<mtable>
+		<mtr><mtd>1</mtd><mtd>0</mtd><mtd>1</mtd></mtr>
+		<mtr><mtd>0</mtd><mtd>1</mtd><mtd>0</mtd></mtr>
+		<mtr><mtd>1</mtd><mtd>0</mtd><mtd>1</mtd></mtr>
+	</mtable>
+	<mo>]</mo>
+	</mrow>
+</math>;
+</li>
+<li> При <math><mi>i</mi><mo>&gt;</mo><mn>1</mn></math>  имеет место
+<math>
+	<msub><mi>A</mi><mi>i</mi></msub>
+	<mo>=</mo>
+	<mrow>
+	<mo>[</mo>
+	<mtable>
+		<mtr>
+			<mtd><msub><mi>A</mi><mrow><mi>i</mi><mo>-</mo><mn>1</mn></mrow></msub></mtd>
+			<mtd>0</mtd>
+			<mtd><msub><mi>A</mi><mrow><mi>i</mi><mo>-</mo><mn>1</mn></mrow></msub></mtd>
+		</mtr>
+		<mtr>
+			<mtd>0</mtd>
+			<mtd><msub><mi>A</mi><mrow><mi>i</mi><mo>-</mo><mn>1</mn></mrow></msub></mtd>
+			<mtd>0</mtd>
+		</mtr>
+		<mtr>
+			<mtd><msub><mi>A</mi><mrow><mi>i</mi><mo>-</mo><mn>1</mn></mrow></msub></mtd>
+			<mtd>0</mtd>
+			<mtd><msub><mi>A</mi><mrow><mi>i</mi><mo>-</mo><mn>1</mn></mrow></msub></mtd>
+		</mtr>
+	</mtable>
+	<mo>]</mo>
+	</mrow>
+</math>, где <math><mn>0</mn></math> обозначает часть матрицы, заполненную нулями.
+</li>
+</ol>
+<p>Дано натуральное число <math><mi>n</mi></math>. Построить изображение квадратной области экрана, закодированное в матрице An (см. задачу 415). Левый верхний угол области должен совпадать с левым верхним углом экрана. Опробовать различные способы использования цвета при построении изображения. Если фоновый цвет имеет номер <math><mn>0</mn></math>, а остальные цвета &#151; номера 
+<math><mfenced open='' close=''><mn>1</mn><mi>&#133;</mi><mi>k</mi></mfenced></math>, то при обработке элемента
+<math>
+	<msub>
+		<mi>a</mi>
+		<mrow>
+			<mi>i</mi><mo>&#x2063;</mo><mi>j</mi>
+		</mrow>
+	</msub>
+	<mo>&#8800;</mo>
+	<mn>0</mn>
+</math> можно, например, брать цвет с номером
+<math><mi>l</mi><mo>+</mo><mn>1</mn></math>, где <math><mi>l</mi></math> равно остатку от
+деления 
+<math><msup><mi>i</mi><mn>3</mn></msup><mo>+</mo><msup><mi>j</mi><mn>3</mn></msup></math>
+ на <math><mi>k</mi></math>, и т. д.
+</p>
+
+</li>
+<li>Дана символьная квадратная матрица порядка <math><mn>10</mn></math>. Заменить буквой <math><mi>a</mi></math> все ее элементы, расположенные выше главной диагонали.
+</li>
+<li>Дано натуральное <math><mi>n</mi></math>, символьная квадратная матрица порядка <math><mi>n</mi></math>. Получить последовательность 
+<math>
+	<mfenced open='' close=''>
+		<msub><mi>b</mi><mn>1</mn></msub>
+		<mi>&#133;</mi>
+		<msub><mi>b</mi><mi>n</mi></msub>
+	</mfenced>
+</math> из нулей и единиц, в которой 
+<math>
+	<msub><mi>b</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn>
+</math> тогда и только тогда, когда в <math><mi>i</mi></math>-строке число символов * не меньше числа пробелов.
+</li>
+<li>Дана символьная матрица размера 
+<math><mn>13</mn><mo>&#57641;</mo><mn>18</mn></math>. Найти:
+<ol type='a'>
+<li>номер первой по порядку строки, содержащий наибольшее число цифр;</li>
+<li>номер первого по порядку столбца, содержащего наименьшее число пробелов на пересечении со строками, номера которых четны;</li>
+<li>номер последней по порядку строки, содержащей наибольшее количество букв <var>ш, щ</var>;</li>
+<li>номер последнего по порядку столбца, в котором содержится наибольшее количество попарно различных символов.</li>
+</ol>
+</li>
+<li>При перепечатке текста на пишущей машинке часто получается так, что в конце строки остается несколько
+неиспользованных позиций. Число неиспользованных позиций меняется от строки к строке, и поэтому правый край отпечатанного текста получается неровным. Типографский набор дает ровный правый край, в частности, за счет увеличения промежутков между словами, встречающимися в строке.
+<p>Предполагается задача выбора подходящих промежутков. Дана символьная матрица
+ <math><mi>n</mi<mo>&#57641;</mo><mi>m</mi></math>, в каждой из строк которой имеется по крайней мере один пробел, за которым следует отличный от пробела символ (т. е. имеется по крайней мере одна группа пробелов внутри строки). За счет изменения групп пробелов внутри строк надо добиться того, чтобы в конце каждой из строк пробелы отсутствовали. Количества пробелов в разных группах, располагающихся внутри одной и той же строки, должны различаться не более чем на единицу.</p>
+
+</li>
+<li>Выполнение следующих заданий не требует привлечения вложенных циклов при работе с матрицами. Подобные не слишком
+частые ситуации*) возникают, как правило, тогда, когда обрабатываются или исследуются элементы, образующие
+«одномерную» часть матрицы: строку, столбец, диагональ и т.д.
+<p>*) Добавим, что ввод и вывод матрицы в некоторых языках программирования естественно задавать с помощью вложенных
+(двойных) циклов.</p>
+<p>Дана действительная квадратная матрица порядка n.</p>
+<ol type='a'>
+<li>Найти сумм элементов первого столбца.</li>
+<li>Найти сумму элементов главной и побочной диагоналей.</li>
+<li>Найти наибольшее из значений элементов первой и последней строк.</li>
+<li>Найти наименьшее из значений элементов побочной диагонали и двух соседних с ней линий.</li>
+<li>Для данного натурального 
+<math>
+	<mi>m</mi><mo>,</mo>
+	<mo>(</mo>
+	<mi>m</mi>
+	<mo>&#8804;</mo>
+	<mrow><mn>2</mn><mo>&#x2062;</mo><mi>n</mi></mrow>
+	<mo>)</mo>
+</math>
+ найти сумму тех элементов матрицы, сумма индексов которых равна m.</li>
+<li>Выяснить, верно ли, что наибольшее из значений элементов главной диагонали больше, чем наименьшее из значений элементов побочной диагонали.</li>
+</ol>
+</li>
+</ol>
+</body>
+</html>

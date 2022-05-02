@@ -1,0 +1,1950 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<link rel='stylesheet' type="text/css" href="style.css"></link>
+<meta id="author" content="leonid"/>
+<meta id="description" content="криптосистема с открытым ключом" />
+<meta id="keywords" content="криптосистема с открытым ключом, односторонние функции с ловушкой, секретный ключ, функция Эйлера, разложение числа на простые множители" />
+<title>Криптосистема с открытым ключом</title>
+<script type="text/javascript">
+
+function prover(p, q) {
+var pr1=Number(p), pr2=Number(q), gran1=Math.sqrt(pr1), gran2=Math.sqrt(pr2), i=2, j=2;
+	while((i< gran1)&&(pr1 % i > 0))
+		i++;
+	while((j< gran2)&&(pr2 % j > 0))
+		j++; 	
+	 
+	if((i>gran1)&&(j>gran2))
+		spisok_a(pr1, pr2);
+	else
+		alert("Ошибка! Повторите ввод.")
+}
+
+function spisok_a(p, q) {
+var kol, phi, win=open("", "newWindow"), html, head, title, body, h2, p, table, caption, tr, td;
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Количество нешифруемых кодов";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h2=document.createElement("h2");
+	h2.textContent="Нешифруемых кодов для p = "+p+" и q = "+q;
+	body.appendChild(h2);
+	//подбираем а
+	phi=(p-1)*(q-1);
+	table=document.createElement("table");
+	table.border="1";
+	body.appendChild(table);
+	tr=document.createElement("tr");
+	table.appendChild(tr);
+	td=document.createElement("td");
+	td.textContent="Ключ a";
+	tr.appendChild(td);
+	td=document.createElement("td");
+	td.textContent="Количество нешифруемых кодов";
+	tr.appendChild(td);
+	for (var a=3;a<phi;a++) {
+		if(nod(a, phi)==1) {
+			kol=nod(a-1, p-1)*nod(a-1, q-1)+nod(a-1, p-1)+nod(a-1, q-1);
+			tr=document.createElement("tr");
+			table.appendChild(tr);
+			td=document.createElement("td");
+			td.textContent=a;
+			tr.appendChild(td);
+			td=document.createElement("td");
+			td.textContent=kol;
+			tr.appendChild(td);
+		}
+	}
+	win.document.close();
+}
+
+function nod(a, b) {
+var t, s;
+	if (a < b) {
+		t=a;
+		a=b;
+		b=t;
+	} 
+	s=a%b;
+	while(s>0) {
+		a=b;
+		b=s;
+		s=a%b;
+	}
+return b;
+}
+
+function vybor_a(){
+var a=5, r=35, m1, kol=0, win=open("", "newWindow"), html, head, title, body, h2, p, table, caption, tr, td;
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Числовые коды m и шифрограммы m1";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h2=document.createElement("h2");
+	h2.textContent="Числовые коды m и шифрограммы m1";
+	body.appendChild(h2);
+	if (document.getElementById("pq5").checked)
+		a=document.getElementById("pq5").value;
+	else
+		if(document.getElementById("pq7").checked)
+			a=document.getElementById("pq7").value;
+		else
+			if(document.getElementById("pq11").checked)
+				a=document.getElementById("pq11").value;
+			else
+				if(document.getElementById("pq13").checked)
+					a=document.getElementById("pq13").value;
+				else
+					if(document.getElementById("pq17").checked)
+						a=document.getElementById("pq17").value;
+					else
+						if(document.getElementById("pq19").checked)
+							a=document.getElementById("pq19").value;
+						else
+							if(document.getElementById("pq23").checked)
+								a=document.getElementById("pq23").value;
+	p=document.createElement("p");
+	p.textContent="p=5, q=7, r=35, \u03C6(r)=24, a="+a;
+	body.appendChild(p);	
+	table=document.createElement("table");
+	table.border="1";
+	body.appendChild(table);
+	tr=document.createElement("tr");
+	table.appendChild(tr);
+	td=document.createElement("td");
+	td.textContent="Код m";
+	tr.appendChild(td);
+	td=document.createElement("td");
+	td.textContent="Шифрограмма m1";
+	tr.appendChild(td);
+	for (var i=1;i<35;i++) {
+		m1=mod(i, a, r);
+		if (m1==i)
+			kol++;
+		tr=document.createElement("tr");
+		table.appendChild(tr);
+		td=document.createElement("td");
+		td.textContent=i;
+		tr.appendChild(td);
+		td=document.createElement("td");
+		td.textContent=m1;
+		tr.appendChild(td);
+	}
+	p=document.createElement("p");
+	p.textContent="Всего нешифруемых кодов: "+kol;
+	body.appendChild(p);	
+	win.document.close();
+}
+
+function isp(){
+var num=document.getElementById("soob").value, n=1;
+	for(var i=0;i<199;i++)
+		n=n*num%437;
+	document.getElementById("shifr").value=n;
+}
+
+//вычисляем 10-чное значение 8-битного кода
+function des(str) {
+var val=0, bit;
+	for(var i=0;i< str.length;i++) {
+		bit=Number(str.charAt(i));
+		val=(2*val+bit);
+	}
+return val;
+}
+
+//вычисляем 16-битный код
+function dv_cod(num) {
+var cod='', nomer=num;
+	while(nomer>0) {	
+		cod=String(nomer%2)+cod;
+		nomer=(nomer-nomer%2)/2;
+	}
+	while(cod.length<16)
+		cod='0'+cod;
+	return cod
+}
+
+function mod(num, pokazatel, pr) {
+var m=1;
+	for(var i=0;i< pokazatel;i++) {
+		m=m*num;	
+		m=m%pr;
+	}
+return m;
+}
+
+function start() {
+var a=271, alpha=495, r=67591, mass_bin=[], fragm =[], ch_kod16=[], ch_kod8=[], shifr=[], deshifr=[],
+stroka=document.getElementById("stroka").value, bin_kod='', k=0, div=document.getElementById("result"), p, len=stroka.length, table, tr1, tr2, tr3, tr4, tr5, td, t=0, caption;
+	while (div.firstChild) {
+		div.removeChild(div.firstChild);
+	}	
+	table=document.createElement("table");
+	table.border="1";
+	div.appendChild(table);
+	caption=document.createElement("caption");
+	caption.textContent="16-битные коды символов";
+	table.appendChild(caption);
+	tr1=document.createElement("tr");
+	table.appendChild(tr1);
+	tr2=document.createElement("tr");
+	table.appendChild(tr2);
+	td=document.createElement("td");
+	td.textContent="Символы";
+	tr1.appendChild(td);
+	td=document.createElement("td");
+	td.textContent="16-битные коды";
+	tr2.appendChild(td);
+	for (var i=0; i<len; i++) {
+		ch_kod16[i]=stroka.charCodeAt(i);
+		mass_bin[i]=dv_cod(ch_kod16[i]);
+		bin_kod+=mass_bin[i];
+		td=document.createElement("td");
+		td.textContent=stroka[i];
+		tr1.appendChild(td);
+		td=document.createElement("td");
+		td.textContent=mass_bin[i];
+		tr2.appendChild(td);
+		fragm[k]=mass_bin[i].slice(0, 8);
+		ch_kod8[k]=des(fragm[k]);
+		t=Number(ch_kod8[k]);
+		shifr[k]=mod(t,a,r);
+		deshifr[k]=mod(shifr[k],alpha,r);
+		k++;
+		fragm[k]=mass_bin[i].slice(-8);
+		ch_kod8[k]=des(fragm[k]);
+		t=Number(ch_kod8[k]);
+		shifr[k]=mod(t,a,r);
+		deshifr[k]=mod(shifr[k],alpha,r);		
+		k++;
+	}
+	
+	p=document.createElement("p");
+	p.textContent="Двоичная кодовая последовательность:";
+	div.appendChild(p);
+	p=document.createElement("p");
+	p.textContent=bin_kod+".";
+	div.appendChild(p);			
+	len=fragm.length;
+	table=document.createElement("table");
+	div.appendChild(table);
+	caption=document.createElement("caption");
+	caption.textContent="Фрагментирование, шифрование и дешифрование";
+	table.appendChild(caption);
+	tr1=document.createElement("tr");
+	table.appendChild(tr1);
+	table.border="1";
+	tr2=document.createElement("tr");
+	table.appendChild(tr2);
+	tr3=document.createElement("tr");
+	table.appendChild(tr3);
+	tr4=document.createElement("tr");
+	table.appendChild(tr4);
+	tr5=document.createElement("tr");
+	table.appendChild(tr5);
+	td=document.createElement("td");
+	td.textContent="8-битные фрагменты";
+	tr1.appendChild(td);
+	td=document.createElement("td");
+	td.textContent="m";
+	tr2.appendChild(td);
+	td=document.createElement("td");
+	td.textContent="m1";
+	tr3.appendChild(td);
+	td=document.createElement("td");
+	td.textContent="m2";
+	tr4.appendChild(td);
+	td=document.createElement("td");
+	td.textContent="Код фрагмента";
+	tr5.appendChild(td);
+	for (var i=0; i<len; i++) {
+		td=document.createElement("td");
+		td.textContent=fragm[i];
+		tr1.appendChild(td);
+		td=document.createElement("td");
+		td.textContent=ch_kod8[i];
+		tr2.appendChild(td);
+		td=document.createElement("td");
+		td.textContent=shifr[i];
+		tr3.appendChild(td);
+		td=document.createElement("td");
+		td.textContent=deshifr[i];
+		tr4.appendChild(td);
+		td=document.createElement("td");
+		td.textContent=fragm[i];
+		tr5.appendChild(td);
+	}
+	p=document.createElement("p");
+	p.textContent="Двоичная кодовая последовательность:";
+	div.appendChild(p);
+	p=document.createElement("p");
+	p.textContent=bin_kod+".";
+	div.appendChild(p);
+	table=document.createElement("table");
+	div.appendChild(table);
+	caption=document.createElement("caption");
+	caption.textContent="Сборка сообщения";
+	table.appendChild(caption);
+	tr1=document.createElement("tr");
+	table.appendChild(tr1);
+	table.border="1";
+	tr2=document.createElement("tr");
+	table.appendChild(tr2);
+	td=document.createElement("td");
+	td.textContent="Символы";
+	tr2.appendChild(td);
+	td=document.createElement("td");
+	td.textContent="16-битные коды";
+	tr1.appendChild(td);
+	len=stroka.length;
+	for (var i=0; i<len; i++) {
+		td=document.createElement("td");
+		td.textContent=mass_bin[i];
+		tr1.appendChild(td);
+		td=document.createElement("td");
+		td.textContent=stroka[i];
+		tr2.appendChild(td);
+	}
+}
+</script>
+</head>
+<body>
+<p><a href="6_2.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="6_4.html">К следующему</a></p>
+<h2>6.3. Криптосистема с открытым ключом</h2>
+<p>В 1978 году американцы Р. Ривест (Rivest R.), Э. Шамир (Shamir A.) и Л. Адлеман (Adleman L.) разработали криптосистему с <span class="termin">открытым ключом</span>, названную по первым буквам авторов <span class="termin">RSA</span>.</p>
+<p>Для организации секретной переписки абонент А выбирает два таких больших простых числа <var>p</var> и <var>q</var>, чтобы разложение на простые множители их произведения <var>r</var>, при неизвестных <var>p</var> и <var>q</var>, потребовало бы неоправданно больших затрат машинного времени. В качестве <span class="termin">открытого ключа</span> он выбирает число <var>a</var>, меньшее значения <a href="6_2.html#eiler">функции Эйлера</a>
+<math >
+<mrow>
+	<mi>&#966;</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+			<mi>r</mi>
+		<mo>)</mo>
+	</mrow>
+</mrow>
+</math>
+и взаимно простое с ним. Мы и далее будем предполагать, что <var>a</var> удовлетворяет этим условиям. Заметим, что &#966;(r) принимает четные значения, поэтому открытый ключ <var>a</var> всегда нечетное число. Дополнительные требования к открытому ключу <var>a</var> обсудим ниже. Свой <span class="termin">секретный ключ</span> &#945; абонент А вычисляет из уравнения:
+<a id="f631"></a>
+<table class="formula"><tr>
+<td class="formula">
+<math >
+<mrow>
+	<mrow>
+	<mi>mod</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+		<mi>&#945;</mi>
+		<mo>&#x2062;</mo>
+		<mi>a</mi><mo>,</mo>
+		<mi>&#966;</mi><mo>&#x2061;</mo>
+			<mrow>
+				<mo>(</mo>
+					<mi>r</mi>
+				<mo>)</mo>
+			</mrow>
+		<mo>)</mo>
+	</mrow>	
+	<mo>=</mo>
+	<mn>1</mn>
+	</mrow>
+	<mo>,</mo>
+	<mrow>
+		<mn>0</mn>
+		<mo>&lt;</mo>
+		<mi>&#945;</mi>
+		<mo>&lt;</mo>
+		<mi>&#966;</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<mi>r</mi>
+			<mo>)</mo>
+		</mrow>	
+	</mrow>
+</mrow>
+</math>.
+</td>
+<td class="nomer">(6.3.1)</td>
+</tr></table></p>
+<p>В книге паролей, доступной для всех желающих вести с ним переписку, он публикует запись <var>&quot;A: (r, a)&quot;</var>. Далее под открытым ключом будем понимать как <var>a</var>, так и 
+<math >
+<mfenced><mi>r</mi><mi>a</mi></mfenced>
+</math>, а под закрытым ключом &#8212; как <var>&#945;</var>, так и 
+<math >
+<mfenced><mi>r</mi><mi>&#945;</mi></mfenced>
+</math>.</p>
+<a id="f632"></a>
+<p>Пусть некий пользователь книги паролей составляет сообщение для абонента А. Для шифрования своего сообщения он предварительно фрагментирует его таким образом, чтобы числовой код <var>m</var> всякого фрагмента оказался меньше значения 
+<math >
+<mrow><mi>r</mi><mo>-</mo><mn>1</mn></mrow>
+</math>. Затем каждый числовой код <var>m</var> шифруется по формуле
+<table class="formula"><tr>
+<td class="formula">
+<math >
+<mrow>
+	<msub><mi>m</mi><mn>1</mn></msub>
+	<mo>=</mo>
+	<mi>mod</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+		<msup><mi>m</mi><mi>a</mi></msup>
+		<mo>,</mo>
+		<mi>r</mi>
+		<mo>)</mo>
+	</mrow>
+</mrow>
+</math>.</td>
+<td class="nomer">(6.3.2)</td>
+</tr></table></p>
+<p>Числовой код
+<math >
+<mrow>
+	<mi>m</mi>
+	<mo>=</mo>
+	<mrow><mi>r</mi><mo>-</mo><mn>1</mn></mrow>	
+</mrow>
+</math>, как и 
+<math >
+<mrow>
+	<mi>m</mi><mo>=</mo><mn>1</mn>	
+</mrow>
+</math>, исключаем из обращения по той причине, что 
+<math >
+<mrow>
+	<msub><mi>m</mi><mn>1</mn></msub>
+	<mo>=</mo>
+	<mi>mod</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+		<msup>
+			<mrow><mo>(</mo><mi>r</mi><mo>-</mo><mn>1</mn><mo>)</mo></mrow>
+			<mi>a</mi>
+		</msup>
+		<mo>,</mo>
+		<mi>r</mi>
+		<mo>)</mo>
+	</mrow>
+</mrow>
+</math>
+ окажется равным 
+<math >
+<mrow><mi>r</mi><mo>-</mo><mn>1</mn></mrow>
+</math>. Действительно, для всякого натурального и нечетного <var>a</var> имеет место разложение
+
+<math  display="block">
+<mrow>
+	<msup>
+		<mrow><mo>(</mo><mi>r</mi><mo>-</mo><mn>1</mn><mo>)</mo></mrow>
+		<mi>a</mi>
+	</msup>
+	<mo>=</mo>
+	<mrow>
+		<munderover>
+			<mi>&#931;</mi>
+			<mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow>
+			<mi>a</mi>
+		</munderover>
+		<mrow>
+			<msub>
+				<mi>b</mi><mi>i</mi>
+			</msub>
+			<msup>
+				<mi>r</mi><mi>i</mi>
+			</msup>
+			<mo>-</mo>
+			<mn>1</mn>
+		</mrow>
+	</mrow>
+</mrow><mo>,</mo>
+</math>
+откуда и следует, что остаток от деления 
+<math >
+	<msup>
+		<mrow>
+			<mo>(</mo><mi>r</mi><mo>-</mo><mn>1</mn><mo>)</mo>
+		</mrow>
+		<mi>a</mi>
+	</msup>
+</math>
+ на <var>r</var> равняется 
+<math > 
+<mrow><mi>r</mi><mo>-</mo><mn>1</mn></mrow>
+</math>.</p>
+<a id="f633"></a>
+<p>Получив зашифрованное сообщение
+<math >
+	<msub><mi>m</mi><mn>1</mn></msub>
+</math>, абонент А расшифровывает его своим вторым секретным ключом &#945; по формуле:
+<table class='formula'><tr>
+<td class='formula'>
+<math >
+<mrow>
+	<msub><mi>m</mi><mn>2</mn></msub>
+	<mo>=</mo>
+	<mi>mod</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+		<msup>
+			<msub>
+				<mi>m</mi><mn>1</mn>
+			</msub>
+			<mi>&#945;</mi>
+		</msup>
+		<mo>,</mo>
+		<mi>r</mi>
+		<mo>)</mo>
+	</mrow>
+</mrow>
+</math>.</td>
+<td class="nomer">(6.3.3)</td>
+</tr></table></p>
+<p>Докажем, что 
+<math >
+<mrow>
+	<msub>
+		<mi>m</mi><mn>2</mn>
+	</msub>
+	<mo>=</mo>
+	<mi>m</mi>
+</mrow>
+</math>. Из (6.3.1) следует, что найдется такое целое <var>k</var>, что 
+<math >
+<mrow>
+	<mrow>
+		<mi>a</mi><mo>&#x2062;</mo><mi>&#945;</mi>
+	</mrow>
+	<mo>=</mo>
+	<mrow>
+		<mrow>
+			<mi>k</mi>
+			<mo>&#x2062;</mo>
+			<mi>&#966;</mi><mo>&#x2061;</mo>
+			<mrow><mo>(</mo><mi>r</mi><mo>)</mo></mrow>
+		</mrow>
+		<mo>+</mo>
+		<mn>1</mn>	
+	</mrow>	
+</mrow>
+</math>. Тогда
+<a id="f634"></a>
+<table class='formula'><tr>
+<td class='formula'>
+<math >
+<mrow>
+	<msub>
+		<mi>m</mi><mn>2</mn>
+	</msub>
+	<mo>=</mo>
+	<mrow>
+		<mi>mod</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<msup>
+				<mi>m</mi>
+				<mrow><mi>a</mi><mi>&#945;</mi></mrow>
+			</msup>
+			<mo>,</mo>
+			<mi>r</mi>
+			<mo>)</mo>
+		</mrow>
+	</mrow>	
+	<mo>=</mo>
+	<mrow>
+		<mi>mod</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<msup>
+				<mi>m</mi>
+				<mrow>
+					<mrow>
+						<mi>k</mi>
+						<mo>&#x2062;</mo>
+						<mi>&#966;</mi><mo>&#x2061;</mo>
+						<mrow>
+							<mo>(</mo><mi>r</mi><mo>)</mo>
+						</mrow>
+					</mrow>
+					<mo>+</mo>
+					<mn>1</mn>
+				</mrow>
+			</msup>
+			<mo>,</mo>
+			<mi>r</mi>
+			<mo>)</mo>
+		</mrow>
+	</mrow>
+	<mo>=</mo>
+	<mrow>
+		<mi>mod</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<mi>m</mi>
+			<mo>&#x2062;</mo>
+			<msup>
+				<mi>m</mi>
+				<mrow>
+					<mi>k</mi>
+					<mo>&#x2062;</mo>					
+					<mi>&#966;</mi><mo>&#x2061;</mo>
+					<mrow>					
+						<mo>(</mo><mi>r</mi><mo>)</mo>
+					</mrow>
+				</mrow>
+			</msup>
+			<mo>,</mo>
+			<mi>r</mi>
+			<mo>)</mo>
+		</mrow>
+	</mrow>
+</mrow>
+</math>.</td>
+<td class="nomer">(6.3.4)</td>
+</tr></table></p>
+<p>По <a href="6_2.html#eiler">теореме Эйлера-Ферма</a>
+<math >
+<mrow>
+	<mrow>
+		<mi>mod</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<msup>
+				<mi>m</mi>
+				<mrow>
+					<mi>&#966;</mi><mo>&#x2061;</mo>
+					<mrow>
+						<mo>(</mo><mi>r</mi><mo>)</mo>
+					</mrow>
+				</mrow>
+			</msup>
+			<mo>,</mo>
+			<mi>r</mi>
+			<mo>)</mo>
+		</mrow>
+	</mrow>
+	<mo>=</mo>
+	<mn>1</mn>
+</mrow>
+</math>, и поэтому 
+<math >
+<mrow>
+	<mi>mod</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+		<msup>
+			<mi>m</mi>
+			<mrow>
+				<mi>k</mi>
+				<mo>&#x2062;</mo>
+				<mi>&#966;</mi><mo>&#x2061;</mo>
+				<mrow>
+					<mo>(</mo><mi>r</mi><mo>)</mo>
+				</mrow>
+			</mrow>
+		</msup>
+		<mo>,</mo>
+		<mi>r</mi>
+		<mo>)</mo>
+	</mrow>	
+	<mo>=</mo>
+	<mn>1</mn>
+</mrow>
+</math>. Следовательно, (6.3.4) приводится к выражению
+
+<math  display="block">
+<mrow>
+	<msub><mi>m</mi><mn>2</mn></msub>
+	<mo>=</mo>
+	<mrow>
+		<mi>mod</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<mi>m</mi>
+			<mo>,</mo>
+			<mi>r</mi>
+			<mo>)</mo>
+		</mrow>
+	</mrow>	
+	<mo>=</mo>
+	<mi>m</mi>
+</mrow><mo>,</mo>
+</math>
+где 
+<math >
+<mrow>
+	<mi>m</mi>
+	<mo>&lt;</mo>
+	<mrow>
+		<mi>r</mi><mo>-</mo><mn>1</mn>
+	</mrow>
+</mrow>
+</math>.</p>
+<p>Таким образом, мы доказали, что абонент А действительно расшифровал полученное секретное сообщение.</p>
+<div class="examp">
+<p><span class="primer">Пример 6.3.1</span>. Пусть мы выбрали простые числа 
+<math >
+<mrow><mi>p</mi><mo>=</mo><mn>17</mn></mrow>
+</math>
+ и 
+<math >
+<mrow><mi>q</mi><mo>=</mo><mn>19</mn></mrow>
+</math>. Тогда 
+<math >
+<mrow><mi>r</mi><mo>=</mo><mn>323</mn></mrow>
+</math>. Согласно <a href="6_2.html#eiler">свойству 2 функции Эйлера</a> 
+<math >
+<mrow>
+	<mi>&#966;</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+			<mn>323</mn>
+		<mo>)</mo>	
+	</mrow>
+	<mo>=</mo>
+	<mi>&#966;</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+			<mrow><mn>17</mn><mo>&#183;</mo><mn>19</mn></mrow>
+		<mo>)</mo>	
+	</mrow>
+	<mo>=</mo>	
+	<mrow>
+		<mrow>
+			<mo>(</mo>
+				<mn>17</mn><mo>-</mo><mn>1</mn>
+			<mo>)</mo>		
+		</mrow>
+		<mo>&#x2061;</mo>	
+		<mrow>
+			<mo>(</mo>
+				<mn>19</mn><mo>-</mo><mn>1</mn>
+			<mo>)</mo>		
+		</mrow>
+	</mrow>
+	<mo>=</mo>
+	<mn>288</mn>
+</mrow>
+</math>.
+ В качестве открытого ключа выберем число 
+<math >
+<mrow><mi>a</mi><mo>=</mo><mn>29</mn></mrow>
+</math>, меньшее и взаимно простое с 288. Секретный ключ &#945; находим из уравнения <a href="#f633">(6.3.3)</a>. Нетрудно убедиться, что 
+<math >
+<mrow><mi>&#945;</mi><mo>=</mo><mn>149</mn></mrow>
+</math>.
+ В книге паролей публикуем открытый ключ 
+<math >
+<mrow>
+	<mfenced>
+		<mn>323</mn><mn>29</mn>
+	</mfenced>
+	<mo>.</mo>
+</mrow>
+</math> 
+</p>
+<p>Допустим, что некто прочитал открытый ключ и решил отправить нам числовой код 
+<math >
+<mrow><mi>m</mi><mo>=</mo><mn>25</mn></mrow>
+</math>,
+ для чего шифрует его открытым ключом:
+<table class='formula'><tr>
+<td class='formula'>
+<math >
+<mrow>
+	<msub>
+		<mi>m</mi><mn>1</mn>
+	</msub>
+	<mo>=</mo>
+	<mrow>
+		<mi>mod</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<msup>
+				<mn>25</mn><mn>29</mn>
+			</msup>
+			<mo>,</mo>
+			<mi>323</mi>
+			<mo>)</mo>
+		</mrow>
+	</mrow>
+	<mo>=</mo>
+	<mn>264</mn>
+</mrow></math>.
+</td>
+</tr></table></p>
+<p>Мы получаем зашифрованное сообщение 
+<math >
+<mrow>
+	<msub><mi>m</mi><mn>1</mn></msub>
+	<mo>=</mo>
+	<mn>264</mn>
+</mrow>
+</math>, которое расшифровываем с помощью секретного ключа:
+<table class='formula'><tr>
+<td class='formula'>
+<math >
+<mrow>
+	<msub>
+		<mi>m</mi><mn>2</mn>
+	</msub>
+	<mo>=</mo>
+	<mrow>
+		<mi>mod</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<msup>
+				<mn>264</mn><mn>149</mn>
+			</msup>
+			<mo>,</mo>
+			<mi>323</mi>
+			<mo>)</mo>
+		</mrow>
+	</mrow>	
+	<mo>=</mo>
+	<mn>25</mn>
+</mrow>
+</math>.</td>
+</tr></table>
+</p>
+</div>
+<div class="examp">
+<p><span class="primer">Пример 6.3.2.</span> Построим криптосистему со следующими характеристиками:
+<math >
+	<mrow>
+		<mi>p</mi><mo>=</mo><mn>257</mn>	
+	</mrow>
+	<mo>,</mo>
+	<mrow>
+		<mi>q</mi><mo>=</mo><mn>263</mn>	
+	</mrow>
+	<mo>,</mo>	
+	<mrow>
+		<mi>r</mi>
+		<mo>=</mo>
+		<mrow>
+			<mi>p</mi><mo>&#x2062;</mo><mi>q</mi>
+		</mrow>
+		<mo>=</mo>		
+		<mn>67591</mn>	
+	</mrow>
+	<mo>,</mo>
+	<mrow>
+		<mrow>
+			<mi>&#966;</mi><mo>&#x2061;</mo>
+			<mrow>
+				<mo>(</mo>
+					<mi>r</mi>	
+				<mo>)</mo>
+			</mrow>
+		</mrow>
+		<mo>=</mo>
+		<mrow><mn>256</mn><mo>&#183;</mo><mn>262</mn></mrow>
+		<mo>=</mo>
+		<mn>67072</mn>
+	</mrow>
+</math>. Пусть в качестве открытого ключа мы выбрали
+<math >
+<mrow>
+	<mi>a</mi><mo>=</mo><mn>271</mn>
+</mrow>
+</math>, которое взаимно просто с 
+<math >
+<mrow>
+	<mi>&#966;</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+			<mi>r</mi>	
+		<mo>)</mo>
+	</mrow>
+</mrow>
+</math>. Из уравнения <a href="#f631">(6.3.1)</a> находим секретный ключ 
+<math >
+<mrow>
+	<mi>&#945;</mi><mo>=</mo><mn>495</mn>
+</mrow>
+</math>.
+</p>
+<p>
+Пусть 16-битные коды utf-16 символов сообщения будут служить номерами m символов. Двоичную кодовую последовательность сообщения будем разбивать на фрагменты такой длины, чтобы чтобы их числовые коды <var>m</var> не превышали 
+<math >
+<mrow>
+	<mi>r</mi><mo>-</mo><mn>2</mn>
+</mrow>
+</math>. Очевидно, что этому условию удовлетворяют как восьмибитные, так и шестнадцатибитные фрагменты. Для определенности фрагментируем двоичную последовательность сообщения восьмибитными фрагментами. 
+</p>
+<form id="f1">
+Введите сообщение<br />
+<textarea rows="3" id="stroka" cols="80"></textarea><br />
+<input type="button" value="Вычислить" onclick="start()" />
+<input type="reset" value="Очистить" />
+</form>
+</div>
+<div class="examp" id='result'></div>
+<p>Обсудим возможность восстановления числового кода <var>m</var> по перехваченному шифру 
+<math >
+<msub><mi>m</mi><mn>1</mn></msub>
+</math>,
+ где
+<math >
+<mrow>
+	<msub><mi>m</mi><mn>1</mn></msub>
+	<mo>=</mo>
+	<mi>mod</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+		<msup><mi>m</mi><mi>a</mi></msup>
+		<mo>,</mo>
+		<mi>r</mi>
+		<mo>)</mo>
+	</mrow>
+</mrow>
+</math>. 
+Напомним, что параметры <var>a</var> и <var>r</var> известны, поскольку опубликованы в широко доступной книге паролей. При больших <var>p</var> и <var>q</var> и существующих вычислительных мощностях простой подбор <var>m</var> за обозримое время невозможен, хотя следует заметить, что строгого математического доказательства отсутствия эффективных методов обращения функции
+<math >
+<mrow>
+	<msub><mi>m</mi><mn>1</mn></msub>
+	<mo>=</mo>
+	<mi>mod</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+		<msup><mi>m</mi><mi>a</mi></msup>
+		<mo>,</mo>
+		<mi>r</mi>
+		<mo>)</mo>
+	</mrow>
+</mrow>
+</math>
+(нахождения <var>m</var> по известному
+<math >
+<msub><mi>m</mi><mn>1</mn></msub>
+</math>
+) пока нет.</p>
+<p>Если исходный текст короткий, то появляется возможность подбора текста, который при шифровании открытым ключом даст шифрограмму, совпадающую с перехваченной шифрограммой. Поэтому для исключения подбора текста короткое сообщение следует удлинить.</p>
+<p>Знание секретного ключа <var>&#945;</var> позволяет легко восстановить <var>m</var>. Для вычисления секретного ключа нужно знать простые числа <var>p</var> и <var>q</var>. Задача разложения известного числа <var>r</var> на простые множители <var>p</var> и <var>q</var> является такой же трудоемкой задачей, как и обращение функции 
+<math >
+<mrow>
+	<msub><mi>m</mi><mn>1</mn></msub>
+	<mo>=</mo>
+	<mi>mod</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+		<msup><mi>m</mi><mi>a</mi></msup>
+		<mo>,</mo>
+		<mi>r</mi>
+		<mo>)</mo>
+	</mrow>
+</mrow>
+</math>.
+ Хотя следует заметить, что в случае, если секретным ключом является небольшое число, то опять же появляется возможность подобрать его перебором.</p>
+<p><span class="teorema">Функция 
+<math >
+<mrow>
+	<mi>y</mi>
+	<mo>=</mo>
+	<mrow>
+		<mi>f</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo><mi>x</mi><mo>)</mo>
+		</mrow>
+	</mrow>
+</mrow>
+</math>,
+которую нельзя обратить (восстановить аргумент x по известному значению y) без дополнительной информации, называется односторонней функцией с ловушкой. Роль ловушки играет дополнительная информация, позволяющая обратить функцию.</span></p>
+<p>В нашем случае функция
+<math >
+<mrow>
+	<msub><mi>m</mi><mn>1</mn></msub>
+	<mo>=</mo>
+	<mi>mod</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+		<msup><mi>m</mi><mi>a</mi></msup>
+		<mo>,</mo>
+		<mi>r</mi>
+		<mo>)</mo>
+	</mrow>
+</mrow>
+</math>
+является односторонней, а ловушкой служит секретный ключ, известный только одному лицу, опубликовавшему открытый ключ в книге паролей. Абонент, отправивший криптограмму автору открытого ключа, не знает секретный ключ, и, следовательно, в случае утери исходного текста не может его восстановить по криптограмме.</p>
+<p>При известном открытом ключе 
+<math >
+<mfenced><mi>r</mi><mi>a</mi></mfenced>
+</math>
+ знание любого из чисел 
+<math >
+<mrow>
+	<mi>p</mi><mo>,</mo>
+	<mi>q</mi><mo>,</mo>
+	<mrow>
+		<mi>&#966;</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo><mi>r</mi><mo>)</mo>
+		</mrow>
+	</mrow>
+	<mo>,</mo>
+	<mi>&#945;</mi>
+</mrow>
+</math> 
+ является достаточным, чтобы рассекретить систему RSA. Очевидно, что криптостойкость системы напрямую зависит от возможности подбора чисел <var>p</var> и <var>q</var>. Чем меньше диапазон возможных значений простого числа (<var>p</var> или <var>q</var>), тем быстрее найти его подбором.  Допустим, что злоумышленнику известен интервал 
+<math >
+<mfenced open="[" close="]">
+	<msub><mi>i</mi><mn>1</mn></msub>
+	<msub><mi>i</mi><mn>2</mn></msub>
+</mfenced>
+</math>, из которого выбрали простые числа <var>p</var> и <var>q</var>. Для определенности будем считать, что 
+<math >
+<mrow>
+	<mi>p</mi><mo>&lt;</mo><mi>q</mi>
+</mrow>
+</math>.
+ Оценим длины интервалов, которым принадлежат простые числа <var>p</var> и <var>q</var>.</p>
+<p>Из очевидных неравенств
+<math >
+<mrow>
+	<msubsup>
+		<mi>i</mi><mn>1</mn><mn>2</mn>
+	</msubsup>
+	<mo>&#8804;</mo>
+	<msup>
+		<mi>p</mi><mn>2</mn>
+	</msup>
+	<mo>&lt;</mo>
+	<mrow>
+		<mi>p</mi>
+		<mo>&#x2062;</mo>	
+		<mi>q</mi>
+	</mrow>
+</mrow>
+</math>
+и
+<math >
+<mrow>
+	<mrow>	
+		<mi>p</mi>
+		<mo>&#x2062;</mo>
+		<mi>q</mi>
+	</mrow>
+	<mo>&lt;</mo>
+	<msup>
+		<mi>q</mi><mn>2</mn>
+	</msup>
+	<mo>&#8804;</mo>
+	<msubsup>
+		<mi>i</mi><mn>2</mn><mn>2</mn>
+	</msubsup>
+</mrow>
+</math>
+следуют оценки для <var>p</var> и <var>q</var>:
+<table class='formula'><tr>
+<td class='formula'>
+<math >
+<mrow>
+	<msub>
+		<mi>i</mi><mn>1</mn>
+	</msub>
+	<mo>&#8804;</mo>
+	<mi>p</mi>
+	<mo>&lt;</mo>
+	<msqrt><mi>r</mi></msqrt>
+</mrow>
+</math>,</td>
+<td class="nomer">(6.3.5)</td>
+</tr>
+<tr>
+<td class='formula'>
+<math >
+<mrow>
+	<msqrt>
+		<mi>r</mi>
+	</msqrt>
+	<mo>&lt;</mo>
+	<mi>q</mi>
+	<mo>&#8804;</mo>
+	<msub>
+		<mi>i</mi><mn>2</mn>
+	</msub>
+</mrow>
+</math>.</td>
+<td class="nomer">(6.3.6)</td>
+</tr>
+</table></p>
+<p>Уточним границы <var>p</var> и <var>q</var>, для чего рассмотрим два случая:
+<math >
+<mrow>
+	<mi>r</mi>
+	<mo>&gt;</mo>
+	<mrow>
+		<msub>
+			<mi>i</mi><mn>1</mn>
+		</msub>
+		<mo>&#x2062;</mo>
+		<msub>
+			<mi>i</mi><mn>2</mn>
+		</msub>
+	</mrow>
+</mrow>
+</math>
+и
+<math >
+<mrow>
+	<mi>r</mi>
+	<mo>&#8804;</mo>
+	<mrow>
+		<msub>
+			<mi>i</mi><mn>1</mn>
+		</msub>
+		<mo>&#x2062;</mo>
+		<msub>
+			<mi>i</mi><mn>2</mn>
+		</msub>
+	</mrow>
+</mrow>
+</math>.</p>
+<p>Пусть 
+<math >
+<mrow>
+	<mi>r</mi>
+	<mo>&gt;</mo>
+	<mrow>
+		<msub>
+			<mi>i</mi><mn>1</mn>
+		</msub>
+		<mo>&#x2062;</mo>
+		<msub>
+			<mi>i</mi><mn>2</mn>
+		</msub>
+	</mrow>
+</mrow>
+</math>.
+В этом случае мы можем уточнить левую границу (6.3.5) для <var>p</var>:
+<math >
+<mrow>
+	<msub>
+		<mi>i</mi><mn>1</mn>
+	</msub>
+	<mo>&lt;</mo>
+	<mfrac>
+		<mi>r</mi>
+		<msub><mi>i</mi><mn>2</mn></msub>
+	</mfrac>
+	<mo>&#8804;</mo>
+	<mfrac>
+		<mi>r</mi><mi>q</mi>
+	</mfrac>
+	<mo>=</mo>
+	<mi>p</mi>
+</mrow>
+</math>, что дает нам следующую оценку для <var>p</var>:
+<table class='formula'><tr>
+<td class='formula'>
+<math  display="block">
+<mrow>
+	<mfrac>
+		<mi>r</mi>
+		<msub><mi>i</mi><mn>2</mn></msub>
+	</mfrac>
+	<mo>&#8804;</mo>
+	<mi>p</mi>
+	<mo>&lt;</mo>
+	<msqrt><mi>r</mi></msqrt>
+</mrow><mo>.</mo>
+</math></td>
+<td class="nomer">(6.3.7)</td>
+</tr>
+</table></p>
+<p>Длины интервалов для <var>p</var> и <var>q</var> в рассматриваемом случае определяются следующими формулами:
+<table class='formula'>
+<tr><td class='formula'>
+<math  display="block">
+<mrow>
+	<mi>&#916;p</mi>
+	<mo>=</mo>
+	<mrow>
+		<msqrt>r</msqrt>
+		<mo>-</mo>
+		<mfrac>
+			<mi>r</mi>
+			<msub><mi>i</mi><mn>2</mn></msub>
+		</mfrac>
+	</mrow>
+</mrow><mo>,</mo>
+</math></td>
+</tr><tr>
+<td class='formula'>
+<math  display="block">
+<mrow>
+	<mi>&#916;q</mi>
+	<mo>=</mo>
+	<mrow>
+		<msub><mi>i</mi><mn>2</mn></msub>
+		<mo>-</mo>
+		<msqrt>r</msqrt>
+	</mrow>
+</mrow><mo>.</mo>
+</math></td>
+</tr>
+</table></p>
+<p>Пусть теперь
+<math >
+<mrow>
+	<mi>r</mi>
+	<mo>&#8804;</mo>
+	<mrow>
+		<msub>
+			<mi>i</mi><mn>1</mn>
+		</msub>
+		<mo>&#x2062;</mo>
+		<msub>
+			<mi>i</mi><mn>2</mn>
+		</msub>
+	</mrow>
+</mrow>
+</math>. В этом случае можем уточнить правую границу оценки (6.3.6):
+<math >
+<mrow>
+	<mi>q</mi>
+	<mo>=</mo>
+	<mfrac>
+		<mi>r</mi><mi>p</mi>
+	</mfrac>
+	<mo>&#8804;</mo>
+	<mfrac>
+		<mi>r</mi>
+		<msub><mi>i</mi><mn>1</mn></msub>
+	</mfrac>
+	<mo>&#8804;</mo>
+	<msub><mi>i</mi><mn>2</mn></msub>
+</mrow>
+</math>. Следовательно, справедлива будет оценка
+<table class="formula"><tr>
+<td class="formula">
+<math  display="block">
+<mrow>
+	<msqrt><mi>r</mi></msqrt>
+	<mo>&lt;</mo>
+	<mi>q</mi>
+	<mo>&#8804;</mo>
+	<mfrac>
+		<mi>r</mi>
+		<msub><mi>i</mi><mn>1</mn></msub>
+	</mfrac>
+</mrow><mo>.</mo>
+</math></td>
+<td class="nomer">(6.3.8)</td>
+</tr></table></p>
+<p>Выразим длины интервалов изменения <var>p</var> и <var>q</var> для рассматриваемого случая:
+<table class='formula'>
+<tr>
+<td class='formula'>
+<math  display="block">
+<mrow>
+	<mi>&#916;p</mi>
+	<mo>=</mo>
+	<mrow>
+		<msqrt>r</msqrt>
+		<mo>-</mo>
+		<msub><mi>i</mi><mn>1</mn></msub>
+	</mrow>
+</mrow><mo>,</mo>
+</math></td>
+</tr>
+<tr>
+<td class='formula'>
+<math  display="block">
+<mrow>
+	<mi>&#916;q</mi>
+	<mo>=</mo>
+	<mrow>
+		<mfrac>
+			<mi>r</mi>
+			<msub><mi>i</mi><mn>1</mn></msub>
+		</mfrac>
+		<mo>-</mo>
+		<msqrt><mi>r</mi></msqrt>
+	</mrow>
+</mrow><mo>.</mo>
+</math></td>
+</tr>
+</table>
+</p>
+<p>Нетрудно убедиться, что в любом случае 
+<math >
+<mrow>
+	<mi>&#8710;p</mi><mo>&#8804;</mo><mi>&#8710;q</mi>
+</mrow>
+</math>. Следовательно, можно ограничиться поиском максимального значения функции
+<table class='formula'>
+<tr><td class='formula'>
+<math  display="block">
+<mrow>
+	<mi>&#8710;p</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo><mi>r</mi><mo>)</mo>
+	</mrow>
+	<mo>=</mo>
+	<mrow>
+		<mo>{</mo>
+		<mrow>
+			<mtable>
+				<mtr>
+					<mtd>
+						<msqrt>r</msqrt>
+						<mo>-</mo>
+						<msub><mi>i</mi><mn>1</mn></msub>
+					</mtd>
+					<mtd>
+						<mtext>при</mtext>
+					</mtd>	
+					<mtd>
+						<mi>r</mi>
+						<mo>&#8804;</mo>
+						<msub><mi>i</mi><mn>1</mn></msub>
+						<mo>&#x2062;</mo>
+						<msub><mi>i</mi><mn>2</mn></msub>
+						<mo>,</mo>
+					</mtd>
+				</mtr>
+				<mtr>
+					<mtd>
+						<msqrt>r</msqrt>
+						<mo>-</mo>
+						<mfrac>
+							<mi>r</mi>
+							<msub><mi>i</mi><mn>2</mn></msub>
+						</mfrac>
+					</mtd>
+					<mtd>
+						<mtext>при</mtext>
+					</mtd>
+					<mtd>
+							<mi>r</mi>
+							<mo>&gt;</mo>
+							<msub><mi>i</mi><mn>1</mn></msub>
+							<mo>&#x2062;</mo>
+							<msub><mi>i</mi><mn>2</mn></msub>
+							<mo>.</mo>
+					</mtd>
+				</mtr>
+			</mtable>
+		</mrow>
+	</mrow>
+</mrow>
+</math>
+</td></tr>
+</table></p>
+<p>При условии   
+<math >
+<mrow>
+	<msub>
+		<mi>i</mi><mn>1</mn>
+	</msub>
+	<mo>&#8804;</mo>
+	<mfrac>
+		<msub><mi>i</mi><mn>2</mn></msub>
+		<mn>4</mn>
+	</mfrac>
+</mrow>
+</math>
+функция
+<math >
+<mrow>
+	<mi>&#8710;p</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+			<mi>r</mi>
+		<mo>)</mo>	
+	</mrow>
+</mrow>
+</math>
+ достигает максимума 
+<math >
+<mrow>
+	<msub>
+		<mi>&#8710;p</mi>
+		<mi>max</mi>
+	</msub>
+	<mo>=</mo>
+	<mfrac>
+		<msub><mi>i</mi><mn>2</mn></msub>
+		<mn>4</mn>
+	</mfrac>
+</mrow>
+</math>
+в точке 
+<math >
+<mrow>
+	<mi>r</mi>
+	<mo>=</mo>
+	<mfrac>
+		<msup>
+			<msub><mi>i</mi><mn>2</mn></msub>
+			<mn>2</mn>
+		</msup>
+		<mn>4</mn>
+	</mfrac>
+</mrow>
+</math>. Следовательно, в рассматриваемом случае выбор простых чисел <var>p</var> и <var>q</var> должен быть таким, чтобы их произведение было как можно ближе к
+<math >
+<mrow>
+	<mi>r</mi>
+	<mo>=</mo>
+	<mfrac>
+		<msup>
+			<msub><mi>i</mi><mn>2</mn></msub>
+			<mn>2</mn>
+		</msup>
+		<mn>4</mn>
+	</mfrac>
+</mrow>
+</math>.</p>
+<p>В случае же
+<math >
+<mrow>
+	<msub><mi>i</mi><mn>1</mn></msub>
+	<mo>&gt;</mo>
+	<mfrac>
+		<msub><mi>i</mi><mn>2</mn></msub>
+		<mn>4</mn>
+	</mfrac>
+</mrow>
+</math>
+функция 
+<math >
+<mrow>
+	<mi>&#8710;p</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo><mi>r</mi><mo>)</mo>
+	</mrow>
+</mrow>
+</math>
+достигает максимума 
+<math >
+<mrow>
+	<msub>
+		<mi>&#8710;p</mi>
+		<mi>max</mi>
+	</msub>
+	<mo>=</mo>
+	<msqrt>
+		<msub><mi>i</mi><mn>1</mn></msub>
+		<mo>&#x2062;</mo>
+		<msub><mi>i</mi><mn>2</mn></msub>
+	</msqrt>
+	<mo>-</mo>
+	<msub><mi>i</mi><mn>1</mn></msub>
+</mrow>
+</math>
+в точке
+<math >
+<mrow>
+	<mi>r</mi>
+	<mo>=</mo>
+	<msub><mi>i</mi><mn>1</mn></msub>
+	<mo>&#x2062;</mo>
+	<msub><mi>i</mi><mn>2</mn></msub>
+</mrow>
+</math>. Поэтому простые числа <var>p</var> и <var>q</var> для этого случая должны быть такими, чтобы их произведение было как можно ближе к
+<math >
+<mrow>
+	<mi>r</mi>
+	<mo>=</mo>
+	<msub><mi>i</mi><mn>1</mn></msub>
+	<mo>&#x2062;</mo>
+	<msub><mi>i</mi><mn>2</mn></msub>
+</mrow>
+</math>.</p>
+<p>Очевидно, что для усложнения подбора простых чисел <var>p</var> и <var>q</var> их не следует выбирать вблизи границ возможных значений.</p>
+<div class="examp">
+<p><span class="primer">Пример 6.3.3</span>. Оценим эффективность выбора трехзначных простых чисел 
+<math >
+<mrow><mi>p</mi><mo>=</mo><mn>257</mn></mrow>
+</math>
+ и 
+<math >
+<mrow><mi>q</mi><mo>=</mo><mn>971</mn></mrow>
+</math>. Для границ интервала 
+<math >
+<mfenced open="[" close="]">
+	<mn>101</mn>
+	<mn>997</mn>
+</mfenced>
+</math>
+ выполняется условие 
+<math >
+<mrow>
+	<msub><mi>i</mi><mn>1</mn></msub>
+	<mo>&#8804;</mo>
+	<mfrac>
+		<msub><mi>i</mi><mn>2</mn></msub>
+		<mn>4</mn>
+	</mfrac>
+</mrow>
+</math>, а произведение 
+<math >
+<mrow>
+	<mi>r</mi>
+	<mo>=</mo>
+	<mrow><mi>p</mi><mo>&#x2062;</mo><mi>q</mi></mrow>
+	<mo>=</mo>
+	<mn>249547</mn>
+</mrow>
+</math>
+ достаточно близко к 
+<math >
+<mrow>
+	<mi>r</mi>
+	<mo>=</mo>
+	<mfrac>
+		<msup>
+			<msub><mi>i</mi><mn>2</mn></msub>
+			<mn>2</mn>
+		</msup>
+		<mn>4</mn>
+	</mfrac>
+</mrow>
+</math>. Для границ интервала выполняется условие 
+<math >
+<mrow>
+	<mi>r</mi>
+	<mo>&gt;</mo>
+	<msub><mi>i</mi><mn>1</mn></msub>
+	<mo>&#x2062;</mo>
+	<msub><mi>i</mi><mn>2</mn></msub>
+</mrow>
+</math>, следовательно, справедлива оценка (6.3.7), которая для рассматриваемого примера такая:
+<math >
+<mrow>
+	<mn>250</mn>
+	<mo>&lt;</mo>
+	<mi>p</mi>
+	<mo>&lt;</mo>
+	<mn>500</mn>
+</mrow>
+</math>.</p>
+<p>Очевидно, что пара простых чисел выбрана неудачно, так как истинное значение <var>p</var> расположено вблизи левой границы и найдется в результате перебора чисел от 250 до 257.</p>
+<p>Подберем другую пару простых трехзначных чисел: 
+<math >
+	<mrow><mi>p</mi><mo>=</mo><mn>457</mn></mrow><mo>,</mo>
+	<mrow><mi>q</mi><mo>=</mo><mn>541</mn></mrow>
+</math>. Для них выполняются вышеприведенные рекомендации и 
+<math >
+<mrow>
+	<mn>247</mn>
+	<mo>&lt;</mo>
+	<mi>p</mi>
+	<mo>&lt;</mo>
+	<mn>497</mn>
+</mrow>
+</math>, а для нахождения истинного значения <var>p</var> надо будет пробежать интервал от 247 до 457 или от 497 до 457.</p>
+</div>
+<p>В связи с задачей локализации простых чисел интересен следующий факт:</p>
+<p><span class="teorema"> Существуют сколь угодно большие числовые интервалы, не содержащие простые числа.</span></p>
+<p>Например, для всякого натурального <var>n</var> числовой отрезок 
+<math >
+<mfenced open="[" close="]">
+	<mrow><mi>n!</mi><mo>+</mo><mn>2</mn></mrow>
+	<mrow><mi>n!</mi><mo>+</mo><mi>n</mi></mrow>
+</mfenced>
+</math>
+ не содержит простые числа.</p>
+<p>Зададимся вопросом: может ли шифрограмма числового кода <var>m</var> в системе RSA совпасть с самим кодом <var>m</var>? Совпадение шифрограммы с самим кодом означает, что
+<table class='formula'><tr>
+<td class='formula'>
+<math >
+<mrow>
+	<mi>mod</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+			<msup><mi>m</mi><mi>a</mi></msup>
+			<mo>,</mo>
+			<mi>r</mi>
+		<mo>)</mo>
+	</mrow>
+	<mo>=</mo>
+	<mi>m</mi>
+</mrow>
+</math>.</td>
+<td class="nomer">(6.3.9)</td>
+</tr></table></p>
+<p><span class="teorema">Для выбранных <var>p, q</var> и <var>a</var> числовой код <var>m</var> назовем нешифруемым, если имеет место (6.3.9).</span></p>
+<p>Нетрудно убедиться в справедливости следующего утверждения:</p>
+<p><span class="teorema">Для всяких простых чисел <var>p</var> и <var>q</var> можно подобрать такой ключ <var>a</var>, что всякий код <var>m</var> будет нешифруемым.</span></p>
+<p>Например, для 
+<math >
+<mrow>
+	<mi>a</mi>
+	<mo>=</mo>
+	<mn>1</mn>
+	<mo>+</mo>
+	<mi>НОК</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+			<mrow>
+				<mi>p</mi>
+				<mo>-</mo>
+				<mn>1</mn>
+			</mrow>
+			<mo>,</mo>
+			<mrow>			
+				<mi>q</mi>
+				<mo>-</mo>
+				<mn>1</mn>
+			</mrow>
+		<mo>)</mo>
+	</mrow>
+</mrow>
+</math>
+ всякий код <var>m</var> будет нешифруемым. Напомним, что <var>a</var> удовлетворяет условиям
+ </p>
+<table align='center'>
+<tr>
+<td>
+<math >
+<mrow>
+	<mi>a</mi>
+	<mo>&lt;</mo>
+	<mi>&#966;</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo><mi>r</mi><mo>)</mo>
+	</mrow>
+</mrow>
+<mo>,</mo>
+<mrow>
+	<mi>НОД</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+		<mrow>
+			<mi>&#966;</mi><mo>&#x2061;</mo>
+			<mrow>
+				<mo>(</mo><mi>r</mi><mo>)</mo>
+			</mrow>
+		</mrow>	
+		<mo>,</mo>
+		<mi>a</mi>
+		<mo>)</mo>
+	</mrow>
+	<mo>=</mo>
+	<mn>1</mn>
+</mrow>
+</math>.</td>
+</tr>
+</table>
+<p>Здесь 
+<math >
+<mrow>
+	<mi>НОК</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+		<mi>x</mi><mo>,</mo><mi>y</mi>
+		<mo>)</mo>
+	</mrow>
+</mrow>
+</math>
+ и 
+<math >
+<mrow>
+	<mi>НОД</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+		<mi>x</mi><mo>,</mo><mi>y</mi>
+		<mo>)</mo>
+	</mrow>
+</mrow>
+</math>, соответственно, наименьшее общее кратное и наибольший общий делитель натуральных чисел <var>x</var> и <var>y</var>.</p>
+<p>Продемонстрируем нешифруемость всякого кода 
+<math >
+<mrow>
+	<mi>m</mi><mo>&lt;</mo><mi>r</mi>
+</mrow>
+</math>
+ для 
+<math >
+<mrow>
+	<mi>p</mi><mo>=</mo><mn>19</mn>
+</mrow>
+<mo>,</mo>
+<mrow>
+	<mi>q</mi><mo>=</mo><mn>23</mn>
+</mrow>
+<mo>,</mo>
+<mrow>
+	<mi>r</mi><mo>=</mo><mn>437</mn>
+</mrow>
+<mo>,</mo>
+<mrow>
+	<mi>a</mi><mo>=</mo>
+	<mrow>
+		<mn>1</mn><mo>+</mo>
+		<mrow>
+			<mi>НОК</mi><mo>&#x2061;</mo>
+			<mrow>
+				<mo>(</mo>
+				<mn>18</mn>
+				<mo>,</mo>
+				<mn>22</mn>
+				<mo>)</mo>			
+			</mrow>		
+		</mrow>
+		<mo>=</mo>
+		<mrow><mn>1</mn><mo>+</mo><mn>198</mn></mrow>
+		<mo>=</mo>
+		<mn>199</mn>	
+	</mrow>
+</mrow>
+</math>:</p>
+<form id="f2">
+Введите код m, больший 1 и меньший 437<input type="text" id="soob" size="4" maxlength="3" /><br /> 
+<input type="button" value="Зашифровать" onclick="isp()" />
+<input type="reset" value="Очистить" /><br />
+Шифрограмма
+<math >
+	<msub><mi>m</mi><mn>1</mn></msub>
+	<mo>=</mo>
+	<mi>mod</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+			<msup><mi>m</mi><mn>199</mn></msup>
+			<mo>,</mo>
+			<mn>437</mn>
+		<mo>)</mo>	
+	</mrow>
+</math>=<input type="text" id="shifr" size="4" maxlength="3" />
+</form>
+<p>Примем на веру теорему:</p>
+<p><span class="name">Теорема 6.3.1</span>. <span class="teorema">Для всяких простых <var>p</var> и <var>q</var> и всякого подходящего ключа <var>a</var> количество нешифруемых кодов равняется 
+<table class="formula">
+<tr>
+<td>
+<math >
+<mrow>
+	<mrow>
+		<mi>НОД</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<mrow>
+				<mi>a</mi>
+				<mo>-</mo>
+				<mn>1</mn>
+			</mrow>
+			<mo>,</mo>
+			<mrow>
+				<mi>p</mi>
+				<mo>-</mo>
+				<mn>1</mn>
+			</mrow>
+			<mo>)</mo>
+		</mrow>
+	</mrow>
+	<mo>&#183;</mo>
+	<mrow>
+		<mi>НОД</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<mrow>
+				<mi>a</mi>
+				<mo>-</mo>
+				<mn>1</mn>
+			</mrow>
+			<mo>,</mo>
+			<mrow>			
+				<mi>q</mi>
+				<mo>-</mo>
+				<mn>1</mn>
+			</mrow>
+			<mo>)</mo>
+		</mrow>
+	</mrow>	
+	<mo>+</mo>
+	<mrow>
+		<mi>НОД</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<mrow>
+				<mi>a</mi>
+				<mo>-</mo>
+				<mn>1</mn>
+			</mrow>
+			<mo>,</mo>
+			<mrow>
+				<mi>p</mi>
+				<mo>-</mo>
+				<mn>1</mn>
+			</mrow>
+			<mo>)</mo>
+		</mrow>
+	</mrow>
+	<mo>+</mo>
+	<mrow>
+		<mi>НОД</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+			<mrow>
+				<mi>a</mi>
+				<mo>-</mo>
+				<mn>1</mn>
+			</mrow>
+			<mo>,</mo>
+			<mrow>
+				<mi>q</mi>
+				<mo>-</mo>
+				<mn>1</mn>
+			</mrow>
+			<mo>)</mo>
+		</mrow>
+	</mrow>
+</mrow>
+</math>.</td>
+</tr>
+</table>
+</span>
+</p>
+<p>Ниже представлен калькулятор для вычисления количества нешифруемых кодов для каждого возможного ключа <var>a</var>:</p>
+<form id="f4">
+<table>
+<tr><td>Введите простое число <var>p</var></td><td><input type="text" id="prost1" /></td></tr>
+<tr><td>Введите простое число <var>q</var></td><td><input type="text" id="prost2" /></td></tr>
+</table>
+<input type="button" value="Вычислить" onclick="prover(prost1.value, prost2.value)" />
+<input type="reset" value="Очистить" />
+</form>
+
+<div class="examp">
+<p><span class="primer">Пример 6.3.4</span>. Положим 
+<math >
+<mrow>
+	<mi>p</mi><mo>=</mo><mn>5</mn>
+</mrow>
+<mo>,</mo>
+<mrow>
+	<mi>q</mi><mo>=</mo><mn>7</mn>
+</mrow>
+</math>.
+ Тогда 
+<math >
+<mrow>
+	<mi>r</mi><mo>=</mo><mn>35</mn>
+</mrow>
+<mo>,</mo>
+<mrow>
+	<mi>&#966;</mi><mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo>
+			<mi>r</mi>
+		<mo>)</mo>	
+	</mrow>
+	<mo>=</mo><mn>24</mn>
+</mrow>
+</math>. Приведем количество <var>s</var> нешифруемых кодов для различных подходящих <var>a</var>:</p>
+<table align='center' border="1">
+<th>a</th><th>s</th>
+<tr><td>5</td><td>14</td></tr>
+<tr><td>7</td><td>20</td></tr>
+<tr><td>11</td><td>8</td></tr>
+<tr><td>13</td><td>34</td></tr>
+<tr><td>17</td><td>14</td></tr>
+<tr><td>19</td><td>20</td></tr>
+<tr><td>23</td><td>8</td></tr>
+</table>
+<p>Очевидно, что для заданных <var>p</var> и <var>q</var> наиболее подходящие значения для <var>a</var> 11 или 23. Заметим, что для 
+<math >
+<mrow>
+	<mi>a</mi><mo>=</mo>
+	<mrow>
+		<mn>1</mn>
+		<mo>+</mo>
+		<mrow>
+		<mi>НОК</mi><mo>&#x2061;</mo>
+		<mrow>
+			<mo>(</mo>
+				<mrow><mi>p</mi><mo>-</mo><mn>1</mn></mrow>
+				<mo>,</mo>
+				<mrow><mi>q</mi><mo>-</mo><mn>1</mn></mrow>				
+			<mo>)</mo>		
+		</mrow>
+		</mrow>			
+	</mrow>
+	<mo>=</mo>
+	<mn>13</mn>
+</mrow>
+</math>
+ всякий допустимый код <var>m</var> нешифруем.</p>
+<p>Выберите <var>a</var> и вычислите шифрограммы для следующих числовых кодов <var>m</var>:</p>
+</div>
+
+<form id="f3">
+<input type="radio" name="nm" id="pq5" value='5' />5<br />
+<input type="radio" name="nm" id="pq7" value='7' />7<br />
+<input type="radio" name="nm" id="pq11" value='11' />11<br />
+<input type="radio" name="nm" id="pq13" value='13' />13<br />
+<input type="radio" name="nm" id="pq17" value='17' />17<br />
+<input type="radio" name="nm" id="pq19" value='19' />19<br />
+<input type="radio" name="nm" id="pq23" value='23' />23<br />
+<input type="button" value="Вычислить" onclick="vybor_a()" />
+<input type="reset" value="Очистить" /> 
+</form>
+<p>Обратите внимание на то, что сообщения 
+<math >
+<mrow>
+	<mi>m</mi><mo>=</mo><mn>1</mn>
+</mrow>
+</math>
+и 
+<math >
+<mrow>
+	<mi>m</mi><mo>=</mo>
+	<mrow>
+		<mi>r</mi><mo>-</mo><mn>1</mn>
+	</mrow>	
+</mrow>
+</math>
+тоже являются нешифруемыми для любых подходящих <var>a</var>, следовательно, их следует исключить из обращения.</p>
+ <h3>Упражнения</h3>
+<ol>
+<li>Для криптосистемы с открытым ключом подберите наиболее подходящие простые числа из интервала (500; 1000).</li>
+<li>Для простых чисел 
+<math >
+<mrow>
+	<mi>p</mi><mo>=</mo><mn>13</mn>
+</mrow>
+</math>
+ и 
+<math >
+<mrow>
+	<mi>q</mi><mo>=</mo><mn>17</mn>
+</mrow>
+</math> 
+ подберите такой ключ <var>a</var>, чтобы всякий код <var>m</var> был нешифруемым.</li>
+<li>Для простых чисел 
+<math >
+<mrow>
+	<mi>p</mi><mo>=</mo><mn>11</mn>
+</mrow>
+</math>
+ и 
+<math >
+<mrow>
+	<mi>q</mi><mo>=</mo><mn>13</mn>
+</mrow>
+</math> 
+ подберите подходящий ключ <var>a</var> и вычислите количество нешифруемых кодов.</li>
+<li>Для криптосистемы с открытым ключом подберите подходящие двузначные простые числа <var>p</var> и <var>q</var> и оптимальный открытый ключ <var>a</var>. В системе электронных таблиц вычислите секретный ключ <var>&#945;</var> и постройте криптосистему для шифрования числового кода <var>m</var> и расшифрования его шифра 
+<math >
+<msub><mi>m</mi><mn>1</mn></msub>
+</math>.</li>
+</ol>
+<p><a href="6_2.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="6_4.html">К следующему</a></p>
+</body>
+</html>

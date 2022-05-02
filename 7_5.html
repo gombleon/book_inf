@@ -1,0 +1,2448 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<link rel='stylesheet' type="text/css" href="style.css"></link>
+<meta name="author" content="leonid" />
+<meta name="description" content="комбинаторные схемы, арифметические схемы, схема сдвига, сумматор, полусумматор, арифметико-логическое устройство"/>
+<meta name="keywords" content="Арифметические схемы" />
+<title>Арифметические схемы</title>
+</head>
+<body>
+<p><a href="7_4.html">К предыдущему</a> <a href="index.html">К содержанию</a><a href="7_6.html">К следующему</a></p>
+<h1>7.5. Арифметические схемы</h1>
+<p><span class='teorema'>Комбинаторная схема, предназначенная для выполнения арифметических операций, называется арифметической схемой.</span> Мы рассмотрим схему сдвига, структуру сумматоров, изучим арифметико-логические устройства.</p>
+<h2>7.5.1. Схемы сдвига</h2>
+<p> <a id='sdvig'>На рисунке 7.5.1</a> представлена схема сдвига, содержащая восемь входов 
+<math display='inline'>
+<mfenced open='' close='' separators=",">
+	<msub><mi>D</mi><mn>0</mn></msub>
+	<msub><mi>D</mi><mn>1</mn></msub>
+	<msub><mi>D</mi><mn>2</mn></msub>
+	<msub><mi>D</mi><mn>3</mn></msub>
+	<msub><mi>D</mi><mn>4</mn></msub>
+	<msub><mi>D</mi><mn>5</mn></msub>
+	<msub><mi>D</mi><mn>6</mn></msub>
+	<msub><mi>D</mi><mn>7</mn></msub>
+</mfenced>
+</math>
+, восемь выходов
+<math display='inline'>
+<mfenced open='' close='' separators=",">
+	<msub><mi>S</mi><mn>0</mn></msub>
+	<msub><mi>S</mi><mn>1</mn></msub>
+	<msub><mi>S</mi><mn>2</mn></msub>
+	<msub><mi>S</mi><mn>3</mn></msub>
+	<msub><mi>S</mi><mn>4</mn></msub>
+	<msub><mi>S</mi><mn>5</mn></msub>
+	<msub><mi>S</mi><mn>6</mn></msub>
+	<msub><mi>S</mi><mn>7</mn></msub>
+</mfenced>
+</math>
+и линию управления C, задающую направление сдвига: 0 &#8212; влево, 1 &#8212; вправо: 
+</p>
+
+<svg  height = "360px"  width = "800px">
+	<text x="60" y="20" stroke="#000000" stroke-width="1" fill="none" font-size="12">D<tspan dy="7" font-size="10">0</tspan></text>
+	<text x="160" y="20" stroke="#000000" stroke-width="1" fill="none" font-size="12">D<tspan dy="7" font-size="10">1</tspan></text>
+	<text x="260" y="20" stroke="#000000" stroke-width="1" fill="none" font-size="12">D<tspan dy="7" font-size="10">2</tspan></text>
+	<text x="360" y="20" stroke="#000000" stroke-width="1" fill="none" font-size="12">D<tspan dy="7" font-size="10">3</tspan></text>
+	<text x="460" y="20" stroke="#000000" stroke-width="1" fill="none" font-size="12">D<tspan dy="7" font-size="10">4</tspan></text>
+	<text x="560" y="20" stroke="#000000" stroke-width="1" fill="none" font-size="12">D<tspan dy="7" font-size="10">5</tspan></text>
+	<text x="660" y="20" stroke="#000000" stroke-width="1" fill="none" font-size="12">D<tspan dy="7" font-size="10">6</tspan></text>
+	<text x="760" y="20" stroke="#000000" stroke-width="1" fill="none" font-size="12">D<tspan dy="7" font-size="10">7</tspan></text>
+	<path stroke="#000000" stroke-width="1" fill="none" d="M60,100 H80 V120 A10,10 0 0 1 60,120 z" />
+	<path stroke="#000000" stroke-width="1" fill="none" d="M150,100 H170 V120 A10,10 0 0 1 150,120 z" />
+	<path stroke="#000000" stroke-width="1" fill="none" d="M180,100 H200 V120 A10,10 0 0 1 180,120 z" />
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="168,100 168,90 182,90 182,100"/>
+	<line x1="175" y1="25" x2="175" y2="90" stroke="#000000" stroke-width="1" fill="none" />
+	<circle cx="175" cy="90" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<g transform="translate(140,0)">
+		<path stroke="#000000" stroke-width="1" fill="none" d="M100,100 H120 V120 A10,10 0 0 1 100,120 z" />
+		<path stroke="#000000" stroke-width="1" fill="none" d="M130,100 H150 V120 A10,10 0 0 1 130,120 z" />
+		<polyline  stroke="#000000" stroke-width="1" fill="none" points="118,100 118,90 132,90 132,100"/>
+		<line x1="125" y1="25" x2="125" y2="90" stroke="#000000" stroke-width="1" fill="none" />
+		<circle cx="125" cy="90" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	</g>
+	<g transform="translate(240,0)">
+		<path stroke="#000000" stroke-width="1" fill="none" d="M100,100 H120 V120 A10,10 0 0 1 100,120 z" />
+		<path stroke="#000000" stroke-width="1" fill="none" d="M130,100 H150 V120 A10,10 0 0 1 130,120 z" />
+		<polyline  stroke="#000000" stroke-width="1" fill="none" points="118,100 118,90 132,90 132,100"/>
+		<line x1="125" y1="25" x2="125" y2="90" stroke="#000000" stroke-width="1" fill="none" />
+		<circle cx="125" cy="90" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	</g>	
+	<g transform="translate(340,0)">
+		<path stroke="#000000" stroke-width="1" fill="none" d="M100,100 H120 V120 A10,10 0 0 1 100,120 z" />
+		<path stroke="#000000" stroke-width="1" fill="none" d="M130,100 H150 V120 A10,10 0 0 1 130,120 z" />
+		<polyline  stroke="#000000" stroke-width="1" fill="none" points="118,100 118,90 132,90 132,100"/>
+		<line x1="125" y1="25" x2="125" y2="90" stroke="#000000" stroke-width="1" fill="none" />
+		<circle cx="125" cy="90" r="2" stroke="#000000" stroke-width="1" fill="#000000" />	
+	</g>	
+	<g transform="translate(440,0)">
+		<path stroke="#000000" stroke-width="1" fill="none" d="M100,100 H120 V120 A10,10 0 0 1 100,120 z" />
+		<path stroke="#000000" stroke-width="1" fill="none" d="M130,100 H150 V120 A10,10 0 0 1 130,120 z" />
+		<polyline  stroke="#000000" stroke-width="1" fill="none" points="118,100 118,90 132,90 132,100"/>
+		<line x1="125" y1="25" x2="125" y2="90" stroke="#000000" stroke-width="1" fill="none" />
+		<circle cx="125" cy="90" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	</g>
+	<g transform="translate(540,0)">
+		<path stroke="#000000" stroke-width="1" fill="none" d="M100,100 H120 V120 A10,10 0 0 1 100,120 z" />
+		<path stroke="#000000" stroke-width="1" fill="none" d="M130,100 H150 V120 A10,10 0 0 1 130,120 z" />
+		<polyline  stroke="#000000" stroke-width="1" fill="none" points="118,100 118,90 132,90 132,100"/>
+		<line x1="125" y1="25" x2="125" y2="90" stroke="#000000" stroke-width="1" fill="none" />
+		<circle cx="125" cy="90" r="2" stroke="#000000" stroke-width="1" fill="#000000" />	
+	</g>
+	<g transform="translate(640,0)">
+		<path stroke="#000000" stroke-width="1" fill="none" d="M130,100 H150 V120 A10,10 0 0 1 130,120 z" />
+	</g>	
+	<polyline  stroke="#000000" stroke-width="1" fill="none" points="15,50 685,50 685,100" />
+	<text x="5" y="54" stroke="#000000" stroke-width="1" fill="none" font-size="12">C</text>
+	<polyline  stroke="#000000" stroke-width="1" fill="none" points="25,50 25,75 30,75"/>
+	<circle cx="25" cy="50" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<polygon  stroke="#000000" stroke-width="1" fill="none" points="30,70 38,75 30,80"/>
+	<circle cx="41" cy="75" r="3" stroke="#000000" stroke-width="1" fill="none" />
+	<polyline  stroke="#000000" stroke-width="1" fill="none" points="44,75 772,75 772,100"/>
+	<polyline  stroke="#000000" stroke-width="1" fill="none" points="766,25 766,50 785,50 785,100"/>
+	<line x1="65" y1="25" x2="65" y2="100" stroke="#000000" stroke-width="1" fill="none" />
+	<line x1="75" y1="50" x2="75" y2="100" stroke="#000000" stroke-width="1" fill="none" />	
+	<circle cx="75" cy="50" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<line x1="198" y1="50" x2="198" y2="100" stroke="#000000" stroke-width="1" fill="none" />
+	<circle cx="198" cy="50" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<line x1="288" y1="50" x2="288" y2="100" stroke="#000000" stroke-width="1" fill="none" />
+	<circle cx="288" cy="50" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<line x1="385" y1="50" x2="385" y2="100" stroke="#000000" stroke-width="1" fill="none" />
+	<circle cx="385" cy="50" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<line x1="485" y1="50" x2="485" y2="100" stroke="#000000" stroke-width="1" fill="none" />
+	<circle cx="485" cy="50" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<line x1="585" y1="50" x2="585" y2="100" stroke="#000000" stroke-width="1" fill="none" />
+	<circle cx="585" cy="50" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<line x1="154" y1="75" x2="154" y2="100" stroke="#000000" stroke-width="1" fill="none" />
+	<circle cx="154" cy="75" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<line x1="244" y1="75" x2="244" y2="100" stroke="#000000" stroke-width="1" fill="none" />
+	<circle cx="244" cy="75" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<line x1="344" y1="75" x2="344" y2="100" stroke="#000000" stroke-width="1" fill="none" />
+	<circle cx="344" cy="75" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<line x1="444" y1="75" x2="444" y2="100" stroke="#000000" stroke-width="1" fill="none" />
+	<circle cx="444" cy="75" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<line x1="544" y1="75" x2="544" y2="100" stroke="#000000" stroke-width="1" fill="none" />
+	<circle cx="544" cy="75" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<line x1="644" y1="75" x2="644" y2="100" stroke="#000000" stroke-width="1" fill="none" />
+	<circle cx="644" cy="75" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<path stroke="#000000" stroke-width="1" fill="none" d="M160,200 Q160,230 175,240 Q190,230 190,200 A20,20 0 0 1 160,200" />
+	<g transform="translate(90,0)">	
+		<path stroke="#000000" stroke-width="1" fill="none" d="M160,200 Q160,230 175,240 Q190,230 190,200 A20,20 0 0 1 160,200" />
+	</g>
+	<g transform="translate(190,0)">	
+		<path stroke="#000000" stroke-width="1" fill="none" d="M160,200 Q160,230 175,240 Q190,230 190,200 A20,20 0 0 1 160,200" />
+	</g>
+	<g transform="translate(290,0)">	
+		<path stroke="#000000" stroke-width="1" fill="none" d="M160,200 Q160,230 175,240 Q190,230 190,200 A20,20 0 0 1 160,200" />
+	</g>
+	<g transform="translate(390,0)">	
+		<path stroke="#000000" stroke-width="1" fill="none" d="M160,200 Q160,230 175,240 Q190,230 190,200 A20,20 0 0 1 160,200" />
+	</g>
+	<g transform="translate(490,0)">	
+		<path stroke="#000000" stroke-width="1" fill="none" d="M160,200 Q160,230 175,240 Q190,230 190,200 A20,20 0 0 1 160,200" />
+	</g>
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="70,130 70,150 168,180 168,205" />
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="250,130 250,150 182,180 182,205" />
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="190,130 190,150 258,180 258,205" />
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="350,130 350,150 272,180 272,205" />	
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="280,130 280,150 355,180 355,205" />
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="450,130 450,150 372,180 372,205" /> 
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="380,130 380,150 455,180 455,205" />	
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="550,130 550,150 472,180 472,205" />
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="480,130 480,150 555,180 555,205" />
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="650,130 650,150 572,180 572,205" />
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="580,130 580,150 655,180 655,205" />
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="780,130 780,150 672,180 672,205" />
+	<text x="60" y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">S<tspan dy="7" font-size="10">0</tspan></text>	
+	<text x="170" y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">S<tspan dy="7" font-size="10">1</tspan></text>
+	<text x="260" y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">S<tspan dy="7" font-size="10">2</tspan></text>
+	<text x="360" y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">S<tspan dy="7" font-size="10">3</tspan></text>
+	<text x="460" y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">S<tspan dy="7" font-size="10">4</tspan></text>
+	<text x="560" y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">S<tspan dy="7" font-size="10">5</tspan></text>
+	<text x="660" y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">S<tspan dy="7" font-size="10">6</tspan></text>
+	<text x="760" y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">S<tspan dy="7" font-size="10">7</tspan></text>
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="160,130 160,150 65,180 65,283" />
+	<line x1="175" y1="240" x2="175" y2="283" stroke="#000000" stroke-width="1" fill="none" />
+	<line x1="265" y1="240" x2="265" y2="283" stroke="#000000" stroke-width="1" fill="none" />
+	<line x1="365" y1="240" x2="365" y2="283" stroke="#000000" stroke-width="1" fill="none" />
+	<line x1="465" y1="240" x2="465" y2="283" stroke="#000000" stroke-width="1" fill="none" />
+	<line x1="565" y1="240" x2="565" y2="283" stroke="#000000" stroke-width="1" fill="none" />
+	<line x1="665" y1="240" x2="665" y2="283" stroke="#000000" stroke-width="1" fill="none" />
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="680,130 680,150 765,180 765,283" />			
+<text x="300" y="350" stroke="none" fill="#000000" font-size="14" font-family="serif">Рис. 7.5.1. Схема сдвига</text>
+</svg>
+<p>Если 
+<math display='inline'>
+<mi>C</mi><mo>=</mo><mn>0</mn>
+</math>,
+ то для каждого из входов
+<math display='inline'>
+<mfenced open='' close='' separators=",">
+	<msub><mi>D</mi><mn>1</mn></msub>
+	<msub><mi>D</mi><mn>2</mn></msub>
+	<msub><mi>D</mi><mn>3</mn></msub>
+	<msub><mi>D</mi><mn>4</mn></msub>
+	<msub><mi>D</mi><mn>5</mn></msub>
+	<msub><mi>D</mi><mn>6</mn></msub>
+</mfenced>
+</math>
+включается левый <a href='7_1.html#i'>вентиль И</a>, пропуская через себя соответствующий бит. Затем этот бит подается на вход <a href='7_1.html#ili'>вентиля ИЛИ</a>, расположенного ниже и слева от соответствующего вентиля И. В результате происходит сдвиг бита влево. Бит   
+<math display='inline'>
+<msub><mi>D</mi><mn>0</mn></msub>
+</math>
+теряется, 
+<math display='inline'>
+<msub><mi>D</mi><mn>7</mn></msub>
+</math> 
+передается 
+<math display='inline'>
+<msub><mi>S</mi><mn>6</mn></msub>
+</math>, а в
+<math display='inline'>
+<msub><mi>S</mi><mn>7</mn></msub>
+</math>
+посылается 0.
+</p>
+<p>Если 
+<math display='inline'>
+<mi>C</mi><mo>=</mo><mn>1</mn>
+</math>,
+то происходит сдвиг вправо.
+</p>
+<p>На рисунке 7.5.2 представлена интерактивная схема сдвига:</p>
+
+<svg  height = "360px"  width = "800px">
+<script>
+function funcC(idC,D0,D1,D2,D3,D4,D5,D6,D7,S0,S1,S2,S3,S4,S5,S6,S7,A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11,A12,A13) {
+var idC=document.getElementById(idC), D0=document.getElementById(D0), D1=document.getElementById(D1), D2=document.getElementById(D2), D3=document.getElementById(D3), D4=document.getElementById(D4), D5=document.getElementById(D5), D6=document.getElementById(D6), D7=document.getElementById(D7), S0=document.getElementById(S0), S1=document.getElementById(S1), S2=document.getElementById(S2), S3=document.getElementById(S3), S4=document.getElementById(S4), S5=document.getElementById(S5), S6=document.getElementById(S6), S7=document.getElementById(S7), A0=document.getElementById(A0), A1=document.getElementById(A1), A2=document.getElementById(A2), A3=document.getElementById(A3), A4=document.getElementById(A4), A5=document.getElementById(A5), A6=document.getElementById(A6), A7=document.getElementById(A7), A8=document.getElementById(A8), A9=document.getElementById(A9), A10=document.getElementById(A10), A11=document.getElementById(A11), A12=document.getElementById(A12), A13=document.getElementById(A13);
+	if (idC.firstChild.nodeValue=='1') {
+		idC.firstChild.nodeValue='0';
+		A0.firstChild.nodeValue='0';
+		A1.firstChild.nodeValue=D1.firstChild.nodeValue;
+		A2.firstChild.nodeValue='0';
+		A3.firstChild.nodeValue=D2.firstChild.nodeValue;
+		A4.firstChild.nodeValue='0';
+		A5.firstChild.nodeValue=D3.firstChild.nodeValue;
+		A6.firstChild.nodeValue='0';
+		A7.firstChild.nodeValue=D4.firstChild.nodeValue;
+		A8.firstChild.nodeValue='0';
+		A9.firstChild.nodeValue=D5.firstChild.nodeValue;
+		A10.firstChild.nodeValue='0';
+		A11.firstChild.nodeValue=D6.firstChild.nodeValue;
+		A12.firstChild.nodeValue='0';
+		A13.firstChild.nodeValue=D7.firstChild.nodeValue;		
+		S0.firstChild.nodeValue=A1.firstChild.nodeValue;
+		S1.firstChild.nodeValue=A3.firstChild.nodeValue;
+		S2.firstChild.nodeValue=A5.firstChild.nodeValue;
+		S3.firstChild.nodeValue=A7.firstChild.nodeValue;
+		S4.firstChild.nodeValue=A9.firstChild.nodeValue;
+		S5.firstChild.nodeValue=A11.firstChild.nodeValue;
+		S6.firstChild.nodeValue=A13.firstChild.nodeValue;
+		S7.firstChild.nodeValue=A12.firstChild.nodeValue;
+	}										
+	else {
+		idC.firstChild.nodeValue='1';
+		A0.firstChild.nodeValue=D0.firstChild.nodeValue;
+		A1.firstChild.nodeValue='0';
+		A2.firstChild.nodeValue=D1.firstChild.nodeValue;
+		A3.firstChild.nodeValue='0';
+		A4.firstChild.nodeValue=D2.firstChild.nodeValue;
+		A5.firstChild.nodeValue='0';
+		A6.firstChild.nodeValue=D3.firstChild.nodeValue;
+		A7.firstChild.nodeValue='0';
+		A8.firstChild.nodeValue=D4.firstChild.nodeValue;
+		A9.firstChild.nodeValue='0';
+		A10.firstChild.nodeValue=D5.firstChild.nodeValue;
+		A11.firstChild.nodeValue='0';
+		A12.firstChild.nodeValue=D6.firstChild.nodeValue;
+		A13.firstChild.nodeValue='0';
+		S0.firstChild.nodeValue=A1.firstChild.nodeValue;
+		S1.firstChild.nodeValue=A0.firstChild.nodeValue;
+		S2.firstChild.nodeValue=A2.firstChild.nodeValue;
+		S3.firstChild.nodeValue=A4.firstChild.nodeValue;
+		S4.firstChild.nodeValue=A6.firstChild.nodeValue;
+		S5.firstChild.nodeValue=A8.firstChild.nodeValue;
+		S6.firstChild.nodeValue=A10.firstChild.nodeValue;
+		S7.firstChild.nodeValue=A12.firstChild.nodeValue;				
+	}
+}
+
+function funcD0(idC,D0,D1,D2,D3,D4,D5,D6,D7,S0,S1,S2,S3,S4,S5,S6,S7,A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11,A12,A13) {
+var idC=document.getElementById(idC), D0=document.getElementById(D0), D1=document.getElementById(D1), D2=document.getElementById(D2), D3=document.getElementById(D3), D4=document.getElementById(D4), D5=document.getElementById(D5), D6=document.getElementById(D6), D7=document.getElementById(D7), S0=document.getElementById(S0), S1=document.getElementById(S1), S2=document.getElementById(S2), S3=document.getElementById(S3), S4=document.getElementById(S4), S5=document.getElementById(S5), S6=document.getElementById(S6), S7=document.getElementById(S7), A0=document.getElementById(A0), A1=document.getElementById(A1), A2=document.getElementById(A2), A3=document.getElementById(A3), A4=document.getElementById(A4), A5=document.getElementById(A5), A6=document.getElementById(A6), 	A7=document.getElementById(A7), A8=document.getElementById(A8), A9=document.getElementById(A9), A10=document.getElementById(A10), A11=document.getElementById(A11), A12=document.getElementById(A12), A13=document.getElementById(A13);
+	if (D0.firstChild.nodeValue=='0')
+		D0.firstChild.nodeValue='1';
+	else	
+		D0.firstChild.nodeValue='0';
+	if (idC.firstChild.nodeValue=='0') {
+		A0.firstChild.nodeValue='0';
+		A1.firstChild.nodeValue=D1.firstChild.nodeValue;
+		A2.firstChild.nodeValue='0';
+		A3.firstChild.nodeValue=D2.firstChild.nodeValue;
+		A4.firstChild.nodeValue='0';
+		A5.firstChild.nodeValue=D3.firstChild.nodeValue;
+		A6.firstChild.nodeValue='0';
+		A7.firstChild.nodeValue=D4.firstChild.nodeValue;
+		A8.firstChild.nodeValue='0';
+		A9.firstChild.nodeValue=D5.firstChild.nodeValue;
+		A10.firstChild.nodeValue='0';
+		A11.firstChild.nodeValue=D6.firstChild.nodeValue;
+		A12.firstChild.nodeValue='0';
+		A13.firstChild.nodeValue=D7.firstChild.nodeValue;		
+		S0.firstChild.nodeValue=A1.firstChild.nodeValue;
+		S1.firstChild.nodeValue=A3.firstChild.nodeValue;
+		S2.firstChild.nodeValue=A5.firstChild.nodeValue;
+		S3.firstChild.nodeValue=A7.firstChild.nodeValue;
+		S4.firstChild.nodeValue=A9.firstChild.nodeValue;
+		S5.firstChild.nodeValue=A11.firstChild.nodeValue;
+		S6.firstChild.nodeValue=A13.firstChild.nodeValue;
+		S7.firstChild.nodeValue=A12.firstChild.nodeValue;	
+	}											
+	else {
+		A0.firstChild.nodeValue=D0.firstChild.nodeValue;
+		A1.firstChild.nodeValue='0';
+		A2.firstChild.nodeValue=D1.firstChild.nodeValue;
+		A3.firstChild.nodeValue='0';
+		A4.firstChild.nodeValue=D2.firstChild.nodeValue;
+		A5.firstChild.nodeValue='0';
+		A6.firstChild.nodeValue=D3.firstChild.nodeValue;
+		A7.firstChild.nodeValue='0';
+		A8.firstChild.nodeValue=D4.firstChild.nodeValue;
+		A9.firstChild.nodeValue='0';
+		A10.firstChild.nodeValue=D5.firstChild.nodeValue;
+		A11.firstChild.nodeValue='0';
+		A12.firstChild.nodeValue=D6.firstChild.nodeValue;
+		A13.firstChild.nodeValue='0';
+		S0.firstChild.nodeValue=A1.firstChild.nodeValue;
+		S1.firstChild.nodeValue=A0.firstChild.nodeValue;
+		S2.firstChild.nodeValue=A2.firstChild.nodeValue;
+		S3.firstChild.nodeValue=A4.firstChild.nodeValue;
+		S4.firstChild.nodeValue=A6.firstChild.nodeValue;
+		S5.firstChild.nodeValue=A8.firstChild.nodeValue;
+		S6.firstChild.nodeValue=A10.firstChild.nodeValue;
+		S7.firstChild.nodeValue=A12.firstChild.nodeValue;
+	}	
+}
+function funcD1(idC,D0,D1,D2,D3,D4,D5,D6,D7,S0,S1,S2,S3,S4,S5,S6,S7,A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11,A12,A13) {
+var idC=document.getElementById(idC), D0=document.getElementById(D0), D1=document.getElementById(D1), D2=document.getElementById(D2), D3=document.getElementById(D3), D4=document.getElementById(D4), D5=document.getElementById(D5), D6=document.getElementById(D6), D7=document.getElementById(D7), S0=document.getElementById(S0), S1=document.getElementById(S1), S2=document.getElementById(S2), S3=document.getElementById(S3), S4=document.getElementById(S4), S5=document.getElementById(S5), S6=document.getElementById(S6), S7=document.getElementById(S7), A0=document.getElementById(A0), A1=document.getElementById(A1), A2=document.getElementById(A2), A3=document.getElementById(A3), A4=document.getElementById(A4), A5=document.getElementById(A5), A6=document.getElementById(A6), 	A7=document.getElementById(A7), A8=document.getElementById(A8), A9=document.getElementById(A9), A10=document.getElementById(A10), A11=document.getElementById(A11), A12=document.getElementById(A12), A13=document.getElementById(A13);
+	if (D1.firstChild.nodeValue=='0')
+		D1.firstChild.nodeValue='1';
+	else	
+		D1.firstChild.nodeValue='0';
+	if (idC.firstChild.nodeValue=='0') {
+		A0.firstChild.nodeValue='0';
+		A1.firstChild.nodeValue=D1.firstChild.nodeValue;
+		A2.firstChild.nodeValue='0';
+		A3.firstChild.nodeValue=D2.firstChild.nodeValue;
+		A4.firstChild.nodeValue='0';
+		A5.firstChild.nodeValue=D3.firstChild.nodeValue;
+		A6.firstChild.nodeValue='0';
+		A7.firstChild.nodeValue=D4.firstChild.nodeValue;
+		A8.firstChild.nodeValue='0';
+		A9.firstChild.nodeValue=D5.firstChild.nodeValue;
+		A10.firstChild.nodeValue='0';
+		A11.firstChild.nodeValue=D6.firstChild.nodeValue;
+		A12.firstChild.nodeValue='0';
+		A13.firstChild.nodeValue=D7.firstChild.nodeValue;		
+		S0.firstChild.nodeValue=A1.firstChild.nodeValue;
+		S1.firstChild.nodeValue=A3.firstChild.nodeValue;
+		S2.firstChild.nodeValue=A5.firstChild.nodeValue;
+		S3.firstChild.nodeValue=A7.firstChild.nodeValue;
+		S4.firstChild.nodeValue=A9.firstChild.nodeValue;
+		S5.firstChild.nodeValue=A11.firstChild.nodeValue;
+		S6.firstChild.nodeValue=A13.firstChild.nodeValue;
+		S7.firstChild.nodeValue=A12.firstChild.nodeValue;	
+	}											
+	else {
+		A0.firstChild.nodeValue=D0.firstChild.nodeValue;
+		A1.firstChild.nodeValue='0';
+		A2.firstChild.nodeValue=D1.firstChild.nodeValue;
+		A3.firstChild.nodeValue='0';
+		A4.firstChild.nodeValue=D2.firstChild.nodeValue;
+		A5.firstChild.nodeValue='0';
+		A6.firstChild.nodeValue=D3.firstChild.nodeValue;
+		A7.firstChild.nodeValue='0';
+		A8.firstChild.nodeValue=D4.firstChild.nodeValue;
+		A9.firstChild.nodeValue='0';
+		A10.firstChild.nodeValue=D5.firstChild.nodeValue;
+		A11.firstChild.nodeValue='0';
+		A12.firstChild.nodeValue=D6.firstChild.nodeValue;
+		A13.firstChild.nodeValue='0';
+		S0.firstChild.nodeValue=A1.firstChild.nodeValue;
+		S1.firstChild.nodeValue=A0.firstChild.nodeValue;
+		S2.firstChild.nodeValue=A2.firstChild.nodeValue;
+		S3.firstChild.nodeValue=A4.firstChild.nodeValue;
+		S4.firstChild.nodeValue=A6.firstChild.nodeValue;
+		S5.firstChild.nodeValue=A8.firstChild.nodeValue;
+		S6.firstChild.nodeValue=A10.firstChild.nodeValue;
+		S7.firstChild.nodeValue=A12.firstChild.nodeVal1ue;
+	}	
+}
+function funcD2(idC,D0,D1,D2,D3,D4,D5,D6,D7,S0,S1,S2,S3,S4,S5,S6,S7,A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11,A12,A13) {
+var idC=document.getElementById(idC), D0=document.getElementById(D0), D1=document.getElementById(D1), D2=document.getElementById(D2), D3=document.getElementById(D3), D4=document.getElementById(D4), D5=document.getElementById(D5), D6=document.getElementById(D6), D7=document.getElementById(D7), S0=document.getElementById(S0), S1=document.getElementById(S1), S2=document.getElementById(S2), S3=document.getElementById(S3), S4=document.getElementById(S4), S5=document.getElementById(S5), S6=document.getElementById(S6), S7=document.getElementById(S7), A0=document.getElementById(A0), A1=document.getElementById(A1), A2=document.getElementById(A2), A3=document.getElementById(A3), A4=document.getElementById(A4), A5=document.getElementById(A5), A6=document.getElementById(A6), 	A7=document.getElementById(A7), A8=document.getElementById(A8), A9=document.getElementById(A9), A10=document.getElementById(A10), A11=document.getElementById(A11), A12=document.getElementById(A12), A13=document.getElementById(A13);
+	if (D2.firstChild.nodeValue=='0')
+		D2.firstChild.nodeValue='1';
+	else	
+		D2.firstChild.nodeValue='0';
+	if (idC.firstChild.nodeValue=='0') {
+		A0.firstChild.nodeValue='0';
+		A1.firstChild.nodeValue=D1.firstChild.nodeValue;
+		A2.firstChild.nodeValue='0';
+		A3.firstChild.nodeValue=D2.firstChild.nodeValue;
+		A4.firstChild.nodeValue='0';
+		A5.firstChild.nodeValue=D3.firstChild.nodeValue;
+		A6.firstChild.nodeValue='0';
+		A7.firstChild.nodeValue=D4.firstChild.nodeValue;
+		A8.firstChild.nodeValue='0';
+		A9.firstChild.nodeValue=D5.firstChild.nodeValue;
+		A10.firstChild.nodeValue='0';
+		A11.firstChild.nodeValue=D6.firstChild.nodeValue;
+		A12.firstChild.nodeValue='0';
+		A13.firstChild.nodeValue=D7.firstChild.nodeValue;		
+		S0.firstChild.nodeValue=A1.firstChild.nodeValue;
+		S1.firstChild.nodeValue=A3.firstChild.nodeValue;
+		S2.firstChild.nodeValue=A5.firstChild.nodeValue;
+		S3.firstChild.nodeValue=A7.firstChild.nodeValue;
+		S4.firstChild.nodeValue=A9.firstChild.nodeValue;
+		S5.firstChild.nodeValue=A11.firstChild.nodeValue;
+		S6.firstChild.nodeValue=A13.firstChild.nodeValue;
+		S7.firstChild.nodeValue=A12.firstChild.nodeValue;	
+	}											
+	else {
+		A0.firstChild.nodeValue=D0.firstChild.nodeValue;
+		A1.firstChild.nodeValue='0';
+		A2.firstChild.nodeValue=D1.firstChild.nodeValue;
+		A3.firstChild.nodeValue='0';
+		A4.firstChild.nodeValue=D2.firstChild.nodeValue;
+		A5.firstChild.nodeValue='0';
+		A6.firstChild.nodeValue=D3.firstChild.nodeValue;
+		A7.firstChild.nodeValue='0';
+		A8.firstChild.nodeValue=D4.firstChild.nodeValue;
+		A9.firstChild.nodeValue='0';
+		A10.firstChild.nodeValue=D5.firstChild.nodeValue;
+		A11.firstChild.nodeValue='0';
+		A12.firstChild.nodeValue=D6.firstChild.nodeValue;
+		A13.firstChild.nodeValue='0';
+		S0.firstChild.nodeValue=A1.firstChild.nodeValue;
+		S1.firstChild.nodeValue=A0.firstChild.nodeValue;
+		S2.firstChild.nodeValue=A2.firstChild.nodeValue;
+		S3.firstChild.nodeValue=A4.firstChild.nodeValue;
+		S4.firstChild.nodeValue=A6.firstChild.nodeValue;
+		S5.firstChild.nodeValue=A8.firstChild.nodeValue;
+		S6.firstChild.nodeValue=A10.firstChild.nodeValue;
+		S7.firstChild.nodeValue=A12.firstChild.nodeValue;
+	}	
+}
+function funcD3(idC,D0,D1,D2,D3,D4,D5,D6,D7,S0,S1,S2,S3,S4,S5,S6,S7,A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11,A12,A13) {
+var idC=document.getElementById(idC), D0=document.getElementById(D0), D1=document.getElementById(D1), D2=document.getElementById(D2), D3=document.getElementById(D3), D4=document.getElementById(D4), D5=document.getElementById(D5), D6=document.getElementById(D6), D7=document.getElementById(D7), S0=document.getElementById(S0), S1=document.getElementById(S1), S2=document.getElementById(S2), S3=document.getElementById(S3), S4=document.getElementById(S4), S5=document.getElementById(S5), S6=document.getElementById(S6), S7=document.getElementById(S7), A0=document.getElementById(A0), A1=document.getElementById(A1), A2=document.getElementById(A2), A3=document.getElementById(A3), A4=document.getElementById(A4), A5=document.getElementById(A5), A6=document.getElementById(A6), 	A7=document.getElementById(A7), A8=document.getElementById(A8), A9=document.getElementById(A9), A10=document.getElementById(A10), A11=document.getElementById(A11), A12=document.getElementById(A12), A13=document.getElementById(A13);
+	if (D3.firstChild.nodeValue=='0')
+		D3.firstChild.nodeValue='1';
+	else	
+		D3.firstChild.nodeValue='0';
+	if (idC.firstChild.nodeValue=='0') {
+		A0.firstChild.nodeValue='0';
+		A1.firstChild.nodeValue=D1.firstChild.nodeValue;
+		A2.firstChild.nodeValue='0';
+		A3.firstChild.nodeValue=D2.firstChild.nodeValue;
+		A4.firstChild.nodeValue='0';
+		A5.firstChild.nodeValue=D3.firstChild.nodeValue;
+		A6.firstChild.nodeValue='0';
+		A7.firstChild.nodeValue=D4.firstChild.nodeValue;
+		A8.firstChild.nodeValue='0';
+		A9.firstChild.nodeValue=D5.firstChild.nodeValue;
+		A10.firstChild.nodeValue='0';
+		A11.firstChild.nodeValue=D6.firstChild.nodeValue;
+		A12.firstChild.nodeValue='0';
+		A13.firstChild.nodeValue=D7.firstChild.nodeValue;		
+		S0.firstChild.nodeValue=A1.firstChild.nodeValue;
+		S1.firstChild.nodeValue=A3.firstChild.nodeValue;
+		S2.firstChild.nodeValue=A5.firstChild.nodeValue;
+		S3.firstChild.nodeValue=A7.firstChild.nodeValue;
+		S4.firstChild.nodeValue=A9.firstChild.nodeValue;
+		S5.firstChild.nodeValue=A11.firstChild.nodeValue;
+		S6.firstChild.nodeValue=A13.firstChild.nodeValue;
+		S7.firstChild.nodeValue=A12.firstChild.nodeValue;	
+	}											
+	else {
+		A0.firstChild.nodeValue=D0.firstChild.nodeValue;
+		A1.firstChild.nodeValue='0';
+		A2.firstChild.nodeValue=D1.firstChild.nodeValue;
+		A3.firstChild.nodeValue='0';
+		A4.firstChild.nodeValue=D2.firstChild.nodeValue;
+		A5.firstChild.nodeValue='0';
+		A6.firstChild.nodeValue=D3.firstChild.nodeValue;
+		A7.firstChild.nodeValue='0';
+		A8.firstChild.nodeValue=D4.firstChild.nodeValue;
+		A9.firstChild.nodeValue='0';
+		A10.firstChild.nodeValue=D5.firstChild.nodeValue;
+		A11.firstChild.nodeValue='0';
+		A12.firstChild.nodeValue=D6.firstChild.nodeValue;
+		A13.firstChild.nodeValue='0';
+		S0.firstChild.nodeValue=A1.firstChild.nodeValue;
+		S1.firstChild.nodeValue=A0.firstChild.nodeValue;
+		S2.firstChild.nodeValue=A2.firstChild.nodeValue;
+		S3.firstChild.nodeValue=A4.firstChild.nodeValue;
+		S4.firstChild.nodeValue=A6.firstChild.nodeValue;
+		S5.firstChild.nodeValue=A8.firstChild.nodeValue;
+		S6.firstChild.nodeValue=A10.firstChild.nodeValue;
+		S7.firstChild.nodeValue=A12.firstChild.nodeValue;
+	}	
+}
+function funcD4(idC,D0,D1,D2,D3,D4,D5,D6,D7,S0,S1,S2,S3,S4,S5,S6,S7,A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11,A12,A13) {
+var idC=document.getElementById(idC), D0=document.getElementById(D0), D1=document.getElementById(D1), D2=document.getElementById(D2), D3=document.getElementById(D3), D4=document.getElementById(D4), D5=document.getElementById(D5), D6=document.getElementById(D6), D7=document.getElementById(D7), S0=document.getElementById(S0), S1=document.getElementById(S1), S2=document.getElementById(S2), S3=document.getElementById(S3), S4=document.getElementById(S4), S5=document.getElementById(S5), S6=document.getElementById(S6), S7=document.getElementById(S7), A0=document.getElementById(A0), A1=document.getElementById(A1), A2=document.getElementById(A2), A3=document.getElementById(A3), A4=document.getElementById(A4), A5=document.getElementById(A5), A6=document.getElementById(A6), 	A7=document.getElementById(A7), A8=document.getElementById(A8), A9=document.getElementById(A9), A10=document.getElementById(A10), A11=document.getElementById(A11), A12=document.getElementById(A12), A13=document.getElementById(A13);
+	if (D4.firstChild.nodeValue=='0')
+		D4.firstChild.nodeValue='1';
+	else	
+		D4.firstChild.nodeValue='0';
+	if (idC.firstChild.nodeValue=='0') {
+		A0.firstChild.nodeValue='0';
+		A1.firstChild.nodeValue=D1.firstChild.nodeValue;
+		A2.firstChild.nodeValue='0';
+		A3.firstChild.nodeValue=D2.firstChild.nodeValue;
+		A4.firstChild.nodeValue='0';
+		A5.firstChild.nodeValue=D3.firstChild.nodeValue;
+		A6.firstChild.nodeValue='0';
+		A7.firstChild.nodeValue=D4.firstChild.nodeValue;
+		A8.firstChild.nodeValue='0';
+		A9.firstChild.nodeValue=D5.firstChild.nodeValue;
+		A10.firstChild.nodeValue='0';
+		A11.firstChild.nodeValue=D6.firstChild.nodeValue;
+		A12.firstChild.nodeValue='0';
+		A13.firstChild.nodeValue=D7.firstChild.nodeValue;		
+		S0.firstChild.nodeValue=A1.firstChild.nodeValue;
+		S1.firstChild.nodeValue=A3.firstChild.nodeValue;
+		S2.firstChild.nodeValue=A5.firstChild.nodeValue;
+		S3.firstChild.nodeValue=A7.firstChild.nodeValue;
+		S4.firstChild.nodeValue=A9.firstChild.nodeValue;
+		S5.firstChild.nodeValue=A11.firstChild.nodeValue;
+		S6.firstChild.nodeValue=A13.firstChild.nodeValue;
+		S7.firstChild.nodeValue=A12.firstChild.nodeValue;
+	}											
+	else {
+		A0.firstChild.nodeValue=D0.firstChild.nodeValue;
+		A1.firstChild.nodeValue='0';
+		A2.firstChild.nodeValue=D1.firstChild.nodeValue;
+		A3.firstChild.nodeValue='0';
+		A4.firstChild.nodeValue=D2.firstChild.nodeValue;
+		A5.firstChild.nodeValue='0';
+		A6.firstChild.nodeValue=D3.firstChild.nodeValue;
+		A7.firstChild.nodeValue='0';
+		A8.firstChild.nodeValue=D4.firstChild.nodeValue;
+		A9.firstChild.nodeValue='0';
+		A10.firstChild.nodeValue=D5.firstChild.nodeValue;
+		A11.firstChild.nodeValue='0';
+		A12.firstChild.nodeValue=D6.firstChild.nodeValue;
+		A13.firstChild.nodeValue='0';
+		S0.firstChild.nodeValue=A1.firstChild.nodeValue;
+		S1.firstChild.nodeValue=A0.firstChild.nodeValue;
+		S2.firstChild.nodeValue=A2.firstChild.nodeValue;
+		S3.firstChild.nodeValue=A4.firstChild.nodeValue;
+		S4.firstChild.nodeValue=A6.firstChild.nodeValue;
+		S5.firstChild.nodeValue=A8.firstChild.nodeValue;
+		S6.firstChild.nodeValue=A10.firstChild.nodeValue;
+		S7.firstChild.nodeValue=A12.firstChild.nodeValue;
+	}	
+}
+function funcD5(idC,D0,D1,D2,D3,D4,D5,D6,D7,S0,S1,S2,S3,S4,S5,S6,S7,A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11,A12,A13) {
+var idC=document.getElementById(idC), D0=document.getElementById(D0), D1=document.getElementById(D1), D2=document.getElementById(D2), D3=document.getElementById(D3), D4=document.getElementById(D4), D5=document.getElementById(D5), D6=document.getElementById(D6), D7=document.getElementById(D7), S0=document.getElementById(S0), S1=document.getElementById(S1), S2=document.getElementById(S2), S3=document.getElementById(S3), S4=document.getElementById(S4), S5=document.getElementById(S5), S6=document.getElementById(S6), S7=document.getElementById(S7), A0=document.getElementById(A0), A1=document.getElementById(A1), A2=document.getElementById(A2), A3=document.getElementById(A3), A4=document.getElementById(A4), A5=document.getElementById(A5), A6=document.getElementById(A6), 	A7=document.getElementById(A7), A8=document.getElementById(A8), A9=document.getElementById(A9), A10=document.getElementById(A10), A11=document.getElementById(A11), A12=document.getElementById(A12), A13=document.getElementById(A13);
+	if (D5.firstChild.nodeValue=='0')
+		D5.firstChild.nodeValue='1';
+	else	
+		D5.firstChild.nodeValue='0';
+	if (idC.firstChild.nodeValue=='0') {
+		A0.firstChild.nodeValue='0';
+		A1.firstChild.nodeValue=D1.firstChild.nodeValue;
+		A2.firstChild.nodeValue='0';
+		A3.firstChild.nodeValue=D2.firstChild.nodeValue;
+		A4.firstChild.nodeValue='0';
+		A5.firstChild.nodeValue=D3.firstChild.nodeValue;
+		A6.firstChild.nodeValue='0';
+		A7.firstChild.nodeValue=D4.firstChild.nodeValue;
+		A8.firstChild.nodeValue='0';
+		A9.firstChild.nodeValue=D5.firstChild.nodeValue;
+		A10.firstChild.nodeValue='0';
+		A11.firstChild.nodeValue=D6.firstChild.nodeValue;
+		A12.firstChild.nodeValue='0';
+		A13.firstChild.nodeValue=D7.firstChild.nodeValue;		
+		S0.firstChild.nodeValue=A1.firstChild.nodeValue;
+		S1.firstChild.nodeValue=A3.firstChild.nodeValue;
+		S2.firstChild.nodeValue=A5.firstChild.nodeValue;
+		S3.firstChild.nodeValue=A7.firstChild.nodeValue;
+		S4.firstChild.nodeValue=A9.firstChild.nodeValue;
+		S5.firstChild.nodeValue=A11.firstChild.nodeValue;
+		S6.firstChild.nodeValue=A13.firstChild.nodeValue;
+		S7.firstChild.nodeValue=A12.firstChild.nodeValue;	
+	}											
+	else {
+		A0.firstChild.nodeValue=D0.firstChild.nodeValue;
+		A1.firstChild.nodeValue='0';
+		A2.firstChild.nodeValue=D1.firstChild.nodeValue;
+		A3.firstChild.nodeValue='0';
+		A4.firstChild.nodeValue=D2.firstChild.nodeValue;
+		A5.firstChild.nodeValue='0';
+		A6.firstChild.nodeValue=D3.firstChild.nodeValue;
+		A7.firstChild.nodeValue='0';
+		A8.firstChild.nodeValue=D4.firstChild.nodeValue;
+		A9.firstChild.nodeValue='0';
+		A10.firstChild.nodeValue=D5.firstChild.nodeValue;
+		A11.firstChild.nodeValue='0';
+		A12.firstChild.nodeValue=D6.firstChild.nodeValue;
+		A13.firstChild.nodeValue='0';
+		S0.firstChild.nodeValue=A1.firstChild.nodeValue;
+		S1.firstChild.nodeValue=A0.firstChild.nodeValue;
+		S2.firstChild.nodeValue=A2.firstChild.nodeValue;
+		S3.firstChild.nodeValue=A4.firstChild.nodeValue;
+		S4.firstChild.nodeValue=A6.firstChild.nodeValue;
+		S5.firstChild.nodeValue=A8.firstChild.nodeValue;
+		S6.firstChild.nodeValue=A10.firstChild.nodeValue;
+		S7.firstChild.nodeValue=A12.firstChild.nodeValue;
+	}	
+}
+function funcD6(idC,D0,D1,D2,D3,D4,D5,D6,D7,S0,S1,S2,S3,S4,S5,S6,S7,A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11,A12,A13) {
+var idC=document.getElementById(idC), D0=document.getElementById(D0), D1=document.getElementById(D1), D2=document.getElementById(D2), D3=document.getElementById(D3), D4=document.getElementById(D4), D5=document.getElementById(D5), D6=document.getElementById(D6), D7=document.getElementById(D7), S0=document.getElementById(S0), S1=document.getElementById(S1), S2=document.getElementById(S2), S3=document.getElementById(S3), S4=document.getElementById(S4), S5=document.getElementById(S5), S6=document.getElementById(S6), S7=document.getElementById(S7), A0=document.getElementById(A0), A1=document.getElementById(A1), A2=document.getElementById(A2), A3=document.getElementById(A3), A4=document.getElementById(A4), A5=document.getElementById(A5), A6=document.getElementById(A6), 	A7=document.getElementById(A7), A8=document.getElementById(A8), A9=document.getElementById(A9), A10=document.getElementById(A10), A11=document.getElementById(A11), A12=document.getElementById(A12), A13=document.getElementById(A13);
+	if (D6.firstChild.nodeValue=='0')
+		D6.firstChild.nodeValue='1';
+	else	
+		D6.firstChild.nodeValue='0';
+	if (idC.firstChild.nodeValue=='0') {
+		A0.firstChild.nodeValue='0';
+		A1.firstChild.nodeValue=D1.firstChild.nodeValue;
+		A2.firstChild.nodeValue='0';
+		A3.firstChild.nodeValue=D2.firstChild.nodeValue;
+		A4.firstChild.nodeValue='0';
+		A5.firstChild.nodeValue=D3.firstChild.nodeValue;
+		A6.firstChild.nodeValue='0';
+		A7.firstChild.nodeValue=D4.firstChild.nodeValue;
+		A8.firstChild.nodeValue='0';
+		A9.firstChild.nodeValue=D5.firstChild.nodeValue;
+		A10.firstChild.nodeValue='0';
+		A11.firstChild.nodeValue=D6.firstChild.nodeValue;
+		A12.firstChild.nodeValue='0';
+		A13.firstChild.nodeValue=D7.firstChild.nodeValue;		
+		S0.firstChild.nodeValue=A1.firstChild.nodeValue;
+		S1.firstChild.nodeValue=A3.firstChild.nodeValue;
+		S2.firstChild.nodeValue=A5.firstChild.nodeValue;
+		S3.firstChild.nodeValue=A7.firstChild.nodeValue;
+		S4.firstChild.nodeValue=A9.firstChild.nodeValue;
+		S5.firstChild.nodeValue=A11.firstChild.nodeValue;
+		S6.firstChild.nodeValue=A13.firstChild.nodeValue;
+		S7.firstChild.nodeValue=A12.firstChild.nodeValue;		
+	}										
+	else {
+		A0.firstChild.nodeValue=D0.firstChild.nodeValue;
+		A1.firstChild.nodeValue='0';
+		A2.firstChild.nodeValue=D1.firstChild.nodeValue;
+		A3.firstChild.nodeValue='0';
+		A4.firstChild.nodeValue=D2.firstChild.nodeValue;
+		A5.firstChild.nodeValue='0';
+		A6.firstChild.nodeValue=D3.firstChild.nodeValue;
+		A7.firstChild.nodeValue='0';
+		A8.firstChild.nodeValue=D4.firstChild.nodeValue;
+		A9.firstChild.nodeValue='0';
+		A10.firstChild.nodeValue=D5.firstChild.nodeValue;
+		A11.firstChild.nodeValue='0';
+		A12.firstChild.nodeValue=D6.firstChild.nodeValue;
+		A13.firstChild.nodeValue='0';
+		S0.firstChild.nodeValue=A1.firstChild.nodeValue;
+		S1.firstChild.nodeValue=A0.firstChild.nodeValue;
+		S2.firstChild.nodeValue=A2.firstChild.nodeValue;
+		S3.firstChild.nodeValue=A4.firstChild.nodeValue;
+		S4.firstChild.nodeValue=A6.firstChild.nodeValue;
+		S5.firstChild.nodeValue=A8.firstChild.nodeValue;
+		S6.firstChild.nodeValue=A10.firstChild.nodeValue;
+		S7.firstChild.nodeValue=A12.firstChild.nodeValue;
+	}	
+}
+function funcD7(idC,D0,D1,D2,D3,D4,D5,D6,D7,S0,S1,S2,S3,S4,S5,S6,S7,A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,A11,A12,A13) {
+var idC=document.getElementById(idC), D0=document.getElementById(D0), D1=document.getElementById(D1), D2=document.getElementById(D2), D3=document.getElementById(D3), D4=document.getElementById(D4), D5=document.getElementById(D5), D6=document.getElementById(D6), D7=document.getElementById(D7), S0=document.getElementById(S0), S1=document.getElementById(S1), S2=document.getElementById(S2), S3=document.getElementById(S3), S4=document.getElementById(S4), S5=document.getElementById(S5), S6=document.getElementById(S6), S7=document.getElementById(S7), A0=document.getElementById(A0), A1=document.getElementById(A1), A2=document.getElementById(A2), A3=document.getElementById(A3), A4=document.getElementById(A4), A5=document.getElementById(A5), A6=document.getElementById(A6), 	A7=document.getElementById(A7), A8=document.getElementById(A8), A9=document.getElementById(A9), A10=document.getElementById(A10), A11=document.getElementById(A11), A12=document.getElementById(A12), A13=document.getElementById(A13);
+	if (D7.firstChild.nodeValue=='0')
+		D7.firstChild.nodeValue='1';
+	else	
+		D7.firstChild.nodeValue='0';
+	if (idC.firstChild.nodeValue=='0') {
+		A0.firstChild.nodeValue='0';
+		A1.firstChild.nodeValue=D1.firstChild.nodeValue;
+		A2.firstChild.nodeValue='0';
+		A3.firstChild.nodeValue=D2.firstChild.nodeValue;
+		A4.firstChild.nodeValue='0';
+		A5.firstChild.nodeValue=D3.firstChild.nodeValue;
+		A6.firstChild.nodeValue='0';
+		A7.firstChild.nodeValue=D4.firstChild.nodeValue;
+		A8.firstChild.nodeValue='0';
+		A9.firstChild.nodeValue=D5.firstChild.nodeValue;
+		A10.firstChild.nodeValue='0';
+		A11.firstChild.nodeValue=D6.firstChild.nodeValue;
+		A12.firstChild.nodeValue='0';
+		A13.firstChild.nodeValue=D7.firstChild.nodeValue;		
+		S0.firstChild.nodeValue=A1.firstChild.nodeValue;
+		S1.firstChild.nodeValue=A3.firstChild.nodeValue;
+		S2.firstChild.nodeValue=A5.firstChild.nodeValue;
+		S3.firstChild.nodeValue=A7.firstChild.nodeValue;
+		S4.firstChild.nodeValue=A9.firstChild.nodeValue;
+		S5.firstChild.nodeValue=A11.firstChild.nodeValue;
+		S6.firstChild.nodeValue=A13.firstChild.nodeValue;
+		S7.firstChild.nodeValue=A12.firstChild.nodeValue;		
+	}										
+	else {
+		A0.firstChild.nodeValue=D0.firstChild.nodeValue;
+		A1.firstChild.nodeValue='0';
+		A2.firstChild.nodeValue=D1.firstChild.nodeValue;
+		A3.firstChild.nodeValue='0';
+		A4.firstChild.nodeValue=D2.firstChild.nodeValue;
+		A5.firstChild.nodeValue='0';
+		A6.firstChild.nodeValue=D3.firstChild.nodeValue;
+		A7.firstChild.nodeValue='0';
+		A8.firstChild.nodeValue=D4.firstChild.nodeValue;
+		A9.firstChild.nodeValue='0';
+		A10.firstChild.nodeValue=D5.firstChild.nodeValue;
+		A11.firstChild.nodeValue='0';
+		A12.firstChild.nodeValue=D6.firstChild.nodeValue;
+		A13.firstChild.nodeValue='0';
+		S0.firstChild.nodeValue=A1.firstChild.nodeValue;
+		S1.firstChild.nodeValue=A0.firstChild.nodeValue;
+		S2.firstChild.nodeValue=A2.firstChild.nodeValue;
+		S3.firstChild.nodeValue=A4.firstChild.nodeValue;
+		S4.firstChild.nodeValue=A6.firstChild.nodeValue;
+		S5.firstChild.nodeValue=A8.firstChild.nodeValue;
+		S6.firstChild.nodeValue=A10.firstChild.nodeValue;
+		S7.firstChild.nodeValue=A12.firstChild.nodeValue;
+	}
+}
+</script>
+	<text onclick="funcD0('idC','D0','D1','D2','D3','D4','D5','D6','D7','S0','S1','S2','S3','S4','S5','S6','S7','A0','A1','A2','A3','A4','A5','A6','A7','A8','A9','A10','A11','A12','A13')" id="D0" x="60" y="20" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+	<text onclick="funcD1('idC','D0','D1','D2','D3','D4','D5','D6','D7','S0','S1','S2','S3','S4','S5','S6','S7','A0','A1','A2','A3','A4','A5','A6','A7','A8','A9','A10','A11','A12','A13')" id="D1" x="160" y="20" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+	<text onclick="funcD2('idC','D0','D1','D2','D3','D4','D5','D6','D7','S0','S1','S2','S3','S4','S5','S6','S7','A0','A1','A2','A3','A4','A5','A6','A7','A8','A9','A10','A11','A12','A13')" id="D2" x="260" y="20" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+	<text onclick="funcD3('idC','D0','D1','D2','D3','D4','D5','D6','D7','S0','S1','S2','S3','S4','S5','S6','S7','A0','A1','A2','A3','A4','A5','A6','A7','A8','A9','A10','A11','A12','A13')" id="D3" x="360" y="20" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+	<text onclick="funcD4('idC','D0','D1','D2','D3','D4','D5','D6','D7','S0','S1','S2','S3','S4','S5','S6','S7','A0','A1','A2','A3','A4','A5','A6','A7','A8','A9','A10','A11','A12','A13')" id="D4" x="460" y="20" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+	<text onclick="funcD5('idC','D0','D1','D2','D3','D4','D5','D6','D7','S0','S1','S2','S3','S4','S5','S6','S7','A0','A1','A2','A3','A4','A5','A6','A7','A8','A9','A10','A11','A12','A13')" id="D5" x="560" y="20" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+	<text onclick="funcD6('idC','D0','D1','D2','D3','D4','D5','D6','D7','S0','S1','S2','S3','S4','S5','S6','S7','A0','A1','A2','A3','A4','A5','A6','A7','A8','A9','A10','A11','A12','A13')" id="D6" x="660" y="20" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+	<text onclick="funcD7('idC','D0','D1','D2','D3','D4','D5','D6','D7','S0','S1','S2','S3','S4','S5','S6','S7','A0','A1','A2','A3','A4','A5','A6','A7','A8','A9','A10','A11','A12','A13')" id="D7" x="760" y="20" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+	<path stroke="#000000" stroke-width="1" fill="none" d="M60,100 H80 V120 A10,10 0 0 1 60,120 z" />
+	<path stroke="#000000" stroke-width="1" fill="none" d="M150,100 H170 V120 A10,10 0 0 1 150,120 z" />
+	<path stroke="#000000" stroke-width="1" fill="none" d="M180,100 H200 V120 A10,10 0 0 1 180,120 z" />
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="168,100 168,90 182,90 182,100"/>
+	<text id="A0" x="55" y="145" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+	<text id="A1" x="145" y="145" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>	
+	<text id="A2" x="175" y="145" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+	<text id="A3" x="240" y="145" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+	<text id="A4" x="270" y="145" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>	
+	<text id="A5" x="340" y="145" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+	<text id="A6" x="370" y="145" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>	
+	<text id="A7" x="440" y="145" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+	<text id="A8" x="470" y="145" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>		
+	<text id="A9" x="540" y="145" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+	<text id="A10" x="570" y="145" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>		
+	<text id="A11" x="640" y="145" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+	<text id="A12" x="670" y="145" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>		
+	<text id="A13" x="770" y="145" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+	<line x1="175" y1="25" x2="175" y2="90" stroke="#000000" stroke-width="1" fill="none" />
+	<circle cx="175" cy="90" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<g transform="translate(140,0)">
+		<path stroke="#000000" stroke-width="1" fill="none" d="M100,100 H120 V120 A10,10 0 0 1 100,120 z" />
+		<path stroke="#000000" stroke-width="1" fill="none" d="M130,100 H150 V120 A10,10 0 0 1 130,120 z" />
+		<polyline  stroke="#000000" stroke-width="1" fill="none" points="118,100 118,90 132,90 132,100"/>
+		<line x1="125" y1="25" x2="125" y2="90" stroke="#000000" stroke-width="1" fill="none" />
+		<circle cx="125" cy="90" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	</g>
+	<g transform="translate(240,0)">
+		<path stroke="#000000" stroke-width="1" fill="none" d="M100,100 H120 V120 A10,10 0 0 1 100,120 z" />
+		<path stroke="#000000" stroke-width="1" fill="none" d="M130,100 H150 V120 A10,10 0 0 1 130,120 z" />
+		<polyline  stroke="#000000" stroke-width="1" fill="none" points="118,100 118,90 132,90 132,100"/>
+		<line x1="125" y1="25" x2="125" y2="90" stroke="#000000" stroke-width="1" fill="none" />
+		<circle cx="125" cy="90" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	</g>	
+	<g transform="translate(340,0)">
+		<path stroke="#000000" stroke-width="1" fill="none" d="M100,100 H120 V120 A10,10 0 0 1 100,120 z" />
+		<path stroke="#000000" stroke-width="1" fill="none" d="M130,100 H150 V120 A10,10 0 0 1 130,120 z" />
+		<polyline  stroke="#000000" stroke-width="1" fill="none" points="118,100 118,90 132,90 132,100"/>
+		<line x1="125" y1="25" x2="125" y2="90" stroke="#000000" stroke-width="1" fill="none" />
+		<circle cx="125" cy="90" r="2" stroke="#000000" stroke-width="1" fill="#000000" />	
+	</g>	
+	<g transform="translate(440,0)">
+		<path stroke="#000000" stroke-width="1" fill="none" d="M100,100 H120 V120 A10,10 0 0 1 100,120 z" />
+		<path stroke="#000000" stroke-width="1" fill="none" d="M130,100 H150 V120 A10,10 0 0 1 130,120 z" />
+		<polyline  stroke="#000000" stroke-width="1" fill="none" points="118,100 118,90 132,90 132,100"/>
+		<line x1="125" y1="25" x2="125" y2="90" stroke="#000000" stroke-width="1" fill="none" />
+		<circle cx="125" cy="90" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	</g>
+	<g transform="translate(540,0)">
+		<path stroke="#000000" stroke-width="1" fill="none" d="M100,100 H120 V120 A10,10 0 0 1 100,120 z" />
+		<path stroke="#000000" stroke-width="1" fill="none" d="M130,100 H150 V120 A10,10 0 0 1 130,120 z" />
+		<polyline  stroke="#000000" stroke-width="1" fill="none" points="118,100 118,90 132,90 132,100"/>
+		<line x1="125" y1="25" x2="125" y2="90" stroke="#000000" stroke-width="1" fill="none" />
+		<circle cx="125" cy="90" r="2" stroke="#000000" stroke-width="1" fill="#000000" />	
+	</g>
+	<g transform="translate(640,0)">
+		<path stroke="#000000" stroke-width="1" fill="none" d="M130,100 H150 V120 A10,10 0 0 1 130,120 z" />
+	</g>	
+	<polyline  stroke="#000000" stroke-width="1" fill="none" points="15,50 685,50 685,100" />
+	<text onclick="funcC('idC','D0','D1','D2','D3','D4','D5','D6','D7','S0','S1','S2','S3','S4','S5','S6','S7','A0','A1','A2','A3','A4','A5','A6','A7','A8','A9','A10','A11','A12','A13')" id="idC" x="5" y="54" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+	<polyline  stroke="#000000" stroke-width="1" fill="none" points="25,50 25,75 30,75"/>
+	<circle cx="25" cy="50" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<polygon  stroke="#000000" stroke-width="1" fill="none" points="30,70 38,75 30,80"/>
+	<circle cx="41" cy="75" r="3" stroke="#000000" stroke-width="1" fill="none" />
+	<polyline  stroke="#000000" stroke-width="1" fill="none" points="44,75 772,75 772,100"/>
+	<polyline  stroke="#000000" stroke-width="1" fill="none" points="766,25 766,50 785,50 785,100"/>
+	<line x1="65" y1="25" x2="65" y2="100" stroke="#000000" stroke-width="1" fill="none" />
+	<line x1="75" y1="50" x2="75" y2="100" stroke="#000000" stroke-width="1" fill="none" />	
+	<circle cx="75" cy="50" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<line x1="198" y1="50" x2="198" y2="100" stroke="#000000" stroke-width="1" fill="none" />
+	<circle cx="198" cy="50" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<line x1="288" y1="50" x2="288" y2="100" stroke="#000000" stroke-width="1" fill="none" />
+	<circle cx="288" cy="50" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<line x1="385" y1="50" x2="385" y2="100" stroke="#000000" stroke-width="1" fill="none" />
+	<circle cx="385" cy="50" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<line x1="485" y1="50" x2="485" y2="100" stroke="#000000" stroke-width="1" fill="none" />
+	<circle cx="485" cy="50" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<line x1="585" y1="50" x2="585" y2="100" stroke="#000000" stroke-width="1" fill="none" />
+	<circle cx="585" cy="50" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<line x1="154" y1="75" x2="154" y2="100" stroke="#000000" stroke-width="1" fill="none" />
+	<circle cx="154" cy="75" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<line x1="244" y1="75" x2="244" y2="100" stroke="#000000" stroke-width="1" fill="none" />
+	<circle cx="244" cy="75" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<line x1="344" y1="75" x2="344" y2="100" stroke="#000000" stroke-width="1" fill="none" />
+	<circle cx="344" cy="75" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<line x1="444" y1="75" x2="444" y2="100" stroke="#000000" stroke-width="1" fill="none" />
+	<circle cx="444" cy="75" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<line x1="544" y1="75" x2="544" y2="100" stroke="#000000" stroke-width="1" fill="none" />
+	<circle cx="544" cy="75" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<line x1="644" y1="75" x2="644" y2="100" stroke="#000000" stroke-width="1" fill="none" />
+	<circle cx="644" cy="75" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<path stroke="#000000" stroke-width="1" fill="none" d="M160,200 Q160,230 175,240 Q190,230 190,200 A20,20 0 0 1 160,200" />
+	<g transform="translate(90,0)">	
+		<path stroke="#000000" stroke-width="1" fill="none" d="M160,200 Q160,230 175,240 Q190,230 190,200 A20,20 0 0 1 160,200" />
+	</g>
+	<g transform="translate(190,0)">	
+		<path stroke="#000000" stroke-width="1" fill="none" d="M160,200 Q160,230 175,240 Q190,230 190,200 A20,20 0 0 1 160,200" />
+	</g>
+	<g transform="translate(290,0)">	
+		<path stroke="#000000" stroke-width="1" fill="none" d="M160,200 Q160,230 175,240 Q190,230 190,200 A20,20 0 0 1 160,200" />
+	</g>
+	<g transform="translate(390,0)">	
+		<path stroke="#000000" stroke-width="1" fill="none" d="M160,200 Q160,230 175,240 Q190,230 190,200 A20,20 0 0 1 160,200" />
+	</g>
+	<g transform="translate(490,0)">	
+		<path stroke="#000000" stroke-width="1" fill="none" d="M160,200 Q160,230 175,240 Q190,230 190,200 A20,20 0 0 1 160,200" />
+	</g>
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="70,130 70,150 168,180 168,205" />
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="250,130 250,150 182,180 182,205" />
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="190,130 190,150 258,180 258,205" />
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="350,130 350,150 272,180 272,205" />	
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="280,130 280,150 355,180 355,205" />
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="450,130 450,150 372,180 372,205" /> 
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="380,130 380,150 455,180 455,205" />	
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="550,130 550,150 472,180 472,205" />
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="480,130 480,150 555,180 555,205" />
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="650,130 650,150 572,180 572,205" />
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="580,130 580,150 655,180 655,205" />
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="780,130 780,150 672,180 672,205" />
+	<text id='S0' x="60" y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>	
+	<text id='S1' x="170" y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+	<text id='S2' x="260" y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+	<text id='S3' x="360" y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+	<text id='S4' x="460" y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+	<text id='S5' x="560" y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+	<text id='S6' x="660" y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+	<text id='S7' x="760" y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="160,130 160,150 65,180 65,283" />
+	<line x1="175" y1="240" x2="175" y2="283" stroke="#000000" stroke-width="1" fill="none" />
+	<line x1="265" y1="240" x2="265" y2="283" stroke="#000000" stroke-width="1" fill="none" />
+	<line x1="365" y1="240" x2="365" y2="283" stroke="#000000" stroke-width="1" fill="none" />
+	<line x1="465" y1="240" x2="465" y2="283" stroke="#000000" stroke-width="1" fill="none" />
+	<line x1="565" y1="240" x2="565" y2="283" stroke="#000000" stroke-width="1" fill="none" />
+	<line x1="665" y1="240" x2="665" y2="283" stroke="#000000" stroke-width="1" fill="none" />
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="680,130 680,150 765,180 765,283" />			
+<text x="300" y="350" stroke="none" fill="#000000" font-size="14" font-family="serif">Рис. 7.5.2. Схема сдвига</text>
+</svg>
+<h2>7.5.2. Сумматоры</h2>
+<p><a id='t7.5.2'>Схема</a> выполнения операции сложения является неотъемлемой частью всякого процессора. Ниже приведена таблица истинности операции сложения одноразрядных целых чисел:</p>
+<table border='1' width='600' align='center'>
+	<caption>Таблица 7.5.1 истинности сложения одноразрядных чисел</caption>
+	<tr><th>A</th><th>B</th><th>Сумма</th><th>Перенос</th></tr>
+	<tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+	<tr><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+	<tr><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+	<tr><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+</table>
+<p><span class='teorema'><a id='polusummator'>Комбинаторная схема, предназначенная для вычисления бита суммы и бита переноса двух операндов, называется полусумматором:</a></span></p>
+<svg  height = "210px"  width = "800px">
+	<path stroke="#000000" stroke-width="1" fill="none" d="M70,100 H90 V120 A10,10 0 0 1 70,120 z" />
+	<line stroke="#000000" stroke-width="1" fill="none" x1="80" y1="130" x2="80" y2="150" />
+	<text x="45" y="170" stroke="#000000" fill="none" font-size="12" font-family="serif">Перенос</text>	
+	<path stroke="#000000" stroke-width="1" fill="none" d="M150,30 Q170,30 190,45 Q170,60 150,60 A20,20 0 0 0 150,30 M145,60 A20,20 0 0 0 145,30" />	
+	<line stroke="#000000" stroke-width="1" fill="none" x1="190" y1="45" x2="210" y2="45" />	
+	<text x="220" y="50" stroke="#000000" stroke-width="1" fill="none" font-size="12" font-family="serif">Сумма</text>	
+	<line stroke="#000000" stroke-width="1" fill="none" x1="30" y1="35" x2="153" y2="35" />
+	<text x="20" y="40" stroke="#000000" stroke-width="1" fill="none" font-size="12">A</text>
+	<line stroke="#000000" stroke-width="1" fill="none" x1="30" y1="55" x2="153" y2="55" />
+	<text x="20" y="60" stroke="#000000" stroke-width="1" fill="none" font-size="12">B</text>	
+	<line stroke="#000000" stroke-width="1" fill="none" x1="74" y1="35" x2="74" y2="100" />
+	<circle cx="74" cy="35" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<line stroke="#000000" stroke-width="1" fill="none" x1="86" y1="55" x2="86" y2="100" />
+	<circle cx="86" cy="55" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+<text x="15" y="200" stroke="none" fill="#000000" font-size="14" font-family="serif">Рис. 7.5.3. Схема полусумматора</text>	
+</svg>
+<p>Полусумматор реализуется посредством вентилей <a href='7_2.html#xor'>XOR</a> и <a href='7_1.html#i'>И</a>. Интерактивный вариант схемы полусумматора на рисунке 7.5.4:</p>
+<svg  height = "210px"  width = "800px">
+<script>
+function funcAps(idA, idB, idP, idS) {
+var idA=document.getElementById(idA), idB=document.getElementById(idB), idP=document.getElementById(idP), idS=document.getElementById(idS);
+	if (idA.firstChild.nodeValue=='0')
+		idA.firstChild.nodeValue='1';
+	else	
+		idA.firstChild.nodeValue='0';
+		
+	if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='0') {
+		idP.firstChild.nodeValue='0';
+		idS.firstChild.nodeValue='0';
+	}
+	else {
+		if ((idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='1') || (idA.firstChild.nodeValue=='1' && idB.firstChild.nodeValue=='0')) {
+			idP.firstChild.nodeValue='0';
+			idS.firstChild.nodeValue='1';
+		}	
+		else {
+			idP.firstChild.nodeValue='1';
+			idS.firstChild.nodeValue='0';
+		}	
+	}			
+}
+function funcBps(idA, idB, idP, idS) {
+var idA=document.getElementById(idA), idB=document.getElementById(idB), idP=document.getElementById(idP), idS=document.getElementById(idS);
+	if (idB.firstChild.nodeValue=='0')
+		idB.firstChild.nodeValue='1';
+	else	
+		idB.firstChild.nodeValue='0';
+		
+	if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='0') {
+		idP.firstChild.nodeValue='0';
+		idS.firstChild.nodeValue='0';
+	}
+	else {
+		if ((idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='1') || (idA.firstChild.nodeValue=='1' && idB.firstChild.nodeValue=='0')) {
+			idP.firstChild.nodeValue='0';
+			idS.firstChild.nodeValue='1';
+		}	
+		else {
+			idP.firstChild.nodeValue='1';
+			idS.firstChild.nodeValue='0';
+		}	
+	}			
+}
+
+</script>
+	<path stroke="#000000" stroke-width="1" fill="none" d="M70,100 H90 V120 A10,10 0 0 1 70,120 z" />
+	<line stroke="#000000" stroke-width="1" fill="none" x1="80" y1="130" x2="80" y2="150" />
+	<text id="idPps" x="75" y="170" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>	
+	<path stroke="#000000" stroke-width="1" fill="none" d="M150,30 Q170,30 190,45 Q170,60 150,60 A20,20 0 0 0 150,30 M145,60 A20,20 0 0 0 145,30" />	
+	<line stroke="#000000" stroke-width="1" fill="none" x1="190" y1="45" x2="210" y2="45" />	
+	<text id="idSps" x="220" y="50" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>	
+	<line stroke="#000000" stroke-width="1" fill="none" x1="30" y1="35" x2="153" y2="35" />
+	<text onclick="funcAps('idAps','idBps','idPps','idSps')" id="idAps" x="20" y="40" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+	<line stroke="#000000" stroke-width="1" fill="none" x1="30" y1="55" x2="153" y2="55" />
+	<text onclick="funcBps('idAps','idBps','idPps','idSps')" id="idBps" x="20" y="60" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>	
+	<line stroke="#000000" stroke-width="1" fill="none" x1="74" y1="35" x2="74" y2="100" />
+	<circle cx="74" cy="35" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<line stroke="#000000" stroke-width="1" fill="none" x1="86" y1="55" x2="86" y2="100" />
+	<circle cx="86" cy="55" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<text x="15" y="200" stroke="none" fill="#000000" font-size="14" font-family="serif">Рис. 7.5.4. Схема полусумматора</text>			
+</svg>
+<p><a id='summator'>Полусумматор</a> используется для сложения битов в самых младших разрядах двух многобитовых слов, но его нельзя использовать для сложения битов в старших разрядах, поскольку он не выполняет перенос в эту позицию с соседнего младшего разряда. <span class='teorema'>Комбинаторная схема, реализующая операцию сложения битов в старших разрядах, называется полным сумматором:</span></p>
+<svg  height = "340px"  width = "450px">
+<g transform="translate(0, 50)"> 
+	<path stroke="#000000" stroke-width="1" fill="none" d="M70,100 H90 V120 A10,10 0 0 1 70,120 z" />
+	<path stroke="#000000" stroke-width="1" fill="none" d="M150,30 Q170,30 190,45 Q170,60 150,60 A20,20 0 0 0 150,30 M145,60 A20,20 0 0 0 145,30" />	
+	<line stroke="#000000" stroke-width="1" fill="none" x1="190" y1="45" x2="305" y2="45" />	
+	<line stroke="#000000" stroke-width="1" fill="none" x1="30" y1="35" x2="153" y2="35" />
+	<text x="20" y="40" stroke="#000000" stroke-width="1" fill="none" font-size="12">A</text>
+	<line stroke="#000000" stroke-width="1" fill="none" x1="30" y1="55" x2="153" y2="55" />
+	<text x="20" y="60" stroke="#000000" stroke-width="1" fill="none" font-size="12">B</text>	
+	<line stroke="#000000" stroke-width="1" fill="none" x1="74" y1="35" x2="74" y2="100" />
+	<circle cx="74" cy="35" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<line stroke="#000000" stroke-width="1" fill="none" x1="86" y1="55" x2="86" y2="100" />
+	<circle cx="86" cy="55" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+</g>
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="80,180 80,195 140,210 140,223" />
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="230,180 230,195 160,210 160,223" />
+	<path stroke="#000000" stroke-width="1" fill="none" d="M220,150 H240 V170 A10,10 0 0 1 220,170 z" />
+	<line stroke="#000000" stroke-width="1" fill="none" x1="225" y1="30" x2="225" y2="150" />
+	<text x="170" y="20" stroke="#000000" stroke-width="1" fill="none" font-size="12">Вход переноса</text>	
+	<line stroke="#000000" stroke-width="1" fill="none" x1="235" y1="95" x2="235" y2="150" />
+	<circle cx="235" cy="95" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<line stroke="#000000" stroke-width="1" fill="none" x1="225" y1="80" x2="305" y2="80" />
+	<circle cx="225" cy="80" r="2" stroke="#000000" stroke-width="1" fill="#000000" />	
+	<g transform="translate(150, 43)">
+		<path stroke="#000000" stroke-width="1" fill="none" d="M150,30 Q170,30 190,45 Q170,60 150,60 A20,20 0 0 0 150,30 M145,60 A20,20 0 0 0 145,30" />				
+	</g>
+	<line stroke="#000000" stroke-width="1" fill="none" x1="340" y1="88" x2="380" y2="88" />
+	<text x="390" y="90" stroke="#000000" stroke-width="1" fill="none" font-size="12">Сумма</text>
+<g transform="translate(-90,20)">	
+	<path stroke="#000000" stroke-width="1" fill="none" d="M225,200 A25,25 0 0 0 255,200 Q255,215 240,235 Q225,215 225,200" />
+</g>	
+	<line stroke="#000000" stroke-width="1" fill="none" x1="150" y1="255" x2="150" y2="280" />
+	<text x="100" y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">Выход переноса</text>
+<text x="30" y="330" stroke="none" fill="#000000" font-size="14" font-family="serif">Рис. 7.5.5. Схема полного сумматора</text>	
+</svg>
+<p>Из схемы сумматора на рис. 7.5.5 очевидно, что полный сумматор содержит два <a href='#polusummator'>полусумматора</a> и вентиль <a href='7_1.html#ili'>ИЛИ</a>.</p>
+<table border='1'  width='500' align='center'>
+	<caption>Таблица 7.5.2 истинности для полного сумматора</caption>
+	<tr><th>A</th><th>B</th><th>Вход перенос</th><th>Сумма</th><th>Выход перенос</th></tr>
+	<tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+	<tr><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+	<tr><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+	<tr><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+	<tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+	<tr><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td></tr>
+	<tr><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+	<tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+</table>
+<p>Сумма равна 1, если только одна из переменных 
+<math display='inline'>
+<mfenced open='' close='' separators=",">
+<mi>A</mi><mi>B</mi><mi>Вход переноса</mi>
+</mfenced>
+</math>
+равна 1 или все три равны 1. Выход переноса равен 1, если либо переменные
+<math display='inline'>
+<mi>A</mi>
+</math> 
+и 
+<math display='inline'>
+<mi>B</mi>
+</math>
+одновременно равны 1, либо Вход переноса равен 1 и одна из переменных 
+<math display='inline'>
+<mi>A</mi>
+</math> 
+или 
+<math display='inline'>
+<mi>B</mi>
+</math>
+также равна 1. 
+</p>
+<p>Интерактивный вариант схемы полного сумматора:</p>
+<svg  height = "340px"  width = "450px">
+<script> 
+function funcApol(idA, idB, idC, idIn, idOut,idO1,idO2,idS) {
+var idA=document.getElementById(idA), idB=document.getElementById(idB), idS=document.getElementById(idS), idC=document.getElementById(idC), idO1=document.getElementById(idO1), idO2=document.getElementById(idO2), idIn=document.getElementById(idIn), idOut=document.getElementById(idOut);				
+	if (idA.firstChild.nodeValue=='0')
+		idA.firstChild.nodeValue='1';
+	else	
+		idA.firstChild.nodeValue='0';
+	if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='0') { 
+		idO1.firstChild.nodeValue='0';
+		idC.firstChild.nodeValue='0';
+	}
+	else 
+		if (idA.firstChild.nodeValue!=idB.firstChild.nodeValue) {
+			idO1.firstChild.nodeValue='0';
+			idC.firstChild.nodeValue='1';
+		}
+		else {
+			idO1.firstChild.nodeValue='1';
+			idC.firstChild.nodeValue='0';
+		}
+		
+	if (idC.firstChild.nodeValue=='0' && idIn.firstChild.nodeValue=='0') {
+		idO2.firstChild.nodeValue='0';
+		idS.firstChild.nodeValue='0';
+	}
+	else
+		if (idC.firstChild.nodeValue!=idIn.firstChild.nodeValue) {
+			idO2.firstChild.nodeValue='0';
+			idS.firstChild.nodeValue='1';
+		}
+		else {
+			idO2.firstChild.nodeValue='1';
+			idS.firstChild.nodeValue='0';
+		}
+		
+	if (idO1.firstChild.nodeValue=='1' || idO2.firstChild.nodeValue=='1')		
+		idOut.firstChild.nodeValue='1';
+	else	
+		idOut.firstChild.nodeValue='0';
+}
+
+function funcBpol(idA, idB, idC, idIn, idOut,idO1,idO2,idS) {
+var idA=document.getElementById(idA), idB=document.getElementById(idB), idS=document.getElementById(idS), idC=document.getElementById(idC), idO1=document.getElementById(idO1), idO2=document.getElementById(idO2), idIn=document.getElementById(idIn), idOut=document.getElementById(idOut);		
+	if (idB.firstChild.nodeValue=='0')
+		idB.firstChild.nodeValue='1';
+	else	
+		idB.firstChild.nodeValue='0';
+	if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='0') { 
+		idO1.firstChild.nodeValue='0';
+		idC.firstChild.nodeValue='0';
+	}
+	else 
+		if (idA.firstChild.nodeValue!=idB.firstChild.nodeValue) {
+			idO1.firstChild.nodeValue='0';
+			idC.firstChild.nodeValue='1';
+		}
+		else {
+			idO1.firstChild.nodeValue='1';
+			idC.firstChild.nodeValue='0';
+		}
+		
+	if (idC.firstChild.nodeValue=='0' && idIn.firstChild.nodeValue=='0') {
+		idO2.firstChild.nodeValue='0';
+		idS.firstChild.nodeValue='0';
+	}
+	else
+		if (idC.firstChild.nodeValue!=idIn.firstChild.nodeValue) {
+			idO2.firstChild.nodeValue='0';
+			idS.firstChild.nodeValue='1';
+		}
+		else {
+			idO2.firstChild.nodeValue='1';
+			idS.firstChild.nodeValue='0';
+		}
+		
+	if (idO1.firstChild.nodeValue=='1' || idO2.firstChild.nodeValue=='1')		
+		idOut.firstChild.nodeValue='1';
+	else	
+		idOut.firstChild.nodeValue='0';
+}
+function funcInpol(idA, idB, idC, idIn, idOut,idO1,idO2,idS) {
+var idA=document.getElementById(idA), idB=document.getElementById(idB), idS=document.getElementById(idS), idC=document.getElementById(idC), idO1=document.getElementById(idO1), idO2=document.getElementById(idO2), idIn=document.getElementById(idIn), idOut=document.getElementById(idOut);
+	if (idIn.firstChild.nodeValue=='0')	
+		idIn.firstChild.nodeValue='1';
+	else
+		idIn.firstChild.nodeValue='0';
+	if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='0') { 
+		idO1.firstChild.nodeValue='0';
+		idC.firstChild.nodeValue='0';
+	}
+	else 
+		if (idA.firstChild.nodeValue!=idB.firstChild.nodeValue) {
+			idO1.firstChild.nodeValue='0';
+			idC.firstChild.nodeValue='1';
+		}
+		else {
+			idO1.firstChild.nodeValue='1';
+			idC.firstChild.nodeValue='0';
+		}
+		
+	if (idC.firstChild.nodeValue=='0' && idIn.firstChild.nodeValue=='0') {
+		idO2.firstChild.nodeValue='0';
+		idS.firstChild.nodeValue='0';
+	}
+	else
+		if (idC.firstChild.nodeValue!=idIn.firstChild.nodeValue) {
+			idO2.firstChild.nodeValue='0';
+			idS.firstChild.nodeValue='1';
+		}
+		else {
+			idO2.firstChild.nodeValue='1';
+			idS.firstChild.nodeValue='0';
+		}
+		
+	if (idO1.firstChild.nodeValue=='1' || idO2.firstChild.nodeValue=='1')		
+		idOut.firstChild.nodeValue='1';
+	else	
+		idOut.firstChild.nodeValue='0';	
+			
+} 
+</script>
+<g transform="translate(0, 50)"> 
+	<path stroke="#000000" stroke-width="1" fill="none" d="M70,100 H90 V120 A10,10 0 0 1 70,120 z" />
+	<path stroke="#000000" stroke-width="1" fill="none" d="M150,30 Q170,30 190,45 Q170,60 150,60 A20,20 0 0 0 150,30 M145,60 A20,20 0 0 0 145,30" />	
+	<text id="idCpol" x="195" y="40" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>	
+	<line stroke="#000000" stroke-width="1" fill="none" x1="190" y1="45" x2="305" y2="45" />	
+	<line stroke="#000000" stroke-width="1" fill="none" x1="30" y1="35" x2="153" y2="35" />
+	<text onclick="funcApol('idApol', 'idBpol', 'idCpol', 'idInpol', 'idOutpol','idO1pol','idO2pol','idSpol')" id="idApol" x="20" y="40" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+	<line stroke="#000000" stroke-width="1" fill="none" x1="30" y1="55" x2="153" y2="55" />
+	<text onclick="funcBpol('idApol', 'idBpol', 'idCpol', 'idInpol', 'idOutpol','idO1pol','idO2pol','idSpol')" id="idBpol" x="20" y="60" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>	
+	<line stroke="#000000" stroke-width="1" fill="none" x1="74" y1="35" x2="74" y2="100" />
+	<circle cx="74" cy="35" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<line stroke="#000000" stroke-width="1" fill="none" x1="86" y1="55" x2="86" y2="100" />
+	<circle cx="86" cy="55" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+</g>
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="80,180 80,195 140,210 140,223" />
+	<polyline stroke="#000000" stroke-width="1" fill="none" points="230,180 230,195 160,210 160,223" />
+	<path stroke="#000000" stroke-width="1" fill="none" d="M220,150 H240 V170 A10,10 0 0 1 220,170 z" />
+	<line stroke="#000000" stroke-width="1" fill="none" x1="225" y1="30" x2="225" y2="150" />
+	<text onclick="funcInpol('idApol', 'idBpol', 'idCpol', 'idInpol', 'idOutpol','idO1pol','idO2pol','idSpol')" id="idInpol" x="220" y="20" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>	
+	<line stroke="#000000" stroke-width="1" fill="none" x1="235" y1="95" x2="235" y2="150" />
+	<circle cx="235" cy="95" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
+	<line stroke="#000000" stroke-width="1" fill="none" x1="225" y1="80" x2="305" y2="80" />
+	<circle cx="225" cy="80" r="2" stroke="#000000" stroke-width="1" fill="#000000" />	
+	<text id="idO1pol" x="65" y="190" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>	
+	<text id="idO2pol" x="215" y="190" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>	
+	<g transform="translate(150, 43)">
+		<path stroke="#000000" stroke-width="1" fill="none" d="M150,30 Q170,30 190,45 Q170,60 150,60 A20,20 0 0 0 150,30 M145,60 A20,20 0 0 0 145,30" />				
+	</g>
+	<line stroke="#000000" stroke-width="1" fill="none" x1="340" y1="88" x2="380" y2="88" />
+	<text id="idSpol" x="390" y="90" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+<g transform="translate(-90,20)">	
+	<path stroke="#000000" stroke-width="1" fill="none" d="M225,200 A25,25 0 0 0 255,200 Q255,215 240,235 Q225,215 225,200" />
+</g>	
+	<line stroke="#000000" stroke-width="1" fill="none" x1="150" y1="255" x2="150" y2="280" />
+	<text id="idOutpol" x="145" y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+	<text x="30" y="330" stroke="none" fill="#000000" font-size="14" font-family="serif">Рис. 7.5.6. Схема полного сумматора</text>	
+</svg>
+<p>Шестнадцать раз продублировав схему 7.5.5, можно получить схему так называемого шестнадцатиразрядного <a href='#summator'>сумматора</a> со сквозным переносом. Перенос производится в левый соседний бит. В самый правый бит переносится 0. Сумматор со сквозным переносом не осуществит суммирование двух чисел до тех пор, пока перенос не пройдет весь путь от самого правого бита до самого левого.</p>
+<p>Существуют более быстрые сумматоры. К примеру, рассмотрим сумматор с выбором переноса для суммирования двух тридцатидвухразрядных чисел. Он состоит из одного шестнадцатиразрядного нижнего сумматора и двух шестнадцатиразрядных верхних сумматоров
+<math display='inline'>
+<msub><mi>U</mi><mn>0</mn></msub>
+</math>
+и 
+<math display='inline'>
+<msub><mi>U</mi><mn>1</mn></msub>
+</math>,
+работающих параллельно. Нижний сумматор вычисляет сумму слов в младших шестнадцати разрядах исходных слагаемых. Верхние сумматоры вычисляют суммы слов в старших разрядах слагаемых, причем в сумматор 
+<math display='inline'>
+<msub><mi>U</mi><mn>0</mn></msub>
+</math>
+переносится 0, а в
+<math display='inline'>
+<msub><mi>U</mi><mn>1</mn></msub>
+</math>
+ &#8210; 1 Оба верхних сумматора начинают работать одновременно с нижним. После вычисления суммы нижним сумматором становится известным перенос в верхний сумматор, что позволяет выбрать из двух сумм в верхних сумматорах нужную сумму и определить правильный ответ. Время вычисления суммы таким образом значительно сокращается. Для еще большего ускорения операции сложения, можно разбить каждый шестнадцатиразрядный сумматор на восьмиразрядные. 
+</p>
+<h2>7.5.3. Арифметико-логические устройства</h2>
+<p><span class='teorema'><a id='alu'>Одноразрядным арифметико-логическим устройством (АЛУ)</a> называется устройство для вычисления функций
+<math display='inline'>
+<mrow><mi>A</mi><mo>&#38;</mo><mi>B</mi></mrow>
+</math>,
+<math display='inline'>
+<mrow><mi>A</mi><mo>&#8744;</mo><mi>B</mi></mrow>
+</math>,
+<math display='inline'>
+<mover><mi>B</mi><mo>&#x203E;</mo></mover>
+</math>,
+<math display='inline'>
+<mrow><mi>A</mi><mo>+</mo><mi>B</mi></mrow>
+</math>, где последняя функция вычисляет арифметическую сумму операндов:</span>
+</p>
+
+<svg  height = "560px"  width = "650px">
+<script>
+
+</script>
+<defs>
+    <marker id="Triangle"
+      viewBox="0 0 10 10" refX="0" refY="5" 
+      markerUnits="strokeWidth"
+      markerWidth="8" markerHeight="8"
+      orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" />
+    </marker>
+ </defs>
+<text x='10' y='50' stroke="none" stroke-width="1" fill="#000000" font-size='12'>INV_A</text>
+<text x='10' y='83' stroke="none" stroke-width="1" fill="#000000" font-size="12">A</text>
+<text x='10' y='100' stroke="none" stroke-width="1" fill="#000000" font-size="12">EN_A</text>
+<text x='10' y='132' stroke="none" stroke-width="1" fill="#000000" font-size="12">B</text>
+<text x='10' y='152' stroke="none" stroke-width="1" fill="#000000" font-size="12">EN_B</text>
+<line x1='24' y1='80' x2='79' y2='80' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='44' y1='96' x2='79' y2='96' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='22' y1='130' x2='79' y2='130' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='44' y1='146' x2='79' y2='146' stroke="#000000" stroke-width="1" fill="none"/>
+<polyline points="50,47 115,47 115,75 135,75" stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='110' y1='87' x2='135' y2='87' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='160' y1='81' x2='195' y2='81' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='110' y1='138' x2='200' y2='138' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='218' y1='138' x2='280' y2='138' stroke="#000000" stroke-width="1" fill="none"/>
+<polyline points="305,220 168,220 168,30 190,30" stroke="#000000" stroke-width="1" fill="none"/>
+<polyline points="190,45 183,45 183,205 305,205" stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='183' y1='94' x2='195' y2='94' stroke="#000000" stroke-width="1" fill="none"/>
+<circle cx='183' cy='94' r='2' stroke="#000000" stroke-width="1" fill="#000000"/>
+<circle cx='168' cy='81' r='2' stroke="#000000" stroke-width="1" fill="#000000"/>
+<circle cx='183' cy='138' r='2' stroke="#000000" stroke-width="1" fill="#000000"/>
+<line x1='220' y1='38' x2='280' y2='38' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='220' y1='87' x2='280' y2='87' stroke="#000000" stroke-width="1" fill="none"/>
+<g transform="translate(30)">	
+	<path d="M50,75 H70 A10,10 0 0 1 65,100 H50 z" stroke="#000000" stroke-width="1" fill="none"/>
+	<path d="M50,125 H70 A10,10 0 0 1 65,150 H50 z" stroke="#000000" stroke-width="1" fill="none"/>
+	<g	transform="translate(50,44)">
+		<path d="M50,25 Q70,25 80,37 M50,50 Q70,50 80,37 M50,25 A15,15 0 0 1 50,50" stroke="#000000" stroke-width="1" fill="none"/>	
+		<path d="M45,25 A15,15 0 0 1 45,50" stroke="#000000" stroke-width="1" fill="none"/>
+	</g>
+	<g transform="translate(30)">
+		<path d="M130,25 H150 A10,10 0 0 1 145,50 H130 z" stroke="#000000" stroke-width="1" fill="none"/>
+		<path d="M130,75 Q150,75 160,87 M130,100 Q150,100 160,87 M130,75 A15,15 0 0 1 130,100" stroke="#000000" stroke-width="1" fill="none"/>
+		<polygon points="140,133 150,138 140,143" stroke="#000000" stroke-width="1" fill="none"/>
+		<circle cx="154" cy='138' r='4' stroke="#000000" stroke-width="1" fill="none"/>
+		<path d="M220,33 H240 A10,10 0 0 1 235,58 H220 z" stroke="#000000" stroke-width="1" fill="none"/>
+		<path d="M220,82 H240 A10,10 0 0 1 235,107 H220 z" stroke="#000000" stroke-width="1" fill="none"/>
+		<path d="M220,132 H240 A10,10 0 0 1 235,157 H220 z" stroke="#000000" stroke-width="1" fill="none"/>
+	</g>
+</g>	
+	<path d="M520,75 Q540,75 550,87 M520,100 Q540,100 550,87 M520,75 A15,15 0 0 1 520,100" stroke="#000000" stroke-width="1" fill="none"/>
+	<path d="M130,325 H150 A10,10 0 0 1 145,350 H130 z" stroke="#000000" stroke-width="1" fill="none"/>
+	<path d="M130,375 H150 A10,10 0 0 1 145,400 H130 z" stroke="#000000" stroke-width="1" fill="none"/>
+	<path d="M130,425 H150 A10,10 0 0 1 145,450 H130 z" stroke="#000000" stroke-width="1" fill="none"/>
+	<path d="M130,475 H150 A10,10 0 0 1 145,500 H130 z" stroke="#000000" stroke-width="1" fill="none"/>
+	<text x='10' y='370' stroke="none" stroke-width="1" fill="#000000" font-size='12'>F<tspan dy='7'>0</tspan></text>	
+	<text x='10' y='445' stroke="none" stroke-width="1" fill="#000000" font-size='12'>F<tspan dy='7'>1</tspan></text>
+	<polygon points="80,325 85,330 80,335" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="161,337 228,337 228,53 281,53" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="161,387 235,387 235,101 281,101" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="161,437 243,437 243,151 281,151" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="161,487 250,487 250,240 420,240 420,220  450,220" stroke="#000000" stroke-width="1" fill="none"/>
+	<line x1='410' y1='207' x2='450' y2='207' stroke="#000000" stroke-width="1" fill="none"/> 	
+	<line x1='330' y1='212' x2='385' y2='212' stroke="#000000" stroke-width="1" fill="none"/>	
+	<circle cx="89" cy='330' r='4' stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="30,365 50,365 50,330 80,330" stroke="#000000" stroke-width="1" fill="none"/>
+	<line x1='94' y1='330' x2='130' y2='330' stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="110,330 110,380 130,380" stroke="#000000" stroke-width="1" fill="none"/>	
+	<circle cx="110" cy='330' r='2' stroke="#000000" stroke-width="1" fill="#000000"/>
+	<polygon points="85,439 90,444 85,449" stroke="#000000" stroke-width="1" fill="none"/>
+	<circle cx="94" cy='444' r='4' stroke="#000000" stroke-width="1" fill="none"/>
+	<line x1='98' y1='444' x2='130' y2='444' stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="120,444 120,345 130,345" stroke="#000000" stroke-width="1" fill="none"/>	
+	<circle cx="120" cy='444' r='2' stroke="#000000" stroke-width="1" fill="#000000"/>
+	<line x1='30' y1='444' x2='84' y2='444' stroke="#000000" stroke-width="1" fill="none"/>	
+	<polyline points="74,444 74,395 130,395" stroke="#000000" stroke-width="1" fill="none"/>
+	<circle cx="74" cy='444' r='2' stroke="#000000" stroke-width="1" fill="#000000"/>
+	<polyline points="74,444 74,495 130,495" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="50,365 50,430 130,430" stroke="#000000" stroke-width="1" fill="none"/>
+	<circle cx="50" cy='430' r='2' stroke="#000000" stroke-width="1" fill="#000000"/>	
+	<polyline points="50,430 50,480 130,480" stroke="#000000" stroke-width="1" fill="none"/>
+	<path d="M300,200 Q320,200 330,212 M300,225 Q320,225 330,212 M300,200 A15,15 0 0 1 300,225" stroke="#000000" stroke-width="1" fill="none"/>
+	<path d="M295,200 A15,15 0 0 1 295,225" stroke="#000000" stroke-width="1" fill="none"/>
+	<path d="M380,195 Q400,195 410,207 M380,220 Q400,220 410,207 M380,195 A15,15 0 0 1 380,220" stroke="#000000" stroke-width="1" fill="none"/>
+	<path d="M375,195 A15,15 0 0 1 375,220" stroke="#000000" stroke-width="1" fill="none"/>
+	<path d="M450,200 H470 A10,10 0 0 1 465,225 H450 z" stroke="#000000" stroke-width="1" fill="none"/>
+	<g transform="translate(10)">
+		<path d="M260,270 V290 A10,10 0 0 0 285,290 V270 z" stroke="#000000" stroke-width="1" fill="none"/>	
+		<path d="M340,270 V290 A10,10 0 0 0 365,290 V270 z" stroke="#000000" stroke-width="1" fill="none"/>
+		<path d="M290,370 Q290,390 305,400 M320,370 Q320,390 305,400 M290,370 A20,20 0 0 0 320,370" stroke="#000000" stroke-width="1" fill="none"/>	
+	</g>
+	<line x1='290' y1='240' x2='290' y2='270' stroke="#000000" stroke-width="1" fill="none"/>
+	<line x1='283' y1='220' x2='283' y2='270' stroke="#000000" stroke-width="1" fill="none"/>
+	<line x1='275' y1='205' x2='275' y2='270' stroke="#000000" stroke-width="1" fill="none"/>
+	<circle cx="290" cy='240' r='2' stroke="#000000" stroke-width="1" fill="#000000"/>
+	<circle cx="283" cy='220' r='2' stroke="#000000" stroke-width="1" fill="#000000"/>
+	<circle cx="275" cy='205' r='2' stroke="#000000" stroke-width="1" fill="#000000"/>
+	<line x1='371' y1='240' x2='371' y2='270' stroke="#000000" stroke-width="1" fill="none"/>
+	<line x1='364' y1='212' x2='364' y2='270' stroke="#000000" stroke-width="1" fill="none"/>
+	<line x1='357' y1='15' x2='357' y2='270' stroke="#000000" stroke-width="1" fill="none"/>
+	<circle cx="371" cy='240' r='2' stroke="#000000" stroke-width="1" fill="#000000"/>
+	<circle cx="364" cy='212' r='2' stroke="#000000" stroke-width="1" fill="#000000"/>
+	<polyline points="283,302 283,330 307,330 307,374" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="363,302 363,330 323,330 323,374" stroke="#000000" stroke-width="1" fill="none"/>
+	<line x1='315' y1='399' x2='315' y2='490' stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="479,212 495,212 495,97 523,97" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="309,45 495,45 495,79 523,79" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="309,95 405,95 405,85 526,85" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="309,145 435,145 435,91 525,91" stroke="#000000" stroke-width="1" fill="none"/>
+	<line x1='550' y1='87' x2='600' y2='87' stroke="#000000" stroke-width="1" fill="none"/>
+	<line x1='356' y1='200' x2='384' y2='200' stroke="#000000" stroke-width="1" fill="none"/>
+	<circle cx="357" cy='200' r='2' stroke="#000000" stroke-width="1" fill="#000000"/>
+	<text x="330" y="500" stroke="none" stroke-width="1" fill="#000000" font-size='12'>Выход переноса</text>
+	<text x="365" y="20" stroke="none" stroke-width="1" fill="#000000" font-size='12'>Вход переноса</text>
+	<text x="570" y="80" stroke="none" stroke-width="1" fill="#000000" font-size='12'>Выход</text>	
+	<text x="500" y="210" stroke="none" stroke-width="1" fill="#000000" font-size='12'>Сумма</text>
+	<rect x="163" y="20" height="140" width="153" stroke="#000000" fill="none" stroke-width="1" stroke-dasharray="1"/> 
+	<text x="163" y="15" stroke="none" stroke-width="1" fill="#000000" font-size='12'>Логическое устройство</text>
+	<rect x="6" y="320" height="185" width="170" stroke="#000000" fill="none" stroke-width="1" stroke-dasharray="1"/>
+	<text x="60" y="315" stroke="none" stroke-width="1" fill="#000000" font-size='12'>Декодер</text>
+	<text x="40" y="265" stroke="none" stroke-width="1" fill="#000000" font-size='12'>Линии разрешения</text>	
+	<line x1="175" y1="260" x2="220" y2="246" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)" />	
+	<line x1="175" y1="260" x2="226" y2="260" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)" />
+	<line x1="175" y1="260" x2="236" y2="274" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)" />
+	<rect x="260" y="190" height="230" width="230" stroke="#000000" fill="none" stroke-width="1" stroke-dasharray="1"/>
+	<text x="360" y="350" stroke="none" stroke-width="1" fill="#000000" font-size='12'>Полный сумматор</text>	
+	<text x="30" y="550" stroke="none" fill="#000000" font-size="14" font-family="serif">Рис. 7.5.7. Арифметико-логическое устройство</text>	
+</svg>
+<p>Выбор функции осуществляется двухразрядным <a href='7_4.html#dekoder'>декодером</a>, расположенном в левом нижнем углу схемы на рис. 7.5.7, заданием входных сигналов на линиях 
+<math display='inline'>
+<msub><mi>F</mi><mn>0</mn></msub>
+</math>
+и
+<math display='inline'>
+<msub><mi>F</mi><mn>1</mn></msub>
+</math>:
+</p>
+<table border='1'  width='300' align='center'>
+<caption>Таблица 7.5.3. Выбор декодера</caption>
+<tr>
+<th>
+<math display='inline'>
+<msub><mi>F</mi><mn>0</mn></msub>
+</math>
+</th>
+<th>
+<math display='inline'>
+<msub><mi>F</mi><mn>1</mn></msub>
+</math>
+</th>
+<th>Функция</th>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>
+<math display='inline'>
+<mrow><mi>A</mi><mo>&#38;</mo><mi>B</mi></mrow>
+</math>
+</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>
+<math display='inline'>
+<mrow><mi>A</mi><mo>&#8744;</mo><mi>B</mi></mrow>
+</math>
+</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>
+<math display='inline'>
+<mover><mi>B</mi><mo>&#x203E;</mo></mover>
+</math>
+</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>
+<math display='inline'>
+<mi>A</mi><mo>+</mo><mi>B</mi>
+</math>
+</td>
+</tr>
+</table>
+<p>Только один из вентилей И <a href='7_4.html#dekoder'>декодера</a> будет генерировать 1, а остальные &#8212; 0. Выходной сигнал выбранной функции проходит через последний <a href='7_1.html#ili'>вентиль ИЛИ</a>.</p>
+
+<p>В верхнем левом углу схемы находится логическое устройство, вычисляющее функции
+<math display='inline'>
+<mrow><mi>A</mi><mo>&#38;</mo><mi>B</mi></mrow>
+</math>,
+<math display='inline'>
+<mrow><mi>A</mi><mo>&#8744;</mo><mi>B</mi></mrow>
+</math>,
+<math display='inline'>
+<mover><mi>B</mi><mo>&#x203E;</mo></mover>
+</math>.
+Только одно из значений этих функций, в зависимости от входных сигналов <a href='7_4.html#dekoder'>декодера</a>, проходит через последний <a href='7_1.html#ili'>вентиль ИЛИ</a>.  
+</p>
+<p>Линии EN_A и EN_B служат для запрещения (обнуления) или разрешения сигналов А и В соответственно. Линия INV_A служит для вычисления инверсии А. Для разрешения поступления обоих сигналов А и В в логическое устройство без изменения в линии EN_A и EN_B передается сигнал 1, а в INV_A &#8212; 0.</p>
+<p>В правом нижнем углу находится сумматор, выполняющий суммирование А и В и операцию переноса. Переносы необходимы, так как несколько таких схем соединяют для выполнения операций над целыми словами.</p>
+<p>На рисунке 7.5.8 представлена интерактивная схема одноразрядного арифметико-логического устройства:</p>
+<svg  height = "560px"  width = "600px">
+<script>
+function calc(idA,idB,en_A,en_B,inv_A,f0,f1,out_p,input_p,result,summa) {
+var idA=document.getElementById(idA),
+	idB=document.getElementById(idB),
+	en_A=document.getElementById(en_A),
+	en_B=document.getElementById(en_B),
+	inv_A=document.getElementById(inv_A),
+	f0=document.getElementById(f0),				
+	f1=document.getElementById(f1),
+	out_p=document.getElementById(out_p),
+	input_p=document.getElementById(input_p),
+	result=document.getElementById(result),
+	summa=document.getElementById(summa);
+	var p1;  		//результат лог. умножения A и en_A
+	if (idA.firstChild.nodeValue=='1' && en_A.firstChild.nodeValue=='1')
+		p1='1';
+	else
+		p1='0';
+	var p2;	//результат лог. умножения B и en_B
+	if (idB.firstChild.nodeValue=='1' && en_B.firstChild.nodeValue=='1')
+		p2='1';
+	else	
+		p2='0';		
+	var p3; //результат XOR(inv_A, p1) 
+	if (inv_A.firstChild.nodeValue!=p1)
+		p3='1';
+	else
+		p3='0';
+	var log_umn;	//выход из вентиля И в логическом устройстве				
+	if (p3=='1' && p2=='1')
+		log_umn='1';
+	else
+		log_umn='0';
+	var log_sum; //выход из вентиля ИЛИ в логическом устройстве
+	if (p3=='0' && p2=='0')
+		log_sum='0';
+	else
+		log_sum='1';
+	var not_B; //выход из вентиля НЕ в логическом устройстве
+	if (p2=='1')
+		not_B='0';
+	else
+		not_B='1';
+	var p7; //выход из 1-го вентиля XOR в полном сумматоре
+	if (p3!=p2)	
+		p7='1';
+	else
+		p7='0';
+	var p8; //выход из 2-го вентиля XOR в полном сумматоре
+	var p9; //выход из 1-го вентиля И в полном сумматоре
+	var p10; //выход из 2-го вентиля И в полном сумматоре
+	if (p7!=input_p.firstChild.nodeValue)
+		p8='1';
+	else
+		p8='0';
+	summa.firstChild.nodeValue='0';				
+	if (f0.firstChild.nodeValue=='0' && f1.firstChild.nodeValue=='0')
+		result.firstChild.nodeValue=log_umn;
+	else 	if (f0.firstChild.nodeValue=='0' && f1.firstChild.nodeValue=='1')				
+		result.firstChild.nodeValue=log_sum;
+	else if (f0.firstChild.nodeValue=='1' && f1.firstChild.nodeValue=='0')				
+		result.firstChild.nodeValue=not_B;
+	else {
+		summa.firstChild.nodeValue=p8;
+		if (p3=='1' && p2=='1')
+			p9='1';
+		else
+			p9='0';
+		if (p7=='1' && input_p.firstChild.nodeValue=='1')
+			p10='1';
+		else
+			p10='0';
+		if (p9=='1' || p10=='1')
+			out_p.firstChild.nodeValue='1';
+		else
+			out_p.firstChild.nodeValue='0';					
+		result.firstChild.nodeValue=summa.firstChild.nodeValue;
+	}	
+}
+function funcinvA(idA,idB,en_A,en_B,inv_A,f0,f1,out_p,input_p,result,summa) {
+var idA=document.getElementById(idA),
+	idB=document.getElementById(idB),
+	en_A=document.getElementById(en_A),
+	en_B=document.getElementById(en_B),
+	inv_A=document.getElementById(inv_A),
+	f0=document.getElementById(f0),				
+	f1=document.getElementById(f1),
+	out_p=document.getElementById(out_p),
+	input_p=document.getElementById(input_p),
+	result=document.getElementById(result),
+	summa=document.getElementById(summa);
+	if (inv_A.firstChild.nodeValue=='0')
+		inv_A.firstChild.nodeValue='1';
+	else
+		inv_A.firstChild.nodeValue='0';
+	calc('idA','idB','en_A','en_B','inv_A','f0','f1','out_p','input_p','result','summa');	
+}
+function funcen_A(idA,idB,en_A,en_B,inv_A,f0,f1,out_p,input_p,result,summa) {
+	idA=document.getElementById(idA),
+	idB=document.getElementById(idB),
+	en_A=document.getElementById(en_A),
+	en_B=document.getElementById(en_B),
+	inv_A=document.getElementById(inv_A),
+	f0=document.getElementById(f0),				
+	f1=document.getElementById(f1),
+	out_p=document.getElementById(out_p),
+	input_p=document.getElementById(input_p),
+	result=document.getElementById(result),
+	summa=document.getElementById(summa);
+	if (en_A.firstChild.nodeValue=='0')
+		en_A.firstChild.nodeValue='1';
+	else
+		en_A.firstChild.nodeValue='0';
+	calc('idA','idB','en_A','en_B','inv_A','f0','f1','out_p','input_p','result','summa');	
+}
+function funcen_B(idA,idB,en_A,en_B,inv_A,f0,f1,out_p,input_p,result,summa) {
+var idA=document.getElementById(idA),
+	idB=document.getElementById(idB),
+	en_A=document.getElementById(en_A),
+	en_B=document.getElementById(en_B),
+	inv_A=document.getElementById(inv_A),
+	f0=document.getElementById(f0),				
+	f1=document.getElementById(f1),
+	out_p=document.getElementById(out_p),
+	input_p=document.getElementById(input_p),
+	result=document.getElementById(result),
+	summa=document.getElementById(summa);
+	if (en_B.firstChild.nodeValue=='0')
+		en_B.firstChild.nodeValue='1';
+	else
+		en_B.firstChild.nodeValue='0';
+	calc('idA','idB','en_A','en_B','inv_A','f0','f1','out_p','input_p','result','summa');	
+}
+function funcA(idA,idB,en_A,en_B,inv_A,f0,f1,out_p,input_p,result,summa) {
+var idA=document.getElementById(idA),
+	idB=document.getElementById(idB),
+	en_A=document.getElementById(en_A),
+	en_B=document.getElementById(en_B),
+	inv_A=document.getElementById(inv_A),
+	f0=document.getElementById(f0),				
+	f1=document.getElementById(f1),
+	out_p=document.getElementById(out_p),
+	input_p=document.getElementById(input_p),
+	result=document.getElementById(result),
+	summa=document.getElementById(summa);
+	if (idA.firstChild.nodeValue=='0')
+		idA.firstChild.nodeValue='1';
+	else
+		idA.firstChild.nodeValue='0';
+	calc('idA','idB','en_A','en_B','inv_A','f0','f1','out_p','input_p','result','summa');	
+}
+function funcB(idA,idB,en_A,en_B,inv_A,f0,f1,out_p,input_p,result,summa) {
+var idA=document.getElementById(idA),
+	idB=document.getElementById(idB),
+	en_A=document.getElementById(en_A),
+	en_B=document.getElementById(en_B),
+	inv_A=document.getElementById(inv_A),
+	f0=document.getElementById(f0),				
+	f1=document.getElementById(f1),
+	out_p=document.getElementById(out_p),
+	input_p=document.getElementById(input_p),
+	result=document.getElementById(result),
+	summa=document.getElementById(summa);
+	if (idB.firstChild.nodeValue=='0')
+		idB.firstChild.nodeValue='1';
+	else
+		idB.firstChild.nodeValue='0';
+	calc('idA','idB','en_A','en_B','inv_A','f0','f1','out_p','input_p','result','summa');	
+}
+function funcf0(idA,idB,en_A,en_B,inv_A,f0,f1,out_p,input_p,result,summa) {
+var idA=document.getElementById(idA),
+	idB=document.getElementById(idB),
+	en_A=document.getElementById(en_A),
+	en_B=document.getElementById(en_B),
+	inv_A=document.getElementById(inv_A),
+	f0=document.getElementById(f0),				
+	f1=document.getElementById(f1),
+	out_p=document.getElementById(out_p),
+	input_p=document.getElementById(input_p),
+	result=document.getElementById(result),
+	summa=document.getElementById(summa);
+	if (f0.firstChild.nodeValue=='0')
+		f0.firstChild.nodeValue='1';
+	else
+		f0.firstChild.nodeValue='0';
+	calc('idA','idB','en_A','en_B','inv_A','f0','f1','out_p','input_p','result','summa');	
+}
+function funcf1(idA,idB,en_A,en_B,inv_A,f0,f1,out_p,input_p,result,summa) {
+var idA=document.getElementById(idA),
+	idB=document.getElementById(idB),
+	en_A=document.getElementById(en_A),
+	en_B=document.getElementById(en_B),
+	inv_A=document.getElementById(inv_A),
+	f0=document.getElementById(f0),				
+	f1=document.getElementById(f1),
+	out_p=document.getElementById(out_p),
+	input_p=document.getElementById(input_p),
+	result=document.getElementById(result),
+	summa=document.getElementById(summa);
+	if (f1.firstChild.nodeValue=='0')
+		f1.firstChild.nodeValue='1';
+	else
+		f1.firstChild.nodeValue='0';
+	calc('idA','idB','en_A','en_B','inv_A','f0','f1','out_p','input_p','result','summa');	
+}
+function func_input(idA,idB,en_A,en_B,inv_A,f0,f1,out_p,input_p,result,summa) {
+var idA=document.getElementById(idA),
+	idB=document.getElementById(idB),
+	en_A=document.getElementById(en_A),
+	en_B=document.getElementById(en_B),
+	inv_A=document.getElementById(inv_A),
+	f0=document.getElementById(f0),				
+	f1=document.getElementById(f1),
+	out_p=document.getElementById(out_p),
+	input_p=document.getElementById(input_p),
+	result=document.getElementById(result),
+	summa=document.getElementById(summa);
+	if (input_p.firstChild.nodeValue=='0')
+		input_p.firstChild.nodeValue='1';
+	else
+		input_p.firstChild.nodeValue='0';
+	calc('idA','idB','en_A','en_B','inv_A','f0','f1','out_p','input_p','result','summa');	
+}
+</script>
+<defs>
+    <marker id="Triangle"
+      viewBox="0 0 10 10" refX="0" refY="5" 
+      markerUnits="strokeWidth"
+      markerWidth="8" markerHeight="8"
+      orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" />
+    </marker>
+ </defs>
+<text onclick="funcinvA('idA','idB','en_A','en_B','inv_A','f0','f1','out_p','input_p','result','summa')" id="inv_A" x='10' y='50' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>
+<text onclick="funcA('idA','idB','en_A','en_B','inv_A','f0','f1','out_p','input_p','result','summa')" id="idA" x='10' y='83' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>
+<text onclick="funcen_A('idA','idB','en_A','en_B','inv_A','f0','f1','out_p','input_p','result','summa')" id="en_A" x='10' y='100' stroke="none" stroke-width="1" fill="#000000" font-size="12">1</text>
+<text onclick="funcB('idA','idB','en_A','en_B','inv_A','f0','f1','out_p','input_p','result','summa')" id="idB" x='10' y='132' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>
+<text onclick="funcen_B('idA','idB','en_A','en_B','inv_A','f0','f1','out_p','input_p','result','summa')"  id="en_B" x='10' y='152' stroke="none" stroke-width="1" fill="#000000" font-size="12">1</text>
+<line x1='22' y1='80' x2='79' y2='80' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='44' y1='96' x2='79' y2='96' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='22' y1='130' x2='79' y2='130' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='44' y1='146' x2='79' y2='146' stroke="#000000" stroke-width="1" fill="none"/>
+<polyline points="46,47 115,47 115,75 135,75" stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='110' y1='87' x2='135' y2='87' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='160' y1='81' x2='195' y2='81' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='110' y1='138' x2='200' y2='138' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='218' y1='138' x2='280' y2='138' stroke="#000000" stroke-width="1" fill="none"/>
+<polyline points="305,220 168,220 168,30 190,30" stroke="#000000" stroke-width="1" fill="none"/>
+<polyline points="190,45 183,45 183,205 305,205" stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='183' y1='94' x2='195' y2='94' stroke="#000000" stroke-width="1" fill="none"/>
+<circle cx='183' cy='94' r='2' stroke="#000000" stroke-width="1" fill="#000000"/>
+<circle cx='168' cy='81' r='2' stroke="#000000" stroke-width="1" fill="#000000"/>
+<circle cx='183' cy='138' r='2' stroke="#000000" stroke-width="1" fill="#000000"/>
+<line x1='220' y1='38' x2='280' y2='38' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='220' y1='87' x2='280' y2='87' stroke="#000000" stroke-width="1" fill="none"/>
+<g transform="translate(30)">	
+	<path d="M50,75 H70 A10,10 0 0 1 65,100 H50 z" stroke="#000000" stroke-width="1" fill="none"/>
+	<path d="M50,125 H70 A10,10 0 0 1 65,150 H50 z" stroke="#000000" stroke-width="1" fill="none"/>
+	<g	transform="translate(50,44)">
+		<path d="M50,25 Q70,25 80,37 M50,50 Q70,50 80,37 M50,25 A15,15 0 0 1 50,50" stroke="#000000" stroke-width="1" fill="none"/>	
+		<path d="M45,25 A15,15 0 0 1 45,50" stroke="#000000" stroke-width="1" fill="none"/>
+	</g>
+	<g transform="translate(30)">
+		<path d="M130,25 H150 A10,10 0 0 1 145,50 H130 z" stroke="#000000" stroke-width="1" fill="none"/>
+		<path d="M130,75 Q150,75 160,87 M130,100 Q150,100 160,87 M130,75 A15,15 0 0 1 130,100" stroke="#000000" stroke-width="1" fill="none"/>
+		<polygon points="140,133 150,138 140,143" stroke="#000000" stroke-width="1" fill="none"/>
+		<circle cx="154" cy='138' r='4' stroke="#000000" stroke-width="1" fill="none"/>
+		<path d="M220,33 H240 A10,10 0 0 1 235,58 H220 z" stroke="#000000" stroke-width="1" fill="none"/>
+		<path d="M220,82 H240 A10,10 0 0 1 235,107 H220 z" stroke="#000000" stroke-width="1" fill="none"/>
+		<path d="M220,132 H240 A10,10 0 0 1 235,157 H220 z" stroke="#000000" stroke-width="1" fill="none"/>
+	</g>
+</g>	
+	<path d="M520,75 Q540,75 550,87 M520,100 Q540,100 550,87 M520,75 A15,15 0 0 1 520,100" stroke="#000000" stroke-width="1" fill="none"/>
+	<path d="M130,325 H150 A10,10 0 0 1 145,350 H130 z" stroke="#000000" stroke-width="1" fill="none"/>
+	<path d="M130,375 H150 A10,10 0 0 1 145,400 H130 z" stroke="#000000" stroke-width="1" fill="none"/>
+	<path d="M130,425 H150 A10,10 0 0 1 145,450 H130 z" stroke="#000000" stroke-width="1" fill="none"/>
+	<path d="M130,475 H150 A10,10 0 0 1 145,500 H130 z" stroke="#000000" stroke-width="1" fill="none"/>
+	<text  onclick="funcf0('idA','idB','en_A','en_B','inv_A','f0','f1','out_p','input_p','result','summa')" id="f0" x='10' y='370' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>	
+	<text  onclick="funcf1('idA','idB','en_A','en_B','inv_A','f0','f1','out_p','input_p','result','summa')" id="f1" x='10' y='445' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>
+	<polygon points="80,325 85,330 80,335" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="161,337 228,337 228,53 281,53" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="161,387 235,387 235,101 281,101" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="161,437 243,437 243,151 281,151" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="161,487 250,487 250,240 420,240 420,220  450,220" stroke="#000000" stroke-width="1" fill="none"/>
+	<line x1='410' y1='207' x2='450' y2='207' stroke="#000000" stroke-width="1" fill="none"/> 	
+	<line x1='330' y1='212' x2='385' y2='212' stroke="#000000" stroke-width="1" fill="none"/>	
+	<circle cx="89" cy='330' r='4' stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="30,365 50,365 50,330 80,330" stroke="#000000" stroke-width="1" fill="none"/>
+	<line x1='94' y1='330' x2='130' y2='330' stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="110,330 110,380 130,380" stroke="#000000" stroke-width="1" fill="none"/>	
+	<circle cx="110" cy='330' r='2' stroke="#000000" stroke-width="1" fill="#000000"/>
+	<polygon points="85,439 90,444 85,449" stroke="#000000" stroke-width="1" fill="none"/>
+	<circle cx="94" cy='444' r='4' stroke="#000000" stroke-width="1" fill="none"/>
+	<line x1='98' y1='444' x2='130' y2='444' stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="120,444 120,345 130,345" stroke="#000000" stroke-width="1" fill="none"/>	
+	<circle cx="120" cy='444' r='2' stroke="#000000" stroke-width="1" fill="#000000"/>
+	<line x1='30' y1='444' x2='84' y2='444' stroke="#000000" stroke-width="1" fill="none"/>	
+	<polyline points="74,444 74,395 130,395" stroke="#000000" stroke-width="1" fill="none"/>
+	<circle cx="74" cy='444' r='2' stroke="#000000" stroke-width="1" fill="#000000"/>
+	<polyline points="74,444 74,495 130,495" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="50,365 50,430 130,430" stroke="#000000" stroke-width="1" fill="none"/>
+	<circle cx="50" cy='430' r='2' stroke="#000000" stroke-width="1" fill="#000000"/>	
+	<polyline points="50,430 50,480 130,480" stroke="#000000" stroke-width="1" fill="none"/>
+	<path d="M300,200 Q320,200 330,212 M300,225 Q320,225 330,212 M300,200 A15,15 0 0 1 300,225" stroke="#000000" stroke-width="1" fill="none"/>
+	<path d="M295,200 A15,15 0 0 1 295,225" stroke="#000000" stroke-width="1" fill="none"/>
+	<path d="M380,195 Q400,195 410,207 M380,220 Q400,220 410,207 M380,195 A15,15 0 0 1 380,220" stroke="#000000" stroke-width="1" fill="none"/>
+	<path d="M375,195 A15,15 0 0 1 375,220" stroke="#000000" stroke-width="1" fill="none"/>
+	<path d="M450,200 H470 A10,10 0 0 1 465,225 H450 z" stroke="#000000" stroke-width="1" fill="none"/>
+	<g transform="translate(10)">
+		<path d="M260,270 V290 A10,10 0 0 0 285,290 V270 z" stroke="#000000" stroke-width="1" fill="none"/>	
+		<path d="M340,270 V290 A10,10 0 0 0 365,290 V270 z" stroke="#000000" stroke-width="1" fill="none"/>
+		<path d="M290,370 Q290,390 305,400 M320,370 Q320,390 305,400 M290,370 A20,20 0 0 0 320,370" stroke="#000000" stroke-width="1" fill="none"/>	
+	</g>
+	<line x1='290' y1='240' x2='290' y2='270' stroke="#000000" stroke-width="1" fill="none"/>
+	<line x1='283' y1='220' x2='283' y2='270' stroke="#000000" stroke-width="1" fill="none"/>
+	<line x1='275' y1='205' x2='275' y2='270' stroke="#000000" stroke-width="1" fill="none"/>
+	<circle cx="290" cy='240' r='2' stroke="#000000" stroke-width="1" fill="#000000"/>
+	<circle cx="283" cy='220' r='2' stroke="#000000" stroke-width="1" fill="#000000"/>
+	<circle cx="275" cy='205' r='2' stroke="#000000" stroke-width="1" fill="#000000"/>
+	<line x1='371' y1='240' x2='371' y2='270' stroke="#000000" stroke-width="1" fill="none"/>
+	<line x1='364' y1='212' x2='364' y2='270' stroke="#000000" stroke-width="1" fill="none"/>
+	<line x1='357' y1='15' x2='357' y2='270' stroke="#000000" stroke-width="1" fill="none"/>
+	<circle cx="371" cy='240' r='2' stroke="#000000" stroke-width="1" fill="#000000"/>
+	<circle cx="364" cy='212' r='2' stroke="#000000" stroke-width="1" fill="#000000"/>
+	<polyline points="283,302 283,330 307,330 307,374" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="363,302 363,330 323,330 323,374" stroke="#000000" stroke-width="1" fill="none"/>
+	<line x1='315' y1='399' x2='315' y2='490' stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="479,212 495,212 495,97 523,97" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="309,45 495,45 495,79 523,79" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="309,95 405,95 405,85 526,85" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="309,145 435,145 435,91 525,91" stroke="#000000" stroke-width="1" fill="none"/>
+	<line x1='550' y1='87' x2='600' y2='87' stroke="#000000" stroke-width="1" fill="none"/>
+	<line x1='356' y1='200' x2='384' y2='200' stroke="#000000" stroke-width="1" fill="none"/>
+	<circle cx="357" cy='200' r='2' stroke="#000000" stroke-width="1" fill="#000000"/>
+	<text id="out_p" x="330" y="500" stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>
+	<text onclick="func_input('idA','idB','en_A','en_B','inv_A','f0','f1','out_p','input_p','result','summa')"  id="input_p" x="365" y="20" stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>
+	<text id="result" x="570" y="80" stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>	
+	<text id="summa" x="500" y="210" stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>
+	<rect x="163" y="20" height="140" width="153" stroke="#000000" fill="none" stroke-width="1" stroke-dasharray="1"/> 
+	<text x="163" y="15" stroke="none" stroke-width="1" fill="#000000" font-size="12">Логическое устройство</text>
+	<rect x="6" y="320" height="185" width="170" stroke="#000000" fill="none" stroke-width="1" stroke-dasharray="1"/>
+	<text x="60" y="315" stroke="none" stroke-width="1" fill="#000000" font-size="12">Декодер</text>
+	<text x="40" y="265" stroke="none" stroke-width="1" fill="#000000" font-size="12">Линии разрешения</text>	
+	<line x1="175" y1="260" x2="220" y2="246" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)" />	
+	<line x1="175" y1="260" x2="225" y2="260" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)" />
+	<line x1="175" y1="260" x2="227" y2="274" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)" />
+	<rect x="260" y="190" height="230" width="230" stroke="#000000" fill="none" stroke-width="1" stroke-dasharray="1"/>
+	<text x="360" y="350" stroke="none" stroke-width="1" fill="#000000" font-size="12">Полный сумматор</text>	
+<text x="30" y="550" stroke="none" fill="#000000" font-size="14" font-family="serif">Рис. 7.5.8. Арифметико-логическое устройство</text>
+</svg>
+
+<p><span class='teorema'>Представленная на рис. 7.5.7 одноразрядная схема называется разрядной микропроцессорной секцией.</span> Такие секции используют для построения арифметико-логических устройств любой разрядности. На рисунке <a id='ris7.5.9'>7.5.9</a> показана схема восьмиразрядного арифметико-логического устройства:</p>
+<svg  height = "210px"  width = "890px">
+<defs>
+    <marker id="Triangle"
+      viewBox="0 0 10 10" refX="0" refY="5" 
+      markerUnits="strokeWidth"
+      markerWidth="8" markerHeight="8"
+      orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" />
+    </marker>
+    
+    
+ </defs>
+	<text x='7' y='90' stroke="none" stroke-width="1" fill="#000000" font-size="12">F<tspan dy="7">1</tspan></text>
+	<text x='7' y='110' stroke="none" stroke-width="1" fill="#000000" font-size="12">F<tspan dy="7">0</tspan></text>
+	<text x='65' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">A<tspan dy="7">7</tspan></text>	
+	<text x='100' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">B<tspan dy="7">7</tspan></text>	
+	<line x1="70" y1="38" x2="70" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<line x1="103" y1="38" x2="103" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<rect x="60" y="70" width="50" height="50" stroke="#000000" stroke-width="1" fill="none"/>
+	<line x1="25" y1="85" x2="40" y2="85" stroke="#000000" stroke-width="1" fill="none" />
+	<line x1="25" y1="104" x2="40" y2="104" stroke="#000000" stroke-width="1" fill="none" />  
+	<text x='65' y='90' stroke="none" stroke-width="1" fill="#000000" font-size="12">АЛУ на <tspan dx="-45" dy="16"> 1 бит</tspan></text>
+	<line x1="85" y1="120" x2="85" y2="140" stroke="#000000" stroke-width="1" fill="none" />
+	<text x='80' y='155' stroke="none" stroke-width="1" fill="#000000" font-size="12">O<tspan dy="7">7</tspan></text>	
+	<text x='165' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">A<tspan dy="7">6</tspan></text>	
+	<text x='200' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">B<tspan dy="7">6</tspan></text>	
+	<line x1="170" y1="38" x2="170" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<line x1="203" y1="38" x2="203" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<rect x="160" y="70" width="50" height="50" stroke="#000000" stroke-width="1" fill="none"/>
+	<text x='165' y='90' stroke="none" stroke-width="1" fill="#000000" font-size="12">АЛУ на <tspan dx="-45" dy="16"> 1 бит</tspan></text>
+	<line x1="185" y1="120" x2="185" y2="140" stroke="#000000" stroke-width="1" fill="none" />
+	<text x='180' y='155' stroke="none" stroke-width="1" fill="#000000" font-size="12">O<tspan dy="7">6</tspan></text>
+	<text x='265' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">A<tspan dy="7">5</tspan></text>	
+	<text x='300' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">B<tspan dy="7">5</tspan></text>	
+	<line x1="270" y1="38" x2="270" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<line x1="303" y1="38" x2="303" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<rect x="260" y="70" width="50" height="50" stroke="#000000" stroke-width="1" fill="none"/>
+	<text x='265' y='90' stroke="none" stroke-width="1" fill="#000000" font-size="12">АЛУ на <tspan dx="-45" dy="16"> 1 бит</tspan></text>
+	<line x1="285" y1="120" x2="285" y2="140" stroke="#000000" stroke-width="1" fill="none" />
+	<text x='280' y='155' stroke="none" stroke-width="1" fill="#000000" font-size="12">O<tspan dy="7">5</tspan></text>
+	<text x='265' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">A<tspan dy="7">5</tspan></text>	
+	<text x='300' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">B<tspan dy="7">5</tspan></text>	
+	<line x1="270" y1="38" x2="270" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<line x1="303" y1="38" x2="303" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<text x='365' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">A<tspan dy="7">4</tspan></text>	
+	<text x='400' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">B<tspan dy="7">4</tspan></text>	
+	<line x1="370" y1="38" x2="370" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<line x1="403" y1="38" x2="403" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<text x='465' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">A<tspan dy="7">3</tspan></text>	
+	<text x='500' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">B<tspan dy="7">3</tspan></text>	
+	<line x1="470" y1="38" x2="470" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<line x1="503" y1="38" x2="503" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<rect x="360" y="70" width="50" height="50" stroke="#000000" stroke-width="1" fill="none"/>
+	<text x='365' y='90' stroke="none" stroke-width="1" fill="#000000" font-size="12">АЛУ на <tspan dx="-45" dy="16"> 1 бит</tspan></text>
+	<line x1="385" y1="120" x2="385" y2="140" stroke="#000000" stroke-width="1" fill="none" />
+	<text x='380' y='155' stroke="none" stroke-width="1" fill="#000000" font-size="12">O<tspan dy="7">4</tspan></text>
+	<text x='565' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">A<tspan dy="7">2</tspan></text>	
+	<text x='600' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">B<tspan dy="7">2</tspan></text>	
+	<line x1="570" y1="38" x2="570" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<line x1="603" y1="38" x2="603" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<rect x="460" y="70" width="50" height="50" stroke="#000000" stroke-width="1" fill="none"/>
+	<text x='465' y='90' stroke="none" stroke-width="1" fill="#000000" font-size="12">АЛУ на <tspan dx="-45" dy="16"> 1 бит</tspan></text>
+	<line x1="485" y1="120" x2="485" y2="140" stroke="#000000" stroke-width="1" fill="none" />
+	<text x='480' y='155' stroke="none" stroke-width="1" fill="#000000" font-size="12">O<tspan dy="7">3</tspan></text>
+	<rect x="560" y="70" width="50" height="50" stroke="#000000" stroke-width="1" fill="none"/>
+	<text x='565' y='90' stroke="none" stroke-width="1" fill="#000000" font-size="12">АЛУ на <tspan dx="-45" dy="16"> 1 бит</tspan></text>
+	<line x1="585" y1="120" x2="585" y2="140" stroke="#000000" stroke-width="1" fill="none" />
+	<text x='580' y='155' stroke="none" stroke-width="1" fill="#000000" font-size="12">O<tspan dy="7">2</tspan></text>
+	<text x='665' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">A<tspan dy="7">1</tspan></text>	
+	<text x='700' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">B<tspan dy="7">1</tspan></text>	
+	<line x1="670" y1="38" x2="670" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<line x1="703" y1="38" x2="703" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<rect x="660" y="70" width="50" height="50" stroke="#000000" stroke-width="1" fill="none"/>
+	<text x='665' y='90' stroke="none" stroke-width="1" fill="#000000" font-size="12">АЛУ на <tspan dx="-45" dy="16"> 1 бит</tspan></text>
+	<line x1="685" y1="120" x2="685" y2="140" stroke="#000000" stroke-width="1" fill="none" />
+	<text x='680' y='155' stroke="none" stroke-width="1" fill="#000000" font-size="12">O<tspan dy="7">1</tspan></text>
+	<text x='765' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">A<tspan dy="7">0</tspan></text>	
+	<text x='800' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">B<tspan dy="7">0</tspan></text>	
+	<line x1="770" y1="38" x2="770" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<line x1="803" y1="38" x2="803" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<rect x="760" y="70" width="50" height="50" stroke="#000000" stroke-width="1" fill="none"/>
+	<text x='765' y='90' stroke="none" stroke-width="1" fill="#000000" font-size="12">АЛУ на <tspan dx="-45" dy="16"> 1 бит</tspan></text>
+	<line x1="785" y1="120" x2="785" y2="140" stroke="#000000" stroke-width="1" fill="none" />
+	<text x='780' y='155' stroke="none" stroke-width="1" fill="#000000" font-size="12">O<tspan dy="7">0</tspan></text>
+	<line x1="855" y1="95" x2="820" y2="95" stroke="#000000" stroke-width="1" fill="none"/>
+	<text x='860' y='100' stroke="none" stroke-width="1" fill="#000000" font-size="12">INC</text>	
+	<line x1="760" y1="95" x2="720" y2="95" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+	<line x1="660" y1="95" x2="620" y2="95" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+	<line x1="560" y1="95" x2="520" y2="95" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+	<line x1="460" y1="95" x2="420" y2="95" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+	<line x1="360" y1="95" x2="320" y2="95" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>	
+	<line x1="260" y1="95" x2="220" y2="95" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>	
+	<line x1="160" y1="95" x2="120" y2="95" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>	
+	<rect x="40" y="50" width="780" height="80" stroke="#000000" stroke-width="1" fill="none"/>	
+	<text x='200' y='180' stroke="none" stroke-width="1" fill="#000000" font-size="14">Рис. 7.5.9. Восьмиразрядное арифметико-логическое устройство</text>	
+</svg>
+<p>Сигнал INC (инкримент) нужен только для увеличения операнда на 1 (вычисления таких сумм, как
+<math display='inline'>
+<mrow><mi>A</mi><mo>+</mo><mn></mn>1</mrow>
+</math>,
+<math display='inline'>
+<mrow><mi>A</mi><mo>+</mo><mi>B</mi><mo>+</mo><mn></mn>1</mrow>
+</math>).
+</p>
+<p><a id='ia_alu'>Ниже представлена интерактивная схема восьмиразрядного арифметико-логического устройства</a>:</p>
+<svg  height = "190px"  width = "890px">
+<script>
+function funcA0r8(A0r8,B0r8,A1r8,B1r8,A2r8,B2r8,A3r8,B3r8,A4r8,B4r8,A5r8,B5r8,A6r8,B6r8,A7r8,B7r8,O0r8,O1r8,O2r8,O3r8,O4r8,O5r8,O6r8,O7r8,P0r8,P1r8,P2r8,P3r8,P4r8,P5r8,P6r8,P7r8) {
+var A0r8=document.getElementById(A0r8);
+	if (A0r8.firstChild.nodeValue=='0') 
+  		A0r8.firstChild.nodeValue='1';
+   else   	 		
+  	  	A0r8.firstChild.nodeValue='0';
+  	sum('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8','P0r8','P1r8','P2r8','P3r8','P4r8','P5r8','P6r8','P7r8');  	
+}
+function funcA1r8(A0r8,B0r8,A1r8,B1r8,A2r8,B2r8,A3r8,B3r8,A4r8,B4r8,A5r8,B5r8,A6r8,B6r8,A7r8,B7r8,O0r8,O1r8,O2r8,O3r8,O4r8,O5r8,O6r8,O7r8,P0r8,P1r8,P2r8,P3r8,P4r8,P5r8,P6r8,P7r8) {
+var A1r8=document.getElementById(A1r8);
+	if (A1r8.firstChild.nodeValue=='0') 
+  		A1r8.firstChild.nodeValue='1';
+   else   	 		
+  	  	A1r8.firstChild.nodeValue='0';
+  	 sum('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8','P0r8','P1r8','P2r8','P3r8','P4r8','P5r8','P6r8','P7r8'); 	
+}
+function funcA2r8(A0r8,B0r8,A1r8,B1r8,A2r8,B2r8,A3r8,B3r8,A4r8,B4r8,A5r8,B5r8,A6r8,B6r8,A7r8,B7r8,O0r8,O1r8,O2r8,O3r8,O4r8,O5r8,O6r8,O7r8,P0r8,P1r8,P2r8,P3r8,P4r8,P5r8,P6r8,P7r8) {
+var A2r8=document.getElementById(A2r8);
+	if (A2r8.firstChild.nodeValue=='0') 
+  		A2r8.firstChild.nodeValue='1';
+   else   	 		
+  	  	A2r8.firstChild.nodeValue='0';
+	sum('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8','P0r8','P1r8','P2r8','P3r8','P4r8','P5r8','P6r8','P7r8');
+}
+function funcA3r8(A0r8,B0r8,A1r8,B1r8,A2r8,B2r8,A3r8,B3r8,A4r8,B4r8,A5r8,B5r8,A6r8,B6r8,A7r8,B7r8,O0r8,O1r8,O2r8,O3r8,O4r8,O5r8,O6r8,O7r8,P0r8,P1r8,P2r8,P3r8,P4r8,P5r8,P6r8,P7r8) {
+var A3r8=document.getElementById(A3r8);
+	if (A3r8.firstChild.nodeValue=='0') 
+  		A3r8.firstChild.nodeValue='1';
+   else   	 		
+  	  	A3r8.firstChild.nodeValue='0';
+	sum('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8','P0r8','P1r8','P2r8','P3r8','P4r8','P5r8','P6r8','P7r8');
+}
+function funcA4r8(A0r8,B0r8,A1r8,B1r8,A2r8,B2r8,A3r8,B3r8,A4r8,B4r8,A5r8,B5r8,A6r8,B6r8,A7r8,B7r8,O0r8,O1r8,O2r8,O3r8,O4r8,O5r8,O6r8,O7r8,P0r8,P1r8,P2r8,P3r8,P4r8,P5r8,P6r8,P7r8) {
+var A4r8=document.getElementById(A4r8);
+	if (A4r8.firstChild.nodeValue=='0') 
+  		A4r8.firstChild.nodeValue='1';
+   else   	 		
+  	  	A4r8.firstChild.nodeValue='0';
+	sum('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8','P0r8','P1r8','P2r8','P3r8','P4r8','P5r8','P6r8','P7r8');
+}
+function funcA5r8(A0r8,B0r8,A1r8,B1r8,A2r8,B2r8,A3r8,B3r8,A4r8,B4r8,A5r8,B5r8,A6r8,B6r8,A7r8,B7r8,O0r8,O1r8,O2r8,O3r8,O4r8,O5r8,O6r8,O7r8,P0r8,P1r8,P2r8,P3r8,P4r8,P5r8,P6r8,P7r8) {
+var A5r8=document.getElementById(A5r8);
+	if (A5r8.firstChild.nodeValue=='0') 
+  		A5r8.firstChild.nodeValue='1';
+   else   	 		
+  	  	A5r8.firstChild.nodeValue='0';
+	sum('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8','P0r8','P1r8','P2r8','P3r8','P4r8','P5r8','P6r8','P7r8');
+}
+
+function funcA6r8(A0r8,B0r8,A1r8,B1r8,A2r8,B2r8,A3r8,B3r8,A4r8,B4r8,A5r8,B5r8,A6r8,B6r8,A7r8,B7r8,O0r8,O1r8,O2r8,O3r8,O4r8,O5r8,O6r8,O7r8,P0r8,P1r8,P2r8,P3r8,P4r8,P5r8,P6r8,P7r8) {
+var A6r8=document.getElementById(A6r8);
+	if (A6r8.firstChild.nodeValue=='0') 
+  		A6r8.firstChild.nodeValue='1';
+   else   	 		
+  	  	A6r8.firstChild.nodeValue='0';
+	sum('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8','P0r8','P1r8','P2r8','P3r8','P4r8','P5r8','P6r8','P7r8');
+}
+function funcA7r8(A0r8,B0r8,A1r8,B1r8,A2r8,B2r8,A3r8,B3r8,A4r8,B4r8,A5r8,B5r8,A6r8,B6r8,A7r8,B7r8,O0r8,O1r8,O2r8,O3r8,O4r8,O5r8,O6r8,O7r8,P0r8,P1r8,P2r8,P3r8,P4r8,P5r8,P6r8,P7r8) {
+var A7r8=document.getElementById(A7r8);
+	if (A7r8.firstChild.nodeValue=='0') 
+  		A7r8.firstChild.nodeValue='1';
+   else   	 		
+  	  	A7r8.firstChild.nodeValue='0';
+	sum('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8','P0r8','P1r8','P2r8','P3r8','P4r8','P5r8','P6r8','P7r8');
+}
+
+function funcB0r8(A0r8,B0r8,A1r8,B1r8,A2r8,B2r8,A3r8,B3r8,A4r8,B4r8,A5r8,B5r8,A6r8,B6r8,A7r8,B7r8,O0r8,O1r8,O2r8,O3r8,O4r8,O5r8,O6r8,O7r8,P0r8,P1r8,P2r8,P3r8,P4r8,P5r8,P6r8,P7r8) {
+var B0r8=document.getElementById(B0r8);
+	if (B0r8.firstChild.nodeValue=='0') 
+  		B0r8.firstChild.nodeValue='1';
+   else   	 		
+  	  	B0r8.firstChild.nodeValue='0';
+  	sum('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8','P0r8','P1r8','P2r8','P3r8','P4r8','P5r8','P6r8','P7r8');  	
+}
+function funcB1r8(A0r8,B0r8,A1r8,B1r8,A2r8,B2r8,A3r8,B3r8,A4r8,B4r8,A5r8,B5r8,A6r8,B6r8,A7r8,B7r8,O0r8,O1r8,O2r8,O3r8,O4r8,O5r8,O6r8,O7r8,P0r8,P1r8,P2r8,P3r8,P4r8,P5r8,P6r8,P7r8) {
+var B1r8=document.getElementById(B1r8);
+if (B1r8.firstChild.nodeValue=='0') 
+  		B1r8.firstChild.nodeValue='1';
+   else   	 		
+  	  	B1r8.firstChild.nodeValue='0';
+	sum('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8','P0r8','P1r8','P2r8','P3r8','P4r8','P5r8','P6r8','P7r8');
+}
+function funcB2r8(A0r8,B0r8,A1r8,B1r8,A2r8,B2r8,A3r8,B3r8,A4r8,B4r8,A5r8,B5r8,A6r8,B6r8,A7r8,B7r8,O0r8,O1r8,O2r8,O3r8,O4r8,O5r8,O6r8,O7r8,P0r8,P1r8,P2r8,P3r8,P4r8,P5r8,P6r8,P7r8) {
+var B2r8=document.getElementById(B2r8);
+	if (B2r8.firstChild.nodeValue=='0') 
+  		B2r8.firstChild.nodeValue='1';
+   else   	 		
+  	  	B2r8.firstChild.nodeValue='0';
+	sum('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8','P0r8','P1r8','P2r8','P3r8','P4r8','P5r8','P6r8','P7r8');
+}
+function funcB3r8(A0r8,B0r8,A1r8,B1r8,A2r8,B2r8,A3r8,B3r8,A4r8,B4r8,A5r8,B5r8,A6r8,B6r8,A7r8,B7r8,O0r8,O1r8,O2r8,O3r8,O4r8,O5r8,O6r8,O7r8,P0r8,P1r8,P2r8,P3r8,P4r8,P5r8,P6r8,P7r8) {
+var B3r8=document.getElementById(B3r8);
+	if (B3r8.firstChild.nodeValue=='0') 
+  		B3r8.firstChild.nodeValue='1';
+   else   	 		
+  	  	B3r8.firstChild.nodeValue='0';
+	sum('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8','P0r8','P1r8','P2r8','P3r8','P4r8','P5r8','P6r8','P7r8');
+}
+function funcB4r8(A0r8,B0r8,A1r8,B1r8,A2r8,B2r8,A3r8,B3r8,A4r8,B4r8,A5r8,B5r8,A6r8,B6r8,A7r8,B7r8,O0r8,O1r8,O2r8,O3r8,O4r8,O5r8,O6r8,O7r8,P0r8,P1r8,P2r8,P3r8,P4r8,P5r8,P6r8,P7r8) {
+var B4r8=document.getElementById(B4r8);
+	if (B4r8.firstChild.nodeValue=='0') 
+  		B4r8.firstChild.nodeValue='1';
+   else   	 		
+  	  	B4r8.firstChild.nodeValue='0';
+	sum('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8','P0r8','P1r8','P2r8','P3r8','P4r8','P5r8','P6r8','P7r8');
+}
+function funcB5r8(A0r8,B0r8,A1r8,B1r8,A2r8,B2r8,A3r8,B3r8,A4r8,B4r8,A5r8,B5r8,A6r8,B6r8,A7r8,B7r8,O0r8,O1r8,O2r8,O3r8,O4r8,O5r8,O6r8,O7r8,P0r8,P1r8,P2r8,P3r8,P4r8,P5r8,P6r8,P7r8) {
+var B5r8=document.getElementById(B5r8);
+	if (B5r8.firstChild.nodeValue=='0') 
+  		B5r8.firstChild.nodeValue='1';
+   else   	 		
+  	  	B5r8.firstChild.nodeValue='0';
+	sum('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8','P0r8','P1r8','P2r8','P3r8','P4r8','P5r8','P6r8','P7r8');
+}
+
+function funcB6r8(A0r8,B0r8,A1r8,B1r8,A2r8,B2r8,A3r8,B3r8,A4r8,B4r8,A5r8,B5r8,A6r8,B6r8,A7r8,B7r8,O0r8,O1r8,O2r8,O3r8,O4r8,O5r8,O6r8,O7r8,P0r8,P1r8,P2r8,P3r8,P4r8,P5r8,P6r8,P7r8) {
+var B6r8=document.getElementById(B6r8);
+if (B6r8.firstChild.nodeValue=='0') 
+  		B6r8.firstChild.nodeValue='1';
+   else   	 		
+  	  	B6r8.firstChild.nodeValue='0';
+	sum('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8','P0r8','P1r8','P2r8','P3r8','P4r8','P5r8','P6r8','P7r8');
+}
+function funcB7r8(A0r8,B0r8,A1r8,B1r8,A2r8,B2r8,A3r8,B3r8,A4r8,B4r8,A5r8,B5r8,A6r8,B6r8,A7r8,B7r8,O0r8,O1r8,O2r8,O3r8,O4r8,O5r8,O6r8,O7r8,P0r8,P1r8,P2r8,P3r8,P4r8,P5r8,P6r8,P7r8) {
+var B7r8=document.getElementById(B7r8);	
+	if (B7r8.firstChild.nodeValue=='0') 
+  		B7r8.firstChild.nodeValue='1';
+   else   	 		
+  	  	B7r8.firstChild.nodeValue='0';
+	sum('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8','P0r8','P1r8','P2r8','P3r8','P4r8','P5r8','P6r8','P7r8');
+}
+function sum(A0r8,B0r8,A1r8,B1r8,A2r8,B2r8,A3r8,B3r8,A4r8,B4r8,A5r8,B5r8,A6r8,B6r8,A7r8,B7r8,O0r8,O1r8,O2r8,O3r8,O4r8,O5r8,O6r8,O7r8,P0r8,P1r8,P2r8,P3r8,P4r8,P5r8,P6r8,P7r8) {
+var A0r8=document.getElementById(A0r8),
+	A1r8=document.getElementById(A1r8),
+	A2r8=document.getElementById(A2r8),
+	A3r8=document.getElementById(A3r8),
+	A4r8=document.getElementById(A4r8),
+	A5r8=document.getElementById(A5r8),
+	A6r8=document.getElementById(A6r8),
+	A7r8=document.getElementById(A7r8),
+	B0r8=document.getElementById(B0r8),
+	B1r8=document.getElementById(B1r8),
+	B2r8=document.getElementById(B2r8),
+	B3r8=document.getElementById(B3r8),
+	B4r8=document.getElementById(B4r8),
+	B5r8=document.getElementById(B5r8),
+	B6r8=document.getElementById(B6r8),
+	B7r8=document.getElementById(B7r8),	
+	O0r8=document.getElementById(O0r8),
+	O1r8=document.getElementById(O1r8),
+	O2r8=document.getElementById(O2r8),
+	O3r8=document.getElementById(O3r8),
+	O4r8=document.getElementById(O4r8),
+	O5r8=document.getElementById(O5r8),
+	O6r8=document.getElementById(O6r8),
+	O7r8=document.getElementById(O7r8),
+	P0r8=document.getElementById(P0r8),
+	P1r8=document.getElementById(P1r8),
+	P2r8=document.getElementById(P2r8),
+	P3r8=document.getElementById(P3r8),
+	P4r8=document.getElementById(P4r8),
+	P5r8=document.getElementById(P5r8),
+	P6r8=document.getElementById(P6r8),
+	P7r8=document.getElementById(P7r8);
+	O0r8.firstChild.nodeValue=calcO(A0r8.firstChild.nodeValue,B0r8.firstChild.nodeValue);
+	P0r8.firstChild.nodeValue=calcP(A0r8.firstChild.nodeValue,B0r8.firstChild.nodeValue);
+	if (P0r8.firstChild.nodeValue=='0') {
+		O1r8.firstChild.nodeValue=calcO(A1r8.firstChild.nodeValue,B1r8.firstChild.nodeValue);
+		P1r8.firstChild.nodeValue=calcP(A1r8.firstChild.nodeValue,B1r8.firstChild.nodeValue);
+	}	
+	else {
+		if (A1r8.firstChild.nodeValue=='0' && B1r8.firstChild.nodeValue=='0') {
+			O1r8.firstChild.nodeValue='1';
+			P1r8.firstChild.nodeValue='0';
+		}
+		else if (A1r8.firstChild.nodeValue=='1' && B1r8.firstChild.nodeValue=='1') {
+					O1r8.firstChild.nodeValue='1';
+					P1r8.firstChild.nodeValue='1';
+			} 
+			else {
+					O1r8.firstChild.nodeValue='0';
+					P1r8.firstChild.nodeValue='1';
+			}		
+	}
+	if (P1r8.firstChild.nodeValue=='0') {
+		O2r8.firstChild.nodeValue=calcO(A2r8.firstChild.nodeValue,B2r8.firstChild.nodeValue);
+		P2r8.firstChild.nodeValue=calcP(A2r8.firstChild.nodeValue,B2r8.firstChild.nodeValue);
+	}	
+	else {
+		if (A2r8.firstChild.nodeValue=='0' && B2r8.firstChild.nodeValue=='0') {
+			O2r8.firstChild.nodeValue='1';
+			P2r8.firstChild.nodeValue='0';
+		}
+		else if (A2r8.firstChild.nodeValue=='1' && B2r8.firstChild.nodeValue=='1') {
+					O2r8.firstChild.nodeValue='1';
+					P2r8.firstChild.nodeValue='1';
+			} 
+			else {
+					O2r8.firstChild.nodeValue='0';
+					P2r8.firstChild.nodeValue='1';
+			}		
+	}
+	if (P2r8.firstChild.nodeValue=='0') {
+		O3r8.firstChild.nodeValue=calcO(A3r8.firstChild.nodeValue,B3r8.firstChild.nodeValue);
+		P3r8.firstChild.nodeValue=calcP(A3r8.firstChild.nodeValue,B3r8.firstChild.nodeValue);
+	}	
+	else {
+		if (A3r8.firstChild.nodeValue=='0' && B3r8.firstChild.nodeValue=='0') {
+			O3r8.firstChild.nodeValue='1';
+			P3r8.firstChild.nodeValue='0';
+		}
+		else if (A3r8.firstChild.nodeValue=='1' && B3r8.firstChild.nodeValue=='1') {
+					O3r8.firstChild.nodeValue='1';
+					P3r8.firstChild.nodeValue='1';
+			} 
+			else {
+					O3r8.firstChild.nodeValue='0';
+					P3r8.firstChild.nodeValue='1';
+			}		
+	}	
+	if (P3r8.firstChild.nodeValue=='0') {
+		O4r8.firstChild.nodeValue=calcO(A4r8.firstChild.nodeValue,B4r8.firstChild.nodeValue);
+		P4r8.firstChild.nodeValue=calcP(A4r8.firstChild.nodeValue,B4r8.firstChild.nodeValue);
+	}	
+	else {
+		if (A4r8.firstChild.nodeValue=='0' && B4r8.firstChild.nodeValue=='0') {
+			O4r8.firstChild.nodeValue='1';
+			P4r8.firstChild.nodeValue='0';
+		}
+		else if (A4r8.firstChild.nodeValue=='1' && B4r8.firstChild.nodeValue=='1') {
+					O4r8.firstChild.nodeValue='1';
+					P4r8.firstChild.nodeValue='1';
+			} 
+			else {
+					O4r8.firstChild.nodeValue='0';
+					P4r8.firstChild.nodeValue='1';
+			}		
+	}		
+	if (P4r8.firstChild.nodeValue=='0') {
+		O5r8.firstChild.nodeValue=calcO(A5r8.firstChild.nodeValue,B5r8.firstChild.nodeValue);
+		P5r8.firstChild.nodeValue=calcP(A5r8.firstChild.nodeValue,B5r8.firstChild.nodeValue);
+	}	
+	else {
+		if (A5r8.firstChild.nodeValue=='0' && B5r8.firstChild.nodeValue=='0') {
+			O5r8.firstChild.nodeValue='1';
+			P5r8.firstChild.nodeValue='0';
+		}
+		else if (A5r8.firstChild.nodeValue=='1' && B5r8.firstChild.nodeValue=='1') {
+					O5r8.firstChild.nodeValue='1';
+					P5r8.firstChild.nodeValue='1';
+			} 
+			else {
+					O5r8.firstChild.nodeValue='0';
+					P5r8.firstChild.nodeValue='1';
+			}		
+	}		
+	if (P5r8.firstChild.nodeValue=='0') {
+		O6r8.firstChild.nodeValue=calcO(A6r8.firstChild.nodeValue,B6r8.firstChild.nodeValue);
+		P6r8.firstChild.nodeValue=calcP(A6r8.firstChild.nodeValue,B6r8.firstChild.nodeValue);
+	}	
+	else {
+		if (A6r8.firstChild.nodeValue=='0' && B6r8.firstChild.nodeValue=='0') {
+			O6r8.firstChild.nodeValue='1';
+			P6r8.firstChild.nodeValue='0';
+		}
+		else if (A6r8.firstChild.nodeValue=='1' && B6r8.firstChild.nodeValue=='1') {
+					O6r8.firstChild.nodeValue='1';
+					P6r8.firstChild.nodeValue='1';
+			} 
+			else {
+					O6r8.firstChild.nodeValue='0';
+					P6r8.firstChild.nodeValue='1';
+			}		
+	}			
+	if (P6r8.firstChild.nodeValue=='0') {
+		O7r8.firstChild.nodeValue=calcO(A7r8.firstChild.nodeValue,B7r8.firstChild.nodeValue);
+		P7r8.firstChild.nodeValue=calcP(A7r8.firstChild.nodeValue,B7r8.firstChild.nodeValue);
+	}	
+	else {
+		if (A7r8.firstChild.nodeValue=='0' && B7r8.firstChild.nodeValue=='0') {
+			O7r8.firstChild.nodeValue='1';
+			P7r8.firstChild.nodeValue='0';
+		}
+		else if (A7r8.firstChild.nodeValue=='1' && B7r8.firstChild.nodeValue=='1') {
+					O7r8.firstChild.nodeValue='1';
+					P7r8.firstChild.nodeValue='1';
+			} 
+			else {
+					O7r8.firstChild.nodeValue='0';
+					P7r8.firstChild.nodeValue='1';
+			}		
+	}			
+}
+function calcinc(O0r8,O1r8,O2r8,O3r8,O4r8,O5r8,O6r8,O7r8,P0r8,P1r8,P2r8,P3r8,P4r8,P5r8,P6r8,P7r8) {
+var O0r8=document.getElementById(O0r8),
+	O1r8=document.getElementById(O1r8),
+	O2r8=document.getElementById(O2r8),
+	O3r8=document.getElementById(O3r8),
+	O4r8=document.getElementById(O4r8),
+	O5r8=document.getElementById(O5r8),
+	O6r8=document.getElementById(O6r8),
+	O7r8=document.getElementById(O7r8),
+	P0r8=document.getElementById(P0r8),
+	P1r8=document.getElementById(P1r8),
+	P2r8=document.getElementById(P2r8),
+	P3r8=document.getElementById(P3r8),
+	P4r8=document.getElementById(P4r8),
+	P5r8=document.getElementById(P5r8),
+	P6r8=document.getElementById(P6r8),
+	P7r8=document.getElementById(P7r8);
+	if (O0r8.firstChild.nodeValue=='0') {
+		O0r8.firstChild.nodeValue='1';
+		P0r8.firstChild.nodeValue='0';
+	}	
+	else	{
+		O0r8.firstChild.nodeValue='0';
+		P0r8.firstChild.nodeValue='1';	
+		if (O1r8.firstChild.nodeValue=='0') {
+			O1r8.firstChild.nodeValue='1';
+			P1r8.firstChild.nodeValue='0';
+		}
+		else {
+			O1r8.firstChild.nodeValue='0';
+			P1r8.firstChild.nodeValue='1';		
+			if (O2r8.firstChild.nodeValue=='0') {
+				O2r8.firstChild.nodeValue='1';
+				P2r8.firstChild.nodeValue='0';
+			}
+			else {
+				O2r8.firstChild.nodeValue='0';
+				P2r8.firstChild.nodeValue='1';
+				if (O3r8.firstChild.nodeValue=='0') {
+					O3r8.firstChild.nodeValue='1';
+					P3r8.firstChild.nodeValue='0';
+				}
+				else {
+					O3r8.firstChild.nodeValue='0';
+					P3r8.firstChild.nodeValue='1';
+					if (O4r8.firstChild.nodeValue=='0') {
+						O4r8.firstChild.nodeValue='1';
+						P4r8.firstChild.nodeValue='0';
+					}
+					else {
+						O4r8.firstChild.nodeValue='0';
+						P4r8.firstChild.nodeValue='1';
+						if (O5r8.firstChild.nodeValue=='0') {
+							O5r8.firstChild.nodeValue='1';
+							P5r8.firstChild.nodeValue='0';
+						}
+						else {
+							O5r8.firstChild.nodeValue='0';
+							P5r8.firstChild.nodeValue='1';
+							if (O6r8.firstChild.nodeValue=='0') {
+								O6r8.firstChild.nodeValue='1';
+								P6r8.firstChild.nodeValue='0';
+							}
+							else {
+								O6r8.firstChild.nodeValue='0';
+								P5r8.firstChild.nodeValue='1';
+								if (O6r8.firstChild.nodeValue=='0') {
+									O7r8.firstChild.nodeValue='1';
+									P7r8.firstChild.nodeValue='0';
+								
+								
+								}
+								else {
+									P7r8.firstChild.nodeValue='1';
+								}							
+							} 						
+						}
+					
+					}				
+				}			
+			
+			}		
+		}		
+	}
+		
+
+}
+
+
+function calcO(a, b) {
+	var c;
+	if ((a=='0' && b=='0') || (a=='1' && b=='1')) 
+		c='0';
+	else
+		c='1';
+	return c;		
+}
+function calcP(a,b) {
+	var p;
+	if (a=='1' && b=='1') 
+		p='1';
+	else
+		p='0';
+	return p;
+}
+</script>
+<defs>
+    <marker id="Triangle"
+      viewBox="0 0 10 10" refX="0" refY="5" 
+      markerUnits="strokeWidth"
+      markerWidth="8" markerHeight="8"
+      orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" />
+    </marker>
+ </defs>
+	<text x='7' y='40' stroke="none" stroke-width="1" fill="#000000" font-size="12">1</text>
+	<text x='7' y='160' stroke="none" stroke-width="1" fill="#000000" font-size="12">1</text>
+	<text onclick="funcA7r8('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8')" id="A7r8" x='65' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>	
+	<text onclick="funcB7r8('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8')" id="B7r8" x='100' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>	
+	<line x1="70" y1="38" x2="70" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<line x1="103" y1="38" x2="103" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<rect x="60" y="70" width="50" height="50" stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points="9,45 9,60 40,60" stroke="#000000" stroke-width="1" fill="none" />
+	<polyline points="9,135 9,120 40,120" stroke="#000000" stroke-width="1" fill="none" />  
+	<text x='65' y='90' stroke="none" stroke-width="1" fill="#000000" font-size="12">АЛУ на <tspan dx="-45" dy="16"> 1 бит</tspan></text>
+	<line x1="85" y1="120" x2="85" y2="140" stroke="#000000" stroke-width="1" fill="none" />
+	<text id="O7r8" x='80' y='155' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>	
+	<text onclick="funcA6r8('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8')" id="A6r8" x='165' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>	
+	<text onclick="funcB6r8('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8')" id="B6r8" x='200' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>	
+	<line x1="170" y1="38" x2="170" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<line x1="203" y1="38" x2="203" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<rect x="160" y="70" width="50" height="50" stroke="#000000" stroke-width="1" fill="none"/>
+	<text x='165' y='90' stroke="none" stroke-width="1" fill="#000000" font-size="12">АЛУ на <tspan dx="-45" dy="16"> 1 бит</tspan></text>
+	<line x1="185" y1="120" x2="185" y2="140" stroke="#000000" stroke-width="1" fill="none" />
+	<text id="O6r8" x='180' y='155' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>
+	<text onclick="funcA5r8('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8')" id="A5r8" x='265' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>	
+	<text onclick="funcB5r8('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8')" id="B5r8" x='300' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>	
+	<line x1="270" y1="38" x2="270" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<line x1="303" y1="38" x2="303" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<rect x="260" y="70" width="50" height="50" stroke="#000000" stroke-width="1" fill="none"/>
+	<text x='265' y='90' stroke="none" stroke-width="1" fill="#000000" font-size="12">АЛУ на <tspan dx="-45" dy="16"> 1 бит</tspan></text>
+	<line x1="285" y1="120" x2="285" y2="140" stroke="#000000" stroke-width="1" fill="none" />
+	<text id="O5r8" x='280' y='155' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>
+	<text onclick="funcA4r8('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8')" id="A4r8" x='365' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>	
+	<text onclick="funcB4r8('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8')" id="B4r8" x='400' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>	
+	<line x1="370" y1="38" x2="370" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<line x1="403" y1="38" x2="403" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<text onclick="funcA3r8('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8')" id="A3r8" x='465' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>	
+	<text onclick="funcB3r8('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8')" id="B3r8" x='500' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>	
+	<line x1="470" y1="38" x2="470" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<line x1="503" y1="38" x2="503" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<rect x="360" y="70" width="50" height="50" stroke="#000000" stroke-width="1" fill="none"/>
+	<text x='365' y='90' stroke="none" stroke-width="1" fill="#000000" font-size="12">АЛУ на <tspan dx="-45" dy="16"> 1 бит</tspan></text>
+	<line x1="385" y1="120" x2="385" y2="140" stroke="#000000" stroke-width="1" fill="none" />
+	<text id="O4r8" x='380' y='155' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>
+	<text onclick="funcA2r8('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8')" id="A2r8" x='565' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>	
+	<text onclick="funcB2r8('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8')" id="B2r8" x='600' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>	
+	<line x1="570" y1="38" x2="570" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<line x1="603" y1="38" x2="603" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<rect x="460" y="70" width="50" height="50" stroke="#000000" stroke-width="1" fill="none"/>
+	<text x='465' y='90' stroke="none" stroke-width="1" fill="#000000" font-size="12">АЛУ на <tspan dx="-45" dy="16"> 1 бит</tspan></text>
+	<line x1="485" y1="120" x2="485" y2="140" stroke="#000000" stroke-width="1" fill="none" />
+	<text id="O3r8" x='480' y='155' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>
+	<rect x="560" y="70" width="50" height="50" stroke="#000000" stroke-width="1" fill="none"/>
+	<text x='565' y='90' stroke="none" stroke-width="1" fill="#000000" font-size="12">АЛУ на <tspan dx="-45" dy="16"> 1 бит</tspan></text>
+	<line x1="585" y1="120" x2="585" y2="140" stroke="#000000" stroke-width="1" fill="none" />
+	<text id="O2r8" x='580' y='155' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>
+	<text onclick="funcA1r8('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8')" id="A1r8" x='665' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>	
+	<text onclick="funcB1r8('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8')" id="B1r8" x='700' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>	
+	<line x1="670" y1="38" x2="670" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<line x1="703" y1="38" x2="703" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<rect x="660" y="70" width="50" height="50" stroke="#000000" stroke-width="1" fill="none"/>
+	<text x='665' y='90' stroke="none" stroke-width="1" fill="#000000" font-size="12">АЛУ на <tspan dx="-45" dy="16"> 1 бит</tspan></text>
+	<line x1="685" y1="120" x2="685" y2="140" stroke="#000000" stroke-width="1" fill="none" />
+	<text id="O1r8" x='680' y='155' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>
+	<text onclick="funcA0r8('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8')" id="A0r8" x='765' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>	
+	<text onclick="funcB0r8('A0r8','B0r8','A1r8','B1r8','A2r8','B2r8','A3r8','B3r8','A4r8','B4r8','A5r8','B5r8','A6r8','B6r8','A7r8','B7r8','O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8')" id="B0r8" x='800' y='25' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>	
+	<text id="P0r8" x='730' y='90' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>
+	<text id="P1r8" x='630' y='90' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>
+	<text id="P2r8" x='530' y='90' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>
+	<text id="P3r8" x='430' y='90' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>
+	<text id="P4r8" x='330' y='90' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>
+	<text id="P5r8" x='230' y='90' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>
+	<text id="P6r8" x='130' y='90' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>
+	<text id="P7r8" x='20' y='90' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>	
+	<line x1="770" y1="38" x2="770" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<line x1="803" y1="38" x2="803" y2="70" stroke="#000000" stroke-width="1" fill="none" />	
+	<rect x="760" y="70" width="50" height="50" stroke="#000000" stroke-width="1" fill="none"/>
+	<text x='765' y='90' stroke="none" stroke-width="1" fill="#000000" font-size="12">АЛУ на <tspan dx="-45" dy="16"> 1 бит</tspan></text>
+	<line x1="785" y1="120" x2="785" y2="140" stroke="#000000" stroke-width="1" fill="none" />
+	<text id="O0r8" x='780' y='155' stroke="none" stroke-width="1" fill="#000000" font-size="12">0</text>
+	<line x1="855" y1="95" x2="820" y2="95" stroke="#000000" stroke-width="1" fill="none"/>
+	<text onclick="calcinc('O0r8','O1r8','O2r8','O3r8','O4r8','O5r8','O6r8','O7r8','P0r8','P1r8','P2r8','P3r8','P4r8','P5r8','P6r8','P7r8')" id="incr8" x='860' y='95' stroke="none" stroke-width="1" fill="#000000" font-size="12">INC</text>
+	<line x1="760" y1="95" x2="720" y2="95" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+	<line x1="660" y1="95" x2="620" y2="95" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+	<line x1="560" y1="95" x2="520" y2="95" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+	<line x1="460" y1="95" x2="420" y2="95" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+	<line x1="360" y1="95" x2="320" y2="95" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>	
+	<line x1="260" y1="95" x2="220" y2="95" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>	
+	<line x1="160" y1="95" x2="120" y2="95" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>	
+	<line x1="60" y1="95" x2="20" y2="95" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+	<rect x="40" y="50" width="780" height="80" stroke="#000000" stroke-width="1" fill="none"/>	
+<text x='200' y='180' stroke="none" stroke-width="1" fill="#000000" font-size="14">Рис. 7.5.10. Восьмиразрядное арифметико-логическое устройство</text>
+</svg>
+<h3>Упражнения</h3>
+<ol>
+<li>Шестнадцатиразрядный <a href='#summator'>сумматор</a> представляет собой четыре связанных между собой четырехразрядных сумматоров. Сколько выводов должен содержать каждый четырехразрядный сумматор?</li>
+<li>Связав между собой четыре четырехразрядных сумматора, можно получить шестнадцатиразрядный сумматор. Сколько выводов должен содержать каждый четырехразрядный сумматор?</li>
+<li>n-разрядный сумматор можно получить путем каскадного объединения <math display='inline'><mi>n</mi></math> полных сумматоров, причем перенос в стадию <math display='inline'><mi>i</mi></math>, который обозначим 
+<math display='inline'>
+<msub><mi>C</mi><mi>i</mi></msub>
+</math>,
+ получается из результата вычисления на стадии
+ <math display='inline'>
+<mrow><mi>i</mi><mo>-</mo><mn>1</mn></mrow>
+</math>
+. Перенос
+<math display='inline'>
+<msub><mi>C</mi><mn>0</mn></msub>
+</math>
+ в стадию 0 равен 0. Если вычисление суммы и переноса на каждой стадии составляет
+ <math display='inline'><mi>T</mi></math>
+  нс, то перенос в стадию <math display='inline'><mi>i</mi></math> будет вычислен только через 
+<math display='inline'><mi>i</mi><mo>&#x2062;</mo><mi>T</mi></math>  
+нс после начала суммирования. При большом
+<math display='inline'><mi>n</mi></math>
+ до вычисления переноса в последнюю стадию может пройти очень много времени. Разработайте сумматор, который работает быстрее. Подсказка: каждый перенос    
+<math display='inline'>
+<msub><mi>C</mi><mi>i</mi></msub>
+</math> можно выразить через операнды (биты) 
+<math display='inline'>
+<msub><mi>A</mi><mrow><mi>i</mi><mo>-</mo><mn>1</mn></mrow></msub>
+</math> и
+<math display='inline'>
+<msub>
+	<mi>B</mi>
+	<mrow>
+		<mi>i</mi><mo>-</mo><mn>1</mn>
+	</mrow>
+</msub>
+</math>, так же, как и перенос  
+<math display='inline'>
+<msub>
+	<mi>C</mi>
+	<mrow>
+		<mi>i</mi><mo>-</mo><mn>1</mn>
+	</mrow>
+</msub>
+</math>. Использовав это соотношение, 
+<math display='inline'>
+<msub><mi>C</mi><mi>i</mi></msub>
+</math>
+можно выразить как функцию от входных сигналов на стадии от 0 до 
+<math display='inline'>
+	<mi>n</mi><mo>-</mo><mn>1</mn>
+</math>, так что все переносы можно будет генерировать одновременно.
+  </li>
+<li>Если все вентили на рис. 7.5.7 имеют задержку на прохождение сигнала в 1 нс, а все прочие задержки не учитываются, сколько потребуется (минимум) времени на получение достоверного выходного сигнала?</li>
+<li>Арифметико-логическое устройство, изображенное на <a href='#ris7.5.9'>рис. 7.5.9</a>, способно выполнять сложение восьмиразрядных двоичных чисел. Может ли оно выполнять вычитание двоичных чисел? Если да, то объясните, как. Если нет, преобразуйте схему таким образом, чтобы она могла вычитать.</li>
+<li>Шестнадцатиразрядное арифметико-логическое устройство собирается из шестнадцати одноразрядных арифметико-логических устройств, каждое из которых тратит на суммирование 10 нс. Если задержка на прохождение сигнала от одного арифметико-логического устройства к другому составляет 1 нс, сколько времени потребуется для получения конечного результата?</li>
+<li>Иногда требуется, чтобы восьмиразрядное арифметико-логическое устройство выдавало на выходе константу 
+<math display='inline'><mo>-</mo><mn>1</mn></math>. 
+Предложите два различных способа того, как это сделать. Для каждого способа определите значения шести сигналов управления.
+</li>
+</ol>
+<p><a href="7_4.html">К предыдущему</a> <a href="index.html">К содержанию</a><a href="7_6.html">К следующему</a></p>
+</body>			
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<link rel='stylesheet' type='text/css' href='style.css' />
+<meta name='author' content='leonid' />
+<title>Перебор и его сокращение</title>
+</head>
+<body>
+<h3>§35. Перебор и его сокращение</h3>
+<ol start="1028">
+<li>Даны натуральные числа
+<math>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mo>,</mo><mi>&#133;</mi><mo>,</mo>
+	<msub><mi>a</mi><mi>n</mi></msub>
+</math>. В последовательности
+<math>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mo>,</mo><mi>&#133;</mi><mo>,</mo>
+	<msub><mi>a</mi><mi>n</mi></msub>
+</math> выбрать подпоследовательность
+<math>
+<mrow>
+	<msub><mi>a</mi><msub><mi>i</mi><mn>1</mn></msub></msub><mo>,</mo>
+	<msub><mi>a</mi><msub><mi>i</mi><mn>2</mn></msub></msub>
+	<mo>,</mo><mi>&#133;</mi><mo>,</mo>
+	<msub><mi>a</mi><msub><mi>i</mi><mi>k</mi></msub></msub>
+</mrow>
+<mrow>
+<mo>(</mo>
+<msub><mi>i</mi><mn>1</mn></msub><mo>&#8804;</mo>
+<msub><mi>i</mi><mn>2</mn></msub>
+<mo>&#8804;</mo><mi>&#133;</mi><mo>&#8804;</mo>
+<msub><mi>i</mi><mi>k</mi></msub>
+<mo>)</mo>
+</mrow>	
+</math> такую, что 
+<math>
+<mrow>
+	<msub><mi>i</mi><mn>1</mn></msub><mo>+</mo>
+	<msub><mi>i</mi><mn>2</mn></msub>
+	<mo>+</mo><mi>&#133;</mi><mo>+</mo>
+	<msub><mi>i</mi><mi>k</mi></msub>
+</mrow>
+<mo>=</mo>
+<mi>m</mi>
+</math>. Если такую подпоследовательность выбрать невозможно, то следует сообщить об этом. 
+При решении этой задачи полезно следующее соображение. Чтобы выбрать подпоследовательность из последовательности
+<math>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mo>,</mo><mi>&#133;</mi><mo>,</mo>
+	<msub><mi>a</mi><mi>n</mi></msub>
+</math>, нужно про каждый член
+<math>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mo>,</mo><mi>&#133;</mi><mo>,</mo>
+	<msub><mi>a</mi><mi>n</mi></msub>
+</math> решить, принимается он в подпоследовательность или нет. Может возникнуть следующая ситуация: относительно членов
+<math>
+<mrow>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mo>,</mo><mi>&#133;</mi><mo>,</mo>
+	<msub><mi>a</mi><mi>i</mi></msub>
+</mrow>	
+	<mo>,</mo>
+	<mrow><mi>i</mi><mo>&lt;</mo><mi>n</mi></mrow>
+</math> приняты какие-то решения, после этого обнаружилось, что, как бы мы ни распоряжались остальными
+<math><mi>n</mi><mo>-</mo><mi>i</mi></math> членами, нам все равно не удастся получить подпоследовательность, удовлетворяющую поставленному условию (например, если сумма нескольких положительных чисел больше <math><mi>m</mi></math>
+то невозможно добавить к ним еще несколько положительных чисел так, чтобы сумма стала равна <math><mi>m</mi></math>.
+В этом случае можно сразу исключить из рассмотрения все подпоследовательности, первые члены которых выбраны из
+<math>
+	<msub><mi>a</mi><mn>1</mn></msub>
+	<mo>,</mo><mi>&#133;</mi><mo>,</mo>
+	<msub><mi>a</mi><mi>i</mi></msub>
+</math> в соответствии с принятыми решениями.
+</li>
+<li>Получить все расстановки 8 ладей на шахматной доске, при которых ни одна ладья не угрожает другой. Здесь полезно соображение, аналогичное приведенному в предыдущей задаче. Если расставлены ладьи в <math><mi>i</mi></math> первых вертикалях (<math><mi>i</mi><mo>&#60;</mo><mn>8</mn></math>) и обнаружилось, что
+<math><mi>i</mi></math>-я ладья угрожает ладье в какой-то вертикали с меньшим номером, то можно далее не заниматься теми расстановками ладей, которые предполагают то же самое расположение в первых вертикалях *).
+</li>
+<li>Дано натуральное число <math><mi>m</mi></math>. Получить <math><mi>m</mi></math> расстановок 8 ферзей на шахматной доске, при которых ни один из ферзей не угрожает другому. Если
+<math><mi>m</mi></math> больше, чем общее число таких расстановок, то следует получить все расстановки.</li>
+<li>Получить все перестановки элементов <math><mn>1</mn><mo>,</mo><mi>&#133;</mi><mo>,</mo><mn>6</mn></math>.</li>
+<li>Получить все сочетания из 10 элементов <math><mn>1</mn><mo>,</mo><mi>&#133;</mi><mo>,</mo><mn>10</mn></math> по 4 элемента в каждом.</li>
+<li>Получить все размещения из 9 элементов <math><mn>1</mn><mo>,</mo><mi>&#133;</mi><mo>,</mo><mn>9</mn></math> по 5 элементов в каждом.</li>
+<li>Получить все полные перестановки 10 элементов <math><mn>1</mn><mo>,</mo><mi>&#133;</mi><mo>,</mo><mn>10</mn></math> (перестановка
+<math><msub><mi>p</mi><mn>1</mn></msub><mi>&#133;</mi><mo>,</mo><msub><mi>p</mi><mi>n</mi></msub></math> элементов <math><mn>1</mn><mo>,</mo><mi>&#133;</mi><mo>,</mo><mi>n</mi></math>
+называется полной, если <math><msub><mi>p</mi><mi>i</mi></msub><mo>&#8800;</mo><mi>i</mi></math>
+для <math><mi>i</mi><mo>&#061;</mo><mn>1</mn><mo>,</mo><mo>&#133;</mo><mo>,</mo><mi>n</mi></math>).
+</li>
+<li>Указать маршрут коня, начинающийся на одном заданном поле шахматной доски и оканчивающийся на другом. Никакое поле не должно встречаться в маршруте дважды.</li>
+<li>Сетью называется совокупность точек (узлов), некоторые из которых соединены между собой стрелками. Сети, состоящие из <math><mi>n</mi></math> узлов, можно сопоставить две квадратные матрицы порядка <math><mi>n</mi></math>: матрицу соединений и матрицу связей. Элемент матрицы соединений <math><msub><mi>a</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></math> равен <math><mn>1</mn></math>, если сеть содержит стрелку, ведущую из узла <math><mi>i</mi></math> в узел <math><mi>j</mi></math>, и <math><mn>0</mn></math> в противном случае.
+Элемент <math><msub><mi>b</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></math> матрицы связей равен <math><mn>1</mn></math>, если из узла <math><mi>i</mi></math> можно
+попасть в узел <math><mi>j</mi></math>, двигаясь по стрелкам, и <math><mn>0</mn></math> в противном случае.
+Так для сети, изображенной на рис. 32, матрицы соединений и связей имеют следующий вид:
+<p>
+<math>
+<mrow>
+<mo>(</mo>
+<mtable>
+	<mtr><mtd>0</mtd><mtd>0</mtd><mtd>1</mtd><mtd>0</mtd><mtd>0</mtd><mtd>0</mtd></mtr>
+	<mtr><mtd>0</mtd><mtd>0</mtd><mtd>0</mtd><mtd>1</mtd><mtd>0</mtd><mtd>0</mtd></mtr>
+	<mtr><mtd>0</mtd><mtd>0</mtd><mtd>0</mtd><mtd>0</mtd><mtd>1</mtd><mtd>0</mtd></mtr>
+	<mtr><mtd>0</mtd><mtd>0</mtd><mtd>0</mtd><mtd>0</mtd><mtd>1</mtd><mtd>0</mtd></mtr>
+	<mtr><mtd>0</mtd><mtd>0</mtd><mtd>0</mtd><mtd>0</mtd><mtd>0</mtd><mtd>1</mtd></mtr>
+	<mtr><mtd>0</mtd><mtd>0</mtd><mtd>0</mtd><mtd>0</mtd><mtd>0</mtd><mtd>0</mtd></mtr>
+</mtable>
+<mo>)</mo>
+</mrow>
+</math>,
+<math>
+<mrow>
+<mo>(</mo>
+<mtable>
+	<mtr><mtd>0</mtd><mtd>0</mtd><mtd>1</mtd><mtd>0</mtd><mtd>1</mtd><mtd>1</mtd></mtr>
+	<mtr><mtd>0</mtd><mtd>0</mtd><mtd>0</mtd><mtd>1</mtd><mtd>1</mtd><mtd>1</mtd></mtr>
+	<mtr><mtd>0</mtd><mtd>0</mtd><mtd>0</mtd><mtd>0</mtd><mtd>1</mtd><mtd>1</mtd></mtr>
+	<mtr><mtd>0</mtd><mtd>0</mtd><mtd>0</mtd><mtd>0</mtd><mtd>1</mtd><mtd>1</mtd></mtr>
+	<mtr><mtd>0</mtd><mtd>0</mtd><mtd>0</mtd><mtd>0</mtd><mtd>0</mtd><mtd>1</mtd></mtr>
+	<mtr><mtd>0</mtd><mtd>0</mtd><mtd>0</mtd><mtd>0</mtd><mtd>0</mtd><mtd>0</mtd></mtr>
+</mtable>
+<mo>)</mo>
+</mrow>
+</math>.
+</p>
+<svg width='340' height='150'>
+<defs>
+<g id='l_arr'>
+	<line x1='40' y1='25' x2='115' y2='25' stroke-width="1" stroke="#000000" fill="none"/>
+	<path d='M108, 22 L115,25 108,28' stroke-width="1" stroke="#000000" fill="none"/>
+</g>
+</defs>
+<line x1='40' y1='25' x2='115' y2='25' stroke-width="1" stroke="#000000" fill="none"/>
+<path d='M108, 22 L115,25 108,28' stroke-width="1" stroke="#000000" fill="none"/>
+<text y='30' x='20' stroke-width="1" stroke="#000000" fill="none">1</text>
+<text y='30' x='120' stroke-width="1" stroke="#000000" fill="none">3</text>
+
+<text y='65' x='220' stroke-width="1" stroke="#000000" fill="none">5</text>
+<text y='100' x='20' stroke-width="1" stroke="#000000" fill="none">2</text>
+<text y='100' x='120' stroke-width="1" stroke="#000000" fill="none">4</text>
+<text y='65' x='320' stroke-width="1" stroke="#000000" fill="none">6</text>
+<text y='140' x='125' stroke-width="1" stroke="#000000" fill="none">Рис. 32</text>
+<use xlink:href='#l_arr' x='0' y='0'/>
+<use xlink:href='#l_arr' x='0' y='70'/>
+<use xlink:href='#l_arr' x='200' y='35'/>
+<use xlink:href='#l_arr' x='95' y='-55' transform='rotate(23)'/>
+<use xlink:href='#l_arr' x='55' y='105' transform='rotate(-20)'/>
+</svg>
+
+<p>Лабиринт может быть задан матрицей соединений, в которой для каждой пары комнат указано, соединены ли они коридором. Даны матрица соединений для лабиринта из
+<math><mi>n</mi></math> комнат и номера комнат
+<math>
+	<mi>i</mi><mo>,</mo><mi>j</mi>
+	<mrow>	
+		<mo>(</mo>
+		<mrow><mn>1</mn><mo>&#8804;</mo><mi>i</mi><mo>&#8804;</mo><mi>n</mi></mrow>
+		<mo>,</mo>
+		<mrow><mn>1</mn><mo>&#8804;</mo><mi>j</mi><mo>&#8804;</mo><mi>n</mi></mrow>
+		<mo>)</mo>
+	</mrow>
+</math>. Построить путь из комнаты с номером <math><mi>i</mi></math> в комнату с номером <math><mi>j</mi></math>.</p>
+</li>
+<li>Дана матрица соединений некоторой линии (см. предыдущую задачу), содержащей 6 узлов. Выяснить, существует ли замкнутый путь, состоящий из некоторых звеньев линии, который проходит через каждый из 6 узлов ровно один раз. Если такой путь существует, то построить соответствующую ему последовательность номеров узлов. (Для линии, изображенной на рис. 33, последовательность узлов будет, например, 
+<math><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mn>3</mn><mo>,</mo><mn>4</mn><mo>,</mo><mn>5</mn><mo>,</mo><mn>6</mn></math>).
+<svg width='320' height='220'>
+<text y='18' x='137' stroke-width="1" stroke="#000000" fill="none">3</text>
+<text y='143' x='137' stroke-width="1" stroke="#000000" fill="none">6</text>
+<text y='165' x='15' stroke-width="1" stroke="#000000" fill="none">1</text>
+<text x='255' y='165' stroke-width="1" stroke="#000000" fill="none">5</text>
+<text y='85' x='15' stroke-width="1" stroke="#000000" fill="none">2</text>
+<text y='85' x='255' stroke-width="1" stroke="#000000" fill="none">4</text>
+<line x1='40' y1='80' x2='140' y2='30' stroke-width="1" stroke="#000000" fill="none"/> 
+<line x1='140' y1='30' x2='240' y2='80' stroke-width="1" stroke="#000000" fill="none"/>
+<line x1='40' y1='80' x2='40' y2='160' stroke-width="1" stroke="#000000" fill="none"/>
+<line x1='40' y1='160' x2='240' y2='160' stroke-width="1" stroke="#000000" fill="none"/>
+<line x1='40' y1='80' x2='240' y2='80' stroke-width="1" stroke="#000000" fill="none"/>
+<line x1='40' y1='80' x2='240' y2='160' stroke-width="1" stroke="#000000" fill="none"/>
+<line x1='40' y1='160' x2='240' y2='80' stroke-width="1" stroke="#000000" fill="none"/>
+<line x1='240' y1='80' x2='240' y2='160' stroke-width="1" stroke="#000000" fill="none"/>
+<text y='200' x='100' stroke-width="1" stroke="#000000" fill="none">Рис. 33</text>
+
+</svg>
+</li>
+<li>Имеется <math><mi>n</mi></math> городов. Некоторые из них соединены дорогами известной длины. Вся система дорог задана квадратной матрицей порядка
+<math><mi>n</mi></math>, элемент <math><msub><mi>a</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></math> которой равен некоторому отрицательному числу, если город
+<math><mi>i</mi></math> не соединен напрямую дорогой с городом <math><mi>j</mi></math>, и равен длине дороги в противном случае
+ (<math><mi>i</mi><mo>,</mo><mi>j</mi><mo>&#061;</mo><mn>1</mn><mo>,</mo><mi>&#133;</mi><mo>,</mo><mi>n</mi></math>).
+ <ol type='a'>
+ <li>Для 1-го города найти кратчайшие маршруты в остальные города.</li>
+ <li>В предположении, что каждый город соединен напрямую дорогой с каждым, найти кратчайший маршрут, начинающийся в 1-м городе и проходящий через все остальные города.</li>
+</ol>
+</li>
+<li>Найти такую расстановку пяти ферзей на шахматной доске, при которой каждое поле будет находиться под ударом одного из них.</li>
+<li>Найти такую расстановку двенадцати коней на шахматной доске, при которой каждое поле будет находиться под ударом одного из них.</li>
+<li>Найти такую расстановку восьми слонов на шахматной доске, при которой каждое поле будет находиться под ударом одного из них.</li>
+<li>В данной последовательности действительных чисел <math><msub><mi>a</mi><mn>1</mn></msub><mo>,</mo><mi>&#133;</mi><mo>,</mo><msub><mi>a</mi><mn>20</mn></msub></math> выбрать возрастающую подпоследовательность наибольшей длины.</li>
+<li>Правильное скобочное выражение получается из некоторого математического выражения, содержащего круглые скобки, вычеркиванием всех знаков, кроме круглых скобок. Более точное описание множества правильных скобочных выражений:
+<ol type='a'>
+<li>() &#151; правильное скобочное выражение;</li>
+<li>если P &#151; правильное скобочное выражение, то (P) &#151; правильное скобочное выражение;</li>
+<li>если P и Q &#151; правильные скобочные выражения, то PQ &#151; правильное скобочное выражение.</li>
+</ol>
+Построить все правильные скобочные выражения длины <math><mn>10</mn></math>, т.е. те, которые содержат по <math><mn>5</mn></math> левых и по <math><mn>5</mn></math> правых круглых скобок.</li>
+<li>Имеется <math><mi>n</mi></math> предметов, веса которых равны
+<math><msub><mi>a</mi><mn>1</mn></msub><mo>,</mo><mi>&#133;</mi><mo>,</mo><msub><mi>a</mi><mi>n</mi></msub></math>. Разделить эти предметы на две группы так, чтобы общие веса двух групп были максимально близки.
+</li>
+<li>Получить последовательность <math><msub><mi>a</mi><mn>1</mn></msub><mo>,</mo><mi>&#133;</mi><mo>,</mo><msub><mi>a</mi><mi>n</mi></msub></math>
+цифр <math><mn>0</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>2</mn></math>, в которой нет смежных одинаковых участков (например, последовательность <math><mn>2</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo>,</mo><mi>&#133;</mi></math> не годится, так как рядом расположены два одинаковых члена <math><mn>1</mn></math>; последовательность <math><mn>2</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>,</mo><mi>&#133;</mi></math> не годится, так как рядом расположены два одинаковых участка <math><mn>2</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>1</mn></math> и т.д.).
+</li>
+<li>&quot;Задача о рюкзаке&quot;. Имеется <math><mi>m</mi></math> различных предметов, известны вес каждого предмета и его стоимость. Определить, какие предметы надо положить в рюкзак, чтобы общий вес не превышал заданной границы, а общая стоимость была максимальна. Решить эту задачу для <math><mi>m</mi></math> предметов, веса которых в килограммах равны
+<math><msub><mi>p</mi><mn>1</mn></msub><mo>,</mo><mi>&#133;</mi><mo>,</mo><msub><mi>p</mi><mi>m</mi></msub></math>, стоимости &#133; 
+<math><msub><mi>c</mi><mn>1</mn></msub><mo>,</mo><mi>&#133;</mi><mo>,</mo><msub><mi>c</mi><mi>m</mi></msub></math>. Вес рюкзака не должен превышать <math><mn>50</mn></math> кг.
+</li>
+</ol>
+</body>
+</html>

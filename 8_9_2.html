@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<link rel='stylesheet' type='text/css' href='style.css' />
+<meta name='author' content='leonid' />
+<title>Списки</title>
+</head>
+<body>
+<p><a href="8_9_1.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_9_3.html">К следующему</a> </p>
+<h2>8.9.2. Списки</h2>
+<p>Линейный список представляет собой последовательность
+<math display='inline'><mi>n</mi><mo>&gt;</mo><mn>0</mn></math>
+ узлов
+<math display='inline'><mfenced open='' close=''><mrow><mi>X</mi><mo>[</mo><mn>1</mn><mo>]</mo></mrow><mi>&#133;</mi><mrow><mi>X</mi><mo>[</mo><mi>n</mi><mo>]</mo></mrow></mfenced></math>,
+ важнейшей структурной особенностью которой является порядок следования: узел
+<math display='inline'><mrow><mi>X</mi><mo>[</mo><mi>k</mi><mo>]</mo></mrow></math> 
+ следует за узлом
+<math display='inline'><mrow><mi>X</mi><mo>[</mo><mrow><mi>k</mi><mo>-</mo><mn>1</mn></mrow><mo>]</mo></mrow></math> 
+и предшествует узлу
+<math display='inline'><mrow><mi>X</mi><mo>[</mo><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow><mo>]</mo></mrow></math>
+ для всех 
+<math display='inline'><mn>1</mn><mo>&lt;</mo><mi>k</mi><mo>&lt;</mo><mi>n</mi></math>.</p>
+<p>С линейными списками могут выполняться следующие операции:</p>
+<ol>
+<li>Получение доступа к k-узлу списка для проверки и/или изменения содержимого его полей.</li>
+<li>Вставка нового узла сразу после или до k-го узла.</li>
+<li>Удаление k-го узла.</li>
+<li>Объединение в одном списке двух или более линейных списков.</li>
+<li>Разбиение линейного списка на два или более списков.</li>
+<li>Создание копии линейного списка.</li>
+<li>Определение количества узлов в списке.</li>
+<li>Сортировка узлов в порядке возрастания значений в определенных полях этих узлов.</li>
+<li>Поиск узла с заданным значением в некотором поле.</li>
+</ol>
+<p>Главное преимущество линейных списков перед массивами состоит в том, что они могут динамически уменьшать или увеличивать свои размеры. В частности, необязательно заранее задавать его максимальный размер.</p>
+<p>Второе преимущество состоит в том, что они обеспечивают гибкость при переорганизации их элементов. Такая гибкость получается за счет потери в скорости доступа к произвольному элементу списка, что станет очевидным в процессе изучения операций над списком.</p>
+<p>В массиве последовательная организация обеспечивается непосредственно (согласно индексу). Для линейного списка используется специальный способ организации данных, согласно которому в информационных полях узла содержатся данные, а ссылка на следующий узел &#151; в специальном указательном поле.</p>
+<p>Пример 8.9.2.1 описания узла и ссылки:</p>
+<code>
+<p class='ind0'>TYPE узел=RECORD</p>
+<p class='ind2'>name: ARRAY 20 OF CHAR;</p>
+<p class='ind2'>next: указатель</p>
+<p class='ind1'>END;</p>
+<p class='ind1'>указатель=POINTER TO узел;</p>
+</code>
+<p>Для описания списка будем использовать два вспомогательных узла <var>head</var> и <var>X</var>. Узел <var>head</var> будет указывать на первый элемент списка, а <var>X</var> &#151; на текущий элемент списка. Признаком конца списка будет служить значение <var>NIL</var> в указательном поле последнего узла списка.</p>
+<p>На рис. 8.9.2.1 представлена схема списка с начальным узлом <var>head</var> и указательным полем <var>next</var>:</p>
+<svg height = "70px"  width = "900px">
+<defs>
+    <marker id="Triangle"
+      viewBox="0 0 10 10" refX="0" refY="5" 
+      markerUnits="strokeWidth"
+      markerWidth="8" markerHeight="8"
+      orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" />
+    </marker>
+  </defs>
+	<path d="M 5 5 L 65 5 65 25 5 25 z"  stroke="#000000" stroke-width="1" fill="none"/>
+	<text x="16" y="18" stroke="none" fill="#000000" font-size="12">head</text>
+	<path d="M 65 5 L 105 5 105 25 65 25"  stroke="#000000" stroke-width="1" fill="none"/>
+	<line x1="100" y1="15" x2="140" y2="15" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>	
+	<text x="160" y="18" stroke="none" fill="#000000" font-size="12">&#133;</text>
+	<line x1="180" y1="15" x2="220" y2="15" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>	
+	<path d="M 228 5 L 285 5 285 25 228 25 z"  stroke="#000000" stroke-width="1" fill="none"/>
+	<text x="255" y="18" stroke="none" fill="#000000" font-size="12">x</text>
+	<path d="M 285 5 L 325 5 325 25 285 25"  stroke="#000000" stroke-width="1" fill="none"/>
+	<line x1="320" y1="15" x2="360" y2="15" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+	<path d="M 368 5 L 425 5 425 25 368 25 z"  stroke="#000000" stroke-width="1" fill="none"/>
+	<text x="375" y="18" stroke="none" fill="#000000" font-size="12">x.next</text>	
+	<path d="M 425 5 L 465 5 465 25 425 25 "  stroke="#000000" stroke-width="1" fill="none"/>
+	<line x1="460" y1="15" x2="497" y2="15" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+	<path d="M 505 5 L 580 5 580 25 505 25 z"  stroke="#000000" stroke-width="1" fill="none"/>
+	<text x="510" y="18" stroke="none" fill="#000000" font-size="12">x.next.next</text>	
+	<path d="M 580 5 L 620 5 620 25 580 25"  stroke="#000000" stroke-width="1" fill="none"/>
+	<line x1="615" y1="15" x2="655" y2="15" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>	
+	<text x="675" y="18" stroke="none" fill="#000000" font-size="12">&#133;</text>	
+	<text x="200" y="60" stroke="none" fill="#000000">Рис. 8.9.2.1. Схема линейного списка</text>
+</svg>
+
+
+<p>Такое представление данных позволяет производить некоторые операции гораздо более эффективными методами, чем над массивами. Рассмотрим операции над узлами списка.</p>
+<p>Вставка узла в начало списка выполняется так:</p>
+<code>
+<p class='ind1'>NEW(X); (*создаем новый узел*)</p>
+<p class='ind1'>X.next:=head; (*задаем ссылку из нового узла на узел head*)</p>
+<p class='ind1'>head:=X;  (*переименовываем новый узел в заголовочный*)</p>
+</code>
+<p>Операция добавления нового узла в конец списка более трудоемкая, требующая прохождения всего списка, начиная с заголовочного:</p>
+<code>
+<p class='ind1'>X:=head; (*заголовочный узел в качестве текущего*)</p>
+<p class='ind1'>			WHILE X.next#NIL DO</p> 
+<p class='ind2'>				X:=X.next; (*переход на следующий узел*)</p>
+<p class='ind1'>			END; (*дошли до последнего узла списка*)</p>
+<p class='ind1'>NEW(Y); (*создаем новый узел*)</p>
+<p class='ind1'>Y.next:=NIL; (*задаем ссылку на NIL в качестве признака конца списка*)</p>
+<p class='ind1'>X.next:=Y; (*задаем ссылку на новый узел Y*)</p>
+</code>
+<p>Рассмотрим организацию вставки узла <var>Y</var> после текущего узла <var>X</var> списка (операцию, которая столь неестественна и неудобна на массивах). Вначале нужно создать этот узел <var>Y</var>, затем создать в узле <var>Y</var> ссылку на узел, следующий за узлом <var>X</var>, а затем изменить ссылку узла <var>X</var> на новый узел <var>Y</var>. Для этого требуется изменить лишь две ссылки вне зависимости от длины списка:</p>
+<code>
+<p class='ind1'>NEW(Y);</p>
+<p class='ind1'>Y.next:=X.next;</p>
+<p class='ind1'>X.next:=Y;</p>
+</code>
+<p>Пусть требуется вставить узел <var>Y</var> перед узлом, не совпадающем с начальным узлом и, к примеру, в информационном поле <var>nomer</var> которого содержится число <var>m</var>. В предположении обязательного существования такого узла реализовать вставку нового узла можно так:</p>
+<code>
+<p class='ind1'>			X:=head; (*ищем узел X, предшествующий искомому*)</p>
+<p class='ind1'>			WHILE (X.next#NIL) & (X.next.nomer#'m') DO</p> 
+<p class='ind2'>				X:=X.next; (*переход на следующий узел*)</p>
+<p class='ind1'>			END;</p>
+<p class='ind1'>			NEW(Y); (*создаем новый узел*)</p>
+<p class='ind1'>			Y.nomer:=m-1;(*инициализируем информационное поле узла*)</p>
+<p class='ind1'>			X.next:=Y; (*задаем ссылку на новый узел Y*)</p>
+<p class='ind1'>			Y.next:=X.next; (*задаем ссылку на найденный узел с нужным свойством*)</p>
+</code>
+<p>Перейдем к рассмотрению удаления узла из списка. Проще всего удалить заголовочный узел, поскольку на него нет ссылки:</p>
+<code>
+<p class='ind1'>X:=head; (*сохраняем заголовочный узел в X*)</p>
+<p class='ind1'>head:=head.next; (*переименовываем в заголовочный узел, следующий за head*)</p>
+<p class='ind1'>X:=NIL; (*удаляем из памяти узел X*)</p>
+</code>
+<p>Для удаления последнего узла потребуется по ссылкам пройти весь список до последнего узла, после чего удалить узел из списка и памяти:</p>
+<code>
+<p class='ind1'>X:=head; (*заголовочный узел в качестве текущего*)</p>
+<p class='ind1'>			WHILE X.next#NIL DO</p> 
+<p class='ind2'>				X:=X.next; (*переход на следующий узел*)</p>
+<p class='ind1'>			END; (*дошли до последнего узла списка*)</p>
+<p class='ind1'>X:=NIL; (*удаляем последний узел*)</p>
+</code>
+
+<p>Удаление узла, следующего за текущим узлом <var>X</var>, производится путем сохранения в переменной <var>Y</var> адреса удаляемого узла, удаления узла из списка посредством перестановки ссылки на узел, следующего за удаляемым, и фактического удаления узла из памяти компьютера:</p>
+<code>
+<p class='ind1'>Y:=X.next;</p>
+<p class='ind1'>X.next:=X.next.next;</p>
+<p class='ind1'>Y:=NIL;</p>
+</code>
+
+<p>Пусть требуется удалить узел (не совпадающий с узлом <var>head</var>) со значением <var>m</var> в поле <var>nomer</var>. Без проверки существования такого узла, код будет такой:
+</p>
+<code>
+<p class='ind1'>			X:=head;</p>
+<p class='ind1'>			WHILE (X.next#NIL) & (X.next.nomer#'m') DO</p>
+<p class='ind2'>				X:=X.next; (*переход на следующий узел*)</p>
+<p class='ind1'>			END;</p>
+<p class='ind1'>			Z:=X.next; (*сохранение адреса удаляемого узла*)</p>
+<p class='ind1'>			X.next:=X.next.next; (*удаление узла X.next из списка*)</p>
+<p class='ind1'>			Z:=NIL; (*удаление узла из памяти*)</p>
+</code>
+<p>Очевидно, что текущим будет узел <var>X</var>, а следующим будет искомый узел <var>X.next</var>, и задача сводится к удалению узла <var>X.next</var>, следующего за текущим узлом <var>X</var>.</p>
+<p>Остается рассмотреть удаление узла, предшествующего некоторому узлу, например, поле <var>nomer</var> которого содержит число <var>m</var>. Здесь мы предполагаем, что узел с заданным значением отличен от первых двух узлов списка. Несколько модифицируем предыдущий код и получим такое решение:</p>
+<code>
+<p class='ind1'>			X:=head;</p>
+<p class='ind1'>			WHILE (X.next.next#NIL) & (X.next.next.nomer#'m') DO</p>
+<p class='ind2'>				X:=X.next; (*переход на следующий узел*)</p>
+<p class='ind1'>			END;</p>
+<p class='ind1'>			Z:=X.next; (*сохранение адреса удаляемого узла*)</p>
+<p class='ind1'>			X.next:=X.next.next; (*удаление узла X.next из списка*)</p>
+<p class='ind1'>			Z:=NIL; (*удаление узла из памяти*)</p>
+</code>
+<div class="examp">
+<p><span class="primer">Пример</span> 8.9.2.2. Демонстрация операций создания списка, вставки узла в список, просмотра содержимого списка, удаления узла из списка и добавления узла в конец списка.</p>
+<code>
+<p class='ind0'>MODULE Record;</p>
+<p class='ind1'>	IMPORT  Log := StdLog, In;</p>
+<p class='ind1'>	TYPE Список=RECORD</p>
+<p class='ind2'>		name: ARRAY 20 OF CHAR;</p>
+<p class='ind2'>		next: Указатель</p>
+<p class='ind1'>	END;</p>
+<p class='ind1'>	Указатель=POINTER TO Список;</p>
+<p class='ind1'>	VAR head: Указатель;</p>
+<p class='ind1'>	PROCEDURE Первый*;</p>
+<p class='ind2'>		VAR x: Указатель;</p>
+<p class='ind1'>	BEGIN</p>
+<p class='ind2'>		IF head=NIL THEN</p>
+<p class='ind3'>			NEW(head);</p>
+<p class='ind3'>			In.Open();</p>
+<p class='ind3'>			In.String(head.name);</p>
+<p class='ind3'>			NEW(x);</p>
+<p class='ind3'>			head.next:=x;</p>
+<p class='ind3'>			x.next:=NIL</p>
+<p class='ind2'>		ELSE</p>
+<p class='ind3'>			Log.String('Первая запись существует');</p>	
+<p class='ind2'>		END;</p>
+<p class='ind1'>	END Первый;</p>
+<p class='ind1'>	PROCEDURE Добавить*;</p>
+<p class='ind2'>		VAR y, x: Указатель;</p>
+<p class='ind1'>	BEGIN</p>
+<p class='ind2'>		IF head#NIL THEN</p>
+<p class='ind3'>		x:=head;</p>
+<p class='ind3'>		WHILE  x.next#NIL  DO</p>
+<p class='ind4'>			x:=x.next</p>
+<p class='ind3'>		END;</p>
+<p class='ind3'>		In.Open();</p>
+<p class='ind3'>		In.String(x.name);
+<p class='ind3'>		y:=x;</p>
+<p class='ind3'>		NEW(x);</p>
+<p class='ind3'>		y.next:=x;</p>
+<p class='ind3'>		x.next:=NIL;</p>
+<p class='ind3'>		Log.String('Добавлена 1 запись');Log.Ln</p>
+<p class='ind2'>	END</p>	
+<p class='ind1'>	END Добавить;</p>
+<p class='ind1'>	PROCEDURE Показать*;</p>
+<p class='ind2'>		VAR x: Указатель;</p>
+<p class='ind1'>	BEGIN</p>
+<p class='ind2'>		IF head#NIL THEN</p>
+<p class='ind3'>			x:=head;</p>
+<p class='ind3'>			Log.Ln;</p>
+<p class='ind3'>			WHILE  x.next#NIL  DO</p>
+<p class='ind4'>				Log.String(x.name); Log.Ln;</p>
+<p class='ind4'>				x:=x.next</p>
+<p class='ind3'>			END;</p>
+<p class='ind3'>			(*Вывод последнего элемента*)</p>
+<p class='ind3'>			Log.String(x.name); Log.Ln;</p>		
+<p class='ind2'>		END;</p>	
+<p class='ind1'>	END Показать;</p>
+	
+<p class='ind1'>	(*Вставка элемента в список в n+1-ое место из Входного потока*)</p>
+<p class='ind1'>	PROCEDURE  Вставить*;</p>
+<p class='ind2'>		VAR x, y: Указатель;</p>
+<p class='ind3'>		i, n: INTEGER;</p>
+<p class='ind1'>	BEGIN</p>
+<p class='ind2'>		x:=head;</p>
+<p class='ind2'>		In.Open();</p>
+<p class='ind2'>		In.Int(n);</p>
+<p class='ind2'>		i:=0;</p>
+<p class='ind2'>		WHILE (i &lt; n-1)&(x#NIL) DO</p>
+<p class='ind3'>			INC(i);</p>
+<p class='ind3'>			x:=x.next</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		IF  x#NIL  THEN</p>
+<p class='ind3'>			NEW(y);</p>
+<p class='ind3'>			y.next:=x.next;</p>
+<p class='ind3'>			x.next:=y;</p>
+<p class='ind2'>			In.String(y.name)</p>
+<p class='ind2'>		ELSE</p>
+<p class='ind3'>			Log.String('Задайте меньший параметр')</p>
+<p class='ind2'>		END;</p>
+<p class='ind1'>	END Вставить;</p>
+	
+<p class='ind1'>	PROCEDURE Удалить*;</p>
+<p class='ind2'>		VAR x: Указатель;</p>
+<p class='ind3'>		i, n: INTEGER;</p>
+<p class='ind1'>	BEGIN</p>
+<p class='ind2'>		x:=head;</p>
+<p class='ind2'>		In.Open();</p>
+<p class='ind2'>		In.Int(n);</p>
+<p class='ind2'>		i:=0;</p>
+<p class='ind2'>		WHILE (i &lt; n-1)&(x#NIL) DO</p>
+<p class='ind3'>			INC(i);</p>
+<p class='ind3'>			x:=x.next</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		IF x#NIL THEN</p>
+<p class='ind3'>			x.next:=x.next.next;</p>	
+<p class='ind2'>		ELSE</p>
+<p class='ind3'>			Log.String('задайте меньшее значение n')</p>
+<p class='ind2'>		END;</p>
+<p class='ind1'> END Удалить;</p>
+<p class='ind0'>END Record.</p>
+<table>
+<tr>
+<td align='right' valign='bottom'>
+<svg width='35' height='40'>
+<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+</svg>
+</td>
+<td align='left' valign='middle'>Record.Первый 'Алек'</td>
+</tr>
+<tr>
+<td align='right' valign='bottom'>
+<svg width='35' height='40'>
+<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+</svg>
+</td>
+<td align='left' valign='middle'>Record.Показать</td>
+</tr>
+<tr>
+<td align='right' valign='bottom'>
+<svg width='35' height='40'>
+<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+</svg>
+</td>
+<td align='left' valign='middle'>Record.Добавить 'Диана'</td>
+</tr>
+<tr>
+<td align='right' valign='bottom'>
+<svg width='35' height='40'>
+<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+</svg>
+</td>
+<td align='left' valign='middle'>Record.Вставить 2 'Тимофей'</td>
+</tr>
+<tr>
+<td align='right' valign='bottom'>
+<svg width='35' height='40'>
+<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+</svg>
+</td>
+<td align='left' valign='middle'>Record.Удалить 2</td>
+</tr>
+</table>
+</code>
+</div>
+<p>В примере мы рассмотрели некоторые примитивные операции создания списка, добавления в список нового узла, вставки узла в список, удаления узла из списка. Последний узел списка в примере пустой.</p>
+<p>
+Почему использование пустых узлов столь полезно? Соглашение о пустом узле <var>X</var> предохраняет процедуру удаления от излишней проверки на удаление из пустого списка. А эти проверки существенно сказываются на времени работы программы.</p>
+<p>Следующий вид списков &#151; это циклические списки. Циклический список &#151; это список, последний узел которого указывает на первый. Этот список позволяет программе снова и снова просматривать список по кругу до тех пор, пока в этом есть необходимость.</p>
+<div class="examp">
+<p><span class="primer">Пример</span> 8.9.2.3. Пусть n человек выстраиваются в круг и, считая против часовой стрелки, получают номера от 1 до n. Затем отсчитывается против часовой стрелки, начиная с первого, m-ый человек, который выходит из круга. Далее, начиная со следующего, отсчитывается каждый m-ый человек, покидающий круг. Требуется составить программу вычисления номера человека, который последним покинет круг.</p>
+<code>
+<p class='ind0'>MODULE spisok2;</p>
+<p class='ind1'>	IMPORT  Log := StdLog,  In := i21sysIn,  Math;</p>
+<p class='ind1'>	PROCEDURE do*;</p>
+<p class='ind1'>	TYPE spisok=RECORD</p>
+<p class='ind3'>		nomer: INTEGER;</p>
+<p class='ind3'>		next: указатель;</p>
+<p class='ind2'>	END;
+<p class='ind2'>	указатель=POINTER TO spisok;</p>
+<p class='ind2'>		VAR head, x, y: указатель;</p>
+<p class='ind3'>		i,n,m: INTEGER;</p>
+<p class='ind1'>	BEGIN</p>
+<p class='ind2'>		In.Open;</p>
+<p class='ind2'>		ASSERT( In.done );</p>
+<p class='ind2'>		In.Int(n);</p>
+<p class='ind2'>		ASSERT( In.done );</p>
+<p class='ind2'>		In.Int(m);</p>
+<p class='ind2'>		ASSERT( In.done );</p>
+<p class='ind2'>		NEW(head);</p>
+<p class='ind2'>		head.nomer:=1;</p>
+<p class='ind2'>		head.next:=NIL;</p>
+<p class='ind2'>		x:=head;</p>
+<p class='ind2'>		Log.Int(head.nomer);</p>
+<p class='ind2'>		Log.Ln;</p>
+<p class='ind2'>		i:=1;</p>
+<p class='ind2'>		WHILE x.nomer &lt; n DO</p>
+<p class='ind3'>			INC(i);</p>
+<p class='ind3'>			NEW( y );</p>
+<p class='ind3'>			y.nomer:=i;</p>
+<p class='ind3'>			x.next:=y;</p>
+<p class='ind3'>			y.next:=NIL;</p>
+<p class='ind3'>			x:=y;</p>
+<p class='ind3'>			Log.Int(x.nomer);</p>
+<p class='ind3'>			Log.Ln</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		x.next:=head;</p>
+<p class='ind2'>		x:=head;</p>
+<p class='ind2'>		WHILE n &gt; 1 DO</p>
+<p class='ind3'>			i:=1;</p>
+<p class='ind3'>			WHILE i &lt; m DO</p>
+<p class='ind4'>				x:=x.next;</p>
+<p class='ind4'>				INC(i)</p>
+<p class='ind3'>			END;</p>
+<p class='ind3'>			x.nomer:=x.next.nomer;</p>
+<p class='ind3'>			x.next:=x.next.next;</p>
+<p class='ind3'>			DEC(n)</p>
+<p class='ind2'>		END;</p>
+<p class='ind2'>		Log.Ln;</p>
+<p class='ind2'>		Log.Int(x.nomer);</p>
+<p class='ind2'>		Log.Ln</p>
+<p class='ind1'>	END do;</p>
+<p class='ind0'>END spisok2.</p>
+<table>
+<tr>
+<td align='right' valign='bottom'>
+<svg width='35' height='40'>
+<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+</svg>
+</td>
+<td align='left' valign='middle'>spisok2.do 3 2</td>
+</tr>
+</table>
+</code>
+<p>В программе фактически удаляется узел, следующий за узлом, подлежащим удалению, а номер удаляемого узла присваивается текущему узлу (x.nomer:=x.next.nomer;). Ниже представлен фрагмент программы, в котором узел <var>y</var> предшествует узлу <var>x</var>. Поэтому для удаления текущего узла имеется возможность отступить на предыдущий узел <var>y</var> (<var>x:=y;</var>) и удалить следующий узел (<var>x.next:=x.next.next;</var>):</p>
+<code>
+<p class='ind2'>		WHILE n &gt; 1 DO</p>
+<p class='ind3'>			i:=1;</p>
+<p class='ind3'>			WHILE i &lt; m DO</p>
+<p class='ind4'>				y:=x;</p>
+<p class='ind4'>				x:=x.next;</p>
+<p class='ind4'>				INC(i)</p>
+<p class='ind3'>			END;</p>
+<p class='ind3'>			x:=y;</p>
+<p class='ind3'>			x.next:=x.next.next;</p>
+<p class='ind3'>			DEC(n)</p>
+<p class='ind2'>		END;</p>
+</code>
+</div>
+<p>
+</p>
+<h3>Задачи для самостоятельного решения из сборника задач по программированию под редакцией С.А. Абрамова, Г.Г. Гнездиловой, Е.Н. Капустиной, М.И. Селюн. Задачи по программированию:</h3>
+<p><a href='zadachi/14.html'>§14 Вычисление с хранением последовательностей, число членов которых зависит от исходных данных</a></p>
+<p><a href='zadachi/36.html'>§36. Некоторые приемы программирования</a></p>
+<p><a href="8_9_3.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_9_3.html">К следующему</a> </p>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<link rel='stylesheet' type='text/css' href='style.css' />
+<meta name='author' content='leonid' />
+<title>8.11. Алгоритмы поиска</title>
+<script type="text/javascript">
+function find(k, n) {
+var win=open("", "newWindow"),  html, head, title, body, h2, h3, m, i, a=new Array(n+1), l, r;
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Бинарный поиск заданного числа в упорядоченном массиве псевдослучайных чисел";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h2=document.createElement("h2");
+	h2.textContent="Бинарный поиск заданного числа в упорядоченном массиве псевдослучайных чисел";
+	body.appendChild(h2);
+	p=document.createElement("p");
+	p.textContent="Искомое число: "+k+".";
+	body.appendChild(p);
+	p=document.createElement("p");
+	p.textContent="Элементов в массиве: "+n+".";
+	body.appendChild(p);	 
+	for (i=0; i<n; i++) {
+		a[i]=2*i+1;	
+	}
+	a[n]=k;
+	l=0; r=n-1;
+	do {
+		p=document.createElement("p");
+		p.textContent="Левая граница: "+l+",";
+		body.appendChild(p);
+		p=document.createElement("p");
+		p.textContent="Правая граница: "+r+".";
+		body.appendChild(p);		
+		m=(l+r -(l+r)%2)/2;
+		p=document.createElement("p");
+		p.textContent="Индекс серединного элемента: "+m+".";
+		body.appendChild(p);
+				
+		if (l>r) {
+			m=n;		
+		}
+		else if (a[m]<k) {
+				l=m+1;			
+		}
+		else {
+				r=m-1;			
+		}		
+	} while (a[m]==k);
+	if (m<n) {
+		p=document.createElement("p");
+		p.textContent="Искомый элемент с индексом "+m+".";
+		body.appendChild(p);
+	}
+	else {
+		p=document.createElement("p");
+		p.textContent="Искомый элемент не найден.";
+		body.appendChild(p);	
+	}	
+	win.document.close();
+}
+</script>
+</head>
+<body>
+<p><a href="8_10_8.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_11_2.html">К следующему</a> </p>
+<h2>8.11.1. Алгоритмы поиска элемента в массиве</h2>
+<h3>8.11.1.1. Линейный поиск</h3>
+<p>Задача поиска заключается в поиске в совокупности данных элемента с заданными свойствами. Простейшая задача поиска состоит в поиске в массиве заданного элемента при условии отсутствия  информации об упорядоченности массива. В этом случае используется линейный поиск, заключающийся в последовательном просмотре массива до тех пор, пока не будет найден нужный элемент или достигнут последний элемент массива.</p>
+<p>Реализация в Компонентном Паскале алгоритма линейного поиска нужного элемента в массиве до его обнаружения может быть такой:</p>
+<code>
+<a id='lin_poisk'></a>
+<p class='ind0'>MODULE lin_poisk;</p>
+<p class='ind1'>IMPORT  Log:=StdLog,  In:=i21sysIn, Ran:=i21eduRandom;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>TYPE massiv= POINTER TO ARRAY OF INTEGER;</p>
+<p class='ind2'>VAR a: massiv; i,n,x: INTEGER;</p>
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>In.Open;</p>
+<p class='ind2'>ASSERT(In.Done);</p>
+<p class='ind2'>In.Int(n);</p>
+<p class='ind2'>ASSERT(In.Done);</p>
+<p class='ind2'>In.Int(x);</p>
+<p class='ind2'>ASSERT(In.Done);</p>
+<p class='ind2'>NEW(a, n);</p>
+<p class='ind2'>FOR i :=0  TO n-1 DO</p>
+<p class='ind3'>a[i]:=Ran.Int(50)</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>i:=0;</p>
+<p class='ind2'>WHILE (i &lt; n) & (a[i]#x) DO</p>
+<p class='ind3'>INC(i)</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>IF (i &lt; n) THEN</p>
+<p class='ind3'>Log.String('a[');</p>
+<p class='ind3'>Log.Int(i);</p>
+<p class='ind3'>Log.String(']=');</p>
+<p class='ind3'>Log.Int(a[i])</p>
+<p class='ind2'>ELSE</p>
+<p class='ind3'>Log.String('Искомый элемент не найден.')</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>Log.Ln</p>
+<p class='ind1'>END do;</p>
+<p class='ind0'>END lin_poisk.</p>
+<p class='ind0'>lin_poisk.do 13 31</p>
+</code>
+<h3>8.11.1.2. Бинарный поиск</h3>
+<p>Пусть массив элементов отсортирован. Тогда вместо последовательного поиска элемента в массиве целесообразно использовать более эффективный бинарный поиск. На каждом шаге бинарный поиск (метод половинного деления) сокращает область поиска вдвое.</p>
+<p>Рассмотрим идею бинарного поиска. В интервале поиска его серединный элемент сравнивается со значением искомого элемента. Если серединный элемент совпал с искомым, то поиск можно завершить. Если же искомый элемент меньше серединного, то поиск переносится на левую половину интервала, в противном случае &#151; на его правую половину.</p> 
+<p>Ниже представлен пример реализации алгоритма бинарного поиска:</p>
+<code>
+<p class='ind0'>MODULE bin_poisk;</p>
+<p class='ind1'>IMPORT  Log := StdLog,  In:=i21sysIn, Ran:=i21eduRandom;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>TYPE massiv= POINTER TO ARRAY OF INTEGER;</p>
+<p class='ind2'>VAR a: massiv; i, n, x, l, r, m: INTEGER;</p>
+<p class='ind3'>b: BOOLEAN;</p>
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>In.Open;</p>
+<p class='ind2'>ASSERT(In.Done);</p>
+<p class='ind2'>In.Int(n);</p>
+<p class='ind2'>ASSERT(In.Done);</p>
+<p class='ind2'>In.Int(x);</p>
+<p class='ind2'>ASSERT(In.Done);</p>
+<p class='ind2'>NEW(a, n);</p>
+<p class='ind2'>FOR i :=0  TO n-1 DO</p>
+<p class='ind3'>a[i]:=Ran.Int(5)+i*5;</p>
+<p class='ind3'>Log.Int(a[i]);</p>
+<p class='ind3'>Log.Tab</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>Log.Ln;</p>
+<p class='ind2'>l:=0; r:=n-1;</p>
+<p class='ind2'>b:=FALSE;</p>
+<p class='ind2'>WHILE (~b & (l &lt;= r)) DO</p>
+<p class='ind3'>m:=(l+r) DIV 2;</p>
+<p class='ind3'>IF a[m]=x THEN</p>
+<p class='ind4'>b:=TRUE;</p>
+<p class='ind3'>ELSIF a[m] &lt;x THEN</p>	
+<p class='ind4'>l:=m+1;</p>
+<p class='ind3'>ELSE</p>
+<p class='ind4'>r:=m-1</p>
+<p class='ind3'>END;</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>IF b THEN</p>
+<p class='ind3'>Log.String('a[');</p>
+<p class='ind3'>Log.Int(m);</p>
+<p class='ind3'>Log.String(']=');</p>
+<p class='ind3'>Log.Int(a[m])</p>
+<p class='ind2'>ELSE</p>
+<p class='ind3'>Log.String('Искомый элемент не найден.')</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>Log.Ln</p>
+<p class='ind1'>END do;</p>
+<p class='ind0'>BEGIN</p>
+<p class='ind0'>END bin_poisk.</p>
+<p class='ind0'>bin_poisk.do 15 10</p>
+</code>
+<p>Использование барьерного элемента позволяет упростить проверку логического условия завершения цикла поиска. Пример реализации алгоритма бинарного поиска с барьером:</p>
+<code>
+<p class='ind0'>MODULE bin_poisk_bar;</p>
+<p class='ind1'>IMPORT  Log:=StdLog,  In:=i21sysIn, Ran:=i21eduRandom;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>TYPE massiv= POINTER TO ARRAY OF INTEGER;</p>
+<p class='ind2'>VAR a: massiv; i, n, x, l, r, m: INTEGER;</p>
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>In.Open;</p>
+<p class='ind2'>ASSERT(In.Done);</p>
+<p class='ind2'>In.Int(n);</p>
+<p class='ind2'>ASSERT(In.Done);</p>
+<p class='ind2'>In.Int(x);</p>
+<p class='ind2'>ASSERT(In.Done);</p>
+<p class='ind2'>NEW(a, n+1);</p>
+<p class='ind2'>FOR i :=0  TO n-1 DO</p>
+<p class='ind3'>a[i]:=Ran.Int(5)+i*5;</p>
+<p class='ind3'>Log.Int(a[i]);</p>
+<p class='ind3'>Log.Tab</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>a[n]:=x; (*барьерный элемент*)</p>
+<p class='ind2'>Log.Ln;</p>
+<p class='ind2'>l:=0; r:=n-1;</p>
+<p class='ind2'>REPEAT</p>
+<p class='ind3'>m:=(l+r) DIV 2;</p>
+<p class='ind3'>IF l &gt; r THEN</p>
+<p class='ind4'>m:=n;</p>
+<p class='ind3'>ELSIF a[m] &lt; x THEN</p>	
+<p class='ind4'>l:=m+1;</p>
+<p class='ind3'>ELSE</p>
+<p class='ind4'>r:=m-1</p>
+<p class='ind3'>END;</p>
+<p class='ind2'>UNTIL a[m]=x;</p>
+<p class='ind2'>IF m &lt; n THEN</p>
+<p class='ind3'>Log.String('a[');</p>
+<p class='ind3'>Log.Int(m);</p>
+<p class='ind3'>Log.String(']=');</p>
+<p class='ind3'>Log.Int(a[m])</p>
+<p class='ind2'>ELSE</p>
+<p class='ind3'>Log.String('Искомый элемент не найден.')</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>Log.Ln</p>
+<p class='ind1'>END do;</p>
+<p class='ind0'>END bin_poisk_bar.</p>
+<p class='ind0'>bin_poisk_bar.do 15 12</p>
+</code>
+<p>Сценарий бинарного поиска заданного целого числа в упорядоченном массиве псевдослучайных целых чисел:</p>
+<table>
+<tr>
+<td>Введите искомое целое число</td>
+<td><input type="text" id="chislo" size='5'/></td>
+</tr>
+<tr>
+<td>Введите длину массива</td>
+<td><input type="text" id="kol" size='5'/></td>
+</tr>
+<tr>
+<td>
+<input type="button" value="Найти" onclick="find(chislo.value, kol.value)" />
+</td>
+<td>
+<input type="reset" value="Сброс" />
+</td>
+</tr>
+</table>
+
+<h3>Вопросы и задачи</h3>
+<ol>
+<li>Важен ли порядок следования логических условий в цикле 
+<code>
+<p class='ind2'>WHILE (i &lt; n) & (a[i]#x) DO</p>
+<p class='ind3'>INC(i)</p>
+<p class='ind2'>END;</p>
+</code>
+<a href='#lin_poisk'>модуля линейного поиска</a> элемента в массиве?
+</li>
+<li>Упростите логическое условие в вышеприведенном цикле посредством использования барьерного элемента.</li>
+<li>Модифицируйте <a href='#lin_poisk'>модуль линейного поиска</a> таким образом, чтобы он выводил в Рабочий журнал все нужные элементы.</li>
+<li>Модифицируйте <a href='#lin_poisk'>модуль линейного поиска</a> таким образом, чтобы он выводил в Рабочий журнал искомый элемент с максимальным индексом.</li>
+<li>Оцените вычислительную сложность алгоритма линейного поиска элемента в массиве.</li>
+<li>Разработайте модуль для поиска элемента в массиве записей по двум ключам.</li>
+<li>Оцените вычислительную сложность алгоритма бинарного поиска.</li>
+<li>Реализуйте алгоритм бинарного поиска элемента в массиве посредством цикла WHILE.</li>
+<li>Реализуйте алгоритм бинарного поиска заданного символа в отсортированном массиве символов.</li>
+</ol>
+<p>Задачи для самостоятельного решения из сборника задач по программированию под редакцией С.А. Абрамова, Г.Г. Гнездиловой, Е.Н. Капустиной, М.И. Селюн. Задачи по программированию:</p>
+<a href="zadachi/27.html">§27. Тексты</a>
+<p><a href="8_10_8.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_11_2.html">К следующему</a> </p>
+</body>
+</html>

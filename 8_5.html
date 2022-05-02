@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<link rel='stylesheet' type='text/css' href='style.css' />
+<meta name='author' content='leonid' />
+<title>Процедуры</title>
+</head>
+<body>
+<p><a href="8_4.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_6.html">К следующему</a> </p>
+<h2>8.5. Процедуры</h2>
+<p>Описание процедуры состоит из заголовка и тела процедуры. Заголовок задает имя (идентификатор) процедуры и ее формальные параметры. Тело содержит объявления (необязательно) типов, констант, переменных, процедур и операторы. Идентификатор процедуры повторяется в конце ее описания (перед END).</p>
+<p>Все константы, переменные, типы и процедуры, описанные внутри тела процедуры, являются локальными по отношению к этой процедуре. Поскольку процедуры тоже могут описываться как локальные объекты, описания процедур могут быть вложены друг в друга. Вызов процедуры внутри ее описания означает рекурсивную активизацию (см. <a href='8_12_1.html'>8.12.1. Рекурсии</a>).</p>
+<p>Есть два вида процедур: обычные процедуры и процедуры-функции. Обычные процедуры активизируются вызовом процедуры.</p>
+<div class="examp">
+<p><span class="primer">Пример 8.5.1</span> обычной процедуры <code>do</code> с вложенными в нее обычными процедурами <code>суммировать</code> и <code>вычесть</code>:</p>
+<code>
+<p class='ind0'>MODULE example;</p>
+<p class='ind1'>IMPORT  Log := StdLog;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>VAR  x, y, z: INTEGER;</p>
+<p class='ind2'>PROCEDURE суммировать;</p>
+<p class='ind3'>VAR</p>
+<p class='ind2'>BEGIN</p>
+<p class='ind3'>z:=x+y;</p>
+<p class='ind3'>Log.Int(x);</p>
+<p class='ind3'>Log.Char('+');</p>
+<p class='ind3'>Log.Int(y);</p>
+<p class='ind3'>Log.Char('=');</p>
+<p class='ind3'>Log.Int(z);</p>
+<p class='ind3'>Log.Ln</p>
+<p class='ind2'>END суммировать;</p>
+<p class='ind2'>PROCEDURE вычесть;</p>
+<p class='ind3'>VAR</p>
+<p class='ind2'>BEGIN</p>
+<p class='ind3'>z:=x-y;</p>
+<p class='ind3'>Log.Int(x);</p>
+<p class='ind3'>Log.Char('-');</p>
+<p class='ind3'>Log.Int(y);</p>
+<p class='ind3'>Log.Char('=');</p>
+<p class='ind3'>Log.Int(z);</p>
+<p class='ind3'>Log.Ln</p>
+<p class='ind2'>END вычесть;</p>	
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>x:=10;</p>
+<p class='ind2'>y:=20;</p>
+<p class='ind2'>суммировать;</p>
+<p class='ind2'>вычесть;</p>
+<p class='ind1'>END do;</p>
+<p class='ind0'>END example.</p>
+</code>
+</div>
+<p>Процедура-функция активизируется составным именем функции, выступающим в качестве части выражения, и дает результат, являющийся операндом выражения (ниже в Примере 2 <code>Log.Int(fact(n));</code>) . Процедура является процедурой-функцией, если список ее формальных параметров задает некоторый тип результата (в Примере 2 из объявления <code>PROCEDURE fact(VAR x: INTEGER): LONGINT;</code> следует, что формальный параметр целого типа <code>x</code> задает тип <code>LONGINT</code> результата ). Тело процедуры-функции должно содержать оператор возврата <code>RETURN</code>, который определяет ее результат.</p>
+<div class="examp">
+<p><span class="primer">Пример 8.5.2</span> процедуры-функции:</p>
+<code>
+<p class='ind0'>MODULE func;</p>
+<p class='ind1'>IMPORT  Log := StdLog;</p>
+<p class='ind1'>PROCEDURE fact(VAR x: INTEGER): LONGINT;</p>
+<p class='ind2'>VAR f: LONGINT; i: INTEGER;</p>
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>f:=1;</p>
+<p class='ind2'>FOR i :=1 TO x DO</p>
+<p class='ind3'>f:=f*i</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>RETURN f;</p>
+<p class='ind1'>END fact;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>VAR  n: INTEGER;</p>
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>n:=4;</p>
+<p class='ind2'>Log.Int(n);</p>
+<p class='ind2'>Log.String('!=');</p>
+<p class='ind2'>Log.Int(fact(n));</p>
+<p class='ind2'>Log.Ln</p>
+<p class='ind1'>END do;</p>
+<p class='ind0'>END func.</p>
+</code>
+</div>
+<p>Формальные параметры суть идентификаторы, описанные в списке формальных параметров процедуры. Они соответствуют фактическим параметрам, указанным в вызове процедуры. Соответствие между формальными и фактическими параметрами устанавливается при вызове процедуры.</p>
+<p>Есть два вида параметров: параметры-значения [value parameters] и параметры-переменные [variable parameters], последние отмечены в списке формальных параметров одним из описателей VAR, IN или OUT.</p>
+<p> Параметры-значения представляют собой локальные переменные, которым, при вызове процедуры, в качестве начальных значений присваиваются значения соответствующих фактических параметров. Изменения значений формальных параметров никак не отражаются на значения фактических параметров, в чем можно убедиться, исполнив процедуру do в модуле param1 из Примера 3.</p>
+<div class="examp">
+<p><span class="primer">Пример 8.5.3</span> задания параметров-значений (передачи фактических параметров по значению):</p>
+<code>
+<p class='ind0'>MODULE param1;</p>
+<p class='ind1'>IMPORT  Log := StdLog;</p>
+<p class='ind1'>PROCEDURE print(OUT m, n: INTEGER); (*m, n &#151; формальные параметры-переменные*)</p>
+<p class='ind2'>VAR</p>
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>Log.Ln;</p>
+<p class='ind2'>Log.Int(m);</p>
+<p class='ind2'>Log.Tab;</p>
+<p class='ind2'>Log.Int(n);</p>
+<p class='ind2'>Log.Ln</p>
+<p class='ind1'>END print;</p>
+<p class='ind1'>PROCEDURE по_значению(a, b: INTEGER); (*a, b &#151; формальные параметры-значения*)</p>
+<p class='ind2'>VAR</p>
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>Log.String('Полученные значения формальных параметров a и b:');</p>
+<p class='ind2'>print(a, b); (*a, b &#151; фактические параметры*)</p>
+<p class='ind2'>(*переопределим a и b*)</p>
+<p class='ind2'>a:=2*a;</p>
+<p class='ind2'>b:=3*b;</p>
+<p class='ind2'>Log.String('Новые значения параметров a и b:');</p>
+<p class='ind2'>print(a, b);</p>
+<p class='ind1'>END по_значению;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>VAR  x, y, z: INTEGER;</p>
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>x:=10;</p>
+<p class='ind2'>y:=15;</p>
+<p class='ind2'>Log.String('Значения фактических параметров x и y:');</p>
+<p class='ind2'>print(x, y); (*x, y &#151; фактические параметры*)
+<p class='ind2'>по_значению(x, y);</p>
+<p class='ind2'>Log.String('Значения фактических параметров x и y:');</p>
+<p class='ind2'>print(x, y); (*x, y &#151; фактические параметры*)</p>
+<p class='ind1'>END do;</p>
+<p class='ind0'>END param1.</p>
+</code>
+</div>
+<p>Параметры-переменные являются ссылками на фактические параметры, и они представляют [stand for] фактические параметры в вызываемой процедуре. Следовательно, изменение значений формальных параметров-переменных в вызываемой процедуре означает изменение соответствующих фактических параметров.</p>
+<p>Параметры-переменные с описателем IN могут использоваться только для ввода данных, с описателем OUT &#151; только для вывода данных, и с описателем VAR &#151; для ввода и вывода. Описатель IN можно использовать только для параметров, являющихся массивами или записями. Внутри процедуры IN-параметры доступны только для чтения. Как и локальные переменные, OUT-параметры указательных или процедурных типов инициализируются в NIL. Значения других выходных параметров должны рассматриваться как неопределенные до первого присваивания в процедуре. Область видимости формального параметра распространяется от его описания до конца процедурного блока, в котором он описан. Процедура-функция без параметров должна иметь пустой список параметров. Она должна вызываться с помощью составного имени, у которого есть пустой список фактических параметров. Тип результата процедуры не может быть ни записью, ни массивом.
+</p>
+<div class="examp">
+<p><span class="primer">Пример 8.5.4</span> задания параметров-переменных (передачи фактических параметров по ссылке):</p>
+<code>
+<p class='ind0'>MODULE param2;</p>
+<p class='ind1'>IMPORT  Log := StdLog;</p>
+<p class='ind1'>PROCEDURE print(OUT m, n: INTEGER);</p>
+<p class='ind2'>VAR</p>
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>Log.Ln;</p>
+<p class='ind2'>Log.Int(m);</p>
+<p class='ind2'>Log.Tab;</p>
+<p class='ind2'>Log.Int(n);</p>
+<p class='ind2'>Log.Ln</p>
+<p class='ind1'>END print;</p>
+<p class='ind1'>PROCEDURE по_ссылке(VAR a, b: INTEGER);</p>
+<p class='ind2'>VAR</p>
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>Log.String('Полученные значения формальных параметров a и b:');</p>
+<p class='ind2'>print(a, b);</p>
+<p class='ind2'>(*переопределим a и b*)</p>
+<p class='ind2'>a:=2*a;</p>
+<p class='ind2'>b:=3*b;</p>
+<p class='ind2'>Log.String('Новые значения формальных параметров a и b:');</p>
+<p class='ind2'>print(a, b);</p>
+<p class='ind1'>END по_ссылке;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>VAR  x, y, z: INTEGER;</p>
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>x:=10;</p>
+<p class='ind2'>y:=15;</p>
+<p class='ind2'>Log.String('Значения фактических параметров x и y:');</p>
+<p class='ind2'>print(x, y);</p>
+<p class='ind2'>по_ссылке(x, y);</p>
+<p class='ind2'>Log.String('Значения фактических параметров x и y:');</p>
+<p class='ind2'>print(x, y);</p>
+<p class='ind1'>END do;</p>
+<p class='ind0'>END param2.</p>
+</code>
+</div>
+<p>Перейдем к рассмотрению порядка следования процедур в модуле. В Компонентном Паскале диапазон видимости идентификатора процедуры распространяется от точки его объявления до конца модуля, поэтому, условно говоря, процедуру 1 можно вызвать из процедуры 2 только в том случае, если она объявлена или описана до процедуры 2. Такой подход обеспечивает быструю однопроходную компиляцию программ.</p>
+<div class="examp">
+<p><span class="primer">Пример 8.5.5</span> демонстрации порядка следования процедур  do и fact, в котором процедура fact описана следом за процедурой do, но вызывается из процедуры do:</p>
+<code>
+<p class='ind0'>MODULE func1;</p>
+<p class='ind1'>IMPORT  Log := StdLog;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>VAR  n: INTEGER;</p>
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>n:=4;</p>
+<p class='ind2'>Log.Int(n);</p>
+<p class='ind2'>Log.String('!=');</p>
+<p class='ind2'>Log.Int(fact(n));</p>
+<p class='ind2'>Log.Ln</p>
+<p class='ind1'>END do;</p>
+<p class='ind1'>PROCEDURE fact(VAR x: INTEGER): LONGINT ;</p>
+<p class='ind2'>VAR f: LONGINT; i: INTEGER;</p> 
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>f:=1;</p>
+<p class='ind2'>FOR i :=1 TO x DO</p>
+<p class='ind3'>f:=f*i</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>RETURN f;</p>
+<p class='ind1'>END fact;</p>
+<p class='ind0'>END func1.</p>
+</code>
+<p>Попытка скомпилировать этот модуль приведет к сообщению об ошибке "необъявленный идентификатор" в строке Log.Int(fact(n)); процедуры do. Причина в том, что идентификатор процедуры fact появляется в тексте после процедуры do, и его диапазон видимости распространяется от заголовка процедуры fact до конца модуля.</p>
+<p>Проблема решается упреждающим объявлением процедуры fact: PROCEDURE^ fact(VAR x: INTEGER): LONGINT;. Корректный вариант программы такой:</p>
+<code>
+<p class='ind0'>MODULE func1;</p>
+<p class='ind1'>IMPORT  Log := StdLog;</p>
+<p class='ind1'>PROCEDURE^ fact(VAR x: INTEGER): LONGINT ;</p>
+<p class='ind1'>PROCEDURE do*;</p>
+<p class='ind2'>VAR  n: INTEGER;</p>
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>n:=4;</p>
+<p class='ind2'>Log.Int(n);</p>
+<p class='ind2'>Log.String('!=');</p>
+<p class='ind2'>Log.Int(fact(n));</p>
+<p class='ind2'>Log.Ln</p>
+<p class='ind1'>END do;</p>
+<p class='ind1'>PROCEDURE fact(VAR x: INTEGER): LONGINT ;</p>
+<p class='ind2'>VAR f: LONGINT; i: INTEGER;</p> 
+<p class='ind1'>BEGIN</p>
+<p class='ind2'>f:=1;</p>
+<p class='ind2'>FOR i :=1 TO x DO</p>
+<p class='ind3'>f:=f*i</p>
+<p class='ind2'>END;</p>
+<p class='ind2'>RETURN f;</p>
+<p class='ind1'>END fact;</p>
+<p class='ind0'>END func1.</p>
+</code>
+</div>
+<p>Задачи для самостоятельного решения из сборника задач по программированию под редакцией С.А. Абрамова, Г.Г. Гнездиловой, Е.Н. Капустиной, М.И. Селюн. Задачи по программированию:</p>
+<p><a href='zadachi/12.html'>§12. Использование процедур</a></p>
+<p><a href="8_4.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_6.html">К следующему</a> </p>
+</body>
+</html>

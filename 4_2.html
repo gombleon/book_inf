@@ -1,0 +1,1186 @@
+;<!DOCTYPE html>
+<html>
+<meta charset="UTF-8" />
+<link rel='stylesheet' type="text/css" href="style.css"></link>
+<head>
+<meta name="author" content="leonid" />
+<meta name="description" content="перевод числа из одной системы счисления в другую" />
+<meta name="keywords" content="система счисления, основание системы счисления, многочлен степени, разложение по степеням" />
+<title>Перевод чисел из одной системы счисления в другую</title>
+<script type="text/javascript" src="syst_chisl.js">
+<!--//
+document.alert("Проверьте файл со сценарием!")
+//-->
+</script>
+<script type="text/javascript">
+function prov_osn(osnov) {
+var pr_os=true; found=false, str='0123456789', os=Number(osnov);
+	for (var i=0;i<osnov.length;i++) {
+		found=false;
+		for (var j=0;j<10;j++) {
+			if (str.charAt(j)==osnov.charAt(i)) {
+				found=true;j=10;	
+			}
+		}
+		if (found==false)
+		break;
+	}
+	if (!((os>=2)&&(os<=16)))
+		pr_os=false;
+	pr_os=pr_os && found;
+	return pr_os;
+}
+
+function calculate(osnov,number,os1) {
+	var res='В 10-чной системе счисления: ', des=0, chislo=0, n_q=document.getElementById('n_q');
+	number=number.toLowerCase();
+	osnov=osnov.toLowerCase();
+	if (prov_osn(osnov) && prov_osn(os1) && proverka(number,osnov)) {
+		des=perevod(number,osnov)
+		chislo=perevod10_q(des,os1)
+		chislo=chislo.toUpperCase();
+		n_q.textContent=chislo;
+	}
+	else
+		alert('Ошибка! Повторите ввод'	)
+}		
+
+function calc_real(osnov,number,osnov1) {
+	var des=0, chislo=0, z_q=document.getElementById("z_q");
+	number=number.toLowerCase();
+	osnov=osnov.toLowerCase();	
+	if (prov_osn(osnov) && prov_osn(osnov1) && proverka(number,osnov)) {
+		des=perevod(number,osnov);
+		chislo=perevod10_q(des,osnov1);
+		chislo=chislo.toUpperCase();
+		z_q.textContent=chislo;
+	}
+	else
+		alert('Ошибка! Повторите ввод.'	)
+}		
+
+</script>
+
+</head>
+
+<body>
+<p><a href="4_1.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="4_3.html">К следующему</a></p>
+<h2>4.2. Перевод чисел из одной системы счисления в другую</h2>
+<p>Одно и то же число может быть представлено в различных системах счисления. В связи с этим возникает задача перевода числа из системы счисления с основанием <var>p</var> в систему счисления с основанием <var>q</var>:
+<math display='inline'>
+<mrow>
+	<msub><mi>Z</mi><mi>p</mi></msub><mo>&#8594;</mo><msub><mi>Z</mi><mi>q</mi></msub>
+</mrow>
+</math>.
+Непосредственный перевод затруднителен по причине того, что придется производить вычисления, вообще говоря, в недесятичной системе счисления. Поэтому используем десятичную систему счисления как промежуточную: 
+<math display='inline'>
+<mrow>
+	<msub><mi>Z</mi><mi>p</mi></msub><mo>&#8594;</mo><msub><mi>Z</mi><mn>10</mn></msub><mo>&#8594;</mo><msub><mi>Z</mi><mi>q</mi></msub>
+</mrow>
+</math>.
+</p>
+<p>Рассмотрим перевод целого неотрицательного числа 
+<math display='inline'><msub><mi>Z</mi><mi>p</mi></msub></math>
+из системы счисления с основанием <var>p</var> в десятичную систему счисления. Для этого воспользуемся представлением
+<table class="formula"><tr>
+<td class="formula">
+<math display="block">
+<mrow>
+  <msub><mi>Z</mi><mi>p</mi></msub><mo>=</mo>
+	<mfenced>
+		<mrow>
+			<msub><mi>a</mi><mrow><mi>k</mi><mo>-</mo><mn>1</mn></mrow></msub>
+			<mi>&#8230;</mi>
+			<msub><mi>a</mi><mn>1</mn></msub>
+			<msub><mi>a</mi><mn>0</mn></msub>
+		</mrow>
+	</mfenced>  
+<mo>=</mo>
+	<mrow>  
+     <msub>
+      <mi>a</mi>
+      <mrow><mi>k</mi><mo>−</mo><mn>1</mn></mrow>
+    </msub>
+    <mo>&#x2062;</mo>
+    <msup>
+      <mi>p</mi>
+      <mrow><mi>k</mi><mo>−</mo><mn>1</mn></mrow>
+    </msup>
+	</mrow>    
+    <mo>+</mo><mi>&#8230;</mi><mo>+</mo>
+    <mrow>
+   	 	<msub><mi>a</mi><mn>1</mn></msub><mo>&#x2062;</mo>
+	    	<msup><mi>p</mi><mn>1</mn></msup>
+    </mrow>
+    <mo>+</mo>
+    <msub>
+      <mi>a</mi>
+      <mn>0</mn>
+    </msub>
+</mrow><mo>,</mo>
+</math></td>
+<td class="nomer">(4.2.1)</td></tr>
+</table>
+где
+<math display='inline'>
+<mrow>
+	<mn>0</mn><mo>&#8804;</mo>
+	<msub><mi>a</mi><mi>i</mi></msub><mo>&lt;</mo><mi>p</mi>
+</mrow>
+</math>
+ для 
+ <math display='inline'>
+<mrow>
+<mi>i</mi><mo>=</mo>
+<mfenced open="" close="">
+		<mn>0</mn><mn>1</mn><mi>&#8230;</mi><mrow><mi>k</mi><mo>-</mo><mn>1</mn></mrow>
+</mfenced>
+</mrow>
+</math>. 
+ </p>
+<p>Очевидно, что искомое значение 
+<math display='inline'><msub><mi>Z</mi><mn>10</mn></msub></math>
+ вычисляется по правилам арифметики десятичной системы счисления как значение выражения (4.2.1).</p>
+<p>Например, 
+<math display='inline'>
+<mrow>
+	<msub><mn>1011</mn><mn>2</mn></msub><mo>=</mo>
+	<mrow>
+		<mrow><mn>1</mn><mo>&#183;</mo><msup><mn>2</mn><mn>3</mn></msup></mrow><mo>+</mo>
+		<mrow><mn>0</mn><mo>&#183;</mo><msup><mn>2</mn><mn>2</mn></msup></mrow><mo>+</mo>
+		<mrow><mn>1</mn><mo>&#183;</mo><msup><mn>2</mn><mn>1</mn></msup></mrow><mo>+</mo>
+		<mrow><mn>1</mn><mo>&#183;</mo><msup><mn>2</mn><mn>0</mn></msup></mrow><mo>=</mo>
+	</mrow>
+	<msub><mn>11</mn><mn>10</mn></msub>
+</mrow>
+</math>.</p>
+<p>Перейдем к рассмотрению преобразования 
+<math display='inline'>
+<mrow>
+	<msub><mi>Z</mi><mn>10</mn></msub><mo>&#8594;</mo><msub><mi>Z</mi><mi>q</mi></msub>
+</mrow>
+</math>, где
+<math display='inline'>
+	<msub><mi>Z</mi><mn>10</mn></msub>
+</math>
+&#8212; целое число. Перевести число 
+<math display='inline'>
+	<msub><mi>Z</mi><mn>10</mn></msub>
+</math>
+в систему счисления с основанием <var>q</var> означает разложить его по степеням <var>q</var> в десятичной системе счисления:
+<table class="formula"><tr>
+<td class="formula">
+<math display="block">
+<mrow>
+  <msub><mi>Z</mi><mn>10</mn></msub><mo>=</mo>
+  <mrow><mo>(</mo>
+    <msub><mi>b</mi><mrow><mi>m</mi><mo>−</mo><mn>1</mn></mrow></msub>
+    <mi>&#8230;</mi>
+    <msub><mi>b</mi><mn>1</mn></msub>
+    <msub><mi>b</mi><mn>0</mn></msub>
+    <mo>)</mo>
+  </mrow>
+  <mo>=</mo>
+  <mrow>
+		<mrow>  		
+  			<msub><mi>b</mi><mrow><mi>m</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>&#x2062;</mo>
+  			<msup><mi>q</mi><mrow><mi>m</mi><mo>−</mo><mn>1</mn></mrow></msup>
+  		</mrow>
+  		<mo>+</mo>
+  		<mi>&#8230;</mi>
+   	<mo>+</mo>
+   	<mrow>
+  			<msub><mi>b</mi><mn>1</mn></msub><mo>&#x2062;</mo>
+  			<msup><mi>q</mi><mn>1</mn></msup>
+  		</mrow>
+  		<mo>+</mo>
+  		<msub><mi>b</mi><mn>0</mn></msub>
+  </mrow>
+</mrow><mo>,</mo>
+</math></td>
+<td class="nomer">(4.2.2)</td></tr>
+</table>
+где
+<math display='inline'>
+<mrow>
+	<mn>0</mn><mo>&#8804;</mo><msub><mi>b</mi><mi>i</mi></msub><mo>&lt;</mo><mi>q</mi>
+</mrow>
+</math>
+для 
+<math display='inline'>
+<mrow>
+	<mi>i</mi><mo>=</mo>
+	<mfenced open="" close=""><mn>0</mn><mn>1</mn><mi>&#8230;</mi><mrow><mi>m</mi><mo>-</mo><mn>1</mn></mrow></mfenced>
+</mrow>
+</math>.</p> 
+<p>Из (4.2.2) следует, что последняя цифра 
+<math display='inline'>
+<msub><mi>b</mi><mn>0</mn></msub>
+</math>
+ равняется остатку от деления 
+<math display='inline'>
+<msub><mi>Z</mi><mn>10</mn></msub>
+</math>
+ на <var>q</var>.</p>
+<p>Для нахождения цифры 
+<math display='inline'>
+<msub><mi>b</mi><mn>1</mn></msub>
+</math>
+ вычтем из числа 
+<math display='inline'>
+<msub><mi>Z</mi><mn>10</mn></msub>
+</math> 
+число 
+<math display='inline'>
+<msub><mi>b</mi><mn>0</mn></msub>
+</math>, а результат вычитания разделим на <var>q</var>. Тогда будет иметь место разложение
+<table class="formula">
+<tr>
+<td class="formula">
+<math display="block">
+<mrow>
+  <mfrac>
+    <mrow>
+      <msub><mi>Z</mi><mn>10</mn></msub>
+      <mo>−</mo>
+      <msub><mi>b</mi><mn>0</mn></msub>
+    </mrow>
+    <mi>q</mi>
+  </mfrac>
+  <mo>=</mo>
+	<mrow>
+		<mrow>  		
+  			<msub><mi>b</mi><mrow><mi>m</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>&#x2062;</mo>
+  			<msup><mi>q</mi><mrow><mi>m</mi><mo>−</mo><mn>2</mn></mrow></msup>
+  		</mrow>
+  		<mo>+</mo>
+  		<mi>&#8230;</mi>
+  		<mo>+</mo>
+  		<mrow>
+  			<msub><mi>b</mi><mn>2</mn></msub><mo>&#x2062;</mo>
+  			<msup><mi>q</mi><mn>1</mn></msup>
+  		</mrow>
+  		<mo>+</mo>
+  		<msub><mi>b</mi><mn>1</mn></msub>
+  </mrow>
+</mrow><mo>.</mo>
+</math>
+</td>
+</tr>
+</table>
+Следовательно, 
+<math display='inline'>
+<msub><mi>b</mi><mn>1</mn></msub>
+</math>
+находим как остаток от деления числа 
+<math display='inline'>
+<mfrac>
+    <mrow>
+      <msub><mi>Z</mi><mn>10</mn></msub>
+      <mo>−</mo>
+      <msub><mi>b</mi><mn>0</mn></msub>
+    </mrow>
+    <mi>q</mi>
+</mfrac>
+</math>
+ на число <var>q</var>.</p>
+<p>Продолжая этот процесс, вычислим все цифры 
+<math display='inline'>
+<mrow>
+	<mo>(</mo>
+		<msub><mi>b</mi><mrow><mi>m</mi><mo>-</mo><mn>1</mn></mrow></msub>
+		<msub><mi>b</mi><mrow><mi>m</mi><mo>-</mo><mn>2</mn></mrow></msub>
+		<mi>&#8230;</mi>
+		<msub><mi>b</mi><mn>1</mn></msub>
+		<msub><mi>b</mi><mn>0</mn></msub>						
+	<mo>)</mo>
+</mrow>
+</math>
+числа 
+<math display='inline'>
+<msub><mi>Z</mi><mn>10</mn></msub>
+</math>
+в системе счисления с основанием <var>q</var>.</p>
+<p>К примеру, переведем число 
+<math display='inline'>
+<msub><mn>11</mn><mn>10</mn></msub>
+</math>
+в двоичную систему счисления. Остаток от деления <var>11</var> на <var>2</var> равняется <var>1</var>. Таким образом, последняя цифра числа равняется <var>1</var>. Затем вычтем из <var>11</var> число <var>1</var>, результат разделим на <var>2</var> и получим <var>5</var>. Остаток от деления <var>5</var> на <var>2</var> равняется <var>1</var>. Это предпоследняя цифра числа в двоичной системе счисления. Вычтем из <var>5</var> предпоследнюю цифру <var>1</var> и разделим на <var>2</var>, что даст <var>2</var>. Остаток от деления <var>2</var> на <var>2</var> равняется <var>0</var>. Вычислили еще одну цифру - третью справа. Разделим <var>2</var> на <var>2</var> и получим <var>1</var>. Это первая цифра числа. Таким образом, мы получили разложение 
+<math display='inline'>
+<mrow>
+	<msub><mn>11</mn><mn>10</mn></msub><mo>=</mo>
+	<mrow>
+		<mrow><mn>1</mn><mo>&#183;</mo><msup><mn>2</mn><mn>3</mn></msup></mrow><mo>+</mo>	
+		<mrow><mn>0</mn><mo>&#183;</mo><msup><mn>2</mn><mn>2</mn></msup></mrow><mo>+</mo>
+		<mrow><mn>1</mn><mo>&#183;</mo><msup><mn>2</mn><mn>1</mn></msup></mrow><mo>+</mo>
+		<mrow><mn>1</mn><mo>&#183;</mo><msup><mn>2</mn><mn>0</mn></msup></mrow>
+	</mrow>
+	<mo>=</mo>
+	<msub><mn>1011</mn><mn>2</mn></msub>
+</mrow>
+</math>.
+</p>
+<p>Ниже представлен калькулятор для перевода натурального числа 
+<math display='inline'>
+<msub><mi>Z</mi><mi>p</mi></msub>
+</math>
+из системы счисления с основанием <var>p</var> в систему счисления с основанием <var>q</var>, где <var>p</var> и <var>q</var> ограничены числами 2 и 16 включительно.</p>
+<p><form id="form1">
+Введите:
+<table>
+<tr>
+	<td class="left">основание  <var>p</var> [2-16]</td>
+	<td class="left"><input type="text" id="osn_nat" size="3" /></td>
+</tr>
+<tr>
+	<td class="left">натуральное число <var>Z<sub>p</sub></var></td>
+	<td  class="left"><input type="text" id="num_nat" size="10" /></td>
+</tr>
+<tr>
+	<td class="left">основание <var>q</var> [2-16]</td>
+	<td  class="left"><input type="text" id="osn1_nat" size="3" /></td>
+</tr>
+<tr>
+	<td class="left">натуральное число <var>Z<sub>q</sub></var></td>
+	<td  class="left" id='n_q'></td>
+</tr>
+</table>
+<input type="button" value="Перевести" onclick="calculate(osn_nat.value,num_nat.value,osn1_nat.value)" />
+<input type="reset" value="Очистить"/><br />
+</form>
+</p>
+<p>Пусть теперь число 
+<math display='inline'>
+<msub><mi>Z</mi><mi>p</mi></msub>
+</math>
+дробное:
+<math display='inline'>
+<mrow>
+	<msub><mi>Z</mi><mi>p</mi></msub><mo>=</mo>
+	<mrow>
+		<mn>0</mn><mo>.</mo><msub><mi>b</mi><mrow><mo>-</mo><mn>1</mn></mrow></msub>
+		<msub><mi>b</mi><mrow><mo>-</mo><mn>2</mn></mrow></msub>
+		<mi>&#8230;</mi>
+		<msub><mi>b</mi><mrow><mo>-</mo><mi>r</mi></mrow></msub>
+	</mrow>
+</mrow>
+</math>, где 
+<math display='inline'>
+<mrow>
+	<mrow>	
+		<mn>0</mn><mo>&#8804;</mo><msub><mi>b</mi><mi>i</mi></msub><mo>&lt;</mo><mi>p</mi>
+	</mrow>
+	<mo>,</mo>
+	<mrow>
+		<mi>i</mi><mo>=</mo>
+		<mfenced open="" close=""><mrow><mo>-</mo><mn>1</mn></mrow><mi>&#8230;</mi><mrow><mo>-</mo><mi>r</mi></mrow></mfenced>	
+	</mrow>
+</mrow>
+</math>.
+Рассмотрим перевод числа 
+<math display='inline'>
+<msub><mi>Z</mi><mi>p</mi></msub>
+</math>
+в систему счисления с основанием 10. Имеет место представление:
+<table class="formula"><tr>
+<td class="formula">
+<math display="block">
+<mrow>
+  <msub><mi>Z</mi><mi>p</mi></msub><mo>=</mo>
+  <mrow>
+		<mrow>  		
+	  		<msub><mi>b</mi><mrow><mo>−</mo><mn>1</mn></mrow></msub><mo>&#x2062;</mo>
+  			<msup><mi>p</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup>
+  		</mrow>
+  		<mo>+</mo>
+		<mrow>  		
+	  		<msub><mi>b</mi><mrow><mo>−</mo><mn>2</mn></mrow></msub><mo>&#x2062;</mo>
+  			<msup><mi>p</mi><mrow><mo>−</mo><mn>2</mn></mrow></msup>
+  		</mrow>
+  		<mo>+</mo><mi>&#8230;</mi><mo>+</mo>
+		<mrow>  		
+	  		<msub><mi>b</mi><mrow><mo>−</mo><mi>r</mi></mrow></msub><mo>&#x2062;</mo>
+  			<msup><mi>p</mi><mrow><mo>−</mo><mi>r</mi></mrow></msup>
+  		</mrow>
+  </mrow>
+</mrow><mo>,</mo>
+</math>
+</td>
+<td class="nomer">(4.2.3)</td></tr>
+</table>
+где 
+<math display='inline'>
+<mrow>
+	<mn>0</mn><mo>&#8804;</mo><msub><mi>b</mi><mi>-i</mi></msub><mo>&lt;</mo><mi>p</mi>
+</mrow>
+</math>
+для 
+<math display='inline'>
+<mrow>
+<mi>i</mi><mo>=</mo>
+<mfenced open="" close=""><mn>0</mn><mn>1</mn><mi>&#8230;</mi><mi>r</mi></mfenced>
+</mrow>
+</math>. 
+</p>
+<p>Значение правой части (4.2.3), вычисленное в десятичной системе счисления, даст искомое значение 
+<math display='inline'>
+<msub><mi>Z</mi><mn>10</mn></msub>
+</math>.
+</p>
+<div class="examp">
+<p><span class="primer">Пример 4.2.1.</span> Перевести из двоичной системы счисления в десятичную число 
+<math display='inline'>
+	<msub><mn>0.101</mn><mn>2</mn></msub>
+</math>.
+</p>
+<p><span class="primer">Решение.</span> Вычислим выражение 
+<math display='inline'>
+<mrow>
+	<msub><mn>0.101</mn><mn>2</mn></msub><mo>=</mo>
+	<mrow>
+		<mrow><mn>1</mn><mo>&#183;</mo><msup><mn>2</mn><mrow><mo>-</mo><mn>1</mn></mrow></msup></mrow>	
+		<mo>+</mo>
+		<mrow><mn>0</mn><mo>&#183;</mo><msup><mn>2</mn><mrow><mo>-</mo><mn>2</mn></mrow></msup></mrow>
+		<mo>+</mo>
+		<mrow><mn>1</mn><mo>&#183;</mo><msup><mn>2</mn><mrow><mo>-</mo><mn>3</mn></mrow></msup></mrow>		
+	</mrow>
+	<mo>=</mo>
+	<mrow>
+		<mo>0.5</mo><mo>+</mo><mn>0.125</mn>	
+	</mrow>
+	<mo>=</mo>
+	<msub><mn>0.625</mn><mn>10</mn></msub>
+</mrow>
+</math>.
+</p>
+<p>Таким образом, 
+<math display='inline'>
+<mrow>
+	<msub><mn>0.101</mn><mn>2</mn></msub><mo>=</mo>
+	<msub><mn>0.625</mn><mn>10</mn></msub>
+</mrow>
+</math>.
+</p>
+</div>
+<p>
+Осталось рассмотреть перевод десятичной дроби из интервала [0, 1) в систему счисления с основанием <var>q</var>: 
+<math display='inline'>
+<mrow>
+	<mrow>	
+		<msub><mi>Z</mi><mn>10</mn></msub><mo>&#8594;</mo><msub><mi>Z</mi><mi>q</mi></msub>
+	</mrow>
+	<mo>,</mo>
+	<mrow>
+		<mn>0</mn><mo>&#8804;</mo><msub><mi>Z</mi><mn>10</mn></msub><mo>&lt;</mo><mn>1</mn>
+	</mrow>
+</mrow>
+</math>.
+</p>
+<p>Нам требуется разложить число
+<math display='inline'>
+	<msub><mi>Z</mi><mn>10</mn></msub>
+</math>
+по степеням <var>q</var>:
+<table class="formula"><tr>
+<td class="formula">
+<math display="block">
+<mrow>  
+  <msub><mi>Z</mi><mn>10</mn></msub>
+  <mo>=</mo>
+  <mrow>
+  		<mrow>
+  			<msub><mi>b</mi><mrow><mo>−</mo><mn>1</mn></mrow></msub><mo>&#x2062;</mo>
+  			<msup><mi>q</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup>
+  		</mrow>	
+  		<mo>+</mo><mi>&#8230;</mi><mo>+</mo>
+  		<mrow>
+	  		<msub><mi>b</mi><mrow><mo>−</mo><mi>r</mi></mrow></msub><mo>&#x2062;</mo>
+  			<msup><mi>q</mi><mrow><mo>−</mo><mi>r</mi></mrow></msup>
+  		</mrow>
+  		<mo>+</mo><mi>&#8230;</mi><mo>,</mo>
+  </mrow> 
+</mrow>
+</math>
+</td>
+<td class="nomer">(4.2.4)</td></tr>
+</table>
+где
+<math display='inline'>
+<mrow>
+	<mrow>
+		<mn>0</mn><mo>&#8804;</mo><msub><mi>b</mi><mi>-i</mi></msub>&lt;<mi>q</mi>
+	</mrow>
+	<mo>,</mo>
+	<mrow>
+		<mi>i</mi><mo>=</mo><mfenced open="" close=""><mn>1</mn><mi>&#8230;</mi><mi>r</mi><mi>&#8230;</mi></mfenced>	
+	</mrow>
+</mrow>
+</math>
+</p>
+<p>Для вычисления 
+<math display='inline'>
+	<msub><mi>b</mi><mrow><mo>-</mo><mn>1</mn></mrow></msub>
+</math>
+следует умножить 
+<math display='inline'>
+	<msub><mi>Z</mi><mn>10</mn></msub>
+</math>
+на <var>q</var> и в качестве 
+<math display='inline'>
+	<msub><mi>b</mi><mrow><mo>-</mo><mn>1</mn></mrow></msub>
+</math>
+взять целую часть произведения. Для вычисления следующего коэффициента
+<math display='inline'>
+	<msub><mi>b</mi><mrow><mo>-</mo><mn>2</mn></mrow></msub>
+</math>
+разложения (4.2.4) дробную часть произведения 
+<math display='inline'>
+	<msub><mi>Z</mi><mn>10</mn></msub>
+</math>
+и <var>q</var> умножим на <var>q</var>, и в качестве 
+<math display='inline'>
+	<msub><mi>b</mi><mrow><mo>-</mo><mn>2</mn></mrow></msub>
+</math>
+возьмем целую часть этого произведения. Продолжая этот процесс, можем найти остальные коэффициенты 
+<math display='inline'>
+<mrow>
+	<msub><mi>b</mi><mrow><mo>-</mo><mn>3</mn></mrow></msub><mo>,</mo>
+	<msub><mi>b</mi><mrow><mo>-</mo><mn>4</mn></mrow></msub><mo>,</mo><mi>&#8230;</mi>
+</mrow>	
+</math>
+разложения 
+<math display='inline'>
+	<msub><mi>Z</mi><mn>10</mn></msub>
+</math>
+по степеням <var>q</var>, и, следовательно, искомое представление числа 
+<math display='inline'>
+	<msub><mi>Z</mi><mn>10</mn></msub>
+</math>
+в системе счисления с основанием <var>q</var> такое:
+<math display='inline'>
+<mrow>
+	<msub><mi>Z</mi><mn>10</mn></msub><mo>=</mo>
+		<mrow>
+			<mn>0</mn><mo rspace="1">.</mo>
+			<msub><mi>b</mi><mrow><mo>-</mo><mn>1</mn></mrow></msub>
+			<msub><mi>b</mi><mrow><mo>-</mo><mn>2</mn></mrow></msub><mi>&#8230;</mi>
+			<msub><mi>b</mi><mrow><mo>-</mo><mi>r</mi></mrow></msub><mi>&#8230;</mi>
+	</mrow>
+</mrow>
+</math>
+</p>
+<p>Заметим, что не всякое конечное дробное число 
+<math display='inline'>
+	<msub><mi>Z</mi><mn>10</mn></msub>
+</math>
+в системе счисления с основанием <var>q</var> имеет конечное представление &#8212; оно может иметь представление в виде бесконечной периодической дроби.</p>
+<div class="examp">
+<p><span class="primer">Пример 4.2.2.</span> Перевести десятичную дробь <var>0.6</var> в двоичную систему счисления.</p>
+<p><span class="primer">Решение.</span> <var>0.6 &#183; 2=1.2</var>. Нашли <var>b<sub>-1</sub>=1</var>.</p>
+<p><var>0.2 &#183; 2=0.4</var>. Нашли 
+<math display='inline'>
+<mrow>
+	<msub><mi>b</mi><mrow><mo>-</mo><mn>2</mn></mrow></msub>
+	<mo>=</mo><mn>0</mn>
+</mrow>	
+</math>.</p>
+<p><var>0.4 &#183; 2=0.8</var>. Нашли 
+<math display='inline'>
+<mrow>
+	<msub><mi>b</mi><mrow><mo>-</mo><mn>3</mn></mrow></msub>
+	<mo>=</mo><mn>0</mn>
+</mrow>
+</math>.</p>
+<p><var>0.8 &#183; 2=1.6</var>. Нашли
+<math display='inline'>
+<mrow>
+	<msub><mi>b</mi><mrow><mo>-</mo><mn>4</mn></mrow></msub>
+	<mo>=</mo><mn>1</mn>
+</mrow>
+</math>.</p>
+<p><var>0.6 &#183; 2=1.2</var>. Нашли 
+<math display='inline'>
+<mrow>
+	<msub><mi>b</mi><mrow><mo>-</mo><mn>5</mn></mrow></msub>
+	<mo>=</mo><mn>1</mn>
+</mrow>
+</math>.</p>
+<p>Очевидно, число <var>0.6</var> в двоичной системе счисления представлено бесконечной периодической дробью с периодом <var>1001</var>:
+<math display='inline'>
+<mrow>
+	<mn>0.6</mn><mo>=</mo>
+	<msub>
+		<mn>0.10011001&#8230;</mn>
+		<mn>2</mn>
+	</msub>
+	<mo>=</mo>
+	<msub>
+		<mn>0.(1001)</mn>	
+		<mn>2</mn>
+	</msub>
+</mrow>
+</math>.
+ </p>
+</div>
+<p>Для перевода произвольного числа из одной системы счисления в другую следует отдельно перевести целую и дробную части, а затем сложить результаты.</p>
+<p>Для перевода вещественного числа 
+<math display='inline'>
+	<msub><mi>Z</mi><mi>p</mi></msub>
+</math>
+из системы счисления с основанием <var>p</var> в систему счисления с основанием <var>q</var> предлагается калькулятор:</p>
+<p><form id="form2">
+Введите:
+<table nowrap>
+<tr>
+	<td class="left">основание <var>p</var> [2-16]</td>
+	<td class="left"><input type="text" id="osn_v" size="3" />,</td>
+</tr>
+<tr>
+	<td class="left">вещественное число 
+	<math display='inline'>
+		<msub><mi>Z</mi><mi>p</mi></msub>
+	</math>
+	</td>
+	<td class="left"><input type="text" id="num_v" size="10" />,</td>
+</tr>
+<tr>
+	<td class="left">основание  <var>q</var> [2-16]</td>
+	<td class="left"><input type="text" id="osn1_v" size="3" />.</td>
+</tr>
+<tr>
+	<td class="left" nowrap>Вещественное число 
+	<math display='inline'>
+		<msub><mi>Z</mi><mi>q</mi></msub>
+	</math>
+	</td>
+	<td id='z_q' align='left'></td>
+</tr>
+</table>
+<input type="button" value="Перевести" onclick="calc_real(osn_v.value,num_v.value,osn1_v.value)" />
+<input type="reset" value="Очистить" />
+</form>
+</p>
+<p>
+Двоичная запись числа довольно громоздкая, поэтому в нумерации ячеек памяти компьютера используют восьмеричную и шестнадцатеричную системы счисления. Рассмотрим связь между системами счисления с основаниями <var>2, 8</var> и <var>16</var>. В двоичной системе счисления всего две цифры: &quot;0&quot; и &quot;1&quot;, в восьмеричной их 8: от &quot;0&quot; до &quot;7&quot;, в шестнадцатеричной их 16: &quot;0&quot;, ..., &quot;9&quot;, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;.</p>
+<p>Для быстрого перевода числа из 16-ричной (8-ричной) системы счисления в двоичную и наоборот нам понадобятся две теоремы.</p>
+<a id="t421"></a>
+<p><span class="name">Теорема 4.2.1</span>. <span class="teorema">Если основания систем счисления связаны отношением 
+<math display='inline'>
+<mrow>
+	<mi>q</mi><mo>=</mo>
+	<msup><mi>p</mi><mi>r</mi></msup>
+</mrow>
+</math>, где <var>r</var> &#8212; целое число большее 1, то для преобразования целого числа 
+<math display='inline'>
+<mrow>
+	<msub><mi>Z</mi><mi>p</mi></msub><mo>&#8594;</mo>
+	<msub><mi>Z</mi><mi>q</mi></msub>
+</mrow>
+</math>
+ достаточно разбить 
+<math display='inline'>
+	<msub><mi>Z</mi><mi>p</mi></msub>
+</math>
+справа налево на группы по <var>r</var> цифр и каждую группу независимо перевести в систему счисления по основанию <var>q</var>.</span></p>
+<p><span class="name">Доказательство</span>. Пусть имеет место представление (4.2.1).</p>
+<p>Для начала предположим выполнение условия 
+<math display='inline'>
+<mrow>
+	<mrow><mn>2</mn><mo>&#x2062;</mo><mi>r</mi></mrow>
+	<mo>&gt;</mo>
+	<mrow><mi>k</mi><mo>-</mo><mn>1</mn></mrow>
+	<mo>&gt;</mo>
+	<mi>r</mi>
+</mrow>
+</math>. Тогда имеет место следующее разложение:
+<table class='formula'><tr>
+<td class='formula'>
+<math display="block">
+<mrow>
+  <msub><mi>Z</mi><mi>p</mi></msub>
+  <mo>=</mo>
+  <mrow>
+    	<mo stretchy="false">(</mo>
+    	<mrow>
+    		<msub><mi>a</mi><mrow><mi>k</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>&#x2062;</mo>
+    		<msup><mi>p</mi><mrow><mi>k</mi><mo>−</mo><mn>1</mn><mo>−</mo><mi>r</mi></mrow></msup>
+    	</mrow>
+    	<mo>+</mo>
+    	<mi>&#8230;</mi>
+    	<mo>+</mo>
+    	<mrow>
+    		<msub><mi>a</mi><mrow><mi>r</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>&#x2062;</mo>
+    		<mi>p</mi>
+    	</mrow>
+    	<mo>+</mo>
+    	<msub><mi>a</mi><mi>r</mi></msub>
+    	<mo stretchy="false">)</mo>
+    	<mo>&#x2062;</mo>
+    	<msup><mi>p</mi><mi>r</mi></msup>
+  </mrow>
+  <mo>+</mo>
+  <mrow>
+    	<mo>(</mo>
+    	<mrow>
+    		<msub><mi>a</mi><mrow><mi>r</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>&#x2062;</mo>
+    		<msup><mi>p</mi><mrow><mi>r</mi><mo>−</mo><mn>1</mn></mrow></msup>
+    	</mrow>
+    	<mo>+</mo>
+    	<mi>&#8230;</mi>
+    	<mo>+</mo>
+    	<msub><mi>a</mi><mn>0</mn></msub>
+    	<mo stretchy="false">)</mo>
+  </mrow>
+  <mo>=</mo>
+  <mrow>
+  		<mrow><msub><mi>b</mi><mn>1</mn></msub><mo>&#x2062;</mo><mi>q</mi></mrow>
+  		<mo>+</mo>
+  		<msub><mi>b</mi><mn>0</mn></msub>
+  </mrow>
+</mrow><mo>.</mo>
+</math>
+</td>
+<td class="nomer">(4.2.5)</td></tr>
+</table>
+</p>
+<p>Число 
+<math display='inline'>
+	<msub><mi>Z</mi><mi>p</mi></msub>
+</math>
+представили как сумму двух слагаемых 
+<math display='inline'>
+<mrow>
+	<msub><mi>b</mi><mn>1</mn></msub><mo>&#x2062;</mo><mi>q</mi>+</mo><msub><mi>b</mi><mn>0</mn></msub>
+</mrow>
+</math>, где 
+<math display='inline'>
+<mrow>
+	<msub><mi>b</mi><mn>0</mn></msub><mo>&lt;</mo><mi>q</mi>
+</mrow>
+</math>. Число 
+<math display='inline'>
+<mrow>
+	<msub><mi>b</mi><mn>1</mn></msub>
+</mrow>
+</math>
+тоже не может превышать <var>q-1</var>. В противном случае в разложении 
+<math display='inline'>
+	<msub><mi>Z</mi><mi>p</mi></msub>
+</math>
+по степеням <var>q</var> будет присутствовать степень с показателем выше 1, что противоречит условию 
+<math display='inline'>
+<mrow>
+	<mrow><mn>2</mn><mo>&#x2062;</mo><mi>r</mi></mrow>
+	<mo>&gt;</mo>
+	<mrow><mi>k</mi><mo>-</mo><mn>1</mn></mrow>
+	<mo>&gt;</mo>
+	<mi>r</mi>	
+</mrow>
+</math>. Тогда 
+<math display='inline'>
+	<msub><mi>b</mi><mn>1</mn></msub>
+</math> и
+<math display='inline'>
+	<msub><mi>b</mi><mn>0</mn></msub>
+</math>
+есть цифры числа 
+<math display='inline'>
+	<msub><mi>Z</mi><mi>p</mi></msub>
+</math>
+в системе счисления с основанием <var>q:</var> 
+<math display='inline'>
+<mrow>
+	<msub><mi>Z</mi><mi>p</mi></msub><mo>=</mo>
+	<msub>
+		<mrow>
+			<mo>(</mo>
+			<msub><mi>b</mi><mn>1</mn></msub>
+			<mo>&#x2062;</mo>
+			<msub><mi>b</mi><mn>0</mn></msub>
+			<mo>)</mo>
+		</mrow>
+		<mi>q</mi>	
+	</msub>
+	<mo>=</mo>
+	<msub><mi>Z</mi><mi>q</mi></msub>	
+</mrow>
+</math>.</p>
+<p>Теперь нетрудно обобщить результат на случай произвольного <var>k</var>.</p>
+<p>Проверьте утверждение теоремы на калькуляторе.</p>
+<div class="examp">
+<p><span class="primer">Пример 4.2.3.</span> Пусть дано число 
+<math display='inline'>
+<msub>
+	<mn>111101</mn><mn>2</mn>
+</msub>
+</math>. Исходя из соотношения 
+<math display='inline'>
+<mrow>
+	<msup><mn>2</mn><mn>3</mn></msup>
+	<mo>=</mo><mn>8</mn>
+</mrow>
+</math>, разобъем это число на группы &quot;<var>111</var>&quot; и &quot;<var>101</var>&quot;: 
+<math display='inline'>
+<mrow>
+	<msub><mn>111</mn><mn>2</mn></msub>
+	<mo>=</mo>
+	<msub><mn>7</mn><mn>8</mn></msub>
+	<mo>,</mo>
+	<msub><mn>101</mn><mn>2</mn></msub>
+	<mo>=</mo>
+	<msub><mn>5</mn><mn>8</mn></msub>
+</mrow></math>. Согласно теореме 4.2.1, 
+<math display='inline'>
+<mrow>
+	<msub><mn>111101</mn><mn>2</mn></msub>
+	<mo>=</mo>
+	<msub><mn>75</mn><mn>8</mn></msub>
+</mrow></math>.</p>
+<p>Так как 
+<math display='inline'>
+<mrow>
+	<msup><mn>2</mn><mn>4</mn></msup><mo>=</mo><mn>16</mn>
+</mrow>
+</math>, то 
+<math display='inline'>
+	<msub><mn>111101</mn><mn>2</mn></msub>
+</math>
+представим в виде конкатенации &quot;<var>0011</var>&quot; и &quot;<var>1101</var>&quot;, 
+<math display='inline'>
+<mrow>
+	<msub><mn>0011</mn><mn>2</mn></msub>
+	<mo>=</mo>
+	<msub><mn>3</mn><mn>16</mn></msub>
+	<mo>,</mo>
+	<msub><mn>1101</mn><mn>2</mn></msub>
+	<mo>=</mo>
+	<msub><mn>D</mn><mn>16</mn></msub>	
+</mrow></math>. Следовательно, 
+<math display='inline'>
+<mrow>
+	<msub><mn>111101</mn><mn>2</mn></msub>
+	<mo>=</mo>
+	<msub><mn>3D</mn><mn>16</mn></msub>
+</mrow></math>.
+</p>
+</div>
+<a name="t422"></a>
+<p><span class="name">Теорема 4.2.2</span>. <span class="teorema">Если основания <var>p</var> и <var>q</var> систем счисления связаны соотношением 
+<math display='inline'>
+<mrow>
+	<mi>p</mi><mo>=</mo>
+	<msup><mi>q</mi><mi>r</mi></msup>
+</mrow>
+</math>, где <var>r</var> &#8212; целое число большее 1, то для преобразования целого числа 
+<math display='inline'>
+<mrow>
+	<msub><mi>Z</mi><mi>p</mi></msub>
+	<mo>&#8594;</mo>
+	<msub><mi>Z</mi><mi>q</mi></msub>	
+</mrow>	
+</math>
+достаточно каждую цифру заменить соответствующим <var>r</var>-разрядным числом в системе счисления с основанием <var>q</var>, дополняя его при необходимости незначащими нулями слева до группы в <var>r</var> цифр.</span></p>
+<p><span class="name">Доказательство</span>. Начнем со случая, когда исходное число 
+<math display='inline'>
+	<msub><mi>Z</mi><mi>p</mi></msub>
+</math>
+состоит из двух цифр: 
+<math display='inline'>
+<mrow>
+	<msub><mi>Z</mi><mi>p</mi></msub><mo>=</mo>
+	<msub>
+		<mrow>
+			<msub><mi>a</mi><mn>1</mn></msub><msub><mi>a</mi><mn>0</mn></msub>
+		</mrow>
+		<mi>p</mi>	
+	</msub>
+	<mo>=</mo>
+	<mrow>
+		<mrow><msub><mi>a</mi><mn>1</mn></msub><mo>&#x2062;</mo><mi>p</mi></mrow><mo>+</mo>	
+		<msub><mi>a</mi><mn>0</mn></msub>
+	</mrow>
+	<mo>,</mo>
+	<mrow>
+		<mn>0</mn><mo>&#8804;</mo><msub><mi>a</mi><mi>i</mi></msub>
+		<mo>&#8804;</mo>
+		<mrow><mi>p</mi><mo>-</mo><mn>1</mn></mrow>
+		<mo>,</mo>
+		<mrow><mi>i</mi><mo>=</mo><mfenced open="" close=""><mn>0</mn><mn>1</mn></mfenced></mrow>	
+	</mrow>	
+</mrow>
+</math>. В силу условия 
+<math display='inline'>
+<mrow>
+	<mi>p</mi><mo>=</mo>
+	<msup><mi>q</mi><mi>r</mi></msup>
+</mrow>
+</math>, имеют место неравенства 
+<math display='inline'>
+<mrow>
+	<mrow>
+		<mn>0</mn><mo>&#8804;</mo>
+		<msub><mi>a</mi><mi>i</mi></msub>		
+		<mo>&#8804;</mo>
+		<mrow>
+			<msup><mi>q</mi><mi>r</mi></msup><mo>-</mo><mn>1</mn>
+		</mrow>
+	</mrow>
+	<mo>,</mo>
+	<mrow>
+		<mi>i</mi><mo>=</mo>
+		<mfenced open="" close=""><mn>0</mn><mn>1</mn></mfenced>
+	</mrow>
+</mrow>
+</math>. Тогда 
+<math display='inline'>
+<msub><mi>a</mi><mn>1</mn></msub>
+</math>
+и 
+<math display='inline'>
+<msub><mi>a</mi><mn>0</mn></msub>
+</math>
+ представляют собой многочлены степени не больше, чем 
+ <math display='inline'>
+ 	<mrow><mi>r</mi><mo>-</mo><mn>1</mn></mrow>
+ </math>:
+<table class='formula'><tr>
+<td class='formula'>
+<math display="block">
+<mrow>
+  <msub><mi>a</mi><mn>1</mn></msub>
+  <mo>=</mo>
+  <mrow>
+	<mrow>  	
+  		<msubsup>
+    		<mi>b</mi>
+    		<mrow><mi>r</mi><mo>−</mo><mn>1</mn></mrow>
+    		<mrow><mo>(</mo><mn>1</mn><mo>)</mo></mrow>
+  		</msubsup><mo>&#x2062;</mo>
+  		<msup>
+    		<mi>q</mi>
+    		<mrow><mi>r</mi><mo>−</mo><mn>1</mn></mrow>
+  		</msup>
+  	</mrow>
+  <mo>+</mo>
+  <mrow>
+  		<msubsup>
+    		<mi>b</mi>
+    		<mrow><mi>r</mi><mo>−</mo><mn>2</mn></mrow>
+    		<mrow><mo>(</mo><mn>1</mn><mo>)</mo></mrow>
+  		</msubsup><mo>&#x2062;</mo>
+  		<msup>
+    		<mi>q</mi>
+    		<mrow><mi>r</mi><mo>−</mo><mn>2</mn></mrow>
+  		</msup>	
+	</mrow>  		
+	<mo>+</mo>
+	<mi>&#8230;</mi>
+	<mo>+</mo>
+	<mrow>
+  		<msubsup>
+    		<mi>b</mi>
+    		<mn>0</mn>
+    		<mrow><mo>(</mo><mn>1</mn><mo>)</mo></mrow>
+  		</msubsup><mo>&#x2062;</mo>
+	  <msup><mi>q</mi><mn>0</mn></msup>
+	 </mrow>
+  </mrow>
+</mrow><mo>,</mo>  
+</math></td>
+</tr>
+<tr>
+<td class='formula'>
+<math display="block">
+<mrow>
+  <msub><mi>a</mi><mn>0</mn></msub>
+  <mo>=</mo>
+  <mrow>
+	<mrow>  	
+  		<msubsup>
+    		<mi>b</mi>
+    		<mrow><mi>r</mi><mo>−</mo><mn>1</mn></mrow>
+    		<mrow><mo>(</mo><mn>0</mn><mo>)</mo></mrow>
+  		</msubsup><mo>&#x2062;</mo>
+  		<msup>
+    		<mi>q</mi>
+    		<mrow><mi>r</mi><mo>−</mo><mn>1</mn></mrow>
+  		</msup>
+  	</mrow>
+  <mo>+</mo>
+  <mrow>
+  		<msubsup>
+    		<mi>b</mi>
+    		<mrow><mi>r</mi><mo>−</mo><mn>2</mn></mrow>
+    		<mrow><mo>(</mo><mn>0</mn><mo>)</mo></mrow>
+  		</msubsup><mo>&#x2062;</mo>
+  		<msup>
+    		<mi>q</mi>
+    		<mrow><mi>r</mi><mo>−</mo><mn>2</mn></mrow>
+  		</msup>	
+	</mrow>  		
+	<mo>+</mo>
+	<mi>&#8230;</mi>
+	<mo>+</mo>
+	<mrow>
+  		<msubsup>
+    		<mi>b</mi>
+    		<mn>0</mn>
+    		<mrow><mo>(</mo><mn>0</mn><mo>)</mo></mrow>
+  		</msubsup><mo>&#x2062;</mo>
+	  <msup><mi>q</mi><mn>0</mn></msup>
+	 </mrow>
+  </mrow>
+</mrow><mo>.</mo>  
+</math></td>
+</tr>
+</table></p>
+<p>Следовательно,
+
+<math display="block">
+<mrow>
+  <msub><mi>Z</mi><mi>p</mi></msub>
+  <mo>=</mo>
+  <mrow>
+    <mo>(</mo>
+    <msub><mi>a</mi><mn>1</mn></msub>
+    <msub><mi>a</mi><mn>0</mn></msub>
+    <mo>)</mo>
+  </mrow>
+  <mo>=</mo>
+  <mrow>
+  		<mrow><msub><mi>a</mi><mn>1</mn></msub><mo>&#x2062;</mo><mi>p</mi></mrow>
+  		<mo>+</mo>
+  		<msub><mi>a</mi><mn>0</mn></msub>
+  </mrow>
+  <mo>=</mo>
+  <mrow>
+		<mrow>  		
+  			<msubsup>
+    			<mi>b</mi>
+    			<mrow><mi>r</mi><mo>−</mo><mn>1</mn></mrow>
+    			<mrow><mo>(</mo><mn>1</mn><mo>)</mo></mrow>
+  			</msubsup>
+  			<mo>&#x2062;</mo>
+  			<msup>
+    			<mi>q</mi>
+    			<mrow><mn>2</mn><mi>r</mi><mo>−</mo><mn>1</mn></mrow>
+  			</msup>
+  		</mrow>
+  		<mo>+</mo>
+  		<mi>&#8230;</mi>
+  		<mo>+</mo>
+		<mrow>  		
+  			<msubsup>
+    			<mi>b</mi>
+    			<mn>0</mn>
+    			<mrow><mo>(</mo><mn>1</mn><mo>)</mo></mrow>
+  			</msubsup>
+  			<mo>&#x2062;</mo>
+  			<msup><mi>q</mi><mi>r</mi></msup>
+  		</mrow>
+  		<mo>+</mo>
+  		<mrow>
+  			<msubsup>
+    			<mi>b</mi>
+    			<mrow><mi>r</mi><mo>−</mo><mn>1</mn></mrow>
+    			<mrow><mo>(</mo><mn>0</mn><mo>)</mo></mrow>
+  			</msubsup>
+  			<mo>&#x2062;</mo>
+  			<msup>
+    			<mi>q</mi>
+    			<mrow><mi>r</mi><mo>−</mo><mn>1</mn></mrow>
+  			</msup>
+  		</mrow>
+  		<mo>+</mo>
+  		<mi>&#8230;</mi>
+  		<mo>+</mo>
+  		<msubsup>
+    		<mi>b</mi>
+    		<mn>0</mn>
+    		<mrow><mo>(</mo><mn>0</mn><mo>)</mo></mrow>
+  		</msubsup>
+  </mrow>
+  <mo>=</mo>
+  <mrow>
+    <mo>(</mo>
+    <msubsup>
+      <mi>b</mi>
+      <mrow><mi>r</mi><mo>−</mo><mn>1</mn></mrow>
+      <mrow><mo>(</mo><mn>1</mn><mo>)</mo></mrow>
+    </msubsup>
+    <mi>&#8230;</mi>
+    <msubsup>
+      <mi>b</mi>
+      <mn>0</mn>
+      <mrow><mo>(</mo><mn>0</mn><mo>)</mo></mrow>
+    </msubsup>
+    <mo>)</mo>
+  </mrow>
+  <mo>=</mo>
+  <msub><mi>Z</mi><mi>q</mi></msub>
+</mrow><mo>,</mo>
+</math>
+причем число 
+<math display='inline'>
+	<msub><mi>Z</mi><mi>q</mi></msub>
+</math>
+содержит 
+<math display='inline'>
+	<mrow><mn>2</mn><mo>&#x2062;</mo><mi>r</mi></mrow>
+</math>
+ цифр.</p> 
+<p>Доказательство легко обобщается на случай произвольного количества цифр в числе 
+<math display='inline'>
+	<msub><mi>Z</mi><mi>p</mi></msub>
+</math>.</p>
+<div class="examp">
+<p><span class="primer">Пример 4.2.4.</span> Пусть дано число 
+<math display='inline'>
+	<msub><mn>45</mn><mn>8</mn></msub>
+</math>. Из 
+<math display='inline'>
+<mrow>
+	<msup><mn>2</mn><mn>3</mn></msup>
+	<mo>=</mo>
+	<mn>8</mn>
+	<mo>,</mo>
+	<msub><mn>4</mn><mn>8</mn></msub>
+	<mo>=</mo>
+	<msub><mn>100</mn><mn>2</mn></msub>
+	<mo>,</mo>
+	<msub><mn>5</mn><mn>8</mn></msub>
+	<mo>=</mo>
+	<msub><mn>101</mn><mn>2</mn></msub>		
+</mrow>
+</math>
+и теоремы 4.2.2 следует: 
+<math display='inline'>
+<mrow>
+	<msub><mn>45</mn><mn>8</mn></msub>
+	<mo>=</mo>
+	<msub><mn>100101</mn><mn>2</mn></msub>
+</mrow>
+</math>.</p>
+</div>
+<h3>Контрольные вопросы и упражнения</h3>
+<ol>
+<li>В системе электронных таблиц постройте систему перевода целого десятичного числа в систему счисления с основанием, отличным от десяти.</li>
+<li>В системе электронных таблиц постройте систему перевода целого числа из недесятичной системы счисления в десятичную.</li>
+<li>Постройте таблицу умножения в восьмеричной (в 16-ричной) системе счисления.</li>
+<li>В системе электронных таблиц постройте систему перевода десятичной дроби в систему счисления с основанием <var>p</var>,
+<math display='inline'>
+<mrow>
+	<mn>2</mn><mo>&#8804;</mo><mi>p</mi><mo>&#8804;</mo><mn>9</mn>
+</mrow>
+</math>, с точностью до 8 цифр после точки, отделяющей целую часть от дробной. Оцените погрешность перевода в десятичной системе счисления.</li>
+<li>В системе электронных таблиц постройте систему перевода вещественного числа из 16-ричной системы счисления в десятичную систему счисления.</li>
+<li>Постройте таблицу перевода цифр 8-ричной (16-ричной) системы счисления в двоичую систему счисления.  Приведите примеры быстрого перевода целых чисел из 16-ричной (8-ричной) системы счисления в двоичную и наоборот.</li>
+<li>Постройте примеры перевода числа из троичной системы счисления в 9-ричную и обратного перевода из 9-ричной системы счисления в троичную (см. теоремы <a href="#t421">4.2.1</a> и <a href="#t422">4.2.2</a>).</li>
+<li>Справедливы ли теоремы <a href="#t421">4.2.1</a> и <a href="#t422">4.2.2</a> применительно к дробным числам?</li>
+<li>Сравнение на компьютере значений выражений <math display='inline'><mn>0.3</mn><mo>-</mo><mn>0.2</mn></math> и  
+<math display='inline'><mn>0.2</mn><mo>-</mo><mn>0.1</mn></math> возвращает значение false. В чем причина ошибки?
+</li>
+</ol>
+<p><a href="4_1.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="4_3.html">К следующему</a></p>
+</body>
+</html>

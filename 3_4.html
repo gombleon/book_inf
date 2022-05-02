@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel='stylesheet' type="text/css" href="style.css"></link>
+<meta charset="UTF-8" />
+<meta name="author" content="Rinchin" />
+<meta name="description" content="азбука Морзе" />
+<meta name="keywords" content="азбука Морзе, точка, тире, пауза, троичный код" />
+<title>Азбука Морзе</title>
+
+<script type="text/javascript">
+function alph(txt) {
+	var o={}, dlina, t;
+	dlina=txt.length;
+	for (var i=0;i<dlina; i++) {
+		t=txt[i];
+		if (t in o) {
+			o[t]++;
+		} else {
+			o[t]=1;		
+		}
+	}
+	return o;
+}
+function start() {
+	var morze=[], p, div=document.getElementById("result"), txt=document.getElementById("txt").value, dlina, soob_morse, o_txt={}, o_kod={}, h_perv=0, h_kod=0, table, caption, tr1, tr2, td, inf_txt=0, inf_kod=0, izbyt=0;
+	while (div.lastChild) {
+		div.removeChild(div.lastChild);
+	}	
+	txt=txt.toLowerCase();
+	for (var i=0; i<32; i++) {
+		morze[i]=[];	
+	}
+	morze[0][0]=' ';
+	morze[0][1]='  ';
+	morze[1][0]='о';
+	morze[1][1]='--- ';
+	morze[2][0]='е';
+	morze[2][1]='. ';
+	morze[3][0]='а';
+	morze[3][1]='.- ';
+	morze[4][0]='и';
+	morze[4][1]='.. ';
+	morze[5][0]='т';
+	morze[5][1]='- ';
+	morze[6][0]='н';
+	morze[6][1]='-. ';
+	morze[7][0]='с';
+	morze[7][1]='... ';
+	morze[8][0]='р';
+	morze[8][1]='-.- ';
+	morze[9][0]='в';
+	morze[9][1]='.-- ';
+	morze[10][0]='л';
+	morze[10][1]='.-.. ';
+	morze[11][0]='к';
+	morze[11][1]='-.- ';
+	morze[12][0]='м';
+	morze[12][1]='-- '
+	morze[13][0]='д';
+	morze[13][1]='-.. ';
+	morze[14][0]='п';
+	morze[14][1]='.--. ';
+	morze[15][0]='у';
+	morze[15][1]='..- ';
+	morze[16][0]='я';
+	morze[16][1]='.-.- ';
+	morze[17][0]='ы';
+	morze[17][1]='-.-- ';
+	morze[18][0]='з';
+	morze[18][1]='--.. ';
+	morze[19][0]='ь';
+	morze[19][1]='-..- ';
+	morze[20][0]='б';
+	morze[20][1]='-... ';
+	morze[21][0]='г';
+	morze[21][1]='--. ';
+	morze[22][0]='ч';
+	morze[22][1]='--- ';
+	morze[23][0]='й';
+	morze[23][1]='.--- ';
+	morze[24][0]='х';
+	morze[24][1]='.... ';
+	morze[25][0]='ж';
+	morze[25][1]='...- ';
+	morze[26][0]='ю';
+	morze[26][1]='..-- ';
+	morze[27][0]='ш';
+	morze[27][1]='---- ';
+	morze[28][0]='ц';
+	morze[28][1]='-.-. ';
+	morze[29][0]='щ';
+	morze[29][1]='--.- ';
+	morze[30][0]='э';
+	morze[30][1]='..-.. ';
+	morze[31][0]='ф';
+	morze[31][1]='..-. ';
+
+	p=document.createElement("p");
+	p.textContent="Первичное сообщение:";
+	div.appendChild(p);
+	p=document.createElement("p");
+	p.textContent="'"+txt+"'";
+	div.appendChild(p);	
+	dlina=txt.length;
+	soob_morse="";
+	for (var i=0;i<dlina;i++)	{
+		j=0;
+		fnd=false;
+		while ((j<=31) && (fnd==false)) {
+			if (txt[i]==morze[j][0]) {
+					fnd==true;
+					soob_morse+=morze[j][1];
+			}
+			j++;
+		}
+	}
+	o_txt=alph(txt);
+	table=document.createElement("table");
+	table.border="1";
+	div.appendChild(table);
+	caption=document.createElement("caption");
+	caption.textContent="Алфавит сообщения";
+	table.appendChild(caption);
+	tr1=document.createElement("tr");
+	table.appendChild(tr1);
+	tr2=document.createElement("tr");
+	table.appendChild(tr2);	
+	for (var i in o_txt) {
+		h_perv+=-o_txt[i]/dlina*Math.log(o_txt[i]/dlina)/Math.LN2;
+		td=document.createElement("td");
+		td.textContent=i;
+		tr1.appendChild(td);
+		td=document.createElement("td");
+		td.textContent=o_txt[i];
+		tr2.appendChild(td);	
+	}
+	inf_txt=h_perv*dlina;
+	p=document.createElement("p");
+	p.textContent="Энтропия сообщения H="+h_perv.toFixed(2)+" бит.";
+	div.appendChild(p);		
+	p=document.createElement("p");
+	p.textContent="Информационная емкость сообщения I1="+inf_txt.toFixed(2)+" бит.";
+	
+	div.appendChild(p);
+	p=document.createElement("p");
+	p.textContent="Код Морзе:";
+	div.appendChild(p);		
+	p=document.createElement("p");
+	p.textContent="'"+soob_morse+"'";
+	div.appendChild(p);	
+	dlina=soob_morse.length;
+	o_kod=alph(soob_morse);
+	table=document.createElement("table");
+	caption=document.createElement("caption");
+	caption.textContent="Алфавит кода";
+	table.appendChild(caption);
+	table.border="1";
+	div.appendChild(table);
+	tr1=document.createElement("tr");
+	table.appendChild(tr1);
+	tr2=document.createElement("tr");
+	table.appendChild(tr2);	
+	for (var i in o_kod) {
+		h_kod+=-o_kod[i]/dlina*Math.log(o_kod[i]/dlina)/Math.LN2;
+		td=document.createElement("td");
+		td.textContent=i;
+		tr1.appendChild(td);
+		td=document.createElement("td");
+		td.textContent=o_kod[i];
+		tr2.appendChild(td);	
+	}
+	inf_kod=dlina*h_kod;
+	p=document.createElement("p");
+	p.textContent="Энтропия кода Морзе H="+h_kod.toFixed(2)+" бит.";
+	div.appendChild(p);		
+	p=document.createElement("p");
+	p.textContent="Информационная емкость кода I2="+inf_kod.toFixed(2)+" бит.";	
+	div.appendChild(p);
+	izbyt=1-inf_txt/inf_kod;
+		p=document.createElement("p");
+	p.textContent="Избыточность кода Морзе Q="+izbyt.toFixed(2)+".";
+	div.appendChild(p);
+}
+
+</script>
+</head>
+<body>
+<p><a href="3_3.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="3_5.html">К следующему</a></p>
+<h2>3.4. Алфавитное неравномерное кодирование с неравной длительностью элементарных сигналов. Азбука Морзе</h2>
+<p>В качестве примера использования алфавитного неравномерного кодирования с неравной длительностью элементарных сигналов рассмотрим телеграфный код Морзе (&quot;азбука Морзе&quot;). В кодах Морзе каждой букве или цифре сопоставляется некоторая последовательность кратковременных импульсов &#8212; точек и тире, разделяемых паузами. Короткий импульс длительностью <var>&#964;</var> передает точку, длинный импульс длительностью <var>3&#964;</var> &#8212; тире. Импульсы разделяются короткими паузами длительностью <var>&#964;</var>. Длинная пауза имеет длительность <var>3&#964;</var> и служит для разделения кодов букв в тексте. Две длинные паузы отделяют одно слово от другого.
+</p>  
+<p>Очевидно, что в кодах Морзе всего три типа сигналов, которые в троичной системе счисления можно закодировать так: &quot;1&quot; &#8212; &quot;короткий импульс + короткая пауза&quot;, &quot;2&quot; &#8212; &quot;длинный импульс + короткая пауза&quot;, &quot;0&quot; &#8212; &quot;длинная пауза&quot;. Длительность передачи сигналов такая: &quot;1&quot; &#8212; 2&#964;, &quot;2&quot; &#8212; 4&#964;, &quot;0&quot; &#8212; 3&#964;.
+</p>
+<p>Свой код Морзе разработал в 1838 г., т.е. задолго до исследований относительной частоты появления различных букв в текстах. Однако им был правильно выбран принцип кодирования &#8212; буквы, которые встречаются чаще, должны иметь более короткие коды, чтобы сократить общее время передачи. Относительные частоты букв английского алфавита он оценил простым подсчетом литер в ячейках типографской наборной машины. Поэтому самая распространенная английская буква &quot;E&quot; получила код &quot;точка&quot;. При составлении <a href='morse.html'>кодов Морзе для букв русского алфавита</a> учет относительной частоты букв не производился, что, естественно, повысило его избыточность. Первый знак в таблице &#8212; два пробела (в троичной системе счисления &#8212; 00), каждый код оканчивается пробелом (0 в троичное системе счисления).</p>
+<p>
+Для вычисления энтропии кода здесь воспользовались формулой Хартли
+<math display='inline'>
+<mrow>
+	<msup><mi>I</mi><mfenced>2</mfenced></msup>
+	<mo>=</mo>
+	<mrow>
+		<msub><mo>log</mo><mn>2</mn></msub><mo>&#x2061;</mo><mn>3</mn>
+		<mo>&#8776;</mo><mn>1.585</mn>
+	</mrow>	
+</mrow>
+</math>
+ бит, полагая, что знаки &quot;0&quot;, &quot;1&quot; и &quot;2&quot; появляются в последовательности кодов с одинаковой вероятностью 1/3. Энтропия символа русского алфавита 
+<math display='inline'>
+<mrow>
+	<msubsup><mi>I</mi><mn>1</mn><mfenced>1</mfenced></msubsup>
+	<mo>&#8776;</mo><mn>4.356</mn>
+</mrow>
+</math>
+ бита. Среднюю длину кода 3.39 вычислили как сумму произведений относительных частот появления знаков алфавита на длины соответствующих кодов Морзе. Подставляя эти данные в <a href="3_1.html#f3.1.2">(3.1.2)</a>, 
+получаем:
+<table class='formula'><tr><td class='formula'> 
+<math display='inline'>
+<mrow>
+	<msup><mi>Q</mi><mfenced>r</mfenced></msup>
+	<mo>=</mo>
+	<mrow>
+		<mn>1</mn><mo>-</mo>
+		<mfrac>
+			<mn>4.356</mn>
+			<mrow><mn>3.39</mn><mo>&#183;</mo><mn>1.585</mn></mrow>
+		</mfrac>
+	</mrow>		
+	<mo>&#8776;</mo><mn>0.189</mn>
+</mrow><mo>,</mo>
+</math></td>
+</tr>
+</table>
+т.е. <a href="3_1.html#izb_kod">избыточность кода</a> составляет около <var>19%</var> (для английского языка	<var>&#8776; 15%</var>). Тем не менее, код Морзе имел в недалеком прошлом весьма широкое распространение в ситуациях, когда источником и приемником сигналов являлся человек, а не техническое устройство, и на первый план выдвигалась не <a href="3_1.html#optim">экономичность кода</a>,  а удобство его восприятия человеком.</p> 
+<p>
+Теперь для кодирования в кодах Морзе текста из строчных букв кириллицы используем представленный ниже калькулятор. При вычислении избыточности кода уже не предполагается равновероятное появление знаков	пробела, точки и тире кода Морзе, а вычисляются как частоты знаков сообщения, так и частоты знаков кода Морзе. Поэтому избыточность кода будет отличаться	от предыдущего значения <var>0.189</var> и определяться составом знаков самого текста.
+</p>
+<form id="fmorze">
+	Введите текст<br />
+	<textarea rows="3" id="txt" cols="60"></textarea><br />
+	<input type="button" value="Закодировать" onclick='start()' />
+	<input type="reset" value="Сброс" /><br />
+</form>
+<div id='result'>
+
+</div>
+<p>Очевидно, что чем длиннее сообщение, тем меньше избыточность кода Морзе.</p>
+<h3>Контрольные вопросы</h3>
+<ol>
+<li>Почему телеграфный код Морзе называют неравномерным кодом?</li>
+<li>Как отделяется при декодировании кодов Морзе код одной буквы от кода другой?</li>
+<li>Благодаря какому принципу кодирования сокращается общая длина кода Морзе текста на английском языке?</li>
+</ol>
+<p><a href="3_3.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="3_5.html">К следующему</a></p>
+</body>
+</html>

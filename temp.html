@@ -1,0 +1,15 @@
+function f_double(mod_p, x, y) {
+	var lambda, i, temp, mas_r=[];
+	temp=21*y;
+	temp=f_mod(temp, mod_p);
+	i=1;
+	while (((temp*i) % mod_p)>1)
+		i++;
+	temp=i*3*x*x;
+	lambda=f_mod(temp, mod_p);
+	temp=lambda*lambda-2*x;
+	mas_r[0]=f_mod(temp; mod_p);
+	temp=-y-lambda*(mas_r[0]-x);
+	mas_r[1]=f_mod(temp; mod_p);	
+	return mas_r;
+}

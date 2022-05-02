@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<link rel='stylesheet' type="text/css" href="style.css"></link>
+<meta name="author" content="Rinchin" />
+<meta name="description" content="комбинаторные схемы, арифметические схемы, схема сдвига, сумматор, полусумматор, арифметико-логическое устройство"/>
+<meta name="keywords" content="тактовые генераторы" />
+<title>Тактовый генератор</title>
+</head>
+<body>
+<p><a href="7_5.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="7_7.html">К следующему</a></p>
+<h1>7.6. Тактовый генератор</h1>
+<p><span class='teorema'>Тактовый генератор</span> &#8210; это схема, которая вызывает серию импульсов, обеспечивающую порядок выполнения команд в компьютере. Все импульсы одинаковы по длительности. Интервалы между последовательными импульсами также одинаковы. Временной интервал между началом одного импульса и началом следующего называется <span class='teorema'>временем такта.</span> Частота импульсов обычно составляет от 1 до 500 МГц, что соответствует временному интервалу от 1000 до 2 нс. Частота тактового генератора задается кварцевым генератором.</p>
+<p>Компьютер за время одного такта может выполнить множество команд в определенном порядке. Для этого требуется такт разделить на подтакты посредством специальной схемы задержки T, порождающей вторичный сигнал C2, сдвинутый по фазе относительно первичного сигнала C1. </p>
+<svg height = "320px"  width = "600px">
+<text x="0" y="148" stroke="#000000" stroke-width="1" fill="none" font-size="12">Тактовый генератор</text>
+<polyline stroke="#000000" stroke-width="1" fill="none" points="150,50 175,50 175,25 225,25 225,50 275,50 275,25 325,25 325,50  375,50 375,25 425,25 425,50 475,50 475,25 525,25 525,50 540,50"/>
+<line x1='175' y1='50' x2='175' y2='250' stroke="#000000" stroke-width="1" fill="none" stroke-dasharray="2,5" />
+<line x1='200' y1='25' x2='200' y2='225' stroke="#000000" stroke-width="1" fill="none" stroke-dasharray="2,5" />
+<line x1='225' y1='50' x2='225' y2='225' stroke="#000000" stroke-width="1" fill="none" stroke-dasharray="2,5" />
+<line x1='250' y1='50' x2='250' y2='250' stroke="#000000" stroke-width="1" fill="none" stroke-dasharray="2,5" />
+<line x1='275' y1='50' x2='275' y2='250' stroke="#000000" stroke-width="1" fill="none" stroke-dasharray="2,5" />
+<line x1='300' y1='25' x2='300' y2='225' stroke="#000000" stroke-width="1" fill="none" stroke-dasharray="2,5" />
+<line x1='325' y1='50' x2='325' y2='225' stroke="#000000" stroke-width="1" fill="none" stroke-dasharray="2,5" />
+<line x1='350' y1='50' x2='350' y2='250' stroke="#000000" stroke-width="1" fill="none" stroke-dasharray="2,5" />
+<line x1='375' y1='50' x2='375' y2='250' stroke="#000000" stroke-width="1" fill="none" stroke-dasharray="2,5" />
+<line x1='400' y1='25' x2='400' y2='225' stroke="#000000" stroke-width="1" fill="none" stroke-dasharray="2,5" />
+<line x1='425' y1='50' x2='425' y2='225' stroke="#000000" stroke-width="1" fill="none" stroke-dasharray="2,5" />
+<line x1='450' y1='50' x2='450' y2='250' stroke="#000000" stroke-width="1" fill="none" stroke-dasharray="2,5" />
+<line x1='475' y1='50' x2='475' y2='250' stroke="#000000" stroke-width="1" fill="none" stroke-dasharray="2,5" />
+<line x1='500' y1='25' x2='500' y2='225' stroke="#000000" stroke-width="1" fill="none" stroke-dasharray="2,5" />
+<line x1='525' y1='50' x2='525' y2='225' stroke="#000000" stroke-width="1" fill="none" stroke-dasharray="2,5" />
+<rect x='10' y='25' width='100' height='100' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='1' y1='50' x2='25' y2='50' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='25' y1='40' x2='25' y2='60' stroke="#000000" stroke-width="1" fill="none"/>
+<rect x='30' y='40' width='10' height='20' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='45' y1='40' x2='45' y2='60' stroke="#000000" stroke-width="1" fill="none"/>
+<line x1='45' y1='50' x2='120' y2='50' stroke="#000000" stroke-width="1" fill="none"/>
+<text x="125" y="55" stroke="#000000" stroke-width="1" fill="none" font-size="12">C1</text>
+<polyline stroke="#000000" stroke-width="1" fill="none" points="50,50 50,85 55,85"/>
+<circle cx="50" cy="50" r="2" stroke="#000000" stroke-width="1" fill="#000000" />	
+<rect x='55' y='75' width='50' height='20' stroke="#000000" stroke-width="1" fill="none"/>
+<text x="75" y="90" stroke="#000000" stroke-width="1" fill="none" font-size="12">T</text>
+<line x1='105' y1='85' x2='120' y2='85' stroke="#000000" stroke-width="1" fill="none" />
+<text x="125" y="90" stroke="#000000" stroke-width="1" fill="none" font-size="12">C2</text>
+<g transform="translate(25,35)">
+<polyline stroke="#000000" stroke-width="1" fill="none" points="125,50 175,50 175,25 225,25 225,50 275,50 275,25 325,25 325,50  375,50 375,25 425,25 425,50 475,50 475,25 525,25 525,50 540,50" />
+</g>
+<polyline stroke="#000000" stroke-width="1" fill="none" points="150,170 175,170 175,145 200,145 200,170 225,170 225,145 250,145 250,170 275,170 275,145 300,145 300,170 325,170 325,145 350,145 350,170 375,170 375,145 400,145 400,170 425,170 425,145 450,145 450,170 475,170 475,145 500,145 500,170 525,170 525,145 550,145"/>
+<text x="260" y="12" stroke="#000000" fill="none" font-size="12">Временные диаграммы</text>
+<text x="125" y="175" stroke="#000000" stroke-width="1" fill="none" font-size="12">C3</text>
+<text x="210" y="192" stroke="#000000" fill="none" font-size="12">Синхронный сигнал C3=C1 XOR C2</text>
+<polyline stroke="#000000" stroke-width="1" fill="none" points="150,250 200,250 200,225 225,225 225,250 300,250 300,225 325,225 325,250 400,250 400,225 425,225 425,250 500,250 500,225 525,225 525,250 550,250"/>
+<text x="125" y="255" stroke="#000000" stroke-width="1" fill="none" font-size="12">C4</text>
+<text x="210" y="270" stroke="#000000" fill="none" font-size="12">Асихронный сигнал 	C4=C1 &#38; C2</text>
+<text x="100" y="310" stroke="#000000" stroke-width="1" fill="none" font-size="12">Рис. 7.6.1. Схема работы тактового генератора</text>
+</svg>
+<p>Временная диаграмма на рис. 7.6.1, в пределах одного такта тактового генератора, содержит четыре точки начала отсчета времени для дискретных событий: </p>
+<ol>
+<li>Фронт С1 (высокий уровень сигнала С1).</li>
+<li>Спад С1 (низкий уровень сигнала С1).</li>
+<li>Фронт С2 (высокий уровень сигнала С2).</li>
+<li>Спад С2 (низкий уровень сигнала С2).</li>
+</ol>
+<p>Ниже приведено табличное представление рассмотренной на рис. 7.6.1 схемы работы тактового генератора:</p>
+<table border='1'>
+<caption>Таблица 7.6.1</caption>
+<tr>
+<td>Номера тактов</td><td colspan='2'>1</td><td  colspan='2'>2</td><td colspan='2'>3</td><td colspan='2'>4</td><td  colspan='2'>5</td>
+<td colspan='2'>6</td><td colspan='2'>7</td>
+</tr>
+<tr>
+<td>Первичный сигнал C1</td><td colspan='2'>1</td><td  colspan='2'>0</td><td colspan='2'>1</td><td colspan='2'>0</td><td colspan='2'>1</td> <td colspan='2'>0</td><td colspan='2'>1</td> 
+</tr>
+<tr>
+<td>Вторичный сигнал C2</td><td>0</td><td colspan='2'>1</td><td colspan='2'>0</td><td  colspan='2'>1</td><td colspan='2'>0</td><td colspan='2'>1</td><td colspan='2'>0</td><td>1</td>
+</tr>
+<tr>
+<td>Синхронный сигнал C3=C1 XOR C2</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td>
+</tr>
+<tr>
+<td>Асинхронный сигнал C4=C1 &#38; C2</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td>
+</tr>
+</table>
+
+<p>Если в пределах одного такта требуется более четырех точек начала отсчета, то потребуются еще несколько ответвлений первичного сигнала с различными интервалами задержки. Установление связи между командами процессора и уровнем сигналов (фронтами и спадами) тактового генератора позволяет установить требуемый порядок работы компьютера.</p>
+<p><span class='teorema'>Если длительность фронта равна длительности спада, то производный сигнал синхронный (С3 на рис. 7.6.1), в противном случае асихронный (С4 на рис. 7.6.1)</span>. В зависимости от типа производного сигнала различают <span class='teorema'>синхронные или асихронные тактовые генераторы</span>.</p>
+<h3>Упражнения</h3>
+<ol>
+<li>В системе электронных таблиц постройте произвольную схему работы синхронного (асинхронного) тактового генератора.</li>
+<li>Приведите пример схемы работы тактового генератора, который в пределах одного такта имеет больше четырех точек начала отсчета. </li>
+</ol>
+
+<p><a href="7_5.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="7_7.html">К следующему</a></p>
+</body>			
+</html>

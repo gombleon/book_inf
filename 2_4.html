@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8" />
+<meta name="description" content="Сообщения Шеннона" />
+<meta name="keywords" content="сообщения Шеннона, алфавит, информационная емкость" />
+  <head>
+  	<script type="text/x-mathjax-config">MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+  extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <link rel=stylesheet type="text/css" href="style.css"></link>
+    <title>Информация и алфавит</title>
+
+<script type="text/javascript">
+function fnc() {
+var s1, s2, txt=document.getElementById("txt").value, o={}, str1=document.getElementById("str1"), str2=document.getElementById("str2"),entropiy=0, summa=txt.length, count=0, result=document.getElementById("result"), table9=document.getElementById("table9");
+	while (str1.firstChild) {
+		str1.removeChild(str1.firstChild);
+		str2.removeChild(str2.firstChild);
+	}
+	while (result.firstChild) {
+		result.removeChild(result.firstChild);
+	}
+	if (summa>0) {
+		for (var i=0;i<txt.length; i++) {
+			var t=txt[i];
+			if (t in o) {
+				o[t]++;
+			} else {
+				o[t]=1;		
+			}
+		}
+		s1=document.createElement("caption");
+		s1.textContent='Статистика';
+		table9.appendChild(s1);
+		s1=document.createElement("td");
+		s1.textContent='Символ';
+		str1.appendChild(s1);
+		s2=document.createElement("td");
+		s2.textContent='Частота';
+		str2.appendChild(s2);
+		for (i in o) {
+			s1=document.createElement("td");
+			s2=document.createElement("td");	
+			s1.textContent=i;
+			str1.appendChild(s1);
+			s2.textContent=o[i];
+			str2.appendChild(s2);
+			entropiy+=-o[i]/summa*Math.log(o[i]/summa)/Math.LN2;	;
+			count++;
+		}
+		s1=document.createElement("span");	
+		s1.textContent="Энтропия по Хартли H= "+(Math.log(count)/Math.LN2).toString().slice(0,5)+" бит. ";
+		result.appendChild(s1);
+		s1=document.createElement("br");
+		result.appendChild(s1);
+		s2=document.createElement("span");	
+		s2.textContent="Энтропия по Шеннону H= "+entropiy.toString().slice(0,5)+" бит. ";
+		result.appendChild(s2);	
+	}
+}
+
+</script>
+</head>
+<body>
+<p><a href="2_3.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="2_5.html">К следующему</a></p>  
+<h2>2.4. Информация и алфавит. Шенноновские сообщения</h2>
+<p>Сообщение есть последовательность знаков алфавита. При их передаче возникает проблема распознавания знака. Появление конкретного знака в конкретном месте сообщения &#8212; событие случайное. Следовательно, узнавание знака требует получения некоторого количества информации (не меньшего энтропии), которое можно связать с самим знаком. Оценим это количество.</p>
+<p>Предположим, что появление знаков алфавита равновероятно. В этом случае для вычисления количества информации в знаке алфавита можем воспользоваться <a href="2_1.html#f2_1_3">формулой Хартли (2.1.3)</a>. С учетом пробела в русском алфавите 34 символа. Тогда с одним знаком русского алфавита связано
+<math>
+<mrow>
+<msub><mi>H</mi><mn>0</mn></msub>
+<mo>=</mo>
+<mrow>
+	<msub><mo>log</mo><mi>2</mi></msub>
+	<mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo><mn>34</mn><mo>)</mo>	
+	</mrow>	
+</mrow>	
+	<mo>&#8776;</mo>
+	<mn>5.087</mn>
+</mrow>
+</math>
+ бит.</p>
+<p>Очевидно, что частота появления букв в тексте различна. В книге <a href="litra.html#42">А. М. и И. М. Ягломов [43, с. 238]</a>, с учетом неразличимости букв &quot;е&quot; и &quot;ё&quot;, &quot;ь&quot; и &quot;ъ&quot; (так принято в телеграфном кодировании), приведена следующая таблица средних частот для букв русского алфавита:</p>
+<a name="t2_4_1"></a>
+<table border="1" align="center">
+<caption>Таблица 2.4.1</caption>
+<tbody>
+<tr><td>Буква</td><td>Пробел</td><td>о</td><td>е</td><td>а</td><td>и</td><td>т</td><td>н</td><td>с</td></tr>
+<tr>
+<td>Относительная частота</td><td>0.175</td><td>0.090</td><td>0.072</td><td>0.062</td><td>0.062 </td><td>0.053</td><td>0.053</td><td>0.045</td></tr>
+<tr>
+<td>Буква</td><td>р</td><td>в</td><td>л</td><td>к</td><td>м</td><td>д</td><td>п</td><td>у</td></tr>
+<tr>
+<td>Относительная частота</td><td>0.040</td><td>0.038</td><td>0.035</td><td>0.028</td><td>0.026</td><td>0.025</td><td>0.023</td><td>0.021</td></tr>
+<tr>
+<td>Буква</td><td>я</td><td>ы</td><td>з</td><td>ь</td><td>б</td><td>г</td><td>ч</td><td>й</td></tr>
+<tr>
+<td>Относительная частота</td><td>0.018</td><td>0.016</td><td>0.016</td><td>0.014</td><td>0.014 </td><td>0.013</td><td>0.012</td><td>0.010</td></tr>
+<tr>
+<td>Буква</td><td>х</td><td>ж</td><td>ю</td><td>ш</td><td>ц</td><td>щ</td><td>э</td><td>ф</td></tr>
+<tr>
+<td>Относительная частота</td><td>0.009</td><td>0.007</td><td>0.006</td><td>0.006</td><td>0.004 </td><td>0.003</td><td>0.003</td><td>0.002</td>
+</tr></tbody></table>
+<p>Применение <a href="2_2.html#f2_2_2">формулы Шеннона</a> к алфавиту русского языка дает энтропию
+<math>
+<mrow>
+	<msub><mi>H</mi><mn>1</mn></msub>
+	<mo>=</mo>
+	<mn>4.36</mn>
+</mrow>
+</math>
+ бит. Как мы видим, дополнительная информация о тексте в виде вероятностей появления букв в тексте уменьшает энтропию с 
+<math>
+<mrow>
+	<msub><mi>H</mi><mn>0</mn></msub>
+	<mo>=</mo>
+	<mn>5.087</mn>
+</mrow>
+</math> 
+до
+<math>
+<mrow>
+	<msub><mi>H</mi><mn>1</mn></msub>
+	<mo>=</mo>
+	<mn>4.36</mn>
+</mrow>	
+</math>
+  бит.</p>
+<p>Каждый текст имеет свою индивидуальность, что отражается и на таблице частот. Например, для фрагмента рассказа А. П. Чехова "Каштанка", включающего 11461 знак, при условии неразличимости строчных и прописных букв, игнорировании знаков препинания и некоторых других знаков, будем иметь таблицу частот, отличающуюся от Таблицы 2.4.1:</p>
+<table border="1" id="table6" align="center">
+<caption>Таблица 2.4.2</caption>
+<tr>
+<td>Буква</td><td>пробел</td><td>а</td><td>о</td><td>е</td><td>н</td><td>и</td><td>л</td><td>т</td><td>к</td><td>с</td><td>р</td></tr>
+<tr>
+<td>Относительная частота</td><td>0.16866</td><td>0.08839</td><td>0.08804</td><td>0.06535</td><td>0.05383</td><td>0.05061</td><td>0.04956</td><td>0.0444</td><td>0.0400</td><td>0.0386</td><td>0.0333</td></tr>
+<tr>
+<td>Буква</td><td>в</td><td>у</td><td>д</td><td>м</td><td>п</td><td>з</td><td>я</td><td>г</td><td>ь</td><td>ы</td><td>б</td></tr>
+<tr>
+<td>Относительная частота</td><td>0.0319</td><td>0.0284</td><td>0.0244</td><td>0,0224</td><td>0.0224</td><td>0.0180</td><td>0.0160</td><td>0.0158</td><td>0.0148</td><td>0.0146</td><td>0.0120</td>
+</tr>
+<tr>
+<td>Буква</td><td>ч</td><td>ш</td><td>ж</td><td>х</td><td>й</td><td>ю</td><td>ц</td><td>щ</td><td>ф</td><td>э</td><td>ъ</td>
+</tr>
+<tr>
+<td>Относительная частота</td><td>0.0120</td><td>0.0110</td><td>0.0079</td><td>0.0074</td><td>0.0071</td><td>0.0056</td><td>0.0031</td><td>0.0018</td><td>0.0010</td><td>0.0010</td><td>0.0005</td>
+</tr>
+</table>
+<p>Мы по умолчанию предполагаем, что <a href="pril.html">вероятность</a> появления любого знака в сообщении не зависит от его места в сообщении и от того, какие знаки или их сочетания предшествовали ему. Такие сообщения называются <span class="termin">шенноновскими (или сообщениями без памяти)</span>.</p>
+<p>Другое определение шенноновского сообщения:</p>
+<p><span class="teorema">Сообщения, в которых вероятность появления каждого отдельного знака не меняется со временем, называются шенноновскими, а порождающий их отправитель &#8212; шенноновским источником</span>.</p>
+<p>Если сообщение является шенноновским, то набор знаков (алфавит) и вероятности их появления в сообщении могут считаться известными заранее.</p>
+<p>Ниже вашему вниманию предлагается калькулятор для вычисления энтропии сообщения без памяти. Для заданного сообщения будет составлен его алфавит, вычислены частоты знаков алфавита, энтропия в нулевом и первом приближениях. 
+</p>
+<form id="form1">
+	Введите текст:<br />
+	<textarea rows="4" cols="60" id="txt"></textarea><br />
+	<input type="button" value="Вычислить" onclick="fnc()" />
+	<input type="reset" value="Сброс"  />
+</form>
+<table border='border' id='table9'>
+
+	<tr id='str1'>
+		
+	</tr>
+	<tr id='str2'>
+		
+	</tr>
+</table>
+<div id='result'></div>
+<h3>Контрольные вопросы и упражнения</h3>
+<ol>
+<li>Источник порождает множество шестизнаковых сообщений, каждое из которых содержит один знак "*", два знака "%" и три знака "!". Какое количество информации содержится в каждом из таких сообщений?</li>
+<li>С какой буквой русского алфавита &quot;а&quot; или &quot;б&quot; связано большее количество информации? Вычислите это количество информации.</li>
+<li>Средняя длина слова в русском языке 5.3 буквы, в английском &#8212; 4.5. Найдите <a href="pril.html">вероятности</a> появления в соответствующих текстах пробелов. Какое количество информации связано с пробелом в обоих языках?</li>
+<li>Дайте объяснение тому, что количество информации на знак алфавита выражается нецелым числом.</li>
+<li>Составьте сообщение из фамилии, имени, отчества и даты рождения и вычислите, с учетом регистра букв, в системе электронных таблиц энтропию по Хартли и по Шеннону. Вычислите <a href="2_2.html#inf_emk">информационную емкость</a> сообщения по Шеннону.</li>
+</ol>
+<p><a href="2_3.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="2_5.html">К следующему</a></p>
+</body>
+<script type="text/javascript">
+  MathJax.Hub.Configured()
+</script>
+</html>

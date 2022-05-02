@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8" />
+<link rel='stylesheet' type="text/css" href="style.css"></link>
+<meta name="author" content="dima" />
+<meta name="description" content="Сообщения Маркова" />
+<meta name="keywords" content="сообщение без памяти, сообщение Маркова, алфавит, избыточность языка, коэффициент стохастичности, энтропия во втором приближении, предельная энтропия" />
+<head>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+  extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});</script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+	<title>Марковские сообщения</title>
+<script type="text/javascript">
+
+function fnc1() {
+	var txt=document.getElementById("txt").value, o={}, total=0;
+	for (var i=0;i<txt.length; i++) {
+		var t=txt[i];
+		if (t in o) {
+			o[t]++;
+		} else {
+			o[t]=1;		
+		}
+	}
+	for (var i in o) {
+		total+=o[i];
+	}
+	for (var i in o) {
+		o[i]=o[i]/total;
+	}
+	return o;
+}
+
+function fnc2() {
+	var txt=document.getElementById("txt").value, o2={}, total=0, len, str;
+	len=txt.length;
+	for (i=0;i<len-1;i++) {
+		str=txt.slice(i,i+2);	
+		if (str in o2) {
+			o2[str]++;
+		} else {
+			o2[str]=1;		
+		}
+	}
+	for (var i in o2) {
+		total+=o2[i];
+	}
+	for (var i in o2) {
+		o2[i]=o2[i]/total;
+	}
+	return o2;
+}
+
+function fnc3() {
+	var o=fnc1(), o2=fnc2(), h, h2=0,entr=document.getElementById("entr"), entr2=document.getElementById("entr2"), table, tr1, tr2, td1, td2, result=document.getElementById("result");
+	entr.textContent="";
+	entr2.textContent="";
+	result.textContent="";
+	for (var i in o)	{
+		h=0;
+		for (var t in o2) {
+			if (i==t.charAt(0)) {
+				h+=-o2[t]*Math.log(o2[t])/Math.LN2;			
+			}
+		}
+		h2+=h*o[i];
+	}
+	table=document.createElement("table");
+	table.border="1";
+	tr1=document.createElement("tr");
+	tr2=document.createElement("tr");	
+	for (var i in o) {
+		td1=document.createElement("td");			
+		td1.textContent=i;
+		tr1.appendChild(td1);
+		td2=document.createElement("td");			
+		td2.textContent=o[i].toString().slice(0,5);
+		tr2.appendChild(td2);
+	}
+	table.appendChild(tr1);
+	table.appendChild(tr2);
+	entr.appendChild(table);
+	
+	table=document.createElement("table");
+	table.border="1";
+	tr1=document.createElement("tr");
+	tr2=document.createElement("tr");	
+	for (var i in o2) {
+		td1=document.createElement("td");			
+		td1.textContent=i;
+		tr1.appendChild(td1);
+		td2=document.createElement("td");			
+		td2.textContent=o2[i].toString().slice(0,5);
+		tr2.appendChild(td2);
+	}
+	table.appendChild(tr1);
+	table.appendChild(tr2);
+	entr2.appendChild(table);
+	result.textContent="Энтропия во втором приближении = "+h2.toString().slice(0,5)+" бит.";
+
+}
+
+</script>
+</head>
+<body>
+<p><a href="2_4.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="3_1.html">К следующему</a></p>
+<h2>2.5. Марковские сообщения. Избыточность языка</h2>
+<p>Оценка энтропии 
+<math display='inline'>
+<msub><mi>H</mi><mn>0</mn></msub>
+</math>
+сообщения в нулевом приближении по <a href="2_1.html#f2_1_3">формуле Хартли</a> выполняется в предположении, что знаки в сообщении имеют одну и ту же частоту
+<math display='inline'>
+<mfrac><mn>1</mn><mi>n</mi></mfrac>
+</math>, где <var>n</var> &#8212; количество знаков в алфавите сообщения. Для оценки энтропии 
+<math display='inline'>
+<msub><mi>H</mi><mn>1</mn></msub>
+</math>
+сообщения в первом приближении по <a href="2_2.html#f2_2_2">формуле Шеннона</a> необходимо знание частот появления букв в сообщении. При этом не учитывается связь между буквами в словах. Очевидно, что такая связь существует &#8212; буквы в словах появляются не в любых сочетаниях: например, после гласной буквы не может быть твердого или мягкого знака, твердый и мягкий знаки тоже не сочетаются, после сочетания &quot;пр&quot; обязательно следует гласная буква, и т.д.</p>
+<p>Последующие приближения 
+<math display='inline'>
+<mrow>
+	<msub><mi>H</mi><mn>2</mn></msub>
+	<mo>,</mo>
+	<msub><mi>H</mi><mn>3</mn></msub>
+	<mo>,</mo>
+	<mi>&#8230;</mi>
+	<mo>,</mo>
+	<msub><mi>H</mi><mi>n</mi></msub>
+</mrow>
+</math>
+строятся путем учета корреляций, т.е. связей между буквами в словах. Энтропия 
+<math display='inline'>
+<mrow>
+	<msub><mi>H</mi><mn>2</mn></msub>
+</mrow>
+</math>
+вычисляется с учетом двухбуквенных сочетаний, 
+<math display='inline'>
+<mrow>
+	<msub><mi>H</mi><mn>3</mn></msub>
+</mrow>
+</math>
+ &#8212; с учетом трехбуквенных сочетаний и т.д. В связи с этим примем следующее определение:</p>
+<p><span class="teorema">Сообщения (а также источники, их порождающие), в которых существуют статистические связи (корреляции) между знаками или их сочетаниями, называются сообщениями (источниками) с памятью или Марковскими сообщениями (источниками)</span>.</p>
+<p>Рассмотрим вычисление энтропии 
+<math display='inline'>
+<mrow>
+	<msub><mi>H</mi><mn>2</mn></msub>
+</mrow>
+</math>
+с учетом двухбуквенных сочетаний. Пусть 
+<math display='inline'>
+<mrow>
+	<msub><mi>p</mi><mi>i</mi></msub>
+</mrow>
+</math>
+ &#8212; вероятность появления i-го знака алфавита, 
+<math display='inline'>
+<mrow>
+	<msub><mi>p</mi><mi>i</mi></msub>
+	<mo>&#x2061;</mo>
+	<mrow>
+		<mo>(</mo><mi>j</mi><mo>)</mo>	
+	</mrow>
+</mrow>
+</math> 
+  &#8212; вероятность появления за <var>i</var>-м знаком <var>j</var>-го знака, <var>i, j=1,&#8230;, n</var>, где <var>n</var> &#8212; количество знаков в алфавите. Тогда энтропия во втором приближении вычисляется по формуле
+<table class='formula'><tr>
+<td class='formula'>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+<mrow>
+  <msub>
+    <mi>H</mi>
+    <mn>2</mn>
+  </msub>
+<mo>=</mo>
+<mrow>
+  <mo>−</mo>
+    <munderover>
+      <mo>&#931;</mo>
+      <mrow>
+        <mi>i</mi>
+        <mo>=</mo>
+        <mn>1</mn>
+      </mrow>
+      <mi>n</mi>
+    </munderover>
+	<mrow>
+		<msub><mi>p</mi><mi>i</mi></msub>
+<mo>&#x2062;</mo>
+<mrow>
+    <munderover>
+      <mo>&#931;</mo>
+      <mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow>
+      <mi>n</mi>
+    </munderover>
+    <mrow>
+    	<msub><mi>p</mi><mi>i</mi></msub>
+		<mo>&#x2061;</mo>    	
+    	<mrow>
+      	<mo>(</mo><mi>j</mi><mo>)</mo>
+    	</mrow>
+    	<mo>&#x2062;</mo>
+		<mrow>    	
+    	    <msub>
+      		<mi>log</mi><mn>2</mn></msub>
+      		<mo>&#x2061;</mo>
+    			<mrow>
+    			  		
+    			  			<msub><mi>p</mi><mi>i</mi></msub>
+							<mo>&#x2061;</mo>    			  			
+    			  			<mrow><mo>(</mo><mi>j</mi><mo>)</mo></mrow>
+    			  		
+      		</mrow>		
+    	</mrow>
+    </mrow>
+</mrow>
+</mrow>
+</mrow>
+</mrow><mo>.</mo>  
+</math>
+</td>
+<td class="nomer">(2.5.1)</td>
+</tr></table>
+</p>
+<p>Для английского алфавита К. Шеннон вычислил следующую последовательность значений энтропии <a href="litra.html#41">(см. [42], с. 249)</a>:
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+	<mrow>	
+		<msub><mi>H</mi><mn>0</mn></msub><mo>=</mo>
+		<mrow>
+			<msub><mi>log</mi><mn>2</mn></msub><mo>&#x2061;</mo><mn>27</mn>
+		</mrow>
+		<mo>&#8776;</mo><mn>4.75</mn>
+	</mrow>
+	<mo>,</mo>
+	<mrow>	
+		<msub><mi>H</mi><mn>1</mn></msub><mo>&#8776;</mo><mn>4.03</mn>
+	</mrow>
+	<mo>,</mo>	
+	<mrow>	
+		<msub><mi>H</mi><mn>2</mn></msub><mo>&#8776;</mo><mn>3.32</mn>
+	</mrow>
+	<mo>,</mo>	
+	<mrow>	
+		<msub><mi>H</mi><mn>3</mn></msub><mo>&#8776;</mo><mn>3.1</mn>
+	</mrow>
+	<mo>,</mo>
+	<mi>&#8230;</mi>
+	<mo>,</mo>
+	<mrow>	
+		<msub><mi>H</mi><mn>5</mn></msub><mo>&#8776;</mo><mn>2.1</mn>
+	</mrow>
+	<mo>,</mo>
+	<mi>&#8230;</mi>
+	<mo>,</mo>	
+	<mrow>	
+		<msub><mi>H</mi><mn>8</mn></msub><mo>&#8776;</mo><mn>1.9</mn>
+	</mrow>			
+</mrow>
+</math>
+бит. Для русского языка аналогичные значения такие: 
+<math display='inline'>
+<mrow>
+	<mrow>	
+		<msub><mi>H</mi><mn>0</mn></msub><mo>=</mo>
+		<mrow>
+			<msub><mi>log</mi><mn>2</mn></msub><mo>&#x2061;</mo><mn>34</mn>
+		</mrow>
+		<mo>&#8776;</mo><mn>5.087</mn>
+	</mrow>
+	<mo>,</mo>
+	<mrow>	
+		<msub><mi>H</mi><mn>1</mn></msub><mo>&#8776;</mo><mn>4.36</mn>
+	</mrow>
+	<mo>,</mo>	
+	<mrow>	
+		<msub><mi>H</mi><mn>2</mn></msub><mo>&#8776;</mo><mn>3.52</mn>
+	</mrow>
+	<mo>,</mo>	
+	<mrow>	
+		<msub><mi>H</mi><mn>3</mn></msub><mo>&#8776;</mo><mn>3.01</mn>
+	</mrow>
+</mrow>
+</math>
+бит.</p>
+<p>Для любого языка последовательность положительных элементов 
+<math display='inline'>
+<mrow>
+	<msub><mi>H</mi><mn>0</mn></msub><mo>,</mo>
+	<msub><mi>H</mi><mn>1</mn></msub><mo>,</mo>
+	<msub><mi>H</mi><mn>2</mn></msub><mo>,</mo><mi>&#8230;</mi>
+</mrow>
+</math>
+ является убывающей, следовательно, имеющей предел 
+<math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>H</mi><mi>&#8734;</mi></msub></math>
+ &#8212; предельное значение энтропии, отражающее минимальную неопределенность, связаннную с выбором знака алфавита без учета семантических особенностей.<a name="izb_lang"></a> К. Шеннон ввел так называемую <span class="termin"> относительную избыточность языка:</span>
+<table class='formula'><tr>
+<td class='formula'>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+<mrow>
+  <mi>R</mi><mo>=</mo>
+  <mrow>
+  	<mn>1</mn><mo>−</mo>
+  		<mfrac>
+    		<msub><mi>H</mi><mi>&#8734;</mi></msub>
+    		<msub><mi>H</mi><mn>0</mn></msub>
+  		</mfrac>
+  </mrow>
+  <mo>&#8776;</mo>
+	<mrow>  
+  		<mn>1</mn><mo>−</mo>
+  		<mfrac>
+    		<msub><mi>H</mi><mi>n</mi></msub>
+    		<msub><mi>H</mi><mn>0</mn></msub>
+  		</mfrac>
+	</mrow>
+</mrow><mo>,</mo>  
+</math></td>
+<td class="nomer">(2.5.2)</td>
+</tr></table>
+где 
+<math><msub><mi>H</mi><mi>n</mi></msub></math>
+ &#8212; энтропия при уровне <var>n</var> корреляций.</p>
+<p>Для русского языка избыточность для корреляций <var>n=1, 2, 3</var> составляет
+<table align="center" border="1">
+<tr>
+<td width="40">
+<math><msub><mi>R</mi><mn>1</mn></msub></math>
+</td>
+<td width="40">
+<math><msub><mi>R</mi><mn>2</mn></msub></math>
+</td>
+<td width="40">
+<math><msub><mi>R</mi><mn>3</mn></msub></math>
+</td>
+</tr>
+<tr>
+<td>0.13</td>
+<td>0.3</td>
+<td>0.4</td>
+</tr>
+</table>
+</p>
+<p>Исследования К. Шеннона для английского языка дали предельное значение энтропии
+<math display='inline'>
+<msub><mi>H</mi><mi>&#8734;</mi></msub><mo>&#8776;</mo><mn>1.4</mn>
+</math>
+ бит, что по отношению к 
+ <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+<msub><mi>H</mi><mn>0</mn></msub><mo>=</mo><mn>4.755</mn>
+ </mrow>
+ </math>
+ бит создает избыточность около 0.68 (или 68%).</p>
+<a name="izbyt"></a>
+<p> В структуре текста содержится информация обо всех грамматических и фонетических правилах языка. Разность 
+<math display='inline'>
+<mrow>
+<msub><mi>H</mi><mi>0</mi></msub>
+<mo>-</mo>
+<msub><mi>H</mi><mi>&#8734;</mi></msub>
+</mrow>
+</math>
+ и есть количество информации, содержащейся в правилах языка. Избыточность языка показывает, какую долю избыточной информации содержит текст; избыточной в том смысле, что она определяется структурой самого языка и, следовательно, может быть восстановлена без явного указания в буквенном виде. Она позволяет значительно сократить текст без ущерба его содержанию. Например, в телеграфных текстах уменьшение избыточности достигается путем отбрасывания союзов и предлогов, заменой полных слов их однозначно интерпретируемыми сокращениями. Однако, уменьшение избыточности приводит к невозможности локализации и исправления ошибки при ее возникновении, снижает разборчивость языка, уменьшает возможность понимания речи при наличии шума.</p>
+<p>Избыточность языка, очевидно, зависит и от характера рассматриваемого текста. В <a href="litra.html#41">[42], с. 267, 268</a>, утверждается, что избыточность деловых или технических текстов, текстов, написанных на специальных языках, заметно больше избыточности литературных текстов из-за меньшего количества употребляемых слов и наличия часто повторяющихся специальных терминов и оборотов. Избыточность разговорной речи оказывается несколько ниже среднего значения избыточности языка в силу большей вольности и меньшей стесненности правилами стилистики. В <a href="litra.html#42">[43], с. 268</a>, приводятся следующие результаты исследования Р. Г. Пиотровского и его группы:</p>
+<table align="center" border="1">
+<caption>Сравнительная характеристика избыточности русского языка</caption>
+<tr><td>Язык в целом</td><td>Разговорная речь</td><td>Литературные тексты</td><td>Деловые тексты</td></tr>
+<tr align="center"><td>72.6%</td><td>72%</td><td>76.2%</td><td>83.4%</td></tr>
+</table>
+<p>Обозначим через <var>G</var> <span class="termin">коэффициент стохастичности:</span>
+<table class="formula"><tr>
+<td class='formula'>
+<math display="block">
+<mrow>
+  <mi>G</mi><mo>=</mo>
+  <mrow>
+  		<mfrac>
+  			<msub><mi>H</mi><mi>&#8734;</mi></msub>
+    		<mrow>
+      		<msub><mi>H</mi><mn>0</mn></msub>
+      		<mo>−</mo>
+      		<msub><mi>H</mi><mi>&#8734;</mi></msub>
+    		</mrow>
+  		</mfrac>
+  </mrow>
+</mrow><mo>.</mo>
+</math></td>
+<td class="nomer">(2.5.3)</td>
+</tr></table>
+</p>
+<p>Сопоставляя формулы (2.5.2) и (2.5.3), найдем связь между избыточностью текста <var>R</var> и коэффициентом стохастичности <var>G</var>:
+<table class='formula'><tr>
+<td class='formula'>
+<math display="block">
+  <mi>G</mi><mo>=</mo>
+  <mfrac>
+    <mrow>
+    	<mn>1</mn><mo>−</mo><mi>R</mi>
+    </mrow>
+    <mi>R</mi>
+  </mfrac><mo>.</mo>
+</math>
+</td>
+<td class="nomer">(2.5.4)</td>
+</tr></table>
+</p>
+<p>Чем более детерменирован текст, тем меньше коэффициент стохастичности. Если текст абсолютно детерменирован, т.е. его предельная энтропия равна 0 (а избыточность <var>R=1</var>), например, текст из одних &quot;А&quot;, то и коэффициент стохастичности равен <var>G=0</var>. Другой крайний случай &#8212; G=&#8734;, когда текст абсолютно не детерменирован &#8212; предельная энтропия <math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>H</mi><mi>&#8734;</mi></msub></math> совпадает с максимальной энтропией <math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>H</mi><mn>0</mn></msub></math>. Чем меньше энтропия текста, т.е. непредсказуемости в нем, тем меньше коэффициент стохастичности. Например, официальные документы отличаются шаблонностью, поэтому они более детерменированы и более предсказуемы, а литературные тексты &#8212; более стохастичны и менее предсказуемы.</p>
+<p>Проведем исследование двухбуквенных сочетаний в сообщении и рассмотрим оценку <var>H<sub>2</sub></var> энтропии во втором приближении:
+</p>
+<form id="form1">
+	<textarea cols="80" rows="5" id="txt"></textarea><br />
+	<input type="button" value="Вычислить" onclick="fnc3()" />
+	<input type="reset" value="Сброс"/>
+</form>
+<p id='entr'></p>
+<p id='entr2'></p>
+<p id='result'></p>
+<h3>Упражнения</h3>
+<ol>
+<li>В системе электронных таблиц вычислите энтропию 
+<math><msub><mi>H</mi><mn>2</mn></msub></math>
+ для сообщения &quot;мама мыла раму&quot;.</li>
+<li>Сравните энтропию <math display='inline'><msub><mi>H</mi><mn>2</mn></msub></math>, избыточность языка и коэффициент стохастичности для корреляции <var>n = 2</var> литературного и делового текстов с помощью предложенного выше калькулятора.</li>
+</ol>
+<p><a href="2_4.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="3_1.html">К следующему</a></p>
+</body>
+<script type="text/javascript">
+  MathJax.Hub.Configured()
+</script>
+</html>

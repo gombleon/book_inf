@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<link rel='stylesheet' type="text/css" href="style.css"></link>
+<meta name="author" content="Rinchin" />
+<meta name="description" content="кодирование Unicode" />
+<meta name="keywords" content="Unicode, UTF-8, UTF-16, universal code" />
+<TITLE>Кодирование Unicode</TITLE>
+<script type="text/javascript">
+
+function view_sim() {
+	var simbol, td=document.getElementById("znak"), nomer=document.getElementById("nomer");
+	td.textContent='';
+	simbol=String.fromCharCode(nomer.value);
+	td.textContent=" Искомый символ '"+simbol+"'";
+}
+function perevod(nm)
+{
+	var stroka='', ost=0, numb=nm, b1, b2;	
+	while (numb>=1) {
+		ost=numb%2;
+		numb=(numb-ost)/2;
+		stroka=ost+stroka;
+	}
+	if (nm<128) {
+		while (stroka.length<8)
+		stroka='0'+stroka;
+	}
+	else {
+		while (stroka.length<11) {
+			stroka='0'+stroka;
+		}
+	b1='110'+stroka.substring(0,5);
+	b2='10'+stroka.substring(5,11);
+	stroka=b1+b2;
+	}
+return stroka;
+}
+function utf8() {
+	var html, head, title, body, table, caption,tr ,td ,th , stroka, cdutf;	
+	win=open("", "newWindow");
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent='Фрагмент кодировки UTF-8';
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	table=document.createElement("table");
+	table.border="1";
+	caption=document.createElement("caption");
+	caption.textContent="Фрагмент кодовой страницы UTF-8";
+	table.appendChild(caption);
+	tr=document.createElement("tr");
+	table.appendChild(tr);
+	th=document.createElement("th");
+	th.textContent='Символ';
+	tr.appendChild(th);
+	th=document.createElement("th");
+	th.textContent='Порядковый номер';
+	tr.appendChild(th);	
+	th=document.createElement("th");
+	th.textContent='Двоичный код';
+	tr.appendChild(th);
+	for (var i=65;i<128;i++) {
+		tr=document.createElement("tr");
+		table.appendChild(tr);
+		td=document.createElement("td");
+		td.textContent=String.fromCharCode(i);
+		tr.appendChild(td);
+		td=document.createElement("td");
+		td.textContent=i;
+		tr.appendChild(td);		
+		td=document.createElement("td");
+		td.textContent=perevod(i);
+		tr.appendChild(td);
+	}
+	for (var i=1024;i<1274;i++) {
+		tr=document.createElement("tr");
+		table.appendChild(tr);
+		stroka=perevod(i)
+		cdutf=stroka.substring(0,8)+' '+stroka.substring(8,16)	
+		td=document.createElement("td");
+		td.textContent=String.fromCharCode(i);
+		tr.appendChild(td);
+		td=document.createElement("td");
+		td.textContent=i;
+		tr.appendChild(td);		
+		td=document.createElement("td");
+		td.textContent=cdutf;
+		tr.appendChild(td);		
+	}
+	body.appendChild(table);
+	win.document.close();
+} 
+
+function codutf8() {
+	var s1, s2, txt=document.getElementById("txt").value, o={}, entropiy=0, len=txt.length, 	div_result=document.getElementById("div_result"), table, caption, str1, str2, td, p, emkost, izbyt, deskod, codutf="", hr;
+	while (div_result.firstChild) {
+		div_result.removeChild(div_result.firstChild);
+	}
+	if (len>0) {
+		for (var i=0;i<len; i++) {
+			var t=txt[i];
+			if (t in o) {
+				o[t]++;
+			} else {
+				o[t]=1;		
+			}
+		}
+		table=document.createElement("table");
+		table.border="1";
+		caption=document.createElement("caption");
+		caption.textContent="Алфавит сообщения и частота символов";
+		table.appendChild(caption);
+		str1=document.createElement("tr");
+		str2=document.createElement("tr");
+		table.appendChild(str1);
+		table.appendChild(str2);
+		for (var i in o) {
+			td=document.createElement("td");	
+			td.textContent=i;
+			str1.appendChild(td);
+			td=document.createElement("td");	
+			td.textContent=o[i];
+			str2.appendChild(td);
+			table.appendChild(str1);
+			table.appendChild(str2);
+			entropiy+=-o[i]/len*Math.log(o[i]/len)/Math.LN2;	
+		}
+		div_result.appendChild(table);
+		p=document.createElement("p");
+		emkost=entropiy*len;
+		p.textContent="Энтропия по Шеннону "+entropiy.toString().slice(0, 5)+" бит."
+		div_result.appendChild(p);
+		p=document.createElement("p");
+		p.textContent="Информационная емкость по Шеннону первичного сообщения "+emkost.toString().slice(0, 6)+" бит."
+		div_result.appendChild(p);
+		for (var i=0; i<len; i++) { 
+			deskod=txt.charCodeAt(i);
+			codutf+=perevod(deskod);
+		}
+		p=document.createElement("p");
+		p.textContent="Кодовая последовательность UTF-8: ";
+		div_result.appendChild(p);
+		p=document.createElement("p");
+		p.textContent=codutf;
+		div_result.appendChild(p);	
+		p=document.createElement("p");
+		len=codutf.length;
+		izbyt=1-emkost/len;
+		p.textContent="Информационная емкость кодовой последовательности "+len.toString()+" бит.";
+		div_result.appendChild(p);
+		p=document.createElement("p");
+		p.textContent="Избыточность кода Q="+izbyt.toString().slice(0, 5)+".";
+		div_result.appendChild(p);	
+		hr=document.createElement("hr");
+		div_result.appendChild(hr);		
+	}
+}
+</script>
+</head>
+<body>
+<p><a href="3_2.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="3_4.html">К следующему</a></p>
+<h2>3.3. Кодирование Unicode</h2>
+<p>Невозможность использования в одном текстовом документе нескольких байтовых кодировок ограничивает количество используемых символов 256 знаками. Стандарт кодирования Unicode (Universal Code) &#8212; частичная реализация стандарта ISO 10646, призванного представить в одной кодовой таблице все знаки, используемые для всех языков, имеющих письменность. Основная идея этого стандарта &#8212; кодирование символа с использованием переменного количества байтов (до 8). Первые 256 символов кодируются байтовыми кодами, в точности соответствующими кодировке Latin-1 (ISO 8859-1). Поэтому размер текста из латинских букв в формате Unicode будет ненамного больше аналогичного текста в байтовой кодировке. Использование переменного количества байт в кодировании символов дало возможность определить коды знаков всех известных алфавитов, включая древнеегипетские иероглифы. Благодаря этому можно, используя всего один шрифт, составить текст из букв кириллицы, латиницы, греческих букв, китайских и японских иероглифов. В операционных системах Microsoft Windows, начиная с Windows-98, используется стандарт Unicode UTF-16, а в UNIX-подобных операционных системах &#8212; UTF-8.</p>
+<p>Поскольку в Unicode используются двоичные коды неравномерной длины, то представляет интерес выделение в закодированном сообщении кода отдельного символа. Рассмотрим принцип кодирования символов в UTF-8. Все символы разделены на несколько групп по значению первых битов. Символы с кодами менее 128 кодируются одним байтом, старший бит которого равен &quot;0&quot;, а последующие 7 бит в точности соответствуют символам 7-разрядной таблицы ASCII. Следующие 1920 символов &#8212; двумя байтами, причем первые три бита первого байта составляют &quot;110&quot;, а первые два бита второго байта &#8212; &quot;10&quot;. Третья группа символов кодируется тремя байтами, в которой первый байт начинается с &quot;1110&quot; , а второй и третий байты &#8212; с &quot;10&quot;. Четвертая группа символов кодируется четырьмя байтами, первый байт которой начинается с &quot;11110&quot;, а последующие байты &#8212; с &quot;10&quot;.</p>
+<table title="Принцип кодирования UTF-8" border="1" align="center">
+<caption>Таблица 3.3.1. Принципы кодирования UTF-8</caption>
+<tr>
+<td>Диапазон кодов в 16-ричной системе</td>
+<td>Диапазон кодов в 10-чной системе</td>
+<td>Коды UTF-8</td>
+</tr>
+<tr>
+<td>000000-00007F</td>
+<td>0-127</td>
+<td>0xxxxxxx</td>
+</tr>
+<tr>
+<td>000080-0007FF</td>
+<td>128-2047</td>
+<td>110xxxxx 10xxxxxx</td>
+</tr>
+<tr>
+<td>000800-00FFFF</td>
+<td>2048-65535</td>
+<td>1110xxxx 10xxxxxx 10xxxxxx</td>
+</tr>
+<tr>
+<td>010000-10FFFF</td>
+<td>65536-1114111</td>
+<td>11110xxx 10xxxxxx 10xxxxxx 10xxxxxx</td>
+</tr>
+</table>
+<p>Код символа в десятичном представлении таблицы Unicode фактически является его порядковым номером. Рассмотрим связь между порядковым номером символа и его кодом в формате UTF-8.</p>
+<div class="examp">
+<p><span class="primer">Пример 3.3.1.</span> К примеру, требуется закодировать в UTF-8 знак цента &#162;, имеющий порядковый номер 162 и, следовательно, принадлежащий второй группе символов таблицы Unicode и кодирующийся в формате UTF-8 двумя байтами. Представим 162 в двоичной системе счисления: 
+<math display='inline'>
+<mrow>
+	<msub><mn>162</mn><mn>10</mn></msub>
+	<mo>=</mo>
+	<msub><mn>10100010</mn><mn>2</mn></msub>
+</mrow>
+</math>. Так как в двухбайтовом формате UTF-8 неизвестны значения 11 позиций (в первом байте &#8212; 5,во втором &#8212; 6), а длина двоичного представления 10100010<sub>2</sub> составляет 8 знаков, то дополним его еще тремя нулями слева и получим порядковый номер в двоичном формате 
+<math display='inline'>
+	<msub><mn>00010100010</mn><mn>2</mn></msub>
+</math>. В полученной строке отсчитываем слева направо пять знаков и подставляем в недостающие позиции первого байта кода UTF-8, а оставшиеся 6 знаков &#8212; во второй байт.</p>
+<p>Таким образом, код UTF-8 знака цента &#162; в двоичном формате 11000010 10100010, а в 16-ричном &#8212; 0xC2 0xA2. Здесь префикс 0x указывает на шестнадцатеричный формат числа, 
+<math display='inline'>
+<mrow>
+	<msub><mi>11000010</mi><mn>2</mn></msub>
+	<mo>=</mo>
+	<msub><mn>С2</mn><mn>16</mn></msub>
+</mrow>
+<mo>,</mo>
+<mrow>
+	<msub><mi>10100010</mi><mn>2</mn></msub>
+	<mo>=</mo>
+	<msub><mn>A2</mn><mn>16</mn></msub>
+</mrow>
+</math>.
+</p>
+</div>
+<p>Ниже представлен калькулятор для получения символа по его порядковому номеру.</p>
+<form id="frm_utf">
+<table>
+<tr><td>Введите десятичный порядковый номер символа</td><td><input type="text" id="nomer" maxlength="5" size="5"/></td>
+<td><input type="button" value="Получить символ" onclick="view_sim()" /></td><td id='znak'></td>
+</tr>
+</table>
+<p>Для вызова фрагмента кодовой таблицы UTF-8 служит следующая кнопка:
+<input type="button" value="Посмотреть фрагмент таблицы Unicode" onclick="utf8()" /></p>
+</form>
+<p>Так как кодировка Unicode не привязана ни к одному конкретному языку, целесообразно говорить об избыточности кодирования конкретного сообщения. Пусть 
+<math display='inline'>
+<msub><mi>I</mi><mn>1</mn></msub>
+</math>
+ &#8212; информационная емкость первичного сообщения, а 
+<math display='inline'>
+<msub><mi>I</mi><mn>2</mn></msub>
+</math>
+  &#8212; информационная емкость закодированного сообщения. Информационная емкость первичного сообщения <var>I<sub>1</sub></var> равна произведению <a href="2_2.html#entropiy">энтропии</a> на количество знаков в сообщении. Для вычисления энтропии следует составить алфавит сообщения, вычислить относительные частоты символов сообщения и использовать <a href="2_2.html#f2_2_2">формулу Шеннона</a>. Очевидно, что величина 
+<math display='inline'>
+<msub><mi>I</mi><mn>2</mn></msub>
+</math>  
+равна  длине кодовой последовательности. Тогда <a href="3_1.html#izb_kod">избыточность кода</a> сообщения выразится так:
+<table class="formula"><tr>
+<td class='formula'>
+<math display="block">
+<mrow>
+  <mi>Q</mi>
+  <mo>=</mo>
+  <mrow>
+  <mn>1</mn><mo>−</mo>
+  <mfrac>
+    <mrow><msub><mi>I</mi><mn>1</mn></msub></mrow>
+    <mrow>
+      <msub><mi>I</mi><mn>2</mn></msub>
+    </mrow>
+  </mfrac>
+  </mrow>
+</mrow><mo>.</mo>
+</math></td>
+<td class="nomer">(3.3.1)</td>
+</tr></table>
+</p>
+<p>Для кодирования текста в формате UTF-8 и вычисления избыточности кода <var>Q</var> предназначен следующий калькулятор:</p>
+<form id="f_utf">
+Введите текст:<br />
+<textarea rows="4" id="txt" cols="60"></textarea><br />
+<input type="button" value="Вычислить" onclick="codutf8()" />
+<input type="reset" value="Сброс" name="B2" />
+</form>
+<div id='div_result'></div>
+<p>Рассмотрим пример декодирования кодовой последовательности UTF-8.</p> 
+<div class="examp">
+<p><span class="primer">Пример 3.3.2.</span> Пусть требуется декодировать кодовую последовательность 11010000101100000110001000110001. Первый байт начинается с 110 (см. таблицу 3.3.1), поэтому вырежем из кодовой последовательности два первых байта 1101000010110000, соответствующих русской букве &quot;а&quot; в таблице UTF-8. Остаток кодовой последовательности 0110001000110001 начинается с 0, следовательно, вырежем первый байт 01100010, который кодирует латинскую букву &quot;b&quot;. Последний байт 00110001 является кодом цифры &quot;1&quot;.</p>
+<p>Таким образом, по кодовой последовательности мы восстановили первичное сообщение &quot;аb1&quot;.</p>
+</div>
+<h3>Упражнения</h3>
+<ol>
+<li>Сообщение состоит из 4 латинских букв и 10 букв кириллицы. Вычислите информационную емкость и избыточность кода UTF-8 сообщения, если энтропия сообщения равна 4.45 бита.</li>
+<li>В системе электронных таблиц (или используя встроенный калькулятор) вычислите двоичные коды UTF-8 по следующим порядковым номерам символов: 69, 200, 1099, 2050, 65540.</li>
+<li>По заданным двоичным кодам UTF-8 &quot;01010101&quot; и &quot;1100101010010111&quot; вычислите их порядковые номера в таблице UTF-8, используя встроенный калькулятор или систему электронных таблиц.</li>
+</ol>
+<p><a href="3_2.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="3_4.html">К следующему</a></p>
+</body>
+</html>

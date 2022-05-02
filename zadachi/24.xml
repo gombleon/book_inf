@@ -1,0 +1,2098 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>Вычисления с некоторой точностью</title></head>
+<body>
+<h2>§24 Вычисления с некоторой точностью</h2>
+<p>755. Даны действительные числа
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>x</mi>
+<mo>,</mo>
+<mi>&#949;</mi>
+<mrow>
+<mo lspace="0.5em">(</mo><mi>x</mi><mo>&#8800;</mo><mn>0</mn><mo>,</mo><mi>&#949;</mi><mo>&#62;</mo><mn>0</mn><mo>)</mo>
+</mrow> <mo>.</mo>        
+</math>
+ Вычислить с точностью <mi> &#949;</mi>:
+</p>
+<p>a) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<munderover>
+<mi>&#931;</mi>
+<mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow>
+<mi>&#8734;</mi>
+</munderover>
+<mfrac>
+<mrow>
+<msup>
+<mrow>
+<mo>(</mo>
+<mn>-1</mn>
+<mo>)</mo>
+</mrow>
+<mi>k</mi>
+</msup>
+<mo>&#x2062;</mo>
+<msup>
+<mi>x</mi>
+<mrow>
+<mn>2</mn>
+<mo>&#x2062;</mo>
+<mi>k</mi>
+<mo>+</mo>
+<mn>1</mn>
+</mrow>
+</msup>
+</mrow>
+<mrow>
+<mi>k</mi>
+<mo>&#x2062;</mo>
+<mo>!</mo>
+<mo>&#x2062;</mo>
+<mo>(</mo>
+<mn>2</mn>
+<mo>&#x2062;</mo>
+<mi>k</mi>
+<mo>+</mo>
+<mn>1</mn>
+<mo>)</mo>
+</mrow>
+</mfrac>
+</math>
+</p>
+
+<p>б) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<munderover>
+<mi>&#931;</mi>
+<mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow>
+<mi>&#8734;</mi>
+</munderover>
+<mfrac>
+<mrow>
+<msup>
+<mrow>
+<mo>(</mo>
+<mn>-1</mn>
+<mo>)</mo>
+</mrow>
+<mi>k</mi>
+</msup>
+<mo>&#x2062;</mo>
+<msup>
+<mi>x</mi>
+<mrow>
+<mn>4</mn>
+<mo>&#x2062;</mo>
+<mi>k</mi>
+<mo>+</mo>
+<mn>3</mn>
+</mrow>
+</msup>
+</mrow>
+<mrow>
+<mo>(</mo>
+<mn>2</mn>
+<mo>&#x2062;</mo>
+<mi>k</mi>
+<mo>+</mo>
+<mn>1</mn>
+<mo>)</mo>
+<mo>&#x2062;</mo>
+<mo>!</mo>
+<mo>&#x2062;</mo>
+<mo>(</mo>
+<mn>4</mn>
+<mo>&#x2062;</mo>
+<mi>k</mi>
+<mo>+</mo>
+<mn>3</mn>
+<mo>)</mo>
+</mrow>
+</mfrac>
+</math>
+</p>
+
+<p>в) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<munderover>
+<mi>&#931;</mi>
+<mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow>
+<mi>&#8734;</mi>
+</munderover>
+<mfrac>
+<mrow>
+<msup>
+<mrow>
+<mo>(</mo>
+<mn>-1</mn>
+<mo>)</mo>
+</mrow>
+<mi>k</mi>
+</msup>
+<mo>&#x2062;</mo>
+<msup>
+<mi>x</mi>
+<mrow>
+<mn>4</mn>
+<mo>&#x2062;</mo>
+<mi>k</mi>
+<mo>+</mo>
+<mn>1</mn>
+</mrow>
+</msup>
+</mrow>
+<mrow>
+<mo>(</mo>
+<mn>2</mn>
+<mo>&#x2062;</mo>
+<mi>k</mi>
+<mo>)</mo>
+<mo>&#x2062;</mo>
+<mo>!</mo>
+<mo>&#x2062;</mo>
+<mo>(</mo>
+<mn>4</mn>
+<mo>&#x2062;</mo>
+<mi>k</mi>
+<mo>+</mo>
+<mn>1</mn>
+<mo>)</mo>
+</mrow>
+</mfrac>
+</math>
+</p>
+
+<p>г) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<munderover>
+<mi>&#931;</mi>
+<mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow>
+<mi>&#8734;</mi>
+</munderover>
+<mfrac>
+<mrow>
+<msup>
+<mrow>
+<mo>(</mo>
+<mn>-1</mn>
+<mo>)</mo>
+</mrow>
+<mi>k</mi>
+</msup>
+</mrow>
+<mrow>
+<mo>((</mo>
+<mi>k</mi>
+<mo>+</mo>
+<mn>1</mn>
+<mo>)</mo>
+<mo>&#x2062;</mo>
+<mo>!</mo>
+<msup>
+<mo>)</mo>
+<mn>2</mn>
+</msup>
+</mrow>
+</mfrac>
+<mo>&#x2062;</mo>
+<msup>
+<mrow>
+<mo>(</mo>
+<mfrac>
+<mi>x</mi>
+<mn>2</mn>
+</mfrac>
+<mo>)</mo>
+</mrow>
+<mrow>
+<mn>2</mn>
+<mo>&#x2062;</mo>
+<mo>(</mo>
+<mi>k</mi>
+<mo>+</mo>
+<mn>1</mn>
+<mo>)</mo>
+</mrow>
+</msup>
+</math>
+</p>
+
+<p>д) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<munderover>
+<mi>&#931;</mi>
+<mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow>
+<mi>&#8734;</mi>
+</munderover>
+<mfrac>
+<mrow>
+<msup>
+<mrow>
+<mo>(</mo>
+<mn>-1</mn>
+<mo>)</mo>
+</mrow>
+<mi>k</mi>
+</msup>
+</mrow>
+<mrow>
+<mi>k</mi>
+<mo>&#x2062;</mo>
+<mo>!</mo>
+<mo>&#x2062;</mo>
+<mo>(</mo>
+<mi>k</mi>
+<mo>+</mo>
+<mn>1</mn>
+<mo>)</mo>
+<mo>&#x2062;</mo>
+<mo>!</mo>
+</mrow>
+</mfrac>
+<mo>&#x2062;</mo>
+<msup>
+<mrow>
+<mo>(</mo>
+<mfrac>
+<mi>x</mi>
+<mn>2</mn>
+</mfrac>
+<mo>)</mo>
+</mrow>
+<mrow>
+<mn>2</mn>
+<mo>&#x2062;</mo>
+<mi>k</mi>
+<mo>+</mo>
+<mn>1</mn>
+</mrow>
+</msup>
+</math>
+</p>
+
+<p>е) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<munderover>
+<mi>&#931;</mi>
+<mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow>
+<mi>&#8734;</mi>
+</munderover>
+<mfrac>
+<mrow>
+<msup>
+<mrow>
+<mo>(</mo>
+<mn>-1</mn>
+<mo>)</mo>
+</mrow>
+<mrow>
+<mi>k</mi>
+<mo>+</mo>
+<mn>1</mn>
+</mrow>
+</msup>
+</mrow>
+<mrow>
+<mo>(</mo>
+<mn>2</mn>
+<mo>&#x2062;</mo>
+<mi>k</mi>
+<mo>)</mo>
+<mo>&#x2062;</mo>
+<mo>!</mo>
+</mrow>
+</mfrac>
+<mo>&#x2062;</mo>
+<msup>
+<mrow>
+<mo>(</mo>
+<mfrac>
+<mi>x</mi>
+<mn>3</mn>
+</mfrac>
+<mo>)</mo>
+</mrow>
+<mrow>
+<mn>4</mn>
+<mo>&#x2062;</mo>
+<mi>k</mi>
+</mrow>
+</msup>
+</math>
+</p>
+
+<p>ж) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<munderover>
+<mi>&#931;</mi>
+<mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow>
+<mi>&#8734;</mi>
+</munderover>
+<mfrac>
+<mrow>
+<msup>
+<mrow>
+<mo>(</mo>
+<mn>-1</mn>
+<mo>)</mo>
+</mrow>
+<mrow>
+<mi>k</mi>
+<mo>+</mo>
+<mn>1</mn>
+</mrow>
+</msup>
+<mo>&#x2062;</mo>
+<msup>
+<mi>x</mi>
+<mrow>
+<mn>2</mn>
+<mo>&#x2062;</mo>
+<mi>k</mi>
+<mo>-</mo>
+<mn>1</mn>
+</mrow>
+</msup>
+</mrow>
+<mrow>
+<mo>(</mo>
+<mn>2</mn>
+<mo>&#x2062;</mo>
+<mi>k</mi>
+<mo>-</mo>
+<mn>1</mn>
+<mo>)</mo>
+<mo>&#x2062;</mo>
+<mo>(</mo>
+<mn>2</mn>
+<mo>&#x2062;</mo>
+<mi>k</mi>
+<mo>+</mo>
+<mn>1</mn>
+<mo>)</mo>
+<mo>&#x2062;</mo>
+<mo>!</mo>
+</mrow>
+</mfrac>
+</math>
+</p>
+
+<p>з) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<munderover>
+<mi>&#931;</mi>
+<mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow>
+<mi>&#8734;</mi>
+</munderover>
+<mfrac>
+<mrow>
+<msup>
+<mi>x</mi>
+<mrow>
+<mn>2</mn>
+<mo>&#x2062;</mo>
+<mi>k</mi>
+</mrow>
+</msup>
+</mrow>
+<mrow>
+<msup>
+<mn>2</mn>
+<mi>k</mi>
+</msup>
+<mo>&#x2062;</mo>
+<mi>k</mi>
+<mo>&#x2062;</mo>
+<mo>!</mo>
+</mrow>
+</mfrac>
+</math>
+</p>
+<p>756. Даны действительные числа
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>x</mi>
+<mo>,</mo>
+ <mi>а</mi>
+<mo>,</mo> 
+<mi>&#949;</mi>
+<mo>(</mo><mi> &#949;</mi><mo>&#62;</mo><mn>0</mn><mo>,<mo>&#124;</mo><mi>x</mi><mo>&#124;</mo></mo><mo>&#60;</mo><mn>1</mn><mo>)</mo> <mo>.</mo>        
+</math>
+ Вычислить с точностью <mi> &#949;</mi><mo>:</mo>        
+</p>
+ <p>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mn>1</mn>
+<mo>+</mo>
+<munderover>
+<mi>&#931;</mi>
+<mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow>
+<mi>&#8734;</mi>
+</munderover>
+<mfrac>
+<mrow>
+<mi>a</mi>
+<mo>&#x2062;</mo>
+<mrow>
+<mo>(</mo>
+<mi>a</mi>
+<mo>-</mo>
+<mn>1</mn>
+<mo>)</mo>
+<mo>...</mo>
+<mo>(</mo>
+<mi>a</mi>
+<mo>-</mo>
+<mi>k</mi>
+<mo>+</mo>
+<mn>1</mn>
+<mo>)</mo>
+</mrow>
+</mrow>
+<mrow>
+<mi>k</mi>
+<mo>&#x2062;</mo>
+<mo>!</mo>
+</mrow>
+</mfrac>
+<mo>&#x2062;</mo>
+<msup>
+<mi>x</mi>
+<mi>k</mi>
+</msup>
+</math>
+</p>
+<p>757. Даны целое число <mi>n</mi><mo>,</mo>действительные числа 
+<math xmlns="http://www.w3.org/1998/Math/MathML">  
+<mi>x</mi>
+<mo>,</mo>
+  <mi>&#949;</mi>
+ <mo>(</mo><mi> &#949;</mi><mo>&#62;</mo><mn>0</mn> <mo>,</mo>
+ <mi>n</mi>
+ <mo>&#8805;</mo><mn>0</mn><mo>)</mo> <mo>.</mo>         
+</math>
+ Вычислить с точностью <mi> &#949;</mi><mo>:</mo>        
+</p>
+<p>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<munderover>
+<mi>&#931;</mi>
+<mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow>
+<mi>&#8734;</mi>
+</munderover>
+<mfrac>
+<mrow>
+<msup>
+<mrow>
+<mo>(</mo>
+<mn>-1</mn>
+<mo>)</mo>
+</mrow>
+<mi>k</mi>
+</msup>
+</mrow>
+<mrow>
+<mi>k</mi>
+<mo>&#x2062;</mo>
+<mo>!</mo>
+<mo>&#x2062;</mo>
+<mo>(</mo>
+<mi>k</mi>
+<mo>+</mo>
+<mi>n</mi>
+<mo>)</mo>
+<mo>&#x2062;</mo>
+<mo>!</mo>
+</mrow>
+</mfrac>
+<mo>&#x2062;</mo>
+<msup>
+<mrow>
+<mo>(</mo>
+<mfrac>
+<mi>x</mi>
+<mn>2</mn>
+</mfrac>
+<mo>)</mo>
+</mrow>
+<mrow>
+<mi>n</mi>
+<mo>+</mo>
+<mn>2</mn>
+<mo>&#x2062;</mo>
+<mi>k</mi>
+</mrow>
+</msup>
+</math>
+</p>
+
+<p>758. Дано действительное число <mi>х</mi><mo>.</mo> Вычислить с точностью 
+<math xmlns="http://www.w3.org/1998/Math/MathML"> 
+<msup>
+<mn>10</mn>
+<mn>-6</mn>
+</msup>
+<mo>:</mo>
+</math> 
+<p>a) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<munderover>
+<mi>&#931;</mi>
+<mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow>
+<mi>&#8734;</mi>
+</munderover>
+<mfrac>
+<mrow>
+<mn>1</mn>
+</mrow>
+<mrow>
+<msup>
+<mi>x</mi>
+<mn>3</mn>
+</msup>
+<mo>&#x2062;</mo>
+<mi>k</mi>
+<mo>&#x2062;</mo>
+<mn>2</mn>
+</mrow>
+</mfrac>
+</math>
+</p>
+<p>б) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<munderover>
+<mi>&#931;</mi>
+<mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow>
+<mi>&#8734;</mi>
+</munderover>
+<mfrac>
+<mrow>
+<mn>1</mn>
+</mrow>
+<mrow>
+<msup>
+<mi>x</mi>
+<mn>2</mn>
+</msup>
+<mo>+</mo>
+<mi>k</mi>
+<mo>&#x2062;</mo>
+<mn>3</mn>
+</mrow>
+</mfrac>
+</math>
+</p>
+<p>в) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<munderover>
+<mi>&#931;</mi>
+<mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow>
+<mi>&#8734;</mi>
+</munderover>
+<mfrac>
+<mrow>
+<msup>
+<mi>x</mi>
+<mn>2</mn>
+</msup>
+</mrow>
+<mrow>
+<msup>
+<mi>k</mi>
+<mrow>
+<mo>(</mo>
+<mn>3</mn>
+<mo>/</mo>
+<mn>2</mn>
+<mo>)</mo>
+</mrow>
+</msup>
+</mrow>
+</mfrac>
+</math>
+</p>
+<p>г) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<munderover>
+<mi>&#931;</mi>
+<mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow>
+<mi>&#8734;</mi>
+</munderover>
+<mfrac>
+<mrow>
+<mn>1</mn>
+</mrow>
+<mrow>
+<msqrt>
+<mo>&#124;</mo>
+<mi>x</mi>
+<mo>&#124;</mo>
+</msqrt>
+<mo>+</mo>
+<msup>
+<mi>k</mi>
+<mn>2</mn>
+</msup>
+</mrow>
+</mfrac>
+</math>
+</p>
+
+<p>д) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<munderover>
+<mi>&#931;</mi>
+<mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow>
+<mi>&#8734;</mi>
+</munderover>
+<mfrac>
+<mrow>
+<msqrt>
+<mo>&#124;</mo>
+<mi>x</mi>
+<mo>&#124;</mo>
+</msqrt>
+</mrow>
+<mrow>
+<msup>
+<mi>k</mi>
+<mn>3</mn>
+</msup>
+</mrow>
+</mfrac>
+</math>
+</p>
+<p>е) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<munderover>
+<mi>&#931;</mi>
+<mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow>
+<mi>&#8734;</mi>
+</munderover>
+<mfrac>
+<mrow>
+<mi>x</mi>
+</mrow>
+<mrow>
+<msup>
+<mi>k</mi>
+<mn>3</mn>
+</msup>
+<mo>+</mo>
+<mi>k</mi>
+<mo>&#x2062;</mo>
+<msqrt>
+<mo>&#124;</mo>
+<mi>x</mi>
+<mo>&#124;</mo>
+</msqrt>
+<mo>+</mo>
+<mn>1</mn>
+</mrow>
+</mfrac>
+</math>
+</p>
+<p>ж) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<munderover>
+<mi>&#931;</mi>
+<mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow>
+<mi>&#8734;</mi>
+</munderover>
+<mfrac>
+<mrow>
+<msup>
+<mrow>
+<mo>(</mo>
+<mn>-1</mn>
+<mo>)</mo>
+</mrow>
+<mi>k</mi>
+</msup>
+<mo>&#x2062;</mo>
+<msup>
+<mi>x</mi>
+<mi>k</mi>
+</msup>
+</mrow>
+<mrow>
+<mi>k</mi>
+</mrow>
+</mfrac>
+</math>
+</p>
+<p>з)
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<munderover>
+<mi>&#931;</mi>
+<mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow>
+<mi>&#8734;</mi>
+</munderover>
+<mfrac>
+<mrow>
+<msup>
+<mrow>
+<mo>(</mo>
+<mn>-1</mn>
+<mo>)</mo>
+</mrow>
+<mrow>
+<mi>k</mi>
+<mo>+</mo>
+<mn>1</mn>
+</mrow>
+</msup>
+</mrow>
+<mrow>
+<mo>(</mo>
+<mn>2</mn>
+<mo>&#x2062;</mo>
+<mi>k</mi>
+<mo>+</mo>
+<mn>1</mn>
+<mo>)</mo>
+<mo>&#x2062;</mo>
+<mo>!</mo>
+</mrow>
+</mfrac>
+<mo>&#x2062;</mo>
+<msup>
+<mrow>
+<mo>(</mo>
+<mfrac>
+<mrow>
+<mi>x</mi>
+</mrow>
+<mrow>
+<mn>3</mn>
+</mrow>
+</mfrac>
+<mo>)</mo>
+</mrow>
+<mrow>
+<mn>4</mn>
+<mo>&#x2062;</mo>
+<mi>k</mi>
+<mo>+</mo>
+<mn>2</mn>
+</mrow>
+</msup>
+</math>
+</p>
+<p>759. Даны действительные числа
+<math xmlns="http://www.w3.org/1998/Math/MathML"> 
+ <mi>х</mi><mo>,</mo><mi>&#949;</mi> 
+ <mo>(</mo><mi>x</mi><mo>&#8800;</mo><mn>0</mn><mo>,<mi> &#949;</mi></mo><mo>&#62;</mo><mn>0</mn><mo>)</mo>
+<mo>.</mo>
+</math>
+ Вычислить с точностью <mi>&#949;</mi>
+бесконечную сумму и указать количество учтённых слагаемых<mo>:</mo>
+</p>
+<p>а)
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<munderover>
+<mi>&#931;</mi>
+<mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow>
+<mi>&#8734;</mi>
+</munderover>
+<mfrac>
+<mrow>
+<msup>
+<mrow>
+<mo>(</mo>
+<mi>-x</mi>
+<mo>)</mo>
+</mrow>
+<mrow>
+<mn>2</mn>
+<mo>&#x2062;</mo>
+<mi>k</mi>
+</mrow>
+</msup>
+</mrow>
+<mrow>
+<mn>2</mn>
+<mo>&#x2062;</mo>
+<mi>k</mi>
+<mo>&#x2062;</mo>
+<mo>!</mo>
+</mrow>
+</mfrac>
+</math>
+</p>
+<p>б)
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<munderover>
+<mi>&#931;</mi>
+<mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow>
+<mi>&#8734;</mi>
+</munderover>
+<mfrac>
+<mrow>
+<msup>
+<mrow>
+<mo>(</mo>
+<mn>-1</mn>
+<mo>)</mo>
+</mrow>
+<mi>k</mi>
+</msup>
+<mo>&#x2062;</mo>
+<msup>
+<mi>x</mi>
+<mrow>
+<mi>k</mi>
+<mo>+</mo>
+<mn>2</mn>
+</mrow>
+</msup>
+</mrow>
+<mrow>
+<mo>(</mo>
+<mi>k</mi>
+<mo>+</mo>
+<mn>1</mn>
+<mo>)</mo>
+<mo>&#x2062;</mo>
+<mo>(</mo>
+<mi>k</mi>
+<mo>+</mo>
+<mn>2</mn>
+<mo>)</mo>
+<mo>&#x2062;</mo>
+<mo>!</mo>
+</mrow>
+</mfrac>
+</math>
+</p>
+<p>в) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<munderover>
+<mi>&#931;</mi>
+<mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow>
+<mi>&#8734;</mi>
+</munderover>
+<mfrac>
+<mrow>
+<msup>
+<mrow>
+<mo>(</mo>
+<mn>-1</mn>
+<mo>)</mo>
+</mrow>
+<mi>k</mi>
+</msup>
+<mo>&#x2062;</mo>
+<mo>(</mo>
+<mi>k</mi>
+<mo>+</mo>
+<mn>1</mn>
+<mo>)</mo>
+<mo>&#x2062;</mo>
+<msup>
+<mi>x</mi>
+<mi>k</mi>
+</msup>
+</mrow>
+<mrow>
+<msup>
+<mo>3</mo>
+<mi>k</mi>
+</msup>
+</mrow>
+</mfrac>
+</math>
+</p>
+<p>г) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<munderover>
+<mi>&#931;</mi>
+<mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow>
+<mi>&#8734;</mi>
+</munderover>
+<mfrac>
+<mrow>
+<msup>
+<mrow>
+<mo>(</mo>
+<mn>-1</mn>
+<mo>)</mo>
+</mrow>
+<mi>k</mi>
+</msup>
+<mo>&#x2062;</mo>
+<msup>
+<mi>x</mi>
+<mi>k</mi>
+</msup>
+</mrow>
+<mrow>
+<msup>
+<mrow>
+<mo>(</mo>
+<mi>k</mi>
+<mo>+</mo>
+<mn>1</mn>
+<mo>)</mo>
+</mrow>
+<mo>2</mo>
+</msup>
+</mrow>
+</mfrac>
+</math>
+</p>
+
+<p>760. Дано действительное число 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>х</mi><mo>.</mo></math>
+ Последовательность
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>a</mi>
+<mn>1</mn>
+</msub>
+<mo>,</mo>
+<msub>
+<mi>a</mi>
+<mn>2</mn>
+</msub>
+<mo>,</mo>
+<mo>...</mo>
+</math>
+ образована по следующему закону 
+<mo>:</mo>
+</p>
+<p>a) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>a</mi>
+<mi>n</mi>
+</msub>
+<mo>=</mo>
+<mfrac>
+<mrow>
+<msup>
+<mi>x</mi>
+<mi>n</mi>
+</msup>
+</mrow>
+<mrow>
+<mo>(</mo>
+<mn>2</mn>
+<mo>&#x2062;</mo>
+<mi>n</mi>
+<mo>)</mo>
+<mo>&#x2062;</mo>
+<mo>!</mo>
+</mrow>
+</mfrac>
+</math>
+</p>
+<p>б) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>a</mi>
+<mi>n</mi>
+</msub>
+<mo>=</mo>
+<mfrac>
+<mrow>
+<msup>
+<mrow>
+<mo>(</mo>
+<mn>-1</mn>
+<mo>)</mo>
+</mrow>
+<mi>n</mi>
+</msup>
+<mo>&#x2062;</mo>
+<msup>
+<mi>x</mi>
+<mrou>
+<mn>2</mn>
+<mi>n</mi>
+</mrou>
+</msup>
+</mrow>
+<mrow>
+<mi>n</mi>
+<mo>&#x2062;</mo>
+<mo>(</mo>
+<mi>n</mi>
+<mo>+</mo>
+<mn>1</mn>
+<mo>)</mo>
+<mo>&#x2062;</mo>
+<mo>(</mo>
+<mi>n</mi>
+<mo>+</mo>
+<mn>2</mn>
+<mo>)</mo>
+</mrow>
+</mfrac>
+</math>
+</p>
+<p>в) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>a</mi>
+<mi>n</mi>
+</msub>
+<mo>=</mo>
+<mfrac>
+<mrow>
+<mi>x</mi>
+</mrow>
+<mrow>
+<msqrt> 
+<mi>n</mi> 
+</msqrt> 
+<mo>&#x2062;</mo>
+<mo>(</mo>
+<mi>n</mi>
+<mo>+</mo>
+<mn>2</mn>
+<mo>)</mo>
+<mo>&#x2062;</mo>
+<mo>!</mo>
+</mrow>
+</mfrac>
+</math>
+</p>
+<p>г) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>a</mi>
+<mi>n</mi>
+</msub>
+<mo>=</mo>
+<mfrac>
+<mrow>
+<msup>
+<mi>x</mi>
+<mrow>
+<mn>2</mn>
+<mi>n</mi>
+</mrow>
+</msup>
+<mo>&#x2062;</mo>
+<mi>sin</mi>
+<mo>(</mo>
+<msup>
+<mi>x</mi>
+<mi>n</mi>
+</msup>
+<mo>)</mo>
+</mrow>
+<mrow>
+<msup>
+<mi>n</mi>
+<mn>2</mn>
+</msup>
+</mrow>
+</mfrac>
+</math>
+</p>
+<p> Получить <math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>a</mi>
+<mn>1</mn>
+</msub>
+<mo>+</mo><mo>...</mo><mo>+</mo>
+<msub>
+<mi>a</mi>
+<mi>k</mi>
+</msub>
+<mo>,</mo>
+ </math>
+где <mi>k</mi><mo>-</mo> найменьшее число<mo>,</mo>
+ удовлетворяюшее двум условиям<mo>:</mo>
+ <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <mi>k</mi><mo>&#62;</mo><mn>10</mn> и 
+  <mo>&#124;</mo>
+ <msub>
+<mi>a</mi>
+<mrow>
+<mi>k</mi>
+<mo>+</mo>
+<mn>1</mn>
+</mrow>
+</msub>
+ <mo>&#124;</mo>
+ <mo>&#60;</mo>
+ <msup>
+ <mn>10</mn> 
+ <mn>-5</mn>
+ </msup>
+ <mo>.</mo>
+ </math>
+</p>
+<p>761. Дано действительное число 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>&#949;</mi> 
+<mo>(</mo>
+<mi>&#949;</mi>
+<mo>&#62;</mo>
+<mn>0</mn>
+<mo>)</mo>
+<mo>.</mo>
+</math> Вычислить
+</p>
+<p>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<munderover>
+<mi>&#931;</mi>
+<mrow><mi>n</mi><mo>=</mo><mn>1</mn></mrow>
+<mi>&#8734;</mi>
+</munderover>
+ <mfrac>
+ <mrow>
+<mn>1</mn> 
+ </mrow>
+ <mrow>
+<msup>
+<mn>3</mn>
+<mi>n</mi>
+</msup>
+ </mrow> 
+ </mfrac>
+ <mo>&#x2062;</mo>
+ <msup>
+ <mi>cos</mi>
+  <mn>3</mn>
+ </msup>
+ <mo>(</mo>
+ <msup>
+<mn>3</mn>
+<mrow>
+<mi>n</mi>
+<mn>-1</mn>
+</mrow>
+</msup>
+ <mo>)</mo>
+</math>
+<mo>,</mo>учитывая только те слагаемые<mo>,</mo>
+в которых множитель <math xmlns="http://www.w3.org/1998/Math/MathML"> 
+<mfrac>
+ <mrow>
+<mn>1</mn> 
+ </mrow>
+ <mrow>
+<msup>
+<mn>3</mn>
+<mi>n</mi>
+</msup>
+ </mrow> 
+ </mfrac>
+ </math>
+ имеет величину<mo>,</mo> не меньшую<mo>,</mo>
+ чем <mi>&#949;</mi> <mo>.</mo>
+</p>
+<p>
+762.Дано действительное число 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>&#949;</mi> 
+ <mo>(</mo>
+<mi>&#949;</mi>
+<mo>&#62;</mo>
+<mn>0</mn>
+<mo>)</mo>
+<mo>.</mo>
+</math>
+Последовательность
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+ <msub>
+<mi>a</mi>
+<mn>1</mn>
+</msub>
+<mo>,</mo>
+<msub>
+<mi>a</mi>
+<mn>2</mn>
+</msub>
+<mo>,</mo>
+<mo>...</mo>
+</math>
+ образована по следующему закону<mo>:</mo>
+</p>
+<p>a) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>a</mi>
+<mi>n</mi>
+</msub>
+<mo>=</mo>
+<mfrac>
+<mrow>
+<mi>n</mi>
+</mrow>
+<mrow>
+<msqrt>
+<msup>
+<mi>n</mi>
+<mn>2</mn>
+</msup>
+<mo>+</mo>
+<mn>1</mn>
+</msqrt>
+<mo>-</mo>
+<msqrt>
+<msup>
+<mi>n</mi>
+<mn>2</mn>
+</msup>
+<mo>-</mo>
+<mn>1</mn>
+</msqrt>
+</mrow>
+</mfrac>
+</math>
+</p>
+<p>б) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>a</mi>
+<mi>n</mi>
+</msub>
+<mo>=</mo>
+<mo>(</mo>
+<mn>1</mn>
+<mo>-</mo>
+<mfrac>
+<mrow><mn>1</mn></mrow>
+<mrow><mn>2</mn></mrow>
+</mfrac>
+<mo>)</mo>
+<mo>&#x2062;</mo>
+<mo>(</mo>
+<mn>1</mn>
+<mo>-</mo>
+<mfrac>
+<mrow><mn>1</mn></mrow>
+<mrow><mn>3</mn></mrow>
+</mfrac>
+<mo>)</mo>
+<mo>...</mo>
+<mo>(</mo>
+<mn>1</mn>
+<mo>-</mo>
+<mfrac>
+<mrow><mn>1</mn></mrow>
+<mrow>
+<mi>n</mi>
+<mo>+</mo>
+<mn>1</mn>
+</mrow>
+</mfrac>
+<mo>)</mo>
+</math>
+</p>
+<p>в) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>a</mi>
+<mi>n</mi>
+</msub>
+<mo>=</mo>
+<mo>(</mo>
+<mn>1</mn>
+<mo>-</mo>
+<mfrac>
+<mrow>
+<mi>1</mi>
+</mrow>
+<mrow>
+<mi>2</mi>
+<mo>&#x2062;</mo>
+<mo>!</mo>
+</mrow>
+</mfrac>
+<mo>)</mo>
+<mo>&#x2062;</mo>
+<mo>(</mo>
+<mn>1</mn>
+<mo>+</mo>
+<mfrac>
+<mrow>
+<mn>1</mn>
+</mrow>
+<mrow>
+<mn>3</mn>
+<mo>&#x2062;</mo>
+<mo>!</mo>
+</mrow>
+</mfrac>
+<mo>)</mo>
+<mo>...</mo>
+<mo>(</mo>
+<mn>1</mn>
+<mo>+</mo>
+<mfrac>
+<mrow>
+<msup>
+<mrow>
+<mo>(</mo>
+<mn>-1</mn>
+<mo>)</mo>
+</mrow>
+<mi>n</mi>
+</msup>
+</mrow>
+<mrow>
+<mo>(</mo>
+<mi>n</mi>
+<mo>+</mo>
+<mn>1</mn>
+<mo>)</mo>
+<mo>!</mo>
+</mrow>
+</mfrac>
+<mo>)</mo>
+</math>
+</p>
+<p>в) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>a</mi>
+<mi>n</mi>
+</msub>
+<mo>=</mo>
+<msqrt>
+<mfrac>
+<mrow>
+<mn>1</mn>
+</mrow>
+<mrow>
+<mn>2</mn>
+</mrow>
+</mfrac>
+</msqrt>
+
+<msqrt>
+<mfrac>
+<mrow>
+<mn>1</mn>
+</mrow>
+<mrow>
+<mn>2</mn>
+</mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac>
+<mrow>
+<mn>1</mn>
+</mrow>
+<mrow>
+<mn>2</mn>
+</mrow>
+</mfrac>
+<msqrt>
+<mfrac>
+<mrow>
+<mn>1</mn>
+</mrow>
+<mrow>
+<mn>2</mn>
+</mrow>
+</mfrac>
+</msqrt>
+</msqrt>
+<mo>...</mo>
+<msqrt>
+<mfrac>
+<mrow>
+<mn>1</mn>
+</mrow>
+<mrow>
+<mn>2</mn>
+</mrow>
+</mfrac>
+<mo>+</mo>
+<mfrac>
+<mrow>
+<mn>1</mn>
+</mrow>
+<mrow>
+<mn>2</mn>
+</mrow>
+</mfrac>
+<msqrt>
+<mfrac>
+<mrow>
+<mn>1</mn>
+</mrow>
+<mrow>
+<mn>2</mn>
+</mrow>
+</mfrac>
+<mo>+</mo>
+<mo>...</mo>
+<mo>+</mo>
+<mfrac>
+<mrow>
+<mn>1</mn>
+</mrow>
+<mrow>
+<mn>2</mn>
+</mrow>
+</mfrac>
+<msqrt>
+<mfrac>
+<mrow>
+<mn>1</mn>
+</mrow>
+<mrow>
+<mn>2</mn>
+</mrow>
+</mfrac>
+</msqrt>
+</msqrt>
+</msqrt>
+</math>
+</p>
+<p>Найти первый член <math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>a</mi>
+<mi>n</mi>
+</msub>
+<mo>(</mo>
+<mi>n</mi> 
+ <mo>&#8805;</mo>
+ <mn>2</mn>
+ <mo>)</mo>
+ <mo>,</mo>
+</math>
+ для которого выполнено условие 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mo>&#8739;</mo>
+<msub>
+<mi>a</mi>
+<mi>n</mi>
+</msub>
+<mo>-</mo>
+ <msub>
+<mi>a</mi>
+<mrow>
+<mi>n</mi>
+<mo>-</mo>
+<mn>1</mn>
+</mrow>
+</msub>
+<mo>&#8739;</mo>
+<mo>&#60;</mo> 
+ <mi> &#949;</mi>
+ <mo>.</mo> 
+</math>
+</p>
+<p>763. Даны действительные числа <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>x</mi>
+<mo>,</mo>
+ <mi> &#949;</mi>
+ <mo>(</mo>
+ <mi> &#949;</mi>
+ <mo>&#62;</mo>
+ <mn>0</mn>
+ <mo>)</mo>
+</math>
+Последовательность
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>a</mi>
+<mn>1</mn>
+</msub>
+<mo>,</mo>
+<msub>
+<mi>a</mi>
+<mn>2</mn>
+</msub>
+<mo>...</mo>
+</math>
+образована по следующему закону
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mo>:</mo>
+<msub>
+<mi>a</mi>
+<mn>1</mn>
+</msub>
+<mo>=</mo>
+<mi>x</mi>
+<mo>;</mo>
+</math>
+далее<mo>,</mo> для
+ <math xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi>
+<mo>=</mo>
+<mn>2</mn>
+<mo>,</mo>
+<mn>3</mn>
+<mo>,</mo>
+<mo>...</mo>
+</math>
+выполнено<mo>:</mo>
+</p>
+<p>a) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>a</mi>
+<mi>n</mi>
+</msub>
+<mo>=</mo>
+<msqrt>
+<mo>&#8739;</mo>
+<mn>4</mn>
+<mo>&#x2062;</mo>
+<msub>
+<mrow>
+<msup>
+<mi>a</mi>
+<mn>2</mn>
+</msup>
+</mrow>
+<mrow>
+<mi>n</mi>
+<mn>-1</mn>
+</mrow>
+</msub>
+<mo>-</mo>
+<mn>2</mn>
+<mo>&#x2062;</mo>
+<mi>x</mi>
+<mo>&#8739;</mo>
+</msqrt>
+</math>
+</p>
+
+<p>б) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>a</mi>
+<mi>n</mi>
+</msub>
+<mo>=</mo>
+<mfrac>
+<mrow>
+<mn>16</mn>
+<mo>+</mo>
+<mi>x</mi>
+</mrow>
+<mrow>
+<mn>1</mn>
+<mo>+</mo>
+<mo>&#8739;</mo>
+<msub>
+<mrow>
+<msup>
+<mi>a</mi> 
+<mn>3</mn>
+</msup>
+</mrow>
+<mrow>
+<mi>n</mi>
+<mn>-1</mn>
+</mrow>
+</msub>
+<mo>&#8739;</mo>
+</mrow>
+</mfrac>
+<mo>+</mo>
+<mn>3</mn>
+<mo>&#x2062;</mo>
+<msub>
+<mi>a</mi>
+<mrow>
+<mi>n</mi>
+<mn>-1</mn>
+</mrow>
+</msub>
+</math>
+</p>
+<p>в) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>a</mi>
+<mi>n</mi>
+</msub>
+<mo>=</mo>
+<mn>2</mn>
+<mo>&#x2062;</mo>
+<msub>
+<mi>a</mi>
+<mrow>
+<mi>n</mi>
+<mn>-1</mn>
+</mrow>
+</msub>
+<mo>+</mo>
+<mfrac>
+<mrow>
+<mi>x</mi>
+</mrow>
+<mrow>
+<mn>4</mn>
+<mo>+</mo>
+<msub>
+<mrow>
+<msup>
+<mi>a</mi> 
+<mn>2</mn>
+</msup>
+</mrow>
+<mrow>
+<mi>n</mi>
+<mn>-1</mn>
+</mrow>
+</msub>
+</mrow>
+</mfrac>
+</math>
+</p>
+
+<p>г) 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>a</mi>
+<mi>n</mi>
+</msub>
+<mo>=</mo>
+<mn>3</mn>
+<mo>+</mo>
+<mfrac>
+<mrow>
+<mn>1</mn>
+</mrow>
+<mrow>
+<msup>
+<mn>2</mn>
+<mi>n</mi>
+</msup>
+</mrow>
+</mfrac>
+<mo>&#x2062;</mo>
+<msup>
+<mi>cos</mi>
+<mn>2</mn>
+</msup>
+<mo>(</mo>
+<msub>
+<mi>a</mi>
+<mrow>
+<mi>n</mi>
+<mn>-1</mn>
+</mrow>
+</msub>
+<mo>-</mo>
+<mi>x</mi>
+<mo>)</mo>
+</math>
+<mo>.</mo>
+</p>
+
+<p>Найти первый член
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub>
+<mi>a</mi>
+<mi>n</mi>
+</msub>
+<mo>(</mo>
+<mi>n</mi>
+<mo>&#8805;</mo>
+<mn>2</mn>
+<mo>)</mo>
+</math>
+<mo>,</mo>
+для которого выполнено условие
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mo>&#8739;</mo>
+<msub>
+<mi>a</mi>
+<mi>n</mi>
+</msub>
+<mo>-</mo>
+<msub>
+<mi>a</mi>
+<mrow>
+<mi>n</mi>
+<mn>-1</mn>
+</mrow>
+</msub>
+<mo>&#8739;</mo>
+<mo>&#60;</mo>
+<mo>&#949;</mo>
+</math>
+<mo>(</mo>
+ограничиться расссмотрением первых
+ <math xmlns="http://www.w3.org/1998/Math/MathML">
+ <msup>
+<mn>10</mn>
+<mn>4</mn> 
+ </msup>
+ </math> 
+ членов
+<mo>)</mo>
+<mo>.</mo>
+</p>
+
+<p>764.  Рассмотрим последовательность
+<math xmlns="http://www.w3.org/1998/Math/MathML"> 
+ <msub>
+<mi>d</mi>
+<mn>0</mn> 
+ </msub>
+ <mo>,</mo>
+<msub>
+<mi>d</mi>
+<mn>1</mn> 
+ </msub>
+<mo>...</mo>
+</math> 
+периметров вписанных в данную окружность 
+многоугольников с удваивающимся числом сторон
+<mo>.</mo>
+Радиус окружности 
+<mo>-</mo>
+данное действительное число 
+<mi>r</mi>
+<mo>.</mo> 
+Первый из рассматриваемых многоугольников
+<mo>-</mo>
+шестиугольник
+<mo>.</mo>
+Вычислить
+<math xmlns="http://www.w3.org/1998/Math/MathML"> 
+ <msub>
+<mi>d</mi>
+<mi>n</mi> 
+</msub>
+ <mo>(</mo>
+ <mi>n</mi>
+<mo>&#62;</mo> 
+ <mn>0</mn>
+ <mo>)</mo>
+</math> 
+<mo>,</mo>
+для которого 
+<math xmlns="http://www.w3.org/1998/Math/MathML"> 
+ <mo>&#8739;</mo>
+ <msub>
+<mi>d</mi>
+<mi>n</mi> 
+</msub>
+ <mo>-</mo>
+ <msub>
+<mi>d</mi>
+<mrow>
+<mi>n</mi>
+<mo>-</mo>
+<mn>1</mn>
+</mrow> 
+</msub>
+<mo>&#8739;</mo>
+<mo>&#60;</mo>
+<msup>
+<mn>10</mn>
+<mn>-6</mn>
+</msup>
+</math> 
+<mo>.</mo>
+</p>
+
+<p>765.  Даны действительные числа
+<math xmlns="http://www.w3.org/1998/Math/MathML"> 
+<mi>x</mi>
+<mo>,</mo>
+<mi>&#949;</mi> 
+ <mo>(</mo>
+<mn>0</mn>
+<mo>&#60;</mo>
+<mi>x</mi>
+<mo>&#60;</mo>
+<mn>1</mn>
+<mo>,</mo>
+<mi>&#949;</mi>
+<mo>&#62;</mo>
+<mn>0</mn>
+</math> 
+<mo>)</mo>
+<mo>.</mo>
+Вычислить с точностью значение 
+</p>
+<p><math xmlns="http://www.w3.org/1998/Math/MathML"> 
+<munderover>
+<mi>&#931;</mi>
+<mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow>
+<mi>&#8734;</mi>
+</munderover>
+<msup>
+<mi>x</mi>
+<mrow>
+<mo>(</mo>
+<msup>
+<mi>k</mi>
+<mn>2</mn>
+</msup>
+<mo>)</mo>
+</mrow>
+</msup>
+</math> 
+</p>
+
+<p>766.  Даны действительные числа
+<math xmlns="http://www.w3.org/1998/Math/MathML"> 
+<mi>a</mi>
+<mo>,</mo>
+<mi>b</mi>
+<mo>,</mo>
+<mi>&#949;</mi>
+<mo>(</mo>
+<mi>a</mi>
+<mo>&#62;</mo>
+<mi>b</mi>
+<mo>&#62;</mo>
+<mn>0</mn>
+<mo>,</mo>
+<mi>&#949;</mi>
+<mo>&#62;</mo>
+<mn>0</mn>
+<mo>)</mo>
+<mo>.</mo>
+</math>
+Последовательности 
+<math xmlns="http://www.w3.org/1998/Math/MathML"> 
+<msub>
+<mi>x</mi>
+<mn>1</mn>
+</msub>
+<msub>
+<mi>x</mi>
+<mn>2</mn>
+</msub>
+<mo>...,</mo>
+<msub>
+<mi>y</mi>
+<mn>1</mn>
+</msub>
+<msub>
+<mi>y</mi>
+<mn>2</mn>
+</msub>
+<mo>...</mo>
+</math>
+образованы по закону
+<mo>:</mo>
+</p>
+<p>
+<math xmlns="http://www.w3.org/1998/Math/MathML"> 
+<msub>
+<mi>x</mi>
+<mn>1</mn>
+</msub>
+<mo>=</mo>
+<mi>a</mi>
+<mo>,</mo>
+<msub>
+<mi>y</mi>
+<mn>1</mn>
+</msub>
+<mo>=</mo>
+<mi>b</mi>
+<mo>,</mo>
+<msub>
+<mi>x</mi>
+<mi>k</mi>
+</msub>
+<mo>=</mo>
+<mfrac>
+<mrow>
+<mn>1</mn>
+</mrow>
+<mrow>
+<mn>2</mn>
+</mrow>
+</mfrac>
+<mo>&#x2062;</mo>
+<mo>(</mo>
+<msub>
+<mi>x</mi>
+<mrow>
+<mi>k</mi>
+<mn>-1</mn>
+</mrow>
+</msub>
+<mo>+</mo>
+<msub>
+<mi>y</mi>
+<mrow>
+<mi>k</mi>
+<mn>-1</mn>
+</mrow>
+</msub>
+<mo>)</mo>
+<mo>,</mo>
+<msub>
+<mi>y</mi>
+<mi>k</mi>
+</msub>
+<mo>=</mo>
+<msqrt>
+<msub>
+<mi>x</mi>
+<mrow>
+<mi>k</mi>
+<mn>-1</mn>
+</mrow>
+</msub>
+<mo>&#x2062;</mo>
+<msub>
+<mi>y</mi>
+<mrow>
+<mi>k</mi>
+<mn>-1</mn>
+</mrow>
+</msub>
+</msqrt>
+</math>
+<mo>.</mo>
+ Найти первое 
+<math xmlns="http://www.w3.org/1998/Math/MathML"> 
+ <msub>
+<mi>x</mi>
+<mi>n</mi>
+</msub>
+ </math>
+ такое
+ <mo>,</mo> 
+ что
+ <math xmlns="http://www.w3.org/1998/Math/MathML"> 
+ <mo>&#8739;</mo>
+ <msub>
+<mi>x</mi>
+<mi>n</mi>
+</msub>
+<mo>-</mo>
+<msub>
+<mi>y</mi>
+<mi>n</mi>
+</msub>
+<mo>&#8739;</mo>
+<mo>&#60;</mo>
+<mo>&#949;</mo>
+ </math>
+</p>
+
+<p>767<mo>.</mo>
+  Даны действительные числа 
+  <math xmlns="http://www.w3.org/1998/Math/MathML"> 
+ <mi>a</mi>
+<mo>,</mo> 
+ <mi>b</mi>
+ <mo>.</mo>
+ </math>
+Последовательности
+<math xmlns="http://www.w3.org/1998/Math/MathML"> 
+<msub>
+<mi>x</mi>
+<mn>1</mn>
+</msub>
+<msub>
+<mi>x</mi>
+<mn>2</mn>
+</msub>
+<mo>...,</mo>
+<msub>
+<mi>y</mi>
+<mn>1</mn>
+</msub>
+<msub>
+<mi>y</mi>
+<mn>2</mn>
+</msub>
+<mo>...</mo>
+</math>
+образованы по следуюшему закону
+<math xmlns="http://www.w3.org/1998/Math/MathML"> 
+<mo>:</mo>
+<msub>
+<mi>x</mi>
+<mi>n</mi>
+</msub>
+<mo>=</mo>
+<mi>a</mi>
+<mo>+</mo>
+<mi>b</mi>
+<mo>&#x2062;</mo>
+<mi>cos</mi>
+<mo>(</mo>
+<mn>0.5</mn>
+<mo>&#x2062;</mo>
+<mi>n</mi>
+<mo>)</mo>
+<mo>,</mo>
+<msub>
+<mi>y</mi>
+<mi>n</mi>
+</msub>
+<mo>=</mo>
+<mn>0.5</mn>
+<mo>&#x2062;</mo>
+<mi>a</mi>
+<mi>n</mi>
+<mo>-</mo>
+<mi>b</mi>
+<mo>&#x2062;</mo>
+<mi>sin</mi>
+<mo>(</mo>
+<mn>0.5</mn>
+<mo>&#x2062;</mo>
+<mi>n</mi>
+<mo>)</mo>
+<mo>.</mo>
+</math>
+Получить
+<math xmlns="http://www.w3.org/1998/Math/MathML"> 
+<mfrac>
+<mrow>
+<msub>
+<mi>x</mi>
+<mi>k</mi>
+</msub>
+</mrow>
+<mrow>
+<msub>
+<mi>y</mi>
+<mi>k</mi>
+</msub>
+</mrow>
+</mfrac>
+<mo>,</mo>
+</math>
+где <math xmlns="http://www.w3.org/1998/Math/MathML"> 
+<mi>k</mi>
+<mo>-</mo>
+</math>
+найбольшее натуральное число
+<mo>,</mo>
+удовлетворяющее двум условиям
+<mo>:</mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML"> 
+<mi>k</mi>
+<mo>&#8804;</mo>
+<mn>20</mn>
+</math>
+  и
+ <math xmlns="http://www.w3.org/1998/Math/MathML"> 
+ <mo>&#8739;</mo>
+ <msub>
+<mi>y</mi>
+<mi>k</mi>
+</msub>
+ <mo>&#8739;</mo>
+ <mo>&#62;</mo>
+ <msup>
+<mn>10</mn> 
+ <mn>-3</mn>
+ </msup>
+<mo>.</mo>
+</math>
+</p>
+</p>
+</body>
+</html>

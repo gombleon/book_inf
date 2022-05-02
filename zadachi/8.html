@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<link rel='stylesheet' type='text/css' href='style.css' />
+<meta name='author' content='leonid' />
+<title>Обработка последовательностей символов</title>
+</head>
+<body>
+<h2>§ 8. Обработка последовательностей символов *)</h2>
+<p>*) Если в используемом языке имеется возможность работы со строками, то наряду с приведенными в параграфе задачами имеет смысл рассмотреть аналогичные задачи, сформулированные в терминах строк. В условии задачи 251 выписан дополнительный строковый вариант, но в дальнейшем это уже не делается, так как самостоятельная формулировка таких вариантов не составит труда для решающего задачи. В каждом таком варианте число символов в строке не вносится в исходные данные задачи, но предполагается, что оно не превосходит максимально допустимой длины строки в используемом
+языке программирования.
+</p>
+<ol start='251' type='1'>
+<li>Даны натуральное число <var>n</var>,  символы
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math>. Подсчитать, сколько раз среди данных символов встречается буква <var>x</var>. (Строковый вариант: дана строка символов; подсчитать, сколько раз среди символов строки встречается буква <var>x</var>.)
+</li>
+<li>Даны натуральное число <var>n</var>, символы
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math>. Подсчитать:
+<ol type='a'>
+<li>сколько раз среди данных символов встречается символ <var>+</var> и сколько раз символ <var>∗</var> ;
+</li>
+<li>общее число вхождений символов
+<math>
+<mfenced open='' close=''>
+<mi>+</mi><mi>-</mi><mi>*</mi>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math> в последовательность
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math>.
+</li>
+</ol>
+</li>
+<li>Даны натуральное число <var>n</var>, символы
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math>. Преобразовать последовательность
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math>, заменив в ней:
+<ol type='a'>
+<li>все восклицательные знаки точками;</li>
+<li>каждую точку многоточием (т. е. тремя точками);</li>
+<li>каждую из групп стоящих рядом точек одной точкой;</li>
+<li>каждую из групп стоящих рядом точек многоточием (т. е. тремя точками).</li>
+</ol>
+</li>
+<li>Даны натуральное число <var>n</var>, символы
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math>. Выяснить, имеются ли в последовательности
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math> такие члены последовательности
+<math>
+<mfenced open='' close=''>
+ 	<msub><mi>s</mi><mi>i</mi></msub>
+	<msub>
+		<mi>s</mi>
+		<mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow>
+	</msub>
+</mfenced>
+</math>, что
+<math><msub><mi>s</mi><mi>i</mi></msub></math> – это запятая, а 
+<math><msub><mi>s</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub></math> – тире.
+</li>
+<li>Даны натуральное число <var>n</var>, символы
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math>. Получить первое натуральное число <var>i</var>, для которого каждый из символов
+<math>
+ 	<msub><mi>s</mi><mi>i</mi></msub>
+</math> и 
+<math>
+	<msub>
+		<mi>s</mi>
+		<mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow>
+	</msub>
+</math> совпадает с буквой <var>a</var>. Если такой пары символов в последовательности
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math> нет, то ответом должно быть число <var>0</var>.
+</li>
+<li>Даны натуральное число <var>n</var>, символы
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math>. Известно, что среди 
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math> есть по крайней мере одна запятая. Найти такое натуральное <var>i</var>, что:
+<ol type='a'>
+<li>
+<math><msub><mi>s</mi><mi>i</mi></msub></math> – первая по порядку запятая;</li>
+<li><math><msub><mi>s</mi><mi>i</mi></msub></math> – последняя по порядку запятая.
+</li>
+</ol>
+</li>
+<li> Даны символы
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<msub><mi>s</mi><mn>2</mn></msub>
+	<mi>&#133;</mi>
+</mfenced>
+</math>. Известно, что символ
+<math><msub><mi>s</mi><mn>1</mn></msub></math> отличен от восклицательного знака и что среди
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>2</mn></msub>
+	<msub><mi>s</mi><mn>3</mn></msub>
+	<mi>&#133;</mi>
+</mfenced>
+</math> есть по крайней мере один восклицательный знак. Пусть
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math> - символы данной последовательности, предшествующие первому восклицательному знаку (<var>n</var> заранее неизвестно).
+<ol type='a'>
+<li>Определить количество пробелов среди
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math>.</li>
+<li>Выяснить, входит ли в последовательность
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math> буква <var>ю</var>.
+</li>
+<li>Выяснить, верно ли, что среди
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math> имеются все буквы, входящие в слово <var>шина</var>.
+</li>
+<li>Выяснить, имеется ли среди
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math> пара соседствующих
+букв <var>но</var> или <var>он</var>.
+</li>
+<li>Выяснить, имеется ли среди
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math> пара соседствующих одинаковых символов.
+</li>
+<li>Выяснить, верно ли, что существуют такие натуральные <var>i</var> и <var>j</var>, что
+<math><mn>1</mn><mo>&lt;</mo><mi>i</mi><mo>&lt;</mo><mi>j</mi><mo>&lt;</mo><mi>n</mi></math>
+ и что <math><msub><mi>s</mi><mi>i</mi></msub></math>
+ совпадает с <math><msub><mi>s</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub></math>, а 
+<math><msub><mi>s</mi><mi>j</mi></msub></math> – с 
+<math><msub><mi>s</mi><mrow><mi>j</mi><mo>+</mo><mn>1</mn></mrow></msub></math>.
+</li>
+</ol>
+</li>
+<li>Даны натуральное число <var>n</var>, символы
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math>. Удалить из данной последовательности все группы букв вида <var>abcd</var>.
+</li>
+<li>Даны натуральное число <var>n</var>, символы
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math>. Преобразовать последовательность
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math>, удалив каждый символ <var>*</var> и повторив каждый символ, отличный от <var>*</var>.
+</li>
+<li>Даны натуральное число <var>n</var>, символы
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math>, среди которых есть двоеточие.
+<ol type='a'>
+<li>Получить все символы, расположенные до первого двоеточия включительно.</li>
+<li>Получить все символы, расположенные после первого двоеточия.</li>
+<li>Получить все символы, расположенные между первым и вторым двоеточием. Если второго двоеточия нет, то получить все
+символы, расположенные после единственного имеющегося двоеточия.</li>
+</ol>
+</li>
+<li>Даны натуральное число <var>n</var>, символы
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math>. 
+<ol type='a'>
+<li>Подсчитать наибольшее количество идущих подряд пробелов.</li>
+<li>Выяснить, верно ли, что в последовательности
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math> имеются пять идущих подряд букв <var>е</var>.</li>
+</ol>
+</li>
+<li>Даны натуральное число <var>n</var>, символы
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math>. Определить число вхождений в последовательность
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math> группы букв:
+<ol type='a'>
+<li>abc.</li>
+<li>aba.</li>
+</ol>
+</li>
+<li>Даны натуральное число <var>n</var>, символы
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math>. Заменить в
+последовательности
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math> каждую группу букв <var>child</var> группой букв <var>children</var>.
+</li>
+<li>Даны натуральное число <var>n</var>, символы
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math>. Исключить из последовательности
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math> группы символов, расположенные между скобками <var>(,)</var>. Сами скобки тоже должны быть исключены. Предполагается, что внутри каждой пары скобок нет других скобок.
+</li>
+<li>Даны натуральное число <var>n</var>, символы
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math>. Преобразовать последовательность
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math>: если нет символа <var>*</var>, то оставить ее без изменения, иначе заменить каждый символ,
+встречающийся после первого вхождения символа <var>*</var>, на символ <var>-</var>.
+</li>
+<li>Даны натуральное число <var>n</var>, символы
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math>, среди которых есть хотя бы одна точка. Преобразовать последовательность
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math>, удалив из нее все запятые, предшествующие первой точке, и заменив знаком <var>+</var> все цифры <var>3</var>, встречающиеся после первой точки.
+</li>
+<li>Даны натуральное число <var>n</var>, символы
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+<mspace width='1ex'/>
+<mrow><mo>(</mo><mi>n</mi><mo>&gt;</mo><mn>1</mn><mo>)</mo></mrow>
+</math>. Преобразовать последовательность
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math>, заменив запятыми все двоеточия, встречающиеся среди
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mrow><mo>[</mo><mfrac bevelled='true'><mi>n</mi><mn>2</mn></mfrac><mo>]</mo></mrow></msub>
+</mfenced>
+</math>, и заменив точками все восклицательные знаки, встречающиеся среди
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mrow><mo>[</mo><mfrac bevelled='true'><mi>n</mi><mn>2</mn></mfrac><mo>]</mo></mrow></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math>.
+</li>
+<li>Даны натуральное число <var>n</var>, символы
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math>. Известно, что среди данных символов есть хотя бы один, отличный от пробела. Требуется преобразовать последовательность
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math> следующим образом. Удалить группы пробелов, которыми начинается и которыми заканчивается последовательность, а также заменить каждую внутреннюю группу пробелов одним пробелом. Если указанных групп нет в данной последовательности, то оставить последовательность без изменения.
+</li>
+<li>Даны натуральное число <var>n</var>, символы
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math>. Группы символов, разделенные пробелами (одним или несколькими) и не содержащие пробелов внутри себя, будем называть словами.
+<ol type='a'>
+<li>Подсчитать количество слов в данной последовательности.</li>
+<li>Подсчитать количество букв <var>а</var> в последнем слове данной последовательности.</li>
+<li>Найти количество слов, начинающихся с буквы <var>б</var>.</li>
+<li>Найти количество слов, у которых первый и последний символы совпадают между собой.</li>
+<li>Найти какое-нибудь слово, начинающееся с буквы а.</li>
+<li>Преобразовать данную последовательность, заменяя каждое вхождение слова это на слово то.</li>
+<li>Найти длину самого короткого слова.</li>
+</ol>
+</li>
+<li>
+Даны символы
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<msub><mi>s</mi><mn>2</mn></msub>	
+	<mi>&#133;</mi>
+</mfenced>
+</math> Известно, что символ s1
+<math>
+	<msub><mi>s</mi><mn>1</mn></msub>
+</math>
+ отличен от пробела и что среди
+ <math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>2</mn></msub>
+	<msub><mi>s</mi><mn>3</mn></msub>	
+	<mi>&#133;</mi>
+</mfenced>
+</math> имеется хотя бы один пробел. Рассматриваются
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math> – символы, предшествующие первому пробелу (<var>n</var> заранее неизвестно). Преобразовать последовательность 
+<math>
+<mfenced open='' close=''>
+	<msub><mi>s</mi><mn>1</mn></msub>
+	<mi>&#133;</mi>
+	<msub><mi>s</mi><mi>n</mi></msub>
+</mfenced>
+</math>:
+<ol type='a'>
+<li>удалив из нее все символы, не являющиеся буквами;</li>
+<li>заменив все малые буквы одноименными большими;</li>
+<li>удалив все символы, не являющиеся буквами или цифрами, и заменив каждую большую букву одноименной малой;</li>
+<li>удалив из каждой группы идущих подряд цифр, в которой более двух цифр и которой предшествует точка, все цифры, начиная с третьей (например, ab + 0.1973 − 1.1 преобразуется в ab + 0.19 − 1.1);</li>
+<li>удалив из каждой группы цифр, которой не предшествует точка, все начальные нули (кроме последнего, если за ним идет точка).
+</li>
+</ol>
+
+
+</li>
+</ol>
+</body>
+</html>

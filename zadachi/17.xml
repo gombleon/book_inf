@@ -1,0 +1,876 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Геометрия</title>
+</head>
+<body>
+<h2>§17 Геометрия</h2>
+<p><b>606</b> Даны действительные положительные числа
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>a</mi></math>
+<mo>, </mo>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>b</mi></math>
+
+<mo>, </mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>c</mi></math>
+<mo>, </mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>d</mi></math>
+. Выяснить, можно ли построить четырехугольник с такими длинами сторон. 
+</p>
+<p><b>607</b> Дано действительное число
+
+
+
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>&#966;</mi> <mo>(</mo><mn>0</mn><mo>&#60;</mo> <mi>&#966;</mi><mo>&#60;</mo> <mi>&#960;</mi> <mo>)</mo></math>. Из точки <math xmlns="http://www.w3.org/1998/Math/MathML"><mo>(</mo><mn>1</mn> <mi>,</mi><mn>1</mn><mo>)</mo> </math> под углом <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>&#966;</mi></math>
+
+к прямой <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>x</mi></math> <mo>=</mo> <mn>1</mn>  выпущен световой луч (рис.29,а-29,б) </p>
+
+
+
+<svg width="640" height="350" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <defs>
+  <marker id="se_marker_start_svg_3" markerUnits="strokeWidth" orient="auto" viewBox="0 0 100 100" markerWidth="5" markerHeight="5" refX="50" refY="50">
+   <path d="m0,50l100,40l-30,-40l30,-40l-100,40z" fill="#000000" stroke="#000000" stroke-width="10"/>
+  </marker>
+  <marker id="se_marker_start_svg_5" markerUnits="strokeWidth" orient="auto" viewBox="0 0 100 100" markerWidth="5" markerHeight="5" refX="50" refY="50">
+   <path d="m0,50l100,40l-30,-40l30,-40l-100,40z" fill="#000000" stroke="#000000" stroke-width="10"/>
+  </marker>
+  <marker id="se_marker_end_svg_6" markerUnits="strokeWidth" orient="auto" viewBox="0 0 100 100" markerWidth="5" markerHeight="5" refX="50" refY="50">
+   <path d="m100,50l-100,40l30,-40l-30,-40l100,40z" fill="#000000" stroke="#000000" stroke-width="10"/>
+  </marker>
+  <marker id="se_marker_end_svg_7" markerUnits="strokeWidth" orient="auto" viewBox="0 0 100 100" markerWidth="5" markerHeight="5" refX="50" refY="50">
+   <path d="m100,50l-100,40l30,-40l-30,-40l100,40z" fill="#000000" stroke="#000000" stroke-width="10"/>
+  </marker>
+ </defs>
+ <g>
+  <title>Layer 1</title>
+  <line fill="none" stroke="#000000" stroke-width="2" x1="60" y1="55" x2="60" y2="220" id="svg_3" marker-start="url(#se_marker_start_svg_3)"/>
+  <line fill="none" stroke="#000000" stroke-width="2" x1="350" y1="55" x2="350" y2="220" marker-start="url(#se_marker_start_svg_5)" id="svg_5"/>
+  <line fill="none" stroke="#000000" stroke-width="2" x1="59" y1="220" x2="250" y2="220" id="svg_6" marker-end="url(#se_marker_end_svg_6)"/>
+  <line fill="none" stroke="#000000" stroke-width="2" x1="349" y1="220" x2="540" y2="220" marker-end="url(#se_marker_end_svg_7)" id="svg_7"/>
+  <line fill="none" stroke="#000000" stroke-width="2" x1="172" y1="99" x2="172" y2="235" id="svg_8"/>
+  <line fill="none" stroke="#000000" stroke-width="2" x1="465" y1="99" x2="465" y2="235" id="svg_9"/>
+  <line fill="none" stroke="#000000" stroke-width="2" x1="54" y1="109" x2="66" y2="109" id="svg_10"/>
+  <line fill="none" stroke="#000000" stroke-width="2" x1="344" y1="110" x2="356" y2="110" id="svg_11"/>
+  <line fill="none" stroke="#000000" stroke-width="2" x1="172" y1="110" x2="59" y2="185" id="svg_12"/>
+  <line fill="none" stroke="#000000" stroke-width="2" x1="350" y1="178" x2="395" y2="219" id="svg_13"/>
+  <line fill="none" stroke="#000000" stroke-width="2" x1="394" y1="219" x2="465" y2="109" id="svg_14"/>
+  <circle fill="none" stroke="#000000" stroke-width="2" cx="163" cy="119" r="33.0502" id="svg_15"/>
+  <circle fill="none" stroke="#000000" stroke-width="2" cx="462" cy="124" r="33.0502" id="svg_16"/>
+  <rect fill="#ffffff" stroke="#ffffff" stroke-width="2" x="174" y="46" width="68" height="147" id="svg_17"/>
+  <rect fill="#ffffff" stroke="#ffffff" stroke-width="2" x="468" y="58" width="68" height="147" id="svg_18"/>
+  <rect fill="#ffffff" stroke="#ffffff" stroke-width="2" x="115.32" y="87.5625" width="69.289" height="30.6242" id="svg_19" transform="rotate(-35, 149.965, 102.875)"/>
+  <rect fill="#ffffff" stroke="#ffffff" stroke-width="2" x="402.265" y="96.4724" width="78.5112" height="30.6242" transform="rotate(-58, 441.521, 111.785)" id="svg_20"/>
+  <line fill="none" stroke="#000000" stroke-width="2" x1="172" y1="96" x2="172" y2="108" id="svg_21"/>
+  <line fill="none" stroke="#000000" stroke-width="2" x1="465" y1="96" x2="465" y2="108" id="svg_22"/>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="172" y="262" id="svg_23" font-size="20" font-family="serif" text-anchor="middle" xml:space="preserve">1</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="39" y="115" font-size="20" font-family="serif" text-anchor="middle" xml:space="preserve" id="svg_24">1</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="466" y="263" font-size="20" font-family="serif" text-anchor="middle" xml:space="preserve" id="svg_25">1</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="326" y="117" font-size="20" font-family="serif" text-anchor="middle" xml:space="preserve" id="svg_26">1</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="258" y="248" id="svg_27" font-size="22" font-family="serif" text-anchor="middle" xml:space="preserve">x</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="552" y="244" font-size="22" font-family="serif" text-anchor="middle" xml:space="preserve" id="svg_28">x</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="42" y="52" id="svg_29" font-size="22" font-family="serif" text-anchor="middle" xml:space="preserve">y</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="334" y="52" font-size="22" font-family="serif" text-anchor="middle" xml:space="preserve" id="svg_30">y</text>
+  <text fill="#000000" stroke="#ffffff" stroke-width="0" x="140" y="295" id="svg_31" font-size="20" font-family="serif" text-anchor="middle" xml:space="preserve">a</text>
+  <text fill="#000000" stroke="#ffffff" stroke-width="0" x="423" y="303" id="svg_32" font-size="20" font-family="serif" text-anchor="middle" xml:space="preserve">б</text>
+  <text fill="#000000" stroke="#ffffff" stroke-width="0" x="296" y="342" id="svg_33" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve">Рис. 29</text>
+  <path fill="none" stroke="#000000" id="svg_56" d="m437.5,165c-0.25,0.75 -0.5,1.25 -0.5,1.75c0,0.25 0.12399,0.981 0.25,2.25c0.02499,0.24899 0,1 0,1.5c0,0.75 0,1.25 0.25,1.75c0.25,0.5 0.306,0.726 0.5,1.25c0.358,0.967 0.673,1.547 1,2c0.207,0.287 0.28699,0.619 0.5,0.75c0.47601,0.29401 0.737,0.76401 1,1c1.19299,1.06799 2.25,1.5 2.75,1.5c0.5,0 1,0 1.25,0c0.25,0 0.75,0 2.5,0c0.75,0 1.25,0 2,0c0.5,0 2.51099,-0.96899 3.25,-1.25c1.78,-0.677 2.75,-1 3,-1.25c0.5,-0.5 1.25,-3.25 1.25,-3.75c0,-0.25 0,-1.25 -0.5,-1.75c-0.25,-0.25 -0.38,-0.83099 -0.75,-1.25c-0.59698,-0.67599 -1.20599,-1.12199 -1.75,-1.25c-0.24301,-0.05701 -0.5,0 -1,0c-0.75,0 -1.25,0.5 -1.75,1c-0.5,0.5 -1.009,1.12601 -1.75,2.25c-0.38901,0.59 -1.229,1.097 -1.5,1.75c-0.09601,0.231 -0.17899,0.80299 -0.75,1.5c-0.056,0.81825 -0.12061,1.30826 -0.19254,1.60182c-0.0719,0.29358 -0.15109,0.39073 -0.23621,0.42331c-0.08511,0.03256 -0.17618,0.00053 -0.27185,0.03574c-0.09567,0.0352 -0.19589,0.13763 -0.29941,0.43913c-0.181,0.52901 -0.569,1.22099 -0.75,1.75c-0.414,1.20599 -0.25,1.5 -0.25,2c0,0.5 0,1 0,1.5c0,1 0,1.25 0,2c0,0.5 0,0.75 0,1c0,0.5 0,0.75 0,1c0,0.25 0,0.5 0,0.75l0,0.25l0,0.25"/>
+  <path id="svg_1" fill="none" stroke="#000000" d="m140.5,165c-0.25,0.75 -0.5,1.25 -0.5,1.75c0,0.25 0.12399,0.981 0.25,2.25c0.02499,0.24899 0,1 0,1.5c0,0.75 0,1.25 0.25,1.75c0.25,0.5 0.306,0.726 0.5,1.25c0.358,0.967 0.673,1.547 1,2c0.207,0.287 0.28699,0.619 0.5,0.75c0.47601,0.29401 0.737,0.76401 1,1c1.19299,1.06799 2.25,1.5 2.75,1.5c0.5,0 1,0 1.25,0c0.25,0 0.75,0 2.5,0c0.75,0 1.25,0 2,0c0.5,0 2.51099,-0.96899 3.25,-1.25c1.78,-0.677 2.75,-1 3,-1.25c0.5,-0.5 1.25,-3.25 1.25,-3.75c0,-0.25 0,-1.25 -0.5,-1.75c-0.25,-0.25 -0.38,-0.83099 -0.75,-1.25c-0.59698,-0.67599 -1.20599,-1.12199 -1.75,-1.25c-0.24301,-0.05701 -0.5,0 -1,0c-0.75,0 -1.25,0.5 -1.75,1c-0.5,0.5 -1.009,1.12601 -1.75,2.25c-0.38901,0.59 -1.229,1.097 -1.5,1.75c-0.09601,0.231 -0.17899,0.80299 -0.75,1.5c-0.056,0.81799 -0.121,1.308 -0.19299,1.60201c-0.07101,0.293 -0.151,0.39099 -0.23599,0.42299c-0.08502,0.033 -0.17603,0.00101 -0.272,0.03601c-0.095,0.03499 -0.19501,0.138 -0.29901,0.439c-0.181,0.52901 -0.569,1.22099 -0.75,1.75c-0.414,1.20599 -0.25,1.5 -0.25,2c0,0.5 0,1 0,1.5c0,1 0,1.25 0,2c0,0.5 0,0.75 0,1c0,0.5 0,0.75 0,1c0,0.25 0,0.5 0,0.75l0,0.25l0,0.25"/>
+ </g>
+</svg>
+<p>
+Найти точку оси ординат, в которой луч падает на эту ось. Если <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>&#966;</mi>  <mo>&#60;</mo> <mi>&#960;</mi>  <mo>/ </mo> <mn> 4</mn></math> , то луч сначала отразится по закону "угол падения равен углу отражения" от оси абсцисс. </p>
+
+
+
+
+
+<p>
+<b>608</b> Даны действительные числа <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub><mi>x</mi><mn>1</mn> </msub><mi>,</mi><msub><mi>y</mi><mn>1</mn> </msub> <mi>,</mi><msub><mi>x</mi><mn>2</mn> </msub> <mi>,</mi> <msub><mi>y</mi><mn>2</mn> </msub><mo>(</mo><msub><mi>x</mi><mn>1</mn> </msub><mo>&#8800;</mo> <msub><mi>x</mi><mn>2</mn></msub> <mo>)</mo>
+
+
+
+</math>, которые определяют две точки <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>A</mi><mo>(</mo><msub><mi>x</mi><mn>1</mn> </msub> <mi>,</mi><msub><mi>y</mi><mn>1</mn> </msub> <mo>)</mo> </math> и <math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>B</mi><mo>(</mo><msub><mi>x</mi><mn>2</mn> </msub> <mi>,</mi><msub><mi>y</mi><mn>2</mn> </msub> <mo>)</mo> </math>. 
+На оси абсцисс найти точку, сумма расстояний от которой до точек A и B - наименьшая для всех точек этой оси.</p>
+
+
+
+<p><b>609</b> Даны действительные числа x, y. Вычислить расстояние от точки плоскости с координатами <math xmlns="http://www.w3.org/1998/Math/MathML">   <mo>(</mo><mi>x</mi><mi>,</mi><mo>y</mo><mo>)</mo> </math>
+до границы квадрата (т. е. минимум расстояний от данной точки до точек границы квадратов) с вершинами:</p>
+
+<ol>
+<li> <math xmlns="http://www.w3.org/1998/Math/MathML"> <mo>(</mo><mo>-</mo><mn>0</mn><mo>.</mo> <mn>5</mn><mo>,</mo><mo>-</mo><mn>0</mn><mo>.</mo> <mn>5</mn><mo>)</mo><mo>,</mo>
+
+<mo>(</mo><mo>-</mo><mn>0</mn><mo>.</mo> <mn>5</mn><mo>,</mo><mn>0</mn><mo>.</mo> <mn>5</mn><mo>)</mo><mo>,</mo>
+
+<mo>(</mo><mn>0</mn><mo>.</mo> <mn>5</mn><mo>,</mo><mn>0</mn><mo>.</mo> <mn>5</mn><mo>)</mo><mo>,</mo>
+
+<mo>(</mo><mn>0</mn><mo>.</mo> <mn>5</mn><mo>,</mo><mo>-</mo><mn>0</mn><mo>.</mo> <mn>5</mn><mo>)</mo><mo>;</mo>
+
+</math></li> 
+    
+<li>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+
+<mo>(</mo><mn>0</mn><mo>,</mo> <mn>0</mn><mo>)</mo><mo>,</mo>
+
+<mo>(</mo><mn>0</mn><mo>,</mo> <mn>1</mn><mo>)</mo><mo>,</mo>
+
+<mo>(</mo><mn>1</mn><mo>,</mo> <mn>1</mn><mo>)</mo><mo>,</mo>
+
+<mo>(</mo><mn>1</mn><mo>,</mo> <mn>0</mn><mo>)</mo><mo>.</mo></math></li></ol>
+
+
+<p><b>610</b> Даны натуральное число <math xmlns="http://www.w3.org/1998/Math/MathML"><mn> n</mn> </math>, целые числа <math xmlns="http://www.w3.org/1998/Math/MathML">
+<msub><mi>x</mi><mn>1</mn> </msub><mi>,</mi><msub><mi>y</mi><mn>1</mn></msub><mi>,</mi>
+
+<msub><mi>x</mi><mn>2</mn> </msub><mi>,</mi><msub><mi>y</mi><mn>2</mn> </msub><mi>,</mi><mi>.</mi><mi>.</mi><mi>.</mi><mi>,</mi>
+<msub><mi>x</mi><mi>n</mi> </msub><mi>,</mi><msub><mi>y</mi><mi>n</mi> </msub> </math>. Известно, что точки <math xmlns="http://www.w3.org/1998/Math/MathML">
+
+<msub><mi>p</mi><mn>1</mn> </msub><mi>,</mi><mi>.</mi><mi>.</mi><mi>.</mi><mi>,</mi><msub><mi>p</mi><mi>n</mi> </msub></math>
+с координатами<math xmlns="http://www.w3.org/1998/Math/MathML"> <mo>(</mo><msub><mi>x</mi><mn>1</mn> </msub> <mi>,</mi><msub><mi>y</mi><mn>1</mn> </msub> <mo>)</mo> 
+
+
+
+
+<mi>,</mi>
+<mo>(</mo><msub><mi>x</mi><mn>2</mn> </msub> <mi>,</mi><msub><mi>y</mi><mn>2</mn> </msub> <mo>)</mo> 
+
+<mi>,</mi><mi>.</mi><mi>.</mi><mi>.</mi><mi>,</mi>
+
+<mo>(</mo><msub><mi>x</mi><mi>n</mi> </msub> <mi>,</mi><msub><mi>y</mi><mi>n</mi> </msub> <mo>)</mo> </math> попарно различны. Пусть точка <math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>p</mi><mi>i</mi> </msub> </math>
+
+
+
+удалена от начала координат на расстояние <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub><mi>p</mi><mi>i</mi> </msub><mo>(</mo><mi>i</mi><mo>=</mo> <mn>1</mn><mi>,</mi><mi>.</mi><mi>.</mi><mi>.</mi><mi>,</mi> <mi>n</mi><mo>)</mo></math>
+
+. Пусть 
+<math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>R</mi><mo>=</mo><mi>max</mi>
+<mo>(</mo> <msub><mi>r</mi><mn>1</mn> </msub> <mi>,</mi>
+<mi>.</mi><mi>.</mi><mi>.</mi>
+ <mi>,</mi> <msub><mi>r</mi><mi>n</mi> </msub> <mo>)</mo> </math>.</p>
+<p>
+<ol>
+<li>
+
+Среди точек<math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>p</mi><mn>1</mn> </msub> <mi>,</mi>
+
+<mi>.</mi><mi>.</mi><mi>.</mi> <mi>,</mi> <msub><mi>p</mi><mi>n</mi> </msub>  </math> выбрать какую - нибудь одну <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub> <mi>p</mi><mi>i</mi> </msub></math> , для которой <math xmlns="http://www.w3.org/1998/Math/MathML">  <msub><mi>r</mi><mi>i</mi> </msub>  <mo>=</mo> <mi>R</mi>  </math>; указать координаты выбранной точки и расстояние от этой точки до начала координат.</li>
+
+<li> Cреди точек <math xmlns="http://www.w3.org/1998/Math/MathML"> <msub><mi>p</mi><mi>i</mi> </msub> > <mo>(</mo><mn>1</mn>  
+<mo>&#8804;</mo><mi>i</mi>      
+<mo>&#8804;</mo> 
+<mi>n</mi> <mo>)</mo></math>, для которых
+
+
+
+
+<math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>r</mi><mi>i</mi> </msub>  <mo>=</mo> <mi>R</mi>  </math>
+, выбрать те, которые обладают наименьшей абсциссой. Если таких точек больше одной, то выбрать из них точку, которая имеет наибольшую ординату. Указать номер выбранной точки.</li></ol>
+</p>
+
+
+<p><b>611</b> Даны действительные числа <math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>a</mi><mn>1</mn> </msub> <mi>,</mi>
+
+
+
+
+<mi>.</mi><mi>.</mi><mi>.</mi> <mi>,</mi> <msub><mi>p</mi><mn>50</mn> </msub>  </math>. Эти числа определяют 25 интервалов числовой оси : 
+
+<math xmlns="http://www.w3.org/1998/Math/MathML"> <mo>(</mo><msub><mi>a</mi><mn>1</mn> </msub> <mi>,</mi><msub><mi>a</mi><mn>2</mn> </msub> <mo>)</mo> <mi>,</mi>
+
+<mo>(</mo><msub><mi>a</mi><mn>3</mn> </msub> <mi>,</mi><msub><mi>a</mi><mn>4</mn> </msub> <mo>)</mo><mi>,</mi>
+<mi>.</mi><mi>.</mi><mi>.</mi>
+
+ <mi>,</mi>
+<mo>(</mo><msub><mi>a</mi><mn>49</mn> </msub> <mi>,</mi><msub><mi>a</mi><mn>50</mn> </msub> <mo>)</mo><mi>.</mi> </math>
+
+<ol>
+<li> Имеют ли все данные интервалы общие точки? Если да, то указать какую-нибудь из этих точек.</li>
+<li> Является ли интервалом объединение данных интервалов? Если да, то указать концы этого интервала.</li>
+<li> Указать число  <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>i</mi> <mo>(</mo><mn>1</mn>  
+<mo>&#8804;</mo><mi>i</mi>      
+
+<mo>&#8804;</mo> 
+<mn>25</mn> <mo>)</mo></math> такое, что объединение данных интервалов можно представить в виде  <math  xmlns="http://www.w3.org/1998/Math/MathML"><mi> i</mi> </math> непересекающихся интервалов.</li>
+<li> Имеются ли точки числовой оси, принадлежащие по крайней мере трем каким - нибудь из данных интервалов ? Если да, то указать какую - нибудь из этих точек.</li>
+</ol>
+</p>
+
+<p><b>612</b> Даны действительные числа <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msub><mi>x</mi><mn>1</mn> </msub> <mi>,</mi><mi>.</mi><mi>.</mi><mi>.</mi><mi>,</mi><msub><mi>x</mi><mn>15</mn> </msub><mi>,</mi><msub><mi>y</mi><mn>1</mn> </msub> <mi>,</mi><mi>.</mi><mi>.</mi><mi>.</mi><mi>,</mi><msub><mi>y</mi><mn>15</mn> </msub><mi>,</mi><msub><mi>r</mi><mn>1</mn> </msub> <mi>,</mi><mi>.</mi><mi>.</mi><mi>.</mi><mi>,</mi><msub><mi>r</mi><mn>15</mn> </msub><mi>.</mi></math>
+
+Выяснить, есть ли на плоскости точка, принадлежащая всем кругам <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msub><mi>c</mi><mn>1</mn> </msub> <mi>,</mi><mi>.</mi><mi>.</mi><mi>.</mi><mi>,</mi><msub><mi>c</mi><mn>15</mn> </msub></math>
+, где <math  xmlns="http://www.w3.org/1998/Math/MathML">
+
+<msub><mi>c</mi><mi>i</mi> </msub> </math> имеет центр с координатами <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msub><mi>x</mi><mi>i</mi> </msub> <mi>,</mi><msub><mi>y</mi><mi>i</mi> </msub>
+
+</math> и радиус
+
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msub><mi>r</mi><mi>i</mi> </msub>  <mo>(</mo><mi>i</mi><mo>=</mo><mn>1</mn><mi>,</mi><mi>.</mi><mi>.</mi><mi>.</mi><mi>,</mi><mn>15</mn><mo>)</mo>
+
+</math>. </p>
+<p> <b>613</b> Даны действительные числа <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msub><mi>x</mi><mn>1</mn> </msub> <mi>,</mi>
+<msub><mi>y</mi><mn>1</mn> </msub><mi>,</mi>
+
+<msub><mi>x</mi><mn>2</mn> </msub><mi>,</mi>
+<msub><mi>y</mi><mn>2</mn> </msub>
+<mi>,</mi><mi>.</mi><mi>.</mi><mi>.</mi><mi>,</mi>
+<msub><mi>x</mi><mn>15</mn> </msub><mi>,</mi>
+
+<msub><mi>y</mi><mn>15</mn> </msub></math>,которые рассматриваются как координаты
+
+<math xmlns="http://www.w3.org/1998/Math/MathML"> <mo>(</mo><msub><mi>x</mi><mn>1</mn> </msub> <mi>,</mi><msub><mi>y</mi><mn>1</mn> </msub> <mo>)</mo> 
+
+
+
+
+<mi>,</mi>
+<mo>(</mo><msub><mi>x</mi><mn>2</mn> </msub> <mi>,</mi><msub><mi>y</mi><mn>2</mn> </msub> <mo>)</mo> 
+
+<mi>,</mi><mi>.</mi><mi>.</mi><mi>.</mi><mi>,</mi>
+
+<mo>(</mo><msub><mi>x</mi><mn>15</mn> </msub> <mi>,</mi> <msub> <mi>y</mi><mn>15</mn> 
+</msub> <mo>)</mo> </math> 
+
+ точек на плоскости. Выяснить, верно ли, что для каждой из этих пятнадцати точек найдется другая, такая, что все оставшиеся тринадцать точек лежат по одну сторону от прямой, проходящей через эти две точки.</p>
+
+ <p> <b>614</b> Даны целые числа 
+ 
+ <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msub><mi>x</mi><mn>1</mn> </msub> <mi>,</mi>
+<msub><mi>y</mi><mn>1</mn> </msub><mi>,</mi>
+
+<msub><mi>x</mi><mn>2</mn> </msub><mi>,</mi>
+<msub><mi>y</mi><mn>2</mn> </msub>
+<mi>,</mi><mi>.</mi><mi>.</mi><mi>.</mi><mi>,</mi>
+<msub><mi>x</mi><mi>n</mi> </msub><mi>,</mi>
+
+<msub><mi>y</mi><mi>n</mi> </msub></math> . Выяснить, найдутся ли среди точек с координатами
+<math xmlns="http://www.w3.org/1998/Math/MathML"> <mo>(</mo><msub><mi>x</mi><mn>1</mn> </msub> <mi>,</mi><msub><mi>y</mi><mn>1</mn> </msub> <mo>)</mo> 
+
+
+
+
+<mi>,</mi>
+<mo>(</mo><msub><mi>x</mi><mn>2</mn> </msub> <mi>,</mi><msub><mi>y</mi><mn>2</mn> </msub> <mo>)</mo> 
+
+<mi>,</mi><mi>.</mi><mi>.</mi><mi>.</mi><mi>,</mi>
+
+<mo>(</mo><msub><mi>x</mi><mi>n</mi> </msub> <mi>,</mi> <msub> <mi>y</mi><mi>n</mi> 
+</msub> <mo>)</mo> </math>  четыре таких, которые являются вершинами квадрата. 
+  </p>
+
+  
+ <p>
+<b>615</b> Даны целые числа
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msub><mi>x</mi><mn>1</mn> </msub> <mi>,</mi>
+<msub><mi>y</mi><mn>1</mn> </msub><mi>,</mi>
+
+<msub><mi>x</mi><mn>2</mn> </msub><mi>,</mi>
+<msub><mi>y</mi><mn>2</mn> </msub><mi>,</mi>
+<msub><mi>x</mi><mn>3</mn> </msub><mi>,</mi>
+<msub><mi>y</mi><mn>3</mn> </msub></math> 
+
+
+
+
+. Известно, что точки с координатами 
+<math xmlns="http://www.w3.org/1998/Math/MathML"> <mo>(</mo><msub><mi>x</mi><mn>1</mn> </msub> <mi>,</mi><msub><mi>y</mi><mn>1</mn> </msub> <mo>)</mo> 
+<mi>,</mi>
+<mo>(</mo><msub><mi>x</mi><mn>2</mn> </msub> <mi>,</mi><msub><mi>y</mi><mn>2</mn> </msub> <mo>)</mo> <mi>,</mi>
+
+<mo>(</mo><msub><mi>x</mi><mn>3</mn> </msub> <mi>,</mi> <msub> <mi>y</mi><mn>3</mn> 
+</msub> <mo>)</mo> </math> являются тремя вершинами некоторого прямоугольника. Найти координаты четвертой вершины.
+
+
+
+</p>
+
+<p><b>616</b> Прямая на плоскоти может быть задана уравнением 
+<math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>a</mi><mo>&#183;</mo><mi>x</mi>
+<mo>+</mo><mi>b</mi><mo>&#183;</mo><mi>y</mi><mo>+</mo><mi>c</mi><mo>=</mo><mn>0</mn>
+
+</math>, где 
+<math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>a</mi></math> и 
+
+<math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>b</mi></math> одновременно не равны нулю. Будем рассматривать прямые только с целыми коэффициентами 
+<math xmlns="http://www.w3.org/1998/Math/MathML"> <mi>a</mi><mo>,</mo><mi>b</mi><mo>,</mo><mi>c</mi><mo>.</mo></math> Пусть даны коэффициенты нескольких прямых : 
+
+
+
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msub><mi>a</mi><mn>1</mn> </msub> <mi>,</mi>
+
+<msub><mi>b</mi><mn>1</mn> </msub><mi>,</mi>
+<msub><mi>c</mi><mn>1</mn> </msub><mi>,</mi>
+
+<msub><mi>a</mi><mn>2</mn> </msub>
+<msub><mi>b</mi><mn>2</mn> </msub><mi>,</mi>
+
+<msub><mi>c</mi><mn>2</mn> </msub>
+<mi>,</mi><mi>.</mi><mi>.</mi><mi>.</mi><mi>,</mi>
+
+<msub><mi>a</mi><mi>n</mi> </msub><mi>,</mi>
+<msub><mi>b</mi><mi>n</mi> </msub><mi>,</mi>
+
+<msub><mi>c</mi><mi>n</mi> </msub><mo>.</mo></math>  
+<ol>
+
+<li> Определить, имеются ли среди этих прямых совпадающие или параллельные.</li>
+
+<li> Определить, имеются ли три прямые, пересекающиеся в одной точке.</li>
+<li>Определить, находятся ли данные прямые в общем положении. (Прямые находятся в общем положении, если все они различны, никакие две из них не параллельны и никакие три не пересекаются в одной точке).</li>
+</ol>    
+</p>
+<p><b>617</b> Окружность на плоскости может быть задана координатами 
+
+<math  xmlns="http://www.w3.org/1998/Math/MathML"><mi>x</mi><mn>,</mn><mi>y</mi></math>  ее центра и радиусом 
+
+
+<math  xmlns="http://www.w3.org/1998/Math/MathML"><mi>r</mi></math>. Пусть даны соответствующие характеристики нескольких окружностей: 
+
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msub><mi>x</mi><mn>1</mn> </msub> <mi>,</mi>
+<msub><mi>y</mi><mn>1</mn> </msub><mi>,</mi>
+
+<msub><mi>r</mi><mn>1</mn> </msub><mi>,</mi>
+
+<msub><mi>x</mi><mn>2</mn> </msub><mi>,</mi>
+<msub><mi>y</mi><mn>2</mn> </msub><mi>,</mi>
+<msub><mi>r</mi><mn>2</mn> </msub>
+
+<mi>,</mi><mi>.</mi><mi>.</mi><mi>.</mi><mi>,</mi>
+
+<msub><mi>x</mi><mi>n</mi> </msub><mi>,</mi>
+<msub><mi>y</mi><mi>n</mi> </msub><mi>,</mi>
+<msub><mi>r</mi><mi>n</mi> </msub></math> .
+
+<ol>
+
+<li>Определить, имеются ли среди этих окружностей три попарно пересекающихся.</li>
+
+<li>Найти среди этих окружностей все уединенные окружности, т.е. такие, которые не имеют общих точек ни с одной из остальных окружностей, не лежат целиком внутри и не заключают внутри себя какой - либо из остальных окружностей.
+</li>
+</ol>
+</p>
+<p><b>618</b> Рассматриваются три луча, проведенные в плоскости из точки 
+<math  xmlns="http://www.w3.org/1998/Math/MathML"><mi>O</mi></math>. Углы между соседними лучами равны 
+<math  xmlns="http://www.w3.org/1998/Math/MathML"><mn>2</mn><mo>&#183;</mo><mo>&#960;</mo><mo>/</mo><mn>3</mn></math>. На лучах выбраны точки 
+
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+
+<msub><mi>A</mi><mn>1</mn> </msub> <mi>,</mi>
+
+<msub><mi>A</mi><mn>2</mn> </msub> <mi>,</mi>
+<msub><mi>A</mi><mn>3</mn> </msub> <mi>,</mi>
+
+</math> и из этих точек как из центров проведены окружности, проходящиие через точку
+<math  xmlns="http://www.w3.org/1998/Math/MathML"><mi>O</mi></math>. Считая данными расстояния 
+
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msub><mi>A</mi><mn>1</mn> </msub> <mi>O</mi><mi>,</mi>
+<msub><mi>A</mi><mn>2</mn> </msub> <mi>O</mi><mi>,</mi>
+
+<msub><mi>A</mi><mn>3</mn> </msub> <mi>O</mi><mi>,</mi> </math> вычислить площадь фигуры, изображенной на рис.30, a. Для вычисления разбить фигуру на части так, как показано на рис.30, б.
+
+
+
+</p>
+<svg width="640" height="300" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g>
+  <title>Layer 1</title>
+  <svg height="480" width="640">
+   <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+   <g>
+    <title>Layer 1</title>
+    <line id="svg_1" y2="165" x2="130" y1="33" x1="130" stroke-width="2" stroke="#000000" fill="none"/>
+    <line transform="rotate(120, 366, 127)" id="svg_4" y2="312" x2="516" y1="180" x1="516" stroke-width="2" stroke="#000000" fill="none"/>
+    <line transform="rotate(-120, 46, 386)" id="svg_5" y2="571" x2="196" y1="439" x1="196" stroke-width="2" stroke="#000000" fill="none"/>
+    <circle id="svg_11" r="57.0029" cy="194" cx="180" stroke-width="2" stroke="#000000" fill="none"/>
+    <circle id="svg_12" r="57.0029" cy="191" cx="488" stroke-width="2" stroke="#000000" fill="none"/>
+    <circle id="svg_13" r="42.4853" cy="122" cx="130" stroke-width="2" stroke="#000000" fill="none"/>
+    <circle id="svg_14" r="42.4809" cy="122" cx="436" stroke-width="2" stroke="#000000" fill="none"/>
+    <circle id="svg_15" r="33.5261" cy="179" cx="99" stroke-width="2" stroke="#000000" fill="none"/>
+    <circle id="svg_16" r="33.5156" cy="179" cx="407" stroke-width="2" stroke="#000000" fill="none"/>
+    <circle id="svg_17" r="40.5" cy="159" cx="441" stroke-width="2" stroke="#ffffff" fill="#ffffff"/>
+    <line id="svg_6" y2="165" x2="436" y1="33" x1="436" stroke-width="2" stroke="#000000" fill="none"/>
+    <line id="svg_9" transform="rotate(-120, 351, 387)" y2="572" x2="501" y1="440" x1="501" stroke-width="2" stroke="#000000" fill="none"/>
+    <line id="svg_10" transform="rotate(120, 671, 127)" y2="312" x2="821" y1="180" x1="821" stroke-width="2" stroke="#000000" fill="none"/>
+    <line fill="none" stroke="#020202" stroke-width="2" x1="435" y1="166" x2="479" y2="134" id="svg_19"/>
+    <line fill="none" stroke="#020202" stroke-width="2" x1="437" y1="165" x2="432" y2="201" id="svg_20"/>
+    <line fill="none" stroke="#ffffff" stroke-width="2" x1="436" y1="165" x2="400" y2="147" id="svg_22"/>
+    <line fill="none" stroke="#020202" stroke-width="2" x1="436" y1="164" x2="400" y2="146" id="svg_23"/>
+    <circle fill="#000000" stroke="#020202" stroke-width="2" cx="100" cy="181" r="2" id="svg_24"/>
+    <circle fill="#000000" stroke="#020202" stroke-width="2" cx="178.5" cy="192" r="2" id="svg_25"/>
+    <circle fill="#000000" stroke="#020202" stroke-width="2" cx="436" cy="121" r="2" id="svg_26"/>
+    <circle fill="#000000" stroke="#020202" stroke-width="2" cx="406" cy="182" r="2" id="svg_27"/>
+    <circle fill="#000000" stroke="#020202" stroke-width="2" cx="486" cy="194" r="2" id="svg_28"/>
+    <circle fill="#000000" stroke="#020202" stroke-width="2" cx="130" cy="121" r="2" id="svg_29"/>
+    <text fill="#000000" stroke="#020202" stroke-width="0" x="145" y="118" id="svg_30" font-size="20" font-family="serif" text-anchor="middle" xml:space="preserve">А</text>
+    <text fill="#000000" stroke="#020202" stroke-width="0" x="192" y="183" font-size="20" font-family="serif" text-anchor="middle" xml:space="preserve" id="svg_31">А</text>
+    <text fill="#000000" stroke="#020202" stroke-width="0" x="83" y="171" font-size="20" font-family="serif" text-anchor="middle" xml:space="preserve" id="svg_32">А</text>
+    <text fill="#000000" stroke="#020202" stroke-width="0" x="496" y="183" font-size="20" font-family="serif" text-anchor="middle" xml:space="preserve" id="svg_33">А</text>
+    <text fill="#000000" stroke="#020202" stroke-width="0" x="450" y="112" font-size="20" font-family="serif" text-anchor="middle" xml:space="preserve" id="svg_35">А</text>
+    <text fill="#000000" stroke="#020202" stroke-width="0" x="391" y="173" font-size="20" font-family="serif" text-anchor="middle" xml:space="preserve" id="svg_36">А</text>
+    <text fill="#000000" stroke="#020202" stroke-width="0" x="445" y="191" id="svg_37" font-size="20" font-family="serif" text-anchor="middle" xml:space="preserve">О</text>
+    <text fill="#000000" stroke="#020202" stroke-width="0" x="156" y="118" id="svg_38" font-size="16" font-family="serif" text-anchor="middle" xml:space="preserve">1</text>
+    <text fill="#000000" stroke="#020202" stroke-width="0" x="461" y="112" font-size="16" font-family="serif" text-anchor="middle" xml:space="preserve" id="svg_39">1</text>
+   </g>
+  </svg>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="16" id="svg_2" y="173" x="403" stroke-width="0" stroke="#020202" fill="#000000">2</text>
+  <text id="svg_3" xml:space="preserve" text-anchor="middle" font-family="serif" font-size="16" y="171" x="95" stroke-width="0" stroke="#020202" fill="#000000">2</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="16" id="svg_7" y="183" x="509" stroke-width="0" stroke="#020202" fill="#000000">3</text>
+  <text id="svg_8" xml:space="preserve" text-anchor="middle" font-family="serif" font-size="16" y="184" x="205" stroke-width="0" stroke="#020202" fill="#000000">3</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="16" id="svg_18" y="270" x="113" stroke-width="0" stroke="#020202" fill="#000000">а</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="16" id="svg_21" y="270" x="453" stroke-width="0" stroke="#020202" fill="#000000">б</text>
+  <text fill="#000000" stroke="#020202" stroke-width="0" x="300" y="296" id="svg_34" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve">Рис.  30</text>
+ </g>
+</svg>
+
+<p><b>619</b>  Эта задача является обобщением предыдущей. Рассматривается 
+<math  xmlns="http://www.w3.org/1998/Math/MathML"><mi>n</mi></math>лучей, проведенных в плоскости из точки<math  xmlns="http://www.w3.org/1998/Math/MathML"><mi>O</mi> <mo>(</mo><mi>n</mi><mo>&#8805;</mo><mn>2</mn> <mo>)</mo></math>. Углы между соседними лучами равны <math  xmlns="http://www.w3.org/1998/Math/MathML"><mn>2</mn><mo>&#960;</mo><mo>/</mo><mi>n</mi></math>. Вновь на лучах выбираются точки 
+
+
+
+
+<math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>A</mi><mn>1</mn> </msub> <mi>,</mi>
+<mi>.</mi><mi>.</mi><mi>.</mi> <mi>,</mi> <msub><mi>A</mi><mi>n</mi> </msub>  </math>
+и проводятся соответствующие окружности. Считая данными расстояния 
+<math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>A</mi><mn>1</mn></msub><mi>O</mi><mi>,</mi><msub><mi>A</mi><mn>2</mn></msub><mi>O</mi>   
+
+
+
+
+<mi>.</mi><mi>.</mi><mi>.</mi> <mi>,</mi> <msub><mi>A</mi><mi>n</mi> </msub><mi>O</mi>  </math>
+вычислить площадь фигуры, аналогичной описанной в предыдущей задаче. 
+</p>
+
+
+<p><b>620</b>  Медианой множества, состоящего из четного числа точек плоскости, ни какие три из которых не лежат на одной прямой, называется прямая, соединяющая две точки множества, с обеих сторон от которой лежит равное число точек. Даны действительные числа
+
+
+
+
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msub><mi>x</mi><mn>1</mn> </msub> <mi>,</mi>
+<msub><mi>y</mi><mn>1</mn> </msub><mi>,</mi>
+<msub><mi>x</mi><mn>2</mn> </msub><mi>,</mi>
+
+<msub><mi>y</mi><mn>2</mn> </msub><mi>,</mi>
+<mi>,</mi><mi>.</mi><mi>.</mi><mi>.</mi><mi>,</mi>
+<msub><mi>x</mi><mi>n</mi> </msub> <mi>,</mi>
+
+<msub><mi>y</mi><mi>n</mi> </msub> 
+<mi>(</mi><mi>n</mi>
+</math>- нечетное число
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>)</mi></math>. Найти число медиан множества точек с координатами
+<math xmlns="http://www.w3.org/1998/Math/MathML"> <mo>(</mo><msub><mi>x</mi><mn>1</mn> </msub> <mi>,</mi><msub><mi>y</mi><mn>1</mn> </msub> <mo>)</mo> 
+
+
+
+
+<mi>,</mi>
+<mo>(</mo><msub><mi>x</mi><mn>2</mn> </msub> <mi>,</mi><msub><mi>y</mi><mn>2</mn> </msub> <mo>)</mo> 
+
+<mi>,</mi><mi>.</mi><mi>.</mi><mi>.</mi><mi>,</mi>
+
+<mo>(</mo><msub><mi>x</mi><mi>n</mi> </msub> <mi>,</mi> <msub> <mi>y</mi><mi>n</mi> 
+</msub> <mo>)</mo> </math> в предположении, что никакие три точки этого множества не лежат на одной поямой. 
+
+
+
+
+</p>
+
+<p><b>621</b> Даны действительные числа
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>a</mi></math>
+<mo>, </mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>b</mi></math>
+
+<mo>, </mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>c</mi></math>
+<mo>, </mo>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>d</mi></math><mo>.</mo> 
+Выяснить, можно ли прямоугольник со сторонами
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>a</mi></math>
+<mo>, </mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>b</mi></math> целиком уместить в прямоугольнике со сторонами 
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>c</mi></math>
+<mo>, </mo>
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mi>d</mi></math> ( в отличие от задачи 55, здесь не обязательна взаимная параллельность сторон). </p>
+
+<p><b>622</b> Даны действительные числа 
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msub><mi>a</mi><mn>1</mn> </msub> <mi>,</mi>
+<msub><mi>b</mi><mn>1</mn> </msub><mi>,</mi>
+<msub><mi>c</mi><mn>1</mn> </msub><mi>,</mi>
+
+<msub><mi>a</mi><mn>2</mn> </msub><mi>,</mi>
+<msub><mi>b</mi><mn>2</mn> </msub><mi>,</mi>
+<msub><mi>c</mi><mn>2</mn> </msub><mi>,</mi>
+<mi>.</mi><mi>.</mi><mi>.</mi><mi>,</mi>
+
+<msub><mi>a</mi><mi>n</mi> </msub> <mi>,</mi>
+<msub><mi>b</mi><mi>n</mi> </msub> <mi>,</mi>
+<msub><mi>c</mi><mi>n</mi> </msub> <mi>.</mi>
+
+</math> Эта последовательность определяет на плоскости
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi></math> квадратов со сторонами, параллельными осям:
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msub><mi>a</mi><mi>i</mi> </msub> <mi>,</mi>
+<msub><mi>b</mi><mi>i</mi> </msub><mi>,</mi></math> - координаты центра квадрата, 
+
+
+
+
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msub><mi>c</mi><mi>i</mi> </msub></math> - длина его стороны
+<math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mo>(</mo><mi>i</mi><mo>=</mo><mn>1</mn><mi>,</mi><mi>.</mi><mi>.</mi><mi>.</mi><mi>,</mi><mi>n</mi><mo>)</mo>
+
+</math>. Определить площадь фигуры, образованной всеми квадратами (рис. 31). Здесь может оказаться полезным предварительное решение следующей задачи. Стороны двух прямоугольников параллельны координатным осям. Каждый из прямоугольников задан четырьмя действительными числами - двумя абсциссами и двумя ординатами. Представить ту часть первого прямоугольника, которая не покрывается вторым прямоугольником, в виде объединения нескольких прямоугольников, не накладывающихся друг на друга.
+</p>
+<svg width="300" height="400" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g>
+  <title>Слой 1</title>
+  <rect id="svg_1" height="40" width="40" y="100" x="234" stroke-width="2" stroke="#000000" fill="#fcfcfc"/>
+  <rect id="svg_2" height="0" width="1" y="145" x="387" stroke-width="2" stroke="#000000" fill="#fcfcfc"/>
+  <rect id="svg_3" height="64" width="64" y="163" x="78" stroke-dasharray="5,5" stroke-width="2" stroke="#000000" fill="#fcfcfc"/>
+
+  <rect id="svg_4" height="60" width="60" y="137" x="108" stroke-dasharray="5,5" stroke-width="2" stroke="#000000" fill="none"/>
+  <rect id="svg_5" height="83" width="83" y="178" x="121" stroke-dasharray="5,5" stroke-width="2" stroke="#000000" fill="none"/>
+  <rect id="svg_6" height="56" width="56" y="231" x="171" stroke-dasharray="5,5" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_8" y2="228" x2="78" y1="165" x1="78" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_9" y2="227" x2="120" y1="227" x1="78" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_10" y2="163" x2="107" y1="163" x1="77" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_11" y2="163" x2="108" y1="137" x1="108" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_12" y2="137" x2="169" y1="137" x1="107" stroke-width="2" stroke="#000000" fill="none"/>
+
+  <line id="svg_13" y2="261" x2="121" y1="228" x1="121" stroke-width="2" stroke="#000000" fill="none"/>
+
+  <line id="svg_14" y2="261" x2="166" y1="261" x1="120" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_18" y2="178" x2="168" y1="139" x1="168" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_19" y2="178" x2="203" y1="178" x1="168" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_20" y2="226" x2="204" y1="179" x1="204" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_21" y2="287" x2="227" y1="287" x1="171" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_22" y2="288" x2="171" y1="262" x1="171" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_23" y2="231" x2="227" y1="231" x1="205" stroke-width="2" stroke="#000000" fill="none"/>
+
+  <line id="svg_24" y2="287" x2="227" y1="230" x1="227" stroke-width="2" stroke="#000000" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_25" y="344" x="195" stroke-width="0" stroke="#000000" fill="#000000">Рис. 31</text>
+
+ </g>
+</svg>
+<p><b>623</b> Даны действительные числа <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>x</mi><mi>,</mi>
+
+<mi>y</mi></math> . В треугольнике, вершинами которого служат точки 
+ <math xmlns="http://www.w3.org/1998/Math/MathML"><mo>(</mo><mn>0</mn> <mi>,</mi><mn>0</mn><mo>)</mo><mi>,</mi>  <mo>(</mo><mn>0</mn> <mi>,</mi><mn>1</mn><mo>)</mo><mi>,</mi> <mo>(</mo><mi>x</mi><mi>,</mi><mo>y</mo><mi>)</mi></math>, найти точку (для определения ее координат разрешается использовать методы приближенных вычислений), сумма расстояний от которой до вершин треугольника минимальна. Известно (теорема Штейнера), что для треугольника с углами, не превосходящими  
+
+
+
+
+<math  xmlns="http://www.w3.org/1998/Math/MathML"><mn>2</mn><mo>&#183;</mo><mo>&#960;</mo><mo>/</mo><mn>3</mn></math> (т.е.
+<math  xmlns="http://www.w3.org/1998/Math/MathML"><mi>120</mi><mo>&#176;</mo></math><mo>,</mo> эта точка совпадает с точкой Торичелли, т.е. точкой, из которой все стороны треугольника видны под углом 
+<math  xmlns="http://www.w3.org/1998/Math/MathML"><mn>2</mn><mo>&#183;</mo><mo>&#960;</mo><mo>/</mo><mn>3</mn></math>. Если же в треугольнике имеется угол, больший 
+<math  xmlns="http://www.w3.org/1998/Math/MathML"><mn>2</mn><mo>&#183;</mo><mo>&#960;</mo><mo>/</mo><mn>3</mn></math> , то решением задачи будет вершина этого угла. 
+
+
+
+
+</p>
+
+
+<p>
+<b>624</b> Даны действительные числа <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msub><mi>x</mi><mn>1</mn> </msub> <mi>,</mi>
+<msub><mi>y</mi><mn>1</mn> </msub><mi>,</mi>
+
+<msub><mi>x</mi><mn>2</mn> </msub><mi>,</mi>
+<msub><mi>y</mi><mn>2</mn> </msub><mi>,</mi>
+<mi>,</mi><mi>.</mi><mi>.</mi><mi>.</mi><mi>,</mi>
+
+<msub><mi>x</mi><mi>n</mi> </msub> <mi>,</mi>
+
+<msub><mi>y</mi><mi>n</mi> </msub> 
+</math>. Известно, что точки <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msub><mi>p</mi><mn>1</mn> </msub> <mi>,</mi>
+
+<msub><mi>p</mi><mn>2</mn> </msub><mi>,</mi>
+
+<mi>.</mi><mi>.</mi><mi>.</mi><mi>,</mi>
+<msub><mi>p</mi><mi>n</mi> </msub></math> 
+
+с координатами 
+
+
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mo>(</mo><mi>x</mi> <mn>1</mn><mi>,</mi><mi>y</mi><mn>1</mn><mo>)</mo><mi>,</mi> <mo>(</mo><mi>x</mi><mn>2</mn> <mi>,</mi> <mi>y</mi><mn>2</mn><mi>)</mi><mi>,</mi><mi>.</mi><mi>.</mi><mi>.</mi><mi>,</mi>
+
+<msub><mi>x</mi><mi>n</mi> </msub> <mi>,</mi>
+<msub><mi>y</mi><mi>n</mi> </msub> </math>
+ попарно различны. Рассмотрим замкнутую ломаную <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msub><mi>p</mi><mn>1</mn> </msub> <mi>,</mi>
+
+<msub><mi>p</mi><mn>2</mn> </msub><mi>.</mi><mi>.</mi><mi>.</mi>
+<msub><mi>p</mi><mi>n</mi> </msub></math> . 
+<ol>
+
+<li>Верно ли, что ломаная не имеет самопересечений?</li>
+
+<li>В предположении, что ломаная не имеет самопересечений, выяснить, является ли <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi> </math>  - угольник <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msub><mi>p</mi><mn>1</mn> </msub><mi>,</mi> 
+
+<msub><mi>p</mi><mn>2</mn> </msub>
+
+<mi>.</mi><mi>.</mi><mi>.</mi>
+<msub><mi>p</mi><mi>n</mi> </msub></math>  выпуклым.</li>
+
+</ol>
+</p>
+
+<p>
+<b>625</b> Даны действительные числа <math  xmlns="http://www.w3.org/1998/Math/MathML">
+
+<msub><mi>x</mi><mn>1</mn> </msub> <mi>,</mi>
+<msub><mi>y</mi><mn>1</mn> </msub><mi>,</mi>
+
+<msub><mi>x</mi><mn>2</mn> </msub><mi>,</mi>
+
+<msub><mi>y</mi><mn>2</mn> </msub><mi>,</mi>
+
+<mi>,</mi><mi>.</mi><mi>.</mi><mi>.</mi><mi>,</mi>
+
+<msub><mi>x</mi><mi>n</mi> </msub> <mi>,</mi>
+
+<msub><mi>y</mi><mi>n</mi> </msub> 
+</math>
+
+Известно, что точки <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msub><mi>p</mi><mn>1</mn> </msub> <mi>,</mi>
+
+<msub><mi>p</mi><mn>2</mn> </msub><mi>,</mi>
+
+<mi>.</mi><mi>.</mi><mi>.</mi><mi>,</mi>
+
+<msub><mi>p</mi><mi>n</mi> </msub></math>  с координатами <math xmlns="http://www.w3.org/1998/Math/MathML"><mo>(</mo><mi>x</mi> <mn>1</mn><mi>,</mi><mi>y</mi><mn>1</mn><mo>)</mo><mi>,</mi> <mo>(</mo><mi>x</mi><mn>2</mn> <mi>,</mi> <mi>y</mi><mn>2</mn><mi>)</mi><mi>,</mi><mi>.</mi><mi>.</mi><mi>.</mi><mi>,</mi>
+
+<msub><mi>x</mi><mi>n</mi> </msub> <mi>,</mi>
+<msub><mi>y</mi><mi>n</mi> </msub> </math>
+
+ попарно различны. Найти выпуклый многоугольник с вершинами в некоторых из точек <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msub><mi>p</mi><mn>1</mn> </msub> <mi>,</mi>
+
+<msub><mi>p</mi><mn>2</mn> </msub><mi>,</mi>
+<mi>.</mi><mi>.</mi><mi>.</mi><mi>,</mi>
+<msub><mi>p</mi><mi>n</mi> </msub></math> , который содержит все точки <math  xmlns="http://www.w3.org/1998/Math/MathML">
+
+<msub><mi>p</mi><mn>1</mn> </msub> <mi>,</mi>
+
+<msub><mi>p</mi><mn>2</mn> </msub><mi>,</mi>
+<mi>.</mi><mi>.</mi><mi>.</mi><mi>,</mi>
+
+<msub><mi>p</mi><mi>n</mi> </msub></math> . Многоугольник должен быть представлен последовательностью вершин. 
+
+</p>
+<p> <b>626</b> Сетью называется совокупность точек (узлов), некоторые из которых соединены между собой стрелками. Сети, cостоящей из <math  xmlns="http://www.w3.org/1998/Math/MathML">
+
+<mi>n</mi></math>
+
+узлов, можно сопоставить две квадратные матрицы порядка n: матрицу соединений и матрицу связей. Элемент матрицы соединений <math  xmlns="http://www.w3.org/1998/Math/MathML">
+
+<msub><mi>a</mi><mrow><mi>i</mi><mi>j</mi> </mrow></msub> </math>
+равен <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mn>1</mn> </math>, если сеть содержит стрелку, ведущую из узла  <math  xmlns="http://www.w3.org/1998/Math/MathML">
+
+<mi>i</mi> </math> в узел <math  xmlns="http://www.w3.org/1998/Math/MathML">
+
+<mi>j</mi> </math>, и <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mn>0</mn> </math> в противном случае <math xmlns="http://www.w3.org/1998/Math/MathML"><mo>(</mo><mi>i</mi><mi>,</mi><mi>j</mi><mo>=</mo><mn>1</mn><mi>,</mi><mi>.</mi><mi>.</mi><mi>.</mi><mi>,</mi><mi>n</mi><mo>)</mo></math>
+
+. Элемент <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<msub><mi>b</mi><mrow><mi>i</mi><mi>j</mi> </mrow></msub> </math> матрицы связей равен <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mn>1</mn> </math>, если из узла <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>i</mi> </math>,
+можно попасть в узел  <math  xmlns="http://www.w3.org/1998/Math/MathML">
+
+<mi>j</mi> </math>, двигаясь по стрелкам, и <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mn>0</mn> </math>, в противном случае. Так, для сети, изображенной на рис. 32, матрицы соединений и связей имеют вид
+</p>
+<svg width="640" height="280" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+
+ <defs>
+  <marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" se_type="rightarrow" orient="auto" markerUnits="strokeWidth" id="se_marker_end_svg_20">
+   <path stroke-width="10" stroke="#000000" fill="#000000" d="m100,50l-100,40l30,-40l-30,-40z"/>
+  </marker>
+  <marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" se_type="rightarrow" orient="auto" markerUnits="strokeWidth" id="se_marker_end_svg_21">
+   <path stroke-width="10" stroke="#000000" fill="#000000" d="m100,50l-100,40l30,-40l-30,-40z"/>
+  </marker>
+  <marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" se_type="rightarrow" orient="auto" markerUnits="strokeWidth" id="se_marker_end_svg_22">
+
+   <path stroke-width="10" stroke="#000000" fill="#000000" d="m100,50l-100,40l30,-40l-30,-40z"/>
+
+  </marker>
+  <marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" se_type="leftarrow" orient="auto" markerUnits="strokeWidth" id="se_marker_start_svg_24">
+   <path stroke-width="10" stroke="#000000" fill="#000000" d="m0,50l100,40l-30,-40l30,-40z"/>
+  </marker>
+  <marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" se_type="rightarrow" orient="auto" markerUnits="strokeWidth" id="se_marker_end_svg_25">
+   <path stroke-width="10" stroke="#000000" fill="#000000" d="m100,50l-100,40l30,-40l-30,-40z"/>
+  </marker>
+
+  <marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" se_type="leftarrow" orient="auto" markerUnits="strokeWidth" id="se_marker_start_svg_26">
+   <path stroke-width="10" stroke="#000000" fill="#000000" d="m0,50l100,40l-30,-40l30,-40z"/>
+
+  </marker>
+ </defs>
+ <g>
+  <title>Слой 1</title>
+  <text fill="#000000" stroke="#000000" x="182" y="206" id="svg_1" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve"/>
+
+  <text fill="#000000" stroke="#000000" x="110" y="100" id="svg_4" font-size="24" font-family="Serif" text-anchor="middle" xml:space="preserve" font-weight="normal" stroke-width="0">0  0  1  0  0  0</text>
+
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="110" y="125" id="svg_5" font-size="24" font-family="Serif" text-anchor="middle" xml:space="preserve">0  0  0  1  0  0</text>
+
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="110" y="150" id="svg_6" font-size="24" font-family="Serif" text-anchor="middle" xml:space="preserve">0  0  0  1  1  0</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="110" y="175" id="svg_7" font-size="24" font-family="Serif" text-anchor="middle" xml:space="preserve">0  0  0  0  0  0</text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="110" y="200" id="svg_8" font-size="24" font-family="Serif" text-anchor="middle" xml:space="preserve">0  0  0  1  0  1</text>
+
+  <text fill="#000000" stroke="#000000" stroke-width="0" x="110" y="225" id="svg_9" font-size="24" font-family="Serif" text-anchor="middle" xml:space="preserve">0  0  0  0  0  0</text>
+  <line fill="none" stroke="#000000" stroke-width="2" x1="34" y1="82" x2="34" y2="230" id="svg_10"/>
+
+  <line fill="none" stroke="#000000" stroke-width="2" x1="189" y1="82" x2="189" y2="230" id="svg_11"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="24" id="svg_12" y="100" x="315" stroke-width="0" stroke="#000000" fill="#000000">0  0  1  1  1  1</text>
+
+  <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="24" id="svg_13" y="125" x="315" stroke-width="0" stroke="#000000" fill="#000000">0  0  0  1  0  0</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="24" id="svg_14" y="150" x="315" stroke-width="0" stroke="#000000" fill="#000000">0  0  0  1  1  1</text>
+
+  <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="24" id="svg_15" y="175" x="315" stroke-width="0" stroke="#000000" fill="#000000">0  0  0  0  0  0</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="24" id="svg_16" y="200" x="315" stroke-width="0" stroke="#000000" fill="#000000">0  0  0  1  0  1</text>
+
+  <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="24" id="svg_17" y="225" x="315" stroke-width="0" stroke="#000000" fill="#000000">0  0  0  0  0  0</text>
+  <line id="svg_18" y2="230" x2="236" y1="82" x1="236" stroke-width="2" stroke="#000000" fill="none"/>
+
+  <line id="svg_19" y2="230" x2="391" y1="82" x1="391" stroke-width="2" stroke="#000000" fill="none"/>
+  <line marker-end="url(#se_marker_end_svg_20)" id="svg_20" y2="127" x2="497" y1="127" x1="412" stroke-width="2" stroke="#000000" fill="none"/>
+
+  <line marker-end="url(#se_marker_end_svg_21)" id="svg_21" y2="202" x2="497" y1="202" x1="412" stroke-width="2" stroke="#000000" fill="none"/>
+  <line marker-end="url(#se_marker_end_svg_22)" id="svg_22" y2="198" x2="501" y1="127" x1="501" stroke-width="2" stroke="#000000" fill="none"/>
+  <line marker-start="url(#se_marker_start_svg_24)" id="svg_24" y2="164" x2="565" y1="164" x1="610" stroke-width="2" stroke="#000000" fill="none"/>
+  <line marker-end="url(#se_marker_end_svg_25)" id="svg_25" y2="162" x2="561" y1="127" x1="501" stroke-width="2" stroke="#000000" fill="none"/>
+
+  <line marker-start="url(#se_marker_start_svg_26)" id="svg_26" y2="164" x2="564" y1="200" x1="506" stroke-width="2" stroke="#000000" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="24" id="svg_27" y="164" x="212" stroke="#000000" fill="#000000">,</text>
+
+  <text stroke-width="0" xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="18" id="svg_28" y="118" x="413" stroke="#000000" fill="#000000">1</text>
+
+  <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="18" id="svg_29" y="226" x="416" stroke-width="0" stroke="#000000" fill="#000000">2</text>
+  <text transform="matrix(1.17509, 0, 0, 1, -85.6333, 0)" font-style="normal" xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="18" id="svg_30" y="115" x="501" stroke-width="0" stroke="#000000" fill="#000000">3</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="18" id="svg_31" y="230" x="499" stroke-width="0" stroke="#000000" fill="#000000">4</text>
+
+  <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="18" id="svg_32" y="147" x="569" stroke-width="0" stroke="#000000" fill="#000000">5</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="18" id="svg_33" y="148" x="614" stroke-width="0" stroke="#000000" fill="#000000">6</text>
+
+  <circle id="svg_34" r="2" cy="128" cx="414" stroke-width="2" stroke="#000000" fill="#110202"/>
+  <circle ry="1" rx="1" id="svg_35" r="2" cy="202" cx="414" stroke-width="2" stroke="#000000" fill="#000000"/>
+  <ellipse transform="rotate(-97.3524, 500, 127)" ry="2" rx="2" id="svg_36" cy="127" cx="500" stroke-width="2" stroke="#000000" fill="none"/>
+  <circle id="svg_37" r="2" cy="202" cx="502" stroke-width="2" stroke="#000000" fill="#000000"/>
+  <circle ry="2" id="svg_38" r="2.23438" cy="165" cx="565" stroke-width="2" stroke="#000000" fill="#000000"/>
+
+  <ellipse ry="2" rx="2" id="svg_39" cy="165" cx="616" stroke-width="2" stroke="#000000" fill="#000000"/>
+   <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_15" y="280" x="480" stroke-width="0" stroke="#000000" fill="#000000">Рис. 32 </text>
+ </g>
+</svg>
+<p>Дана матрица соединений некоторой сети из <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi> </math> узлов; получить матрицу связей этой сети.
+</p>
+<p>
+
+<b>627</b> Линия называется уникурсальной, если ее можно начертить, не отрывая карандаша от бумаги и не проходя два раза одно и то же звено. Доказать, что линия уникурсальна тогда и только тогда, когда число тех ее узлов, из которых выходит нечетное число звеньев, не превосходит двух. Линии, содержащей <math  xmlns="http://www.w3.org/1998/Math/MathML">
+
+<mi>n</mi> </math>  узлов, можно сопоставить квадратную матрицу порядка <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>n</mi> </math> - матрицу соединений, элемент <math  xmlns="http://www.w3.org/1998/Math/MathML">
+
+<msub><mi>a</mi><mrow><mi>i</mi><mi>j</mi> </mrow></msub> </math> которой равен <math  xmlns="http://www.w3.org/1998/Math/MathML">
+
+<mn>1</mn> </math>, если узел <math  xmlns="http://www.w3.org/1998/Math/MathML">
+<mi>i</mi> </math> соединен с узлом <math  xmlns="http://www.w3.org/1998/Math/MathML">
+
+<mi>j</mi> </math> некоторым звеном, не содержащим других вершин, и <math  xmlns="http://www.w3.org/1998/Math/MathML"><mn>0</mn> </math> в противном случае <math xmlns="http://www.w3.org/1998/Math/MathML"><mo>(</mo><mi>i</mi><mi>,</mi><mi>j</mi><mo>=</mo><mn>1</mn><mi>,</mi><mi>.</mi><mi>.</mi><mi>.</mi><mi>,</mi><mi>n</mi><mo>)</mo></math>. Для линии, изображенной на рис.33, матрица соединений имеет вид </p>
+
+
+
+<svg width="540" height="270" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g>
+  <title>Слой 1</title>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_1" y="206" x="182" stroke="#000000" fill="#000000">
+  </text>
+  <text stroke-width="0" font-weight="normal" xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="24" id="svg_4" y="100" x="110" stroke="#000000" fill="#000000">0  1  0  0  1  1</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="24" id="svg_5" y="125" x="113" stroke-width="0" stroke="#000000" fill="#000000">1  0  1  1  0  1</text>
+
+  <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="24" id="svg_6" y="150" x="110" stroke-width="0" stroke="#000000" fill="#000000">0  1  0  1  0  0</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="24" id="svg_7" y="175" x="110" stroke-width="0" stroke="#000000" fill="#000000">0  1  1  0  1  1</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="24" id="svg_8" y="200" x="110" stroke-width="0" stroke="#000000" fill="#000000">1  0  0  1  0  1</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="Serif" font-size="24" id="svg_9" y="225" x="110" stroke-width="0" stroke="#000000" fill="#000000">1  1  0  1  1  0</text>
+  <line id="svg_10" y2="230" x2="34" y1="82" x1="34" stroke-width="2" stroke="#000000" fill="none"/>
+  <line id="svg_11" y2="230" x2="189" y1="82" x1="189" stroke-width="2" stroke="#000000" fill="none"/>
+
+ </g>
+
+</svg>
+
+<p>Дана матрица соединений для линии с <math  xmlns="http://www.w3.org/1998/Math/MathML">
+
+<mi>n</mi> </math>  узлами. Выяснить, является ли линия уникурсальной, и если является, то получить последовательность номеров узлов, которые будут пройдены во время требуемого вычерчивания.
+
+
+</p>
+<svg width="640" height="350" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+
+ <g>
+
+  <title>Слой 1</title>
+
+  <line id="svg_1" y2="260" x2="130" y1="160" x1="130" stroke-width="3" stroke="#000000" fill="none"/>
+  <line id="svg_2" y2="260" x2="280" y1="160" x1="280" stroke-width="3" stroke="#000000" fill="none"/>
+  <line id="svg_3" y2="161" x2="281" y1="161" x1="129" stroke-width="3" stroke="#000000" fill="none"/>
+  <line id="svg_4" y2="258" x2="281" y1="258" x1="128" stroke-width="3" stroke="#000000" fill="none"/>
+  <line id="svg_5" y2="162" x2="130" y1="257" x1="279" stroke-width="3" stroke="#000000" fill="none"/>
+
+  <line id="svg_6" y2="163" x2="279" y1="257" x1="130" stroke-width="3" stroke="#000000" fill="none"/>
+  <line id="svg_8" y2="100" x2="204" y1="160" x1="128" stroke-width="3" stroke="#000000" fill="none"/>
+
+  <line id="svg_9" y2="161" x2="279" y1="100" x1="203" stroke-width="3" stroke="#000000" fill="none"/>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_10" y="166" x="113" stroke-width="0" stroke="#000000" fill="#000000">2</text>
+
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_11" y="267" x="112" stroke-width="0" stroke="#000000" fill="#000000">1</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_12" y="166" x="297" stroke-width="0" stroke="#000000" fill="#000000">4</text>
+
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_13" y="266" x="295" stroke-width="0" stroke="#000000" fill="#000000">5</text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_14" y="85" x="206" stroke-width="0" stroke="#000000" fill="#000000">3</text>
+
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="24" id="svg_15" y="308" x="208" stroke-width="0" stroke="#000000" fill="#000000">Рис. 33</text>
+ </g>
+
+</svg>
+
+
+
+
+</body>
+</html>

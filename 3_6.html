@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<link rel='stylesheet' type="text/css" href="style.css"></link>
+<meta name="author" content="Rinchin" />
+<meta name="description" content="арифметическое кодирование" />
+<meta name="keywords" content="арифметическое кодирование" />
+<title>Арифметическое кодирование</title>
+
+<script type="text/javascript">
+
+function calc(str)
+{
+var cod_lev='', cod_prav='', lev=0, prav=0, simvol, k=0, j, freq, dlina_otr, mas_alph=[], mas_fr=[], mas_otr=[], win=open("", "newWindow"), html, head, title, body, h2, p, table, caption, txt=document.getElementById("txt").value, o={}, len=txt.length, tr1, tr2 ,td ,th, h_hafm=0, inf_perv;
+	win.document.open();
+	html=document.createElement("html");
+	win.document.appendChild(html);
+	head=document.createElement("head");
+	title=document.createElement("title");
+	title.textContent="Арифметическое кодирование";
+	head.appendChild(title);
+	html.appendChild(head);
+	body=document.createElement("body");
+	html.appendChild(body);
+	h2=document.createElement("h2");
+	h2.textContent="Арифметическое кодирование";
+	p=document.createElement("p");
+	p.textContent="Первичное сообщение:";
+	body.appendChild(p);
+	p=document.createElement("p");
+	p.textContent="'"+txt+"'";
+	body.appendChild(p);	
+	/*Строим алфавит*/
+	for (var i=0;i<len; i++) {
+		t=txt[i];
+		if (t in o) {
+			o[t]++;
+		} else {
+			o[t]=1;		
+		}
+	}
+	table=document.createElement("table");
+	table.border="1";
+	body.appendChild(table);
+	caption=document.createElement("caption");
+	caption.textContent="Статистика";
+	table.appendChild(caption);
+	tr1=document.createElement("tr");
+	table.appendChild(tr1);
+	tr2=document.createElement("tr");
+	table.appendChild(tr2);
+	for (var i in o)	{
+		td=document.createElement("td");
+		td.textContent=i;
+		tr1.appendChild(td);
+		td=document.createElement("td");
+		td.textContent=o[i];
+		tr2.appendChild(td);					
+		h_hafm+=-o[i]/len*Math.log(o[i]/len)/Math.LN2;
+	}
+	p=document.createElement("p");
+	p.textContent="Энтропия по Шеннону H="+h_hafm.toFixed(2)+" бит.";
+	body.appendChild(p);	
+	inf_perv=h_hafm*len;
+	p=document.createElement("p");
+	p.textContent="Информационная емкость сообщения I1="+inf_perv.toFixed(2)+" бит.";
+	body.appendChild(p);	
+	mas_otr[0]=0;
+	j=0;	
+	for (var i in o) {
+		mas_alph[j]=i;
+		mas_fr[j]=o[i];
+		j++;		
+	}
+	/*Строим отрезки для букв*/	
+	mas_otr[0]=0;
+	for (var i=1;i<mas_fr.length;i++)
+			mas_otr[i]=mas_otr[i-1]+mas_fr[i-1]/len;
+	mas_otr[mas_fr.length]=1;
+	mas_otr[j]=1;				
+
+	table=document.createElement("table");
+	table.border="1";
+	body.appendChild(table);
+	caption=document.createElement("caption");
+	caption.textContent="Исходная таблица отрезков";
+	table.appendChild(caption);	
+	tr1=document.createElement("tr");
+	table.appendChild(tr1);
+	td=document.createElement("td");
+	td.textContent="Символ";
+	tr1.appendChild(td);
+	td=document.createElement("td");
+	td.textContent="[Левая граница";
+	tr1.appendChild(td);	
+	td=document.createElement("td");
+	td.textContent="Правая граница)";
+	tr1.appendChild(td);		
+	for (j=0;j<mas_alph.length;j++) {
+		tr1=document.createElement("tr");
+		table.appendChild(tr1);
+		td=document.createElement("td");
+		td.textContent=mas_alph[j];
+		tr1.appendChild(td);
+		td=document.createElement("td");
+		td.textContent=mas_otr[j];
+		tr1.appendChild(td);	
+		td=document.createElement("td");
+		td.textContent=mas_otr[j+1];
+		tr1.appendChild(td);	
+	}
+	i=0;	
+	prav=1;
+	lev=0;	
+	while ((i<len) && (prav-lev>0)) {
+		simvol=txt[i];
+		k=0;
+		while (mas_alph[k]!=simvol)
+			k++;
+		lev=mas_otr[k];
+		prav=mas_otr[k+1];
+		dlina_otr=prav-lev;
+		p=document.createElement("p");
+		p.textContent=simvol+"-["+lev+"; "+prav+")";
+		body.appendChild(p);	
+		mas_otr[0]=lev;
+		for (j=1; j<=mas_fr.length;j++)
+			mas_otr[j]=mas_otr[j-1]+dlina_otr*mas_fr[j-1]/len;
+		i++	
+	}
+	if (lev!=prav) {
+		while (cod_lev==cod_prav) 	{
+			lev=lev*2;
+			cod_lev+=lev-lev%1;
+			lev=lev%1;
+			prav=prav*2;
+			cod_prav+=prav-prav%1;
+			prav=prav%1;		
+		}
+		p=document.createElement("p");
+		p.textContent="Искомый код: "+cod_prav;
+		body.appendChild(p);	
+		p=document.createElement("p");
+		p.textContent="Длина кода = "+cod_lev.length+" бит." ;
+		body.appendChild(p);	
+	}
+	else 	{
+		p=document.createElement("p");
+		p.textContent="Переполнение!";
+		body.appendChild(p);			
+	}	
+	win.document.close();
+}
+
+</script>
+</head>
+<body>
+<p><a href="3_5.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="3_7.html">К следующему</a></p>
+<h2>3.6. Арифметическое кодирование</h2>
+<p>В 70-х годах прошлого века был разработан метод <span class="termin">арифметического кодирования</span>, который считается одним из лучших методов сжатия сообщений. Как и методы <a href="3_5.html#shennonfano">Шеннона-Фано</a> и <a href="3_5.html#haphmen">Хаффмена</a>, арифметическое кодирование требует двух проходов: первый проход используется для построения алфавита сообщения с относительными частотами символов, а второй &#8212; для собственно сжатия. Алгоритм кодирования следующий:</p>
+<ol>
+<li>Строится алфавит сообщения с таблицами относительных частот букв;</li>
+<li>Единичный отрезок
+<math display='inline'>
+	<mfenced open="[" close=")"><mn>0</mn><mn>1</mn></mfenced>
+</math>
+разбивается на непересекающиеся отрезки таким образом, что каждой <var>i</var>-ой букве алфавита сопоставляется отрезок 
+<math display='inline'>
+	<mfenced open="[" close=")">	
+		<msub><mi>a</mi><mi>i</mi></msub>
+		<msub><mi>b</mi><mi>i</mi></msub>
+	</mfenced>
+</math>, длина которого равна относительной частоте <var>i</var>-ой буквы, а объединение таких отрезков дает единичный отрезок
+<math display='inline'>
+	<mfenced open="[" close=")"><mn>0</mn><mn>1</mn></mfenced>
+</math>;</li>
+<li>Выделяется отрезок, соответствующий первой букве сообщения, который разбивается на непересекающиеся отрезки, длины которых пропорциональны частотам букв алфавита сообщения и, следовательно, каждой букве алфавита сообщения соответствует свой отрезок;</li>
+<li>Из множества отрезков, полученных на предыдущем этапе разбиения, выделяется отрезок, соответствующий следующей букве сообщения. Этот отрезок аналогичным образом подвергается разбиению.</li>
+<li>Описанный выше процесс получения вложенных друг в друга отрезков продолжаем вплоть до исчерпания сообщения.</li>
+<li>Вычисляем наименьшее число, представимое в виде степенного ряда по основанию 2 с коэффициентами, равными 0 или 1 и принадлежащее  отрезку, соответствующему последней букве сообщения. Двоичное представление этой степени без ведущего нуля и запятой есть искомый двоичный код сообщения.</li>
+</ol>
+<div class="examp">
+<p><span class="primer">Пример 3.6.1</span>. Закодируем арифметическим кодом сообщение "мама мыла раму". Приведенные ниже вычисления выполнены в электронной таблице OpenOffice.org Calc.</p>
+<p>Разбиение единичного отрезка [0; 1) на отрезки, соответствующие относительным частотам букв алфавита сообщения, представлено в Таблице  3.6.1</p>
+<table align="center" border="1">
+<caption>Таблица 3.6.1</caption>
+<tr>
+<th>Буква</th><th>Левая граница</th><th>Правая граница</th>
+</tr>
+<tr>
+<td><b>м</b></td><td><b>0</b></td><td><b>0.2857142857142857</b></td>
+</tr>
+<tr>
+<td>а</td><td>0.2857142857142857</td><td>0.5714285714285714</td>
+</tr>
+<tr>
+<td> </td><td>0.5714285714285714</td><td>0.7142857142857142</td>
+</tr>
+<tr>
+<td>ы</td><td>0.7142857142857142</td><td>0.7857142857142856</td>
+</tr>
+<tr>
+<td>л</td><td>0.7857142857142856</td><td>0.857142857142857</td>
+</tr>
+<tr>
+<td>р</td><td>0.857142857142857</td><td>0.9285714285714284</td>
+</tr>
+<tr>
+<td>у</td><td>0.9285714285714284</td><td>1</td>  
+</tr>
+</table>
+<p>В Таблице 3.6.1 выделена 1-ая строка, соответствующая первой букве &quot;м&quot; сообщения. Отрезок буквы &quot;м&quot; подвергаем разбиению на отрезки, пропорциональные относительным частотам букв алфавита сообщений и получаем</p>
+<table align="center" border="1">
+<caption>Таблица 3.6.2</caption>
+<tr>
+<th>Буква</th><th>Левая граница</th><th>Правая граница</th>
+</tr>
+<tr>
+<td>м</td><td>0</td><td>0.08163265306122450</td>
+</tr>
+<tr>
+<td><b>а</b></td><td><b>0.08163265306122450</b></td><td><b>0.16326530612244900</b></td>
+</tr>
+<tr>
+<td> </td><td>0.16326530612244900</td><td>0.20408163265306100</td>
+</tr>
+<tr>
+<td>ы</td><td>0.20408163265306100</td><td>0.22448979591836700</td>
+</tr>
+<tr>
+<td>л</td><td>0.22448979591836700</td><td>0.24489795918367300</td>
+</tr>
+<tr>
+<td>р</td><td>0.24489795918367300</td><td>0.26530612244898000</td>
+</tr>
+<tr>
+<td>у</td><td>0.26530612244898000</td><td>0.28571428571428600</td>  
+</tr>
+</table>
+<p>В Таблице 3.6.2 выделена строка, представляющая вторую букву сообщения. Отрезок буквы &quot;а&quot; разбиваем на отрезки, пропорциональные относительным частотам букв алфавита сообщений и получаем Таблицу 3.6.3:</p>
+<table align="center" border="1">
+<caption>Таблица 3.6.3</caption>
+<tr>
+<th>Буква</th><th>Левая граница</th><th>Правая граница</th>
+</tr>
+<tr>
+<td><b>м</b></td><td><b>0.08163265306122450</b></td><td><b>0.10495626822157400</b></td>
+</tr>
+<tr>
+<td>а</td><td>0.10495626822157400</td><td>0.12827988338192400</td>
+</tr>
+<tr>
+<td> </td><td>0.12827988338192400</td><td>0.13994169096209900</td>
+</tr>
+<tr>
+<td>ы</td><td>0.13994169096209900</td><td>0.14577259475218700</td>
+</tr>
+<tr>
+<td>л</td><td>0.22448979591836700</td><td>0.15160349854227400</td>
+</tr>
+<tr>
+<td>р</td><td>0.15160349854227400</td><td>0.15743440233236200</td>
+</tr>
+<tr>
+<td>у</td><td>0.15743440233236200</td><td>0.16326530612244900</td>  
+</tr>
+</table>
+<p>Заметим, что в Таблице 3.6.1 можно было ограничиться вычислением только строки 1, соответствующей букве &quot;м&quot;, другие отрезки в дальнейшем не используются. В Таблице 3.6.2 нужны только первые две строки, причем первая используется для вычисления второй строки. В Таблице 3.6.3 нужна только первая строка, остальные можно было не считать. Лишние вычисления проведены только для демонстрации процесса разбиения текущего отрезка.</p>
+<p>Опуская промежуточные вычисления, приведем Таблицу 3.6.4, в которой представлены отрезки для оставшихся букв сообщения:</p>
+<table border="1" align="center">
+<caption>Таблица 3.6.4</caption>
+<tr>
+<th>Буква</th><th>Левая граница</th><th>Правая граница</th>
+</tr>
+<tr>
+<td>а</td><td>0.088296543107038700</td><td>0.094960433152853000</td>
+</tr>
+<tr>
+<td> </td><td>0.092104480276075400</td><td>0.093056464568334600</td>
+</tr>
+<tr>
+<td>м</td><td>0.092104480276075400</td><td>0.092376475788149500</td>
+</tr>
+<tr>
+<td>ы</td><td>0.092298762784699800</td><td>0.092318191035562200</td>
+</tr>
+<tr>
+<td>л</td><td>0.092314027838948800</td><td>0.092315415571153300</td>
+</tr>
+<tr>
+<td>а</td><td>0.092314424333864400</td><td>0.092314820828779900</td>
+</tr>
+<tr>
+<td> </td><td>0.092314650902387500</td><td>0.092314707544518300</td>
+</tr>
+<tr>
+<td>р</td><td>0.092314699452785400</td><td>0.092314703498651900</td>
+</tr>
+<tr>
+<td>а</td><td>0.092314700608747200</td><td>0.092314701764709100</td>
+</tr>
+<tr>
+<td>м</td><td>0.092314700608747200</td><td>0.092314700939022000</td>
+</tr>
+<tr>
+<td>у</td><td>0.092314700915431000</td><td>0.092314700939022100</td>
+</tr>
+</table>
+<p>Наименьшее число из отрезка, представляющего последнюю букву сообщения, двоичный код которого имеет конечную длину, равно 0.092314700916176700. В двоичной системе счисления оно равно 0.00010111101000011110111110101101011. Всякое другое число из этого отрезка имеет большую длину в двоичном представлении. Отбросим ведущий ноль и точку и получим искомый код сообщения 00010111101000011110111110101101011.  
+</p>
+<p>Длина кодовой последовательности составляет 35 бит, в то время как при префиксном кодировании это же сообщение кодировалось 36 битами. Тогда средняя длина кода составит около 2.5 бита на символ сообщения, в то время как энтропия составляет 2.522 бита на символ сообщения. Но здесь следует учесть тот факт, что в сообщение мы не включили признак конца сообщения, без которого невозможно при декодировании кодовой последовательности уловить момент окончания процесса декодирования. Включение в сообщение знака конца приводит к тому, что средняя длина кода символа становится больше энтропии. Заметим, что при кодировании Хаффмена средняя длина кода составляет 2.571 бита на символ.</p>
+</div>
+<p>Хотя арифметическое кодирование в целом дает лучшее сжатие, чем кодирование Хаффмена, оно требует и больших вычислительных ресурсов. Эффективность арифметического кодирования растет с ростом длины кодируемого сообщения, чего нельзя сказать о кодировании по методу Хаффмена или Шеннона-Фано. Арифметическое кодирование дает худшие результаты на сообщениях, в которых частоты появления символов примерно одинаковые.</p>
+<p>Для декодирования кодовой последовательности потребуется алфавит первичного сообщения с частотами символов. Процесс декодирования начинается с разбиения единичного отрезка на отрезки, длины которых равны относительным частотам букв. Затем определяется отрезок, которому принадлежит кодовое число, и, следовательно, определяется первая буква сообщения. Отрезок, соответствующий первой букве сообщения, разбивают на отрезки, длины которых пропорциональны относительным частотам букв алфавита. Выбирается отрезок, которому принадлежит кодовое число. Тем самым определяется вторая буква сообщения. Процесс продолжают до получения знака конца файла.</p>
+<div class="examp">
+<p><span class="primer">Пример 3.6.2</span>. Опишем процесс декодирования кодовой последовательности на примере декодирования полученного нами кода.</p>
+<p>В Таблице 3.6.1 находим числовой отрезок, которому принадлежит кодовое число 0.00010111101000011110111110101101011 (или 0.092314700916176700 в десятичной системе счисления). Очевидно, что это первый отрезок, представляющий букву &quot;м&quot;. Разбиваем этот отрезок описанным ранее способом и находим отрезок, которому принадлежит кодовое число. Тем самым определяем вторую букву сообщения. Продолжаем процесс до получения признака конца файла и восстанавливаем закодированное сообщение.</p>
+</div>
+<p>Ниже представлен калькулятор для вычисления арифметического кода сообщения. При использовании калькулятора следует иметь в виду его невысокую точность &#8212; для длинных сообщений левая и правая границы отрезка могут оказаться на некотором шаге неразличимы, и, следовательно, кодирование должно быть прервано.</p>
+<form id="ariph">
+Введите сообщение:<br />
+	<input type="text" id="txt" /><br />
+	<input type="button" value="Вычислить" onclick="calc(txt.value)" />
+	<input type="reset" value="Сброс" />
+</form>
+
+<h3>Упражнения</h3>
+<ol>
+<li>Сравните энтропию со средней длиной кодов Хаффмена, Шеннона-Фано и арифметического кода для сообщения, алфавит которого задан следующим распределением относительных частот:
+<table border="1" align="center">
+<tr><td>Символ</td>
+<td>
+<math display='inline'><msub><mi>a</mi><mn>1</mn></msub></math>
+</td>
+<td>
+<math display='inline'><msub><mi>a</mi><mn>2</mn></msub></math>
+</td>
+<td>
+<math display='inline'><msub><mi>a</mi><mn>3</mn></msub></math>
+</td>
+<td>
+<math display='inline'><msub><mi>a</mi><mn>4</mn></msub></math>
+</td>
+<td>
+<math display='inline'><msub><mi>a</mi><mn>5</mn></msub></math>
+</td>
+</tr>
+<tr>
+<td>Относительная частота</td>
+<td>
+<math display='inline'><mn>0.2</mn></math>
+</td>
+<td>
+<math display='inline'><mn>0.1</mn></math>
+</td>
+<td>
+<math display='inline'><mn>0.3</mn></math>
+</td>
+<td>
+<math display='inline'><mn>0.25</mn></math>
+</td>
+<td>
+<math display='inline'><mn>0.15</mn></math>
+</td>
+</tr>
+</table>
+</li>
+<li>Вычислите арифметический код для сообщения BAABC, полученного от дискретной случайной величины X со следующим распределением вероятностей:
+<table border="1" align="center">
+<tr>
+<td>
+<math display='inline'><mi>X</mi></math>
+</td>
+<td>
+<math display='inline'><mi>A</mi></math>
+</td>
+<td>
+<math display='inline'><mi>B</mi></math>
+</td>
+<td>
+<math display='inline'><mi>C</mi></math>
+</td>
+</tr>
+<tr>
+<td>P</td>
+<td>
+<math display='inline'>
+	<mfrac><mn>1</mn><mn>4</mn></mfrac>
+</math>
+</td>
+<td>
+<math display='inline'>
+<mfrac><mn>1</mn><mn>2</mn></mfrac>
+</math>
+</td>
+<td>
+<math display='inline'>
+	<mfrac><mn>1</mn><mn>4</mn></mfrac>
+</math>
+</td>
+</tr>
+</table>
+Найдите арифметический код для этого же сообщения, если случайная величина X распределена по следующему закону:
+<table border="1" align="center">
+<tr>
+<td>
+<math display='inline'><mi>X</mi></math>
+</td>
+<td>
+<math display='inline'><mi>A</mi></math>
+</td>
+<td>
+<math display='inline'><mi>B</mi></math>
+</td>
+<td>
+<math display='inline'><mi>C</mi></math>
+</td>
+</tr>
+<tr>
+<td>P</td>
+<td>
+<math display='inline'>
+	<mfrac><mn>1</mn><mn>3</mn></mfrac>
+</math>
+</td>
+<td>
+<math display='inline'>
+	<mfrac><mn>7</mn><mn>15</mn></mfrac>
+</math>
+</td>
+<td>
+<math display='inline'>
+<mfrac><mn>1</mn><mn>5</mn></mfrac>
+</math>
+</td></tr>
+</table>
+</li>
+<li>Вычислите коды Хаффмена и арифметический код для сообщения АВАААВ и сравните длины кодов.</li>
+<li>В системе электронных таблиц постройте арифметический код сообщения из фамилии и имени, вычислите энтропию исходного сообщения и среднюю длину кода.</li>
+</ol>
+<p><a href="3_5.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="3_7.html">К следующему</a></p>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8' />
+<link rel='stylesheet' type='text/css' href='style.css' />
+<meta name='author' content='leonid' />
+<title>Простейшая целочисленная арифметика</title>
+</head>
+<body>
+<h2>§3. Простейшая целочисленная арифметика</h2>
+<ol start='61' type='1'>
+<li>Дано действительное число <math><mi>x</mi></math>. Получить целую часть числа
+<math><mi>x</mi><mo>(</mo><mo>*</mo><mo>)</mo></math>; затем &#151; число <math><mi>x</mi></math>, округленное до ближайшего целого; затем &#151; число <math><mi>x</mi></math> без дробных цифр.
+</li>
+<li>Определить,является ли данное целое число чётным.</li>
+<li>Определить,верно ли,что при делении неотрицательного целого числа <math><mi>a</mi></math> на положительное целое число
+<math><mi>b</mi></math> получается остаток,равный одному из двух заданных чисел <math><mi>r</mi></math> или <math><mi>s</mi>
+</math>.</li>
+<li>Дано натуральное число <math><mi>n</mi><mo lspace="0.5em">(</mo><mi>n</mi><mo>&#62;</mo><mn>99</mn><mi>)</mi></math>. Определить число сотен в нем.</li>
+<li>Дано натуральное число <math><mi>n</mi><mo lspace="0.5em">(</mo><mi>n</mi><mo>&#62;</mo><mn>99</mn><mi>)</mi></math>. 
+Выяснить,верно ли,что <math><msup><mi>n</mi><mn>2</mn></msup></math> равно кубу суммы цифр цисла <math><mi>n</mi></math>.</li>
+<li>Даны целые числа <math><mi>k</mi><mo>,</mo><mi>m</mi></math>, действительные числа <math><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi></math>. При
+<math>
+<mrow>
+	<mi>k</mi><mo>&lt;</mo>
+	<msup><mi>m</mi><mn>2</mn></msup>
+</mrow>
+<mo>,</mo>
+<mrow>
+	<mi>k</mi>
+	<mo>=</mo>
+	<msup><mi>m</mi><mn>2</mn></msup>
+</mrow>
+<mo>,</mo>
+<mrow>
+	<mi>k</mi>
+	<mo>&gt;</mo>
+	<msup><mi>m</mi><mn>2</mn></msup>
+</mrow>	
+</math>
+заменить модулем соответственно значение
+<math><mi>x</mi><mo>,</mo><mi>y</mi></math> или <math><mi>z</mi></math>, а два других значения уменьшить на
+<math><mn>0.5</mn></math>.
+</li>
+<li>Дано натуральное число
+<math><mi>n</mi><mo lspace="0.5em">(</mo><mi>n</mi><mo>&#8804;</mo><mn>100</mn><mo>)</mo></math>
+<ol type='a'>
+<li>Сколько цифр в числе <math><mi>n</mi></math>?</li>
+<li>Чему равна сумма его цифр?</li>
+<li>Найти последнюю цифру числа <math><mi>n</mi></math>.</li>
+<li>Найти первую цифру числа <math><mi>n</mi></math>.</li>
+<li>В предположении,что <math><mi>n</mi><mo>&lt;</mo><mn>100</mn></math>, найти предпоследнюю цифру числа
+<math><mi>n</mi></math>.
+</ol>
+</li>
+<li>Дано натуральное число <math><mi>n</mi><mo lspace="0.5em">(</mo><mi>n</mi><mo>&#8804;</mo><mn>9999</mn><mo>)</mo>
+</math>.
+<ol type='a'>
+<li>Является ли это число палиндромом (перевертышем) с учетем четырех цифр, как, например, числа
+<math><mn>2222</mn><mo>,</mo><mn>6116</mn><mo>,</mo><mn>0440</mn></math> и т.д.?</li>
+<li>Верно ли, что это число содержит ровно три одинаковые цифры, как, например, числа 
+<math><mn>6676</mn><mo>,</mo><mn>4544</mn><mo>,</mo><mn>0006</mn></math> и т.д.?
+</li>
+<li>Верно ли, что все четыре цифры числа различны?</li>
+</ol>
+</li>
+<li>Часовая стрелка образует угол <math><mi>&#966;</mi></math> с лучом, проходящим через центр и через точку, соответствующую
+<math><mn>12</mn></math> часам на циферблате, <math><mn>0</mn><mo>&#8804;</mo><mi>&#966;</mi><mo>&#8804;</mo><mn>2</mn><mo>&#x2062;</mo><mi>&#960;</mi></math>. Определить значение угла для минутной стрелки, а также количество часов и полных минут.
+</li>
+<li>Даны целые числа 
+<math>
+	<mi>m</mi><mo>,</mo><mi>n</mi><mo lspace="0.5em">(</mo><mn>0</mn><mo>&#60;</mo><mi>m</mi><mo>&#8804;</mo><mn>12</mn>
+	<mo>,</mo>
+	<mn>0</mn><mo>&#8804;</mo><mi>n</mi><mo>&#60;</mo><mn>60</mn><mo>)</mo>
+</math>, указывающие момент времени:
+<math><mi>m</mi></math> &quot;часов, <math><mi>n</mi></math> минут&quot;. Определить наименьшее время (число полных минут), которое должно пройти до того момента, когда часовая и минутная стрелки на циферблате
+<ol type='a'>
+<li>совпадут;</li>
+<li>расположатся перпендикулярно друг к другу.</li>
+</ol>
+</li>
+<li>Дано действительное число <math><mi>a</mi></math>. Вычислить <math><mi>f</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>a</mi><mo>)</mo></mrow></math>, где
+<math><mi>f</mi></math> &#151; периодическая функция с периодом
+<math><mn>1.5</mn></math>, совпадающая на отрезке <math><mo>[</mo><mn>0</mn><mo>,</mo><mn>1.5</mn><mo>]</mo></math>
+<ol type='a'>
+<li>с функцией <math><msup><mi>x</mi><mn>3</mn></msup><mo>-</mo><mn>2.25</mn><mi>x</mi></math>;
+</li>
+<li> функцией, график которой изображен на рис. 4.</li>
+</ol>
+<svg width="350" height="300">
+	<line x1='100' y1='30' x2='100' y2='250' stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points='96,36 100,30 104,36' stroke="#000000" stroke-width="1" fill="none"/>
+	<text fill="#000000" stroke="#000000" stroke-width="0" x="105" y="30" >y</text>	
+	<line x1='60' y1='150' x2='300' y2='150' stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points='294,146 300,150 294,154' stroke="#000000" stroke-width="1" fill="none"/>
+	<text fill="#000000" stroke="#000000" stroke-width="0" x="305" y="155" >x</text>	
+	<polyline points='65,250 200,50 250,200' stroke="#000000" stroke-width="1" fill="none"/>
+	<text fill="#000000" stroke="#000000" stroke-width="0" x="242" y="145" >1.5</text>	
+	<text fill="#000000" stroke="#000000" stroke-width="0" x="200" y="145" >1</text>
+	<text fill="#000000" stroke="#000000" stroke-width="0" x="87" y="55" >1</text>
+	<text fill="#000000" stroke="#000000" stroke-width="0" x="65" y="205" >-0.5</text>			
+	<polyline points='100,50 200,50 200,150' stroke="#000000" stroke-width="1" fill="none" stroke-dasharray='2'/>
+	<polyline points='100,200 250,200 250,150' stroke="#000000" stroke-width="1" fill="none" stroke-dasharray='2'/>
+	<text fill="#000000" stroke="#000000" stroke-width="0" x="150" y="250" >Рис. 4</text>
+</svg>
+</li>
+<li>Дано действительное число <math><mi>a</mi></math>. Вычислить <mo>&#x2061;</mo><mrow><mo>(</mo><mi>a</mi><mo>)</mo></mrow>, где <math><mi>f</mi></math> &#151; периодическая функция с периодом <math><mn>2</mn></math>, совпадающая на отрезке <math><mo>[</mo><mn>-1</mn><mo>,</mo><mn>1</mn><mo>]</mo></math>:
+<ol type='a'>
+<li>с функцией <math><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mn>1</mn></math>;</li>
+<li>с функцией, график которой изображен на рис. 5:</li>
+</ol>
+
+
+<svg width="350" height="230">
+	<line x1='150' y1='30' x2='150' y2='200' stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points='146,36 150,30 154,36' stroke="#000000" stroke-width="1" fill="none"/>
+	<text fill="#000000" stroke="#000000" stroke-width="0" x="155" y="30" >y</text>	
+	<line x1='10' y1='150' x2='300' y2='150' stroke="#000000" stroke-width="1" fill="none"/>
+	<polyline points='294,146 300,150 294,154' stroke="#000000" stroke-width="1" fill="none"/>
+	<text fill="#000000" stroke="#000000" stroke-width="0" x="305" y="155" >x</text>	
+	<path d='M10,185 L150,50 A100,100 0 0,1 250,150'  stroke="#000000" stroke-width="1" fill="none"/>
+	<text fill="#000000" stroke="#000000" stroke-width="0" x="135" y="52" >1</text>
+	<text fill="#000000" stroke="#000000" stroke-width="0" x="35" y="145" >-1</text>
+	<text fill="#000000" stroke="#000000" stroke-width="0" x="230" y="80" >y=1-x<tspan dy='-7'>3</tspan></text>
+	<text fill="#000000" stroke="#000000" stroke-width="0" x="120" y="220" >Рис. 5</text>
+</svg>
+</li>
+<li>Даны целые числа <math><mi>k</mi><mo>,</mo><mi>l</mi></math>. Если числа не равны, то заменить каждое из них одним и тем же числом, равным большему из исходных, а если равны, то заменить числа нулями.</li>
+<li>Дано натуральное число <math><mi>n</mi><mo lspace="0.5em">(</mo><mi>n</mi><mo>&#8804;</mo><mn>100</mn><mo>)</mo></math>, определяющее возраст человека (в годах). Дать для этого числа наименования &quot;год&quot;, &quot;года&quot; или &quot;лет&quot;: например,
+<math><mn>1</mn></math> год, <math><mn>23</mn></math> года, <math><mn>45</mn></math> лет и т.д.</li>
+<li>Доказать, что любую целочисленную денежную сумму, большую <math><mn>7</mn></math> руб., можно выплатить без сдачи трешками и пятерками. Для данного
+<math><mi>n</mi><mo>&#62;</mo><mn>7</mn></math> найти такие целые неотрицательные <math><mi>a</mi></math> и <math><mi>b</mi></math>, что 
+<math>
+<mrow>
+	<mrow><mn>3</mn><mo>&#x2062;</mo><mi>a</mi></mrow>
+	<mo>+</mo>
+	<mrow><mn>5</mn><mo>&#x2062;</mo><mi>b</mi></mrow>
+</mrow>
+<mo>=</mo><mi>n</mi></math>.
+</li>
+<li>Поле шахматной доски определяется парой натуральных чисел, каждое из которых не превосходит восьми: первое число &#151; номер вертикали (при счете слева направо), второе &#151; номер горизонтали (при счете снизу вверх). Даны натуральные числа <math><mi>k</mi><mo>,</mo><mi>l</mi><mo>,</mo><mi>m</mi><mo>,</mo><mi>n</mi></math>, каждое из которых не превосходит восьми. Требуется:
+<ol type='a'>
+<li>Выяснить, являются ли поля <math><mo>(</mo><mi>k</mi><mo>,</mo><mi>l</mi><mi>)</mi></math> и <math><mo>(</mo><mi>m</mi><mo>,</mo><mi>n</mi><mo>)</mo></math>  полями одного цвета.
+</li>
+<li>На поле <math><mo>(</mo><mi>k</mi><mo>,</mo><mi>l</mi><mi>)</mi></math> расположен ферзь. Угрожает ли он полю <math><mo>(</mo><mi>m</mi><mo>,</mo><mi>n</mi><mo>)</mo></math>?
+</li>
+<li>Аналогично b), но ферзь заменяется на коня.</li>
+<li>Выяснить, можно ли с поля <math><mo>(</mo><mi>k</mi><mo>,</mo><mi>l</mi><mi>)</mi></math> одним ходом ладьи попасть на поле 
+<math><mo>(</mo><mi>m</mi><mo>,</mo><mi>n</mi><mo>)</mo></math>. Если нет, то выяснить, как это можно сделать за два хода (указать поле, на которое приводит первый ход).</li>
+<li>Аналогично d), но ладья заменяется на ферзя.</li>
+<li>Аналогично d), но ладья заменяется на слона.</li>
+Предполагается, что указанные поля имеют один и тот же цвет.
+</ol>
+</li>
+</ol>
+<hr/>
+<p>* Целой частью числа <math><mi>x</mi></math>,  обозначаемой <math><mo>[</mo><mi>x</mi><mo>]</mo></math>, называется наибольшее целое, не превосходящее <math><mi>x</mi></math>; так,
+<math>
+	<mrow><mo>[</mo><mn>3.14</mn><mo>]</mo><mo>=</mo><mn>3</mn></mrow>
+	<mo>,</mo>
+	<mrow><mo>[</mo><mn>3</mn><mo>]</mo><mo>=</mo><mn>3</mn></mrow>
+	<mo>,</mo>
+	<mrow><mo>[</mo><mn>-3.14</mn><mo>]</mo><mo>=</mo><mn>-4</mn></mrow>
+	<mo>,</mo>
+	<mrow><mo>[</mo><mn>-3</mn><mo>]</mo><mo>=</mo><mn>-3</mn></mrow>
+</math>.
+</p>
+</body>
+</html>
+ 
+  
