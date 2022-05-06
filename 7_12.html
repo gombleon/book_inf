@@ -1,212 +1,286 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" />
-<link rel='stylesheet' type="text/css" href="style.css"></link>
-<meta name="author" content="leonid" />
-<meta name="description" content="Шина, центральный процессор, ввод, вывод, команда, адрес, данные"/>
-<meta name="keywords" content="память, шина, процессор, микросхема, ввод, вывод, адрес, данные" />
-<title>Арбитраж шины</title>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+  extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});
+
+
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <meta charset="UTF-8"/>
+    <link rel='stylesheet' type="text/css" href="style.css"></link>
+    <meta name="author" content="leonid"/>
+    <meta name="description" content="Шина, центральный процессор, ввод, вывод, команда, адрес, данные"/>
+    <meta name="keywords" content="память, шина, процессор, микросхема, ввод, вывод, адрес, данные"/>
+    <title>Арбитраж шины</title>
 </head>
 <body>
-<p><a href="7_11.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="7_13.html">К следующему</a> </p>
+<p><a href="7_11.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="7_13.html">К следующему</a></p>
 <h1>7.12. Арбитраж шины</h1>
-<p><span class='teorema'>Специальный механизм, определяющий очередность доступа к шине задающих устройств, называется арбитражем шины</span>. В качестве задающих устройств могут выступать сопроцессор, устройства ввода-вывода и т.д.</p>
-<p>Арбитраж может быть двух типов: <span class='teorema'>централизованный</span> или <span class='teorema'>децентрализованный</span>. На рисунке 7.12.1 изображена схема простейшего одноуровневого централизованного арбитража шины с последовательным опросом.
+<p><span class='teorema'>Специальный механизм, определяющий очередность доступа к шине задающих устройств, называется арбитражем шины</span>.
+    В качестве задающих устройств могут выступать сопроцессор, устройства ввода-вывода и т.д.</p>
+<p>Арбитраж может быть двух типов: <span class='teorema'>централизованный</span> или <span class='teorema'>децентрализованный</span>.
+    На рисунке 7.12.1 изображена схема простейшего одноуровневого централизованного арбитража шины с последовательным
+    опросом.
 </p><a id='ris7_12_1'/>
-<svg height = "270px"  width = "560px">
-<defs>
-    <marker id="Triangle"
-      viewBox="0 0 10 10" refX="0" refY="5" 
-      markerUnits="strokeWidth"
-      markerWidth="8" markerHeight="8"
-      orient="auto">
-      <path d="M 0 0 L 10 5 L 0 10 z" />
-    </marker>
-    <marker id="Triangle1"
-      viewBox="0 0 10 10" refX="0" refY="5" 
-      markerUnits="strokeWidth"
-      markerWidth="8" markerHeight="8"
-      orient="auto">
-      <path d="M 10 0 L 0 5 L 10 10 z" />
-    </marker>
-  </defs>
-<rect x='20' y='20' width='70' height='70' stroke="#000000" stroke-width="1" fill="none"/>
-<text x='30' y='58' stroke="none" fill="#000000" font-size="12">Арбитр</text>
-<text x='100' y='70' stroke="none" fill="#000000" font-size="12">Предоставление шины</text>
-<text x='180' y='30' stroke="none" fill="#000000" font-size="12">Запрос шины</text>
-<line x1='550' y1='40' x2='97' y2='40' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
-<circle cx="285" cy="40" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-<circle cx="385" cy="40" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-<circle cx="485" cy="40" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-<line x1='285' y1='40' x2='285' y2='120' stroke="#000000" stroke-width="1" fill="none"/>
-<line x1='385' y1='40' x2='385' y2='120' stroke="#000000" stroke-width="1" fill="none"/>
-<line x1='485' y1='40' x2='485' y2='120' stroke="#000000" stroke-width="1" fill="none"/>
-<rect x='250' y='120' width='70' height='70' stroke="#000000" stroke-width="1" fill="none"/>
-<rect x='350' y='120' width='70' height='70' stroke="#000000" stroke-width="1" fill="none"/>
-<rect x='450' y='120' width='70' height='70' stroke="#000000" stroke-width="1" fill="none"/>
-<line x1='90' y1='80' x2='97' y2='80' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
-<path d="M 102 80 L 260 80 260 114" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
-<path stroke="#000000" fill="none" stroke-dasharray="5" d="M 260,120 C 270,145 300,145  310,120"/>
-<path d="M 310 120 L 310 80 360 80 360 114" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
-<path stroke="#000000" fill="none" stroke-dasharray="5" d="M 360,120 C 370,145 400,145  410,120"/>
-<path d="M 410 120 L 410 80 460 80 460 114" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
-<path stroke="#000000" fill="none" stroke-dasharray="5" d="M 460,120 C 470,145 500,145  510,120"/>
-<path d="M 510 120 L 510 80 550 80" stroke="#000000" stroke-width="1" fill="none" />
-<text x='300' y='210' stroke="none" fill="#000000" font-size="12">Задающие устройства</text>
-<text x='280' y='180' stroke="none" fill="#000000" font-size="12">1</text>
-<text x='380' y='180' stroke="none" fill="#000000" font-size="12">2</text>
-<text x='480' y='180' stroke="none" fill="#000000" font-size="12">3</text>
-<text x='30' y='240' stroke="none" fill="#000000" >Рис. 7.12.1. Одноуровневый централизованный арбитраж</text>
-<text x='100' y='260' stroke="none" fill="#000000" >шины с последовательным опросом</text>
+<svg height="270px" width="560px">
+    <defs>
+        <marker id="Triangle"
+                viewBox="0 0 10 10" refX="0" refY="5"
+                markerUnits="strokeWidth"
+                markerWidth="8" markerHeight="8"
+                orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z"/>
+        </marker>
+        <marker id="Triangle1"
+                viewBox="0 0 10 10" refX="0" refY="5"
+                markerUnits="strokeWidth"
+                markerWidth="8" markerHeight="8"
+                orient="auto">
+            <path d="M 10 0 L 0 5 L 10 10 z"/>
+        </marker>
+    </defs>
+    <rect x='20' y='20' width='70' height='70' stroke="#000000" stroke-width="1" fill="none"/>
+    <text x='30' y='58' stroke="none" fill="#000000" font-size="12">Арбитр</text>
+    <text x='100' y='70' stroke="none" fill="#000000" font-size="12">Предоставление шины</text>
+    <text x='180' y='30' stroke="none" fill="#000000" font-size="12">Запрос шины</text>
+    <line x1='550' y1='40' x2='97' y2='40' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+    <circle cx="285" cy="40" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <circle cx="385" cy="40" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <circle cx="485" cy="40" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1='285' y1='40' x2='285' y2='120' stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1='385' y1='40' x2='385' y2='120' stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1='485' y1='40' x2='485' y2='120' stroke="#000000" stroke-width="1" fill="none"/>
+    <rect x='250' y='120' width='70' height='70' stroke="#000000" stroke-width="1" fill="none"/>
+    <rect x='350' y='120' width='70' height='70' stroke="#000000" stroke-width="1" fill="none"/>
+    <rect x='450' y='120' width='70' height='70' stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1='90' y1='80' x2='97' y2='80' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+    <path d="M 102 80 L 260 80 260 114" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+    <path stroke="#000000" fill="none" stroke-dasharray="5" d="M 260,120 C 270,145 300,145  310,120"/>
+    <path d="M 310 120 L 310 80 360 80 360 114" stroke="#000000" stroke-width="1" fill="none"
+          marker-end="url(#Triangle)"/>
+    <path stroke="#000000" fill="none" stroke-dasharray="5" d="M 360,120 C 370,145 400,145  410,120"/>
+    <path d="M 410 120 L 410 80 460 80 460 114" stroke="#000000" stroke-width="1" fill="none"
+          marker-end="url(#Triangle)"/>
+    <path stroke="#000000" fill="none" stroke-dasharray="5" d="M 460,120 C 470,145 500,145  510,120"/>
+    <path d="M 510 120 L 510 80 550 80" stroke="#000000" stroke-width="1" fill="none"/>
+    <text x='300' y='210' stroke="none" fill="#000000" font-size="12">Задающие устройства</text>
+    <text x='280' y='180' stroke="none" fill="#000000" font-size="12">1</text>
+    <text x='380' y='180' stroke="none" fill="#000000" font-size="12">2</text>
+    <text x='480' y='180' stroke="none" fill="#000000" font-size="12">3</text>
+    <text x='30' y='240' stroke="none" fill="#000000">Рис. 7.12.1. Одноуровневый централизованный арбитраж</text>
+    <text x='100' y='260' stroke="none" fill="#000000">шины с последовательным опросом</text>
 </svg>
-<p>По линии запроса шины задающие устройства запрашивают у арбитра доступ к шине. Арбитр фиксирует лишь факт запроса шины, но не фиксирует ни количество запрашивающих устройств, ни их адреса. Арбитр посылает по линии предоставления шины сигнал предоставления шины. Ближайшее к арбитру задающее устройство получает этот сигнал. Если оно запрашивало шину, то занимает шину, и сигнал предоставления шины далее не пересылает. Если же задающее устройство не запрашивало шину, то оно пересылает сигнал предоставления шины следующему задающему устройству. Факт условной передачи сигнала предоставления шины изображен пунктирной линией. Таким образом, выполняется последовательный опрос запрашивающих устройств на предмет запроса шины. Очевидно, что в системе с последовательным опросом приоритет запрашивающего устройства определяется расстоянием до арбитра шины &#8212; чем ближе запрашивающее устройство к арбитру шины, тем больший у нее приоритет.</p>
-<p>Некоторые шины имеют несколько уровней приоритета (4, 8 или 16 уровней), и на каждом уровне имеются свои линии запроса шины и предоставления шины.<a id='ris7_12_2'/> На рис. 7.12.2 представлена схема шины с двумя уровнями приоритета.</p>
-<svg  height = "250px"  width = "810px">
-<defs>
-    <marker id="Triangle"
-      viewBox="0 0 10 10" refX="0" refY="5" 
-      markerUnits="strokeWidth"
-      markerWidth="8" markerHeight="8"
-      orient="auto">
-      <path d="M 0 0 L 10 5 L 0 10 z" />
-    </marker>
-    <marker id="Triangle1"
-      viewBox="0 0 10 10" refX="0" refY="5" 
-      markerUnits="strokeWidth"
-      markerWidth="8" markerHeight="8"
-      orient="auto">
-      <path d="M 10 0 L 0 5 L 10 10 z" />
-    </marker>
-  </defs>
-<rect x='20' y='20' width='70' height='70' stroke="#000000" stroke-width="1" fill="none"/>
-<text x='30' y='58' stroke="none" fill="#000000" font-size="12">Арбитр</text>
-<text x='100' y='57' stroke="none" fill="#000000" font-size="12">Предоставление шины первого уровня</text>
-<text x='100' y='77' stroke="none" fill="#000000" font-size="12">Предоставление шины второго уровня</text>
-<text x='180' y='15' stroke="none" fill="#000000" font-size="12">Запрос шины первого уровня</text>
-<text x='180' y='37' stroke="none" fill="#000000" font-size="12">Запрос шины второго уровня</text>
-<line x1='700' y1='22' x2='97' y2='22' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
-<line x1='700' y1='42' x2='97' y2='42' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
-<circle cx="285" cy="22" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-<circle cx="385" cy="42" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-<circle cx="485" cy="22" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-<circle cx="585" cy="22" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-<circle cx="685" cy="42" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-<line x1='285' y1='22' x2='285' y2='30' stroke="#000000" stroke-width="1" fill="none"/>
-<line x1='285' y1='37' x2='285' y2='49' stroke="#000000" stroke-width="1" fill="none"/>
-<line x1='285' y1='57' x2='285' y2='70' stroke="#000000" stroke-width="1" fill="none"/>
-<line x1='285' y1='77' x2='285' y2='120' stroke="#000000" stroke-width="1" fill="none"/>
-<line x1='385' y1='42' x2='385' y2='120' stroke="#000000" stroke-width="1" fill="none"/>
-<line x1='485' y1='22' x2='485' y2='120' stroke="#000000" stroke-width="1" fill="none"/>
-<line x1='585' y1='22' x2='585' y2='120' stroke="#000000" stroke-width="1" fill="none"/>
-<line x1='685' y1='42' x2='685' y2='120' stroke="#000000" stroke-width="1" fill="none"/>
-<rect x='250' y='120' width='70' height='70' stroke="#000000" stroke-width="1" fill="none"/>
-<rect x='350' y='120' width='70' height='70' stroke="#000000" stroke-width="1" fill="none"/>
-<rect x='450' y='120' width='70' height='70' stroke="#000000" stroke-width="1" fill="none"/>
-<rect x='550' y='120' width='70' height='70' stroke="#000000" stroke-width="1" fill="none"/>
-<rect x='650' y='120' width='70' height='70' stroke="#000000" stroke-width="1" fill="none"/>
-<line x1='90' y1='61' x2='97' y2='61' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
-<line x1='90' y1='81' x2='97' y2='81' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
-<path d="M 102 61 L 270 61 270 70" stroke="#000000" stroke-width="1" fill="none" />
-<line x1='270' y1='77' x2='270' y2='114' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
-<path d="M 102 81 L 260 81 260 114" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
-<path stroke="#000000" fill="none" stroke-dasharray="5" d="M 260,120 C 270,145 300,145  310,120"/>
-<path stroke="#000000" fill="none" stroke-dasharray="5" d="M 360,120 C 370,145 400,145  410,120"/>
-<path stroke="#000000" fill="none" stroke-dasharray="5" d="M 460,120 C 470,145 500,145  510,120"/>
-<path stroke="#000000" fill="none" stroke-dasharray="5" d="M 560,120 C 570,145 600,145  610,120"/>
-<path d="M 300 120 L 300 61 370 61 370 114" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
-<path stroke="#000000" fill="none" stroke-dasharray="5" d="M 270,120 C 280,135 290,135  300,120"/>
-<path stroke="#000000" fill="none" stroke-dasharray="5" d="M 370,120 C 380,135 390,135  400,120"/>
-<path stroke="#000000" fill="none" stroke-dasharray="5" d="M 470,120 C 480,135 490,135  500,120"/>
-<path stroke="#000000" fill="none" stroke-dasharray="5" d="M 570,120 C 580,135 590,135  600,120"/>
-<path d="M 310 120 L 310 81 360 81 360 114" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
-<path d="M 400 120 L 400 61 470 61 470 114" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
-<path d="M 410 120 L 410 81 460 81 460 114" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
-<path d="M 500 120 L 500 61 570 61 570 114" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
-<path d="M 510 120 L 510 81 560 81 560 114" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
-<path d="M 600 120 L 600 61 670 61 670 114" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
-<path d="M 610 120 L 610 81 660 81 660 114" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
-<text x='400' y='210' stroke="none" fill="#000000" font-size="12">Задающие устройства</text>
-<text x='280' y='180' stroke="none" fill="#000000" font-size="12">1</text>
-<text x='380' y='180' stroke="none" fill="#000000" font-size="12">2</text>
-<text x='480' y='180' stroke="none" fill="#000000" font-size="12">3</text>
-<text x='580' y='180' stroke="none" fill="#000000" font-size="12">4</text>
-<text x='680' y='180' stroke="none" fill="#000000" font-size="12">5</text>
-<text x='5' y='240' stroke="none" fill="#000000" >Рис. 7.12.2. Двухуровневый централизованный арбитраж шины с последовательным опросом</text>
+<p>По линии запроса шины задающие устройства запрашивают у арбитра доступ к шине. Арбитр фиксирует лишь факт запроса
+    шины, но не фиксирует ни количество запрашивающих устройств, ни их адреса. Арбитр посылает по линии предоставления
+    шины сигнал предоставления шины. Ближайшее к арбитру задающее устройство получает этот сигнал. Если оно запрашивало
+    шину, то занимает шину, и сигнал предоставления шины далее не пересылает. Если же задающее устройство не запрашивало
+    шину, то оно пересылает сигнал предоставления шины следующему задающему устройству. Факт условной передачи сигнала
+    предоставления шины изображен пунктирной линией. Таким образом, выполняется последовательный опрос запрашивающих
+    устройств на предмет запроса шины. Очевидно, что в системе с последовательным опросом приоритет запрашивающего
+    устройства определяется расстоянием до арбитра шины &#8212; чем ближе запрашивающее устройство к арбитру шины, тем
+    больший у нее приоритет.</p>
+<p>Некоторые шины имеют несколько уровней приоритета (4, 8 или 16 уровней), и на каждом уровне имеются свои линии
+    запроса шины и предоставления шины.<a id='ris7_12_2'/> На рис. 7.12.2 представлена схема шины с двумя уровнями
+    приоритета.</p>
+<svg height="250px" width="810px">
+    <defs>
+        <marker id="Triangle"
+                viewBox="0 0 10 10" refX="0" refY="5"
+                markerUnits="strokeWidth"
+                markerWidth="8" markerHeight="8"
+                orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z"/>
+        </marker>
+        <marker id="Triangle1"
+                viewBox="0 0 10 10" refX="0" refY="5"
+                markerUnits="strokeWidth"
+                markerWidth="8" markerHeight="8"
+                orient="auto">
+            <path d="M 10 0 L 0 5 L 10 10 z"/>
+        </marker>
+    </defs>
+    <rect x='20' y='20' width='70' height='70' stroke="#000000" stroke-width="1" fill="none"/>
+    <text x='30' y='58' stroke="none" fill="#000000" font-size="12">Арбитр</text>
+    <text x='100' y='57' stroke="none" fill="#000000" font-size="12">Предоставление шины первого уровня</text>
+    <text x='100' y='77' stroke="none" fill="#000000" font-size="12">Предоставление шины второго уровня</text>
+    <text x='180' y='15' stroke="none" fill="#000000" font-size="12">Запрос шины первого уровня</text>
+    <text x='180' y='37' stroke="none" fill="#000000" font-size="12">Запрос шины второго уровня</text>
+    <line x1='700' y1='22' x2='97' y2='22' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+    <line x1='700' y1='42' x2='97' y2='42' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+    <circle cx="285" cy="22" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <circle cx="385" cy="42" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <circle cx="485" cy="22" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <circle cx="585" cy="22" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <circle cx="685" cy="42" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1='285' y1='22' x2='285' y2='30' stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1='285' y1='37' x2='285' y2='49' stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1='285' y1='57' x2='285' y2='70' stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1='285' y1='77' x2='285' y2='120' stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1='385' y1='42' x2='385' y2='120' stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1='485' y1='22' x2='485' y2='120' stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1='585' y1='22' x2='585' y2='120' stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1='685' y1='42' x2='685' y2='120' stroke="#000000" stroke-width="1" fill="none"/>
+    <rect x='250' y='120' width='70' height='70' stroke="#000000" stroke-width="1" fill="none"/>
+    <rect x='350' y='120' width='70' height='70' stroke="#000000" stroke-width="1" fill="none"/>
+    <rect x='450' y='120' width='70' height='70' stroke="#000000" stroke-width="1" fill="none"/>
+    <rect x='550' y='120' width='70' height='70' stroke="#000000" stroke-width="1" fill="none"/>
+    <rect x='650' y='120' width='70' height='70' stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1='90' y1='61' x2='97' y2='61' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+    <line x1='90' y1='81' x2='97' y2='81' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+    <path d="M 102 61 L 270 61 270 70" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1='270' y1='77' x2='270' y2='114' stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+    <path d="M 102 81 L 260 81 260 114" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+    <path stroke="#000000" fill="none" stroke-dasharray="5" d="M 260,120 C 270,145 300,145  310,120"/>
+    <path stroke="#000000" fill="none" stroke-dasharray="5" d="M 360,120 C 370,145 400,145  410,120"/>
+    <path stroke="#000000" fill="none" stroke-dasharray="5" d="M 460,120 C 470,145 500,145  510,120"/>
+    <path stroke="#000000" fill="none" stroke-dasharray="5" d="M 560,120 C 570,145 600,145  610,120"/>
+    <path d="M 300 120 L 300 61 370 61 370 114" stroke="#000000" stroke-width="1" fill="none"
+          marker-end="url(#Triangle)"/>
+    <path stroke="#000000" fill="none" stroke-dasharray="5" d="M 270,120 C 280,135 290,135  300,120"/>
+    <path stroke="#000000" fill="none" stroke-dasharray="5" d="M 370,120 C 380,135 390,135  400,120"/>
+    <path stroke="#000000" fill="none" stroke-dasharray="5" d="M 470,120 C 480,135 490,135  500,120"/>
+    <path stroke="#000000" fill="none" stroke-dasharray="5" d="M 570,120 C 580,135 590,135  600,120"/>
+    <path d="M 310 120 L 310 81 360 81 360 114" stroke="#000000" stroke-width="1" fill="none"
+          marker-end="url(#Triangle)"/>
+    <path d="M 400 120 L 400 61 470 61 470 114" stroke="#000000" stroke-width="1" fill="none"
+          marker-end="url(#Triangle)"/>
+    <path d="M 410 120 L 410 81 460 81 460 114" stroke="#000000" stroke-width="1" fill="none"
+          marker-end="url(#Triangle)"/>
+    <path d="M 500 120 L 500 61 570 61 570 114" stroke="#000000" stroke-width="1" fill="none"
+          marker-end="url(#Triangle)"/>
+    <path d="M 510 120 L 510 81 560 81 560 114" stroke="#000000" stroke-width="1" fill="none"
+          marker-end="url(#Triangle)"/>
+    <path d="M 600 120 L 600 61 670 61 670 114" stroke="#000000" stroke-width="1" fill="none"
+          marker-end="url(#Triangle)"/>
+    <path d="M 610 120 L 610 81 660 81 660 114" stroke="#000000" stroke-width="1" fill="none"
+          marker-end="url(#Triangle)"/>
+    <text x='400' y='210' stroke="none" fill="#000000" font-size="12">Задающие устройства</text>
+    <text x='280' y='180' stroke="none" fill="#000000" font-size="12">1</text>
+    <text x='380' y='180' stroke="none" fill="#000000" font-size="12">2</text>
+    <text x='480' y='180' stroke="none" fill="#000000" font-size="12">3</text>
+    <text x='580' y='180' stroke="none" fill="#000000" font-size="12">4</text>
+    <text x='680' y='180' stroke="none" fill="#000000" font-size="12">5</text>
+    <text x='5' y='240' stroke="none" fill="#000000">Рис. 7.12.2. Двухуровневый централизованный арбитраж шины с
+        последовательным опросом
+    </text>
 </svg>
-<p>Каждое задающее устройство связано с одной из линий запроса шины, определяющей уровень приоритета. Задающие устройства первого уровня имеют самый высокий приоритет, задающие устройства второго уровня имеют меньший приоритет. Внутри каждого уровня приоритета реализуется система последовательного опроса, в которой приоритет задающего устройства определяется расстоянием до арбитра. На <a href='#ris7_12_2'>рис. 7.12.2</a> устройства первого уровня 1, 3 и 4 имеют более высокий приоритет, нежели устройства  второго уровня 2 и 5. Устройства 1, 3 и 4, согласно системе последовательного опроса, расположены в порядке убывания их приоритета. Устройство 5 имеет самый низший приоритет, как наиболее удаленный от арбитра устройство второго уровня.</p>
-<p>Линии предоставления шины последовательно соединяют все устройства, хотя, например, устройства 3 и 4 можно было и не сооединять линией предоставления шины второго уровня, поскольку они принадлежат к линии предоставления шины первого уровня. Но технически проще реализовать именно такой подход, нежели соединять устройства в зависимости от их приоритета. В случае одновременного обращения к шине нескольких устройств арбитр предоставляет доступ к ней устройству с наивысшим приоритетом.</p>
-<p>Другая разновидность организации арбитража шины имеет не только линии запроса и предоставления шины, но и линию подтверждения приема. Устройство, получившее доступ к шине, посылает на нее сигнал подтверждения приема, снимающий сигнал занятости линий запроса и предоставления шины. Другие устройства могут запрашивать шину, не дожидаясь ее освобождения. Арбитр шины, еще до завершения передачи данных, выберет очередное устройство, которое будет находиться в состоянии ожидания освобождения шины. Следующий цикл начнется со сброса сигнала подтверждения приема. Затем очередное устройство установит сигнал подтверждения приема и займет шину. Такая организация арбитража шины требует дополнительной линии и большего количества логических схем в каждом устройстве, что окупается более рациональным использованием циклов шины.</p>
-<p>Рассмотрим <span class='teorema'>децентрализованный арбитраж шины</span> (без арбитра). В одном из его вариантов имеется множество линий запроса шины, и количество запрашивающих устройств ограничивается количеством этих линий. Линии запроса шины контролируются всеми устройствами. Устройство занимает определенную линию запроса шины. К конце каждого цикла шины оно определяет свой уровень приоритета и возможность занять шину в следующем цикле.</p>
-<p>В другом варианте децентрализованного арбитража шины (см. ниже рис. 7.12.3) устройства связаны с линией запроса шины (монтажным ИЛИ) и линией занятости (BUSY), а линия арбитража шины последовательно соединяет источник напряжения в 5 Вольт и все устройства.</p>
-<svg  height = "230px"  width = "810px">
-<defs>
-    <marker id="Triangle"
-      viewBox="0 0 10 10" refX="0" refY="5" 
-      markerUnits="strokeWidth"
-      markerWidth="8" markerHeight="8"
-      orient="auto">
-      <path d="M 0 0 L 10 5 L 0 10 z" />
-    </marker>
-    <marker id="Triangle1"
-      viewBox="0 0 10 10" refX="0" refY="5" 
-      markerUnits="strokeWidth"
-      markerWidth="8" markerHeight="8"
-      orient="auto">
-      <path d="M 10 0 L 0 5 L 10 10 z" />
-    </marker>
-  </defs>
-<line x1='20' y1='20' x2='470' y2='20' stroke="#000000" stroke-width="1" fill="none"/>
-<text x='480' y='23' stroke="none" fill="#000000" font-size="12">Линия запроса шины</text>
-<text x='480' y='43' stroke="none" fill="#000000" font-size="12">Линия занятости шины</text>
-<text x='60' y='55' stroke="none" fill="#000000" font-size="12">Линия арбитража шины</text>
-<text x='20' y='63' stroke="none" fill="#000000" font-size="12">+5 В</text>
-<line x1='20' y1='40' x2='470' y2='40' stroke="#000000" stroke-width="1" fill="none"/>
-<line x1='130' y1='20' x2='130' y2='47' stroke="#000000" stroke-width="1" fill="none"/>
-<line x1='130' y1='56' x2='130' y2='100' stroke="#000000" stroke-width="1" fill="none"/>
-<circle cx="130" cy="20" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-<line x1='140' y1='40' x2='140' y2='47' stroke="#000000" stroke-width="1" fill="none"/>
-<line x1='140' y1='56' x2='140' y2='100' stroke="#000000" stroke-width="1" fill="none"/>
-<circle cx="140" cy="40" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-<circle cx="230" cy="20" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-<line x1='230' y1='20' x2='230' y2='100' stroke="#000000" stroke-width="1" fill="none"/>
-<circle cx="240" cy="40" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-<line x1='240' y1='40' x2='240' y2='100' stroke="#000000" stroke-width="1" fill="none"/>
-<circle cx="330" cy="20" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-<line x1='330' y1='20' x2='330' y2='100' stroke="#000000" stroke-width="1" fill="none"/>
-<circle cx="340" cy="40" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-<line x1='340' y1='40' x2='340' y2='100' stroke="#000000" stroke-width="1" fill="none"/>
-<circle cx="430" cy="20" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-<line x1='430' y1='20' x2='430' y2='100' stroke="#000000" stroke-width="1" fill="none"/>
-<circle cx="440" cy="40" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-<line x1='440' y1='40' x2='440' y2='100' stroke="#000000" stroke-width="1" fill="none"/>
-<rect x='100' y='100' width='70' height='70' stroke="#000000" stroke-width="1" fill="none"/>
-<rect x='200' y='100' width='70' height='70' stroke="#000000" stroke-width="1" fill="none"/>
-<rect x='300' y='100' width='70' height='70' stroke="#000000" stroke-width="1" fill="none"/>
-<rect x='400' y='100' width='70' height='70' stroke="#000000" stroke-width="1" fill="none"/>
-<text x='133' y='160' stroke="none" fill="#000000" font-size="12">1</text>
-<text x='233' y='160' stroke="none" fill="#000000" font-size="12">2</text>
-<text x='333' y='160' stroke="none" fill="#000000" font-size="12">3</text>
-<text x='433' y='160' stroke="none" fill="#000000" font-size="12">4</text>
-<path d="M 50 60 L 110 60 110 93" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
-<path d="M 160 100 L 160 60 210 60 210 93" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
-<path d="M 260 100 L 260 60 310 60 310 93" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
-<path d="M 360 100 L 360 60 410 60 410 93" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
-<path stroke="#000000" fill="none" stroke-dasharray="5" d="M 110,100 C 125,120 145,120  160,100"/>
-<path stroke="#000000" fill="none" stroke-dasharray="5" d="M 210,100 C 225,120 245,120  260,100"/>
-<path stroke="#000000" fill="none" stroke-dasharray="5" d="M 310,100 C 325,120 345,120  360,100"/>
-<text x='92' y='97' stroke="none" fill="#000000" font-size="10">IN</text>
-<text x='162' y='97' stroke="none" fill="#000000" font-size="10">OUT</text>
-<text x='192' y='97' stroke="none" fill="#000000" font-size="10">IN</text>
-<text x='262' y='97' stroke="none" fill="#000000" font-size="10">OUT</text>
-<text x='292' y='97' stroke="none" fill="#000000" font-size="10">IN</text>
-<text x='362' y='97' stroke="none" fill="#000000" font-size="10">OUT</text>
-<text x='392' y='97' stroke="none" fill="#000000" font-size="10">IN</text>
-<text x='240' y='190' stroke="none" fill="#000000" font-size="12">Устройства</text>
-<text x='40' y='220' stroke="none" fill="#000000" >Рис. 7.12.3. Децентрализованный арбитраж шины</text>
+<p>Каждое задающее устройство связано с одной из линий запроса шины, определяющей уровень приоритета. Задающие
+    устройства первого уровня имеют самый высокий приоритет, задающие устройства второго уровня имеют меньший приоритет.
+    Внутри каждого уровня приоритета реализуется система последовательного опроса, в которой приоритет задающего
+    устройства определяется расстоянием до арбитра. На <a href='#ris7_12_2'>рис. 7.12.2</a> устройства первого уровня 1,
+    3 и 4 имеют более высокий приоритет, нежели устройства второго уровня 2 и 5. Устройства 1, 3 и 4, согласно системе
+    последовательного опроса, расположены в порядке убывания их приоритета. Устройство 5 имеет самый низший приоритет,
+    как наиболее удаленный от арбитра устройство второго уровня.</p>
+<p>Линии предоставления шины последовательно соединяют все устройства, хотя, например, устройства 3 и 4 можно было и не
+    сооединять линией предоставления шины второго уровня, поскольку они принадлежат к линии предоставления шины первого
+    уровня. Но технически проще реализовать именно такой подход, нежели соединять устройства в зависимости от их
+    приоритета. В случае одновременного обращения к шине нескольких устройств арбитр предоставляет доступ к ней
+    устройству с наивысшим приоритетом.</p>
+<p>Другая разновидность организации арбитража шины имеет не только линии запроса и предоставления шины, но и линию
+    подтверждения приема. Устройство, получившее доступ к шине, посылает на нее сигнал подтверждения приема, снимающий
+    сигнал занятости линий запроса и предоставления шины. Другие устройства могут запрашивать шину, не дожидаясь ее
+    освобождения. Арбитр шины, еще до завершения передачи данных, выберет очередное устройство, которое будет находиться
+    в состоянии ожидания освобождения шины. Следующий цикл начнется со сброса сигнала подтверждения приема. Затем
+    очередное устройство установит сигнал подтверждения приема и займет шину. Такая организация арбитража шины требует
+    дополнительной линии и большего количества логических схем в каждом устройстве, что окупается более рациональным
+    использованием циклов шины.</p>
+<p>Рассмотрим <span class='teorema'>децентрализованный арбитраж шины</span> (без арбитра). В одном из его вариантов
+    имеется множество линий запроса шины, и количество запрашивающих устройств ограничивается количеством этих линий.
+    Линии запроса шины контролируются всеми устройствами. Устройство занимает определенную линию запроса шины. К конце
+    каждого цикла шины оно определяет свой уровень приоритета и возможность занять шину в следующем цикле.</p>
+<p>В другом варианте децентрализованного арбитража шины (см. ниже рис. 7.12.3) устройства связаны с линией запроса шины
+    (монтажным ИЛИ) и линией занятости (BUSY), а линия арбитража шины последовательно соединяет источник напряжения в 5
+    Вольт и все устройства.</p>
+<svg height="230px" width="810px">
+    <defs>
+        <marker id="Triangle"
+                viewBox="0 0 10 10" refX="0" refY="5"
+                markerUnits="strokeWidth"
+                markerWidth="8" markerHeight="8"
+                orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z"/>
+        </marker>
+        <marker id="Triangle1"
+                viewBox="0 0 10 10" refX="0" refY="5"
+                markerUnits="strokeWidth"
+                markerWidth="8" markerHeight="8"
+                orient="auto">
+            <path d="M 10 0 L 0 5 L 10 10 z"/>
+        </marker>
+    </defs>
+    <line x1='20' y1='20' x2='470' y2='20' stroke="#000000" stroke-width="1" fill="none"/>
+    <text x='480' y='23' stroke="none" fill="#000000" font-size="12">Линия запроса шины</text>
+    <text x='480' y='43' stroke="none" fill="#000000" font-size="12">Линия занятости шины</text>
+    <text x='60' y='55' stroke="none" fill="#000000" font-size="12">Линия арбитража шины</text>
+    <text x='20' y='63' stroke="none" fill="#000000" font-size="12">+5 В</text>
+    <line x1='20' y1='40' x2='470' y2='40' stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1='130' y1='20' x2='130' y2='47' stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1='130' y1='56' x2='130' y2='100' stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="130" cy="20" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1='140' y1='40' x2='140' y2='47' stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1='140' y1='56' x2='140' y2='100' stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="140" cy="40" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <circle cx="230" cy="20" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1='230' y1='20' x2='230' y2='100' stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="240" cy="40" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1='240' y1='40' x2='240' y2='100' stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="330" cy="20" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1='330' y1='20' x2='330' y2='100' stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="340" cy="40" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1='340' y1='40' x2='340' y2='100' stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="430" cy="20" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1='430' y1='20' x2='430' y2='100' stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="440" cy="40" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1='440' y1='40' x2='440' y2='100' stroke="#000000" stroke-width="1" fill="none"/>
+    <rect x='100' y='100' width='70' height='70' stroke="#000000" stroke-width="1" fill="none"/>
+    <rect x='200' y='100' width='70' height='70' stroke="#000000" stroke-width="1" fill="none"/>
+    <rect x='300' y='100' width='70' height='70' stroke="#000000" stroke-width="1" fill="none"/>
+    <rect x='400' y='100' width='70' height='70' stroke="#000000" stroke-width="1" fill="none"/>
+    <text x='133' y='160' stroke="none" fill="#000000" font-size="12">1</text>
+    <text x='233' y='160' stroke="none" fill="#000000" font-size="12">2</text>
+    <text x='333' y='160' stroke="none" fill="#000000" font-size="12">3</text>
+    <text x='433' y='160' stroke="none" fill="#000000" font-size="12">4</text>
+    <path d="M 50 60 L 110 60 110 93" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+    <path d="M 160 100 L 160 60 210 60 210 93" stroke="#000000" stroke-width="1" fill="none"
+          marker-end="url(#Triangle)"/>
+    <path d="M 260 100 L 260 60 310 60 310 93" stroke="#000000" stroke-width="1" fill="none"
+          marker-end="url(#Triangle)"/>
+    <path d="M 360 100 L 360 60 410 60 410 93" stroke="#000000" stroke-width="1" fill="none"
+          marker-end="url(#Triangle)"/>
+    <path stroke="#000000" fill="none" stroke-dasharray="5" d="M 110,100 C 125,120 145,120  160,100"/>
+    <path stroke="#000000" fill="none" stroke-dasharray="5" d="M 210,100 C 225,120 245,120  260,100"/>
+    <path stroke="#000000" fill="none" stroke-dasharray="5" d="M 310,100 C 325,120 345,120  360,100"/>
+    <text x='92' y='97' stroke="none" fill="#000000" font-size="10">IN</text>
+    <text x='162' y='97' stroke="none" fill="#000000" font-size="10">OUT</text>
+    <text x='192' y='97' stroke="none" fill="#000000" font-size="10">IN</text>
+    <text x='262' y='97' stroke="none" fill="#000000" font-size="10">OUT</text>
+    <text x='292' y='97' stroke="none" fill="#000000" font-size="10">IN</text>
+    <text x='362' y='97' stroke="none" fill="#000000" font-size="10">OUT</text>
+    <text x='392' y='97' stroke="none" fill="#000000" font-size="10">IN</text>
+    <text x='240' y='190' stroke="none" fill="#000000" font-size="12">Устройства</text>
+    <text x='40' y='220' stroke="none" fill="#000000">Рис. 7.12.3. Децентрализованный арбитраж шины</text>
 </svg>
-<p>Если ни одно устройство не запрашивает шину, линия арбитража шины не размыкается ни в одном устройстве (ни на входе IN и ни на выходе OUT). Для занятия шины устройство проверяет наличие сигнала на входе IN и состояние линии занятости BUSY. Если сигнал IN установлен, а на линии BUSY снят, то устройство снимает сигнал OUT (размыкает цепь, снимает сигнал на всех входах IN и выходах OUT устройств, расположенных справа от текущего устройства) и устанавливает сигнал на линии BUSY. Тем самым текущее устройство становится задающим и посылает запрос шине. По окончании передачи данных задающее устройство снимает сигнал BUSY, устанавливает сигнал OUT (тем самым, на всех устройствах установятся сигналы IN и OUT) и теряет статус задающего устройства.</p>
-<p>При такой организации арбитража шины из всех устройств, запрашивающих шину, наивысший приоритет будет у самого левого устройства. Такая система характеризуется невысокой стоимостью и достаточно высокой скоростью работы.</p>
-<p><a href="7_11.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="7_13.html">К следующему</a> </p>
+<p>Если ни одно устройство не запрашивает шину, линия арбитража шины не размыкается ни в одном устройстве (ни на входе
+    IN и ни на выходе OUT). Для занятия шины устройство проверяет наличие сигнала на входе IN и состояние линии
+    занятости BUSY. Если сигнал IN установлен, а на линии BUSY снят, то устройство снимает сигнал OUT (размыкает цепь,
+    снимает сигнал на всех входах IN и выходах OUT устройств, расположенных справа от текущего устройства) и
+    устанавливает сигнал на линии BUSY. Тем самым текущее устройство становится задающим и посылает запрос шине. По
+    окончании передачи данных задающее устройство снимает сигнал BUSY, устанавливает сигнал OUT (тем самым, на всех
+    устройствах установятся сигналы IN и OUT) и теряет статус задающего устройства.</p>
+<p>При такой организации арбитража шины из всех устройств, запрашивающих шину, наивысший приоритет будет у самого левого
+    устройства. Такая система характеризуется невысокой стоимостью и достаточно высокой скоростью работы.</p>
+<p><a href="7_11.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="7_13.html">К следующему</a></p>
 </body>
+<script type="text/javascript">
+    MathJax.Hub.Configured()
+</script>
 </html>

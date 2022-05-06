@@ -1,371 +1,616 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" />
-<link rel='stylesheet' type="text/css" href="style.css"></link>
-<meta name="author" content="dima" />
-<meta name="description" content="блочное кодирование" />
-<meta name="keywords" content="блочное кодирование, равномерное, префиксное, избыточность кода, энтропия" />
-<title>Блочное кодирование</title>
-<script type="text/javascript">
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+  extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});
 
-function fnc(str) {
-var myWin=open("","newWindow"), i=0, j=0, n=0, len=str.length, slovo, dlina, summa=0, entrop=0, mas_alph=[],  mas_fr=[], mas_cod=[];
-/*Сортируем алфавит*/
-	function sort_mas(k) {
-	var va, vb;
-		for (var t=0;t<mas_fr[k].length;t++) {
-			for(var s=0;s<t;s++)
-				if (mas_fr[k][t]>mas_fr[k][s]) {
-					va=mas_fr[k][t];
-		 			mas_fr[k][t]=mas_fr[k][s];
-		 			mas_fr[k][s]=va;
-		 			vb=mas_alph[k][t];
-		 			mas_alph[k][t]=mas_alph[k][s];
-		 			mas_alph[k][s]=vb
-		 		}
-			}
-	}
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-/*Объединяем знаки с минимальными частотами*/
-	function join(k) {
-	var dlin=mas_alph[k].length;
-		mas_alph[k+1]=new Array(dlin-1);
-		mas_fr[k+1]=new Array(dlin-1);
-		mas_cod[k+1]=new Array(dlin-1);
-		for (var t=0;t<=dlin-3;t++)	{
-			mas_alph[k+1][t]=mas_alph[k][t];
-			mas_fr[k+1][t]=mas_fr[k][t];
-			mas_cod[k+1][t]=' ';
-		}	
-		mas_alph[k+1][dlin-2]=mas_alph[k][dlin-2]+mas_alph[k][dlin-1];
-		mas_fr[k+1][dlin-2]=mas_fr[k][dlin-2]+mas_fr[k][dlin-1];
-		mas_cod[k+1][dlin-2]=' ';
-	}
-	myWin.document.open();
-	myWin.document.write("<html><head><title>Блочное кодирование</title></head><body>");
-	myWin.document.write("<h2>Блочное кодирование</h2>");
-	myWin.document.write("<p><b>Первичное сообщение:</b></p>");
-	myWin.document.write("<p><i>",str,"</i></p>");
-	mas_alph[0]=new Array();
-	mas_fr[0]=new Array();
-	mas_cod[0]=new Array();
-/*Формируем алфавит*/	
-	while (i<len) {
-		while ((str.charCodeAt(i)<48)||((str.charCodeAt(i)>57)&&(str.charCodeAt(i)<65))&&(i<len)) { 
-			slovo=str.charAt(i);		
-			if (slovo.length>0) {
-				j=0;
-				while ((j<mas_alph[0].length)&&(mas_alph[0][j]!=slovo)) 
-					{j++;}
-			
-				if (j<mas_alph[0].length) {
-					mas_fr[0][j]++;
-				}
-		 		else {
-		 			mas_alph[0][j]=slovo;
-		 			mas_fr[0][j]=1;
-		 		}
-		 	}				
-			i++;
-	}
-		slovo='';
-		while	(((str.charCodeAt(i)>64)||((str.charCodeAt(i)>47)&&(str.charCodeAt(i)<58)))&&(i<len)) {
-			slovo=slovo+str.charAt(i);
-			i++;
-		}
-		if (slovo.length>0) {
-		j=0;
-		while ((j<mas_alph[0].length)&&(mas_alph[0][j]!=slovo))
-			{j++;}
-			
-		if (j<mas_alph[0].length)
-		  	{mas_fr[0][j]++;}
-		 else 			
-		 {
-		 	mas_alph[0][j]=slovo;
-		 	mas_fr[0][j]=1;
-		 }
-		 }
-	}
-	myWin.document.write("<p><b>База слов:</b></p>");	
-	myWin.document.write("<table border='1'>");
-	myWin.document.write("<tr>");
-	myWin.document.write("<td>Слово</td><td>Частота</td>");
-	myWin.document.write("</tr>");
-	for (i=0;i<mas_alph[0].length;i++)
-	{
-		myWin.document.write("<tr>");
-		myWin.document.write("<td>",mas_alph[0][i],"</td><td>",mas_fr[0][i],"</td>");
-		myWin.document.write("</tr>");
-		summa+=mas_fr[0][i];
-	}
-	myWin.document.write("</table>");
-	
-	/*Объединяем знаки с минимальными частотами*/
-	while (mas_alph[n].length>2) {
-		sort_mas(n);
-		join(n);
-		n++;
-	}
-	/*Сортируем*/
-	
-	sort_mas(n);
-/*Считаем префиксные коды*/
-	mas_cod[n][0]='0';
-	mas_cod[n][1]='1';
+    <meta charset="UTF-8"/>
+    <link rel='stylesheet' type="text/css" href="style.css"></link>
+    <meta name="author" content="dima"/>
+    <meta name="description" content="блочное кодирование"/>
+    <meta name="keywords" content="блочное кодирование, равномерное, префиксное, избыточность кода, энтропия"/>
+    <title>Блочное кодирование</title>
+    <script type="text/javascript">
 
-	while(n>0) {
-		for (i=0; i<mas_alph[n-1].length; i++) {
-			j=0;
-			while ((mas_alph[n][j]!=mas_alph[n-1][i]) && (j<mas_alph[n].length)) {
-				j++;
-			}
-		if (j<mas_alph[n].length)
-			mas_cod[n-1][i]=mas_cod[n][j];	
-		}
-		slovo=mas_alph[n-1][mas_alph[n-1].length-2]+mas_alph[n-1][mas_alph[n-1].length-1];
-		j=0;
-		while ((mas_alph[n][j]!=slovo) && (j<mas_alph[n].length))
-			{j++;}
-		if (j<mas_alph[n].length) {
-			mas_cod[n-1][mas_alph[n-1].length-2]=mas_cod[n][j]+'0';
-			mas_cod[n-1][mas_alph[n-1].length-1]=mas_cod[n][j]+'1';
-		}
-		n--;
-	}
-	dlina=0;
-	myWin.document.write("<p><b>Кодовая таблица:</b></p>");
-	myWin.document.write("<table border='1'>");
-	myWin.document.write("<tr>");
-	myWin.document.write("<td>Слово</td><td>Частота</td><td>Код</td>");
-	myWin.document.write("</tr>");
-	for (i=0; i<mas_alph[0].length; i++) {
-		myWin.document.write("<tr>");
-		myWin.document.write("<td>",mas_alph[0][i],"</td><td>",mas_fr[0][i],"</td><td>",mas_cod[0][i],"</td>");
-		myWin.document.write("</tr>");
-		dlina+=mas_fr[0][i]*mas_cod[0][i].length;
-		if(summa>0)
-			entrop+=-mas_fr[0][i]/summa*Math.log(mas_fr[0][i]/summa)/Math.LN2;
-	}
-	myWin.document.write("</table>");
-	entrop=String(entrop);
-	myWin.document.write("<p>Энтропия слова =",entrop.substring(0,5)," бит.</p>");	
-	myWin.document.write("<p>Длина кодовой последовательности =",dlina," бит при длине исходного сообщения ", len, " знаков.</p>");
-	myWin.document.write("</body></html>");
-	myWin.document.close();
-}
+        function fnc(str) {
+            var myWin = open("", "newWindow"), i = 0, j = 0, n = 0, len = str.length, slovo, dlina, summa = 0,
+                entrop = 0, mas_alph = [], mas_fr = [], mas_cod = [];
 
-</script>	
+            /*Сортируем алфавит*/
+            function sort_mas(k) {
+                var va, vb;
+                for (var t = 0; t < mas_fr[k].length; t++) {
+                    for (var s = 0; s < t; s++)
+                        if (mas_fr[k][t] > mas_fr[k][s]) {
+                            va = mas_fr[k][t];
+                            mas_fr[k][t] = mas_fr[k][s];
+                            mas_fr[k][s] = va;
+                            vb = mas_alph[k][t];
+                            mas_alph[k][t] = mas_alph[k][s];
+                            mas_alph[k][s] = vb
+                        }
+                }
+            }
+
+            /*Объединяем знаки с минимальными частотами*/
+            function join(k) {
+                var dlin = mas_alph[k].length;
+                mas_alph[k + 1] = new Array(dlin - 1);
+                mas_fr[k + 1] = new Array(dlin - 1);
+                mas_cod[k + 1] = new Array(dlin - 1);
+                for (var t = 0; t <= dlin - 3; t++) {
+                    mas_alph[k + 1][t] = mas_alph[k][t];
+                    mas_fr[k + 1][t] = mas_fr[k][t];
+                    mas_cod[k + 1][t] = ' ';
+                }
+                mas_alph[k + 1][dlin - 2] = mas_alph[k][dlin - 2] + mas_alph[k][dlin - 1];
+                mas_fr[k + 1][dlin - 2] = mas_fr[k][dlin - 2] + mas_fr[k][dlin - 1];
+                mas_cod[k + 1][dlin - 2] = ' ';
+            }
+
+            myWin.document.open();
+            myWin.document.write("<html><head><title>Блочное кодирование</title></head><body>");
+            myWin.document.write("<h2>Блочное кодирование</h2>");
+            myWin.document.write("<p><b>Первичное сообщение:</b></p>");
+            myWin.document.write("<p><i>", str, "</i></p>");
+            mas_alph[0] = new Array();
+            mas_fr[0] = new Array();
+            mas_cod[0] = new Array();
+            /*Формируем алфавит*/
+            while (i < len) {
+                while ((str.charCodeAt(i) < 48) || ((str.charCodeAt(i) > 57) && (str.charCodeAt(i) < 65)) && (i < len)) {
+                    slovo = str.charAt(i);
+                    if (slovo.length > 0) {
+                        j = 0;
+                        while ((j < mas_alph[0].length) && (mas_alph[0][j] != slovo)) {
+                            j++;
+                        }
+
+                        if (j < mas_alph[0].length) {
+                            mas_fr[0][j]++;
+                        } else {
+                            mas_alph[0][j] = slovo;
+                            mas_fr[0][j] = 1;
+                        }
+                    }
+                    i++;
+                }
+                slovo = '';
+                while (((str.charCodeAt(i) > 64) || ((str.charCodeAt(i) > 47) && (str.charCodeAt(i) < 58))) && (i < len)) {
+                    slovo = slovo + str.charAt(i);
+                    i++;
+                }
+                if (slovo.length > 0) {
+                    j = 0;
+                    while ((j < mas_alph[0].length) && (mas_alph[0][j] != slovo)) {
+                        j++;
+                    }
+
+                    if (j < mas_alph[0].length) {
+                        mas_fr[0][j]++;
+                    } else {
+                        mas_alph[0][j] = slovo;
+                        mas_fr[0][j] = 1;
+                    }
+                }
+            }
+            myWin.document.write("<p><b>База слов:</b></p>");
+            myWin.document.write("<table border='1'>");
+            myWin.document.write("<tr>");
+            myWin.document.write("<td>Слово</td><td>Частота</td>");
+            myWin.document.write("</tr>");
+            for (i = 0; i < mas_alph[0].length; i++) {
+                myWin.document.write("<tr>");
+                myWin.document.write("<td>", mas_alph[0][i], "</td><td>", mas_fr[0][i], "</td>");
+                myWin.document.write("</tr>");
+                summa += mas_fr[0][i];
+            }
+            myWin.document.write("</table>");
+
+            /*Объединяем знаки с минимальными частотами*/
+            while (mas_alph[n].length > 2) {
+                sort_mas(n);
+                join(n);
+                n++;
+            }
+            /*Сортируем*/
+
+            sort_mas(n);
+            /*Считаем префиксные коды*/
+            mas_cod[n][0] = '0';
+            mas_cod[n][1] = '1';
+
+            while (n > 0) {
+                for (i = 0; i < mas_alph[n - 1].length; i++) {
+                    j = 0;
+                    while ((mas_alph[n][j] != mas_alph[n - 1][i]) && (j < mas_alph[n].length)) {
+                        j++;
+                    }
+                    if (j < mas_alph[n].length)
+                        mas_cod[n - 1][i] = mas_cod[n][j];
+                }
+                slovo = mas_alph[n - 1][mas_alph[n - 1].length - 2] + mas_alph[n - 1][mas_alph[n - 1].length - 1];
+                j = 0;
+                while ((mas_alph[n][j] != slovo) && (j < mas_alph[n].length)) {
+                    j++;
+                }
+                if (j < mas_alph[n].length) {
+                    mas_cod[n - 1][mas_alph[n - 1].length - 2] = mas_cod[n][j] + '0';
+                    mas_cod[n - 1][mas_alph[n - 1].length - 1] = mas_cod[n][j] + '1';
+                }
+                n--;
+            }
+            dlina = 0;
+            myWin.document.write("<p><b>Кодовая таблица:</b></p>");
+            myWin.document.write("<table border='1'>");
+            myWin.document.write("<tr>");
+            myWin.document.write("<td>Слово</td><td>Частота</td><td>Код</td>");
+            myWin.document.write("</tr>");
+            for (i = 0; i < mas_alph[0].length; i++) {
+                myWin.document.write("<tr>");
+                myWin.document.write("<td>", mas_alph[0][i], "</td><td>", mas_fr[0][i], "</td><td>", mas_cod[0][i], "</td>");
+                myWin.document.write("</tr>");
+                dlina += mas_fr[0][i] * mas_cod[0][i].length;
+                if (summa > 0)
+                    entrop += -mas_fr[0][i] / summa * Math.log(mas_fr[0][i] / summa) / Math.LN2;
+            }
+            myWin.document.write("</table>");
+            entrop = String(entrop);
+            myWin.document.write("<p>Энтропия слова =", entrop.substring(0, 5), " бит.</p>");
+            myWin.document.write("<p>Длина кодовой последовательности =", dlina, " бит при длине исходного сообщения ", len, " знаков.</p>");
+            myWin.document.write("</body></html>");
+            myWin.document.close();
+        }
+
+    </script>
 </head>
 <body>
 <p><a href="3_6.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="4_1.html">К следующему</a></p>
 <h2>3.7. Блочное кодирование</h2>
-<p>При алфавитном кодировании мы имеем кодовую последовательность отдельных символов первичного сообщения. Возникает вопрос целесообразности кодирования не отдельных символов сообщения, а их комбинаций, например, слов. Такую комбинацию символов  первичного сообщения назовем <span class="termin">блоком</span>, а процесс их кодирования &#8212; <span class="termin">блочным кодированием</span>. Очевидно можно использовать как равномерное, так и неравномерное префиксное кодирование блоков. Поскольку блоки при блочном кодировании будут выполнять роль символов, то можно вычислить <span class="termin">энтропию  блока</span> аналогично вычислению <a href="2_2.html#f2_2_2">энтропии символа</a>.</p>
-<p>Вначале рассмотрим равномерное кодирование слов. Вычислим необходимую длину кода для кодирования, например, словарного запаса из <var>18000</var> слов:
-<table class='formula'><tr>
-<td class='formula'>
-<math display="block">
-<mrow>
-  <mi>K</mi><mo>=</mo>
-  <mrow>
-  		<msub><mi>log</mi><mn>2</mn></msub><mo>&#x2061;</mo>
-  <mn>18000</mn>
-  </mrow>
-  <mo>&#8776;</mo>
-  <mn>14.4</mn>
-</mrow><mo>.</mo>
-</math></td>
-<td class="nomer">(3.7.1)</td>
-</tr></table></p>
-<p>Следовательно, код длиной в <var>15</var> бит позволяет закодировать более <var>18000</var> слов. Очевидно, что в (3.7.1) величина <var>K</var> является энтропией слова в нулевом приближении. Пусть средняя длина слова в языке составляет около <var>6</var> букв. Тогда на каждую букву сообщения приходится в среднем 
-<math display='inline'>
-<mrow>
-	<mfrac><mn>15</mn><mn>6</mn></mfrac>
-	<mo>=</mo><mn>2.5</mn>
-</mrow>
-</math>
- бита. Выигрыш кажется очевидным, поскольку при байтовом кодировании каждая буква кодировалась <var>8</var> битами, а при префиксном алфавитном кодировании сообщений на русском языке средняя длина кода составляет около <var>4.3</var> бита.</p>
-<p>Еще большего эффекта можно добиться при префиксном кодировании слов, в чем можно убедиться с помощью следующего калькулятора, который сначала составляет словарную базу слов со статистикой, затем строит кодовую таблицу слов <a href="3_5.html#haphmen">методом Хаффмена</a>, вычисляет <a href="2_2.html#entropiy">энтропию</a> слова по Шеннону и длину кодовой последовательности:</p>
-<form id="fff">
-Введите сообщение:<br />
-	<textarea rows="3" id="txt" cols="80"></textarea><br />
-	<input type="button" value="Закодировать" onclick="fnc(txt.value)" />
-	<input type="reset" value="Сброс" />
-</form>
-<p>Длина кодовой последовательности при префиксном кодировании слов оказывается ненамного больше количества символов в исходном тексте. Но при этом следует учесть очевидные минусы кодирования слов. Во-первых, придется хранить, передавать и постоянно обращаться к огромной кодовой таблице, следствием чего является и невысокая скорость кодирования, передачи и декодирования, и необходимость хранения этой кодовой таблицы, помимо закодированного сообщения. Во-вторых, придется кодировать и производные основных слов, например, падежи существительных, что еще более увеличивает кодовую таблицу. В-третьих, возникает проблема стандартизации таких таблиц. В-четвертых, можно закодировать только те слова, которые имеются в кодовой таблице, тогда как при алфавитном кодировании можно закодировать любое слово.</p>
-<p>На практике для повышения степени сжатия кода используется кодирование блоков равномерной длины. Справедлива (доказательство см. в <a href="litra.html#16">[17], с. 22</a>):</p>
-<p><span class="name">Теорема 3.7.1.</span><span class="teorema"> По выбранному значению &#949;&gt;0 можно выбрать такое <var>s</var>, что если разбить все сообщение на блоки длиной <var>s</var>, то кодированием Шеннона-Фано таких блоков, рассматриваемых как единицы сообщения, можно сделать среднее количество бит на единицу сообщения большим энтропии менее, чем на &#949;.</span></p>
-<p>Ниже, в примере 3.7.1, будем предполагать, что первичное сообщение представляет собой уже закодированную последовательность из &quot;0&quot; и &quot;1&quot; длины <var>n</var> (например, байтовый код некоторого сообщения), которую можно интерпретировать как последовательность одинаково распределенных и независимых дискретных случайных величин 
-<math display='inline'>
-<mrow>
-	<msub><mi>X</mi><mn>1</mn></msub>
-	<mo>,</mo><mi>&#8230;</mi><mo>,</mo><msub><mi>X</mi><mi>n</mi></msub>
-</mrow>
-</math>.</p> 
-<div class="examp">
-<p><span class="primer">Пример 3.7.1</span>. Пусть дискретные случайные величины 
-<math display='inline'>
-<mrow>
-<msub><mi>X</mi><mn>1</mn></msub><mo>,</mo><mi>&#8230;</mi><mo>,</mo><msub><mi>X</mi><mi>n</mi></msub>
-</mrow>
-</math>
-независимы и подчиняются следующему закону распределения:
-<table align="center" border="1" width="150">
-<caption>Таблица 3.7.1</caption>
-<tr>
-<td>
-<math display='inline'>
-<msub><mi>X</mi><mi>i</mi></msub>
-</math>
-</td><td>0</td><td>1</td>
-</tr>
-<tr>
-<td><var>P</var></td><td>0.75</td><td>0.25</td>
-</tr>
+<p>При алфавитном кодировании мы имеем кодовую последовательность отдельных символов первичного сообщения. Возникает
+    вопрос целесообразности кодирования не отдельных символов сообщения, а их комбинаций, например, слов. Такую
+    комбинацию символов первичного сообщения назовем <span class="termin">блоком</span>, а процесс их кодирования
+    &#8212; <span class="termin">блочным кодированием</span>. Очевидно можно использовать как равномерное, так и
+    неравномерное префиксное кодирование блоков. Поскольку блоки при блочном кодировании будут выполнять роль символов,
+    то можно вычислить <span class="termin">энтропию  блока</span> аналогично вычислению <a href="2_2.html#f2_2_2">энтропии
+        символа</a>.</p>
+<p>Вначале рассмотрим равномерное кодирование слов. Вычислим необходимую длину кода для кодирования, например,
+    словарного запаса из <var>18000</var> слов:
+<table class='formula'>
+    <tr>
+        <td class='formula'>
+            <math display="block">
+                <mrow>
+                    <mi>K</mi>
+                    <mo>=</mo>
+                    <mrow>
+                        <msub>
+                            <mi>log</mi>
+                            <mn>2</mn>
+                        </msub>
+                        <mo>&#x2061;</mo>
+                        <mn>18000</mn>
+                    </mrow>
+                    <mo>&#8776;</mo>
+                    <mn>14.4</mn>
+                </mrow>
+                <mo>.</mo>
+            </math>
+        </td>
+        <td class="nomer">(3.7.1)</td>
+    </tr>
 </table>
-<math display='inline'>
-<mi>i</mi><mo>=</mo><mrow><mn>1</mn><mo>,</mo><mi>&#8230;</mi><mo>,</mo><mi>n</mi></mrow>
-</math>.</p>
-<p>Требуется вычислить среднюю длину кода при кодировании блоками из двух бит.</p>
-<p><span class="primer">Решение.</span> Найдем энтропию 
-<math display='inline'>
-<mrow>
-	<msub><mi>X</mi><mi>i</mi></msub>
-	<mo>,</mo>
-	<mrow>
-		<mi>i</mi><mo>=</mo><mrow><mn>1</mn><mo>,</mo><mi>&#8230;</mi><mo>,</mo><mi>n</mi></mrow>
-	</mrow>
-	<mo>:</mo>
-	<mrow>
-		<mrow>
-			<mi>H</mi>
-			<mo>&#x2061;</mo>
-			<mrow>
-   			<mo>(</mo><msub><mi>X</mi><mi>i</mi></msub><mo>)</mo>
-  			</mrow>
-  		</mrow>
-  		<mo>=</mo>
-  		<mrow>
-	  		<mo>−</mo>
-	  		<mrow>
-	  			<mn>0.75</mn><mo>&#x2062;</mo><msub><mi>log</mi><mn>2</mn></msub><mo>&#x2061;</mo><mn>0.75</mn>
-	  		</mrow>
-  			<mo>−</mo>
-  			<mrow>
-  				<mn>0.25</mn><mo>&#x2062;</mo><msub><mi>log</mi><mn>2</mn></msub><mo>&#x2061;</mo><mn>0.25</mn>
-  			</mrow>
-  		</mrow>
-  		<mo>&#8776;</mo>
-  		<mn>0.811</mn>
-	</mrow>
-</mrow>
-</math>
- бит.
 </p>
-<p>Минимальная длина кода для 
-<math display='inline'>
-<mrow>
-	<msub><mi>X</mi><mi>i</mi></msub><mo>,</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn><mo>,</mo><mi>&#8230;</mi><mo>,</mo><mi>n</mi></mrow><mo>,</mo>
-</mrow>
-</math>
-составляет 1 бит (коды &quot;0&quot; или &quot;1&quot;). Разобъем сообщение на блоки длины 2. Закон распределения вероятностей и кодирование для двумерной случайной величины 
-<math display='inline'>
-<mrow>
-  <mover><mi>X</mi><mo>&#8594;</mo></mover>
-  <mo>=</mo>
-  <mfenced>
-    <msub>
-      <mi>X</mi>
-      <mi>i</mi>
-    </msub>
-    <msub>
-      <mi>X</mi>
-      <mi>j</mi>
-    </msub>
-  </mfenced>
-  <mo>,</mo>
-  <mrow>
-  		<mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow>  
-  		<mo>=</mo>
-  		<mrow><mn>1</mn><mo>,</mo><mi>&#8230;</mi><mo>,</mo><mi>n</mi></mrow>
-  	</mrow>	
-</mrow>
-</math>
- следующий:</p>
-<table align="center" border="1">
-<caption>Таблица 3.7.2</caption>
-<tr align="center">
-<td>
-<math display='inline'>
-<mfenced><msub><mi>X</mi><mi>i</mi></msub><msub><mi>X</mi><mi>j</mi></msub></mfenced>
-</math>
-</td><td>00</td><td>01</td><td>10</td><td>11</td>
-</tr>
-<tr align="center">
-<td><var>p</var></td><td>
-<math display='inline'><msup><mn>0.75</mn><mn>2</mn></msup></math>
-</td>
-<td>
-<math display='inline'><mrow><mn>0.75</mn><mo>&#183;</mo><mn>0.25</mn></mrow></math>
-</td>
-<td>
-<math display='inline'><mrow><mn>0.25</mn><mo>&#183;</mo><mn>0.75</mn></mrow></math>
-</td>
-<td>
-<math display='inline'><msup><mn>0.25</mn><mn>2</mn></msup></math>
-</td>
-</tr>
-<tr align="center">
-<td>Код</td><td>0</td><td>10</td><td>110</td><td>111</td>
-</tr>
-<tr align="center">
-<td>Длина кода</td><td>1</td><td>2</td><td>3</td><td>3</td>
-</tr>
-</table>
-<p>Вычислим среднюю длину кода блока: 
-<math display='inline'>
-<mrow>
-	<msup><mi>K</mi><mfenced><mn>2</mn></mfenced></msup>
-	<mo>=</mo>
-	<mrow>
-		<mrow><msup><mn>0.75</mn><mn>2</mn></msup><mo>&#183;</mo><mn>1</mn></mrow>
-		<mo>+</mo>
-		<mrow><mn>0.75</mn><mo>&#183;</mo><mn>0.25</mn><mo>&#183;</mo><mn>2</mn></mrow>
-		<mo>+</mo>
-		<mrow><mn>0.75</mn><mo>&#183;</mo><mn>0.25</mn><mo>&#183;</mo><mn>3</mn></mrow>
-		<mo>+</mo>
-		<mrow><msup><mn>0.25</mn><mn>2</mn></msup><mo>&#183;</mo><mn>3</mn></mrow>
-	</mrow>
-	<mo>&#8776;</mo>
-	<mn>1.6875</mn>
-</mrow>
-</math> бит.</p>
-<p>Тогда средняя длина кода знака сообщения равна половине средней длины блока: 
-<math display='inline'>
-<mrow>
-	<mfrac>
-		<msup><mi>K</mi><mfenced><mn>2</mn></mfenced></msup>
-		<mn>2</mn>
-	</mfrac>
-	<mo>&#8776;</mo>
-	<mn>0.8437</mn>
-</mrow>
-</math>
- бит, что меньше, чем при алфавитном кодировании. Для блоков длины <var>3</var> можно добиться средней длины кода <var>0.823</var> бита, для блоков длины <var>4</var> &#8212; <var>0.818</var> бит и т.д.</p>
+<p>Следовательно, код длиной в <var>15</var> бит позволяет закодировать более <var>18000</var> слов. Очевидно, что в
+    (3.7.1) величина <var>K</var> является энтропией слова в нулевом приближении. Пусть средняя длина слова в языке
+    составляет около <var>6</var> букв. Тогда на каждую букву сообщения приходится в среднем
+    <math display='inline'>
+        <mrow>
+            <mfrac>
+                <mn>15</mn>
+                <mn>6</mn>
+            </mfrac>
+            <mo>=</mo>
+            <mn>2.5</mn>
+        </mrow>
+    </math>
+    бита. Выигрыш кажется очевидным, поскольку при байтовом кодировании каждая буква кодировалась <var>8</var> битами, а
+    при префиксном алфавитном кодировании сообщений на русском языке средняя длина кода составляет около <var>4.3</var>
+    бита.
+</p>
+<p>Еще большего эффекта можно добиться при префиксном кодировании слов, в чем можно убедиться с помощью следующего
+    калькулятора, который сначала составляет словарную базу слов со статистикой, затем строит кодовую таблицу слов <a
+            href="3_5.html#haphmen">методом Хаффмена</a>, вычисляет <a href="2_2.html#entropiy">энтропию</a> слова по
+    Шеннону и длину кодовой последовательности:</p>
+<form id="fff">
+    Введите сообщение:<br/>
+    <textarea rows="3" id="txt" cols="80"></textarea><br/>
+    <input type="button" value="Закодировать" onclick="fnc(txt.value)"/>
+    <input type="reset" value="Сброс"/>
+</form>
+<p>Длина кодовой последовательности при префиксном кодировании слов оказывается ненамного больше количества символов в
+    исходном тексте. Но при этом следует учесть очевидные минусы кодирования слов. Во-первых, придется хранить,
+    передавать и постоянно обращаться к огромной кодовой таблице, следствием чего является и невысокая скорость
+    кодирования, передачи и декодирования, и необходимость хранения этой кодовой таблицы, помимо закодированного
+    сообщения. Во-вторых, придется кодировать и производные основных слов, например, падежи существительных, что еще
+    более увеличивает кодовую таблицу. В-третьих, возникает проблема стандартизации таких таблиц. В-четвертых, можно
+    закодировать только те слова, которые имеются в кодовой таблице, тогда как при алфавитном кодировании можно
+    закодировать любое слово.</p>
+<p>На практике для повышения степени сжатия кода используется кодирование блоков равномерной длины. Справедлива
+    (доказательство см. в <a href="litra.html#16">[17], с. 22</a>):</p>
+<p><span class="name">Теорема 3.7.1.</span><span class="teorema"> По выбранному значению &#949;&gt;0 можно выбрать такое <var>s</var>, что если разбить все сообщение на блоки длиной <var>s</var>, то кодированием Шеннона-Фано таких блоков, рассматриваемых как единицы сообщения, можно сделать среднее количество бит на единицу сообщения большим энтропии менее, чем на &#949;.</span>
+</p>
+<p>Ниже, в примере 3.7.1, будем предполагать, что первичное сообщение представляет собой уже закодированную
+    последовательность из &quot;0&quot; и &quot;1&quot; длины <var>n</var> (например, байтовый код некоторого
+    сообщения), которую можно интерпретировать как последовательность одинаково распределенных и независимых дискретных
+    случайных величин
+    <math display='inline'>
+        <mrow>
+            <msub>
+                <mi>X</mi>
+                <mn>1</mn>
+            </msub>
+            <mo>,</mo>
+            <mi>&#8230;</mi>
+            <mo>,</mo>
+            <msub>
+                <mi>X</mi>
+                <mi>n</mi>
+            </msub>
+        </mrow>
+    </math>
+    .
+</p>
+<div class="examp">
+    <p><span class="primer">Пример 3.7.1</span>. Пусть дискретные случайные величины
+        <math display='inline'>
+            <mrow>
+                <msub>
+                    <mi>X</mi>
+                    <mn>1</mn>
+                </msub>
+                <mo>,</mo>
+                <mi>&#8230;</mi>
+                <mo>,</mo>
+                <msub>
+                    <mi>X</mi>
+                    <mi>n</mi>
+                </msub>
+            </mrow>
+        </math>
+        независимы и подчиняются следующему закону распределения:
+    <table align="center" border="1" width="150">
+        <caption>Таблица 3.7.1</caption>
+        <tr>
+            <td>
+                <math display='inline'>
+                    <msub>
+                        <mi>X</mi>
+                        <mi>i</mi>
+                    </msub>
+                </math>
+            </td>
+            <td>0</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td><var>P</var></td>
+            <td>0.75</td>
+            <td>0.25</td>
+        </tr>
+    </table>
+    <math display='inline'>
+        <mi>i</mi>
+        <mo>=</mo>
+        <mrow>
+            <mn>1</mn>
+            <mo>,</mo>
+            <mi>&#8230;</mi>
+            <mo>,</mo>
+            <mi>n</mi>
+        </mrow>
+    </math>
+    .</p>
+    <p>Требуется вычислить среднюю длину кода при кодировании блоками из двух бит.</p>
+    <p><span class="primer">Решение.</span> Найдем энтропию
+        <math display='inline'>
+            <mrow>
+                <msub>
+                    <mi>X</mi>
+                    <mi>i</mi>
+                </msub>
+                <mo>,</mo>
+                <mrow>
+                    <mi>i</mi>
+                    <mo>=</mo>
+                    <mrow>
+                        <mn>1</mn>
+                        <mo>,</mo>
+                        <mi>&#8230;</mi>
+                        <mo>,</mo>
+                        <mi>n</mi>
+                    </mrow>
+                </mrow>
+                <mo>:</mo>
+                <mrow>
+                    <mrow>
+                        <mi>H</mi>
+                        <mo>&#x2061;</mo>
+                        <mrow>
+                            <mo>(</mo>
+                            <msub>
+                                <mi>X</mi>
+                                <mi>i</mi>
+                            </msub>
+                            <mo>)</mo>
+                        </mrow>
+                    </mrow>
+                    <mo>=</mo>
+                    <mrow>
+                        <mo>−</mo>
+                        <mrow>
+                            <mn>0.75</mn>
+                            <mo>&#x2062;</mo>
+                            <msub>
+                                <mi>log</mi>
+                                <mn>2</mn>
+                            </msub>
+                            <mo>&#x2061;</mo>
+                            <mn>0.75</mn>
+                        </mrow>
+                        <mo>−</mo>
+                        <mrow>
+                            <mn>0.25</mn>
+                            <mo>&#x2062;</mo>
+                            <msub>
+                                <mi>log</mi>
+                                <mn>2</mn>
+                            </msub>
+                            <mo>&#x2061;</mo>
+                            <mn>0.25</mn>
+                        </mrow>
+                    </mrow>
+                    <mo>&#8776;</mo>
+                    <mn>0.811</mn>
+                </mrow>
+            </mrow>
+        </math>
+        бит.
+    </p>
+    <p>Минимальная длина кода для
+        <math display='inline'>
+            <mrow>
+                <msub>
+                    <mi>X</mi>
+                    <mi>i</mi>
+                </msub>
+                <mo>,</mo>
+                <mrow>
+                    <mi>i</mi>
+                    <mo>=</mo>
+                    <mn>1</mn>
+                    <mo>,</mo>
+                    <mi>&#8230;</mi>
+                    <mo>,</mo>
+                    <mi>n</mi>
+                </mrow>
+                <mo>,</mo>
+            </mrow>
+        </math>
+        составляет 1 бит (коды &quot;0&quot; или &quot;1&quot;). Разобъем сообщение на блоки длины 2. Закон
+        распределения вероятностей и кодирование для двумерной случайной величины
+        <math display='inline'>
+            <mrow>
+                <mover>
+                    <mi>X</mi>
+                    <mo>&#8594;</mo>
+                </mover>
+                <mo>=</mo>
+                <mfenced>
+                    <msub>
+                        <mi>X</mi>
+                        <mi>i</mi>
+                    </msub>
+                    <msub>
+                        <mi>X</mi>
+                        <mi>j</mi>
+                    </msub>
+                </mfenced>
+                <mo>,</mo>
+                <mrow>
+                    <mrow>
+                        <mi>i</mi>
+                        <mo>,</mo>
+                        <mi>j</mi>
+                    </mrow>
+                    <mo>=</mo>
+                    <mrow>
+                        <mn>1</mn>
+                        <mo>,</mo>
+                        <mi>&#8230;</mi>
+                        <mo>,</mo>
+                        <mi>n</mi>
+                    </mrow>
+                </mrow>
+            </mrow>
+        </math>
+        следующий:
+    </p>
+    <table align="center" border="1">
+        <caption>Таблица 3.7.2</caption>
+        <tr align="center">
+            <td>
+                <math display='inline'>
+                    <mfenced>
+                        <msub>
+                            <mi>X</mi>
+                            <mi>i</mi>
+                        </msub>
+                        <msub>
+                            <mi>X</mi>
+                            <mi>j</mi>
+                        </msub>
+                    </mfenced>
+                </math>
+            </td>
+            <td>00</td>
+            <td>01</td>
+            <td>10</td>
+            <td>11</td>
+        </tr>
+        <tr align="center">
+            <td><var>p</var></td>
+            <td>
+                <math display='inline'>
+                    <msup>
+                        <mn>0.75</mn>
+                        <mn>2</mn>
+                    </msup>
+                </math>
+            </td>
+            <td>
+                <math display='inline'>
+                    <mrow>
+                        <mn>0.75</mn>
+                        <mo>&#183;</mo>
+                        <mn>0.25</mn>
+                    </mrow>
+                </math>
+            </td>
+            <td>
+                <math display='inline'>
+                    <mrow>
+                        <mn>0.25</mn>
+                        <mo>&#183;</mo>
+                        <mn>0.75</mn>
+                    </mrow>
+                </math>
+            </td>
+            <td>
+                <math display='inline'>
+                    <msup>
+                        <mn>0.25</mn>
+                        <mn>2</mn>
+                    </msup>
+                </math>
+            </td>
+        </tr>
+        <tr align="center">
+            <td>Код</td>
+            <td>0</td>
+            <td>10</td>
+            <td>110</td>
+            <td>111</td>
+        </tr>
+        <tr align="center">
+            <td>Длина кода</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>3</td>
+        </tr>
+    </table>
+    <p>Вычислим среднюю длину кода блока:
+        <math display='inline'>
+            <mrow>
+                <msup>
+                    <mi>K</mi>
+                    <mfenced>
+                        <mn>2</mn>
+                    </mfenced>
+                </msup>
+                <mo>=</mo>
+                <mrow>
+                    <mrow>
+                        <msup>
+                            <mn>0.75</mn>
+                            <mn>2</mn>
+                        </msup>
+                        <mo>&#183;</mo>
+                        <mn>1</mn>
+                    </mrow>
+                    <mo>+</mo>
+                    <mrow>
+                        <mn>0.75</mn>
+                        <mo>&#183;</mo>
+                        <mn>0.25</mn>
+                        <mo>&#183;</mo>
+                        <mn>2</mn>
+                    </mrow>
+                    <mo>+</mo>
+                    <mrow>
+                        <mn>0.75</mn>
+                        <mo>&#183;</mo>
+                        <mn>0.25</mn>
+                        <mo>&#183;</mo>
+                        <mn>3</mn>
+                    </mrow>
+                    <mo>+</mo>
+                    <mrow>
+                        <msup>
+                            <mn>0.25</mn>
+                            <mn>2</mn>
+                        </msup>
+                        <mo>&#183;</mo>
+                        <mn>3</mn>
+                    </mrow>
+                </mrow>
+                <mo>&#8776;</mo>
+                <mn>1.6875</mn>
+            </mrow>
+        </math>
+        бит.
+    </p>
+    <p>Тогда средняя длина кода знака сообщения равна половине средней длины блока:
+        <math display='inline'>
+            <mrow>
+                <mfrac>
+                    <msup>
+                        <mi>K</mi>
+                        <mfenced>
+                            <mn>2</mn>
+                        </mfenced>
+                    </msup>
+                    <mn>2</mn>
+                </mfrac>
+                <mo>&#8776;</mo>
+                <mn>0.8437</mn>
+            </mrow>
+        </math>
+        бит, что меньше, чем при алфавитном кодировании. Для блоков длины <var>3</var> можно добиться средней длины кода
+        <var>0.823</var> бита, для блоков длины <var>4</var> &#8212; <var>0.818</var> бит и т.д.
+    </p>
 </div>
 <h3>Упражнения</h3>
 <ol>
-<li>Разбейте сообщение &quot;мама мыла раму&quot; на блоки длиной 2 символа (3 символа) и примените к нему равномерное блочное кодирование. Вычислите энтропию блока и сравните с длиной кода блока.</li>
-<li>Разбейте сообщение &quot;мама мыла раму&quot; на блоки длиной 2 символа (3 символа) и примените к блокам префиксное кодирование Хаффмена. Энтропию блока сравните со средней длиной кода блока.</li>
-<li>
-В лексиконе «людоедки» Эллочки Щукиной из романа Ильфа и Петрова &quot;12 стульев&quot; было 17 словосочетаний (&quot;Хо-хо!&quot;, &quot;Ого!&quot;, &quot;Блеск!&quot;, &quot;Шутишь, парниша&quot;, &quot;У вас вся спина белая&quot; и пр.).
-<ul>
-<li>Определите длину кода при равномерном словесном кодировании 17 словосочетаний.</li>
-<li>Предложите вариант равномерного кодирования данного словарного запаса.</li>
-</ul>
-</li>
+    <li>Разбейте сообщение &quot;мама мыла раму&quot; на блоки длиной 2 символа (3 символа) и примените к нему
+        равномерное блочное кодирование. Вычислите энтропию блока и сравните с длиной кода блока.
+    </li>
+    <li>Разбейте сообщение &quot;мама мыла раму&quot; на блоки длиной 2 символа (3 символа) и примените к блокам
+        префиксное кодирование Хаффмена. Энтропию блока сравните со средней длиной кода блока.
+    </li>
+    <li>
+        В лексиконе «людоедки» Эллочки Щукиной из романа Ильфа и Петрова &quot;12 стульев&quot; было 17 словосочетаний (&quot;Хо-хо!&quot;,
+        &quot;Ого!&quot;, &quot;Блеск!&quot;, &quot;Шутишь, парниша&quot;, &quot;У вас вся спина белая&quot; и пр.).
+        <ul>
+            <li>Определите длину кода при равномерном словесном кодировании 17 словосочетаний.</li>
+            <li>Предложите вариант равномерного кодирования данного словарного запаса.</li>
+        </ul>
+    </li>
 </ol>
 <p><a href="3_6.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="4_1.html">К следующему</a></p>
 </body>
+<script type="text/javascript">
+    MathJax.Hub.Configured()
+</script>
 </html>

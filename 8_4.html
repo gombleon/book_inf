@@ -1,398 +1,490 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset='UTF-8' />
-<link rel='stylesheet' type='text/css' href='style.css' />
-<meta name='author' content='leonid' />
-<title>Технология пошаговой разработки модулей</title>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+  extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});
+
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <meta charset='UTF-8'/>
+    <link rel='stylesheet' type='text/css' href='style.css'/>
+    <meta name='author' content='leonid'/>
+    <title>Технология пошаговой разработки модулей</title>
 </head>
 <body>
-<p><a href="8_3.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_5.html">К следующему</a> </p>
+<p><a href="8_3.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_5.html">К следующему</a></p>
 <h2>8.4. Технология пошаговой разработки модулей</h2>
-<p>Шаг 1: в новом документе пишем <kbd>module</kbd> и нажимаем функциональную кнопку <kbd>F5</kbd>. В результате получаем шаблон модуля:</p>
+<p>Шаг 1: в новом документе пишем <kbd>module</kbd> и нажимаем функциональную кнопку <kbd>F5</kbd>. В результате
+    получаем шаблон модуля:</p>
 <code>
-<p class='ind0'>MODULE;</p>
-<p class='ind1'>IMPORT Log:=StdLog, In:= , Math;</p>
-<p class='ind0'>END.</p>
+    <p class='ind0'>MODULE;</p>
+    <p class='ind1'>IMPORT Log:=StdLog, In:= , Math;</p>
+    <p class='ind0'>END.</p>
 </code>
 
 <p>Зададим имя модуля в первой строке и в последней строке повторим его, тем самым обозначив границы модуля:</p>
 <code>
-<p class='ind0'>MODULE вычисления;</p>
-<p class='ind1'>IMPORT Log:=StdLog, In:= , Math;</p>
-<p class='ind0'>END вычисления.</p>
+    <p class='ind0'>MODULE вычисления;</p>
+    <p class='ind1'>IMPORT Log:=StdLog, In:= , Math;</p>
+    <p class='ind0'>END вычисления.</p>
 </code>
-<p>Теперь следует сохранить файл и исполнить команду компиляции модуля, в результате чего компилятор выполнит синтаксический анализ текста модуля. Если синтаксических ошибок не будет обнаружено, то компилятор создаст файл в машинных командах. В случае же обнаружения синтаксической ошибки &#8212; выведет в Рабочий журнал сообщение об ошибке. Компилируется только модуль, а текст вне модуля игнорируется компилятором.</p>
-<p>Вторая строка задает команду импортирования модулей, позволяющую использовать в модуле процедуры и переменные импортированных модулей. Модуль StdLog, с псевдонимом Log, содержит процедуры для работы с Рабочим журналом. Документация модуля вызывается следующим образом: двойным щелчком левой кнопкой мыши по StdLog выделить имя модуля, затем правой кнопкой мыши вызвать контекстное меню и выбрать пункт Документация. Здесь и далее мы не будем описывать процедуры из импортированных модулей, полагая, что студент самостоятельно прочтет их в Документации.</p>
-<p>Команда <kbd>VAR</kbd> объявляет переменные в модуле, что означает резервирование областей памяти под переменные. Задание типа переменной означает указание размера разрядной сетки под переменную и способа кодирования ее значения.</p>
-<p>Значение переменной присваивается последовательностью :=. Знак = означает команду сравнения левой и правой частей выражения, которая возвращает логическое значение TRUE при совпадении левой части с правой, и FALSE &#8212; в противном случае.</p>
-<p><kbd>BEGIN</kbd> и <kbd>END</kbd> выполняют роль логических скобок. Каждую команду завершает, за некоторыми исключениями, знак ;. Обращаем внимание на важную роль отступов, которые призваны выделить вложения одних элементов модуля в другие и повысить читабельность текста модуля (проверка правильности задания отступов включается или отключается из пункта меню Программирование). Компонентный Паскаль различает прописные и строчные буквы. Имена объектов в Компонентном Паскале задаются буквами латинского алфавита и кириллицы, цифрами или знаком подчеркивания. Первый символ имени либо буква, либо знак подчеркивания. В сообщении о языке ознакомьтесь со списком зарезервированнных слов, которые нельзя использовать в качестве имен переменных или процедур. Текст, заключенный в круглые скобки и знак *, игнорируется компилятором и служит для комментирования ключевых команд. Комментарии играют важную роль в качестве пояснения логики работы модуля.</p>
-<p>Шаг 2: запишем в модуле с соблюдением отступа <kbd>procedure</kbd> и нажмем функциональную кнопку <kbd>F5</kbd>. В результате получаем в модуле шаблон процедуры:</p>
+<p>Теперь следует сохранить файл и исполнить команду компиляции модуля, в результате чего компилятор выполнит
+    синтаксический анализ текста модуля. Если синтаксических ошибок не будет обнаружено, то компилятор создаст файл в
+    машинных командах. В случае же обнаружения синтаксической ошибки &#8212; выведет в Рабочий журнал сообщение об
+    ошибке. Компилируется только модуль, а текст вне модуля игнорируется компилятором.</p>
+<p>Вторая строка задает команду импортирования модулей, позволяющую использовать в модуле процедуры и переменные
+    импортированных модулей. Модуль StdLog, с псевдонимом Log, содержит процедуры для работы с Рабочим журналом.
+    Документация модуля вызывается следующим образом: двойным щелчком левой кнопкой мыши по StdLog выделить имя модуля,
+    затем правой кнопкой мыши вызвать контекстное меню и выбрать пункт Документация. Здесь и далее мы не будем описывать
+    процедуры из импортированных модулей, полагая, что студент самостоятельно прочтет их в Документации.</p>
+<p>Команда <kbd>VAR</kbd> объявляет переменные в модуле, что означает резервирование областей памяти под переменные.
+    Задание типа переменной означает указание размера разрядной сетки под переменную и способа кодирования ее значения.
+</p>
+<p>Значение переменной присваивается последовательностью :=. Знак = означает команду сравнения левой и правой частей
+    выражения, которая возвращает логическое значение TRUE при совпадении левой части с правой, и FALSE &#8212; в
+    противном случае.</p>
+<p><kbd>BEGIN</kbd> и <kbd>END</kbd> выполняют роль логических скобок. Каждую команду завершает, за некоторыми
+    исключениями, знак ;. Обращаем внимание на важную роль отступов, которые призваны выделить вложения одних элементов
+    модуля в другие и повысить читабельность текста модуля (проверка правильности задания отступов включается или
+    отключается из пункта меню Программирование). Компонентный Паскаль различает прописные и строчные буквы. Имена
+    объектов в Компонентном Паскале задаются буквами латинского алфавита и кириллицы, цифрами или знаком подчеркивания.
+    Первый символ имени либо буква, либо знак подчеркивания. В сообщении о языке ознакомьтесь со списком
+    зарезервированнных слов, которые нельзя использовать в качестве имен переменных или процедур. Текст, заключенный в
+    круглые скобки и знак *, игнорируется компилятором и служит для комментирования ключевых команд. Комментарии играют
+    важную роль в качестве пояснения логики работы модуля.</p>
+<p>Шаг 2: запишем в модуле с соблюдением отступа <kbd>procedure</kbd> и нажмем функциональную кнопку <kbd>F5</kbd>. В
+    результате получаем в модуле шаблон процедуры:</p>
 <code>
-<p class='ind0'>MODULE вычисления;</p>
-<p class='ind1'>IMPORT Log:=StdLog, In:= , Math;</p>
-<p class='ind1'>PROCEDURE;</p>
-<p class='ind2'>VAR;</p>
-<p class='ind1'>BEGIN</p>
-<p class='ind1'>END;</p>
-<p class='ind0'>END вычисления.</p>
+    <p class='ind0'>MODULE вычисления;</p>
+    <p class='ind1'>IMPORT Log:=StdLog, In:= , Math;</p>
+    <p class='ind1'>PROCEDURE;</p>
+    <p class='ind2'>VAR;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind1'>END;</p>
+    <p class='ind0'>END вычисления.</p>
 </code>
 <p>Именуем процедуру:</p>
 <code>
-<p class='ind0'>MODULE вычисления;</p>
-<p class='ind1'>IMPORT Log:=StdLog, In:= , Math;</p>
-<p class='ind1'>PROCEDURE суммировать*;</p>
-<p class='ind2'>VAR;</p>
-<p class='ind1'>BEGIN</p>
-<p class='ind1'>END суммировать;</p>
-<p class='ind0'>END вычисления.</p>
+    <p class='ind0'>MODULE вычисления;</p>
+    <p class='ind1'>IMPORT Log:=StdLog, In:= , Math;</p>
+    <p class='ind1'>PROCEDURE суммировать*;</p>
+    <p class='ind2'>VAR;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind1'>END суммировать;</p>
+    <p class='ind0'>END вычисления.</p>
 </code>
-<p>Далее следует сохранить файл и выполнить компилирование. В случае обнаружения синтаксической ошибки требуется исправить ее, сохранить изменения и компилировать файл. Целесообразно выявить и исправить ошибку на самом раннем этапе, поэтому ни в коем случае нельзя продолжить развитие модуля без исправления ошибки.</p>
-<p>Шаг 3: объявим в процедуре переменные целого типа следующим образом: в строке <kbd>VAR</kbd> запишем <code>a, b, c: int</code> и нажмем функциональную кнопку <kbd>F5</kbd>. В результате получим:</p>
+<p>Далее следует сохранить файл и выполнить компилирование. В случае обнаружения синтаксической ошибки требуется
+    исправить ее, сохранить изменения и компилировать файл. Целесообразно выявить и исправить ошибку на самом раннем
+    этапе, поэтому ни в коем случае нельзя продолжить развитие модуля без исправления ошибки.</p>
+<p>Шаг 3: объявим в процедуре переменные целого типа следующим образом: в строке <kbd>VAR</kbd> запишем <code>a, b, c:
+    int</code> и нажмем функциональную кнопку <kbd>F5</kbd>. В результате получим:</p>
 <code>
-<p class='ind0'>MODULE вычисления;</p>
-<p class='ind1'>IMPORT Log:=StdLog, In:= , Math;</p>
-<p class='ind1'>PROCEDURE суммировать*;</p>
-<p class='ind2'>VAR a, b, c: INTEGER;</p>
-<p class='ind1'>BEGIN</p>
-<p class='ind1'>END суммировать;</p>
-<p class='ind0'>END вычисления.</p>
+    <p class='ind0'>MODULE вычисления;</p>
+    <p class='ind1'>IMPORT Log:=StdLog, In:= , Math;</p>
+    <p class='ind1'>PROCEDURE суммировать*;</p>
+    <p class='ind2'>VAR a, b, c: INTEGER;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind1'>END суммировать;</p>
+    <p class='ind0'>END вычисления.</p>
 </code>
 <p>Сохраним изменения и компилируем файл.</p>
 <p>Далее после каждой строки кода следует сохранять и компилировать модуль:</p>
 <code>
-<p class='ind0'>MODULE вычисления;</p>
-<p class='ind1'>IMPORT Log:=StdLog, In:= , Math;</p>
-<p class='ind1'>PROCEDURE суммировать*;</p>
-<p class='ind2'>VAR a, b, c: INTEGER;</p>
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>a:=23;</p>
-<p class='ind2'>b:=3;</p>
-<p class='ind2'>c:=a+b;</p>
-<p class='ind2'>Log.Int(a);</p>
-<p class='ind2'>Log.Char('+');</p>
-<p class='ind2'>Log.Int(b);</p>
-<p class='ind2'>Log.Char('=');</p>
-<p class='ind2'>Log.Int(c);</p>
-<p class='ind1'>END суммировать;</p>
-<p class='ind0'>END вычисления.</p>
+    <p class='ind0'>MODULE вычисления;</p>
+    <p class='ind1'>IMPORT Log:=StdLog, In:= , Math;</p>
+    <p class='ind1'>PROCEDURE суммировать*;</p>
+    <p class='ind2'>VAR a, b, c: INTEGER;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>a:=23;</p>
+    <p class='ind2'>b:=3;</p>
+    <p class='ind2'>c:=a+b;</p>
+    <p class='ind2'>Log.Int(a);</p>
+    <p class='ind2'>Log.Char('+');</p>
+    <p class='ind2'>Log.Int(b);</p>
+    <p class='ind2'>Log.Char('=');</p>
+    <p class='ind2'>Log.Int(c);</p>
+    <p class='ind1'>END суммировать;</p>
+    <p class='ind0'>END вычисления.</p>
 </code>
 <p>Ниже модуля вставим коммандер и получим следующий код:</p>
 <code>
-<p class='ind0'>MODULE вычисления;</p>
-<p class='ind1'>IMPORT Log:=StdLog, In:= , Math;</p>
-<p class='ind1'>PROCEDURE суммировать*;</p>
-<p class='ind2'>VAR a, b, c: INTEGER;</p>
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>a:=23;</p>
-<p class='ind2'>b:=3;</p>
-<p class='ind2'>c:=a+b;</p>
-<p class='ind2'>Log.Int(a);</p>
-<p class='ind2'>Log.Char('+');</p>
-<p class='ind2'>Log.Int(b);</p>
-<p class='ind2'>Log.Char('=');</p>
-<p class='ind2'>Log.Int(c);</p>
-<p class='ind1'>END суммировать;</p>
-<p class='ind0'>END вычисления.</p>
-<table>
-<tr>
-<td align='right' valign='bottom'>
-<svg width='35' height='40'>
-<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
-<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
-</svg>
-</td>
-<td align='left' valign='middle'>вычисления.суммировать</td>
-</tr>
-</table>
+    <p class='ind0'>MODULE вычисления;</p>
+    <p class='ind1'>IMPORT Log:=StdLog, In:= , Math;</p>
+    <p class='ind1'>PROCEDURE суммировать*;</p>
+    <p class='ind2'>VAR a, b, c: INTEGER;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>a:=23;</p>
+    <p class='ind2'>b:=3;</p>
+    <p class='ind2'>c:=a+b;</p>
+    <p class='ind2'>Log.Int(a);</p>
+    <p class='ind2'>Log.Char('+');</p>
+    <p class='ind2'>Log.Int(b);</p>
+    <p class='ind2'>Log.Char('=');</p>
+    <p class='ind2'>Log.Int(c);</p>
+    <p class='ind1'>END суммировать;</p>
+    <p class='ind0'>END вычисления.</p>
+    <table>
+        <tr>
+            <td align='right' valign='bottom'>
+                <svg width='35' height='40'>
+                    <circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+                    <text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+                </svg>
+            </td>
+            <td align='left' valign='middle'>вычисления.суммировать</td>
+        </tr>
+    </table>
 </code>
-<p>Для исполнения процедуры нужно щелкнуть на коммандере. Следует иметь ввиду тот факт, что BlackBox хранит в памяти последнюю  удачно исполненную версию модулю. Поэтому после внесения в модуль изменений требуется его сохранить и компилировать с последующей  выгрузкой предыдущей версии исполняемого модуля.</p>
-<p>Очевидно, нерационально компилировать модуль после каждого изменения значений переменных. Поэтому для инициализации переменных используем входной поток, реализованный в модуле In:</p>
+<p>Для исполнения процедуры нужно щелкнуть на коммандере. Следует иметь ввиду тот факт, что BlackBox хранит в памяти
+    последнюю удачно исполненную версию модулю. Поэтому после внесения в модуль изменений требуется его сохранить и
+    компилировать с последующей выгрузкой предыдущей версии исполняемого модуля.</p>
+<p>Очевидно, нерационально компилировать модуль после каждого изменения значений переменных. Поэтому для инициализации
+    переменных используем входной поток, реализованный в модуле In:</p>
 <code>
-<p class='ind0'>MODULE вычисления;</p>
-<p class='ind1'>IMPORT Log:=StdLog, In:= , Math;</p>
-<p class='ind1'>PROCEDURE суммировать*;</p>
-<p class='ind2'>VAR a, b, c: INTEGER;</p>
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>In.Open(); (*<span class='komm'>открыть входной поток</span>*)</p>
-<p class='ind2'>ASSERT(In.Done); (*<span class='komm'>остановить исполнение в случае ошибки</span>*)</p>
-<p class='ind2'>In.Int(a); (*<span class='komm'>считать в а из входного потока целое число</span>*)</p>
-<p class='ind2'>ASSERT(In.Done); (*<span class='komm'>остановить исполнение в случае ошибки</span>*) </p>
-<p class='ind2'>In.Int(b); (*<span class='komm'>считать в b из входного потока целое число</span> </p>
-<p class='ind2'>ASSERT(In.Done); (*<span class='komm'>остановить исполнение в случае ошибки</span>*)</p> 
-<p class='ind2'>c:=a+b; (*<span class='komm'>вычислить сумму a и b и записать результат в с</span>*)</p>  
-<p class='ind2'>Log.Int(a); (*<span class='komm'>вывести значение а в Рабочий журнал</span>*) </p>
-<p class='ind2'>Log.Char('+'); (*<span class='komm'>вывести символ + в Рабочий журнал</span>*)</p>
-<p class='ind2'>Log.Int(b);  (*<span class='komm'>вывести значение b в Рабочий журнал</span>*) </p>
-<p class='ind2'>Log.Char('='); (*<span class='komm'>вывести символ = в Рабочий журнал</span>*) </p>
-<p class='ind2'>Log.Int(c);   (*<span class='komm'>вывести значение c в Рабочий журнал</span>*)  </p>
-<p class='ind1'>END суммировать;</p>
-<p class='ind0'>END вычисления.</p>
-<table>
-<tr>
-<td align='right' valign='bottom'>
-<svg width='35' height='40'>
-<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
-<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
-</svg>
-</td>
-<td align='left' valign='middle'>вычисления.суммировать </td>
-<td>54</td>
-<td>43</td>
-</tr>
-</table>
+    <p class='ind0'>MODULE вычисления;</p>
+    <p class='ind1'>IMPORT Log:=StdLog, In:= , Math;</p>
+    <p class='ind1'>PROCEDURE суммировать*;</p>
+    <p class='ind2'>VAR a, b, c: INTEGER;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>In.Open(); (*<span class='komm'>открыть входной поток</span>*)</p>
+    <p class='ind2'>ASSERT(In.Done); (*<span class='komm'>остановить исполнение в случае ошибки</span>*)</p>
+    <p class='ind2'>In.Int(a); (*<span class='komm'>считать в а из входного потока целое число</span>*)</p>
+    <p class='ind2'>ASSERT(In.Done); (*<span class='komm'>остановить исполнение в случае ошибки</span>*) </p>
+    <p class='ind2'>In.Int(b); (*<span class='komm'>считать в b из входного потока целое число</span></p>
+    <p class='ind2'>ASSERT(In.Done); (*<span class='komm'>остановить исполнение в случае ошибки</span>*)</p>
+    <p class='ind2'>c:=a+b; (*<span class='komm'>вычислить сумму a и b и записать результат в с</span>*)</p>
+    <p class='ind2'>Log.Int(a); (*<span class='komm'>вывести значение а в Рабочий журнал</span>*) </p>
+    <p class='ind2'>Log.Char('+'); (*<span class='komm'>вывести символ + в Рабочий журнал</span>*)</p>
+    <p class='ind2'>Log.Int(b); (*<span class='komm'>вывести значение b в Рабочий журнал</span>*) </p>
+    <p class='ind2'>Log.Char('='); (*<span class='komm'>вывести символ = в Рабочий журнал</span>*) </p>
+    <p class='ind2'>Log.Int(c); (*<span class='komm'>вывести значение c в Рабочий журнал</span>*) </p>
+    <p class='ind1'>END суммировать;</p>
+    <p class='ind0'>END вычисления.</p>
+    <table>
+        <tr>
+            <td align='right' valign='bottom'>
+                <svg width='35' height='40'>
+                    <circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+                    <text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+                </svg>
+            </td>
+            <td align='left' valign='middle'>вычисления.суммировать</td>
+            <td>54</td>
+            <td>43</td>
+        </tr>
+    </table>
 </code>
-<p>Компилируется только модуль, а входной поток находится вне модуля, следовательно, можно изменять содержимое входного потока и исполнять процедуры без предварительной компиляции.</p>
-<p>Скопируем в буфер обмена процедуру суммировать, вставим в модуль две ее копии и модифицируем их в процедуры вычисления произведения и деления нацело целых чисел:</p>
+<p>Компилируется только модуль, а входной поток находится вне модуля, следовательно, можно изменять содержимое входного
+    потока и исполнять процедуры без предварительной компиляции.</p>
+<p>Скопируем в буфер обмена процедуру суммировать, вставим в модуль две ее копии и модифицируем их в процедуры
+    вычисления произведения и деления нацело целых чисел:</p>
 <code>
-<p class='ind0'>MODULE вычисления;</p>
-<p class='ind1'>IMPORT Log:=StdLog, In:= , Math;</p>
-<p class='ind1'>PROCEDURE суммировать*;</p>
-<p class='ind2'>VAR a, b, c: INTEGER;</p>
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>In.Open(); (*<span class='komm'>открыть входной поток</span>*)</p>
-<p class='ind2'>ASSERT(In.Done); (*<span class='komm'>остановить исполнение в случае ошибки</span>*)</p>
-<p class='ind2'>In.Int(a); (*<span class='komm'>считать в а из входного потока целое число</span>*)</p>
-<p class='ind2'>ASSERT(In.Done); (*<span class='komm'>остановить исполнение в случае ошибки</span>*) </p>
-<p class='ind2'>In.Int(b); (*<span class='komm'>считать в b из входного потока целое число</span> </p>
-<p class='ind2'>ASSERT(In.Done); (*<span class='komm'>остановить исполнение в случае ошибки</span>*)</p> 
-<p class='ind2'>c:=a+b; (*<span class='komm'>вычислить сумму a и b и записать результат в с</span>*)</p>  
-<p class='ind2'>Log.Int(a); (*<span class='komm'>вывести значение а в Рабочий журнал</span>*) </p>
-<p class='ind2'>Log.Char('+'); (*<span class='komm'>вывести символ + в Рабочий журнал</span>*)</p>
-<p class='ind2'>Log.Int(b);  (*<span class='komm'>вывести значение b в Рабочий журнал</span>*) </p>
-<p class='ind2'>Log.Char('='); (*<span class='komm'>вывести символ = в Рабочий журнал</span>*) </p>
-<p class='ind2'>Log.Int(c);   (*<span class='komm'>вывести значение c в Рабочий журнал</span>*)  </p>
-<p class='ind1'>END суммировать;</p>
+    <p class='ind0'>MODULE вычисления;</p>
+    <p class='ind1'>IMPORT Log:=StdLog, In:= , Math;</p>
+    <p class='ind1'>PROCEDURE суммировать*;</p>
+    <p class='ind2'>VAR a, b, c: INTEGER;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>In.Open(); (*<span class='komm'>открыть входной поток</span>*)</p>
+    <p class='ind2'>ASSERT(In.Done); (*<span class='komm'>остановить исполнение в случае ошибки</span>*)</p>
+    <p class='ind2'>In.Int(a); (*<span class='komm'>считать в а из входного потока целое число</span>*)</p>
+    <p class='ind2'>ASSERT(In.Done); (*<span class='komm'>остановить исполнение в случае ошибки</span>*) </p>
+    <p class='ind2'>In.Int(b); (*<span class='komm'>считать в b из входного потока целое число</span></p>
+    <p class='ind2'>ASSERT(In.Done); (*<span class='komm'>остановить исполнение в случае ошибки</span>*)</p>
+    <p class='ind2'>c:=a+b; (*<span class='komm'>вычислить сумму a и b и записать результат в с</span>*)</p>
+    <p class='ind2'>Log.Int(a); (*<span class='komm'>вывести значение а в Рабочий журнал</span>*) </p>
+    <p class='ind2'>Log.Char('+'); (*<span class='komm'>вывести символ + в Рабочий журнал</span>*)</p>
+    <p class='ind2'>Log.Int(b); (*<span class='komm'>вывести значение b в Рабочий журнал</span>*) </p>
+    <p class='ind2'>Log.Char('='); (*<span class='komm'>вывести символ = в Рабочий журнал</span>*) </p>
+    <p class='ind2'>Log.Int(c); (*<span class='komm'>вывести значение c в Рабочий журнал</span>*) </p>
+    <p class='ind1'>END суммировать;</p>
 
-<p class='ind1'>PROCEDURE умножить*;</p>
-<p class='ind2'>VAR a, b, c: INTEGER;</p>
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>In.Open(); (*<span class='komm'>открыть входной поток</span>*)</p>
-<p class='ind2'>ASSERT(In.Done); (*<span class='komm'>остановить исполнение в случае ошибки</span>*)</p>
-<p class='ind2'>In.Int(a); (*<span class='komm'>считать в а из входного потока целое число</span>*)</p>
-<p class='ind2'>ASSERT(In.Done); (*<span class='komm'>остановить исполнение в случае ошибки</span>*) </p>
-<p class='ind2'>In.Int(b); (*<span class='komm'>считать в b из входного потока целое число</span> </p>
-<p class='ind2'>ASSERT(In.Done); (*<span class='komm'>остановить исполнение в случае ошибки</span>*)</p> 
-<p class='ind2'>c:=a*b; (*<span class='komm'>вычислить произведение a и b и записать результат в с</span>*)</p>  
-<p class='ind2'>Log.Int(a); (*<span class='komm'>вывести значение а в Рабочий журнал</span>*) </p>
-<p class='ind2'>Log.Char('*'); (*<span class='komm'>вывести символ * в Рабочий журнал</span>*)</p>
-<p class='ind2'>Log.Int(b);  (*<span class='komm'>вывести значение b в Рабочий журнал</span>*) </p>
-<p class='ind2'>Log.Char('='); (*<span class='komm'>вывести символ = в Рабочий журнал</span>*) </p>
-<p class='ind2'>Log.Int(c);   (*<span class='komm'>вывести значение c в Рабочий журнал</span>*)  </p>
-<p class='ind1'>END умножить;</p>
-<p class='ind1'>PROCEDURE делить*;</p>
-<p class='ind2'>VAR a, b, c, d: INTEGER;</p>
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>In.Open(); (*<span class='komm'>открыть входной поток</span>*)</p>
-<p class='ind2'>ASSERT(In.Done); (*<span class='komm'>остановить исполнение в случае ошибки</span>*)</p>
-<p class='ind2'>In.Int(a); (*<span class='komm'>считать в а из входного потока целое число</span>*)</p>
-<p class='ind2'>ASSERT(In.Done); (*<span class='komm'>остановить исполнение в случае ошибки</span>*) </p>
-<p class='ind2'>In.Int(b); (*<span class='komm'>считать в b из входного потока целое число</span> </p>
-<p class='ind2'>ASSERT(In.Done); (*<span class='komm'>остановить исполнение в случае ошибки</span>*)</p> 
-<p class='ind2'>c:=a DIV b; (*<span class='komm'>вычислить частное деления нацело a на b и записать результат в с</span>*)</p>
-<p class='ind2'>d:=a MOD b; (*<span class='komm'>вычислить остаток от деления нацело a на b и записать результат в d</span>*)</p>  
-<p class='ind2'>Log.String('Частное с='); (*<span class='komm'>вывести значение с в Рабочий журнал</span>*) </p>
-<p class='ind2'>Log.Int(с);  (*<span class='komm'>вывести значение с в Рабочий журнал</span>*) </p>
-<p class='ind2'>Log.String('Остаток от деления ='); (*<span class='komm'>вывести значение с в Рабочий журнал</span>*) </p>
-<p class='ind2'>Log.Int(d);   (*<span class='komm'>вывести значение c в Рабочий журнал</span>*)  </p>
-<p class='ind1'>END делить;</p>
-<p class='ind0'>END вычисления.</p>
-<table>
-<tr>
-<td align='right' valign='bottom'>
-<svg width='35' height='40'>
-<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
-<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
-</svg>
-</td>
-<td align='left' valign='middle'>вычисления.суммировать </td>
-<td>54</td>
-<td>43</td>
-</tr>
-<tr>
-<td align='right' valign='bottom'>
-<svg width='35' height='40'>
-<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
-<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
-</svg>
-</td>
-<td align='left' valign='middle'>вычисления.умножить 23 -34</td>
-</tr>
-<tr>
-<td align='right' valign='bottom'>
-<svg width='35' height='40'>
-<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
-<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
-</svg>
-</td>
-<td align='left' valign='middle'>вычисления.делить 23 7</td>
-</tr>
-</table>
+    <p class='ind1'>PROCEDURE умножить*;</p>
+    <p class='ind2'>VAR a, b, c: INTEGER;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>In.Open(); (*<span class='komm'>открыть входной поток</span>*)</p>
+    <p class='ind2'>ASSERT(In.Done); (*<span class='komm'>остановить исполнение в случае ошибки</span>*)</p>
+    <p class='ind2'>In.Int(a); (*<span class='komm'>считать в а из входного потока целое число</span>*)</p>
+    <p class='ind2'>ASSERT(In.Done); (*<span class='komm'>остановить исполнение в случае ошибки</span>*) </p>
+    <p class='ind2'>In.Int(b); (*<span class='komm'>считать в b из входного потока целое число</span></p>
+    <p class='ind2'>ASSERT(In.Done); (*<span class='komm'>остановить исполнение в случае ошибки</span>*)</p>
+    <p class='ind2'>c:=a*b; (*<span class='komm'>вычислить произведение a и b и записать результат в с</span>*)</p>
+    <p class='ind2'>Log.Int(a); (*<span class='komm'>вывести значение а в Рабочий журнал</span>*) </p>
+    <p class='ind2'>Log.Char('*'); (*<span class='komm'>вывести символ * в Рабочий журнал</span>*)</p>
+    <p class='ind2'>Log.Int(b); (*<span class='komm'>вывести значение b в Рабочий журнал</span>*) </p>
+    <p class='ind2'>Log.Char('='); (*<span class='komm'>вывести символ = в Рабочий журнал</span>*) </p>
+    <p class='ind2'>Log.Int(c); (*<span class='komm'>вывести значение c в Рабочий журнал</span>*) </p>
+    <p class='ind1'>END умножить;</p>
+    <p class='ind1'>PROCEDURE делить*;</p>
+    <p class='ind2'>VAR a, b, c, d: INTEGER;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>In.Open(); (*<span class='komm'>открыть входной поток</span>*)</p>
+    <p class='ind2'>ASSERT(In.Done); (*<span class='komm'>остановить исполнение в случае ошибки</span>*)</p>
+    <p class='ind2'>In.Int(a); (*<span class='komm'>считать в а из входного потока целое число</span>*)</p>
+    <p class='ind2'>ASSERT(In.Done); (*<span class='komm'>остановить исполнение в случае ошибки</span>*) </p>
+    <p class='ind2'>In.Int(b); (*<span class='komm'>считать в b из входного потока целое число</span></p>
+    <p class='ind2'>ASSERT(In.Done); (*<span class='komm'>остановить исполнение в случае ошибки</span>*)</p>
+    <p class='ind2'>c:=a DIV b; (*<span
+            class='komm'>вычислить частное деления нацело a на b и записать результат в с</span>*)</p>
+    <p class='ind2'>d:=a MOD b; (*<span
+            class='komm'>вычислить остаток от деления нацело a на b и записать результат в d</span>*)</p>
+    <p class='ind2'>Log.String('Частное с='); (*<span class='komm'>вывести значение с в Рабочий журнал</span>*) </p>
+    <p class='ind2'>Log.Int(с); (*<span class='komm'>вывести значение с в Рабочий журнал</span>*) </p>
+    <p class='ind2'>Log.String('Остаток от деления ='); (*<span class='komm'>вывести значение с в Рабочий журнал</span>*)
+    </p>
+    <p class='ind2'>Log.Int(d); (*<span class='komm'>вывести значение c в Рабочий журнал</span>*) </p>
+    <p class='ind1'>END делить;</p>
+    <p class='ind0'>END вычисления.</p>
+    <table>
+        <tr>
+            <td align='right' valign='bottom'>
+                <svg width='35' height='40'>
+                    <circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+                    <text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+                </svg>
+            </td>
+            <td align='left' valign='middle'>вычисления.суммировать</td>
+            <td>54</td>
+            <td>43</td>
+        </tr>
+        <tr>
+            <td align='right' valign='bottom'>
+                <svg width='35' height='40'>
+                    <circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+                    <text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+                </svg>
+            </td>
+            <td align='left' valign='middle'>вычисления.умножить 23 -34</td>
+        </tr>
+        <tr>
+            <td align='right' valign='bottom'>
+                <svg width='35' height='40'>
+                    <circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+                    <text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+                </svg>
+            </td>
+            <td align='left' valign='middle'>вычисления.делить 23 7</td>
+        </tr>
+    </table>
 </code>
-<p>Наш модуль содержит комментарии ко всем командам с целью помочь студентам запомнить назначение команд. В дальнейшем очевидные команды мы не будем комментировать и ограничимся комментированием лишь ключевых элементов.</p>
+<p>Наш модуль содержит комментарии ко всем командам с целью помочь студентам запомнить назначение команд. В дальнейшем
+    очевидные команды мы не будем комментировать и ограничимся комментированием лишь ключевых элементов.</p>
 <p>Рассмотрим модуль для вычисления гипотенузы прямоугольного треугольника по заданным катетам.</p>
 <code>
-<p class='ind0'>MODULE гипотенуза;</p>
-<p class='ind1'>IMPORT Log:=StdLog, In:= , Math;</p>
-<p class='ind1'>PROCEDURE вычислить*;</p>
-<p class='ind2'>VAR a, b, c: REAL;</p>
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>In.Open(); (*<span class='komm'>открыть входной поток</span>*)</p>
-<p class='ind2'>ASSERT(In.Done); (*<span class='komm'>остановить исполнение в случае ошибки</span>*)</p>
-<p class='ind2'>In.Real(a); (*<span class='komm'>считать в а из входного потока вещественное число</span>*)</p>
-<p class='ind2'>ASSERT(In.Done & (a>=0));</p>
-<p class='ind2'>In.Real(b);</p>
-<p class='ind2'>ASSERT(In.Done  & (b>=0));</p> 
-<p class='ind2'>c:=Math.Sqrt(a*a+b*b); (*<span class='komm'>вычислить корень квадратный из суммы квадратов a и b и записать результат в с</span>*)</p>
-<p class='ind2'>Log.String('Катет а=');</p>  
-<p class='ind2'>Log.Real(a); (*<span class='komm'>вывести значение а в Рабочий журнал</span>*) </p>
-<p class='ind2'>Log.Ln; (*<span class='komm'>переход на следующую строку в Рабочем журнале</span>*) </p>
+    <p class='ind0'>MODULE гипотенуза;</p>
+    <p class='ind1'>IMPORT Log:=StdLog, In:= , Math;</p>
+    <p class='ind1'>PROCEDURE вычислить*;</p>
+    <p class='ind2'>VAR a, b, c: REAL;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>In.Open(); (*<span class='komm'>открыть входной поток</span>*)</p>
+    <p class='ind2'>ASSERT(In.Done); (*<span class='komm'>остановить исполнение в случае ошибки</span>*)</p>
+    <p class='ind2'>In.Real(a); (*<span class='komm'>считать в а из входного потока вещественное число</span>*)</p>
+    <p class='ind2'>ASSERT(In.Done & (a>=0));</p>
+    <p class='ind2'>In.Real(b);</p>
+    <p class='ind2'>ASSERT(In.Done & (b>=0));</p>
+    <p class='ind2'>c:=Math.Sqrt(a*a+b*b); (*<span class='komm'>вычислить корень квадратный из суммы квадратов a и b и записать результат в с</span>*)
+    </p>
+    <p class='ind2'>Log.String('Катет а=');</p>
+    <p class='ind2'>Log.Real(a); (*<span class='komm'>вывести значение а в Рабочий журнал</span>*) </p>
+    <p class='ind2'>Log.Ln; (*<span class='komm'>переход на следующую строку в Рабочем журнале</span>*) </p>
 
-<p class='ind2'>Log.String('Катет b=');</p>  
-<p class='ind2'>Log.Real(b);</p>
-<p class='ind2'>Log.Ln;</p>
+    <p class='ind2'>Log.String('Катет b=');</p>
+    <p class='ind2'>Log.Real(b);</p>
+    <p class='ind2'>Log.Ln;</p>
 
-<p class='ind2'>Log.String('Искомая гипотенуза с=');</p>  
-<p class='ind2'>Log.Real(c);</p>
-<p class='ind2'>Log.Ln; </p>
+    <p class='ind2'>Log.String('Искомая гипотенуза с=');</p>
+    <p class='ind2'>Log.Real(c);</p>
+    <p class='ind2'>Log.Ln; </p>
 
-<p class='ind1'>END вычислить;</p>
-<p class='ind0'>END гипотенуза.</p>
-<table>
-<tr>
-<td align='right' valign='bottom'>
-<svg width='35' height='40'>
-<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
-<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
-</svg>
-</td>
-<td align='left' valign='middle'>гипотенуза.вычислить 4 3</td>
-</tr>
-</table>
+    <p class='ind1'>END вычислить;</p>
+    <p class='ind0'>END гипотенуза.</p>
+    <table>
+        <tr>
+            <td align='right' valign='bottom'>
+                <svg width='35' height='40'>
+                    <circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+                    <text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+                </svg>
+            </td>
+            <td align='left' valign='middle'>гипотенуза.вычислить 4 3</td>
+        </tr>
+    </table>
 </code>
-<p>В операторе ASSERT(In.Done & (a &#8805; 0)); аргументом служит результат логического умножения In.Done и a &#8805; 0, поэтому возврат оператором ASSERT(In.Done & (a &#8805; 0)); значения FALSE прервет исполнение процедуры.</p>
+<p>В операторе ASSERT(In.Done & (a &#8805; 0)); аргументом служит результат логического умножения In.Done и a &#8805; 0,
+    поэтому возврат оператором ASSERT(In.Done & (a &#8805; 0)); значения FALSE прервет исполнение процедуры.</p>
 <p>Далее рассмотрим примеры организации вычислений по формулам.</p>
 <div class="examp">
-<p><span class="primer">Пример 8.5.1</span>.  Найти сумму членов арифметической прогрессии
-<math display='inline'>
-<mfenced open='' close=''>
-<mi>a</mi><mrow><mi>a</mi><mo>+</mo><mn>1</mn></mrow><mi>&#8230;</mi>
-<mrow><mi>a</mi><mo>+</mo>
-	<mrow><mo>(</mo><mi>n</mi><mo>-</mo><mn>1</mn><mo>)</mo></mrow>
-	<mo>&#x2061;</mo>
-	<mi>d</mi>
-</mrow>
-</mfenced>
-</math>
-  по данным значениям a, d, n.</p>
-<p>Решение. Сумма членов арифметической прогрессии вычисляется по формуле:
-<math display='inline'>
-	<msub><mi>s</mi><mi>n</mi></msub>
-	<mo>=</mo>
-	<mi>a</mi><mo>+</mo>
-	<mfrac>
-		<mrow>
-			<mrow>
-				<mi>n</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>n</mi><mo>-</mo><mn>1</mn><mo>)</mo></mrow>
-			</mrow>
-		</mrow>
-		<mn>2</mn>
-	</mfrac>
-	<mo>&#x2061;</mo>
-	<mi>d</mi>
-</math>. Будем считать члены арифметической прогрессии вещественными числами. Программа будет такой:
-</p>
-<code>
-<p class='ind0'>MODULE пример1;</p>
-<p class='ind1'>IMPORT Log:=StdLog, In:=i21sysIn;</p>
-<p class='ind1'>PROCEDURE суммировать*;</p>
-<p class='ind2'>VAR n: INTEGER; a, d, s: REAL;</p>
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>In.Open;</p>
-<p class='ind2'>ASSERT(In.Done);</p>
-<p class='ind2'>In.Real(a);</p>
-<p class='ind2'>ASSERT(In.Done);</p>
-<p class='ind2'>In.Real(d);</p>
-<p class='ind2'>ASSERT(In.Done);</p>
-<p class='ind2'>In.Int(n);</p>
-<p class='ind2'>ASSERT(In.Done & (n>0));</p>
-<p class='ind2'>s:=a+n*(n-1)*d/2;</p>
-<p class='ind2'>Log.String('Искомая сумма =');</p>
-<p class='ind2'>Log.Real(s);</p>
-<p class='ind2'>Log.Ln;</p>
-<p class='ind1'>END суммировать;</p>
-<p class='ind0'>END пример1.</p>
-<table>
-<tr>
-<td align='right' valign='bottom'>
-<svg width='35' height='40'>
-<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
-<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
-</svg>
-</td>
-<td align='left' valign='middle'>пример1.суммировать 4 7 5</td>
-</tr>
-</table>
-</code>
+    <p><span class="primer">Пример 8.5.1</span>. Найти сумму членов арифметической прогрессии
+        <math display='inline'>
+            <mfenced open='' close=''>
+                <mi>a</mi>
+                <mrow>
+                    <mi>a</mi>
+                    <mo>+</mo>
+                    <mn>1</mn>
+                </mrow>
+                <mi>&#8230;</mi>
+                <mrow>
+                    <mi>a</mi>
+                    <mo>+</mo>
+                    <mrow>
+                        <mo>(</mo>
+                        <mi>n</mi>
+                        <mo>-</mo>
+                        <mn>1</mn>
+                        <mo>)</mo>
+                    </mrow>
+                    <mo>&#x2061;</mo>
+                    <mi>d</mi>
+                </mrow>
+            </mfenced>
+        </math>
+        по данным значениям a, d, n.
+    </p>
+    <p>Решение. Сумма членов арифметической прогрессии вычисляется по формуле:
+        <math display='inline'>
+            <msub>
+                <mi>s</mi>
+                <mi>n</mi>
+            </msub>
+            <mo>=</mo>
+            <mi>a</mi>
+            <mo>+</mo>
+            <mfrac>
+                <mrow>
+                    <mrow>
+                        <mi>n</mi>
+                        <mo>&#x2061;</mo>
+                        <mrow>
+                            <mo>(</mo>
+                            <mi>n</mi>
+                            <mo>-</mo>
+                            <mn>1</mn>
+                            <mo>)</mo>
+                        </mrow>
+                    </mrow>
+                </mrow>
+                <mn>2</mn>
+            </mfrac>
+            <mo>&#x2061;</mo>
+            <mi>d</mi>
+        </math>
+        . Будем считать члены арифметической прогрессии вещественными числами. Программа будет такой:
+    </p>
+    <code>
+        <p class='ind0'>MODULE пример1;</p>
+        <p class='ind1'>IMPORT Log:=StdLog, In:=i21sysIn;</p>
+        <p class='ind1'>PROCEDURE суммировать*;</p>
+        <p class='ind2'>VAR n: INTEGER; a, d, s: REAL;</p>
+        <p class='ind1'>BEGIN</p>
+        <p class='ind2'>In.Open;</p>
+        <p class='ind2'>ASSERT(In.Done);</p>
+        <p class='ind2'>In.Real(a);</p>
+        <p class='ind2'>ASSERT(In.Done);</p>
+        <p class='ind2'>In.Real(d);</p>
+        <p class='ind2'>ASSERT(In.Done);</p>
+        <p class='ind2'>In.Int(n);</p>
+        <p class='ind2'>ASSERT(In.Done & (n>0));</p>
+        <p class='ind2'>s:=a+n*(n-1)*d/2;</p>
+        <p class='ind2'>Log.String('Искомая сумма =');</p>
+        <p class='ind2'>Log.Real(s);</p>
+        <p class='ind2'>Log.Ln;</p>
+        <p class='ind1'>END суммировать;</p>
+        <p class='ind0'>END пример1.</p>
+        <table>
+            <tr>
+                <td align='right' valign='bottom'>
+                    <svg width='35' height='40'>
+                        <circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+                        <text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+                    </svg>
+                </td>
+                <td align='left' valign='middle'>пример1.суммировать 4 7 5</td>
+            </tr>
+        </table>
+    </code>
 </div>
 
 <p>В следующем примере демонстрируется вызов функций из модуля Math:</p>
 <div class="examp">
-<p><span class="primer">Пример 8.5.2</span>. Составить программу вычисления значения функции
-<math display='inline'>
-<mrow>
-	<mrow>
-		<mn>5</mn>
-		<mo>&#x2061;</mo>
-		<msup><mi>x</mi><mn>3</mn></msup>
-	</mrow>
-	<mo>+</mo>
-	<mrow>
-		<msup><mi>Sin</mi><mn>2</mn></msup>
-		<mo>&#x2062;</mo>
-		<mrow><mo>(</mo><mi>x</mi><mo>)</mo></mrow>
-	</mrow>
-</mrow>
-</math>
- по заданному значению аргумента x.
- </p>
-<code>
-<p class='ind0'>MODULE пример2;</p>
-<p class='ind1'>IMPORT Log:=StdLog, In:=i21sysIn, Math;</p>
-<p class='ind1'>PROCEDURE вычислить*;</p>
-<p class='ind2'>VAR n: INTEGER; f, x, s: REAL;</p>
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>In.Open;</p>
-<p class='ind2'>ASSERT(In.Done);</p>
-<p class='ind2'>In.Real(x);</p>
-<p class='ind2'>ASSERT(In.Done);</p>
-<p class='ind2'>s:=Math.Sin(x);</p>
-<p class='ind2'>f:=5*x*x*x+s*s;</p>
-<p class='ind2'>Log.String('Искомое значение =');</p>
-<p class='ind2'>Log.Real(f);</p>
-<p class='ind2'>Log.Ln;</p>
-<p class='ind1'>END вычислить;</p>
-<p class='ind0'>END пример2.</p>
-<table>
-<tr>
-<td align='right' valign='bottom'>
-<svg width='35' height='40'>
-<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
-<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
-</svg>
-</td>
-<td align='left' valign='middle'>пример2.вычислить 34.6</td>
-</tr>
-</table>
-</code>
-<p>Следует избегать неоправданно частых обращений к процедурам, так как это приводит к привлечению дополнительных вычислительных ресурсов и, как следствие, замедлению работы компьютера. Например, было бы нерационально вычислять значение функции таким образом:</p>
-<code>
-<p class='ind2'>f:=5*Math.IntPower(x;3)+Math.Sin(x)*Math.Sin(x);</p>
-</code>
+    <p><span class="primer">Пример 8.5.2</span>. Составить программу вычисления значения функции
+        <math display='inline'>
+            <mrow>
+                <mrow>
+                    <mn>5</mn>
+                    <mo>&#x2061;</mo>
+                    <msup>
+                        <mi>x</mi>
+                        <mn>3</mn>
+                    </msup>
+                </mrow>
+                <mo>+</mo>
+                <mrow>
+                    <msup>
+                        <mi>Sin</mi>
+                        <mn>2</mn>
+                    </msup>
+                    <mo>&#x2062;</mo>
+                    <mrow>
+                        <mo>(</mo>
+                        <mi>x</mi>
+                        <mo>)</mo>
+                    </mrow>
+                </mrow>
+            </mrow>
+        </math>
+        по заданному значению аргумента x.
+    </p>
+    <code>
+        <p class='ind0'>MODULE пример2;</p>
+        <p class='ind1'>IMPORT Log:=StdLog, In:=i21sysIn, Math;</p>
+        <p class='ind1'>PROCEDURE вычислить*;</p>
+        <p class='ind2'>VAR n: INTEGER; f, x, s: REAL;</p>
+        <p class='ind1'>BEGIN</p>
+        <p class='ind2'>In.Open;</p>
+        <p class='ind2'>ASSERT(In.Done);</p>
+        <p class='ind2'>In.Real(x);</p>
+        <p class='ind2'>ASSERT(In.Done);</p>
+        <p class='ind2'>s:=Math.Sin(x);</p>
+        <p class='ind2'>f:=5*x*x*x+s*s;</p>
+        <p class='ind2'>Log.String('Искомое значение =');</p>
+        <p class='ind2'>Log.Real(f);</p>
+        <p class='ind2'>Log.Ln;</p>
+        <p class='ind1'>END вычислить;</p>
+        <p class='ind0'>END пример2.</p>
+        <table>
+            <tr>
+                <td align='right' valign='bottom'>
+                    <svg width='35' height='40'>
+                        <circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+                        <text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+                    </svg>
+                </td>
+                <td align='left' valign='middle'>пример2.вычислить 34.6</td>
+            </tr>
+        </table>
+    </code>
+    <p>Следует избегать неоправданно частых обращений к процедурам, так как это приводит к привлечению дополнительных
+        вычислительных ресурсов и, как следствие, замедлению работы компьютера. Например, было бы нерационально
+        вычислять значение функции таким образом:</p>
+    <code>
+        <p class='ind2'>f:=5*Math.IntPower(x;3)+Math.Sin(x)*Math.Sin(x);</p>
+    </code>
 </div>
 
-<p>Ниже предлагается переход по ссылке к параграфу 1 сборника задач по программированию под редакцией С.А. Абрамова, Г.Г. Гнездиловой, Е.Н. Капустина, М.И. Селюн. Задачи по программированию:</p>
+<p>Ниже предлагается переход по ссылке к параграфу 1 сборника задач по программированию под редакцией С.А. Абрамова,
+    Г.Г. Гнездиловой, Е.Н. Капустина, М.И. Селюн. Задачи по программированию:</p>
 <p><a href='zadachi/1.html'>§1 Арифметика действительных чисел. Вычисления по формулам</a></p>
-<p><a href="8_3.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_5.html">К следующему</a> </p>
+<p><a href="8_3.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_5.html">К следующему</a></p>
 </body>
+<script type="text/javascript">
+    MathJax.Hub.Configured()
+</script>
 </html>

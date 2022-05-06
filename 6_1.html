@@ -1,613 +1,1276 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" />
-<link rel='stylesheet' type="text/css" href="style.css"></link>
-<meta name="author" content="dima" />
-<meta name="description" content="криптография, шифрование подстановкой" />
-<meta name="keywords" content="основы теории защиты информации, алгоритм шифрования сдвигом, шифры-перестановки" />
-<title>Основы теории защиты информации</title>
-<script type="text/javascript">
+   <script type="text/x-mathjax-config">MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+  extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-function kod_sdvig() {
-var o={}, shag=document.getElementById("shag").value, txt=document.getElementById("txt").value,  div=document.getElementById("result"), len=txt.length, k=0, t, alph=[], table, caption, td, tr1, tr2, tr3, tr4, p="", dlina, kod="", m;
-	while (div.firstChild) {
-		div.removeChild(div.firstChild);
-	}	
-	for (var i=0;i<len; i++) {
-		t=txt[i];
-		if (!(t in o)) {
-			o[t]=k;
-			k++;
-		}
-	}
-	k=0;
-	for (var i in o) {
-		alph[k]=i;
-		k++;
-	}
-	p=document.createElement("p");
-	p.textContent="Исходное сообщение:";
-	div.appendChild(p);	
-	p=document.createElement("p");
-	p.textContent="'"+txt+"'";
-	div.appendChild(p);	
-	table=document.createElement("table");
-	table.border="1";
-	div.appendChild(table);
-	caption=document.createElement("caption");
-	caption.textContent="Кодирование сдвигом";
-	table.appendChild(caption);
-	tr1=document.createElement("tr");
-	table.appendChild(tr1);
-	td=document.createElement("td");
-	td.textContent="Алфавит 1";
-	tr1.appendChild(td);
-	tr2=document.createElement("tr");
-	table.appendChild(tr2);
-	td=document.createElement("td");
-	td.textContent="Индекс";
-	tr2.appendChild(td);
-	tr3=document.createElement("tr");
-	table.appendChild(tr3);
-	td=document.createElement("td");
-	td.textContent="Алфавит 2";
-	tr3.appendChild(td);
-	tr4=document.createElement("tr");
-	table.appendChild(tr4);
-	td=document.createElement("td");
-	td.textContent="Индекс";
-	tr4.appendChild(td);
-	dlina=alph.length;
-	for (var k=0; k<dlina; k++) {
-		td=document.createElement("td");
-		td.textContent=alph[k];
-		tr1.appendChild(td);
-		td=document.createElement("td");
-		td.textContent=k;
-		tr2.appendChild(td);
-		if (k<shag)		
-			t=dlina+k-shag;
-		else
-			t=k-shag;	
-		td=document.createElement("td");		
-		td.textContent=alph[t];
-		tr3.appendChild(td);		
-		td=document.createElement("td");
-		td.textContent=t;
-		tr4.appendChild(td);	
-	}
-	for (var i=0;i<len; i++) {
-		t=txt[i];
-		k=0;
-		while (alph[k]!=t)
-			k++;
-		if (k<shag)		
-			m=dlina+k-shag;
-		else
-			m=k-shag;		
-		kod+=alph[m];			
-	}
-	p=document.createElement("p");
-	p.textContent="Кодовая последовательность:";
-	div.appendChild(p);	
-	
-	p=document.createElement("p");
-	p.textContent="'"+kod+"'";
-	div.appendChild(p);	
-				
-}
+    <meta charset="UTF-8"/>
+    <link rel='stylesheet' type="text/css" href="style.css"></link>
+    <meta name="author" content="dima"/>
+    <meta name="description" content="криптография, шифрование подстановкой"/>
+    <meta name="keywords" content="основы теории защиты информации, алгоритм шифрования сдвигом, шифры-перестановки"/>
+    <title>Основы теории защиты информации</title>
+    <script type="text/javascript">
 
-function kod_trit() {
-var o={}, txt=document.getElementById("txt1").value, kluch=document.getElementById("kluch").value, div=document.getElementById("result_t"), len=txt.length, k=0, t, alph=[], table, caption, td, tr1, tr2, tr3, tr4, tr5, tr6, p="", dlina, kod="", m, i_t, i_k, i_kod, soob="";
-	while (div.firstChild) {
-		div.removeChild(div.firstChild);
-	}
-	for (var i=0;i<len; i++) {
-		t=txt[i];
-		if (!(t in o)) {
-			o[t]=k;
-			k++;
-		}
-	}
-	len=kluch.length;
-	for (var i=0;i<len; i++) {
-		t=kluch[i];
-		if (!(t in o)) {
-			o[t]=k;
-			k++;
-		}
-	}
-	k=0;
-	for (var i in o) {
-		alph[k]=i;
-		k++;
-	}
-	alph.sort();
-	p=document.createElement("p");
-	p.textContent="Исходное сообщение:";
-	div.appendChild(p);	
-	p=document.createElement("p");
-	p.textContent="'"+txt+"'";
-	div.appendChild(p);
-	t=kluch;
-	while (kluch.length<txt.length)
-		kluch+=t;
-	p=document.createElement("p");
-	p.textContent="Ключ:";
-	div.appendChild(p);	
-	p=document.createElement("p");
-	p.textContent="'"+kluch+"'";
-	div.appendChild(p);	
-	table=document.createElement("table");
-	table.border="1";
-	div.appendChild(table);
-	caption=document.createElement("caption");
-	caption.textContent="Алфавит сообщения и ключа";
-	table.appendChild(caption);
-	tr1=document.createElement("tr");
-	table.appendChild(tr1);
-	td=document.createElement("td");
-	td.textContent="Алфавит";
-	tr1.appendChild(td);
-	tr2=document.createElement("tr");
-	table.appendChild(tr2);
-	td=document.createElement("td");
-	td.textContent="Индекс";
-	tr2.appendChild(td);
-	dlina=alph.length;
-	for (var k=0; k<dlina; k++) {
-		td=document.createElement("td");
-		td.textContent=alph[k];
-		tr1.appendChild(td);
-		td=document.createElement("td");
-		td.textContent=k;
-		tr2.appendChild(td);
-	}
-	table=document.createElement("table");
-	table.border="1";
-	div.appendChild(table);
-	caption=document.createElement("caption");
-	caption.textContent="Шифрование сложением по модулю "+dlina;
-	table.appendChild(caption);
-	tr1=document.createElement("tr");
-	table.appendChild(tr1);
-	td=document.createElement("td");
-	td.textContent="Сообщение";
-	tr1.appendChild(td);
-	tr2=document.createElement("tr");
-	table.appendChild(tr2);
-	td=document.createElement("td");
-	td.textContent="Индекс";
-	tr2.appendChild(td);
+        function kod_sdvig() {
+            var o = {}, shag = document.getElementById("shag").value, txt = document.getElementById("txt").value,
+                div = document.getElementById("result"), len = txt.length, k = 0, t, alph = [], table, caption, td, tr1,
+                tr2, tr3, tr4, p = "", dlina, kod = "", m;
+            while (div.firstChild) {
+                div.removeChild(div.firstChild);
+            }
+            for (var i = 0; i < len; i++) {
+                t = txt[i];
+                if (!(t in o)) {
+                    o[t] = k;
+                    k++;
+                }
+            }
+            k = 0;
+            for (var i in o) {
+                alph[k] = i;
+                k++;
+            }
+            p = document.createElement("p");
+            p.textContent = "Исходное сообщение:";
+            div.appendChild(p);
+            p = document.createElement("p");
+            p.textContent = "'" + txt + "'";
+            div.appendChild(p);
+            table = document.createElement("table");
+            table.border = "1";
+            div.appendChild(table);
+            caption = document.createElement("caption");
+            caption.textContent = "Кодирование сдвигом";
+            table.appendChild(caption);
+            tr1 = document.createElement("tr");
+            table.appendChild(tr1);
+            td = document.createElement("td");
+            td.textContent = "Алфавит 1";
+            tr1.appendChild(td);
+            tr2 = document.createElement("tr");
+            table.appendChild(tr2);
+            td = document.createElement("td");
+            td.textContent = "Индекс";
+            tr2.appendChild(td);
+            tr3 = document.createElement("tr");
+            table.appendChild(tr3);
+            td = document.createElement("td");
+            td.textContent = "Алфавит 2";
+            tr3.appendChild(td);
+            tr4 = document.createElement("tr");
+            table.appendChild(tr4);
+            td = document.createElement("td");
+            td.textContent = "Индекс";
+            tr4.appendChild(td);
+            dlina = alph.length;
+            for (var k = 0; k < dlina; k++) {
+                td = document.createElement("td");
+                td.textContent = alph[k];
+                tr1.appendChild(td);
+                td = document.createElement("td");
+                td.textContent = k;
+                tr2.appendChild(td);
+                if (k < shag)
+                    t = dlina + k - shag;
+                else
+                    t = k - shag;
+                td = document.createElement("td");
+                td.textContent = alph[t];
+                tr3.appendChild(td);
+                td = document.createElement("td");
+                td.textContent = t;
+                tr4.appendChild(td);
+            }
+            for (var i = 0; i < len; i++) {
+                t = txt[i];
+                k = 0;
+                while (alph[k] != t)
+                    k++;
+                if (k < shag)
+                    m = dlina + k - shag;
+                else
+                    m = k - shag;
+                kod += alph[m];
+            }
+            p = document.createElement("p");
+            p.textContent = "Кодовая последовательность:";
+            div.appendChild(p);
 
-	tr3=document.createElement("tr");
-	table.appendChild(tr3);
-	td=document.createElement("td");
-	td.textContent="Ключ";
-	tr3.appendChild(td);
-	tr4=document.createElement("tr");
-	table.appendChild(tr4);
-	td=document.createElement("td");
-	td.textContent="Индекс ключа";
-	tr4.appendChild(td);
-	tr5=document.createElement("tr");
-	table.appendChild(tr5);
-	td=document.createElement("td");
-	td.textContent="Индекс шифра";
-	tr5.appendChild(td);
+            p = document.createElement("p");
+            p.textContent = "'" + kod + "'";
+            div.appendChild(p);
 
-	tr6=document.createElement("tr");
-	table.appendChild(tr6);
-	td=document.createElement("td");
-	td.textContent="Шифр";
-	tr6.appendChild(td);	
-	for (var i=0; i<txt.length; i++) {
-		td=document.createElement("td");
-		td.textContent=txt[i];
-		tr1.appendChild(td);
-		i_t=0;
-		while (alph[i_t]!=txt[i]) {
-			i_t++;
-		}
-		td=document.createElement("td");
-		td.textContent=i_t;
-		tr2.appendChild(td);
-		td=document.createElement("td");
-		td.textContent=kluch[i];
-		tr3.appendChild(td);
-		i_k=0;
-		while (alph[i_k]!=kluch[i]) {
-			i_k++;
-		}
-		td=document.createElement("td");
-		td.textContent=i_k;
-		tr4.appendChild(td);
-		i_kod=(i_t+i_k)%dlina;
-		td=document.createElement("td");
-		td.textContent=i_kod;
-		tr5.appendChild(td);
-		td=document.createElement("td");
-		td.textContent=alph[i_kod];
-		kod+=alph[i_kod];
-		tr6.appendChild(td);
-	}
-	p=document.createElement("p");
-	p.textContent="Шифрограмма "+"'"+kod+"'.";
-	div.appendChild(p);
+        }
 
-	table=document.createElement("table");
-	table.border="1";
-	div.appendChild(table);
-	caption=document.createElement("caption");
-	caption.textContent="Дешифрование вычитанием по модулю "+dlina;
-	table.appendChild(caption);
-	tr1=document.createElement("tr");
-	table.appendChild(tr1);
-	td=document.createElement("td");
-	td.textContent="Шифрограмма";
-	tr1.appendChild(td);
-	tr2=document.createElement("tr");
-	table.appendChild(tr2);
-	td=document.createElement("td");
-	td.textContent="Индекс";
-	tr2.appendChild(td);
-	tr3=document.createElement("tr");
-	table.appendChild(tr3);
-	td=document.createElement("td");
-	td.textContent="Ключ";
-	tr3.appendChild(td);
-	tr4=document.createElement("tr");
-	table.appendChild(tr4);
-	td=document.createElement("td");
-	td.textContent="Индекс ключа";
-	tr4.appendChild(td);
-	tr5=document.createElement("tr");
-	table.appendChild(tr5);
-	td=document.createElement("td");
-	td.textContent="Индекс сообщения";
-	tr5.appendChild(td);
+        function kod_trit() {
+            var o = {}, txt = document.getElementById("txt1").value, kluch = document.getElementById("kluch").value,
+                div = document.getElementById("result_t"), len = txt.length, k = 0, t, alph = [], table, caption, td,
+                tr1, tr2, tr3, tr4, tr5, tr6, p = "", dlina, kod = "", m, i_t, i_k, i_kod, soob = "";
+            while (div.firstChild) {
+                div.removeChild(div.firstChild);
+            }
+            for (var i = 0; i < len; i++) {
+                t = txt[i];
+                if (!(t in o)) {
+                    o[t] = k;
+                    k++;
+                }
+            }
+            len = kluch.length;
+            for (var i = 0; i < len; i++) {
+                t = kluch[i];
+                if (!(t in o)) {
+                    o[t] = k;
+                    k++;
+                }
+            }
+            k = 0;
+            for (var i in o) {
+                alph[k] = i;
+                k++;
+            }
+            alph.sort();
+            p = document.createElement("p");
+            p.textContent = "Исходное сообщение:";
+            div.appendChild(p);
+            p = document.createElement("p");
+            p.textContent = "'" + txt + "'";
+            div.appendChild(p);
+            t = kluch;
+            while (kluch.length < txt.length)
+                kluch += t;
+            p = document.createElement("p");
+            p.textContent = "Ключ:";
+            div.appendChild(p);
+            p = document.createElement("p");
+            p.textContent = "'" + kluch + "'";
+            div.appendChild(p);
+            table = document.createElement("table");
+            table.border = "1";
+            div.appendChild(table);
+            caption = document.createElement("caption");
+            caption.textContent = "Алфавит сообщения и ключа";
+            table.appendChild(caption);
+            tr1 = document.createElement("tr");
+            table.appendChild(tr1);
+            td = document.createElement("td");
+            td.textContent = "Алфавит";
+            tr1.appendChild(td);
+            tr2 = document.createElement("tr");
+            table.appendChild(tr2);
+            td = document.createElement("td");
+            td.textContent = "Индекс";
+            tr2.appendChild(td);
+            dlina = alph.length;
+            for (var k = 0; k < dlina; k++) {
+                td = document.createElement("td");
+                td.textContent = alph[k];
+                tr1.appendChild(td);
+                td = document.createElement("td");
+                td.textContent = k;
+                tr2.appendChild(td);
+            }
+            table = document.createElement("table");
+            table.border = "1";
+            div.appendChild(table);
+            caption = document.createElement("caption");
+            caption.textContent = "Шифрование сложением по модулю " + dlina;
+            table.appendChild(caption);
+            tr1 = document.createElement("tr");
+            table.appendChild(tr1);
+            td = document.createElement("td");
+            td.textContent = "Сообщение";
+            tr1.appendChild(td);
+            tr2 = document.createElement("tr");
+            table.appendChild(tr2);
+            td = document.createElement("td");
+            td.textContent = "Индекс";
+            tr2.appendChild(td);
 
-	tr6=document.createElement("tr");
-	table.appendChild(tr6);
-	td=document.createElement("td");
-	td.textContent="Сообщение";
-	tr6.appendChild(td);	
+            tr3 = document.createElement("tr");
+            table.appendChild(tr3);
+            td = document.createElement("td");
+            td.textContent = "Ключ";
+            tr3.appendChild(td);
+            tr4 = document.createElement("tr");
+            table.appendChild(tr4);
+            td = document.createElement("td");
+            td.textContent = "Индекс ключа";
+            tr4.appendChild(td);
+            tr5 = document.createElement("tr");
+            table.appendChild(tr5);
+            td = document.createElement("td");
+            td.textContent = "Индекс шифра";
+            tr5.appendChild(td);
+
+            tr6 = document.createElement("tr");
+            table.appendChild(tr6);
+            td = document.createElement("td");
+            td.textContent = "Шифр";
+            tr6.appendChild(td);
+            for (var i = 0; i < txt.length; i++) {
+                td = document.createElement("td");
+                td.textContent = txt[i];
+                tr1.appendChild(td);
+                i_t = 0;
+                while (alph[i_t] != txt[i]) {
+                    i_t++;
+                }
+                td = document.createElement("td");
+                td.textContent = i_t;
+                tr2.appendChild(td);
+                td = document.createElement("td");
+                td.textContent = kluch[i];
+                tr3.appendChild(td);
+                i_k = 0;
+                while (alph[i_k] != kluch[i]) {
+                    i_k++;
+                }
+                td = document.createElement("td");
+                td.textContent = i_k;
+                tr4.appendChild(td);
+                i_kod = (i_t + i_k) % dlina;
+                td = document.createElement("td");
+                td.textContent = i_kod;
+                tr5.appendChild(td);
+                td = document.createElement("td");
+                td.textContent = alph[i_kod];
+                kod += alph[i_kod];
+                tr6.appendChild(td);
+            }
+            p = document.createElement("p");
+            p.textContent = "Шифрограмма " + "'" + kod + "'.";
+            div.appendChild(p);
+
+            table = document.createElement("table");
+            table.border = "1";
+            div.appendChild(table);
+            caption = document.createElement("caption");
+            caption.textContent = "Дешифрование вычитанием по модулю " + dlina;
+            table.appendChild(caption);
+            tr1 = document.createElement("tr");
+            table.appendChild(tr1);
+            td = document.createElement("td");
+            td.textContent = "Шифрограмма";
+            tr1.appendChild(td);
+            tr2 = document.createElement("tr");
+            table.appendChild(tr2);
+            td = document.createElement("td");
+            td.textContent = "Индекс";
+            tr2.appendChild(td);
+            tr3 = document.createElement("tr");
+            table.appendChild(tr3);
+            td = document.createElement("td");
+            td.textContent = "Ключ";
+            tr3.appendChild(td);
+            tr4 = document.createElement("tr");
+            table.appendChild(tr4);
+            td = document.createElement("td");
+            td.textContent = "Индекс ключа";
+            tr4.appendChild(td);
+            tr5 = document.createElement("tr");
+            table.appendChild(tr5);
+            td = document.createElement("td");
+            td.textContent = "Индекс сообщения";
+            tr5.appendChild(td);
+
+            tr6 = document.createElement("tr");
+            table.appendChild(tr6);
+            td = document.createElement("td");
+            td.textContent = "Сообщение";
+            tr6.appendChild(td);
 
 
-	for (var i=0; i<txt.length; i++) {
-		td=document.createElement("td");
-		td.textContent=kod[i];
-		tr1.appendChild(td);
-		i_t=0;
-		while (alph[i_t]!=kod[i]) {
-			i_t++;
-		}
-		td=document.createElement("td");
-		td.textContent=i_t;
-		tr2.appendChild(td);
-		td=document.createElement("td");
-		td.textContent=kluch[i];
-		tr3.appendChild(td);
-		i_k=0;
-		while (alph[i_k]!=kluch[i]) {
-			i_k++;
-		}
-		td=document.createElement("td");
-		td.textContent=i_k;
-		tr4.appendChild(td);
-		if (i_t<i_k)
-			i_kod=i_t-i_k+dlina;
-		else
-			i_kod=i_t-i_k;
-		
-		td=document.createElement("td");
-		td.textContent=i_kod;
-		tr5.appendChild(td);
-		td=document.createElement("td");
-		td.textContent=alph[i_kod];
-		soob+=alph[i_kod];
-		tr6.appendChild(td);
-	}
-	p=document.createElement("p");
-	p.textContent="Сообщение "+"'"+soob+"'.";
-	div.appendChild(p);	
-}
+            for (var i = 0; i < txt.length; i++) {
+                td = document.createElement("td");
+                td.textContent = kod[i];
+                tr1.appendChild(td);
+                i_t = 0;
+                while (alph[i_t] != kod[i]) {
+                    i_t++;
+                }
+                td = document.createElement("td");
+                td.textContent = i_t;
+                tr2.appendChild(td);
+                td = document.createElement("td");
+                td.textContent = kluch[i];
+                tr3.appendChild(td);
+                i_k = 0;
+                while (alph[i_k] != kluch[i]) {
+                    i_k++;
+                }
+                td = document.createElement("td");
+                td.textContent = i_k;
+                tr4.appendChild(td);
+                if (i_t < i_k)
+                    i_kod = i_t - i_k + dlina;
+                else
+                    i_kod = i_t - i_k;
 
-</script>
+                td = document.createElement("td");
+                td.textContent = i_kod;
+                tr5.appendChild(td);
+                td = document.createElement("td");
+                td.textContent = alph[i_kod];
+                soob += alph[i_kod];
+                tr6.appendChild(td);
+            }
+            p = document.createElement("p");
+            p.textContent = "Сообщение " + "'" + soob + "'.";
+            div.appendChild(p);
+        }
+
+    </script>
 </head>
 <body>
 <p><a href="5_4.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="6_2.html">К следующему</a></p>
 <h1>6. Основы теории защиты информации</h1>
 <p>В данной главе рассмотрим принципы организации обмена конфиденциальной информацией по открытым каналам связи.</p>
 <p><span class="teorema">Раздел математики, посвященный разработке алгоритмов шифрования сообщений с целью сделать его содержание недоступным непосвященным лицам, называется криптографией (тайнописью). Зашифрованное сообщение будем называть криптограммой или шифрограммой</span>
-.</p>
+    .</p>
 <p>Основы классической теории криптографии были изложены К. Шенноном в конце 40-х годов 20-го века.</p>
-<p>Первые сведения о тайнописи зафиксированы в V веке до нашей эры в трудах древнегреческого историка Геродота. С тех пор совершенствовались как методы шифрования сообщений, так и методы взлома секретных ключей шифров. Сегодня большая часть информации передается по открытым компьютерным сетям, и проблема защиты информации методами криптографии становится особенно актуальной.</p>
-<p>Прежде чем перейти к изучению криптосистем с открытым ключом, познакомимся с некоторыми простейшими методами шифрования.</p>
+<p>Первые сведения о тайнописи зафиксированы в V веке до нашей эры в трудах древнегреческого историка Геродота. С тех
+    пор совершенствовались как методы шифрования сообщений, так и методы взлома секретных ключей шифров. Сегодня большая
+    часть информации передается по открытым компьютерным сетям, и проблема защиты информации методами криптографии
+    становится особенно актуальной.</p>
+<p>Прежде чем перейти к изучению криптосистем с открытым ключом, познакомимся с некоторыми простейшими методами
+    шифрования.</p>
 <h2>6.1. Простейшие алгоритмы шифрования сообщений</h2>
-<p>Одна из самых простых систем шифрования &#8212; это алгоритм сдвига букв алфавита вправо или влево на некоторый постоянный шаг <var>k</var>. Пусть алфавит состоит из <var>N</var> знаков, пронумерованных от 0 до 
-<math >
-<mrow>
-<mi>N</mi><mo>-</mo><mn>1</mn>
-</mrow>
-</math>. Для определенности будем считать, что алфавит сдвинут на <var>k</var> знаков вправо с переносом последних <var>k</var> знаков в начало алфавита. Тогда каждый знак исходного текста с номером <var>i</var> в алфавите заменяется знаком с номером <var>j</var>, равным остатку от деления 
-<math >
-<mrow>
-<mi>i</mi><mo>-</mo><mi>k</mi>
-</mrow>
-</math>
- на <var>N</var>: 
-<math >
-<mrow>
-<mi>j</mi><mo>=</mo>
-<mi>mod</mi><mo>&#x2061;</mo>
-<mrow>
-<mo>(</mo>
-<mrow><mi>i</mi><mo>-</mo><mi>k</mi></mrow><mo>,</mo><mi>N</mi>
-<mo>)</mo>
-</mrow>
-</mrow>
-</math>. Здесь <a href="4_5.html#delenie">остаток от деления</a> определяется математически, поэтому не может быть отрицательным. Например, 
-<math >
-<mrow>
-	<mi>mod</mi><mo>&#x2061;</mo>
-	<mrow>
-		<mo>(</mo>
-		<mrow><mo>-</mo><mn>4</mn></mrow><mo>,</mo><mn>32</mn>
-		<mo>)</mo>
-	</mrow>
-	<mo>=</mo>
-	<mn>28</mn>
-</mrow>
-<mo>,</mo>
-<mrow>
-	<mi>mod</mi><mo>&#x2061;</mo>
-	<mrow>
-		<mo>(</mo>
-		<mn>4</mn><mo>,</mo><mn>32</mn>
-		<mo>)</mo>
-	</mrow>
-	<mo>=</mo>
-	<mn>4</mn>
-</mrow>
-</math>.</p>
-<p>Для расшифровки шифрограммы следует каждый знак шифрограммы, имеющий <var>i</var>-ый номер в алфавите, заменить на знак с <var>j</var>-ым номером, где 
-<math >
-<mrow>
-<mi>j</mi><mo>=</mo>
-<mi>mod</mi><mo>&#x2061;</mo>
-	<mrow>
-		<mo>(</mo>
-		<mrow><mi>i</mi><mo>+</mo><mi>k</mi></mrow><mo>,</mo><mi>N</mi>
-		<mo>)</mo>
-	</mrow>
-</mrow>
-</math>, а <var>k</var> &#8212; шаг сдвига.</p>
-<p>Шифрование заменой каждого знака на другой знак по некоторому правилу называется <span class="termin">шифром простой замены</span> или <span class="termin">подстановки</span>. Описанный алгоритм сдвига является простейшим примером шифрования подстановкой. Шифры простой замены или подстановки, достаточно большой длины, легко взламываются по причине <a href="2_5.html#izbyt">избыточности всякого естественного языка</a>. Избыточность языка проявляется в том, что буквы и буквосочетания имеют определенные вероятности встречаемости. Чем длиннее шифрограмма, тем ближе будут частоты знаков шифра к вероятностям соответствующих знаков алфавита. Путем сравнения частот знаков и знакосочетаний шифрограммы с соответствующими вероятностями встречаемости, выделения как наиболее часто встречаемых, так и наиболее редких знаков можно построить таблицу соответствия знаков шифра знакам алфавита.</p>
-<div class="examp">
-<p><span class="primer">Пример 6.1.1</span>. Пусть текст содержит только 32 буквы кириллицы и пробел, причем не различаются буквы е и ё, строчные и прописные буквы, а функция секретного ключа будет заключаться в сдвиге вправо букв алфавита на 6 шагов и переносом последних 6 букв в начало алфавита. Таким образом, 
-<math >
-<mi>N</mi><mo>=</mo><mn>33</mn><mo>,</mo>
-<mi>k</mi><mo>=</mo><mn>6</mn>
-</math>.</p>
-<p>Буква &quot;а&quot; имеет номер 
-<math >
-<mi>i</mi><mo>=</mo><mn>0</mn>
-</math>. Определим номер 
-<math >
-<mrow>
-<mi>j</mi><mo>=</mo>
-<mi>mod</mi><mo>&#x2061;</mo>
-	<mrow>
-		<mo>(</mo>
-		<mrow><mn>0</mn><mo>-</mo><mn>6</mn></mrow><mo>,</mo><mn>33</mn>
-		<mo>)</mo>
-	</mrow>
-	<mo>=</mo>
-	<mn>27</mn>
-</mrow>
-</math>. Следовательно, букве &quot;а&quot; ставится в соответствие 27-я буква алфавита, т.е. &quot;ы&quot;. Для 
-<math >
-<mrow>
-	<mi>i</mi><mo>=</mo><mn>1</mn>
-</mrow>
-</math>
-<math >
-<mrow>
-<mi>j</mi><mo>=</mo>
-<mi>mod</mi><mo>&#x2061;</mo>
-	<mrow>
-		<mo>(</mo>
-		<mrow><mn>1</mn><mo>-</mo><mn>6</mn></mrow><mo>,</mo><mn>33</mn>
-		<mo>)</mo>
-	</mrow>
-	<mo>=</mo>
-	<mn>28</mn>
-</mrow>
-</math>, и букве &quot;б&quot; соответствует буква &quot;ь&quot;. Для 
-<math >
-<mrow>
-	<mi>i</mi><mo>=</mo><mn>32</mn>
-</mrow>
-</math>
-<math >
-<mrow>
-<mi>j</mi><mo>=</mo>
-<mi>mod</mi><mo>&#x2061;</mo>
-	<mrow>
-		<mo>(</mo>
-		<mrow><mn>32</mn><mo>-</mo><mn>6</mn></mrow><mo>,</mo><mn>33</mn>
-		<mo>)</mo>
-	</mrow>
-	<mo>=</mo>
-	<mn>26</mn>
-</mrow>
-</math>, и знаку пробела соответствует буква &quot;ъ&quot;.</p>
-<p>Таблица шифрования будет выглядеть так:
-<table border="1" align="center">
-<tr>
-<td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td>32</td>
-</tr>
-<tr>
-<td>а</td><td>б</td><td>в</td><td>г</td><td>д</td><td>е</td><td>ж</td><td>з</td><td>и</td><td>й</td><td>к</td><td>л</td><td>м</td><td>н</td><td>о</td><td>п</td><td>р</td><td>с</td><td>т</td><td>у</td><td>ф</td><td>х</td><td>ц</td><td>ч</td><td>ш</td><td>щ</td><td>ъ</td><td>ы</td><td>ь</td><td>э</td><td>ю</td><td>я</td><td> </td>
-</tr>
-<tr>
-<td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td>32</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td>
-</tr>
-<tr>
-<td>ы</td><td>ь</td><td>э</td><td>ю</td><td>я</td><td> </td><td>а</td><td>б</td><td>в</td><td>г</td><td>д</td><td>е</td><td>ж</td><td>з</td><td>и</td><td>й</td><td>к</td><td>л</td><td>м</td><td>н</td><td>о</td><td>п</td><td>р</td><td>с</td><td>т</td><td>у</td><td>ф</td><td>х</td><td>ц</td><td>ч</td><td>ш</td><td>щ</td><td>ъ</td>
-</tr>
-</table>
+<p>Одна из самых простых систем шифрования &#8212; это алгоритм сдвига букв алфавита вправо или влево на некоторый
+    постоянный шаг <var>k</var>. Пусть алфавит состоит из <var>N</var> знаков, пронумерованных от 0 до
+    <math>
+        <mrow>
+            <mi>N</mi>
+            <mo>-</mo>
+            <mn>1</mn>
+        </mrow>
+    </math>
+    . Для определенности будем считать, что алфавит сдвинут на <var>k</var> знаков вправо с переносом последних
+    <var>k</var> знаков в начало алфавита. Тогда каждый знак исходного текста с номером <var>i</var> в алфавите
+    заменяется знаком с номером <var>j</var>, равным остатку от деления
+    <math>
+        <mrow>
+            <mi>i</mi>
+            <mo>-</mo>
+            <mi>k</mi>
+        </mrow>
+    </math>
+    на <var>N</var>:
+    <math>
+        <mrow>
+            <mi>j</mi>
+            <mo>=</mo>
+            <mi>mod</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>(</mo>
+                <mrow>
+                    <mi>i</mi>
+                    <mo>-</mo>
+                    <mi>k</mi>
+                </mrow>
+                <mo>,</mo>
+                <mi>N</mi>
+                <mo>)</mo>
+            </mrow>
+        </mrow>
+    </math>
+    . Здесь <a href="4_5.html#delenie">остаток от деления</a> определяется математически, поэтому не может быть
+    отрицательным. Например,
+    <math>
+        <mrow>
+            <mi>mod</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>(</mo>
+                <mrow>
+                    <mo>-</mo>
+                    <mn>4</mn>
+                </mrow>
+                <mo>,</mo>
+                <mn>32</mn>
+                <mo>)</mo>
+            </mrow>
+            <mo>=</mo>
+            <mn>28</mn>
+        </mrow>
+        <mo>,</mo>
+        <mrow>
+            <mi>mod</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>(</mo>
+                <mn>4</mn>
+                <mo>,</mo>
+                <mn>32</mn>
+                <mo>)</mo>
+            </mrow>
+            <mo>=</mo>
+            <mn>4</mn>
+        </mrow>
+    </math>
+    .
 </p>
+<p>Для расшифровки шифрограммы следует каждый знак шифрограммы, имеющий <var>i</var>-ый номер в алфавите, заменить на
+    знак с <var>j</var>-ым номером, где
+    <math>
+        <mrow>
+            <mi>j</mi>
+            <mo>=</mo>
+            <mi>mod</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>(</mo>
+                <mrow>
+                    <mi>i</mi>
+                    <mo>+</mo>
+                    <mi>k</mi>
+                </mrow>
+                <mo>,</mo>
+                <mi>N</mi>
+                <mo>)</mo>
+            </mrow>
+        </mrow>
+    </math>
+    , а <var>k</var> &#8212; шаг сдвига.
+</p>
+<p>Шифрование заменой каждого знака на другой знак по некоторому правилу называется <span class="termin">шифром простой замены</span>
+    или <span class="termin">подстановки</span>. Описанный алгоритм сдвига является простейшим примером шифрования
+    подстановкой. Шифры простой замены или подстановки, достаточно большой длины, легко взламываются по причине <a
+            href="2_5.html#izbyt">избыточности всякого естественного языка</a>. Избыточность языка проявляется в том,
+    что буквы и буквосочетания имеют определенные вероятности встречаемости. Чем длиннее шифрограмма, тем ближе будут
+    частоты знаков шифра к вероятностям соответствующих знаков алфавита. Путем сравнения частот знаков и знакосочетаний
+    шифрограммы с соответствующими вероятностями встречаемости, выделения как наиболее часто встречаемых, так и наиболее
+    редких знаков можно построить таблицу соответствия знаков шифра знакам алфавита.</p>
+<div class="examp">
+    <p><span class="primer">Пример 6.1.1</span>. Пусть текст содержит только 32 буквы кириллицы и пробел, причем не
+        различаются буквы е и ё, строчные и прописные буквы, а функция секретного ключа будет заключаться в сдвиге
+        вправо букв алфавита на 6 шагов и переносом последних 6 букв в начало алфавита. Таким образом,
+        <math>
+            <mi>N</mi>
+            <mo>=</mo>
+            <mn>33</mn>
+            <mo>,</mo>
+            <mi>k</mi>
+            <mo>=</mo>
+            <mn>6</mn>
+        </math>
+        .
+    </p>
+    <p>Буква &quot;а&quot; имеет номер
+        <math>
+            <mi>i</mi>
+            <mo>=</mo>
+            <mn>0</mn>
+        </math>
+        . Определим номер
+        <math>
+            <mrow>
+                <mi>j</mi>
+                <mo>=</mo>
+                <mi>mod</mi>
+                <mo>&#x2061;</mo>
+                <mrow>
+                    <mo>(</mo>
+                    <mrow>
+                        <mn>0</mn>
+                        <mo>-</mo>
+                        <mn>6</mn>
+                    </mrow>
+                    <mo>,</mo>
+                    <mn>33</mn>
+                    <mo>)</mo>
+                </mrow>
+                <mo>=</mo>
+                <mn>27</mn>
+            </mrow>
+        </math>
+        . Следовательно, букве &quot;а&quot; ставится в соответствие 27-я буква алфавита, т.е. &quot;ы&quot;. Для
+        <math>
+            <mrow>
+                <mi>i</mi>
+                <mo>=</mo>
+                <mn>1</mn>
+            </mrow>
+        </math>
+        <math>
+            <mrow>
+                <mi>j</mi>
+                <mo>=</mo>
+                <mi>mod</mi>
+                <mo>&#x2061;</mo>
+                <mrow>
+                    <mo>(</mo>
+                    <mrow>
+                        <mn>1</mn>
+                        <mo>-</mo>
+                        <mn>6</mn>
+                    </mrow>
+                    <mo>,</mo>
+                    <mn>33</mn>
+                    <mo>)</mo>
+                </mrow>
+                <mo>=</mo>
+                <mn>28</mn>
+            </mrow>
+        </math>
+        , и букве &quot;б&quot; соответствует буква &quot;ь&quot;. Для
+        <math>
+            <mrow>
+                <mi>i</mi>
+                <mo>=</mo>
+                <mn>32</mn>
+            </mrow>
+        </math>
+        <math>
+            <mrow>
+                <mi>j</mi>
+                <mo>=</mo>
+                <mi>mod</mi>
+                <mo>&#x2061;</mo>
+                <mrow>
+                    <mo>(</mo>
+                    <mrow>
+                        <mn>32</mn>
+                        <mo>-</mo>
+                        <mn>6</mn>
+                    </mrow>
+                    <mo>,</mo>
+                    <mn>33</mn>
+                    <mo>)</mo>
+                </mrow>
+                <mo>=</mo>
+                <mn>26</mn>
+            </mrow>
+        </math>
+        , и знаку пробела соответствует буква &quot;ъ&quot;.
+    </p>
+    <p>Таблица шифрования будет выглядеть так:
+    <table border="1" align="center">
+        <tr>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+            <td>16</td>
+            <td>17</td>
+            <td>18</td>
+            <td>19</td>
+            <td>20</td>
+            <td>21</td>
+            <td>22</td>
+            <td>23</td>
+            <td>24</td>
+            <td>25</td>
+            <td>26</td>
+            <td>27</td>
+            <td>28</td>
+            <td>29</td>
+            <td>30</td>
+            <td>31</td>
+            <td>32</td>
+        </tr>
+        <tr>
+            <td>а</td>
+            <td>б</td>
+            <td>в</td>
+            <td>г</td>
+            <td>д</td>
+            <td>е</td>
+            <td>ж</td>
+            <td>з</td>
+            <td>и</td>
+            <td>й</td>
+            <td>к</td>
+            <td>л</td>
+            <td>м</td>
+            <td>н</td>
+            <td>о</td>
+            <td>п</td>
+            <td>р</td>
+            <td>с</td>
+            <td>т</td>
+            <td>у</td>
+            <td>ф</td>
+            <td>х</td>
+            <td>ц</td>
+            <td>ч</td>
+            <td>ш</td>
+            <td>щ</td>
+            <td>ъ</td>
+            <td>ы</td>
+            <td>ь</td>
+            <td>э</td>
+            <td>ю</td>
+            <td>я</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>27</td>
+            <td>28</td>
+            <td>29</td>
+            <td>30</td>
+            <td>31</td>
+            <td>32</td>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+            <td>16</td>
+            <td>17</td>
+            <td>18</td>
+            <td>19</td>
+            <td>20</td>
+            <td>21</td>
+            <td>22</td>
+            <td>23</td>
+            <td>24</td>
+            <td>25</td>
+            <td>26</td>
+        </tr>
+        <tr>
+            <td>ы</td>
+            <td>ь</td>
+            <td>э</td>
+            <td>ю</td>
+            <td>я</td>
+            <td></td>
+            <td>а</td>
+            <td>б</td>
+            <td>в</td>
+            <td>г</td>
+            <td>д</td>
+            <td>е</td>
+            <td>ж</td>
+            <td>з</td>
+            <td>и</td>
+            <td>й</td>
+            <td>к</td>
+            <td>л</td>
+            <td>м</td>
+            <td>н</td>
+            <td>о</td>
+            <td>п</td>
+            <td>р</td>
+            <td>с</td>
+            <td>т</td>
+            <td>у</td>
+            <td>ф</td>
+            <td>х</td>
+            <td>ц</td>
+            <td>ч</td>
+            <td>ш</td>
+            <td>щ</td>
+            <td>ъ</td>
+        </tr>
+    </table>
+    </p>
 </div>
 <p>Для шифрования сдвигом предлагается следующий шифратор:</p>
 <form id="f1">
-<table>
-<tr align='left'>
-<td>Введите шаг сдвига</td>
-<td><input type="text" id="shag" maxlength="2" size="3" /></td>
-</tr>
-<tr align='left'>
-<td>Введите текст:</td>
-<td><textarea rows="6" id="txt" cols="80"></textarea></td>
-</tr>
-<tr align='left'>
-<td><input type="button" value="Закодировать" onclick="kod_sdvig()" /></td>
-<td><input type="reset" value="Обновить" /></td>
-</tr>
-</table>
+    <table>
+        <tr align='left'>
+            <td>Введите шаг сдвига</td>
+            <td><input type="text" id="shag" maxlength="2" size="3"/></td>
+        </tr>
+        <tr align='left'>
+            <td>Введите текст:</td>
+            <td><textarea rows="6" id="txt" cols="80"></textarea></td>
+        </tr>
+        <tr align='left'>
+            <td><input type="button" value="Закодировать" onclick="kod_sdvig()"/></td>
+            <td><input type="reset" value="Обновить"/></td>
+        </tr>
+    </table>
 </form>
 <div id="result"></div>
-<p>Другое направление шифрования &#8212; <span class="termin">перестановочные алгоритмы</span>. Простейшим перестановочным алгоритмом является перестановочный алгоритм шифрования с шагом в <var>k</var> знаков, который сводится к следующим шагам: шифруемое сообщение разбивается на строки по <var>k</var> знаков в каждой, затем строки заменяются на соответствующие столбцы, после чего зашифрованное сообщение записывается путем последовательного сцепления строк.</p>
+<p>Другое направление шифрования &#8212; <span class="termin">перестановочные алгоритмы</span>. Простейшим
+    перестановочным алгоритмом является перестановочный алгоритм шифрования с шагом в <var>k</var> знаков, который
+    сводится к следующим шагам: шифруемое сообщение разбивается на строки по <var>k</var> знаков в каждой, затем строки
+    заменяются на соответствующие столбцы, после чего зашифрованное сообщение записывается путем последовательного
+    сцепления строк.</p>
 <p>Расшифровывается шифрограмма в обратном порядке.</p>
-<p>Перестановочный алгоритм шифрования не избавляет полностью криптограмму от проявления избыточности языка. Другой недостаток перестановочного алгоритма шифрования заключается в том, что если удастся расшифровать хотя бы одну шифрограмму, то можно расшифровать и всякую другую. С целью повышения стойкости алгоритма шифрования используют различные сочетания подстановочных и перестановочных алгоритмов.</p>
+<p>Перестановочный алгоритм шифрования не избавляет полностью криптограмму от проявления избыточности языка. Другой
+    недостаток перестановочного алгоритма шифрования заключается в том, что если удастся расшифровать хотя бы одну
+    шифрограмму, то можно расшифровать и всякую другую. С целью повышения стойкости алгоритма шифрования используют
+    различные сочетания подстановочных и перестановочных алгоритмов.</p>
 <div class="examp">
-<p><span class="primer">Пример 6.1.2</span>. Применим перестановочный алгоритм шифрования с шагом в 
-<math >
-<mrow>
-	<mi>k</mi><mo>=</mo><mn>4</mn>
-</mrow>
-</math>
-знака к сообщению &quot;основы_информатики_и_программирование&quot;, для наглядности обозначив пробел знаком подчеркивания &quot;_&quot;.</p>
-<p>В первую очередь, разобъем сообщение на строки длиной в 4 знака:</p>
-<table align="center">
-<tr><td>о</td><td>с</td><td>н</td><td>о</td></tr>
-<tr><td>в</td><td>ы</td><td>_</td><td>и</td></tr>
-<tr><td>н</td><td>ф</td><td>о</td><td>р</td></tr>
-<tr><td>м</td><td>а</td><td>т</td><td>и</td></tr>
-<tr><td>к</td><td>и</td><td>_</td><td>и</td></tr>
-<tr><td>_</td><td>п</td><td>р</td><td>о</td></tr>
-<tr><td>г</td><td>р</td><td>а</td><td>м</td></tr>
-<tr><td>м</td><td>и</td><td>р</td><td>о</td></tr>
-<tr><td>в</td><td>а</td><td>н</td><td>и</td></tr>
-<tr><td>е</td><td>_</td><td>_</td><td>_</td></tr>
-</table>
-<p>Затем транспонируем полученную матрицу:</p>
-<table align="center">
-<tr><td>о</td><td>в</td><td>н</td><td>м</td><td>к</td><td>_</td><td>г</td><td>м</td><td>в</td><td>е</td></tr>
-<tr><td>с</td><td>ы</td><td>ф</td><td>а</td><td>и</td><td>п</td><td>р</td><td>и</td><td>а</td><td>_</td></tr>
-<tr><td>н</td><td>_</td><td>о</td><td>т</td><td>_</td><td>р</td><td>а</td><td>р</td><td>н</td><td>_</td></tr>
-<tr><td>о</td><td>и</td><td>р</td><td>и</td><td>и</td><td>о</td><td>м</td><td>о</td><td>и</td><td>_</td></tr>
-</table>
-<p>Наконец, сцепляем строки последней матрицы, и получаем искомую шифрограмму:</p> <p>&quot;овнмк_гмвесыфаиприа_н_от_рарн_оирииомои_&quot;.</p>
+    <p><span class="primer">Пример 6.1.2</span>. Применим перестановочный алгоритм шифрования с шагом в
+        <math>
+            <mrow>
+                <mi>k</mi>
+                <mo>=</mo>
+                <mn>4</mn>
+            </mrow>
+        </math>
+        знака к сообщению &quot;основы_информатики_и_программирование&quot;, для наглядности обозначив пробел знаком
+        подчеркивания &quot;_&quot;.
+    </p>
+    <p>В первую очередь, разобъем сообщение на строки длиной в 4 знака:</p>
+    <table align="center">
+        <tr>
+            <td>о</td>
+            <td>с</td>
+            <td>н</td>
+            <td>о</td>
+        </tr>
+        <tr>
+            <td>в</td>
+            <td>ы</td>
+            <td>_</td>
+            <td>и</td>
+        </tr>
+        <tr>
+            <td>н</td>
+            <td>ф</td>
+            <td>о</td>
+            <td>р</td>
+        </tr>
+        <tr>
+            <td>м</td>
+            <td>а</td>
+            <td>т</td>
+            <td>и</td>
+        </tr>
+        <tr>
+            <td>к</td>
+            <td>и</td>
+            <td>_</td>
+            <td>и</td>
+        </tr>
+        <tr>
+            <td>_</td>
+            <td>п</td>
+            <td>р</td>
+            <td>о</td>
+        </tr>
+        <tr>
+            <td>г</td>
+            <td>р</td>
+            <td>а</td>
+            <td>м</td>
+        </tr>
+        <tr>
+            <td>м</td>
+            <td>и</td>
+            <td>р</td>
+            <td>о</td>
+        </tr>
+        <tr>
+            <td>в</td>
+            <td>а</td>
+            <td>н</td>
+            <td>и</td>
+        </tr>
+        <tr>
+            <td>е</td>
+            <td>_</td>
+            <td>_</td>
+            <td>_</td>
+        </tr>
+    </table>
+    <p>Затем транспонируем полученную матрицу:</p>
+    <table align="center">
+        <tr>
+            <td>о</td>
+            <td>в</td>
+            <td>н</td>
+            <td>м</td>
+            <td>к</td>
+            <td>_</td>
+            <td>г</td>
+            <td>м</td>
+            <td>в</td>
+            <td>е</td>
+        </tr>
+        <tr>
+            <td>с</td>
+            <td>ы</td>
+            <td>ф</td>
+            <td>а</td>
+            <td>и</td>
+            <td>п</td>
+            <td>р</td>
+            <td>и</td>
+            <td>а</td>
+            <td>_</td>
+        </tr>
+        <tr>
+            <td>н</td>
+            <td>_</td>
+            <td>о</td>
+            <td>т</td>
+            <td>_</td>
+            <td>р</td>
+            <td>а</td>
+            <td>р</td>
+            <td>н</td>
+            <td>_</td>
+        </tr>
+        <tr>
+            <td>о</td>
+            <td>и</td>
+            <td>р</td>
+            <td>и</td>
+            <td>и</td>
+            <td>о</td>
+            <td>м</td>
+            <td>о</td>
+            <td>и</td>
+            <td>_</td>
+        </tr>
+    </table>
+    <p>Наконец, сцепляем строки последней матрицы, и получаем искомую шифрограмму:</p>
+    <p>&quot;овнмк_гмвесыфаиприа_н_от_рарн_оирииомои_&quot;.</p>
 </div>
-<p>Перестановочные и подстановочные алгоритмы шифрования не избавляют сообщение от избыточности, и поэтому основным инструментом взлома таких шифров служит именно избыточность языка. Частично избавляет сообщение от избыточности метод шифрования, предложенный в 16-м веке аббатом из Вюрцбурга Иоганом Тритемиусом <a href="litra.html#3">[4]</a>. Метод заключается в использовании в качестве <span class="termin">секретного ключа</span> некоторой последовательности символов. Все символы шифруемого сообщения и секретного ключа предварительно должны быть некоторым образом пронумерованы. В частности, порядок нумерации может совпадать с <a href="1_2.html#alphabit">лексикографическим порядком</a>. Пусть <var>N</var> &#8212; количество символов в используемом алфавите. Затем под шифруемым сообщением повторяется секретный ключ (или его фрагмент в конце сообщения) столько раз, чтобы под каждым символом сообщения был символ секретного ключа. Далее следует сложить попарно по модулю <var>N</var> номера символов сообщения и соответствующих символов секретного ключа, в результате чего получаются номера символов шифрограммы.</p>
-<p>Для восстановления исходного сообщения под шифрограммой повторяют секретный ключ нужное количество раз и выполняют операцию вычитания по модулю <var>N</var> из номеров символов шифрограммы соответствующих номеров символов секретного ключа. Вычитание по модулю <var>N</var> из числа <var>n</var> некоторого <var>m</var> сводится к вычитанию из <var>n</var> числа <var>m</var>, если 
-<math >
-<mi>n</mi><mo>&#8805;</mo><mi>m</mi>
-</math>. В противном случае вычитают из 
-<math >
-<mrow>
-	<mi>N</mi><mo>+</mo><mi>n</mi>
-</mrow>
-</math>
- число <var>m</var>.</p>
+<p>Перестановочные и подстановочные алгоритмы шифрования не избавляют сообщение от избыточности, и поэтому основным
+    инструментом взлома таких шифров служит именно избыточность языка. Частично избавляет сообщение от избыточности
+    метод шифрования, предложенный в 16-м веке аббатом из Вюрцбурга Иоганом Тритемиусом <a href="litra.html#3">[4]</a>.
+    Метод заключается в использовании в качестве <span class="termin">секретного ключа</span> некоторой
+    последовательности символов. Все символы шифруемого сообщения и секретного ключа предварительно должны быть
+    некоторым образом пронумерованы. В частности, порядок нумерации может совпадать с <a href="1_2.html#alphabit">лексикографическим
+        порядком</a>. Пусть <var>N</var> &#8212; количество символов в используемом алфавите. Затем под шифруемым
+    сообщением повторяется секретный ключ (или его фрагмент в конце сообщения) столько раз, чтобы под каждым символом
+    сообщения был символ секретного ключа. Далее следует сложить попарно по модулю <var>N</var> номера символов
+    сообщения и соответствующих символов секретного ключа, в результате чего получаются номера символов шифрограммы.</p>
+<p>Для восстановления исходного сообщения под шифрограммой повторяют секретный ключ нужное количество раз и выполняют
+    операцию вычитания по модулю <var>N</var> из номеров символов шифрограммы соответствующих номеров символов
+    секретного ключа. Вычитание по модулю <var>N</var> из числа <var>n</var> некоторого <var>m</var> сводится к
+    вычитанию из <var>n</var> числа <var>m</var>, если
+    <math>
+        <mi>n</mi>
+        <mo>&#8805;</mo>
+        <mi>m</mi>
+    </math>
+    . В противном случае вычитают из
+    <math>
+        <mrow>
+            <mi>N</mi>
+            <mo>+</mo>
+            <mi>n</mi>
+        </mrow>
+    </math>
+    число <var>m</var>.
+</p>
 <div class="examp">
-<p><span class="primer">Пример 6.1.3</span>. Пусть символы алфавита пронумерованы следующим образом:</p>
-<table border="1" align="center">
-<tr>
-<td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td>32</td>
-</tr>
-<tr>
-<td>а</td><td>б</td><td>в</td><td>г</td><td>д</td><td>е</td><td>ж</td><td>з</td><td>и</td><td>й</td><td>к</td><td>л</td><td>м</td><td>н</td><td>о</td><td>п</td><td>р</td><td>с</td><td>т</td><td>у</td><td>ф</td><td>х</td><td>ц</td><td>ч</td><td>ш</td><td>щ</td><td>ъ</td><td>ы</td><td>ь</td><td>э</td><td>ю</td><td>я</td><td>_</td>
-</tr>
-</table>
-<p>Зашифруем сообщение &quot;основы информатики&quot;, используя ключ шифрования  &quot;байт&quot;:</p>
-<table border="1" align="center">
-<tr>
-<td>Номера символов сообщения</td><td>14</td><td>17</td><td>13</td><td>14</td><td>2</td><td>27</td><td>32</td><td>8</td><td>13</td><td>20</td><td>14</td><td>16</td><td>12</td><td>0</td><td>18</td><td>8</td><td>10</td><td>8</td>
-</tr>
-<tr>
-<td>Символы сообщения</td><td>о</td><td>с</td><td>н</td><td>о</td><td>в</td><td>ы</td><td> </td><td>и</td><td>н</td><td>ф</td><td>о</td><td>р</td><td>м</td><td>а</td><td>т</td><td>и</td><td>к</td><td>и</td>
-</tr>
-<tr>
-<td>Номера символов ключа</td><td>1</td><td>0</td><td>9</td><td>18</td><td>1</td><td>0</td><td>9</td><td>18</td><td>1</td><td>0</td><td>9</td><td>18</td><td>1</td><td>0</td><td>9</td><td>18</td><td>1</td><td>0</td>
-</tr>
-<tr>
-<td>Символы ключа</td><td>б</td><td>а</td><td>й</td><td>т</td><td>б</td><td>а</td><td>й</td><td>т</td><td>б</td><td>а</td><td>й</td><td>т</td><td>б</td><td>а</td><td>й</td><td>т</td><td>б</td><td>а</td>
-</tr>
-<tr><td>Номера символов шифрограммы</td><td>15</td><td>17</td><td>22</td><td>32</td><td>3</td><td>27</td><td>8</td><td>26</td><td>14</td><td>20</td><td>23</td><td>1</td><td>13</td><td>0</td><td>27</td><td>26</td><td>11</td><td>8</td>
-</tr>
-<tr>
-<td>Символы шифрограммы</td><td>п</td><td>с</td><td>ц</td><td> </td><td>г</td><td>ы</td><td>и</td><td>ъ</td><td>о</td><td>ф</td><td>ч</td><td>б</td><td>н</td><td>а</td><td>ы</td><td>ъ</td><td>л</td><td>и</td>
-</tr>
-</table>
-<p>Таким образом, мы получили следующую шифрограмму &quot;псц гыиъофчбнаыъли&quot;.</p>
-<p>Расшифруем полученную шифрограмму:</p>
-<table border="1" align="center">
-<tr><td>Номера символов шифрограммы</td><td>15</td><td>17</td><td>22</td><td>32</td><td>3</td><td>27</td><td>8</td><td>26</td><td>14</td><td>20</td><td>23</td><td>1</td><td>13</td><td>0</td><td>27</td><td>26</td><td>11</td><td>8</td>
-</tr>
-<tr>
-<td>Символы шифрограммы</td><td>п</td><td>с</td><td>ц</td><td> </td><td>г</td><td>ы</td><td>и</td><td>ъ</td><td>о</td><td>ф</td><td>ч</td><td>б</td><td>н</td><td>а</td><td>ы</td><td>ъ</td><td>л</td><td>и</td>
-</tr>
-<tr><td>Номера символов ключа</td><td>1</td><td>0</td><td>9</td><td>18</td><td>1</td><td>0</td><td>9</td><td>18</td><td>1</td><td>0</td><td>9</td><td>18</td><td>1</td><td>0</td><td>9</td><td>18</td><td>1</td><td>0</td>
-</tr>
-<tr>
-<td>Символы ключа</td><td>б</td><td>а</td><td>й</td><td>т</td><td>б</td><td>а</td><td>й</td><td>т</td><td>б</td><td>а</td><td>й</td><td>т</td><td>б</td><td>а</td><td>й</td><td>т</td><td>б</td><td>а</td>
-</tr>
-<tr>
-<td>Номера символов сообщения</td><td>14</td><td>17</td><td>13</td><td>14</td><td>2</td><td>27</td><td>32</td><td>8</td><td>13</td><td>20</td><td>14</td><td>16</td><td>12</td><td>0</td><td>18</td><td>8</td><td>10</td><td>8</td>
-</tr>
-<tr>
-<td>Символы сообщения</td><td>о</td><td>с</td><td>н</td><td>о</td><td>в</td><td>ы</td><td> </td><td>и</td><td>н</td><td>ф</td><td>о</td><td>р</td><td>м</td><td>а</td><td>т</td><td>и</td><td>к</td><td>и</td>
-</tr>
-</table>
+    <p><span class="primer">Пример 6.1.3</span>. Пусть символы алфавита пронумерованы следующим образом:</p>
+    <table border="1" align="center">
+        <tr>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+            <td>16</td>
+            <td>17</td>
+            <td>18</td>
+            <td>19</td>
+            <td>20</td>
+            <td>21</td>
+            <td>22</td>
+            <td>23</td>
+            <td>24</td>
+            <td>25</td>
+            <td>26</td>
+            <td>27</td>
+            <td>28</td>
+            <td>29</td>
+            <td>30</td>
+            <td>31</td>
+            <td>32</td>
+        </tr>
+        <tr>
+            <td>а</td>
+            <td>б</td>
+            <td>в</td>
+            <td>г</td>
+            <td>д</td>
+            <td>е</td>
+            <td>ж</td>
+            <td>з</td>
+            <td>и</td>
+            <td>й</td>
+            <td>к</td>
+            <td>л</td>
+            <td>м</td>
+            <td>н</td>
+            <td>о</td>
+            <td>п</td>
+            <td>р</td>
+            <td>с</td>
+            <td>т</td>
+            <td>у</td>
+            <td>ф</td>
+            <td>х</td>
+            <td>ц</td>
+            <td>ч</td>
+            <td>ш</td>
+            <td>щ</td>
+            <td>ъ</td>
+            <td>ы</td>
+            <td>ь</td>
+            <td>э</td>
+            <td>ю</td>
+            <td>я</td>
+            <td>_</td>
+        </tr>
+    </table>
+    <p>Зашифруем сообщение &quot;основы информатики&quot;, используя ключ шифрования &quot;байт&quot;:</p>
+    <table border="1" align="center">
+        <tr>
+            <td>Номера символов сообщения</td>
+            <td>14</td>
+            <td>17</td>
+            <td>13</td>
+            <td>14</td>
+            <td>2</td>
+            <td>27</td>
+            <td>32</td>
+            <td>8</td>
+            <td>13</td>
+            <td>20</td>
+            <td>14</td>
+            <td>16</td>
+            <td>12</td>
+            <td>0</td>
+            <td>18</td>
+            <td>8</td>
+            <td>10</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>Символы сообщения</td>
+            <td>о</td>
+            <td>с</td>
+            <td>н</td>
+            <td>о</td>
+            <td>в</td>
+            <td>ы</td>
+            <td></td>
+            <td>и</td>
+            <td>н</td>
+            <td>ф</td>
+            <td>о</td>
+            <td>р</td>
+            <td>м</td>
+            <td>а</td>
+            <td>т</td>
+            <td>и</td>
+            <td>к</td>
+            <td>и</td>
+        </tr>
+        <tr>
+            <td>Номера символов ключа</td>
+            <td>1</td>
+            <td>0</td>
+            <td>9</td>
+            <td>18</td>
+            <td>1</td>
+            <td>0</td>
+            <td>9</td>
+            <td>18</td>
+            <td>1</td>
+            <td>0</td>
+            <td>9</td>
+            <td>18</td>
+            <td>1</td>
+            <td>0</td>
+            <td>9</td>
+            <td>18</td>
+            <td>1</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>Символы ключа</td>
+            <td>б</td>
+            <td>а</td>
+            <td>й</td>
+            <td>т</td>
+            <td>б</td>
+            <td>а</td>
+            <td>й</td>
+            <td>т</td>
+            <td>б</td>
+            <td>а</td>
+            <td>й</td>
+            <td>т</td>
+            <td>б</td>
+            <td>а</td>
+            <td>й</td>
+            <td>т</td>
+            <td>б</td>
+            <td>а</td>
+        </tr>
+        <tr>
+            <td>Номера символов шифрограммы</td>
+            <td>15</td>
+            <td>17</td>
+            <td>22</td>
+            <td>32</td>
+            <td>3</td>
+            <td>27</td>
+            <td>8</td>
+            <td>26</td>
+            <td>14</td>
+            <td>20</td>
+            <td>23</td>
+            <td>1</td>
+            <td>13</td>
+            <td>0</td>
+            <td>27</td>
+            <td>26</td>
+            <td>11</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>Символы шифрограммы</td>
+            <td>п</td>
+            <td>с</td>
+            <td>ц</td>
+            <td></td>
+            <td>г</td>
+            <td>ы</td>
+            <td>и</td>
+            <td>ъ</td>
+            <td>о</td>
+            <td>ф</td>
+            <td>ч</td>
+            <td>б</td>
+            <td>н</td>
+            <td>а</td>
+            <td>ы</td>
+            <td>ъ</td>
+            <td>л</td>
+            <td>и</td>
+        </tr>
+    </table>
+    <p>Таким образом, мы получили следующую шифрограмму &quot;псц гыиъофчбнаыъли&quot;.</p>
+    <p>Расшифруем полученную шифрограмму:</p>
+    <table border="1" align="center">
+        <tr>
+            <td>Номера символов шифрограммы</td>
+            <td>15</td>
+            <td>17</td>
+            <td>22</td>
+            <td>32</td>
+            <td>3</td>
+            <td>27</td>
+            <td>8</td>
+            <td>26</td>
+            <td>14</td>
+            <td>20</td>
+            <td>23</td>
+            <td>1</td>
+            <td>13</td>
+            <td>0</td>
+            <td>27</td>
+            <td>26</td>
+            <td>11</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>Символы шифрограммы</td>
+            <td>п</td>
+            <td>с</td>
+            <td>ц</td>
+            <td></td>
+            <td>г</td>
+            <td>ы</td>
+            <td>и</td>
+            <td>ъ</td>
+            <td>о</td>
+            <td>ф</td>
+            <td>ч</td>
+            <td>б</td>
+            <td>н</td>
+            <td>а</td>
+            <td>ы</td>
+            <td>ъ</td>
+            <td>л</td>
+            <td>и</td>
+        </tr>
+        <tr>
+            <td>Номера символов ключа</td>
+            <td>1</td>
+            <td>0</td>
+            <td>9</td>
+            <td>18</td>
+            <td>1</td>
+            <td>0</td>
+            <td>9</td>
+            <td>18</td>
+            <td>1</td>
+            <td>0</td>
+            <td>9</td>
+            <td>18</td>
+            <td>1</td>
+            <td>0</td>
+            <td>9</td>
+            <td>18</td>
+            <td>1</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>Символы ключа</td>
+            <td>б</td>
+            <td>а</td>
+            <td>й</td>
+            <td>т</td>
+            <td>б</td>
+            <td>а</td>
+            <td>й</td>
+            <td>т</td>
+            <td>б</td>
+            <td>а</td>
+            <td>й</td>
+            <td>т</td>
+            <td>б</td>
+            <td>а</td>
+            <td>й</td>
+            <td>т</td>
+            <td>б</td>
+            <td>а</td>
+        </tr>
+        <tr>
+            <td>Номера символов сообщения</td>
+            <td>14</td>
+            <td>17</td>
+            <td>13</td>
+            <td>14</td>
+            <td>2</td>
+            <td>27</td>
+            <td>32</td>
+            <td>8</td>
+            <td>13</td>
+            <td>20</td>
+            <td>14</td>
+            <td>16</td>
+            <td>12</td>
+            <td>0</td>
+            <td>18</td>
+            <td>8</td>
+            <td>10</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>Символы сообщения</td>
+            <td>о</td>
+            <td>с</td>
+            <td>н</td>
+            <td>о</td>
+            <td>в</td>
+            <td>ы</td>
+            <td></td>
+            <td>и</td>
+            <td>н</td>
+            <td>ф</td>
+            <td>о</td>
+            <td>р</td>
+            <td>м</td>
+            <td>а</td>
+            <td>т</td>
+            <td>и</td>
+            <td>к</td>
+            <td>и</td>
+        </tr>
+    </table>
 </div>
-<p>Особенностью криптосистем с секретным ключом является два уровня секретности. Первый уровень заключается в способе шифрования, а второй &#8212; в ключе. Шифрограмма передается по открытому каналу связи, а ключ &#8212; по особо защищенному.</p>
-<p>Многократное повторение ключа и собственная избыточность ключа дают шанс для взлома алгоритма Тритемиуса. Удлиннение ключа и, следовательно, сокращение количества повторений ключа повышает криптостойкость шифрограммы. Доказано, что шифр нельзя взломать, если:</p>
+<p>Особенностью криптосистем с секретным ключом является два уровня секретности. Первый уровень заключается в способе
+    шифрования, а второй &#8212; в ключе. Шифрограмма передается по открытому каналу связи, а ключ &#8212; по особо
+    защищенному.</p>
+<p>Многократное повторение ключа и собственная избыточность ключа дают шанс для взлома алгоритма Тритемиуса. Удлиннение
+    ключа и, следовательно, сокращение количества повторений ключа повышает криптостойкость шифрограммы. Доказано, что
+    шифр нельзя взломать, если:</p>
 <ol>
-<li>ключ составлен из случайных символов;</li>
-<li>длина ключа не меньше длины шифруемого сообщения;</li>
-<li>ключ использован только один раз.</li>
+    <li>ключ составлен из случайных символов;</li>
+    <li>длина ключа не меньше длины шифруемого сообщения;</li>
+    <li>ключ использован только один раз.</li>
 </ol>
 <p>Для демонстрации алгоритма Тритемиуса предлагается следующий калькулятор:</p>
 <form id="f2">
-<table>
-<tr align='left'>
-<td>Введите ключ</td>
-<td><input type="text" id="kluch" maxlength="80" size="81" /></td>
-</tr>
-<tr align='left'>
-<td>Введите сообщение</td>
-<td><textarea rows="6" id="txt1" cols="80"></textarea><br /></td>
-</tr>
-<tr align='left'>
-<td><input type="button" value="Исполнить" onclick="kod_trit()" /></td>
-<td><input type="reset" value="Обновить" /></td>
-</tr>
-</table>
+    <table>
+        <tr align='left'>
+            <td>Введите ключ</td>
+            <td><input type="text" id="kluch" maxlength="80" size="81"/></td>
+        </tr>
+        <tr align='left'>
+            <td>Введите сообщение</td>
+            <td><textarea rows="6" id="txt1" cols="80"></textarea><br/></td>
+        </tr>
+        <tr align='left'>
+            <td><input type="button" value="Исполнить" onclick="kod_trit()"/></td>
+            <td><input type="reset" value="Обновить"/></td>
+        </tr>
+    </table>
 </form>
 <div id='result_t'></div>
 <h3>Упражнения</h3>
 <ol>
-<li>Разбейте буквы из <a href="2_4.html#t2_4_1">таблицы 2.4.1</a> условно на группы с высокой, средней и низкой частотами. Зашифруйте сдвигом с некоторым шагом <var>k</var> достаточно большой текст с помощью приведенного выше шифратора и сгруппируйте буквы шифрограммы на группы с высокой, средней и низкой частотами. Затем сопоставьте эти группы с соответствующими группами из таблицы 2.4.1. Как проявляется избыточность языка?</li>
-<li>В системе электронных таблиц постройте пример шифрования перестановкой с шагом 
-<math >
-<mi>k</mi><mo>=</mo><mn>3</mn>
-</math>.</li>
-<li>В системе электронных таблиц постройте пример криптосистемы Тритемиуса, в котором в качестве ключа используется Ваша фамилия.</li>
+    <li>Разбейте буквы из <a href="2_4.html#t2_4_1">таблицы 2.4.1</a> условно на группы с высокой, средней и низкой
+        частотами. Зашифруйте сдвигом с некоторым шагом <var>k</var> достаточно большой текст с помощью приведенного
+        выше шифратора и сгруппируйте буквы шифрограммы на группы с высокой, средней и низкой частотами. Затем
+        сопоставьте эти группы с соответствующими группами из таблицы 2.4.1. Как проявляется избыточность языка?
+    </li>
+    <li>В системе электронных таблиц постройте пример шифрования перестановкой с шагом
+        <math>
+            <mi>k</mi>
+            <mo>=</mo>
+            <mn>3</mn>
+        </math>
+        .
+    </li>
+    <li>В системе электронных таблиц постройте пример криптосистемы Тритемиуса, в котором в качестве ключа используется
+        Ваша фамилия.
+    </li>
 </ol>
 <p><a href="5_4.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="6_2.html">К следующему</a></p>
 </body>
+<script type="text/javascript">
+    MathJax.Hub.Configured()
+</script>
 </html>

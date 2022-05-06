@@ -1,478 +1,1074 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset='UTF-8' />
-<link rel='stylesheet' type='text/css' href='style.css' />
-<meta name='author' content='leonid' />
-<title>Дерево поиска</title>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+  extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});
+
+
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <meta charset='UTF-8'/>
+    <link rel='stylesheet' type='text/css' href='style.css'/>
+    <meta name='author' content='leonid'/>
+    <title>Дерево поиска</title>
 </head>
 <body>
-<p><a href="8_9_6.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_9_8.html">К следующему</a> </p>
+<p><a href="8_9_6.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_9_8.html">К следующему</a>
+</p>
 <h2>8.9.7. Дерево поиска</h2>
-<p><span class='teorema'>Пусть в бинарном дереве задано ключевое поле целого типа. Дерево поиска определяется как такое дерево, в котором в ключевом поле каждого узла, не являющегося листом, должно храниться число большее, чем в ключевых полях левого его поддерева, и меньшее, чем в ключевых полях правого его поддерева.</span></p>
+<p><span class='teorema'>Пусть в бинарном дереве задано ключевое поле целого типа. Дерево поиска определяется как такое дерево, в котором в ключевом поле каждого узла, не являющегося листом, должно храниться число большее, чем в ключевых полях левого его поддерева, и меньшее, чем в ключевых полях правого его поддерева.</span>
+</p>
 <p>Очевидно, что ключевое поле необязательно должно быть целого типа, достаточно задать упорядоченный тип поля.</p>
-<p>Опишем процедуру вставки в дерево поиска нового узла. Если дерево не существует, т.е. корень дерева tr есть <math><mi>NIL</mi></math>, то новый узел создается в качестве корня дерева tr. Если же дерево уже существует, то необходимо выбрать нужное поддерево и вставить в него новый узел таким образом, чтобы оно оставалось деревом поиска. К примеру, процедура вставки нового узла дерева, объявленного в <a href='8_14.html#tree'> параграфе 8_14 </a>, может выглядеть так:</p>
+<p>Опишем процедуру вставки в дерево поиска нового узла. Если дерево не существует, т.е. корень дерева tr есть
+    <math>
+        <mi>NIL</mi>
+    </math>
+    , то новый узел создается в качестве корня дерева tr. Если же дерево уже существует, то необходимо выбрать нужное
+    поддерево и вставить в него новый узел таким образом, чтобы оно оставалось деревом поиска. К примеру, процедура
+    вставки нового узла дерева, объявленного в <a href='8_14.html#tree'> параграфе 8_14 </a>, может выглядеть так:
+</p>
 <code>
-<p class='ind1'>PROCEDURE add(n: INTEGER; VAR t: Node);</p>
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>IF t=NIL THEN</p>
-<p class='ind3'>NEW(t);</p>
-<p class='ind3'>t.left:=NIL;</p>
-<p class='ind3'>t.right:=NIL;</p>
-<p class='ind3'>t.data:=n;</p>
-<p class='ind2'>ELSE</p>
-<p class='ind3'>IF n<=t.data THEN</p>
-<p class='ind4'>add(n, t.left)</p>
-<p class='ind3'>ELSE</p>
-<p class='ind4'>add(n, t.right)</p>
-<p class='ind3'>END;</p>
-<p class='ind2'>END;</p>
-<p class='ind1'>END add;</p>
+    <p class='ind1'>PROCEDURE add(n: INTEGER; VAR t: Node);</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>IF t=NIL THEN</p>
+    <p class='ind3'>NEW(t);</p>
+    <p class='ind3'>t.left:=NIL;</p>
+    <p class='ind3'>t.right:=NIL;</p>
+    <p class='ind3'>t.data:=n;</p>
+    <p class='ind2'>ELSE</p>
+    <p class='ind3'>IF n<=t.data THEN</p>
+    <p class='ind4'>add(n, t.left)</p>
+    <p class='ind3'>ELSE</p>
+    <p class='ind4'>add(n, t.right)</p>
+    <p class='ind3'>END;</p>
+    <p class='ind2'>END;</p>
+    <p class='ind1'>END add;</p>
 </code>
-<p>Пример 8.9.7.1. Рассмотрим подробнее процедуру вставки узла в дерево. Пусть требуется создать бинарное дерево поиска на базе последовательности чисел 
-<math>
-	<mfenced open='' close=''>
-		<mn>10</mn><mn>4</mn><mn>8</mn><mn>9</mn><mn>6</mn><mn>12</mn><mn>11</mn><mn>15</mn>
-	</mfenced>
-</math>.
+<p>Пример 8.9.7.1. Рассмотрим подробнее процедуру вставки узла в дерево. Пусть требуется создать бинарное дерево поиска
+    на базе последовательности чисел
+    <math>
+        <mfenced open='' close=''>
+            <mn>10</mn>
+            <mn>4</mn>
+            <mn>8</mn>
+            <mn>9</mn>
+            <mn>6</mn>
+            <mn>12</mn>
+            <mn>11</mn>
+            <mn>15</mn>
+        </mfenced>
+    </math>
+    .
 </p>
 <ol>
-<li>
-<math>
-	<mrow><mi>n</mi><mo>:=</mo><mn>10</mn></mrow>
-	<mo>.</mo>
-</math>
-Вызывается процедура 
-<math>
-<mi>add</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>n</mi><mo>,</mo><mi>tr</mi><mo>)</mo></mrow>
-</math>. Поскольку формальный параметр <math><mi>t</mi></math> есть <math><mi>NIL</mi></math>, то в результате выполнения команд
-<code>
-<p class='ind3'>NEW(t);</p>
-<p class='ind3'>t.left:=NIL;</p>
-<p class='ind3'>t.right:=NIL;</p>
-<p class='ind3'>t.data:=n;</p>
-</code>
-создается корень дерева, в поле данных которого хранится число 10.
-</li>
-<li>
-Пусть из входного потока в переменную <math><mi>n</mi></math> записывается число <math><mn>4</mn></math>. Далее вызывается процедура   
-<math>
-<mi>add</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>n</mi><mo>,</mo><mi>tr</mi><mo>)</mo></mrow>
-</math>. Так как корень дерева уже существует, а <math><mi>tr.data</mi><mo>&gt;</mo><mi>n</mi></math>, то вызывается процедура 
-<math>
-<mi>add</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>n</mi><mo>,</mo><mi>t.left</mi><mo>)</mo></mrow>
-</math>. Так как <math><mi>t.left</mi></math> есть <math><mi>NIL</mi></math>, то выполняются команды
-<code>
-<p class='ind3'>NEW(t);</p>
-<p class='ind3'>t.left:=NIL;</p>
-<p class='ind3'>t.right:=NIL;</p>
-<p class='ind3'>t.data:=n;</p>
-</code>
-<p>В результате будет создан новый узел в качестве левого поддерева существующего корня дерева:</p>
-<svg height = "100px"  width = "100px">
-<circle cx="80" cy="15" r="12" stroke="#000000" stroke-width="1" fill="none" />
-<text x='73' y='19' stroke="none" fill="#000000" font-size="12">10</text>
-<circle cx="40" cy="55" r="12" stroke="#000000" stroke-width="1" fill="none" />
-<text x='36' y='58' stroke="none" fill="#000000" font-size="12">4</text>
-<text x='26' y='95' stroke="none" fill="#000000" font-size="12">Рис. 8.9.7.1</text>
-<line x1='73' y1='23' x2='47' y2='47' stroke="#000000" stroke-width="1" fill="none"/>
-</svg>
-</li>
-<li>Пусть из входного потока в переменную <math><mi>n</mi></math> записывается число <math><mn>8</mn></math>. Далее вызывается процедура   
-<math>
-<mi>add</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>n</mi><mo>,</mo><mi>tr</mi><mo>)</mo></mrow>
-</math>. Так как корень дерева уже существует, а <math><mi>tr.data</mi><mo>&gt;</mo><mi>n</mi></math>, то вызывается процедура 
-<math>
-<mi>add</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>n</mi><mo>,</mo><mi>t.left</mi><mo>)</mo></mrow>
-</math>. Так как <math><mi>t.left</mi></math> уже существует и <math><mi>t.left.data</mi><mo>&lt;</mo><mi>n</mi></math>, то выполняется команда
-<code>
-<p class='ind4'>add(n, t.right);</p>
-</code>
-<p>Так как <math><mi>t.right</mi></math> совпадает с <math><mi>NIL</mi></math>, то выполняются команды</p>
-<code>
-<p class='ind3'>NEW(t);</p>
-<p class='ind3'>t.left:=NIL;</p>
-<p class='ind3'>t.right:=NIL;</p>
-<p class='ind3'>t.data:=n;</p>
-</code>
-<p>В результате будет создан новый узел с числом 8 в качестве правого поддерева узла, содержащего число 4:</p>
-<svg height = "145px"  width = "100px">
-<circle cx="80" cy="15" r="12" stroke="#000000" stroke-width="1" fill="none" />
-<text x='73' y='19' stroke="none" fill="#000000" font-size="12">10</text>
-<circle cx="40" cy="55" r="12" stroke="#000000" stroke-width="1" fill="none" />
-<text x='36' y='58' stroke="none" fill="#000000" font-size="12">4</text>
-<line x1='73' y1='23' x2='47' y2='47' stroke="#000000" stroke-width="1" fill="none"/>
-<circle cx="80" cy="95" r="12" stroke="#000000" stroke-width="1" fill="none" />
-<text x='76' y='98' stroke="none" fill="#000000" font-size="12">8</text>
-<line x1='48' y1='63' x2='72' y2='87' stroke="#000000" stroke-width="1" fill="none"/>
-<text x='28' y='140' stroke="none" fill="#000000" font-size="12">Рис. 8.9.7.2</text>
-</svg>
-</li>
-<li>Следующее число в потоке данных, равное <math><mn>9</mn></math>, записывается в переменную <math><mi>n</mi></math>. Затем вызывается процедура 
-<math>
-	<mi>add</mi><mo>&#x2061;</mo>
-		<mrow>
-			<mo>(</mo><mi>n</mi><mo>,</mo><mi>tr</mi><mo>)</mo>
-		</mrow>
-</math>. Так как <math><mi>tr</mi></math> отлично от <math><mi>NIL</mi></math> и 
-<math><mn>9</mn><mo>&lt;</mo><mn>10</mn></math>, то вызывается процедура
-<math>
-	<mi>add</mi><mo>&#x2061;</mo>
-	<mrow>
-		<mo>(</mo><mi>n</mi><mo>,</mo><mi>tr.left</mi><mo>)</mo>
-	</mrow>
-</math>. Узел <math><mi>tr.left</mi></math> отличен от <math><mi>NIL</mi></math> и 
-<math>
-	<mi>tr.left.data</mi><mo>&lt;</mo><nm>9</mn>
-</math>. Поэтому вызовется процедура 
-<math>
-<mi>add</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>n</mi><mo>,</mo><mi>t</mi><mo>)</mo></mrow>
-</math> с фактическими параметрами <math><mi>n</mi><mo>=</mo><mn>9</mn></math> и 
-<math>
-	<mi>t</mi><mo>=</mo><mi>tr.left.right</mi>
-</math>, где 
-<math><mi>tr.left.right</mi></math> отличен от <math><mi>NIL</mi></math> и <math><mi>tr.left.right.data</mi></math>, равный 8, меньше 9. Поэтому будет вызвана процедура  
-<math>
-<mi>add</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>n</mi><mo>,</mo><mi>t</mi><mo>)</mo></mrow>
-</math> с фактическими параметрами <math><mi>n</mi><mo>=</mo><mn>9</mn></math> и 
-<math>
-	<mi>t</mi><mo>=</mo><mi>tr.left.right.right</mi>
-</math>. В силу того, что последний параметр есть <math><mi>NIL</mi></math>, будет создан новый узел, содержащий число <math><mn>9</mn></math> в качестве правого поддерева узла с числом <math><mn>8</mn></math>:
-<p>
-<svg height = "190px"  width = "150px">
-<circle cx="80" cy="15" r="12" stroke="#000000" stroke-width="1" fill="none" />
-<text x='73' y='19' stroke="none" fill="#000000" font-size="12">10</text>
-<circle cx="40" cy="55" r="12" stroke="#000000" stroke-width="1" fill="none" />
-<text x='36' y='58' stroke="none" fill="#000000" font-size="12">4</text>
-<line x1='73' y1='23' x2='47' y2='47' stroke="#000000" stroke-width="1" fill="none"/>
-<circle cx="80" cy="95" r="12" stroke="#000000" stroke-width="1" fill="none" />
-<text x='76' y='98' stroke="none" fill="#000000" font-size="12">8</text>
-<line x1='48' y1='63' x2='72' y2='87' stroke="#000000" stroke-width="1" fill="none"/>
-<circle cx="120" cy="135" r="12" stroke="#000000" stroke-width="1" fill="none" />
-<text x='116' y='140' stroke="none" fill="#000000" font-size="12">9</text>
-<text x='28' y='176' stroke="none" fill="#000000" font-size="12">Рис. 8.9.7.3</text>
-<line x1='112' y1='127' x2='88' y2='103' stroke="#000000" stroke-width="1" fill="none"/>
-</svg>
-</p>
-</li>
+    <li>
+        <math>
+            <mrow>
+                <mi>n</mi>
+                <mo>:=</mo>
+                <mn>10</mn>
+            </mrow>
+            <mo>.</mo>
+        </math>
+        Вызывается процедура
+        <math>
+            <mi>add</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>(</mo>
+                <mi>n</mi>
+                <mo>,</mo>
+                <mi>tr</mi>
+                <mo>)</mo>
+            </mrow>
+        </math>
+        . Поскольку формальный параметр
+        <math>
+            <mi>t</mi>
+        </math>
+        есть
+        <math>
+            <mi>NIL</mi>
+        </math>
+        , то в результате выполнения команд
+        <code>
+            <p class='ind3'>NEW(t);</p>
+            <p class='ind3'>t.left:=NIL;</p>
+            <p class='ind3'>t.right:=NIL;</p>
+            <p class='ind3'>t.data:=n;</p>
+        </code>
+        создается корень дерева, в поле данных которого хранится число 10.
+    </li>
+    <li>
+        Пусть из входного потока в переменную
+        <math>
+            <mi>n</mi>
+        </math>
+        записывается число
+        <math>
+            <mn>4</mn>
+        </math>
+        . Далее вызывается процедура
+        <math>
+            <mi>add</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>(</mo>
+                <mi>n</mi>
+                <mo>,</mo>
+                <mi>tr</mi>
+                <mo>)</mo>
+            </mrow>
+        </math>
+        . Так как корень дерева уже существует, а
+        <math>
+            <mi>tr.data</mi>
+            <mo>&gt;</mo>
+            <mi>n</mi>
+        </math>
+        , то вызывается процедура
+        <math>
+            <mi>add</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>(</mo>
+                <mi>n</mi>
+                <mo>,</mo>
+                <mi>t.left</mi>
+                <mo>)</mo>
+            </mrow>
+        </math>
+        . Так как
+        <math>
+            <mi>t.left</mi>
+        </math>
+        есть
+        <math>
+            <mi>NIL</mi>
+        </math>
+        , то выполняются команды
+        <code>
+            <p class='ind3'>NEW(t);</p>
+            <p class='ind3'>t.left:=NIL;</p>
+            <p class='ind3'>t.right:=NIL;</p>
+            <p class='ind3'>t.data:=n;</p>
+        </code>
+        <p>В результате будет создан новый узел в качестве левого поддерева существующего корня дерева:</p>
+        <svg height="100px" width="100px">
+            <circle cx="80" cy="15" r="12" stroke="#000000" stroke-width="1" fill="none"/>
+            <text x='73' y='19' stroke="none" fill="#000000" font-size="12">10</text>
+            <circle cx="40" cy="55" r="12" stroke="#000000" stroke-width="1" fill="none"/>
+            <text x='36' y='58' stroke="none" fill="#000000" font-size="12">4</text>
+            <text x='26' y='95' stroke="none" fill="#000000" font-size="12">Рис. 8.9.7.1</text>
+            <line x1='73' y1='23' x2='47' y2='47' stroke="#000000" stroke-width="1" fill="none"/>
+        </svg>
+    </li>
+    <li>Пусть из входного потока в переменную
+        <math>
+            <mi>n</mi>
+        </math>
+        записывается число
+        <math>
+            <mn>8</mn>
+        </math>
+        . Далее вызывается процедура
+        <math>
+            <mi>add</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>(</mo>
+                <mi>n</mi>
+                <mo>,</mo>
+                <mi>tr</mi>
+                <mo>)</mo>
+            </mrow>
+        </math>
+        . Так как корень дерева уже существует, а
+        <math>
+            <mi>tr.data</mi>
+            <mo>&gt;</mo>
+            <mi>n</mi>
+        </math>
+        , то вызывается процедура
+        <math>
+            <mi>add</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>(</mo>
+                <mi>n</mi>
+                <mo>,</mo>
+                <mi>t.left</mi>
+                <mo>)</mo>
+            </mrow>
+        </math>
+        . Так как
+        <math>
+            <mi>t.left</mi>
+        </math>
+        уже существует и
+        <math>
+            <mi>t.left.data</mi>
+            <mo>&lt;</mo>
+            <mi>n</mi>
+        </math>
+        , то выполняется команда
+        <code>
+            <p class='ind4'>add(n, t.right);</p>
+        </code>
+        <p>Так как
+            <math>
+                <mi>t.right</mi>
+            </math>
+            совпадает с
+            <math>
+                <mi>NIL</mi>
+            </math>
+            , то выполняются команды
+        </p>
+        <code>
+            <p class='ind3'>NEW(t);</p>
+            <p class='ind3'>t.left:=NIL;</p>
+            <p class='ind3'>t.right:=NIL;</p>
+            <p class='ind3'>t.data:=n;</p>
+        </code>
+        <p>В результате будет создан новый узел с числом 8 в качестве правого поддерева узла, содержащего число 4:</p>
+        <svg height="145px" width="100px">
+            <circle cx="80" cy="15" r="12" stroke="#000000" stroke-width="1" fill="none"/>
+            <text x='73' y='19' stroke="none" fill="#000000" font-size="12">10</text>
+            <circle cx="40" cy="55" r="12" stroke="#000000" stroke-width="1" fill="none"/>
+            <text x='36' y='58' stroke="none" fill="#000000" font-size="12">4</text>
+            <line x1='73' y1='23' x2='47' y2='47' stroke="#000000" stroke-width="1" fill="none"/>
+            <circle cx="80" cy="95" r="12" stroke="#000000" stroke-width="1" fill="none"/>
+            <text x='76' y='98' stroke="none" fill="#000000" font-size="12">8</text>
+            <line x1='48' y1='63' x2='72' y2='87' stroke="#000000" stroke-width="1" fill="none"/>
+            <text x='28' y='140' stroke="none" fill="#000000" font-size="12">Рис. 8.9.7.2</text>
+        </svg>
+    </li>
+    <li>Следующее число в потоке данных, равное
+        <math>
+            <mn>9</mn>
+        </math>
+        , записывается в переменную
+        <math>
+            <mi>n</mi>
+        </math>
+        . Затем вызывается процедура
+        <math>
+            <mi>add</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>(</mo>
+                <mi>n</mi>
+                <mo>,</mo>
+                <mi>tr</mi>
+                <mo>)</mo>
+            </mrow>
+        </math>
+        . Так как
+        <math>
+            <mi>tr</mi>
+        </math>
+        отлично от
+        <math>
+            <mi>NIL</mi>
+        </math>
+        и
+        <math>
+            <mn>9</mn>
+            <mo>&lt;</mo>
+            <mn>10</mn>
+        </math>
+        , то вызывается процедура
+        <math>
+            <mi>add</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>(</mo>
+                <mi>n</mi>
+                <mo>,</mo>
+                <mi>tr.left</mi>
+                <mo>)</mo>
+            </mrow>
+        </math>
+        . Узел
+        <math>
+            <mi>tr.left</mi>
+        </math>
+        отличен от
+        <math>
+            <mi>NIL</mi>
+        </math>
+        и
+        <math>
+            <mi>tr.left.data</mi>
+            <mo>&lt;</mo>
+            <mn>9</mn>
+        </math>
+        . Поэтому вызовется процедура
+        <math>
+            <mi>add</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>(</mo>
+                <mi>n</mi>
+                <mo>,</mo>
+                <mi>t</mi>
+                <mo>)</mo>
+            </mrow>
+        </math>
+        с фактическими параметрами
+        <math>
+            <mi>n</mi>
+            <mo>=</mo>
+            <mn>9</mn>
+        </math>
+        и
+        <math>
+            <mi>t</mi>
+            <mo>=</mo>
+            <mi>tr.left.right</mi>
+        </math>
+        , где
+        <math>
+            <mi>tr.left.right</mi>
+        </math>
+        отличен от
+        <math>
+            <mi>NIL</mi>
+        </math>
+        и
+        <math>
+            <mi>tr.left.right.data</mi>
+        </math>
+        , равный 8, меньше 9. Поэтому будет вызвана процедура
+        <math>
+            <mi>add</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>(</mo>
+                <mi>n</mi>
+                <mo>,</mo>
+                <mi>t</mi>
+                <mo>)</mo>
+            </mrow>
+        </math>
+        с фактическими параметрами
+        <math>
+            <mi>n</mi>
+            <mo>=</mo>
+            <mn>9</mn>
+        </math>
+        и
+        <math>
+            <mi>t</mi>
+            <mo>=</mo>
+            <mi>tr.left.right.right</mi>
+        </math>
+        . В силу того, что последний параметр есть
+        <math>
+            <mi>NIL</mi>
+        </math>
+        , будет создан новый узел, содержащий число
+        <math>
+            <mn>9</mn>
+        </math>
+        в качестве правого поддерева узла с числом
+        <math>
+            <mn>8</mn>
+        </math>
+        :
+        <p>
+            <svg height="190px" width="150px">
+                <circle cx="80" cy="15" r="12" stroke="#000000" stroke-width="1" fill="none"/>
+                <text x='73' y='19' stroke="none" fill="#000000" font-size="12">10</text>
+                <circle cx="40" cy="55" r="12" stroke="#000000" stroke-width="1" fill="none"/>
+                <text x='36' y='58' stroke="none" fill="#000000" font-size="12">4</text>
+                <line x1='73' y1='23' x2='47' y2='47' stroke="#000000" stroke-width="1" fill="none"/>
+                <circle cx="80" cy="95" r="12" stroke="#000000" stroke-width="1" fill="none"/>
+                <text x='76' y='98' stroke="none" fill="#000000" font-size="12">8</text>
+                <line x1='48' y1='63' x2='72' y2='87' stroke="#000000" stroke-width="1" fill="none"/>
+                <circle cx="120" cy="135" r="12" stroke="#000000" stroke-width="1" fill="none"/>
+                <text x='116' y='140' stroke="none" fill="#000000" font-size="12">9</text>
+                <text x='28' y='176' stroke="none" fill="#000000" font-size="12">Рис. 8.9.7.3</text>
+                <line x1='112' y1='127' x2='88' y2='103' stroke="#000000" stroke-width="1" fill="none"/>
+            </svg>
+        </p>
+    </li>
 </ol>
 <p>Продолжая процесс добавления узлов в дерево, получим следующее дерево поиска:</p>
 <a id='ris8154'>
-<svg height = "200px"  width = "350px">
-<circle cx="120" cy="15" r="12" stroke="#000000" stroke-width="1" fill="none" />
-<text x='113' y='19' stroke="none" fill="#000000" font-size="12">10</text>
-<circle cx="40" cy="55" r="12" stroke="#000000" stroke-width="1" fill="none" />
-<text x='36' y='58' stroke="none" fill="#000000" font-size="12">4</text>
-<line x1='111' y1='21' x2='50' y2='51' stroke="#000000" stroke-width="1" fill="none"/>
-<circle cx="80" cy="95" r="12" stroke="#000000" stroke-width="1" fill="none" />
-<text x='76' y='98' stroke="none" fill="#000000" font-size="12">8</text>
-<line x1='48' y1='63' x2='72' y2='87' stroke="#000000" stroke-width="1" fill="none"/>
-<circle cx="120" cy="135" r="12" stroke="#000000" stroke-width="1" fill="none" />
-<text x='116' y='140' stroke="none" fill="#000000" font-size="12">9</text>
-<circle cx="40" cy="135" r="12" stroke="#000000" stroke-width="1" fill="none" />
-<text x='36' y='140' stroke="none" fill="#000000" font-size="12">6</text>
-<line x1='47' y1='128' x2='72' y2='102' stroke="#000000" stroke-width="1" fill="none"/>
-<line x1='112' y1='127' x2='88' y2='103' stroke="#000000" stroke-width="1" fill="none"/>
-<circle cx="200" cy="55" r="12" stroke="#000000" stroke-width="1" fill="none" />
-<text x='193' y='59' stroke="none" fill="#000000" font-size="12">12</text>
-<line x1='130' y1='19' x2='190' y2='50' stroke="#000000" stroke-width="1" fill="none"/>
-<line x1='190' y1='62' x2='158' y2='87' stroke="#000000" stroke-width="1" fill="none"/>
-<circle cx="150" cy="95" r="12" stroke="#000000" stroke-width="1" fill="none" />
-<text x='144' y='100' stroke="none" fill="#000000" font-size="12">11</text>
-<circle cx="270" cy="95" r="12" stroke="#000000" stroke-width="1" fill="none" />
-<text x='264' y='100' stroke="none" fill="#000000" font-size="12">15</text>
-<line x1='210' y1='60' x2='260' y2='90' stroke="#000000" stroke-width="1" fill="none"/>
-<text x='65' y='180' stroke="none" fill="#000000" font-size="12">Рис. 8.9.7.4. Дерево поиска</text>
-</svg>
+    <svg height="200px" width="350px">
+        <circle cx="120" cy="15" r="12" stroke="#000000" stroke-width="1" fill="none"/>
+        <text x='113' y='19' stroke="none" fill="#000000" font-size="12">10</text>
+        <circle cx="40" cy="55" r="12" stroke="#000000" stroke-width="1" fill="none"/>
+        <text x='36' y='58' stroke="none" fill="#000000" font-size="12">4</text>
+        <line x1='111' y1='21' x2='50' y2='51' stroke="#000000" stroke-width="1" fill="none"/>
+        <circle cx="80" cy="95" r="12" stroke="#000000" stroke-width="1" fill="none"/>
+        <text x='76' y='98' stroke="none" fill="#000000" font-size="12">8</text>
+        <line x1='48' y1='63' x2='72' y2='87' stroke="#000000" stroke-width="1" fill="none"/>
+        <circle cx="120" cy="135" r="12" stroke="#000000" stroke-width="1" fill="none"/>
+        <text x='116' y='140' stroke="none" fill="#000000" font-size="12">9</text>
+        <circle cx="40" cy="135" r="12" stroke="#000000" stroke-width="1" fill="none"/>
+        <text x='36' y='140' stroke="none" fill="#000000" font-size="12">6</text>
+        <line x1='47' y1='128' x2='72' y2='102' stroke="#000000" stroke-width="1" fill="none"/>
+        <line x1='112' y1='127' x2='88' y2='103' stroke="#000000" stroke-width="1" fill="none"/>
+        <circle cx="200" cy="55" r="12" stroke="#000000" stroke-width="1" fill="none"/>
+        <text x='193' y='59' stroke="none" fill="#000000" font-size="12">12</text>
+        <line x1='130' y1='19' x2='190' y2='50' stroke="#000000" stroke-width="1" fill="none"/>
+        <line x1='190' y1='62' x2='158' y2='87' stroke="#000000" stroke-width="1" fill="none"/>
+        <circle cx="150" cy="95" r="12" stroke="#000000" stroke-width="1" fill="none"/>
+        <text x='144' y='100' stroke="none" fill="#000000" font-size="12">11</text>
+        <circle cx="270" cy="95" r="12" stroke="#000000" stroke-width="1" fill="none"/>
+        <text x='264' y='100' stroke="none" fill="#000000" font-size="12">15</text>
+        <line x1='210' y1='60' x2='260' y2='90' stroke="#000000" stroke-width="1" fill="none"/>
+        <text x='65' y='180' stroke="none" fill="#000000" font-size="12">Рис. 8.9.7.4. Дерево поиска</text>
+    </svg>
 </a>
-<p>Перейдем к процедуре обхода дерева. При обходе дерева его отдельные узлы посещаются в определенном порядке. Логично для этого использовать рекурсивный подход, выполняя для каждого узла три действия:
+<p>Перейдем к процедуре обхода дерева. При обходе дерева его отдельные узлы посещаются в определенном порядке. Логично
+    для этого использовать рекурсивный подход, выполняя для каждого узла три действия:
 <ul>
-<li>вывод содержимого поля данных узла дерева;</li>
-<li>обход левого поддерева;</li>
-<li>обход правого поддерева.</li>
-</ul> 
+    <li>вывод содержимого поля данных узла дерева;</li>
+    <li>обход левого поддерева;</li>
+    <li>обход правого поддерева.</li>
+</ul>
 </p>
 <p>Порядок выполнения перечисленных действий определяет один из трех способов обхода дерева:
 <ul>
-<li>прямой вывод (сверху вниз);</li>
-<li>обратный вывод (слева направо);</li>
-<li>концевой вывод (снизу вверх).</li>
+    <li>прямой вывод (сверху вниз);</li>
+    <li>обратный вывод (слева направо);</li>
+    <li>концевой вывод (снизу вверх).</li>
 </ul>
 </p>
-<p>Для обратного вывода для каждого узла дерева следует выполнить обход его левого поддерева, затем вывести содержимое узла, после чего выполнить обход правого поддерева. Процедура обратного вывода может быть такой:</p>
+<p>Для обратного вывода для каждого узла дерева следует выполнить обход его левого поддерева, затем вывести содержимое
+    узла, после чего выполнить обход правого поддерева. Процедура обратного вывода может быть такой:</p>
 <code>
-<p class='ind1'>PROCEDURE print(t: Node);</p>
-<p class='ind2'>VAR</p>  
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>IF t#NIL THEN</p>
-<p class='ind3'>print(t.left);</p>
-<p class='ind3'>Log.Int(t.data);</p>
-<p class='ind3'>print(t.right);</p>
-<p class='ind2'>END;</p>
-<p class='ind1'>END print;</p>
+    <p class='ind1'>PROCEDURE print(t: Node);</p>
+    <p class='ind2'>VAR</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>IF t#NIL THEN</p>
+    <p class='ind3'>print(t.left);</p>
+    <p class='ind3'>Log.Int(t.data);</p>
+    <p class='ind3'>print(t.right);</p>
+    <p class='ind2'>END;</p>
+    <p class='ind1'>END print;</p>
 </code>
-<p>Рассмотрим обратный вывод дерева на рис. 8.9.7.4. Вызов процедуры 
-<math>
-	<mi>print</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>tr</mi><mo>)</mo></mrow>
-</math>
- приводит к вызову процедуры 
-<math>
-	<mi>print</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mrow><mi>tr</mi><mo>.</mo><mi>left</mi></mrow><mo>)</mo></mrow>
-</math>, фактическим параметром которой является узел с ключом 4. Далее происходит вызов процедуры 
-<math>
-	<mi>print</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>t</mi><mo>)</mo></mrow>
-</math>, фактическим параметром которого является левое поддерево узла с ключом 4. Так как это поддерево есть <math><mi>NIL</mi></math>, то выполнение последней процедуры будет завершено и будет выполнена команда 
-<math>
-	<mrow><mi>Log</mi><mo>.</mo><mi>Int</mi></mrow><mo>&#x2061;</mo>
-	<mrow>
-		<mo>(</mo>
-		<mrow><mi>t</mi><mo>.</mo><mi>data</mi></mrow>
-		<mo>)</mo>
-	</mrow>
-</math> процедуры <math><mi>print</mi></math>, фактическим параметром которого является узел с ключом 4. В результате в Рабочем журнале появится  число 4.</p>
-<p>Следующая команда 
-<math>
-	<mi>print</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mrow><mi>tr</mi><mo>.</mo><mi>right</mi></mrow><mo>)</mo></mrow>
-</math> вызывает процедуру <math><mi>print</mi></math>, фактическим параметром которого является узел с ключом 8. Из последней процедуры вызывается процедура 
-<math>
-	<mi>print</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mrow><mi>t</mi><mo>.</mo><mi>left</mi></mrow><mo>)</mo></mrow>
-</math>, где 
-<math>
-	<mrow><mi>t</mi><mo>.</mo><mi>left</mi><mo>.</mo><mi>data</mi></mrow>
-	<mo>=</mo>
-	<mn>6</mn>
-</math>. Затем следует вызов процедуры 
-<math>
-	<mi>print</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mrow><mi>t</mi><mo>.</mo><mi>left</mi></mrow><mo>)</mo></mrow>
-</math>, где 
-<math>
-	<mrow><mi>t</mi><mo>.</mo><mi>left</mi></mrow>
-	<mo>=</mo>
-	<mi>NIL</mi>
-</math>. Последует закрытие последней процедуры и исполнение команды печати в Рабочем журнале ключа 6 и вызов процедуры 
-<math>
-	<mi>print</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mrow><mi>t</mi><mo>.</mo><mi>right</mi></mrow><mo>)</mo></mrow>
-</math> вывода на печать правого поддерева узла с ключом 6. Но 
-<math>
-	<mrow><mi>t</mi><mo>.</mo><mi>right</mi></mrow>
-	<mo>=</mo>
-	<mi>NIL</mi>
-</math>, поэтому эта процедура будет закрыта, исполнена команда печати ключа 8 и вызов процедуры 
-<math>
-	<mi>print</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mrow><mi>t</mi><mo>.</mo><mi>right</mi></mrow><mo>)</mo></mrow>
-</math>, где 
-<math>
-	<mrow><mi>t</mi><mo>.</mo><mi>right</mi><mo>.</mo><mi>data</mi></mrow>
-	<mo>=</mo>
-	<mn>9</mn>
-</math>. Как левое, так и правое поддеревья последнего узла совпадают с <math><mi>NIL</mi></math>, поэтому закроются все процедуры, кроме самой первой процедуры 
-<math>
-	<mi>print</mi><mo>&#x2061;</mo>
-	<mrow><mo>(</mo><mi>tr</mi><mo>)</mo></mrow>
-</math>. Будет выведен на печать ключ 10 и вызвана процедура
-<math>
-	<mi>print</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mrow><mi>t</mi><mo>.</mo><mi>right</mi></mrow><mo>)</mo></mrow>
-</math>, где 
-<math>
-	<mrow><mi>t</mi><mo>.</mo><mi>right</mi><mo>.</mo><mi>data</mi></mrow>
-	<mo>=</mo>
-	<mn>12</mn>
-</math>. Продолжение процесса исполнения процедуры
-<math>
-	<mi>print</mi><mo>&#x2061;</mo>
-	<mrow><mo>(</mo><mi>tr</mi><mo>)</mo></mrow>
-</math> приведет к выводу на печать в Рабочем журнале в порядке возрастания последовательности ключей дерева на <a href='#ris8154'> рис. 8.9.7.4</a>.</p>
-<p>Перейдем к рассмотрению процедуры удаления из дерева узла. Если узел является листом или из него выходит только одно поддерево, то процедура удаления узла сводится к изменению ссылки у предшествующего узла.</p>
-<p>Пусть требуется удалить лист <math><mi>b</mi></math>, если, к примеру, <math><mi>b</mi></math> есть левое поддерево узла <math><mi>a</mi></math>: <math><mi>a</mi><mi>.left</mi><mo>=</mo><mi>b</mi></math>. Тогда узел <math><mi>b</mi></math> удаляется командой <math><mi>a</mi><mi>.left</mi><mo>:=</mo><mi>NIL</mi></math>.</p>
-<p>Допустим, что узел <math><mi>b</mi></math> с непосредственным предком <math><mi>a</mi></math> имеет единственное поддерево <math><mi>c</mi></math>. Для определенности будем считать узел <math><mi>b</mi></math> правым поддеревом узла <math><mi>a</mi></math>. В этом случае узел <math><mi>b</mi></math> из дерева удаляется командой <math><mi>a</mi><mi>.right</mi><mo>:=</mo><mi>c</mi></math>.</p>
-<p>Если удаляемый узел имеет два поддерева, то его надо заменить либо на самый правый узел его левого поддерева, либо на самый левый узел его правого поддерева. Пусть требуется удалить узел <math><mi>q</mi></math>, имеющий левое и правое поддерева. Процедура замены удаляемого узла <math><mi>q</mi></math> на самый правый узел его левого поддерева может быть такой:</p>
+<p>Рассмотрим обратный вывод дерева на рис. 8.9.7.4. Вызов процедуры
+    <math>
+        <mi>print</mi>
+        <mo>&#x2061;</mo>
+        <mrow>
+            <mo>(</mo>
+            <mi>tr</mi>
+            <mo>)</mo>
+        </mrow>
+    </math>
+    приводит к вызову процедуры
+    <math>
+        <mi>print</mi>
+        <mo>&#x2061;</mo>
+        <mrow>
+            <mo>(</mo>
+            <mrow>
+                <mi>tr</mi>
+                <mo>.</mo>
+                <mi>left</mi>
+            </mrow>
+            <mo>)</mo>
+        </mrow>
+    </math>
+    , фактическим параметром которой является узел с ключом 4. Далее происходит вызов процедуры
+    <math>
+        <mi>print</mi>
+        <mo>&#x2061;</mo>
+        <mrow>
+            <mo>(</mo>
+            <mi>t</mi>
+            <mo>)</mo>
+        </mrow>
+    </math>
+    , фактическим параметром которого является левое поддерево узла с ключом 4. Так как это поддерево есть
+    <math>
+        <mi>NIL</mi>
+    </math>
+    , то выполнение последней процедуры будет завершено и будет выполнена команда
+    <math>
+        <mrow>
+            <mi>Log</mi>
+            <mo>.</mo>
+            <mi>Int</mi>
+        </mrow>
+        <mo>&#x2061;</mo>
+        <mrow>
+            <mo>(</mo>
+            <mrow>
+                <mi>t</mi>
+                <mo>.</mo>
+                <mi>data</mi>
+            </mrow>
+            <mo>)</mo>
+        </mrow>
+    </math>
+    процедуры
+    <math>
+        <mi>print</mi>
+    </math>
+    , фактическим параметром которого является узел с ключом 4. В результате в Рабочем журнале появится число 4.
+</p>
+<p>Следующая команда
+    <math>
+        <mi>print</mi>
+        <mo>&#x2061;</mo>
+        <mrow>
+            <mo>(</mo>
+            <mrow>
+                <mi>tr</mi>
+                <mo>.</mo>
+                <mi>right</mi>
+            </mrow>
+            <mo>)</mo>
+        </mrow>
+    </math>
+    вызывает процедуру
+    <math>
+        <mi>print</mi>
+    </math>
+    , фактическим параметром которого является узел с ключом 8. Из последней процедуры вызывается процедура
+    <math>
+        <mi>print</mi>
+        <mo>&#x2061;</mo>
+        <mrow>
+            <mo>(</mo>
+            <mrow>
+                <mi>t</mi>
+                <mo>.</mo>
+                <mi>left</mi>
+            </mrow>
+            <mo>)</mo>
+        </mrow>
+    </math>
+    , где
+    <math>
+        <mrow>
+            <mi>t</mi>
+            <mo>.</mo>
+            <mi>left</mi>
+            <mo>.</mo>
+            <mi>data</mi>
+        </mrow>
+        <mo>=</mo>
+        <mn>6</mn>
+    </math>
+    . Затем следует вызов процедуры
+    <math>
+        <mi>print</mi>
+        <mo>&#x2061;</mo>
+        <mrow>
+            <mo>(</mo>
+            <mrow>
+                <mi>t</mi>
+                <mo>.</mo>
+                <mi>left</mi>
+            </mrow>
+            <mo>)</mo>
+        </mrow>
+    </math>
+    , где
+    <math>
+        <mrow>
+            <mi>t</mi>
+            <mo>.</mo>
+            <mi>left</mi>
+        </mrow>
+        <mo>=</mo>
+        <mi>NIL</mi>
+    </math>
+    . Последует закрытие последней процедуры и исполнение команды печати в Рабочем журнале ключа 6 и вызов процедуры
+    <math>
+        <mi>print</mi>
+        <mo>&#x2061;</mo>
+        <mrow>
+            <mo>(</mo>
+            <mrow>
+                <mi>t</mi>
+                <mo>.</mo>
+                <mi>right</mi>
+            </mrow>
+            <mo>)</mo>
+        </mrow>
+    </math>
+    вывода на печать правого поддерева узла с ключом 6. Но
+    <math>
+        <mrow>
+            <mi>t</mi>
+            <mo>.</mo>
+            <mi>right</mi>
+        </mrow>
+        <mo>=</mo>
+        <mi>NIL</mi>
+    </math>
+    , поэтому эта процедура будет закрыта, исполнена команда печати ключа 8 и вызов процедуры
+    <math>
+        <mi>print</mi>
+        <mo>&#x2061;</mo>
+        <mrow>
+            <mo>(</mo>
+            <mrow>
+                <mi>t</mi>
+                <mo>.</mo>
+                <mi>right</mi>
+            </mrow>
+            <mo>)</mo>
+        </mrow>
+    </math>
+    , где
+    <math>
+        <mrow>
+            <mi>t</mi>
+            <mo>.</mo>
+            <mi>right</mi>
+            <mo>.</mo>
+            <mi>data</mi>
+        </mrow>
+        <mo>=</mo>
+        <mn>9</mn>
+    </math>
+    . Как левое, так и правое поддеревья последнего узла совпадают с
+    <math>
+        <mi>NIL</mi>
+    </math>
+    , поэтому закроются все процедуры, кроме самой первой процедуры
+    <math>
+        <mi>print</mi>
+        <mo>&#x2061;</mo>
+        <mrow>
+            <mo>(</mo>
+            <mi>tr</mi>
+            <mo>)</mo>
+        </mrow>
+    </math>
+    . Будет выведен на печать ключ 10 и вызвана процедура
+    <math>
+        <mi>print</mi>
+        <mo>&#x2061;</mo>
+        <mrow>
+            <mo>(</mo>
+            <mrow>
+                <mi>t</mi>
+                <mo>.</mo>
+                <mi>right</mi>
+            </mrow>
+            <mo>)</mo>
+        </mrow>
+    </math>
+    , где
+    <math>
+        <mrow>
+            <mi>t</mi>
+            <mo>.</mo>
+            <mi>right</mi>
+            <mo>.</mo>
+            <mi>data</mi>
+        </mrow>
+        <mo>=</mo>
+        <mn>12</mn>
+    </math>
+    . Продолжение процесса исполнения процедуры
+    <math>
+        <mi>print</mi>
+        <mo>&#x2061;</mo>
+        <mrow>
+            <mo>(</mo>
+            <mi>tr</mi>
+            <mo>)</mo>
+        </mrow>
+    </math>
+    приведет к выводу на печать в Рабочем журнале в порядке возрастания последовательности ключей дерева на <a
+            href='#ris8154'> рис. 8.9.7.4</a>.
+</p>
+<p>Перейдем к рассмотрению процедуры удаления из дерева узла. Если узел является листом или из него выходит только одно
+    поддерево, то процедура удаления узла сводится к изменению ссылки у предшествующего узла.</p>
+<p>Пусть требуется удалить лист
+    <math>
+        <mi>b</mi>
+    </math>
+    , если, к примеру,
+    <math>
+        <mi>b</mi>
+    </math>
+    есть левое поддерево узла
+    <math>
+        <mi>a</mi>
+    </math>
+    :
+    <math>
+        <mi>a</mi>
+        <mi>.left</mi>
+        <mo>=</mo>
+        <mi>b</mi>
+    </math>
+    . Тогда узел
+    <math>
+        <mi>b</mi>
+    </math>
+    удаляется командой
+    <math>
+        <mi>a</mi>
+        <mi>.left</mi>
+        <mo>:=</mo>
+        <mi>NIL</mi>
+    </math>
+    .
+</p>
+<p>Допустим, что узел
+    <math>
+        <mi>b</mi>
+    </math>
+    с непосредственным предком
+    <math>
+        <mi>a</mi>
+    </math>
+    имеет единственное поддерево
+    <math>
+        <mi>c</mi>
+    </math>
+    . Для определенности будем считать узел
+    <math>
+        <mi>b</mi>
+    </math>
+    правым поддеревом узла
+    <math>
+        <mi>a</mi>
+    </math>
+    . В этом случае узел
+    <math>
+        <mi>b</mi>
+    </math>
+    из дерева удаляется командой
+    <math>
+        <mi>a</mi>
+        <mi>.right</mi>
+        <mo>:=</mo>
+        <mi>c</mi>
+    </math>
+    .
+</p>
+<p>Если удаляемый узел имеет два поддерева, то его надо заменить либо на самый правый узел его левого поддерева, либо на
+    самый левый узел его правого поддерева. Пусть требуется удалить узел
+    <math>
+        <mi>q</mi>
+    </math>
+    , имеющий левое и правое поддерева. Процедура замены удаляемого узла
+    <math>
+        <mi>q</mi>
+    </math>
+    на самый правый узел его левого поддерева может быть такой:
+</p>
 <code>
-<p class='ind1'>PROCEDURE  del(VAR r: Node);</p>
-<p class='ind2'>VAR</p>  
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>IF r.right=NIL THEN  (*нашли самый правый элемент r левого поддерева*)</p>
-<p class='ind3'>q.data:=r.data; (*заменили элемент q, т.е. удалили q*)</p>
-<p class='ind3'>q:=r;</p>
-<p class='ind3'>r:=r.left  (*заменили самый правый элемент поддерева его левым узлом-наследником, возможно, совпадающим с NIL*)</p>
-<p class='ind2'>ELSE</p>
-<p class='ind3'>del(r.right) (*если r не самый правый узел, то реккурсивно продолжить обход правого поддерева*)</p>
-<p class='ind2'>END;</p>
-<p class='ind1'>END del;</p>
+    <p class='ind1'>PROCEDURE del(VAR r: Node);</p>
+    <p class='ind2'>VAR</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>IF r.right=NIL THEN (*нашли самый правый элемент r левого поддерева*)</p>
+    <p class='ind3'>q.data:=r.data; (*заменили элемент q, т.е. удалили q*)</p>
+    <p class='ind3'>q:=r;</p>
+    <p class='ind3'>r:=r.left (*заменили самый правый элемент поддерева его левым узлом-наследником, возможно,
+        совпадающим с NIL*)</p>
+    <p class='ind2'>ELSE</p>
+    <p class='ind3'>del(r.right) (*если r не самый правый узел, то реккурсивно продолжить обход правого поддерева*)</p>
+    <p class='ind2'>END;</p>
+    <p class='ind1'>END del;</p>
 </code>
-<p><a id='prim8152'>Пример 8.9.7.2.</a> Модуль, состоящий из процедур добавления узла в дерево поиска, обхода дерева и удаления узла дерева:</p>
+<p><a id='prim8152'>Пример 8.9.7.2.</a> Модуль, состоящий из процедур добавления узла в дерево поиска, обхода дерева и
+    удаления узла дерева:</p>
 <code>
-<p class='ind0'>MODULE  tree;</p>
-<p class='ind1'>IMPORT  Log := StdLog,  In := i21sysIn,  Ran := i21eduRandom;</p>
-<p class='ind1'>TYPE</p>
-<p class='ind2'>Node=POINTER TO RECORD</p>
-<p class='ind3'>left, right: Node;</p>
-<p class='ind3'>data: INTEGER</p>
-<p class='ind2'>END;</p>
-<p class='ind1'>VAR tr: Node;</p>
-<p class='ind1'>PROCEDURE add(n: INTEGER; VAR t: Node);</p>
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>IF t=NIL THEN</p>
-<p class='ind3'>NEW(t);</p>
-<p class='ind3'>t.left:=NIL;</p>
-<p class='ind3'>t.right:=NIL;</p>
-<p class='ind3'>In.Open;</p>
-<p class='ind3'>t.data:=n;</p>
-<p class='ind2'>ELSE</p>
-<p class='ind3'>IF n<=t.data THEN</p>
-<p class='ind4'>add(n, t.left)</p>
-<p class='ind3'>ELSE</p>
-<p class='ind4'>add(n, t.right)</p>
-<p class='ind3'>END;</p>
-<p class='ind2'>END;</p>
-<p class='ind1'>END add;</p>
-<p class='ind1'>PROCEDURE print(t: Node);</p>
-<p class='ind2'>VAR</p>  
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>IF t#NIL THEN</p>
-<p class='ind3'>print(t.left);</p>
-<p class='ind3'>Log.Int(t.data);</p>
-<p class='ind3'>print(t.right);</p>
-<p class='ind2'>END;</p>
-<p class='ind1'>END print;</p>
-<p class='ind1'>PROCEDURE  delete(VAR  d: Node; key: INTEGER);</p>
-<p class='ind2'>VAR  q: Node;</p>
-<p class='ind2'>PROCEDURE  del(VAR r: Node);</p>
-<p class='ind3'>VAR</p>  
-<p class='ind2'>BEGIN</p>
-<p class='ind3'>IF r.right=NIL THEN</p>
-<p class='ind4'>q.data:=r.data;</p>
-<p class='ind4'>q:=r;</p>
-<p class='ind4'>r:=r.left</p>
-<p class='ind3'>ELSE</p>
-<p class='ind4'>del(r.right)</p>
-<p class='ind3'>END;</p>
-<p class='ind2'>END del;</p>
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>IF key &lt; d.data THEN</p>
-<p class='ind3'>delete(d.left, key)</p>
-<p class='ind2'>ELSIF key &gt; d.data THEN</p>
-<p class='ind3'>delete(d.right, key)</p>	
-<p class='ind2'>ELSE</p>
-<p class='ind3'>q:=d;</p>
-<p class='ind3'>IF q.left=NIL THEN</p>
-<p class='ind4'>d:=q.right</p>		
-<p class='ind3'>ELSE</p>
-<p class='ind4'>del1(q.left)</p>	
-<p class='ind3'>END;</p>	
-<p class='ind2'>END;</p>
-<p class='ind1'>END delete;</p>
-<p class='ind1'>PROCEDURE do*;</p>
-<p class='ind2'>VAR  d, i: INTEGER;</p>
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>tr:=NIL;</p>
-<p class='ind2'>i:=10;</p>
-<p class='ind2'>WHILE i &gt; 0 DO</p>
-<p class='ind3'>d:=Ran.Int(45);</p>
-<p class='ind3'>add(d, tr);</p>		
-<p class='ind3'>DEC(i)</p>			
-<p class='ind2'>END;</p>
-<p class='ind2'>print(tr);</p>
-<p class='ind1'>END do;</p>
-<p class='ind0'>END tree.</p>
-<table>
-<tr>
-<td align='right' valign='bottom'>
-<svg width='35' height='40'>
-<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
-<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
-</svg>
-</td>
-<td align='left' valign='middle'>tree.do</td>
-</tr>
-</table>
+    <p class='ind0'>MODULE tree;</p>
+    <p class='ind1'>IMPORT Log := StdLog, In := i21sysIn, Ran := i21eduRandom;</p>
+    <p class='ind1'>TYPE</p>
+    <p class='ind2'>Node=POINTER TO RECORD</p>
+    <p class='ind3'>left, right: Node;</p>
+    <p class='ind3'>data: INTEGER</p>
+    <p class='ind2'>END;</p>
+    <p class='ind1'>VAR tr: Node;</p>
+    <p class='ind1'>PROCEDURE add(n: INTEGER; VAR t: Node);</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>IF t=NIL THEN</p>
+    <p class='ind3'>NEW(t);</p>
+    <p class='ind3'>t.left:=NIL;</p>
+    <p class='ind3'>t.right:=NIL;</p>
+    <p class='ind3'>In.Open;</p>
+    <p class='ind3'>t.data:=n;</p>
+    <p class='ind2'>ELSE</p>
+    <p class='ind3'>IF n<=t.data THEN</p>
+    <p class='ind4'>add(n, t.left)</p>
+    <p class='ind3'>ELSE</p>
+    <p class='ind4'>add(n, t.right)</p>
+    <p class='ind3'>END;</p>
+    <p class='ind2'>END;</p>
+    <p class='ind1'>END add;</p>
+    <p class='ind1'>PROCEDURE print(t: Node);</p>
+    <p class='ind2'>VAR</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>IF t#NIL THEN</p>
+    <p class='ind3'>print(t.left);</p>
+    <p class='ind3'>Log.Int(t.data);</p>
+    <p class='ind3'>print(t.right);</p>
+    <p class='ind2'>END;</p>
+    <p class='ind1'>END print;</p>
+    <p class='ind1'>PROCEDURE delete(VAR d: Node; key: INTEGER);</p>
+    <p class='ind2'>VAR q: Node;</p>
+    <p class='ind2'>PROCEDURE del(VAR r: Node);</p>
+    <p class='ind3'>VAR</p>
+    <p class='ind2'>BEGIN</p>
+    <p class='ind3'>IF r.right=NIL THEN</p>
+    <p class='ind4'>q.data:=r.data;</p>
+    <p class='ind4'>q:=r;</p>
+    <p class='ind4'>r:=r.left</p>
+    <p class='ind3'>ELSE</p>
+    <p class='ind4'>del(r.right)</p>
+    <p class='ind3'>END;</p>
+    <p class='ind2'>END del;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>IF key &lt; d.data THEN</p>
+    <p class='ind3'>delete(d.left, key)</p>
+    <p class='ind2'>ELSIF key &gt; d.data THEN</p>
+    <p class='ind3'>delete(d.right, key)</p>
+    <p class='ind2'>ELSE</p>
+    <p class='ind3'>q:=d;</p>
+    <p class='ind3'>IF q.left=NIL THEN</p>
+    <p class='ind4'>d:=q.right</p>
+    <p class='ind3'>ELSE</p>
+    <p class='ind4'>del1(q.left)</p>
+    <p class='ind3'>END;</p>
+    <p class='ind2'>END;</p>
+    <p class='ind1'>END delete;</p>
+    <p class='ind1'>PROCEDURE do*;</p>
+    <p class='ind2'>VAR d, i: INTEGER;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>tr:=NIL;</p>
+    <p class='ind2'>i:=10;</p>
+    <p class='ind2'>WHILE i &gt; 0 DO</p>
+    <p class='ind3'>d:=Ran.Int(45);</p>
+    <p class='ind3'>add(d, tr);</p>
+    <p class='ind3'>DEC(i)</p>
+    <p class='ind2'>END;</p>
+    <p class='ind2'>print(tr);</p>
+    <p class='ind1'>END do;</p>
+    <p class='ind0'>END tree.</p>
+    <table>
+        <tr>
+            <td align='right' valign='bottom'>
+                <svg width='35' height='40'>
+                    <circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+                    <text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+                </svg>
+            </td>
+            <td align='left' valign='middle'>tree.do</td>
+        </tr>
+    </table>
 </code>
-<p>В среднем для нахождения элемента в дереве поиска нужно просмотреть половину списка. Для поиска же заданного элемента в дереве поиска из <math><mi>N</mi></math> элементов может потребоваться не более <math><msub><mi>log</mi><mn>2</mn></msub><mo>&#x2061;</mo><mrow><mo>(</mo><mi>N</mi><mo>)</mo></mrow></math> сравнений.</p>
+<p>В среднем для нахождения элемента в дереве поиска нужно просмотреть половину списка. Для поиска же заданного элемента
+    в дереве поиска из
+    <math>
+        <mi>N</mi>
+    </math>
+    элементов может потребоваться не более
+    <math>
+        <msub>
+            <mi>log</mi>
+            <mn>2</mn>
+        </msub>
+        <mo>&#x2061;</mo>
+        <mrow>
+            <mo>(</mo>
+            <mi>N</mi>
+            <mo>)</mo>
+        </mrow>
+    </math>
+    сравнений.
+</p>
 <p>Ниже представлена модификация предыдущего модуля, в котором вывод направляется в текстовый документ:</p>
 <code>
-<p class='ind0'>MODULE  tree;</p>
-<p class='ind1'>IMPORT  Views, TextModels, TextMappers, TextViews,  Ran := i21eduRandom;</p>
-<p class='ind1'>TYPE</p>
-<p class='ind2'>Node=POINTER TO RECORD</p>
-<p class='ind3'>left, right: Node;</p>
-<p class='ind3'>data: INTEGER</p>
-<p class='ind2'>END;</p>
-<p class='ind1'>VAR tr: Node;  t: TextModels.Model; f: TextMappers.Formatter; v: TextViews.View;</p>
-<p class='ind1'>PROCEDURE add(n: INTEGER; VAR t: Node);</p>
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>IF t=NIL THEN</p>
-<p class='ind3'>NEW(t);</p>
-<p class='ind3'>t.left:=NIL;</p>
-<p class='ind3'>t.right:=NIL;</p>
-<p class='ind3'>t.data:=n;</p>
-<p class='ind2'>ELSE</p>
-<p class='ind3'>IF n<=t.data THEN</p>
-<p class='ind4'>add(n, t.left)</p>
-<p class='ind3'>ELSE</p>
-<p class='ind4'>add(n, t.right)</p>
-<p class='ind3'>END;</p>
-<p class='ind2'>END;</p>
-<p class='ind1'>END add;</p>
-<p class='ind1'>PROCEDURE print(t: Node);</p>
-<p class='ind2'>VAR</p>  
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>IF t#NIL THEN</p>
-<p class='ind3'>print(t.left);</p>
-<p class='ind3'>f.WriteLn;</p>
-<p class='ind3'>f.WriteInt(t.data);</p>
-<p class='ind3'>f.WriteLn;</p>
-<p class='ind3'>print(t.right);</p>
-<p class='ind2'>END;</p>
-<p class='ind1'>END print;</p>
-<p class='ind1'>PROCEDURE do*;</p>
-<p class='ind2'>VAR  d, i: INTEGER;</p>
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>tr:=NIL;</p>
-<p class='ind2'>i:=10;</p>
-<p class='ind2'>t := TextModels.dir.New();</p>
-<p class='ind2'>f.ConnectTo(t);</p>
-<p class='ind2'>WHILE i>0 DO</p>
-<p class='ind3'>d:=Ran.Int(45);</p>
-<p class='ind3'>add(d, tr);</p>		
-<p class='ind3'>DEC(i)</p>			
-<p class='ind2'>END;</p>
-<p class='ind2'>print(tr);</p>
-<p class='ind2'>v := TextViews.dir.New(t);</p>
-<p class='ind2'>Views.OpenView(v)</p>
-<p class='ind1'>END do;</p>
-<p class='ind0'>END tree.</p>
-tree.do 
+    <p class='ind0'>MODULE tree;</p>
+    <p class='ind1'>IMPORT Views, TextModels, TextMappers, TextViews, Ran := i21eduRandom;</p>
+    <p class='ind1'>TYPE</p>
+    <p class='ind2'>Node=POINTER TO RECORD</p>
+    <p class='ind3'>left, right: Node;</p>
+    <p class='ind3'>data: INTEGER</p>
+    <p class='ind2'>END;</p>
+    <p class='ind1'>VAR tr: Node; t: TextModels.Model; f: TextMappers.Formatter; v: TextViews.View;</p>
+    <p class='ind1'>PROCEDURE add(n: INTEGER; VAR t: Node);</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>IF t=NIL THEN</p>
+    <p class='ind3'>NEW(t);</p>
+    <p class='ind3'>t.left:=NIL;</p>
+    <p class='ind3'>t.right:=NIL;</p>
+    <p class='ind3'>t.data:=n;</p>
+    <p class='ind2'>ELSE</p>
+    <p class='ind3'>IF n<=t.data THEN</p>
+    <p class='ind4'>add(n, t.left)</p>
+    <p class='ind3'>ELSE</p>
+    <p class='ind4'>add(n, t.right)</p>
+    <p class='ind3'>END;</p>
+    <p class='ind2'>END;</p>
+    <p class='ind1'>END add;</p>
+    <p class='ind1'>PROCEDURE print(t: Node);</p>
+    <p class='ind2'>VAR</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>IF t#NIL THEN</p>
+    <p class='ind3'>print(t.left);</p>
+    <p class='ind3'>f.WriteLn;</p>
+    <p class='ind3'>f.WriteInt(t.data);</p>
+    <p class='ind3'>f.WriteLn;</p>
+    <p class='ind3'>print(t.right);</p>
+    <p class='ind2'>END;</p>
+    <p class='ind1'>END print;</p>
+    <p class='ind1'>PROCEDURE do*;</p>
+    <p class='ind2'>VAR d, i: INTEGER;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>tr:=NIL;</p>
+    <p class='ind2'>i:=10;</p>
+    <p class='ind2'>t := TextModels.dir.New();</p>
+    <p class='ind2'>f.ConnectTo(t);</p>
+    <p class='ind2'>WHILE i>0 DO</p>
+    <p class='ind3'>d:=Ran.Int(45);</p>
+    <p class='ind3'>add(d, tr);</p>
+    <p class='ind3'>DEC(i)</p>
+    <p class='ind2'>END;</p>
+    <p class='ind2'>print(tr);</p>
+    <p class='ind2'>v := TextViews.dir.New(t);</p>
+    <p class='ind2'>Views.OpenView(v)</p>
+    <p class='ind1'>END do;</p>
+    <p class='ind0'>END tree.</p>
+    tree.do
 </code>
-<p>При обходе дерева поиска слева направо (обратный вывод) значения ключевого поля образуют неубывающую последовательность. Поэтому дерево поиска можно использовать для сортировки числовой последовательности (сортировки деревом). Для сортировки числовой последовательности строится дерево поиска, в которое помещаются все элементы исходной последовательности. Число операций для построения дерева поиска пропорционально <math><mi>n</mi><mo>&#x2062;</mo><msub><mi>log</mi><mn>2</mn></msub><mo>&#x2061;</mo><mi>n</mi></math>, где <math><mi>n</mi></math> &#151; количество элементов сортируемой последовательности. Далее, посредством обратного вывода, строится отсортированная в порядке возрастания последовательность. Для этого потребуется порядка <math><mi>n</mi></math> операций. Наконец, для уничтожения дерева потребуется порядка <math><mi>n</mi></math> операций. Таким образом, число операций в алгоритме сортировки деревом поиска пропорционально <math><mi>n</mi><mo>&#x2062;</mo><msub><mi>log</mi><mn>2</mn></msub><mo>&#x2061;</mo><mi>n</mi></math>.</p>
+<p>При обходе дерева поиска слева направо (обратный вывод) значения ключевого поля образуют неубывающую
+    последовательность. Поэтому дерево поиска можно использовать для сортировки числовой последовательности (сортировки
+    деревом). Для сортировки числовой последовательности строится дерево поиска, в которое помещаются все элементы
+    исходной последовательности. Число операций для построения дерева поиска пропорционально
+    <math>
+        <mi>n</mi>
+        <mo>&#x2062;</mo>
+        <msub>
+            <mi>log</mi>
+            <mn>2</mn>
+        </msub>
+        <mo>&#x2061;</mo>
+        <mi>n</mi>
+    </math>
+    , где
+    <math>
+        <mi>n</mi>
+    </math> &#151; количество элементов сортируемой последовательности. Далее, посредством обратного вывода, строится
+    отсортированная в порядке возрастания последовательность. Для этого потребуется порядка
+    <math>
+        <mi>n</mi>
+    </math>
+    операций. Наконец, для уничтожения дерева потребуется порядка
+    <math>
+        <mi>n</mi>
+    </math>
+    операций. Таким образом, число операций в алгоритме сортировки деревом поиска пропорционально
+    <math>
+        <mi>n</mi>
+        <mo>&#x2062;</mo>
+        <msub>
+            <mi>log</mi>
+            <mn>2</mn>
+        </msub>
+        <mo>&#x2061;</mo>
+        <mi>n</mi>
+    </math>
+    .
+</p>
 
 <h3>Контрольные вопросы и упражнения</h3>
 <ol>
-<li>По заданной последовательности <math><mfenced open='' close=''><mn>23</mn><mn>43</mn><mn>13</mn><mn>18</mn><mn>53</mn><mn>23</mn><mn>37</mn><mn>2</mn><mn>29</mn></mfenced></math> построить дерево поиска.</li>
-<li>Отсортировать по возрастанию (убыванию) произвольную последовательность целых чисел посредством дерева поиска.</li>
-<li>Отсортировать по возрастанию (убыванию) произвольную последовательность латинских букв посредством дерева поиска.</li>
-<li>Задано непустое дерево. Если заданное дерево есть дерево поиска, то вывести 1, в противном случае &#151; адрес первого узла, нарушающего закономерность дерева поиска.</li>
-<li>Составить программу удаления из дерева поиска всех повторяющихся элементов.</li>
-<li>Задано непустое дерево. Если заданное дерево есть дерево поиска без повторяющихся элементов, то вывести 1, в противном случае &#151; адрес первого узла, нарушающего закономерность дерева поиска без повторяющихся элементов.</li>
-<li>В модуле <a href='#prim8152'>tree примера 8.9.7.2</a> реализовать прямой и концевой выводы дерева  поиска.</li>
-<li>Описать рекурсивную логическую функцию , проверяющую наличие заданного числа в сформированном дереве  поиска.</li>
-<li>Описать рекурсивную числовую функцию, подсчитывающую сумму элементов дерева поиска.</li>
-<li>Описать рекурсивно и нерекурсивно логическую функцию, входными параметрами которой являются два дерева  поиска, проверяющую на равенство эти деревья.</li>
-<li>Описать функцию, которая находит наибольший элемент непустого дерева  поиска.</li>
-<li>Описать логическую функцию, проверяющую , есть ли в непустом дереве  поиска хотя бы два одинаковых элемента.</li>
-<li>Разработать программу, вычисляющую количество вершин в непустом дереве поиска.</li>
-<li>Разработать программу, вычисляющую количество левых листьев в непустом дереве поиска.</li>
-<li>Пусть узлы дерева поиска содержат числовое поле целого типа. Разработать программу, вычисляющую в непустом дереве поиска количество узлов, содержащих заданное целое число <math><mi>n</mi></math>.</li>
-<li>Пусть узлы дерева поиска содержат числовое поле целого типа. Разработать программу, вычисляющую в непустом дереве поиска количество узлов, содержащих число, большее заданного целого числа <math><mi>n</mi></math>.</li>
-<li>Разработать программу, вычисляющую количество листов в непустом дереве поиска.</li>
-<li>Разработать программу, вычисляющую количество левых (правых) узлов в непустом дереве поиска.</li>
-<li>Пусть узлы дерева поиска содержат числовое поле целого типа. Разработать программу, вычисляющую сумму чисел в узлах дерева.</li>
-<li>Пусть узлы дерева поиска содержат числовое поле целого типа. Разработать программу, вычисляющую сумму чисел в листьях дерева.</li>
-<li>Пусть узлы дерева поиска содержат числовое поле целого типа. Разработать программу, вычисляющую минимальное значение числового поля в правых узлах дерева.</li>
-<li>Пусть узлы дерева поиска содержат числовое поле целого типа. Разработать программу, вычисляющую минимальное значение числового поля в листьях дерева.</li>
-<li>Разработать программу, вычисляющую уровни листьев дерева.</li>
+    <li>По заданной последовательности
+        <math>
+            <mfenced open='' close=''>
+                <mn>23</mn>
+                <mn>43</mn>
+                <mn>13</mn>
+                <mn>18</mn>
+                <mn>53</mn>
+                <mn>23</mn>
+                <mn>37</mn>
+                <mn>2</mn>
+                <mn>29</mn>
+            </mfenced>
+        </math>
+        построить дерево поиска.
+    </li>
+    <li>Отсортировать по возрастанию (убыванию) произвольную последовательность целых чисел посредством дерева поиска.
+    </li>
+    <li>Отсортировать по возрастанию (убыванию) произвольную последовательность латинских букв посредством дерева
+        поиска.
+    </li>
+    <li>Задано непустое дерево. Если заданное дерево есть дерево поиска, то вывести 1, в противном случае &#151; адрес
+        первого узла, нарушающего закономерность дерева поиска.
+    </li>
+    <li>Составить программу удаления из дерева поиска всех повторяющихся элементов.</li>
+    <li>Задано непустое дерево. Если заданное дерево есть дерево поиска без повторяющихся элементов, то вывести 1, в
+        противном случае &#151; адрес первого узла, нарушающего закономерность дерева поиска без повторяющихся
+        элементов.
+    </li>
+    <li>В модуле <a href='#prim8152'>tree примера 8.9.7.2</a> реализовать прямой и концевой выводы дерева поиска.</li>
+    <li>Описать рекурсивную логическую функцию , проверяющую наличие заданного числа в сформированном дереве поиска.
+    </li>
+    <li>Описать рекурсивную числовую функцию, подсчитывающую сумму элементов дерева поиска.</li>
+    <li>Описать рекурсивно и нерекурсивно логическую функцию, входными параметрами которой являются два дерева поиска,
+        проверяющую на равенство эти деревья.
+    </li>
+    <li>Описать функцию, которая находит наибольший элемент непустого дерева поиска.</li>
+    <li>Описать логическую функцию, проверяющую , есть ли в непустом дереве поиска хотя бы два одинаковых элемента.</li>
+    <li>Разработать программу, вычисляющую количество вершин в непустом дереве поиска.</li>
+    <li>Разработать программу, вычисляющую количество левых листьев в непустом дереве поиска.</li>
+    <li>Пусть узлы дерева поиска содержат числовое поле целого типа. Разработать программу, вычисляющую в непустом
+        дереве поиска количество узлов, содержащих заданное целое число
+        <math>
+            <mi>n</mi>
+        </math>
+        .
+    </li>
+    <li>Пусть узлы дерева поиска содержат числовое поле целого типа. Разработать программу, вычисляющую в непустом
+        дереве поиска количество узлов, содержащих число, большее заданного целого числа
+        <math>
+            <mi>n</mi>
+        </math>
+        .
+    </li>
+    <li>Разработать программу, вычисляющую количество листов в непустом дереве поиска.</li>
+    <li>Разработать программу, вычисляющую количество левых (правых) узлов в непустом дереве поиска.</li>
+    <li>Пусть узлы дерева поиска содержат числовое поле целого типа. Разработать программу, вычисляющую сумму чисел в
+        узлах дерева.
+    </li>
+    <li>Пусть узлы дерева поиска содержат числовое поле целого типа. Разработать программу, вычисляющую сумму чисел в
+        листьях дерева.
+    </li>
+    <li>Пусть узлы дерева поиска содержат числовое поле целого типа. Разработать программу, вычисляющую минимальное
+        значение числового поля в правых узлах дерева.
+    </li>
+    <li>Пусть узлы дерева поиска содержат числовое поле целого типа. Разработать программу, вычисляющую минимальное
+        значение числового поля в листьях дерева.
+    </li>
+    <li>Разработать программу, вычисляющую уровни листьев дерева.</li>
 </ol>
-<p>Задачи для самостоятельного решения из сборника задач по программированию под редакцией С.А. Абрамова, Г.Г. Гнездиловой, Е.Н. Капустиной, М.И. Селюн. Задачи по программированию:</p>
-<p><a href='zadachi/14.html'>§14 Вычисление с хранением последовательностей, число членов которых зависит от исходных данных</a></p>
+<p>Задачи для самостоятельного решения из сборника задач по программированию под редакцией С.А. Абрамова, Г.Г.
+    Гнездиловой, Е.Н. Капустиной, М.И. Селюн. Задачи по программированию:</p>
+<p><a href='zadachi/14.html'>§14 Вычисление с хранением последовательностей, число членов которых зависит от исходных
+    данных</a></p>
 <p><a href='zadachi/36.html'>§36. Некоторые приемы программирования</a></p>
-<p><a href="8_9_6.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_9_8.html">К следующему</a> </p>
+<p><a href="8_9_6.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_9_8.html">К следующему</a>
+</p>
 </body>
+<script type="text/javascript">
+    MathJax.Hub.Configured()
+</script>
 </html>

@@ -1,224 +1,279 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" />
-<link rel='stylesheet' type="text/css" href="style.css"></link>
-<meta name="author" content="dima" />
-<meta name="description" content="Математическая модель передачи сигналов по каналам связи" />
-<meta name="keywords" content="Хэмминг, кодирование, декодирование, (m, n)-код, блочный, двоичный, канал, приемник, передатчик, Бернулли" />
-<script type="text/javascript">
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+  extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});
 
-function fact(z) {
-var f=1, i;
-	for (i=1;i<=z;i++)
-		f=f*i;
-	return f;	
-}
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-function sochet(x, y) {
-	var c;
-	c=fact(x)/(fact(x-y)*fact(y));
-	return c;
-}
-function hemming() {
-var n, k, r, r1, i, sum_soch, myWin=open("", "newWindow"), html, head, title, body, table, tr, td, h2;
-	myWin.document.open();
-	html=document.createElement("html");
-	myWin.document.appendChild(html);
-	head=document.createElement("head");
-	title=document.createElement("title");
-	title.textContent="Границы Хэмминга";
-	head.appendChild(title);
-	html.appendChild(head);
-	body=document.createElement("body");
-	html.appendChild(body);
-	h2=document.createElement("h2");
-	h2.textContent="Нижние границы Хэмминга";
-	body.appendChild(h2);
+    <meta charset="UTF-8"/>
+    <link rel='stylesheet' type="text/css" href="style.css"></link>
+    <meta name="author" content="dima"/>
+    <meta name="description" content="Математическая модель передачи сигналов по каналам связи"/>
+    <meta name="keywords"
+          content="Хэмминг, кодирование, декодирование, (m, n)-код, блочный, двоичный, канал, приемник, передатчик, Бернулли"/>
+    <script type="text/javascript">
 
-	table=document.createElement("table");
-	table.border="1";
-	body.appendChild(table);
+        function fact(z) {
+            var f = 1, i;
+            for (i = 1; i <= z; i++)
+                f = f * i;
+            return f;
+        }
 
-	tr=document.createElement("tr");
-	tr.align="center";
-	table.appendChild(tr);
-	td=document.createElement("td");
-	td.textContent="Длина кодового слова n";
-	tr.appendChild(td);
-	td=document.createElement("td");
-	td.textContent="Кратность ошибки k";
-	tr.appendChild(td);
-	td=document.createElement("td");
-	td.textContent="Дополнительных разрядов r";
-	tr.appendChild(td);
+        function sochet(x, y) {
+            var c;
+            c = fact(x) / (fact(x - y) * fact(y));
+            return c;
+        }
 
-	for (n=3;n<33;n++) {
-		k=1;
-		sum_soch=1;
-		while (n>=2*k+1) {
-			sum_soch+=sochet(n,k);
-			r=Math.log(sum_soch)/Math.log(2);
-			r1=Math.round(r);
-			if (r1<r)
-				r1=r1+1;
-			tr=document.createElement("tr");
-			tr.align="center";
-			table.appendChild(tr);
-			td=document.createElement("td");
-			td.textContent=n;
-			tr.appendChild(td);
-			td=document.createElement("td");
-			td.textContent=k;
-			tr.appendChild(td);
-			td=document.createElement("td");
-			td.textContent=r1;
-			tr.appendChild(td);
-			k++;
-		}
-	}
-	myWin.document.close();
-}
+        function hemming() {
+            var n, k, r, r1, i, sum_soch, myWin = open("", "newWindow"), html, head, title, body, table, tr, td, h2;
+            myWin.document.open();
+            html = document.createElement("html");
+            myWin.document.appendChild(html);
+            head = document.createElement("head");
+            title = document.createElement("title");
+            title.textContent = "Границы Хэмминга";
+            head.appendChild(title);
+            html.appendChild(head);
+            body = document.createElement("body");
+            html.appendChild(body);
+            h2 = document.createElement("h2");
+            h2.textContent = "Нижние границы Хэмминга";
+            body.appendChild(h2);
 
-function gilbert() {
-var n, k, r, i, sum_soch, win=open("", "newWindow"), html, h2, head, title, table, tr, td, p;
-	win.document.open();
-	html=document.createElement("html");
-	win.document.appendChild(html);
-	head=document.createElement("head");
-	title=document.createElement("title");
-	title.textContent="Варшамова-Гильберта";
-	head.appendChild(title);
-	html.appendChild(head);
-	body=document.createElement("body");
-	html.appendChild(body);
-	h2=document.createElement("h2");
-	h2.textContent="Верхние границы Варшамова-Гильберта";
-	body.appendChild(h2);
-	table=document.createElement("table");
-	table.border="1";
-	body.appendChild(table);
-	tr=document.createElement("tr");
-	tr.align="center";
-	table.appendChild(tr);
-	td=document.createElement("td");
-	td.textContent="Длина кодового слова n";
-	tr.appendChild(td);
-	td=document.createElement("td");
-	td.textContent="Кратность ошибки k";
-	tr.appendChild(td);
-	td=document.createElement("td");
-	td.textContent="Дополнительных разрядов r";
-	tr.appendChild(td);
-	for (n=3;n<33;n++) {
-		k=1;
-		i=1;
-		while (n>=2*k+1) {
-			sum_soch=1;
-			for (i=1;i<=2*k-1;i++)
-				sum_soch+=sochet(n-1, i);
-			r=Math.log(sum_soch)/Math.log(2);
-			r=Math.round(r)+1;
-			if (r<n)	{
-				tr=document.createElement("tr");
-				tr.align="center";
-				table.appendChild(tr);
-				td=document.createElement("td");
-				td.textContent=n;
-				tr.appendChild(td);
-				td=document.createElement("td");
-				td.textContent=k;
-				tr.appendChild(td);
-				td=document.createElement("td");
-				td.textContent=r;
-				tr.appendChild(td);
-			}
-			k++;
-		}
-	}
-win.document.close();
-}
+            table = document.createElement("table");
+            table.border = "1";
+            body.appendChild(table);
 
-</script>
-<title>Математическая модель системы связи</title>
+            tr = document.createElement("tr");
+            tr.align = "center";
+            table.appendChild(tr);
+            td = document.createElement("td");
+            td.textContent = "Длина кодового слова n";
+            tr.appendChild(td);
+            td = document.createElement("td");
+            td.textContent = "Кратность ошибки k";
+            tr.appendChild(td);
+            td = document.createElement("td");
+            td.textContent = "Дополнительных разрядов r";
+            tr.appendChild(td);
+
+            for (n = 3; n < 33; n++) {
+                k = 1;
+                sum_soch = 1;
+                while (n >= 2 * k + 1) {
+                    sum_soch += sochet(n, k);
+                    r = Math.log(sum_soch) / Math.log(2);
+                    r1 = Math.round(r);
+                    if (r1 < r)
+                        r1 = r1 + 1;
+                    tr = document.createElement("tr");
+                    tr.align = "center";
+                    table.appendChild(tr);
+                    td = document.createElement("td");
+                    td.textContent = n;
+                    tr.appendChild(td);
+                    td = document.createElement("td");
+                    td.textContent = k;
+                    tr.appendChild(td);
+                    td = document.createElement("td");
+                    td.textContent = r1;
+                    tr.appendChild(td);
+                    k++;
+                }
+            }
+            myWin.document.close();
+        }
+
+        function gilbert() {
+            var n, k, r, i, sum_soch, win = open("", "newWindow"), html, h2, head, title, table, tr, td, p;
+            win.document.open();
+            html = document.createElement("html");
+            win.document.appendChild(html);
+            head = document.createElement("head");
+            title = document.createElement("title");
+            title.textContent = "Варшамова-Гильберта";
+            head.appendChild(title);
+            html.appendChild(head);
+            body = document.createElement("body");
+            html.appendChild(body);
+            h2 = document.createElement("h2");
+            h2.textContent = "Верхние границы Варшамова-Гильберта";
+            body.appendChild(h2);
+            table = document.createElement("table");
+            table.border = "1";
+            body.appendChild(table);
+            tr = document.createElement("tr");
+            tr.align = "center";
+            table.appendChild(tr);
+            td = document.createElement("td");
+            td.textContent = "Длина кодового слова n";
+            tr.appendChild(td);
+            td = document.createElement("td");
+            td.textContent = "Кратность ошибки k";
+            tr.appendChild(td);
+            td = document.createElement("td");
+            td.textContent = "Дополнительных разрядов r";
+            tr.appendChild(td);
+            for (n = 3; n < 33; n++) {
+                k = 1;
+                i = 1;
+                while (n >= 2 * k + 1) {
+                    sum_soch = 1;
+                    for (i = 1; i <= 2 * k - 1; i++)
+                        sum_soch += sochet(n - 1, i);
+                    r = Math.log(sum_soch) / Math.log(2);
+                    r = Math.round(r) + 1;
+                    if (r < n) {
+                        tr = document.createElement("tr");
+                        tr.align = "center";
+                        table.appendChild(tr);
+                        td = document.createElement("td");
+                        td.textContent = n;
+                        tr.appendChild(td);
+                        td = document.createElement("td");
+                        td.textContent = k;
+                        tr.appendChild(td);
+                        td = document.createElement("td");
+                        td.textContent = r;
+                        tr.appendChild(td);
+                    }
+                    k++;
+                }
+            }
+            win.document.close();
+        }
+
+    </script>
+    <title>Математическая модель системы связи</title>
 </head>
 <body>
 <p><a href="5_1.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="5_3.html">К следующему</a></p>
 <h2>5.2. Математическая модель системы связи</h2>
-<p>В качестве физических способов защиты линий связи от помех используют экранирование канала связи, улучшение избирательности приемного устройства, усиление сигнала и т.д. Но более выгодными с экономической точки зрения способами борьбы с помехами являются специальные методы кодирования сообщений.</p>
+<p>В качестве физических способов защиты линий связи от помех используют экранирование канала связи, улучшение
+    избирательности приемного устройства, усиление сигнала и т.д. Но более выгодными с экономической точки зрения
+    способами борьбы с помехами являются специальные методы кодирования сообщений.</p>
 <p>Каналы связи, описываемые схемой на рис. 5.2.1, называются <span class="termin">двоичными симметричными каналами связи.</span>
 <table align='center'>
-<tr>
-<td>
-<svg width="200" height="120" style="margin-left: auto; margin-right: auto">
-  <defs>
-    <marker style="overflow:visible;fill:inherit;stroke:inherit"
-            id="Arrow1Mstart" refX="0.0" refY="0.0" orient="auto">
-      <path transform="scale(0.4) translate(10,0)"
-            style="fill-rule:evenodd;stroke-width:1.0pt;marker-start:none"
-            d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "/>
-    </marker>
-  </defs>
-  <text x="12px" y="20px">1</text>
-  <text x="75px" y="11px">p</text>
-  <text x="150px" y="20px">1</text>
-  <text x="12px" y="85px">0</text>
-  <text x="150px" y="85px">0</text>
-<text x="75px" y="92px">p</text>
-<text x="125px" y="63px">q</text>
-<text x="125px" y="40px">q</text>
-  <line marker-start="url(#Arrow1Mstart)" x1="147" y1="16" x2="22" y2="16"
-        style="stroke: black; stroke-opacity: 1; stroke-width: 1; fill:none"/>
-<line marker-start="url(#Arrow1Mstart)" x1="147" y1="80" x2="22" y2="80" style="stroke: black; stroke-opacity: 1; stroke-width: 1; fill:none"/>
-<line marker-start="url(#Arrow1Mstart)" x1="147" y1="77" x2="22" y2="16" style="stroke: black; stroke-opacity: 1; stroke-width: 1; fill:none"/>
-<line marker-start="url(#Arrow1Mstart)" x1="145" y1="19" x2="22" y2="80" style="stroke: black; stroke-opacity: 1; stroke-width: 1; fill:none"/>
-<text x="47px" y="115px">Рис. 5.2.1</text>
-</svg>
-</td>
-</tr>
-</table></p>
-<p>Здесь <var>p</var> &#8212; вероятность безошибочной передачи бита, а <var>q</var> &#8212; вероятность передачи бита с ошибкой. Мы ограничимся рассмотрением двоичных симметричных каналов связи, в которых вероятность ошибочной передачи бита не зависит от результатов передачи предыдущих бит. В таком случае вероятность передачи <var>n</var> бит с <var>k</var> ошибками вычисляется по формуле Бернулли:
-<table class="formula"><tr>
-<td class="formula">
-<math display="block">
-<mrow>
-	<mrow>
-  		<msub><mi>P</mi><mi>n</mi></msub><mo>&#x2061;</mo>
-  		<mrow><mo>(</mo><mi>k</mi><mo>)</mo></mrow>
-  	</mrow>
-  	<mo>=</mo>
-	<mrow>  	
-  		<mfrac>
-      	<mrow><mi>n</mi><mo lspace="0">!</mo></mrow>
-         <mrow>
-             <mrow><mi>k</mi><mo lspace="0">!</mo></mrow>
-             <mo rspace="mediummathspace">&#x2062;</mo>
-             <mrow>
-             	<mfenced>
-                 <mrow><mi>n</mi><mo>&#x2212;<!-- &minus; --></mo><mi>k</mi></mrow>
-             	</mfenced>
-             	<mo lspace="0">!</mo>
-             </mrow>
-         </mrow>
-      </mfrac>
-      <mo rspace="mediummathspace">&#x2062;</mo>
-  		<msup>
-  			<mi>p</mi>
-  			<mrow><mi>n</mi><mo>−</mo><mi>k</mi></mrow>
-  		</msup>
-  		<mo rspace="mediummathspace">&#x2062;</mo>
-  		<msup><mi>q</mi><mi>k</mi></msup>
-  	</mrow>
-</mrow><mo>.</mo>
-</math></td>
-<td class="nomer">(5.2.1)</td>
-</tr></table>
+    <tr>
+        <td>
+            <svg width="200" height="120" style="margin-left: auto; margin-right: auto">
+                <defs>
+                    <marker style="overflow:visible;fill:inherit;stroke:inherit"
+                            id="Arrow1Mstart" refX="0.0" refY="0.0" orient="auto">
+                        <path transform="scale(0.4) translate(10,0)"
+                              style="fill-rule:evenodd;stroke-width:1.0pt;marker-start:none"
+                              d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "/>
+                    </marker>
+                </defs>
+                <text x="12px" y="20px">1</text>
+                <text x="75px" y="11px">p</text>
+                <text x="150px" y="20px">1</text>
+                <text x="12px" y="85px">0</text>
+                <text x="150px" y="85px">0</text>
+                <text x="75px" y="92px">p</text>
+                <text x="125px" y="63px">q</text>
+                <text x="125px" y="40px">q</text>
+                <line marker-start="url(#Arrow1Mstart)" x1="147" y1="16" x2="22" y2="16"
+                      style="stroke: black; stroke-opacity: 1; stroke-width: 1; fill:none"/>
+                <line marker-start="url(#Arrow1Mstart)" x1="147" y1="80" x2="22" y2="80"
+                      style="stroke: black; stroke-opacity: 1; stroke-width: 1; fill:none"/>
+                <line marker-start="url(#Arrow1Mstart)" x1="147" y1="77" x2="22" y2="16"
+                      style="stroke: black; stroke-opacity: 1; stroke-width: 1; fill:none"/>
+                <line marker-start="url(#Arrow1Mstart)" x1="145" y1="19" x2="22" y2="80"
+                      style="stroke: black; stroke-opacity: 1; stroke-width: 1; fill:none"/>
+                <text x="47px" y="115px">Рис. 5.2.1</text>
+            </svg>
+        </td>
+    </tr>
+</table>
 </p>
-<p>Биты, составлящие первичное сообщение, называют <span class="termin">информационными</span>. С целью минимизации ошибок используют так называемые <span class="termin">помехозащитные коды</span>,  представляющие собой удлиннения исходных двоичных слов из информационных бит дополнительными <span class="termin">контрольными битами</span>.</p>
-<p><span class="teorema">Двоичным 
+<p>Здесь <var>p</var> &#8212; вероятность безошибочной передачи бита, а <var>q</var> &#8212; вероятность передачи бита с
+    ошибкой. Мы ограничимся рассмотрением двоичных симметричных каналов связи, в которых вероятность ошибочной передачи
+    бита не зависит от результатов передачи предыдущих бит. В таком случае вероятность передачи <var>n</var> бит с <var>k</var>
+    ошибками вычисляется по формуле Бернулли:
+<table class="formula">
+    <tr>
+        <td class="formula">
+            <math display="block">
+                <mrow>
+                    <mrow>
+                        <msub>
+                            <mi>P</mi>
+                            <mi>n</mi>
+                        </msub>
+                        <mo>&#x2061;</mo>
+                        <mrow>
+                            <mo>(</mo>
+                            <mi>k</mi>
+                            <mo>)</mo>
+                        </mrow>
+                    </mrow>
+                    <mo>=</mo>
+                    <mrow>
+                        <mfrac>
+                            <mrow>
+                                <mi>n</mi>
+                                <mo lspace="0">!</mo>
+                            </mrow>
+                            <mrow>
+                                <mrow>
+                                    <mi>k</mi>
+                                    <mo lspace="0">!</mo>
+                                </mrow>
+                                <mo rspace="mediummathspace">&#x2062;</mo>
+                                <mrow>
+                                    <mfenced>
+                                        <mrow>
+                                            <mi>n</mi>
+                                            <mo>&#x2212;<!-- &minus; --></mo>
+                                            <mi>k</mi>
+                                        </mrow>
+                                    </mfenced>
+                                    <mo lspace="0">!</mo>
+                                </mrow>
+                            </mrow>
+                        </mfrac>
+                        <mo rspace="mediummathspace">&#x2062;</mo>
+                        <msup>
+                            <mi>p</mi>
+                            <mrow>
+                                <mi>n</mi>
+                                <mo>−</mo>
+                                <mi>k</mi>
+                            </mrow>
+                        </msup>
+                        <mo rspace="mediummathspace">&#x2062;</mo>
+                        <msup>
+                            <mi>q</mi>
+                            <mi>k</mi>
+                        </msup>
+                    </mrow>
+                </mrow>
+                <mo>.</mo>
+            </math>
+        </td>
+        <td class="nomer">(5.2.1)</td>
+    </tr>
+</table>
+</p>
+<p>Биты, составлящие первичное сообщение, называют <span class="termin">информационными</span>. С целью минимизации
+    ошибок используют так называемые <span class="termin">помехозащитные коды</span>, представляющие собой удлиннения
+    исходных двоичных слов из информационных бит дополнительными <span class="termin">контрольными битами</span>.</p>
+<p><span class="teorema">Двоичным
 <math display='inline'>
 <mfenced><mi>m</mi><mi>n</mi></mfenced>
-</math>-кодом называется пара, состоящая из функции кодирования 
+</math>-кодом называется пара, состоящая из функции кодирования
 <math display='inline'>
 <mrow>
 	<mi>E</mi><mo>:</mo>
@@ -227,7 +282,7 @@ win.document.close();
 	<msubsup><mi>&#8484;</mi><mn>2</mn><mi>n</mi></msubsup>
 </mrow>
 </math>
- и функции декодирования 
+ и функции декодирования
 <math display='inline'>
 <mrow>
 	<mi>D</mi><mo>:</mo>
@@ -235,411 +290,790 @@ win.document.close();
 	<mo>&#8594;</mo>
 	<msubsup><mi>&#8484;</mi><mn>2</mn><mi>m</mi></msubsup>
 </mrow>
-</math>, где 
+</math>, где
 <math display='inline'>
 	<msubsup><mi>&#8484;</mi><mn>2</mn><mi>n</mi></msubsup>
 </math>
- &#8212; множество всех двоичных слов длины 
+ &#8212; множество всех двоичных слов длины
  <math display='inline'>
  <mrow>
 	<mi>n</mi><mo>,</mo>
-	<mrow><mi>n</mi><mo>&gt;</mo><mi>m</mi></mrow> 
+	<mrow><mi>n</mi><mo>&gt;</mo><mi>m</mi></mrow>
  </mrow>
  </math>.</span></p>
-<p>Функции <var>E</var> и <var>D</var> выбираются так, чтобы с вероятностью, близкой к единице, декодированное слово совпало с исходным переданным словом.</p>
-<p>Коды делятся на два больших класса. <span class="termin">Коды с исправлением ошибок</span> имеют целью с вероятностью, близкой к единице, восстановить сообщение. <span class="termin">Коды с обнаружением ошибок</span> имеют целью с вероятностью, близкой к единице, выявить наличие ошибки.</p>
-<p>Простейший код с обнаружением ошибок - это <span class="termin">контроль четности</span>. Кодирование заключается в добавлении к каждому двоичному слову длины <var>m</var> <span class="termin">бита четности</span>, дополняющего двоичное слово до заранее выбранного четного (или нечетного) количества единиц. Такое кодирование позволяет лишь обнаружить некоторые ошибки, но не исправить их. Схема кодирования определяется формулами:
-<table class="formula"><tr>
-<td class="formula">
-<math display="block">
-<mrow>
-  <mi>E</mi>
-  <mo>&#x2061;</mo>
-  <mrow>
-  		<mo>(</mo>
-  			<mrow><msub><mi>a</mi><mn>1</mn></msub><mi>&#8230;</mi><msub><mi>a</mi><mi>m</mi></msub></mrow>
-  		<mo>)</mo>
-  </mrow>
-  <mo>=</mo>
-  <mrow>
-  		<msub><mi>a</mi><mn>1</mn></msub>
-  		<mi>&#8230;</mi>
-  		<msub><mi>a</mi><mi>m</mi></msub>
-  		<msub><mi>a</mi><mrow><mi>m</mi><mo>+</mo><mn>1</mn></mrow></msub>
-  </mrow>
-</mrow><mo>,</mo><mtext>где</mtext>
-</math></td>
-</tr>
-<tr><td class="formula">
-<math display="block">
-<mrow>
-  <msub>
-    <mi>a</mi>
-    <mrow><mi>m</mi><mo>+</mo><mn>1</mn></mrow>
-  </msub>
-  <mo>=</mo>
-  <mrow>
-    <mo>{</mo>
-    <mrow>
-      <mtable columnalign="left">
-        <mtr>
-        <mtd>
-            <mn>0</mn><mo>,</mo><mtext>если</mtext>
-            <mrow>
-              <munderover>
-                <mo>&#931;</mo>
-                <mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow>
-                <mi>m</mi>
-              </munderover>
-              <msub><mi>a</mi><mi>i</mi></msub><mo lspace="mediummathspace" rspace="mediummathspace">&#8212;</mo>
-              <mtext>четная</mtext>
-              <mo>,</mo>
-            </mrow>
-          </mtd>
-        </mtr>
-        <mtr>
-          <mtd>
-            <mn>1</mn>
-            <mo>,</mo>
-            <mtext>если</mtext>
-            <mrow>
-              <munderover>
-                <mo>&#931;</mo>
-                <mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow>
-                <mi>m</mi>
-              </munderover>
-              <msub><mi>a</mi><mi>i</mi></msub>
-            </mrow>
-            <mo lspace="mediummathspace" rspace="mediummathspace">&#8212;</mo>
-            <mtext>нечетная</mtext>
-            <mo>.</mo>
-          </mtd>
-        </mtr>
-      </mtable>
-    </mrow>
-  </mrow>
-</mrow>
-</math>
-</td>
-</tr>
-</table></p>
+<p>Функции <var>E</var> и <var>D</var> выбираются так, чтобы с вероятностью, близкой к единице, декодированное слово
+    совпало с исходным переданным словом.</p>
+<p>Коды делятся на два больших класса. <span class="termin">Коды с исправлением ошибок</span> имеют целью с
+    вероятностью, близкой к единице, восстановить сообщение. <span class="termin">Коды с обнаружением ошибок</span>
+    имеют целью с вероятностью, близкой к единице, выявить наличие ошибки.</p>
+<p>Простейший код с обнаружением ошибок - это <span class="termin">контроль четности</span>. Кодирование заключается в
+    добавлении к каждому двоичному слову длины <var>m</var> <span class="termin">бита четности</span>, дополняющего
+    двоичное слово до заранее выбранного четного (или нечетного) количества единиц. Такое кодирование позволяет лишь
+    обнаружить некоторые ошибки, но не исправить их. Схема кодирования определяется формулами:
+<table class="formula">
+    <tr>
+        <td class="formula">
+            <math display="block">
+                <mrow>
+                    <mi>E</mi>
+                    <mo>&#x2061;</mo>
+                    <mrow>
+                        <mo>(</mo>
+                        <mrow>
+                            <msub>
+                                <mi>a</mi>
+                                <mn>1</mn>
+                            </msub>
+                            <mi>&#8230;</mi>
+                            <msub>
+                                <mi>a</mi>
+                                <mi>m</mi>
+                            </msub>
+                        </mrow>
+                        <mo>)</mo>
+                    </mrow>
+                    <mo>=</mo>
+                    <mrow>
+                        <msub>
+                            <mi>a</mi>
+                            <mn>1</mn>
+                        </msub>
+                        <mi>&#8230;</mi>
+                        <msub>
+                            <mi>a</mi>
+                            <mi>m</mi>
+                        </msub>
+                        <msub>
+                            <mi>a</mi>
+                            <mrow>
+                                <mi>m</mi>
+                                <mo>+</mo>
+                                <mn>1</mn>
+                            </mrow>
+                        </msub>
+                    </mrow>
+                </mrow>
+                <mo>,</mo>
+                <mtext>где</mtext>
+            </math>
+        </td>
+    </tr>
+    <tr>
+        <td class="formula">
+            <math display="block">
+                <mrow>
+                    <msub>
+                        <mi>a</mi>
+                        <mrow>
+                            <mi>m</mi>
+                            <mo>+</mo>
+                            <mn>1</mn>
+                        </mrow>
+                    </msub>
+                    <mo>=</mo>
+                    <mrow>
+                        <mo>{</mo>
+                        <mrow>
+                            <mtable columnalign="left">
+                                <mtr>
+                                    <mtd>
+                                        <mn>0</mn>
+                                        <mo>,</mo>
+                                        <mtext>если</mtext>
+                                        <mrow>
+                                            <munderover>
+                                                <mo>&#931;</mo>
+                                                <mrow>
+                                                    <mi>i</mi>
+                                                    <mo>=</mo>
+                                                    <mn>1</mn>
+                                                </mrow>
+                                                <mi>m</mi>
+                                            </munderover>
+                                            <msub>
+                                                <mi>a</mi>
+                                                <mi>i</mi>
+                                            </msub>
+                                            <mo lspace="mediummathspace" rspace="mediummathspace">&#8212;</mo>
+                                            <mtext>четная</mtext>
+                                            <mo>,</mo>
+                                        </mrow>
+                                    </mtd>
+                                </mtr>
+                                <mtr>
+                                    <mtd>
+                                        <mn>1</mn>
+                                        <mo>,</mo>
+                                        <mtext>если</mtext>
+                                        <mrow>
+                                            <munderover>
+                                                <mo>&#931;</mo>
+                                                <mrow>
+                                                    <mi>i</mi>
+                                                    <mo>=</mo>
+                                                    <mn>1</mn>
+                                                </mrow>
+                                                <mi>m</mi>
+                                            </munderover>
+                                            <msub>
+                                                <mi>a</mi>
+                                                <mi>i</mi>
+                                            </msub>
+                                        </mrow>
+                                        <mo lspace="mediummathspace" rspace="mediummathspace">&#8212;</mo>
+                                        <mtext>нечетная</mtext>
+                                        <mo>.</mo>
+                                    </mtd>
+                                </mtr>
+                            </mtable>
+                        </mrow>
+                    </mrow>
+                </mrow>
+            </math>
+        </td>
+    </tr>
+</table>
+</p>
 <p>Схема декодирования следующая:
-<table class="formula"><tr>
-<td class="formula">
-<math display="block">
-<mrow>
-	<mrow>  
-  		<mi>D</mi><mo>&#x2061;</mo>
-  		<mrow>
-    		<mo>(</mo>
-    		<mrow>
-    			<msub><mi>a</mi><mn>1</mn></msub>
-    			<mi>&#8230;</mi>
-    			<msub><mi>a</mi><mi>m</mi></msub>
-    			<msub><mi>a</mi><mrow><mi>m</mi><mo>+</mo><mn>1</mn></mrow></msub>
-    		</mrow>
-    		<mo>)</mo>
-  		</mrow>
-  </mrow>
-  <mo>=</mo>
-  <mrow>
-    <mo>{</mo>
-    <mrow>
-      <mtable columnalign="left">
-        <mtr>
-          <mtd>
+<table class="formula">
+    <tr>
+        <td class="formula">
+            <math display="block">
+                <mrow>
+                    <mrow>
+                        <mi>D</mi>
+                        <mo>&#x2061;</mo>
+                        <mrow>
+                            <mo>(</mo>
+                            <mrow>
+                                <msub>
+                                    <mi>a</mi>
+                                    <mn>1</mn>
+                                </msub>
+                                <mi>&#8230;</mi>
+                                <msub>
+                                    <mi>a</mi>
+                                    <mi>m</mi>
+                                </msub>
+                                <msub>
+                                    <mi>a</mi>
+                                    <mrow>
+                                        <mi>m</mi>
+                                        <mo>+</mo>
+                                        <mn>1</mn>
+                                    </mrow>
+                                </msub>
+                            </mrow>
+                            <mo>)</mo>
+                        </mrow>
+                    </mrow>
+                    <mo>=</mo>
+                    <mrow>
+                        <mo>{</mo>
+                        <mrow>
+                            <mtable columnalign="left">
+                                <mtr>
+                                    <mtd>
+                                        <mrow>
+                                            <mrow>
+                                                <msub>
+                                                    <mi>a</mi>
+                                                    <mn>1</mn>
+                                                </msub>
+                                                <mi>&#8230;</mi>
+                                                <msub>
+                                                    <mi>a</mi>
+                                                    <mi>m</mi>
+                                                </msub>
+                                            </mrow>
+                                            <mo>,</mo>
+                                            <mtext>если</mtext>
+                                            <mrow>
+                                                <munderover>
+                                                    <mo>&#931;</mo>
+                                                    <mrow>
+                                                        <mi>i</mi>
+                                                        <mo>=</mo>
+                                                        <mn>1</mn>
+                                                    </mrow>
+                                                    <mrow>
+                                                        <mi>m</mi>
+                                                        <mo>+</mo>
+                                                        <mn>1</mn>
+                                                    </mrow>
+                                                </munderover>
+                                                <msub>
+                                                    <mi>a</mi>
+                                                    <mi>i</mi>
+                                                </msub>
+                                            </mrow>
+                                            <mo lspace="mediummathspace" rspace="mediummathspace">&#8212;</mo>
+                                            <mtext>четная</mtext>
+                                            <mo>,</mo>
+                                        </mrow>
+                                    </mtd>
+                                </mtr>
+                                <mtr>
+                                    <mtd>
+                                        <mrow>
+                                            <mo>(</mo>
+                                            <mtext>ошибка</mtext>
+                                            <mo>)</mo>
+                                        </mrow>
+                                        <mo>,</mo>
+                                        <mtext>если</mtext>
+                                        <mrow>
+                                            <munderover>
+                                                <mo>&#931;</mo>
+                                                <mrow>
+                                                    <mi>i</mi>
+                                                    <mo>=</mo>
+                                                    <mn>1</mn>
+                                                </mrow>
+                                                <mrow>
+                                                    <mi>m</mi>
+                                                    <mo>+</mo>
+                                                    <mn>1</mn>
+                                                </mrow>
+                                            </munderover>
+                                            <msub>
+                                                <mi>a</mi>
+                                                <mi>i</mi>
+                                            </msub>
+                                            <mo lspace="mediummathspace" rspace="mediummathspace">&#8212;</mo>
+                                            <mtext>нечетная</mtext>
+                                            <mo>.</mo>
+                                        </mrow>
+                                    </mtd>
+                                </mtr>
+                            </mtable>
+                        </mrow>
+                    </mrow>
+                </mrow>
+            </math>
+        </td>
+    </tr>
+</table>
+</p>
+<p>Очевидно, что четность
+    <math display='inline'>
+        <mrow>
+            <munderover>
+                <mo>&#931;</mo>
+                <mrow>
+                    <mi>i</mi>
+                    <mo>=</mo>
+                    <mn>1</mn>
+                </mrow>
+                <mrow>
+                    <mi>m</mi>
+                    <mo>+</mo>
+                    <mn>1</mn>
+                </mrow>
+            </munderover>
+            <msub>
+                <mi>a</mi>
+                <mi>i</mi>
+            </msub>
+        </mrow>
+    </math>
+    не гарантирует безошибочной передачи. Более того, четное количество ошибок не будет улавливаться схемой кодирования
+    с проверкой четности.
+</p>
+<div class="examp">
+    <span class="primer">Пример 5.2.1.</span> Для
+    <math display='inline'>
+        <mrow>
+            <mi>m</mi>
+            <mo>=</mo>
+            <mn>2</mn>
+        </mrow>
+    </math>
+    функция кодирования <var>E</var> с проверкой четности может быть такой:
+    <math display='inline'>
+        <mrow>
             <mrow>
-					<mrow>              
-              		<msub><mi>a</mi><mn>1</mn></msub>
-              		<mi>&#8230;</mi>
-              		<msub><mi>a</mi><mi>m</mi></msub>
-              	</mrow>
-              <mo>,</mo><mtext>если</mtext>
-              <mrow>
-                <munderover>
-                  <mo>&#931;</mo>
-                  <mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow>
-                  <mrow><mi>m</mi><mo>+</mo><mn>1</mn></mrow>
-                </munderover>
-                <msub><mi>a</mi><mi>i</mi></msub>
-              </mrow><mo lspace="mediummathspace" rspace="mediummathspace">&#8212;</mo>
-              <mtext>четная</mtext><mo>,</mo>
-            </mrow>
-          </mtd>
-        </mtr>
-        <mtr>
-          <mtd>
-            <mrow>
-              <mo>(</mo>
-              <mtext>ошибка</mtext>
-              <mo>)</mo>
+                <mfenced separators="" open="" close="">
+                    <mn>0</mn>
+                    <mn>0</mn>
+                </mfenced>
+                <mo>&#8594;</mo>
+                <mfenced separators="" open="" close="">
+                    <mn>0</mn>
+                    <mn>0</mn>
+                    <mn>0</mn>
+                </mfenced>
             </mrow>
             <mo>,</mo>
-            <mtext>если</mtext>
             <mrow>
-              <munderover>
-                <mo>&#931;</mo>
-                <mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow>
-                <mrow><mi>m</mi><mo>+</mo><mn>1</mn></mrow>
-              </munderover>
-              <msub><mi>a</mi><mi>i</mi></msub>
-              <mo lspace="mediummathspace" rspace="mediummathspace">&#8212;</mo>
-              <mtext>нечетная</mtext><mo>.</mo>
+                <mfenced separators="" open="" close="">
+                    <mn>0</mn>
+                    <mn>1</mn>
+                </mfenced>
+                <mo>&#8594;</mo>
+                <mfenced separators="" open="" close="">
+                    <mn>0</mn>
+                    <mn>1</mn>
+                    <mn>1</mn>
+                </mfenced>
             </mrow>
-          </mtd>
-        </mtr>
-      </mtable>
-    </mrow>
-  </mrow>
-</mrow>
-</math>
-</td>
-</tr>
-</table></p>
-<p>Очевидно, что четность 
-<math display='inline'>
-<mrow>
-<munderover>
-	<mo>&#931;</mo>
-   <mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow>
-   <mrow><mi>m</mi><mo>+</mo><mn>1</mn></mrow>
-</munderover>
-   <msub><mi>a</mi><mi>i</mi></msub>
-</mrow>
-</math>
- не гарантирует безошибочной передачи. Более того, четное количество ошибок не будет улавливаться схемой кодирования с проверкой четности.</p>
-<div class="examp">
-<span class="primer">Пример 5.2.1.</span> Для 
-<math display='inline'>
-<mrow>
-	<mi>m</mi><mo>=</mo><mn>2</mn>
-</mrow>
-</math>
-функция кодирования <var>E</var> с проверкой четности может быть такой: 
-<math display='inline'>
-<mrow>
-	<mrow>
-		<mfenced separators="" open="" close=""><mn>0</mn><mn>0</mn></mfenced><mo>&#8594;</mo>
-		<mfenced separators="" open="" close=""><mn>0</mn><mn>0</mn><mn>0</mn></mfenced>
-	</mrow>
-<mo>,</mo>
-	<mrow>
-		<mfenced separators="" open="" close=""><mn>0</mn><mn>1</mn></mfenced><mo>&#8594;</mo>
-		<mfenced separators="" open="" close=""><mn>0</mn><mn>1</mn><mn>1</mn></mfenced>
-	</mrow>
-<mo>,</mo>
-	<mrow>
-		<mfenced separators="" open="" close=""><mn>1</mn><mn>0</mn></mfenced><mo>&#8594;</mo>
-		<mfenced separators="" open="" close=""><mn>1</mn><mn>0</mn><mn>1</mn></mfenced>
-	</mrow>
-<mo>,</mo>
-	<mrow>
-		<mfenced separators="" open="" close=""><mn>1</mn><mn>1</mn></mfenced><mo>&#8594;</mo>
-		<mfenced separators="" open="" close=""><mn>1</mn><mn>1</mn><mn>0</mn></mfenced>
-	</mrow>
-</mrow>
-</math>.
- Вероятность хотя бы одной ошибки при передаче слова из трех бит равна сумме вероятностей трех ошибок, двух и одной: 
-<math display='inline'>
- <mrow>
- 	<mrow><msup><mi>q</mi><mn>3</mn></msup></mrow>
- 	<mo>+</mo>
- 	<mrow><mn>3</mn><mo>&#x2062;</mo><mi>p</mi><mo>&#x2062;</mo><msup><mi>q</mi><mn>2</mn></msup></mrow>
- 	<mo>+</mo>
- 	<mrow><mn>3</mn><mo>&#x2062;</mo><msup><mi>p</mi><mn>2</mn></msup><mo>&#x2062;</mo><mi>q</mi></mrow>
- </mrow>
-</math>. Вероятность ошибки точно в двух битах (ошибки, не изменяющей четности и, следовательно, незамеченной)  равна 
-<math display='inline'> 
- 	<mrow><mn>3</mn><mo>&#x2062;</mo><mi>p</mi><mo>&#x2062;</mo><msup><mi>q</mi><mn>2</mn></msup></mrow>
-</math>.
+            <mo>,</mo>
+            <mrow>
+                <mfenced separators="" open="" close="">
+                    <mn>1</mn>
+                    <mn>0</mn>
+                </mfenced>
+                <mo>&#8594;</mo>
+                <mfenced separators="" open="" close="">
+                    <mn>1</mn>
+                    <mn>0</mn>
+                    <mn>1</mn>
+                </mfenced>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mfenced separators="" open="" close="">
+                    <mn>1</mn>
+                    <mn>1</mn>
+                </mfenced>
+                <mo>&#8594;</mo>
+                <mfenced separators="" open="" close="">
+                    <mn>1</mn>
+                    <mn>1</mn>
+                    <mn>0</mn>
+                </mfenced>
+            </mrow>
+        </mrow>
+    </math>
+    .
+    Вероятность хотя бы одной ошибки при передаче слова из трех бит равна сумме вероятностей трех ошибок, двух и одной:
+    <math display='inline'>
+        <mrow>
+            <mrow>
+                <msup>
+                    <mi>q</mi>
+                    <mn>3</mn>
+                </msup>
+            </mrow>
+            <mo>+</mo>
+            <mrow>
+                <mn>3</mn>
+                <mo>&#x2062;</mo>
+                <mi>p</mi>
+                <mo>&#x2062;</mo>
+                <msup>
+                    <mi>q</mi>
+                    <mn>2</mn>
+                </msup>
+            </mrow>
+            <mo>+</mo>
+            <mrow>
+                <mn>3</mn>
+                <mo>&#x2062;</mo>
+                <msup>
+                    <mi>p</mi>
+                    <mn>2</mn>
+                </msup>
+                <mo>&#x2062;</mo>
+                <mi>q</mi>
+            </mrow>
+        </mrow>
+    </math>
+    . Вероятность ошибки точно в двух битах (ошибки, не изменяющей четности и, следовательно, незамеченной) равна
+    <math display='inline'>
+        <mrow>
+            <mn>3</mn>
+            <mo>&#x2062;</mo>
+            <mi>p</mi>
+            <mo>&#x2062;</mo>
+            <msup>
+                <mi>q</mi>
+                <mn>2</mn>
+            </msup>
+        </mrow>
+    </math>
+    .
 </div>
-<p>В качестве примера кодирования с исправлением одинарных ошибок рассмотрим 
-<math display='inline'>
-	<mfenced><mi>m</mi><mrow><mn>3</mn><mo>&#x2062;</mo><mi>m</mi></mrow></mfenced>
-</math>-код с тройным повторением и, очевидно, трехкратным увеличением времени передачи.</p>
+<p>В качестве примера кодирования с исправлением одинарных ошибок рассмотрим
+    <math display='inline'>
+        <mfenced>
+            <mi>m</mi>
+            <mrow>
+                <mn>3</mn>
+                <mo>&#x2062;</mo>
+                <mi>m</mi>
+            </mrow>
+        </mfenced>
+    </math>
+    -код с тройным повторением и, очевидно, трехкратным увеличением времени передачи.
+</p>
 <div class="examp">
-<p><span class="primer">Пример 5.2.2.</span> Любое сообщение разбивается на блоки длиной <var>m</var> каждое и каждый блок передается трижды:
-<math display='inline'>
-<mrow>
-	<mrow>  
-  		<mi>E</mi><mo>&#x2061;</mo>
-  		<mrow><mo>(</mo>
-  			<mrow>
-    			<msub><mi>a</mi><mn>1</mn></msub>
-    			<mi>&#8230;</mi>
-    			<msub><mi>a</mi><mi>m</mi></msub>
-    		</mrow>
-    		<mo>)</mo>
-  		</mrow>
-  </mrow>
-  <mo>=</mo>
-  <mrow>
-  		<msub><mi>a</mi><mn>1</mn></msub>
-  		<mi>&#8230;</mi>
-  		<msub><mi>a</mi><mi>m</mi></msub>
-  		<msub><mi>a</mi><mn>1</mn></msub>
-  		<mi>&#8230;</mi>
-  		<msub><mi>a</mi><mi>m</mi></msub>
-  		<msub><mi>a</mi><mn>1</mn></msub>
-  		<mi>&#8230;</mi>
-  		<msub><mi>a</mi><mi>m</mi></msub>
-  </mrow>
-</mrow>
-</math>. Функция декодирования <var>D</var> определяется следующим образом. Принятая строка разбивается на блоки длиной 
-<math display='inline'>
-	<mrow><mn>3</mn><mo>&#x2061;</mo><mi>m</mi></mrow>
-</math>. Бит с номером 
-<math display='inline'>
-<mrow>
-	<mi>i</mi><mo>,</mo>
-	<mrow>
-		<mn>1</mn><mo>&#8804;</mo><mi>i</mi><mo>&#8804;</mo><mi>m</mi>	
-	</mrow>
-	<mo>,</mo>
-</mrow>
-</math>
-в декодируемом блоке получается из анализа битов с номерами 
-<math display='inline'>
-	<mfenced open="" close="">
-		<mi>i</mi>
-		<mrow><mi>i</mi><mo>+</mo><mi>m</mi></mrow>
-		<mrow><mi>i</mi><mo>+</mo><mn>2</mn><mo>&#x2062;</mo><mi>m</mi></mrow>
-	</mfenced>
-</math>
-в этом же блоке: берется тот бит из трех, который встречается не менее двух раз.</p>
-<p> Вероятность того, что бит в данной позиции будем принят трижды правильно, равна 
-<math display='inline'>
-	<msup><mi>p</mi><mn>3</mn></msup>
-</math>. Вероятность одной ошибки в тройке равна 
-<math display='inline'>
-<mrow>
-	<mn>3</mn><mo>&#x2062;</mo><msup><mi>p</mi><mn>2</mn></msup><mo>&#x2062;</mo><mi>q</mi>
-</mrow>
-</math>.
- Поэтому вероятность правильного приема одного бита равна сумме 
-<math display='inline'>
-<mrow>
-	<msup><mi>p</mi><mn>3</mn></msup><mo>+</mo>
-	<mrow>	
-		<mn>3</mn><mo>&#x2062;</mo><msup><mi>p</mi><mn>2</mn></msup><mo>&#x2062;</mo><mi>q</mi>
-	</mrow>
-</mrow>
-</math>.
- По аналогии c верятностью правильного приема бита, вероятность приема ошибочного бита (вероятность ошибочной передачи не менее двух бит из трех с номерами 
-<math display='inline'>
-	<mfenced open="" close="">
-		<mi>i</mi>
-		<mrow><mi>i</mi><mo>+</mo><mi>m</mi></mrow>
-		<mrow><mi>i</mi><mo>+</mo><mn>2</mn><mo>&#x2062;</mo><mi>m</mi></mrow>
-	</mfenced>
-</math>) равна 
-<math display='inline'>
-<mrow>
-	<msup><mi>q</mi><mn>3</mn></msup><mo>+</mo>
-	<mrow>	
-		<mn>3</mn><mo>&#x2062;</mo><msup><mi>q</mi><mn>2</mn></msup><mo>&#x2062;</mo><mi>p</mi>
-	</mrow>
-</mrow>
-</math>.
-Если вероятность ошибки при передаче бита равна 
-<math display='inline'>
-<mrow>
-	<mi>q</mi><mo>=</mo><mn>0.1</mn>
-</mrow>
-</math>, то вероятность ошибочного приема бита равна 
-<math display='inline'>
-<mrow>
-	<msup><mi>q</mi><mn>3</mn></msup><mo>+</mo>
-	<mrow>	
-		<mn>3</mn><mo>&#x2062;</mo><msup><mi>q</mi><mn>2</mn></msup><mo>&#x2062;</mo><mi>p</mi>
-	</mrow>
-	<mo>=</mo>
-	<mn>0.028</mn>
-</mrow>
-</math>.
-Таким образом, код с тройным повторением снижает вероятность ошибки с 10% до 2.8%.
-</p>
+    <p><span class="primer">Пример 5.2.2.</span> Любое сообщение разбивается на блоки длиной <var>m</var> каждое и
+        каждый блок передается трижды:
+        <math display='inline'>
+            <mrow>
+                <mrow>
+                    <mi>E</mi>
+                    <mo>&#x2061;</mo>
+                    <mrow>
+                        <mo>(</mo>
+                        <mrow>
+                            <msub>
+                                <mi>a</mi>
+                                <mn>1</mn>
+                            </msub>
+                            <mi>&#8230;</mi>
+                            <msub>
+                                <mi>a</mi>
+                                <mi>m</mi>
+                            </msub>
+                        </mrow>
+                        <mo>)</mo>
+                    </mrow>
+                </mrow>
+                <mo>=</mo>
+                <mrow>
+                    <msub>
+                        <mi>a</mi>
+                        <mn>1</mn>
+                    </msub>
+                    <mi>&#8230;</mi>
+                    <msub>
+                        <mi>a</mi>
+                        <mi>m</mi>
+                    </msub>
+                    <msub>
+                        <mi>a</mi>
+                        <mn>1</mn>
+                    </msub>
+                    <mi>&#8230;</mi>
+                    <msub>
+                        <mi>a</mi>
+                        <mi>m</mi>
+                    </msub>
+                    <msub>
+                        <mi>a</mi>
+                        <mn>1</mn>
+                    </msub>
+                    <mi>&#8230;</mi>
+                    <msub>
+                        <mi>a</mi>
+                        <mi>m</mi>
+                    </msub>
+                </mrow>
+            </mrow>
+        </math>
+        . Функция декодирования <var>D</var> определяется следующим образом. Принятая строка разбивается на блоки длиной
+        <math display='inline'>
+            <mrow>
+                <mn>3</mn>
+                <mo>&#x2061;</mo>
+                <mi>m</mi>
+            </mrow>
+        </math>
+        . Бит с номером
+        <math display='inline'>
+            <mrow>
+                <mi>i</mi>
+                <mo>,</mo>
+                <mrow>
+                    <mn>1</mn>
+                    <mo>&#8804;</mo>
+                    <mi>i</mi>
+                    <mo>&#8804;</mo>
+                    <mi>m</mi>
+                </mrow>
+                <mo>,</mo>
+            </mrow>
+        </math>
+        в декодируемом блоке получается из анализа битов с номерами
+        <math display='inline'>
+            <mfenced open="" close="">
+                <mi>i</mi>
+                <mrow>
+                    <mi>i</mi>
+                    <mo>+</mo>
+                    <mi>m</mi>
+                </mrow>
+                <mrow>
+                    <mi>i</mi>
+                    <mo>+</mo>
+                    <mn>2</mn>
+                    <mo>&#x2062;</mo>
+                    <mi>m</mi>
+                </mrow>
+            </mfenced>
+        </math>
+        в этом же блоке: берется тот бит из трех, который встречается не менее двух раз.
+    </p>
+    <p> Вероятность того, что бит в данной позиции будем принят трижды правильно, равна
+        <math display='inline'>
+            <msup>
+                <mi>p</mi>
+                <mn>3</mn>
+            </msup>
+        </math>
+        . Вероятность одной ошибки в тройке равна
+        <math display='inline'>
+            <mrow>
+                <mn>3</mn>
+                <mo>&#x2062;</mo>
+                <msup>
+                    <mi>p</mi>
+                    <mn>2</mn>
+                </msup>
+                <mo>&#x2062;</mo>
+                <mi>q</mi>
+            </mrow>
+        </math>
+        .
+        Поэтому вероятность правильного приема одного бита равна сумме
+        <math display='inline'>
+            <mrow>
+                <msup>
+                    <mi>p</mi>
+                    <mn>3</mn>
+                </msup>
+                <mo>+</mo>
+                <mrow>
+                    <mn>3</mn>
+                    <mo>&#x2062;</mo>
+                    <msup>
+                        <mi>p</mi>
+                        <mn>2</mn>
+                    </msup>
+                    <mo>&#x2062;</mo>
+                    <mi>q</mi>
+                </mrow>
+            </mrow>
+        </math>
+        .
+        По аналогии c верятностью правильного приема бита, вероятность приема ошибочного бита (вероятность ошибочной
+        передачи не менее двух бит из трех с номерами
+        <math display='inline'>
+            <mfenced open="" close="">
+                <mi>i</mi>
+                <mrow>
+                    <mi>i</mi>
+                    <mo>+</mo>
+                    <mi>m</mi>
+                </mrow>
+                <mrow>
+                    <mi>i</mi>
+                    <mo>+</mo>
+                    <mn>2</mn>
+                    <mo>&#x2062;</mo>
+                    <mi>m</mi>
+                </mrow>
+            </mfenced>
+        </math>
+        ) равна
+        <math display='inline'>
+            <mrow>
+                <msup>
+                    <mi>q</mi>
+                    <mn>3</mn>
+                </msup>
+                <mo>+</mo>
+                <mrow>
+                    <mn>3</mn>
+                    <mo>&#x2062;</mo>
+                    <msup>
+                        <mi>q</mi>
+                        <mn>2</mn>
+                    </msup>
+                    <mo>&#x2062;</mo>
+                    <mi>p</mi>
+                </mrow>
+            </mrow>
+        </math>
+        .
+        Если вероятность ошибки при передаче бита равна
+        <math display='inline'>
+            <mrow>
+                <mi>q</mi>
+                <mo>=</mo>
+                <mn>0.1</mn>
+            </mrow>
+        </math>
+        , то вероятность ошибочного приема бита равна
+        <math display='inline'>
+            <mrow>
+                <msup>
+                    <mi>q</mi>
+                    <mn>3</mn>
+                </msup>
+                <mo>+</mo>
+                <mrow>
+                    <mn>3</mn>
+                    <mo>&#x2062;</mo>
+                    <msup>
+                        <mi>q</mi>
+                        <mn>2</mn>
+                    </msup>
+                    <mo>&#x2062;</mo>
+                    <mi>p</mi>
+                </mrow>
+                <mo>=</mo>
+                <mn>0.028</mn>
+            </mrow>
+        </math>
+        .
+        Таким образом, код с тройным повторением снижает вероятность ошибки с 10% до 2.8%.
+    </p>
 </div>
-<p>Рассмотренные выше примеры помехоустойчивых кодов относят к классу <span class="termin">блочных кодов</span>. В блочном коде каждый блок из <var>m</var> символов заменяется более длинным блоком из <var>n</var> символов. Поэтому 
-<math display='inline'>
-<mfenced><mi>m</mi><mi>n</mi></mfenced>
-</math>-коды являются блочными кодами.</p>
-<p><span class="teorema"><a name="rasst_hemm">Расстоянием (Хэмминга)</a> между двоичными словами длины <var>n</var> называется количество позиций, в которых эти слова различаются.</span></p>
-<p>Если обозначить значком <span class='formula'> &#8853;</span> сложение по модулю 2, то расстояние 
-<math display='inline'>
-<mrow>
-  <mi>d</mi><mo>&#x2061;</mo>
-  <mfenced><mi>a</mi><mi>b</mi></mfenced>
-</mrow>
-</math>
- между словами 
-<math display='inline'>
-<mrow>
-  <mi>a</mi><mo>=</mo>
-  	<mo>&#x2062;</mo>
-	<mrow>
-  		<mo>(</mo>
-    	<msub><mi>a</mi><mn>1</mn></msub>
-    	<mi>&#8230;</mi>
-    	<msub><mi>a</mi><mi>n</mi></msub>
-  		<mo>)</mo>
-  </mrow>
-</mrow>
-</math>
-  и 
-<math display='inline'>
-<mrow>
-  <mi>b</mi><mo>=</mo>
-  	<mo>&#x2062;</mo>
-	<mrow>
-  		<mo>(</mo>
-    	<msub><mi>b</mi><mn>1</mn></msub>
-    	<mi>&#8230;</mi>
-    	<msub><mi>b</mi><mi>n</mi></msub>
-  		<mo>)</mo>
-  </mrow>
-</mrow>
-</math>
- выразится так:
-<table class="formula"><tr>
-<td class="formula">
-<math display="block">
-<mrow>
-	<mrow>  
-  		<mi>d</mi><mo>&#x2061;</mo>
-  		<mfenced><mi>a</mi><mi>b</mi></mfenced>
-  	</mrow>
-  	<mo>=</mo>
-  <mrow>
-    <munderover>
-      <mo>&#931;</mo>
-      <mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow>
-      <mi>n</mi>
-    </munderover>
-    <mrow>
-      <msub><mi>a</mi><mi>i</mi></msub>
-      <mo>&#8853;</mo>
-      <msub><mi>b</mi><mi>i</mi></msub>
-    </mrow>
-  </mrow>
-</mrow><mo>.</mo>
-</math></td><td class="nomer">(5.2.2)</td>
-</tr>
-</table></p>
-<p>Напомним, что 
-<math display='inline'>
-	<mrow><mn>0</mn><mo>&#8853;</mo><mn>0</mn></mrow><mo>=</mo><mn>0</mn><mo>,</mo>
-	<mrow><mn>1</mn><mo>&#8853;</mo><mn>0</mn></mrow><mo>=</mo><mn>1</mn><mo>,</mo>
-	<mrow><mn>0</mn><mo>&#8853;</mo><mn>1</mn></mrow><mo>=</mo><mn>1</mn><mo>,</mo>
-	<mrow><mn>1</mn><mo>&#8853;</mo><mn>1</mn></mrow><mo>=</mo><mn>0</mn>
-</math>.
+<p>Рассмотренные выше примеры помехоустойчивых кодов относят к классу <span class="termin">блочных кодов</span>. В
+    блочном коде каждый блок из <var>m</var> символов заменяется более длинным блоком из <var>n</var> символов. Поэтому
+    <math display='inline'>
+        <mfenced>
+            <mi>m</mi>
+            <mi>n</mi>
+        </mfenced>
+    </math>
+    -коды являются блочными кодами.
 </p>
-<p><span class="teorema">Весом двоичного слова 
+<p><span class="teorema"><a name="rasst_hemm">Расстоянием (Хэмминга)</a> между двоичными словами длины <var>n</var> называется количество позиций, в которых эти слова различаются.</span>
+</p>
+<p>Если обозначить значком <span class='formula'> &#8853;</span> сложение по модулю 2, то расстояние
+    <math display='inline'>
+        <mrow>
+            <mi>d</mi>
+            <mo>&#x2061;</mo>
+            <mfenced>
+                <mi>a</mi>
+                <mi>b</mi>
+            </mfenced>
+        </mrow>
+    </math>
+    между словами
+    <math display='inline'>
+        <mrow>
+            <mi>a</mi>
+            <mo>=</mo>
+            <mo>&#x2062;</mo>
+            <mrow>
+                <mo>(</mo>
+                <msub>
+                    <mi>a</mi>
+                    <mn>1</mn>
+                </msub>
+                <mi>&#8230;</mi>
+                <msub>
+                    <mi>a</mi>
+                    <mi>n</mi>
+                </msub>
+                <mo>)</mo>
+            </mrow>
+        </mrow>
+    </math>
+    и
+    <math display='inline'>
+        <mrow>
+            <mi>b</mi>
+            <mo>=</mo>
+            <mo>&#x2062;</mo>
+            <mrow>
+                <mo>(</mo>
+                <msub>
+                    <mi>b</mi>
+                    <mn>1</mn>
+                </msub>
+                <mi>&#8230;</mi>
+                <msub>
+                    <mi>b</mi>
+                    <mi>n</mi>
+                </msub>
+                <mo>)</mo>
+            </mrow>
+        </mrow>
+    </math>
+    выразится так:
+<table class="formula">
+    <tr>
+        <td class="formula">
+            <math display="block">
+                <mrow>
+                    <mrow>
+                        <mi>d</mi>
+                        <mo>&#x2061;</mo>
+                        <mfenced>
+                            <mi>a</mi>
+                            <mi>b</mi>
+                        </mfenced>
+                    </mrow>
+                    <mo>=</mo>
+                    <mrow>
+                        <munderover>
+                            <mo>&#931;</mo>
+                            <mrow>
+                                <mi>i</mi>
+                                <mo>=</mo>
+                                <mn>1</mn>
+                            </mrow>
+                            <mi>n</mi>
+                        </munderover>
+                        <mrow>
+                            <msub>
+                                <mi>a</mi>
+                                <mi>i</mi>
+                            </msub>
+                            <mo>&#8853;</mo>
+                            <msub>
+                                <mi>b</mi>
+                                <mi>i</mi>
+                            </msub>
+                        </mrow>
+                    </mrow>
+                </mrow>
+                <mo>.</mo>
+            </math>
+        </td>
+        <td class="nomer">(5.2.2)</td>
+    </tr>
+</table>
+</p>
+<p>Напомним, что
+    <math display='inline'>
+        <mrow>
+            <mn>0</mn>
+            <mo>&#8853;</mo>
+            <mn>0</mn>
+        </mrow>
+        <mo>=</mo>
+        <mn>0</mn>
+        <mo>,</mo>
+        <mrow>
+            <mn>1</mn>
+            <mo>&#8853;</mo>
+            <mn>0</mn>
+        </mrow>
+        <mo>=</mo>
+        <mn>1</mn>
+        <mo>,</mo>
+        <mrow>
+            <mn>0</mn>
+            <mo>&#8853;</mo>
+            <mn>1</mn>
+        </mrow>
+        <mo>=</mo>
+        <mn>1</mn>
+        <mo>,</mo>
+        <mrow>
+            <mn>1</mn>
+            <mo>&#8853;</mo>
+            <mn>1</mn>
+        </mrow>
+        <mo>=</mo>
+        <mn>0</mn>
+    </math>
+    .
+</p>
+<p><span class="teorema">Весом двоичного слова
 <math display='inline'>
 <mrow>
   <mi>a</mi><mo>=</mo>
 	<mo>&#x2061;</mo>
-	<mrow>  
+	<mrow>
   		<mo>(</mo>
     	<msub><mi>a</mi><mn>1</mn></msub>
     	<mtext>&#8230;</mtext>
@@ -649,313 +1083,690 @@ win.document.close();
 </mrow>
 </math>
  называется количество единиц в нем:
-<table class="formula"><tr>
-<td class="formula">
-<math display="block">
-<mrow>
-	<mi>W</mi><mo>&#x2061;</mo><mfenced>a</mfenced><mo>=</mo>
-	<munderover>
-      <mo>&#931;</mo>
-      <mrow>
-        <mi>i</mi>
-        <mo>=</mo>
-        <mn>1</mn>
-      </mrow>
-      <mi>n</mi>
-   </munderover>
-    <msub>
-        <mi>a</mi>
-        <mi>i</mi>
-    </msub>
-</mrow><mo>.</mo>
-</math></td>
-</tr>
+<table class="formula">
+    <tr>
+        <td class="formula">
+            <math display="block">
+                <mrow>
+                    <mi>W</mi>
+                    <mo>&#x2061;</mo>
+                    <mfenced>a</mfenced>
+                    <mo>=</mo>
+                    <munderover>
+                        <mo>&#931;</mo>
+                        <mrow>
+                            <mi>i</mi>
+                            <mo>=</mo>
+                            <mn>1</mn>
+                        </mrow>
+                        <mi>n</mi>
+                    </munderover>
+                    <msub>
+                        <mi>a</mi>
+                        <mi>i</mi>
+                    </msub>
+                </mrow>
+                <mo>.</mo>
+            </math>
+        </td>
+    </tr>
 </table>
 </span></p>
-<p>Расстояние между двоичными словами 
-<math display='inline'>
-<mrow>
-  <mi>a</mi><mo>=</mo>
-  <mfenced separators="">
-  		<msub><mi>a</mi><mn>1</mn></msub>
-  		<mi>&#8230;</mi>
-  		<msub><mi>a</mi><mi>n</mi></msub>
-  </mfenced>
-</mrow>
-</math>
-  и 
-<math display='inline'>
-<mrow>
-  <mi>b</mi><mo>=</mo>
-  <mfenced separators="">
-  		<msub><mi>b</mi><mn>1</mn></msub>
-  		<mi>&#8230;</mi>
-  		<msub><mi>b</mi><mi>n</mi></msub>
-  </mfenced>
-</mrow>
-</math> равно весу их поразрядной суммы:
-<table class="formula"><tr>
-<td class="formula">
-<math display="block">
-<mrow>
-	<mi>d</mi><mo>&#x2061;</mo><mfenced><mi>a</mi><mi>b</mi></mfenced><mo>=</mo>
-	<mi>W</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>a</mi><mo>&#8853;</mo><mi>b</mi><mo>)</mo></mrow>  
-</mrow><mo>.</mo>
-</math></td>
-</tr>
-</table></p>
-<p>Количество совпадений битов в словах
-<math display='inline'>
-<mrow>
-  <mi>a</mi><mo>=</mo>
-  <mfenced separators="">
-  		<msub><mi>a</mi><mn>1</mn></msub>
-  		<mi>&#8230;</mi>
-  		<msub><mi>a</mi><mi>n</mi></msub>
-  </mfenced>
-</mrow>
-</math>
-  и 
-<math display='inline'>
-<mrow>
-  <mi>b</mi><mo>=</mo>
-  <mfenced separators="">
-  		<msub><mi>b</mi><mn>1</mn></msub>
-  		<mi>&#8230;</mi>
-  		<msub><mi>b</mi><mi>n</mi></msub>
-  </mfenced>
-</mrow>
-</math>
- равно 
-<math display='inline'>
-<mrow>
-	<mi>n</mi><mo>-</mo><mrow><mi>d</mi><mo>&#x2061;</mo><mfenced><mi>a</mi><mi>b</mi></mfenced></mrow>
-</mrow>
-</math>,
- а количество несовпадений &#8212; 
-<math display='inline'>
-<mrow>
-	<mi>d</mi><mo>&#x2061;</mo><mfenced><mi>a</mi><mi>b</mi></mfenced>
-</mrow>
-</math>. Поэтому вероятность того, что слово
-<math display='inline'>
-<mrow>
-  <mi>a</mi><mo>=</mo>
-  <mfenced separators="">
-  		<msub><mi>a</mi><mn>1</mn></msub>
-  		<mi>&#8230;</mi>
-  		<msub><mi>a</mi><mi>n</mi></msub>
-  </mfenced>
-</mrow>
-</math>
- будет принято как слово
-<math display='inline'>
-<mrow>
-  <mi>b</mi><mo>=</mo>
-  <mfenced separators="">
-  		<msub><mi>b</mi><mn>1</mn></msub>
-  		<mi>&#8230;</mi>
-  		<msub><mi>b</mi><mi>n</mi></msub>
-  </mfenced>
-</mrow>
-</math>,
- равна
-<table class="formula"><tr>
-<td class="formula">
-<math display="block">
-<mrow>
-	<msup>
-		<mi>p</mi>
-		<mrow><mi>n</mi><mo>-</mo><mi>d</mi><mo>&#x2062;</mo><mfenced><mi>a</mi><mi>b</mi></mfenced></mrow>
-	</msup>  
-	<mo>&#x2062;</mo>
-	<msup>
-		<mi>q</mi>
-		<mrow><mi>d</mi><mo>&#x2062;</mo><mfenced><mi>a</mi><mi>b</mi></mfenced></mrow>
-	</msup>
-</mrow><mo>.</mo>  
-</math>
-</td><td class="nomer">(5.2.3)</td>
-</tr>
+<p>Расстояние между двоичными словами
+    <math display='inline'>
+        <mrow>
+            <mi>a</mi>
+            <mo>=</mo>
+            <mfenced separators="">
+                <msub>
+                    <mi>a</mi>
+                    <mn>1</mn>
+                </msub>
+                <mi>&#8230;</mi>
+                <msub>
+                    <mi>a</mi>
+                    <mi>n</mi>
+                </msub>
+            </mfenced>
+        </mrow>
+    </math>
+    и
+    <math display='inline'>
+        <mrow>
+            <mi>b</mi>
+            <mo>=</mo>
+            <mfenced separators="">
+                <msub>
+                    <mi>b</mi>
+                    <mn>1</mn>
+                </msub>
+                <mi>&#8230;</mi>
+                <msub>
+                    <mi>b</mi>
+                    <mi>n</mi>
+                </msub>
+            </mfenced>
+        </mrow>
+    </math>
+    равно весу их поразрядной суммы:
+<table class="formula">
+    <tr>
+        <td class="formula">
+            <math display="block">
+                <mrow>
+                    <mi>d</mi>
+                    <mo>&#x2061;</mo>
+                    <mfenced>
+                        <mi>a</mi>
+                        <mi>b</mi>
+                    </mfenced>
+                    <mo>=</mo>
+                    <mi>W</mi>
+                    <mo>&#x2061;</mo>
+                    <mrow>
+                        <mo>(</mo>
+                        <mi>a</mi>
+                        <mo>&#8853;</mo>
+                        <mi>b</mi>
+                        <mo>)</mo>
+                    </mrow>
+                </mrow>
+                <mo>.</mo>
+            </math>
+        </td>
+    </tr>
 </table>
 </p>
-<p>Например, вероятность принять слово 
-<math display='inline'>
-<mrow><mn>1</mn><mn>1</mn><mn>0</mn><mn>0</mn></mrow>
-</math>
- как слово 
-<math display='inline'>
-<mrow><mn>1</mn><mn>0</mn><mn>1</mn><mn>1</mn></mrow>
-</math> 
-равна
-<math display='inline'>
-<mrow>
-	<mi>p</mi><mo>&#x2062;</mo><msup><mi>q</mi><mn>3</mn></msup>
-</mrow>
-</math>.</p>
-<p><span class="name">Теорема 5.2.1.</span> <span class="teorema">Для того, чтобы код давал возможность обнаружить все ошибки кратности, не большей <var>k</var>, необходимо и достаточно, чтобы наименьшее расстояние между словами было 
+<p>Количество совпадений битов в словах
+    <math display='inline'>
+        <mrow>
+            <mi>a</mi>
+            <mo>=</mo>
+            <mfenced separators="">
+                <msub>
+                    <mi>a</mi>
+                    <mn>1</mn>
+                </msub>
+                <mi>&#8230;</mi>
+                <msub>
+                    <mi>a</mi>
+                    <mi>n</mi>
+                </msub>
+            </mfenced>
+        </mrow>
+    </math>
+    и
+    <math display='inline'>
+        <mrow>
+            <mi>b</mi>
+            <mo>=</mo>
+            <mfenced separators="">
+                <msub>
+                    <mi>b</mi>
+                    <mn>1</mn>
+                </msub>
+                <mi>&#8230;</mi>
+                <msub>
+                    <mi>b</mi>
+                    <mi>n</mi>
+                </msub>
+            </mfenced>
+        </mrow>
+    </math>
+    равно
+    <math display='inline'>
+        <mrow>
+            <mi>n</mi>
+            <mo>-</mo>
+            <mrow>
+                <mi>d</mi>
+                <mo>&#x2061;</mo>
+                <mfenced>
+                    <mi>a</mi>
+                    <mi>b</mi>
+                </mfenced>
+            </mrow>
+        </mrow>
+    </math>
+    ,
+    а количество несовпадений &#8212;
+    <math display='inline'>
+        <mrow>
+            <mi>d</mi>
+            <mo>&#x2061;</mo>
+            <mfenced>
+                <mi>a</mi>
+                <mi>b</mi>
+            </mfenced>
+        </mrow>
+    </math>
+    . Поэтому вероятность того, что слово
+    <math display='inline'>
+        <mrow>
+            <mi>a</mi>
+            <mo>=</mo>
+            <mfenced separators="">
+                <msub>
+                    <mi>a</mi>
+                    <mn>1</mn>
+                </msub>
+                <mi>&#8230;</mi>
+                <msub>
+                    <mi>a</mi>
+                    <mi>n</mi>
+                </msub>
+            </mfenced>
+        </mrow>
+    </math>
+    будет принято как слово
+    <math display='inline'>
+        <mrow>
+            <mi>b</mi>
+            <mo>=</mo>
+            <mfenced separators="">
+                <msub>
+                    <mi>b</mi>
+                    <mn>1</mn>
+                </msub>
+                <mi>&#8230;</mi>
+                <msub>
+                    <mi>b</mi>
+                    <mi>n</mi>
+                </msub>
+            </mfenced>
+        </mrow>
+    </math>
+    ,
+    равна
+<table class="formula">
+    <tr>
+        <td class="formula">
+            <math display="block">
+                <mrow>
+                    <msup>
+                        <mi>p</mi>
+                        <mrow>
+                            <mi>n</mi>
+                            <mo>-</mo>
+                            <mi>d</mi>
+                            <mo>&#x2062;</mo>
+                            <mfenced>
+                                <mi>a</mi>
+                                <mi>b</mi>
+                            </mfenced>
+                        </mrow>
+                    </msup>
+                    <mo>&#x2062;</mo>
+                    <msup>
+                        <mi>q</mi>
+                        <mrow>
+                            <mi>d</mi>
+                            <mo>&#x2062;</mo>
+                            <mfenced>
+                                <mi>a</mi>
+                                <mi>b</mi>
+                            </mfenced>
+                        </mrow>
+                    </msup>
+                </mrow>
+                <mo>.</mo>
+            </math>
+        </td>
+        <td class="nomer">(5.2.3)</td>
+    </tr>
+</table>
+</p>
+<p>Например, вероятность принять слово
+    <math display='inline'>
+        <mrow>
+            <mn>1</mn>
+            <mn>1</mn>
+            <mn>0</mn>
+            <mn>0</mn>
+        </mrow>
+    </math>
+    как слово
+    <math display='inline'>
+        <mrow>
+            <mn>1</mn>
+            <mn>0</mn>
+            <mn>1</mn>
+            <mn>1</mn>
+        </mrow>
+    </math>
+    равна
+    <math display='inline'>
+        <mrow>
+            <mi>p</mi>
+            <mo>&#x2062;</mo>
+            <msup>
+                <mi>q</mi>
+                <mn>3</mn>
+            </msup>
+        </mrow>
+    </math>
+    .
+</p>
+<p><span class="name">Теорема 5.2.1.</span> <span class="teorema">Для того, чтобы код давал возможность обнаружить все ошибки кратности, не большей <var>k</var>, необходимо и достаточно, чтобы наименьшее расстояние между словами было
 <math display='inline'>
 <mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow>
 </math>.
 </span></p>
-<p><span class="name">Достаточность</span>. Пусть функция кодирования <var>E</var> отображает множество исходных слов 
-<math display='inline'>
-<msub><mi>S</mi><mi>m</mi></msub>
-</math>
- длины <var>m</var> в множество слов 
-<math display='inline'>
-<msub><mi>S</mi><mi>n</mi></msub>
-</math>
-длины <var>n</var>, расстояние между которыми не меньше, чем 
-<math display='inline'>
-<mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow>
-</math>. В качестве декодирующей функции <var>D</var> следует взять функцию, сообщающую об ошибке, если декодируемое слово не принадлежит образу 
-<math display='inline'>
-<msub><mi>S</mi><mi>n</mi></msub>
-</math>
-функции <var>E</var>. Таким образом, код дает возможность обнаружить ошибки кратности, не большей <var>k</var>.</p>
-<p><span class="name">Необходимость</span>. Пусть код дает возможность обнаружить ошибки кратности, не большей  <var>k</var>. Докажем, что наименьшее расстояние между словами из 
-<math display='inline'>
-<msub><mi>S</mi><mi>n</mi></msub>
-</math>
-равно 
-<math display='inline'>
-<mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow>
-</math>. Пусть это не так: минимальное расстояние между словами в 
-<math display='inline'>
-<msub><mi>S</mi><mi>n</mi></msub>
-</math> равно 
-<math display='inline'>
-<mrow>
-	<mi>t</mi><mo>,</mo>
-	<mrow><mi>t</mi><mo>&lt;</mo><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></mrow>
-</mrow>
-</math>. Но тогда ошибка в <var>t</var> позициях может превратить одно кодовое слово в другое, что противоречит предположению о возможности обнаружить ошибку кратности, не большей <var>k</var>.</p>
-<p>Если код обнаруживает все ошибки кратности, не большей <var>k</var>, то необнаруженными будут ошибки кратности, большей, чем <var>k</var>. Согласно (5.2.1), вероятность того, что ошибки в  сообщении не будут обнаружены, равна
-<table class="formula"><tr>
-<td class="formula">
-<math display="block">
-<mrow>
-  <mrow>
-    <munderover>
-      <mo>&#931;</mo>
-      <mrow><mi>i</mi><mo>=</mo><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></mrow>
-      <mi>n</mi>
-    </munderover>
-    <mfrac>
-      <mrow><mi>n</mi><mo lspace="0">!</mo></mrow>
-      <mrow>
-        <mrow><mi>i</mi><mo lspace="0">!</mo></mrow><mo>&#x2062;</mo>
+<p><span class="name">Достаточность</span>. Пусть функция кодирования <var>E</var> отображает множество исходных слов
+    <math display='inline'>
+        <msub>
+            <mi>S</mi>
+            <mi>m</mi>
+        </msub>
+    </math>
+    длины <var>m</var> в множество слов
+    <math display='inline'>
+        <msub>
+            <mi>S</mi>
+            <mi>n</mi>
+        </msub>
+    </math>
+    длины <var>n</var>, расстояние между которыми не меньше, чем
+    <math display='inline'>
         <mrow>
-        		<mrow><mo>(</mo><mrow><mi>n</mi><mo>−</mo><mi>i</mi></mrow><mo>)</mo></mrow><mo lspace="0">!</mo>
+            <mi>k</mi>
+            <mo>+</mo>
+            <mn>1</mn>
         </mrow>
-      </mrow>
-    </mfrac>
-    <mo>&#x2062;</mo>
-    <msup>
-      <mi>p</mi>
-      <mrow><mi>n</mi><mo>−</mo><mi>i</mi></mrow>
-    </msup>
-    <mo>&#x2062;</mo>
-    <msup><mi>q</mi><mi>i</mi></msup>
-  </mrow>
-</mrow><mo>.</mo>
-</math></td><td class="nomer">(5.2.4)</td>
-</tr>
-</table></p>
-<div class="examp"><p><span class="primer">Пример 5.2.3.</span> Пусть 
-<math display='inline'>
-<mrow>
-	<msub><mi>S</mi><mn>3</mn></msub><mo>=</mo>
-	<mfenced open="{" close="}">
-		<mrow><mn>0</mn><mn>0</mn><mn>0</mn></mrow>	
-		<mrow><mn>0</mn><mn>0</mn><mn>1</mn></mrow>
-		<mrow><mn>0</mn><mn>1</mn><mn>0</mn></mrow>
-		<mrow><mn>1</mn><mn>0</mn><mn>0</mn></mrow>
-		<mrow><mn>0</mn><mn>1</mn><mn>1</mn></mrow>
-		<mrow><mn>1</mn><mn>1</mn><mn>0</mn></mrow>
-		<mrow><mn>1</mn><mn>0</mn><mn>1</mn></mrow>
-		<mrow><mn>1</mn><mn>1</mn><mn>1</mn></mrow>
-	</mfenced>
-</mrow>
-</math>
- &#8212; исходное множество кодовых слов. Построим функцию кодирования <var>E</var> так:</p>
-<table class="formula"><tr><td>
-<math display='inline'>
-<mi>E</mi><mo>=</mo>
-<mrow><mo>{</mo>
-	<mtable>
-		<mtr>
-			<mtd>
-			<mrow><mn>0</mn><mn>0</mn><mn>0</mn></mrow><mo>&#8594;</mo>
-			<mrow><mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn></mrow><mo>;</mo>
-			</mtd>		
-		</mtr>
-		<mtr>
-			<mtd>
-			<mrow><mn>0</mn><mn>0</mn><mn>1</mn></mrow><mo>&#8594;</mo>
-			<mrow><mn>0</mn><mn>0</mn><mn>1</mn><mn>1</mn></mrow><mo>;</mo>
-			</mtd>		
-		</mtr>
-		<mtr>
-			<mtd>
-			<mrow><mn>0</mn><mn>1</mn><mn>0</mn></mrow><mo>&#8594;</mo>
-			<mrow><mn>0</mn><mn>1</mn><mn>0</mn><mn>1</mn></mrow><mo>;</mo>
-			</mtd>		
-		</mtr>		
-		<mtr>
-			<mtd>
-			<mrow><mn>1</mn><mn>0</mn><mn>0</mn></mrow><mo>&#8594;</mo>
-			<mrow><mn>1</mn><mn>0</mn><mn>0</mn><mn>1</mn></mrow><mo>;</mo>
-			</mtd>		
-		</mtr>		
-		<mtr>
-			<mtd>
-			<mrow><mn>0</mn><mn>1</mn><mn>1</mn></mrow><mo>&#8594;</mo>
-			<mrow><mn>0</mn><mn>1</mn><mn>1</mn><mn>0</mn></mrow><mo>;</mo>
-			</mtd>		
-		</mtr>		
-		<mtr>
-			<mtd>
-			<mrow><mn>1</mn><mn>1</mn><mn>0</mn></mrow><mo>&#8594;</mo>
-			<mrow><mn>1</mn><mn>1</mn><mn>0</mn><mn>0</mn></mrow><mo>;</mo>
-			</mtd>		
-		</mtr>					
-		<mtr>
-			<mtd>
-			<mrow><mn>1</mn><mn>0</mn><mn>1</mn></mrow><mo>&#8594;</mo>
-			<mrow><mn>1</mn><mn>0</mn><mn>1</mn><mn>0</mn></mrow><mo>;</mo>
-			</mtd>		
-		</mtr>		
-		<mtr>
-			<mtd>
-			<mrow><mn>1</mn><mn>1</mn><mn>1</mn></mrow><mo>&#8594;</mo>
-			<mrow><mn>1</mn><mn>1</mn><mn>1</mn><mn>1</mn></mrow><mo>.</mo>
-			</mtd>		
-		</mtr>		
-</mtable>
-</mrow>
-</math>
-</td></tr></table>
-<p> Минимальное расстояние между кодовыми словами из множества 
-<math display='inline'>
-<mrow>
-	<msub><mi>S</mi><mn>4</mn></msub><mo>=</mo>
-	<mfenced open="{" close="}">
-		<mrow><mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn></mrow>	
-		<mrow><mn>0</mn><mn>0</mn><mn>1</mn><mn>1</mn></mrow>
-		<mrow><mn>0</mn><mn>1</mn><mn>0</mn><mn>1</mn></mrow>
-		<mrow><mn>1</mn><mn>0</mn><mn>0</mn><mn>1</mn></mrow>
-		<mrow><mn>0</mn><mn>1</mn><mn>1</mn><mn>0</mn></mrow>
-		<mrow><mn>1</mn><mn>1</mn><mn>0</mn><mn>0</mn></mrow>
-		<mrow><mn>1</mn><mn>0</mn><mn>1</mn><mn>0</mn></mrow>
-		<mrow><mn>1</mn><mn>1</mn><mn>1</mn><mn>1</mn></mrow>
-	</mfenced>
-</mrow>
-</math>
- равно 2. Поэтому такое кодирование позволяет обнаружить одинарные ошибки, возникающие при передаче кодов по каналу связи. К примеру, прием кодового слова <var>0001</var>, не принадлежащего разрешенному множеству кодов <var>S<sub>4</sub></var>, говорит о том, что произошла ошибка при передаче слова по каналу связи.</p>    
+    </math>
+    . В качестве декодирующей функции <var>D</var> следует взять функцию, сообщающую об ошибке, если декодируемое слово
+    не принадлежит образу
+    <math display='inline'>
+        <msub>
+            <mi>S</mi>
+            <mi>n</mi>
+        </msub>
+    </math>
+    функции <var>E</var>. Таким образом, код дает возможность обнаружить ошибки кратности, не большей <var>k</var>.
+</p>
+<p><span class="name">Необходимость</span>. Пусть код дает возможность обнаружить ошибки кратности, не большей
+    <var>k</var>. Докажем, что наименьшее расстояние между словами из
+    <math display='inline'>
+        <msub>
+            <mi>S</mi>
+            <mi>n</mi>
+        </msub>
+    </math>
+    равно
+    <math display='inline'>
+        <mrow>
+            <mi>k</mi>
+            <mo>+</mo>
+            <mn>1</mn>
+        </mrow>
+    </math>
+    . Пусть это не так: минимальное расстояние между словами в
+    <math display='inline'>
+        <msub>
+            <mi>S</mi>
+            <mi>n</mi>
+        </msub>
+    </math>
+    равно
+    <math display='inline'>
+        <mrow>
+            <mi>t</mi>
+            <mo>,</mo>
+            <mrow>
+                <mi>t</mi>
+                <mo>&lt;</mo>
+                <mrow>
+                    <mi>k</mi>
+                    <mo>+</mo>
+                    <mn>1</mn>
+                </mrow>
+            </mrow>
+        </mrow>
+    </math>
+    . Но тогда ошибка в <var>t</var> позициях может превратить одно кодовое слово в другое, что противоречит
+    предположению о возможности обнаружить ошибку кратности, не большей <var>k</var>.
+</p>
+<p>Если код обнаруживает все ошибки кратности, не большей <var>k</var>, то необнаруженными будут ошибки кратности,
+    большей, чем <var>k</var>. Согласно (5.2.1), вероятность того, что ошибки в сообщении не будут обнаружены, равна
+<table class="formula">
+    <tr>
+        <td class="formula">
+            <math display="block">
+                <mrow>
+                    <mrow>
+                        <munderover>
+                            <mo>&#931;</mo>
+                            <mrow>
+                                <mi>i</mi>
+                                <mo>=</mo>
+                                <mrow>
+                                    <mi>k</mi>
+                                    <mo>+</mo>
+                                    <mn>1</mn>
+                                </mrow>
+                            </mrow>
+                            <mi>n</mi>
+                        </munderover>
+                        <mfrac>
+                            <mrow>
+                                <mi>n</mi>
+                                <mo lspace="0">!</mo>
+                            </mrow>
+                            <mrow>
+                                <mrow>
+                                    <mi>i</mi>
+                                    <mo lspace="0">!</mo>
+                                </mrow>
+                                <mo>&#x2062;</mo>
+                                <mrow>
+                                    <mrow>
+                                        <mo>(</mo>
+                                        <mrow>
+                                            <mi>n</mi>
+                                            <mo>−</mo>
+                                            <mi>i</mi>
+                                        </mrow>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <mo lspace="0">!</mo>
+                                </mrow>
+                            </mrow>
+                        </mfrac>
+                        <mo>&#x2062;</mo>
+                        <msup>
+                            <mi>p</mi>
+                            <mrow>
+                                <mi>n</mi>
+                                <mo>−</mo>
+                                <mi>i</mi>
+                            </mrow>
+                        </msup>
+                        <mo>&#x2062;</mo>
+                        <msup>
+                            <mi>q</mi>
+                            <mi>i</mi>
+                        </msup>
+                    </mrow>
+                </mrow>
+                <mo>.</mo>
+            </math>
+        </td>
+        <td class="nomer">(5.2.4)</td>
+    </tr>
+</table>
+</p>
+<div class="examp">
+    <p><span class="primer">Пример 5.2.3.</span> Пусть
+        <math display='inline'>
+            <mrow>
+                <msub>
+                    <mi>S</mi>
+                    <mn>3</mn>
+                </msub>
+                <mo>=</mo>
+                <mfenced open="{" close="}">
+                    <mrow>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                    </mrow>
+                    <mrow>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                    </mrow>
+                    <mrow>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                        <mn>0</mn>
+                    </mrow>
+                    <mrow>
+                        <mn>1</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                    </mrow>
+                    <mrow>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                        <mn>1</mn>
+                    </mrow>
+                    <mrow>
+                        <mn>1</mn>
+                        <mn>1</mn>
+                        <mn>0</mn>
+                    </mrow>
+                    <mrow>
+                        <mn>1</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                    </mrow>
+                    <mrow>
+                        <mn>1</mn>
+                        <mn>1</mn>
+                        <mn>1</mn>
+                    </mrow>
+                </mfenced>
+            </mrow>
+        </math>
+        &#8212; исходное множество кодовых слов. Построим функцию кодирования <var>E</var> так:
+    </p>
+    <table class="formula">
+        <tr>
+            <td>
+                <math display='inline'>
+                    <mi>E</mi>
+                    <mo>=</mo>
+                    <mrow>
+                        <mo>{</mo>
+                        <mtable>
+                            <mtr>
+                                <mtd>
+                                    <mrow>
+                                        <mn>0</mn>
+                                        <mn>0</mn>
+                                        <mn>0</mn>
+                                    </mrow>
+                                    <mo>&#8594;</mo>
+                                    <mrow>
+                                        <mn>0</mn>
+                                        <mn>0</mn>
+                                        <mn>0</mn>
+                                        <mn>0</mn>
+                                    </mrow>
+                                    <mo>;</mo>
+                                </mtd>
+                            </mtr>
+                            <mtr>
+                                <mtd>
+                                    <mrow>
+                                        <mn>0</mn>
+                                        <mn>0</mn>
+                                        <mn>1</mn>
+                                    </mrow>
+                                    <mo>&#8594;</mo>
+                                    <mrow>
+                                        <mn>0</mn>
+                                        <mn>0</mn>
+                                        <mn>1</mn>
+                                        <mn>1</mn>
+                                    </mrow>
+                                    <mo>;</mo>
+                                </mtd>
+                            </mtr>
+                            <mtr>
+                                <mtd>
+                                    <mrow>
+                                        <mn>0</mn>
+                                        <mn>1</mn>
+                                        <mn>0</mn>
+                                    </mrow>
+                                    <mo>&#8594;</mo>
+                                    <mrow>
+                                        <mn>0</mn>
+                                        <mn>1</mn>
+                                        <mn>0</mn>
+                                        <mn>1</mn>
+                                    </mrow>
+                                    <mo>;</mo>
+                                </mtd>
+                            </mtr>
+                            <mtr>
+                                <mtd>
+                                    <mrow>
+                                        <mn>1</mn>
+                                        <mn>0</mn>
+                                        <mn>0</mn>
+                                    </mrow>
+                                    <mo>&#8594;</mo>
+                                    <mrow>
+                                        <mn>1</mn>
+                                        <mn>0</mn>
+                                        <mn>0</mn>
+                                        <mn>1</mn>
+                                    </mrow>
+                                    <mo>;</mo>
+                                </mtd>
+                            </mtr>
+                            <mtr>
+                                <mtd>
+                                    <mrow>
+                                        <mn>0</mn>
+                                        <mn>1</mn>
+                                        <mn>1</mn>
+                                    </mrow>
+                                    <mo>&#8594;</mo>
+                                    <mrow>
+                                        <mn>0</mn>
+                                        <mn>1</mn>
+                                        <mn>1</mn>
+                                        <mn>0</mn>
+                                    </mrow>
+                                    <mo>;</mo>
+                                </mtd>
+                            </mtr>
+                            <mtr>
+                                <mtd>
+                                    <mrow>
+                                        <mn>1</mn>
+                                        <mn>1</mn>
+                                        <mn>0</mn>
+                                    </mrow>
+                                    <mo>&#8594;</mo>
+                                    <mrow>
+                                        <mn>1</mn>
+                                        <mn>1</mn>
+                                        <mn>0</mn>
+                                        <mn>0</mn>
+                                    </mrow>
+                                    <mo>;</mo>
+                                </mtd>
+                            </mtr>
+                            <mtr>
+                                <mtd>
+                                    <mrow>
+                                        <mn>1</mn>
+                                        <mn>0</mn>
+                                        <mn>1</mn>
+                                    </mrow>
+                                    <mo>&#8594;</mo>
+                                    <mrow>
+                                        <mn>1</mn>
+                                        <mn>0</mn>
+                                        <mn>1</mn>
+                                        <mn>0</mn>
+                                    </mrow>
+                                    <mo>;</mo>
+                                </mtd>
+                            </mtr>
+                            <mtr>
+                                <mtd>
+                                    <mrow>
+                                        <mn>1</mn>
+                                        <mn>1</mn>
+                                        <mn>1</mn>
+                                    </mrow>
+                                    <mo>&#8594;</mo>
+                                    <mrow>
+                                        <mn>1</mn>
+                                        <mn>1</mn>
+                                        <mn>1</mn>
+                                        <mn>1</mn>
+                                    </mrow>
+                                    <mo>.</mo>
+                                </mtd>
+                            </mtr>
+                        </mtable>
+                    </mrow>
+                </math>
+            </td>
+        </tr>
+    </table>
+    <p> Минимальное расстояние между кодовыми словами из множества
+        <math display='inline'>
+            <mrow>
+                <msub>
+                    <mi>S</mi>
+                    <mn>4</mn>
+                </msub>
+                <mo>=</mo>
+                <mfenced open="{" close="}">
+                    <mrow>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                    </mrow>
+                    <mrow>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                        <mn>1</mn>
+                    </mrow>
+                    <mrow>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                    </mrow>
+                    <mrow>
+                        <mn>1</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                    </mrow>
+                    <mrow>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                        <mn>1</mn>
+                        <mn>0</mn>
+                    </mrow>
+                    <mrow>
+                        <mn>1</mn>
+                        <mn>1</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                    </mrow>
+                    <mrow>
+                        <mn>1</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                        <mn>0</mn>
+                    </mrow>
+                    <mrow>
+                        <mn>1</mn>
+                        <mn>1</mn>
+                        <mn>1</mn>
+                        <mn>1</mn>
+                    </mrow>
+                </mfenced>
+            </mrow>
+        </math>
+        равно 2. Поэтому такое кодирование позволяет обнаружить одинарные ошибки, возникающие при передаче кодов по
+        каналу связи. К примеру, прием кодового слова <var>0001</var>, не принадлежащего разрешенному множеству кодов
+        <var>S<sub>4</sub></var>, говорит о том, что произошла ошибка при передаче слова по каналу связи.
+    </p>
 </div>
-<p><span class="name">Теорема 5.2.2</span>. <span class="teorema">Для того чтобы код давал возможность исправлять все ошибки кратности, не большей чем k, необходимо и достаточно, чтобы расстояние между его словами было не меньше, чем 
+<p><span class="name">Теорема 5.2.2</span>. <span class="teorema">Для того чтобы код давал возможность исправлять все ошибки кратности, не большей чем k, необходимо и достаточно, чтобы расстояние между его словами было не меньше, чем
 <math display='inline'>
 <mrow>
 	<mrow><mn>2</mn><mo>&#x2062;</mo><mi>k</mi></mrow>
@@ -963,600 +1774,1328 @@ win.document.close();
 	<mn>1</mn>
 </mrow>
 </math>.</span></p>
-<p><span class="name">Достаточность.</span> Пусть функция кодирования <var>E</var> отображает множество исходных кодовых слов 
-<math display='inline'>
-<msub><mi>S</mi><mi>m</mi></msub>
-</math>
- длины <var>m</var> в множество слов 
- <math display='inline'>
-<msub><mi>S</mi><mi>n</mi></msub>
-</math>
-длины <var>n</var>, расстояние между которыми не меньше 
-<math display='inline'>
-<mrow>
-	<mrow><mn>2</mn><mo>&#x2062;</mo><mi>k</mi></mrow>
-	<mo>+</mo>
-	<mn>1</mn>
-</mrow>
-</math>. Докажем возможность построения декодирующей функции <var>D</var>, исправляющей ошибки кратности не большей, чем <var>k</var>. Допустим, что переданное слово 
-<math display='inline'>
-<mrow>
-  <mi>a</mi><mo>=</mo>
-  <mfenced separators="">
-  		<msub><mi>a</mi><mn>1</mn></msub>
-		<mi>&#8230;</mi>  		
-  		<msub><mi>a</mi><mn>n</mn></msub>
-  </mfenced>
-</mrow>
-</math>
- было принято c <var>t</var>-кратной ошибкой как слово 
-<math display='inline'>
-<mrow>
-  <mi>e</mi><mo>=</mo>
-  <mfenced separators="">
-  		<msub><mi>e</mi><mn>1</mn></msub>
-		<mi>&#8230;</mi>  		
-  		<msub><mi>e</mi><mn>n</mn></msub>
-  </mfenced>
-</mrow>
-</math>:
-<table class="formula"><tr>
-<td class="formula">
-<math display='inline'>
-<mrow>
-	<mi>W</mi>
-	<mo>&#x2061;</mo>
-	<mrow>	
-		<mo>(</mo><mi>a</mi><mo>&#8853;</mo><mi>e</mi><mo>)</mo>
-	</mrow>
-	<mo>=</mo><mi>t</mi>
-	<mo>,</mo><mi>t</mi><mo>&#8804;</mo><mi>k</mi>
-</mrow>
-</math>.
-</td>
-</tr>
-</table></p>
-<p>В качестве декодирующей функции <var>D</var> следует взять функцию, возвращающую слово из разрешенного множества 
-<math display='inline'>
-	<msub><mi>S</mi><mi>n</mi></msub>
-</math>, ближайшее к декодируемому слову. Докажем, что всякое слово 
-<math display='inline'>
-<mrow>
-  <mi>b</mi><mo>=</mo>
-  <mfenced separators="">
-  		<msub><mi>b</mi><mn>1</mn></msub>
-		<mi>&#8230;</mi>  		
-  		<msub><mi>b</mi><mn>n</mn></msub>
-  </mfenced>
-</mrow>
-</math>
- из <var>S<sub>n</sub></var>, отличное от
-<math display='inline'>
-<mrow>
-  <mi>a</mi><mo>=</mo>
-  <mfenced separators="">
-  		<msub><mi>a</mi><mn>1</mn></msub>
-		<mi>&#8230;</mi>  		
-  		<msub><mi>a</mi><mn>n</mn></msub>
-  </mfenced>
-</mrow>
-</math>, отстоит от
-<math display='inline'>
-<mrow>
-  <mi>e</mi><mo>=</mo>
-  <mfenced separators="">
-  		<msub><mi>e</mi><mn>1</mn></msub>
-		<mi>&#8230;</mi>  		
-  		<msub><mi>e</mi><mn>n</mn></msub>
-  </mfenced>
-</mrow>
-</math>
- на большее расстояние, чем 
-<math display='inline'>
-<mrow>
-  <mi>a</mi><mo>=</mo>
-  <mfenced separators="">
-  		<msub><mi>a</mi><mn>1</mn></msub>
-		<mi>&#8230;</mi>  		
-  		<msub><mi>a</mi><mn>n</mn></msub>
-  </mfenced>
-</mrow>
-</math>.</p>
+<p><span class="name">Достаточность.</span> Пусть функция кодирования <var>E</var> отображает множество исходных кодовых
+    слов
+    <math display='inline'>
+        <msub>
+            <mi>S</mi>
+            <mi>m</mi>
+        </msub>
+    </math>
+    длины <var>m</var> в множество слов
+    <math display='inline'>
+        <msub>
+            <mi>S</mi>
+            <mi>n</mi>
+        </msub>
+    </math>
+    длины <var>n</var>, расстояние между которыми не меньше
+    <math display='inline'>
+        <mrow>
+            <mrow>
+                <mn>2</mn>
+                <mo>&#x2062;</mo>
+                <mi>k</mi>
+            </mrow>
+            <mo>+</mo>
+            <mn>1</mn>
+        </mrow>
+    </math>
+    . Докажем возможность построения декодирующей функции <var>D</var>, исправляющей ошибки кратности не большей, чем
+    <var>k</var>. Допустим, что переданное слово
+    <math display='inline'>
+        <mrow>
+            <mi>a</mi>
+            <mo>=</mo>
+            <mfenced separators="">
+                <msub>
+                    <mi>a</mi>
+                    <mn>1</mn>
+                </msub>
+                <mi>&#8230;</mi>
+                <msub>
+                    <mi>a</mi>
+                    <mn>n</mn>
+                </msub>
+            </mfenced>
+        </mrow>
+    </math>
+    было принято c <var>t</var>-кратной ошибкой как слово
+    <math display='inline'>
+        <mrow>
+            <mi>e</mi>
+            <mo>=</mo>
+            <mfenced separators="">
+                <msub>
+                    <mi>e</mi>
+                    <mn>1</mn>
+                </msub>
+                <mi>&#8230;</mi>
+                <msub>
+                    <mi>e</mi>
+                    <mn>n</mn>
+                </msub>
+            </mfenced>
+        </mrow>
+    </math>
+    :
+<table class="formula">
+    <tr>
+        <td class="formula">
+            <math display='inline'>
+                <mrow>
+                    <mi>W</mi>
+                    <mo>&#x2061;</mo>
+                    <mrow>
+                        <mo>(</mo>
+                        <mi>a</mi>
+                        <mo>&#8853;</mo>
+                        <mi>e</mi>
+                        <mo>)</mo>
+                    </mrow>
+                    <mo>=</mo>
+                    <mi>t</mi>
+                    <mo>,</mo>
+                    <mi>t</mi>
+                    <mo>&#8804;</mo>
+                    <mi>k</mi>
+                </mrow>
+            </math>
+            .
+        </td>
+    </tr>
+</table>
+</p>
+<p>В качестве декодирующей функции <var>D</var> следует взять функцию, возвращающую слово из разрешенного множества
+    <math display='inline'>
+        <msub>
+            <mi>S</mi>
+            <mi>n</mi>
+        </msub>
+    </math>
+    , ближайшее к декодируемому слову. Докажем, что всякое слово
+    <math display='inline'>
+        <mrow>
+            <mi>b</mi>
+            <mo>=</mo>
+            <mfenced separators="">
+                <msub>
+                    <mi>b</mi>
+                    <mn>1</mn>
+                </msub>
+                <mi>&#8230;</mi>
+                <msub>
+                    <mi>b</mi>
+                    <mn>n</mn>
+                </msub>
+            </mfenced>
+        </mrow>
+    </math>
+    из <var>S<sub>n</sub></var>, отличное от
+    <math display='inline'>
+        <mrow>
+            <mi>a</mi>
+            <mo>=</mo>
+            <mfenced separators="">
+                <msub>
+                    <mi>a</mi>
+                    <mn>1</mn>
+                </msub>
+                <mi>&#8230;</mi>
+                <msub>
+                    <mi>a</mi>
+                    <mn>n</mn>
+                </msub>
+            </mfenced>
+        </mrow>
+    </math>
+    , отстоит от
+    <math display='inline'>
+        <mrow>
+            <mi>e</mi>
+            <mo>=</mo>
+            <mfenced separators="">
+                <msub>
+                    <mi>e</mi>
+                    <mn>1</mn>
+                </msub>
+                <mi>&#8230;</mi>
+                <msub>
+                    <mi>e</mi>
+                    <mn>n</mn>
+                </msub>
+            </mfenced>
+        </mrow>
+    </math>
+    на большее расстояние, чем
+    <math display='inline'>
+        <mrow>
+            <mi>a</mi>
+            <mo>=</mo>
+            <mfenced separators="">
+                <msub>
+                    <mi>a</mi>
+                    <mn>1</mn>
+                </msub>
+                <mi>&#8230;</mi>
+                <msub>
+                    <mi>a</mi>
+                    <mn>n</mn>
+                </msub>
+            </mfenced>
+        </mrow>
+    </math>
+    .
+</p>
 <p>По условию теоремы
-<math display='inline'>
-<mrow> 
-	<mi>W</mi><mo>&#x2061;</mo>
-	<mrow>
-		<mo>(</mo><mi>a</mi><mo>&#8853;</mo><mi>b</mi><mo>)</mo>
-	</mrow>
-	<mo>&#8805;</mo><mrow><mrow><mn>2</mn><mo>&#x2062;</mo><mi>k</mi></mrow><mo>+</mo><mn>1</mn></mrow>
-</mrow>
-</math>, и <var>R</var> &#8212; множество бит <var>n</var>-разрядной сетки, на котором не  совпадают соответствующие биты слов
-<math display='inline'>
-<mrow>
-  <mi>a</mi><mo>=</mo>
-  <mfenced separators="">
-  		<msub><mi>a</mi><mn>1</mn></msub>
-		<mi>&#8230;</mi>  		
-  		<msub><mi>a</mi><mn>n</mn></msub>
-  </mfenced>
-</mrow>
-</math>
- и 
-<math display='inline'>
-<mrow>
-  <mi>b</mi><mo>=</mo>
-  <mfenced separators="">
-  		<msub><mi>b</mi><mn>1</mn></msub>
-		<mi>&#8230;</mi>  		
-  		<msub><mi>b</mi><mn>n</mn></msub>
-  </mfenced>
-</mrow>
-</math>. Слово 
-<math display='inline'>
-<mrow>
-  <mi>e</mi><mo>=</mo>
-  <mfenced separators="">
-  		<msub><mi>e</mi><mn>1</mn></msub>
-		<mi>&#8230;</mi>  		
-  		<msub><mi>e</mi><mn>n</mn></msub>
-  </mfenced>
-</mrow>
-</math>
- будет тем ближе к 
-<math display='inline'>
-<mrow>
-  <mi>b</mi><mo>=</mo>
-  <mfenced separators="">
-  		<msub><mi>b</mi><mn>1</mn></msub>
-		<mi>&#8230;</mi>  		
-  		<msub><mi>b</mi><mn>n</mn></msub>
-  </mfenced>
-</mrow>
-</math>, чем больше ошибочных бит 
-<math display='inline'>
-<mrow>
-  <mi>e</mi><mo>=</mo>
-  <mfenced separators="">
-  		<msub><mi>e</mi><mn>1</mn></msub>
-		<mi>&#8230;</mi>  		
-  		<msub><mi>e</mi><mn>n</mn></msub>
-  </mfenced>
-</mrow>
-</math>
-попадает в множество <var>R</var>. Пусть все <var>t</var> ошибок произошли в <var>R</var>. Тогда 
-<math display='inline'>
-<mrow>
-	<mi>W</mi><mo>(</mo><mi>e</mi><mo>&#8853;</mo><mi>b</mi><mo>)</mo>
-	<mo>&#8805;</mo>
-	<mrow><mrow><mn>2</mn><mo>&#x2062;</mo><mi>k</mi></mrow><mo>+</mo><mn>1</mn><mo>+</mo><mi>t</mi></mrow>	
-	<mo>&#8805;</mo><mrow><mrow><mn>2</mn><mo>&#x2062;</mo><mi>k</mi></mrow><mo>+</mo><mn>1</mn></mrow>
-</mrow>
-</math>. Следовательно, ближайшим к запрещенному слову 
-<math display='inline'>
-<mrow>
-  <mi>e</mi><mo>=</mo>
-  <mfenced separators="">
-  		<msub><mi>e</mi><mn>1</mn></msub>
-		<mi>&#8230;</mi>  		
-  		<msub><mi>e</mi><mn>n</mn></msub>
-  </mfenced>
-</mrow>
-</math>
- будет единственное разрешенное слово 
-<math display='inline'>
-<mrow>
-  <mi>a</mi><mo>=</mo>
-  <mfenced separators="">
-  		<msub><mi>a</mi><mn>1</mn></msub>
-		<mi>&#8230;</mi>  		
-  		<msub><mi>a</mi><mn>n</mn></msub>
-  </mfenced>
-</mrow>
-</math>. Таким образом, построена декодирующая функция <var>D</var>, исправляющая ошибки кратности не больше, чем <var>k</var>.</p>
-<p><span class="name">Необходимость</span> доказывается от противного. Пусть код дает возможность исправлять ошибки кратности не большей, чем <var>k</var>, но расстояние между словами из 
-<math display='inline'>
-<msub><mi>S</mi><mi>n</mi></msub>
-</math>
-равно 
-<math display='inline'>
-<mrow><mo>2</mo><mo>&#x2062;</mo><mi>k</mi></mrow>
-</math>. Тогда кодовые слова
-<math display='inline'>
-<mrow>
-  <mi>a</mi><mo>=</mo>
-  <mfenced separators="">
-  		<msub><mi>a</mi><mn>1</mn></msub>
-		<mi>&#8230;</mi>  		
-  		<msub><mi>a</mi><mn>n</mn></msub>
-  </mfenced>
-</mrow>
-</math>
- и 
-<math display='inline'>
-<mrow>
-  <mi>b</mi><mo>=</mo>
-  <mfenced separators="">
-  		<msub><mi>b</mi><mn>1</mn></msub>
-		<mi>&#8230;</mi>  		
-  		<msub><mi>b</mi><mn>n</mn></msub>
-  </mfenced>
-</mrow>
-</math>
- из 
-<math display='inline'>
-<msub><mi>S</mi><mi>n</mi></msub>
-</math> могут быть переданы с <var>k</var>-кратными ошибками, и приемник может получить два идентичных ошибочных кодовых слова. Следовательно, в данной ситуации исправление <var>k</var>-кратной ошибки невозможно, и минимальное расстояние между кодовыми словами в разрешенном множестве кодовых слов должно быть больше 
-<math display='inline'>
-<mrow><mo>2</mo><mo>&#x2062;</mo><mi>k</mi></mrow>
-</math>.</p>
-<p>Если код исправляет все ошибки кратности не больше, чем <var>k</var>, то вероятность правильного приема будет не меньше, чем
-<table class="formula"><tr>
-<td class="formula">
-<math display="block">
-<mrow>
-    <munderover>
-      <mo>&#931;</mo>
-      <mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow>
-      <mi>k</mi>
-    </munderover>
-    <mfrac>
-      <mrow><mi>n</mi><mo lspace="0">!</mo></mrow>
-      <mrow>
-        <mrow><mi>i</mi><mo lspace="0">!</mo></mrow><mo>&#x2062;</mo>
+    <math display='inline'>
         <mrow>
-        		<mrow><mo>(</mo><mrow><mi>n</mi><mo>−</mo><mi>i</mi></mrow><mo>)</mo></mrow><mo lspace="0">!</mo>
+            <mi>W</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>(</mo>
+                <mi>a</mi>
+                <mo>&#8853;</mo>
+                <mi>b</mi>
+                <mo>)</mo>
+            </mrow>
+            <mo>&#8805;</mo>
+            <mrow>
+                <mrow>
+                    <mn>2</mn>
+                    <mo>&#x2062;</mo>
+                    <mi>k</mi>
+                </mrow>
+                <mo>+</mo>
+                <mn>1</mn>
+            </mrow>
         </mrow>
-      </mrow>
-    </mfrac>
-    <mo>&#x2062;</mo>
-    <msup>
-      <mi>p</mi>
-      <mrow><mi>n</mi><mo>−</mo><mi>i</mi></mrow>
-    </msup><mo>&#x2062;</mo>
-    <msup><mi>q</mi><mi>i</mi></msup>
-</mrow><mo>.</mo>
-</math></td><td class="nomer">(5.2.5)</td>
-</tr>
+    </math>
+    , и <var>R</var> &#8212; множество бит <var>n</var>-разрядной сетки, на котором не совпадают соответствующие биты
+    слов
+    <math display='inline'>
+        <mrow>
+            <mi>a</mi>
+            <mo>=</mo>
+            <mfenced separators="">
+                <msub>
+                    <mi>a</mi>
+                    <mn>1</mn>
+                </msub>
+                <mi>&#8230;</mi>
+                <msub>
+                    <mi>a</mi>
+                    <mn>n</mn>
+                </msub>
+            </mfenced>
+        </mrow>
+    </math>
+    и
+    <math display='inline'>
+        <mrow>
+            <mi>b</mi>
+            <mo>=</mo>
+            <mfenced separators="">
+                <msub>
+                    <mi>b</mi>
+                    <mn>1</mn>
+                </msub>
+                <mi>&#8230;</mi>
+                <msub>
+                    <mi>b</mi>
+                    <mn>n</mn>
+                </msub>
+            </mfenced>
+        </mrow>
+    </math>
+    . Слово
+    <math display='inline'>
+        <mrow>
+            <mi>e</mi>
+            <mo>=</mo>
+            <mfenced separators="">
+                <msub>
+                    <mi>e</mi>
+                    <mn>1</mn>
+                </msub>
+                <mi>&#8230;</mi>
+                <msub>
+                    <mi>e</mi>
+                    <mn>n</mn>
+                </msub>
+            </mfenced>
+        </mrow>
+    </math>
+    будет тем ближе к
+    <math display='inline'>
+        <mrow>
+            <mi>b</mi>
+            <mo>=</mo>
+            <mfenced separators="">
+                <msub>
+                    <mi>b</mi>
+                    <mn>1</mn>
+                </msub>
+                <mi>&#8230;</mi>
+                <msub>
+                    <mi>b</mi>
+                    <mn>n</mn>
+                </msub>
+            </mfenced>
+        </mrow>
+    </math>
+    , чем больше ошибочных бит
+    <math display='inline'>
+        <mrow>
+            <mi>e</mi>
+            <mo>=</mo>
+            <mfenced separators="">
+                <msub>
+                    <mi>e</mi>
+                    <mn>1</mn>
+                </msub>
+                <mi>&#8230;</mi>
+                <msub>
+                    <mi>e</mi>
+                    <mn>n</mn>
+                </msub>
+            </mfenced>
+        </mrow>
+    </math>
+    попадает в множество <var>R</var>. Пусть все <var>t</var> ошибок произошли в <var>R</var>. Тогда
+    <math display='inline'>
+        <mrow>
+            <mi>W</mi>
+            <mo>(</mo>
+            <mi>e</mi>
+            <mo>&#8853;</mo>
+            <mi>b</mi>
+            <mo>)</mo>
+            <mo>&#8805;</mo>
+            <mrow>
+                <mrow>
+                    <mn>2</mn>
+                    <mo>&#x2062;</mo>
+                    <mi>k</mi>
+                </mrow>
+                <mo>+</mo>
+                <mn>1</mn>
+                <mo>+</mo>
+                <mi>t</mi>
+            </mrow>
+            <mo>&#8805;</mo>
+            <mrow>
+                <mrow>
+                    <mn>2</mn>
+                    <mo>&#x2062;</mo>
+                    <mi>k</mi>
+                </mrow>
+                <mo>+</mo>
+                <mn>1</mn>
+            </mrow>
+        </mrow>
+    </math>
+    . Следовательно, ближайшим к запрещенному слову
+    <math display='inline'>
+        <mrow>
+            <mi>e</mi>
+            <mo>=</mo>
+            <mfenced separators="">
+                <msub>
+                    <mi>e</mi>
+                    <mn>1</mn>
+                </msub>
+                <mi>&#8230;</mi>
+                <msub>
+                    <mi>e</mi>
+                    <mn>n</mn>
+                </msub>
+            </mfenced>
+        </mrow>
+    </math>
+    будет единственное разрешенное слово
+    <math display='inline'>
+        <mrow>
+            <mi>a</mi>
+            <mo>=</mo>
+            <mfenced separators="">
+                <msub>
+                    <mi>a</mi>
+                    <mn>1</mn>
+                </msub>
+                <mi>&#8230;</mi>
+                <msub>
+                    <mi>a</mi>
+                    <mn>n</mn>
+                </msub>
+            </mfenced>
+        </mrow>
+    </math>
+    . Таким образом, построена декодирующая функция <var>D</var>, исправляющая ошибки кратности не больше, чем
+    <var>k</var>.
+</p>
+<p><span class="name">Необходимость</span> доказывается от противного. Пусть код дает возможность исправлять ошибки
+    кратности не большей, чем <var>k</var>, но расстояние между словами из
+    <math display='inline'>
+        <msub>
+            <mi>S</mi>
+            <mi>n</mi>
+        </msub>
+    </math>
+    равно
+    <math display='inline'>
+        <mrow>
+            <mo>2</mo>
+            <mo>&#x2062;</mo>
+            <mi>k</mi>
+        </mrow>
+    </math>
+    . Тогда кодовые слова
+    <math display='inline'>
+        <mrow>
+            <mi>a</mi>
+            <mo>=</mo>
+            <mfenced separators="">
+                <msub>
+                    <mi>a</mi>
+                    <mn>1</mn>
+                </msub>
+                <mi>&#8230;</mi>
+                <msub>
+                    <mi>a</mi>
+                    <mn>n</mn>
+                </msub>
+            </mfenced>
+        </mrow>
+    </math>
+    и
+    <math display='inline'>
+        <mrow>
+            <mi>b</mi>
+            <mo>=</mo>
+            <mfenced separators="">
+                <msub>
+                    <mi>b</mi>
+                    <mn>1</mn>
+                </msub>
+                <mi>&#8230;</mi>
+                <msub>
+                    <mi>b</mi>
+                    <mn>n</mn>
+                </msub>
+            </mfenced>
+        </mrow>
+    </math>
+    из
+    <math display='inline'>
+        <msub>
+            <mi>S</mi>
+            <mi>n</mi>
+        </msub>
+    </math>
+    могут быть переданы с <var>k</var>-кратными ошибками, и приемник может получить два идентичных ошибочных кодовых
+    слова. Следовательно, в данной ситуации исправление <var>k</var>-кратной ошибки невозможно, и минимальное расстояние
+    между кодовыми словами в разрешенном множестве кодовых слов должно быть больше
+    <math display='inline'>
+        <mrow>
+            <mo>2</mo>
+            <mo>&#x2062;</mo>
+            <mi>k</mi>
+        </mrow>
+    </math>
+    .
+</p>
+<p>Если код исправляет все ошибки кратности не больше, чем <var>k</var>, то вероятность правильного приема будет не
+    меньше, чем
+<table class="formula">
+    <tr>
+        <td class="formula">
+            <math display="block">
+                <mrow>
+                    <munderover>
+                        <mo>&#931;</mo>
+                        <mrow>
+                            <mi>i</mi>
+                            <mo>=</mo>
+                            <mn>0</mn>
+                        </mrow>
+                        <mi>k</mi>
+                    </munderover>
+                    <mfrac>
+                        <mrow>
+                            <mi>n</mi>
+                            <mo lspace="0">!</mo>
+                        </mrow>
+                        <mrow>
+                            <mrow>
+                                <mi>i</mi>
+                                <mo lspace="0">!</mo>
+                            </mrow>
+                            <mo>&#x2062;</mo>
+                            <mrow>
+                                <mrow>
+                                    <mo>(</mo>
+                                    <mrow>
+                                        <mi>n</mi>
+                                        <mo>−</mo>
+                                        <mi>i</mi>
+                                    </mrow>
+                                    <mo>)</mo>
+                                </mrow>
+                                <mo lspace="0">!</mo>
+                            </mrow>
+                        </mrow>
+                    </mfrac>
+                    <mo>&#x2062;</mo>
+                    <msup>
+                        <mi>p</mi>
+                        <mrow>
+                            <mi>n</mi>
+                            <mo>−</mo>
+                            <mi>i</mi>
+                        </mrow>
+                    </msup>
+                    <mo>&#x2062;</mo>
+                    <msup>
+                        <mi>q</mi>
+                        <mi>i</mi>
+                    </msup>
+                </mrow>
+                <mo>.</mo>
+            </math>
+        </td>
+        <td class="nomer">(5.2.5)</td>
+    </tr>
 </table>
 </p>
-<div class="examp"><p><span class="primer">Пример 5.2.4.</span> Рассмотрим (1, 3)-код с функцией кодирования <var>E</var>, задающей отображение:
-<math display='inline'>
-<mrow>
-<mn>0</mn><mo>&#8594;</mo><mfenced separators="" close="" open=""><mn>0</mn><mn>0</mn><mn>0</mn></mfenced>
-</mrow><mo>,</mo>
-<mrow>
-<mn>1</mn><mo>&#8594;</mo><mfenced separators="" close="" open=""><mn>1</mn><mn>1</mn><mn>1</mn></mfenced>
-</mrow>
-</math>, и функции декодирования <var>D</var> с отображением:</p>
-<p> 
-<math display='inline'>
-<mrow>
-<mfenced separators="" close="" open=""><mn>0</mn><mn>0</mn><mn>0</mn></mfenced><mo>&#8594;</mo><mn>0</mn>
-</mrow><mo>,</mo>
-<mrow>
-<mfenced separators="" close="" open=""><mn>0</mn><mn>0</mn><mn>1</mn></mfenced><mo>&#8594;</mo><mn>0</mn>
-</mrow><mo>,</mo>
-<mrow>
-<mfenced separators="" close="" open=""><mn>0</mn><mn>1</mn><mn>0</mn></mfenced><mo>&#8594;</mo><mn>0</mn>
-</mrow><mo>,</mo>
-<mrow>
-<mfenced separators="" close="" open=""><mn>1</mn><mn>0</mn><mn>0</mn></mfenced><mo>&#8594;</mo><mn>0</mn>
-</mrow><mo>,</mo>
-<mrow>
-<mfenced separators="" close="" open=""><mn>1</mn><mn>1</mn><mn>0</mn></mfenced><mo>&#8594;</mo><mn>1</mn>
-</mrow><mo>,</mo>
-<mrow>
-<mfenced separators="" close="" open=""><mn>1</mn><mn>0</mn><mn>1</mn></mfenced><mo>&#8594;</mo><mn>1</mn>
-</mrow><mo>,</mo>
-<mrow>
-<mfenced separators="" close="" open=""><mn>0</mn><mn>1</mn><mn>1</mn></mfenced><mo>&#8594;</mo><mn>1</mn>
-</mrow><mo>,</mo>
-<mrow>
-<mfenced separators="" close="" open=""><mn>1</mn><mn>1</mn><mn>1</mn></mfenced><mo>&#8594;</mo><mn>1</mn>
-</mrow>
-</math>.</p>
-<p>Этот код с тройным повторением исправляет однократные ошибки, так как минимальное расстояние между словами кода равно 3.</p></div>
-<div class="examp"><p><span class="primer">Пример 5.2.5.</span> Следующий (2, 5)-код обнаруживает две ошибки и исправляет одну:</p>
-<p>
-<math display='inline'>
-<mrow>
-	<msub><mi>a</mi><mn>1</mn></msub><mo>=</mo>
-	<mfenced separators="" close="" open=""><mn>0</mn><mn>0</mn></mfenced><mo>&#8594;</mo>
-	<mfenced separators="" close="" open=""><mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn></mfenced>
-	<mo>=</mo><msub><mi>b</mi><mn>1</mn></msub>
-</mrow><mo>,</mo>
-<mrow>
-	<msub><mi>a</mi><mn>2</mn></msub><mo>=</mo>
-	<mfenced separators="" close="" open=""><mn>0</mn><mn>1</mn></mfenced><mo>&#8594;</mo>
-	<mfenced separators="" close="" open=""><mn>0</mn><mn>1</mn><mn>0</mn><mn>1</mn><mn>1</mn></mfenced>
-	<mo>=</mo><msub><mi>b</mi><mn>2</mn></msub>
-</mrow><mo>,</mo>
-<mrow>
-	<msub><mi>a</mi><mn>3</mn></msub><mo>=</mo>
-	<mfenced separators="" close="" open=""><mn>1</mn><mn>0</mn></mfenced><mo>&#8594;</mo>
-	<mfenced separators="" close="" open=""><mn>1</mn><mn>0</mn><mn>1</mn><mn>0</mn><mn>1</mn></mfenced>
-	<mo>=</mo><msub><mi>b</mi><mn>3</mn></msub>
-</mrow><mo>,</mo>
-<mrow>
-	<msub><mi>a</mi><mn>4</mn></msub><mo>=</mo>
-	<mfenced separators="" close="" open=""><mn>1</mn><mn>1</mn></mfenced><mo>&#8594;</mo>
-	<mfenced separators="" close="" open=""><mn>1</mn><mn>1</mn><mn>1</mn><mn>1</mn><mn>0</mn></mfenced>
-	<mo>=</mo><msub><mi>b</mi><mn>4</mn></msub>
-</mrow>
-</math>.</p>
-<p>Здесь 
-<math display='inline'>
-<msub><mi>S</mi><mn>2</mn></msub><mo>=</mo>
-<mfenced open="{" close="}">
-	<mrow><mn>0</mn><mn>0</mn></mrow>
-	<mrow><mn>0</mn><mn>1</mn></mrow>
-	<mrow><mn>1</mn><mn>0</mn></mrow>
-	<mrow><mn>1</mn><mn>1</mn></mrow>
-</mfenced>
-</math>
- &#8212; множество первичных кодовых слов, а 
-<math display='inline'>
-<msub><mi>S</mi><mn>5</mn></msub><mo>=</mo>
-<mfenced open="{" close="}">
-	<mrow><mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn></mrow>
-	<mrow><mn>0</mn><mn>1</mn><mn>0</mn><mn>1</mn><mn>1</mn></mrow>
-	<mrow><mn>1</mn><mn>0</mn><mn>1</mn><mn>0</mn><mn>1</mn></mrow>
-	<mrow><mn>1</mn><mn>1</mn><mn>1</mn><mn>1</mn><mn>0</mn></mrow>
-</mfenced>
-</math> 
- &#8212; разрешенное множество кодовых слов. Любые кодовые слова из 
-<math display='inline'>
-<msub><mi>S</mi><mn>5</mn></msub> 
-</math> 
- отличаются, по меньшей мере, в трех позициях. Двукратная ошибка приведет к приему запрещенного кодового слова, и, следовательно, будет обнаружена. Если же кодовое слово будет получено с одной ошибкой, то в 
-<math display='inline'>
-<msub><mi>S</mi><mn>5</mn></msub> 
-</math> 
-найдется правильное слово, отстоящее от ошибочного на 1. Вероятность безошибочного приема, с учетом возможности исправления одинарной ошибки, будет не меньше, чем 
-<math display='inline'>
-<msup><mi>p</mi><mn>5</mn></msup><mo>+</mo>
-<mrow>
-<mn>5</mn><mo>&#x2062;</mo><msup><mi>p</mi><mn>4</mn></msup><mo>&#x2062;</mo><mi>q</mi>
-</mrow> 
-</math>.</p>
+<div class="examp">
+    <p><span class="primer">Пример 5.2.4.</span> Рассмотрим (1, 3)-код с функцией кодирования <var>E</var>, задающей
+        отображение:
+        <math display='inline'>
+            <mrow>
+                <mn>0</mn>
+                <mo>&#8594;</mo>
+                <mfenced separators="" close="" open="">
+                    <mn>0</mn>
+                    <mn>0</mn>
+                    <mn>0</mn>
+                </mfenced>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mn>1</mn>
+                <mo>&#8594;</mo>
+                <mfenced separators="" close="" open="">
+                    <mn>1</mn>
+                    <mn>1</mn>
+                    <mn>1</mn>
+                </mfenced>
+            </mrow>
+        </math>
+        , и функции декодирования <var>D</var> с отображением:
+    </p>
+    <p>
+        <math display='inline'>
+            <mrow>
+                <mfenced separators="" close="" open="">
+                    <mn>0</mn>
+                    <mn>0</mn>
+                    <mn>0</mn>
+                </mfenced>
+                <mo>&#8594;</mo>
+                <mn>0</mn>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mfenced separators="" close="" open="">
+                    <mn>0</mn>
+                    <mn>0</mn>
+                    <mn>1</mn>
+                </mfenced>
+                <mo>&#8594;</mo>
+                <mn>0</mn>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mfenced separators="" close="" open="">
+                    <mn>0</mn>
+                    <mn>1</mn>
+                    <mn>0</mn>
+                </mfenced>
+                <mo>&#8594;</mo>
+                <mn>0</mn>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mfenced separators="" close="" open="">
+                    <mn>1</mn>
+                    <mn>0</mn>
+                    <mn>0</mn>
+                </mfenced>
+                <mo>&#8594;</mo>
+                <mn>0</mn>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mfenced separators="" close="" open="">
+                    <mn>1</mn>
+                    <mn>1</mn>
+                    <mn>0</mn>
+                </mfenced>
+                <mo>&#8594;</mo>
+                <mn>1</mn>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mfenced separators="" close="" open="">
+                    <mn>1</mn>
+                    <mn>0</mn>
+                    <mn>1</mn>
+                </mfenced>
+                <mo>&#8594;</mo>
+                <mn>1</mn>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mfenced separators="" close="" open="">
+                    <mn>0</mn>
+                    <mn>1</mn>
+                    <mn>1</mn>
+                </mfenced>
+                <mo>&#8594;</mo>
+                <mn>1</mn>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mfenced separators="" close="" open="">
+                    <mn>1</mn>
+                    <mn>1</mn>
+                    <mn>1</mn>
+                </mfenced>
+                <mo>&#8594;</mo>
+                <mn>1</mn>
+            </mrow>
+        </math>
+        .
+    </p>
+    <p>Этот код с тройным повторением исправляет однократные ошибки, так как минимальное расстояние между словами кода
+        равно 3.</p></div>
+<div class="examp"><p><span class="primer">Пример 5.2.5.</span> Следующий (2, 5)-код обнаруживает две ошибки и
+    исправляет одну:</p>
+    <p>
+        <math display='inline'>
+            <mrow>
+                <msub>
+                    <mi>a</mi>
+                    <mn>1</mn>
+                </msub>
+                <mo>=</mo>
+                <mfenced separators="" close="" open="">
+                    <mn>0</mn>
+                    <mn>0</mn>
+                </mfenced>
+                <mo>&#8594;</mo>
+                <mfenced separators="" close="" open="">
+                    <mn>0</mn>
+                    <mn>0</mn>
+                    <mn>0</mn>
+                    <mn>0</mn>
+                    <mn>0</mn>
+                </mfenced>
+                <mo>=</mo>
+                <msub>
+                    <mi>b</mi>
+                    <mn>1</mn>
+                </msub>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <msub>
+                    <mi>a</mi>
+                    <mn>2</mn>
+                </msub>
+                <mo>=</mo>
+                <mfenced separators="" close="" open="">
+                    <mn>0</mn>
+                    <mn>1</mn>
+                </mfenced>
+                <mo>&#8594;</mo>
+                <mfenced separators="" close="" open="">
+                    <mn>0</mn>
+                    <mn>1</mn>
+                    <mn>0</mn>
+                    <mn>1</mn>
+                    <mn>1</mn>
+                </mfenced>
+                <mo>=</mo>
+                <msub>
+                    <mi>b</mi>
+                    <mn>2</mn>
+                </msub>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <msub>
+                    <mi>a</mi>
+                    <mn>3</mn>
+                </msub>
+                <mo>=</mo>
+                <mfenced separators="" close="" open="">
+                    <mn>1</mn>
+                    <mn>0</mn>
+                </mfenced>
+                <mo>&#8594;</mo>
+                <mfenced separators="" close="" open="">
+                    <mn>1</mn>
+                    <mn>0</mn>
+                    <mn>1</mn>
+                    <mn>0</mn>
+                    <mn>1</mn>
+                </mfenced>
+                <mo>=</mo>
+                <msub>
+                    <mi>b</mi>
+                    <mn>3</mn>
+                </msub>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <msub>
+                    <mi>a</mi>
+                    <mn>4</mn>
+                </msub>
+                <mo>=</mo>
+                <mfenced separators="" close="" open="">
+                    <mn>1</mn>
+                    <mn>1</mn>
+                </mfenced>
+                <mo>&#8594;</mo>
+                <mfenced separators="" close="" open="">
+                    <mn>1</mn>
+                    <mn>1</mn>
+                    <mn>1</mn>
+                    <mn>1</mn>
+                    <mn>0</mn>
+                </mfenced>
+                <mo>=</mo>
+                <msub>
+                    <mi>b</mi>
+                    <mn>4</mn>
+                </msub>
+            </mrow>
+        </math>
+        .
+    </p>
+    <p>Здесь
+        <math display='inline'>
+            <msub>
+                <mi>S</mi>
+                <mn>2</mn>
+            </msub>
+            <mo>=</mo>
+            <mfenced open="{" close="}">
+                <mrow>
+                    <mn>0</mn>
+                    <mn>0</mn>
+                </mrow>
+                <mrow>
+                    <mn>0</mn>
+                    <mn>1</mn>
+                </mrow>
+                <mrow>
+                    <mn>1</mn>
+                    <mn>0</mn>
+                </mrow>
+                <mrow>
+                    <mn>1</mn>
+                    <mn>1</mn>
+                </mrow>
+            </mfenced>
+        </math>
+        &#8212; множество первичных кодовых слов, а
+        <math display='inline'>
+            <msub>
+                <mi>S</mi>
+                <mn>5</mn>
+            </msub>
+            <mo>=</mo>
+            <mfenced open="{" close="}">
+                <mrow>
+                    <mn>0</mn>
+                    <mn>0</mn>
+                    <mn>0</mn>
+                    <mn>0</mn>
+                    <mn>0</mn>
+                </mrow>
+                <mrow>
+                    <mn>0</mn>
+                    <mn>1</mn>
+                    <mn>0</mn>
+                    <mn>1</mn>
+                    <mn>1</mn>
+                </mrow>
+                <mrow>
+                    <mn>1</mn>
+                    <mn>0</mn>
+                    <mn>1</mn>
+                    <mn>0</mn>
+                    <mn>1</mn>
+                </mrow>
+                <mrow>
+                    <mn>1</mn>
+                    <mn>1</mn>
+                    <mn>1</mn>
+                    <mn>1</mn>
+                    <mn>0</mn>
+                </mrow>
+            </mfenced>
+        </math>
+        &#8212; разрешенное множество кодовых слов. Любые кодовые слова из
+        <math display='inline'>
+            <msub>
+                <mi>S</mi>
+                <mn>5</mn>
+            </msub>
+        </math>
+        отличаются, по меньшей мере, в трех позициях. Двукратная ошибка приведет к приему запрещенного кодового слова,
+        и, следовательно, будет обнаружена. Если же кодовое слово будет получено с одной ошибкой, то в
+        <math display='inline'>
+            <msub>
+                <mi>S</mi>
+                <mn>5</mn>
+            </msub>
+        </math>
+        найдется правильное слово, отстоящее от ошибочного на 1. Вероятность безошибочного приема, с учетом возможности
+        исправления одинарной ошибки, будет не меньше, чем
+        <math display='inline'>
+            <msup>
+                <mi>p</mi>
+                <mn>5</mn>
+            </msup>
+            <mo>+</mo>
+            <mrow>
+                <mn>5</mn>
+                <mo>&#x2062;</mo>
+                <msup>
+                    <mi>p</mi>
+                    <mn>4</mn>
+                </msup>
+                <mo>&#x2062;</mo>
+                <mi>q</mi>
+            </mrow>
+        </math>
+        .
+    </p>
 </div>
-<p>Пусть в 
-<math display='inline'>
-<mfenced><mi>m</mi><mi>n</mi></mfenced>
-</math>-коде минимальное расстояние между словами равно 
-<math display='inline'>
-<mrow>
-	<mrow><mn>2</mn><mo>&#x2062;</mo><mi>k</mi></mrow><mo>+</mo><mn>1</mn>
-</mrow>
-</math>, а 
-<math display='inline'>
-<mrow>
-	<mi>r</mi><mo>=</mo><mrow><mi>n</mi><mo>-</mo><mi>m</mi></mrow>
-</mrow>
-</math>
- &#8212; число дополнительных разрядов в кодовых словах. Тогда числа <var>n, r</var> и <var>k</var> удовлетворяют <span class="termin">неравенству <a name="ner_hamm">(или нижней границе)</a> Хэмминга</span>:
-<table class="formula"><tr>
-<td class="formula">
-<math display="block">
-<mrow>
-	<mi>r</mi><mo>&#8805;</mo>
-	<msub><mi>log</mi><mn>2</mn></msub><mo>&#x2061;</mo>
-	<mrow>
-    	<munderover>
-      	<mo>&#931;</mo>
-      	<mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow>
-      	<mi>k</mi>
-    	</munderover>
-    	<mfrac>
-      	<mrow><mi>n</mi><mo lspace="0">!</mo></mrow>
-      	<mrow>
-        		<mrow><mi>i</mi><mo lspace="0">!</mo></mrow><mo>&#x2062;</mo>
-        		<mrow>
-        			<mrow><mo>(</mo><mrow><mi>n</mi><mo>−</mo><mi>i</mi></mrow><mo>)</mo></mrow><mo lspace="0">!</mo>
-        		</mrow>
-      	</mrow>
-    	</mfrac>
-   </mrow>
-</mrow><mo>.</mo>
-</math></td><td class="nomer">(5.2.6)</td>
-</tr>
+<p>Пусть в
+    <math display='inline'>
+        <mfenced>
+            <mi>m</mi>
+            <mi>n</mi>
+        </mfenced>
+    </math>
+    -коде минимальное расстояние между словами равно
+    <math display='inline'>
+        <mrow>
+            <mrow>
+                <mn>2</mn>
+                <mo>&#x2062;</mo>
+                <mi>k</mi>
+            </mrow>
+            <mo>+</mo>
+            <mn>1</mn>
+        </mrow>
+    </math>
+    , а
+    <math display='inline'>
+        <mrow>
+            <mi>r</mi>
+            <mo>=</mo>
+            <mrow>
+                <mi>n</mi>
+                <mo>-</mo>
+                <mi>m</mi>
+            </mrow>
+        </mrow>
+    </math>
+    &#8212; число дополнительных разрядов в кодовых словах. Тогда числа <var>n, r</var> и <var>k</var> удовлетворяют
+    <span class="termin">неравенству <a name="ner_hamm">(или нижней границе)</a> Хэмминга</span>:
+<table class="formula">
+    <tr>
+        <td class="formula">
+            <math display="block">
+                <mrow>
+                    <mi>r</mi>
+                    <mo>&#8805;</mo>
+                    <msub>
+                        <mi>log</mi>
+                        <mn>2</mn>
+                    </msub>
+                    <mo>&#x2061;</mo>
+                    <mrow>
+                        <munderover>
+                            <mo>&#931;</mo>
+                            <mrow>
+                                <mi>i</mi>
+                                <mo>=</mo>
+                                <mn>0</mn>
+                            </mrow>
+                            <mi>k</mi>
+                        </munderover>
+                        <mfrac>
+                            <mrow>
+                                <mi>n</mi>
+                                <mo lspace="0">!</mo>
+                            </mrow>
+                            <mrow>
+                                <mrow>
+                                    <mi>i</mi>
+                                    <mo lspace="0">!</mo>
+                                </mrow>
+                                <mo>&#x2062;</mo>
+                                <mrow>
+                                    <mrow>
+                                        <mo>(</mo>
+                                        <mrow>
+                                            <mi>n</mi>
+                                            <mo>−</mo>
+                                            <mi>i</mi>
+                                        </mrow>
+                                        <mo>)</mo>
+                                    </mrow>
+                                    <mo lspace="0">!</mo>
+                                </mrow>
+                            </mrow>
+                        </mfrac>
+                    </mrow>
+                </mrow>
+                <mo>.</mo>
+            </math>
+        </td>
+        <td class="nomer">(5.2.6)</td>
+    </tr>
 </table>
 </p>
-<p>Установлено [<a href="litra.html#41">42</a>], что если числа <var>n, r</var> и <var>k</var> удовлетворяют <span class="termin">неравенству (или верхней границе) Варшамова-Гильберта</span>
-<table class="formula"><tr>
-<td class="formula">
-<math display="block">
-<mrow>
-	<mi>r</mi><mo>&gt;</mo>
-	<msub><mi>log</mi><mn>2</mn></msub><mo>&#x2061;</mo>
-	<mrow>
-    <munderover>
-      <mo>&#931;</mo>
-      <mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow>
-      <mrow><mrow><mn>2</mn><mo>&#x2062;</mo><mi>k</mi></mrow><mo>-</mo><mn>1</mn></mrow>
-    </munderover>
-    <mfrac>
-      <mrow><mfenced><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></mfenced><mo lspace="0">!</mo></mrow>
-      <mrow>
-        <mrow><mi>i</mi><mo lspace="0">!</mo></mrow><mo>&#x2062;</mo>
-        <mrow>
-        		<mfenced><mrow><mi>n</mi><mo>-</mo><mn>1</mn><mo>-</mo><mi>i</mi></mrow></mfenced><mo lspace="0">!</mo>
-        </mrow>
-      </mrow>
-    </mfrac>
-    </mrow>
-</mrow><mo>,</mo>
-</math>
-</td><td class="nomer">(5.2.7)</td>
-</tr>
+<p>Установлено [<a href="litra.html#41">42</a>], что если числа <var>n, r</var> и <var>k</var> удовлетворяют <span
+        class="termin">неравенству (или верхней границе) Варшамова-Гильберта</span>
+<table class="formula">
+    <tr>
+        <td class="formula">
+            <math display="block">
+                <mrow>
+                    <mi>r</mi>
+                    <mo>&gt;</mo>
+                    <msub>
+                        <mi>log</mi>
+                        <mn>2</mn>
+                    </msub>
+                    <mo>&#x2061;</mo>
+                    <mrow>
+                        <munderover>
+                            <mo>&#931;</mo>
+                            <mrow>
+                                <mi>i</mi>
+                                <mo>=</mo>
+                                <mn>0</mn>
+                            </mrow>
+                            <mrow>
+                                <mrow>
+                                    <mn>2</mn>
+                                    <mo>&#x2062;</mo>
+                                    <mi>k</mi>
+                                </mrow>
+                                <mo>-</mo>
+                                <mn>1</mn>
+                            </mrow>
+                        </munderover>
+                        <mfrac>
+                            <mrow>
+                                <mfenced>
+                                    <mrow>
+                                        <mi>n</mi>
+                                        <mo>-</mo>
+                                        <mn>1</mn>
+                                    </mrow>
+                                </mfenced>
+                                <mo lspace="0">!</mo>
+                            </mrow>
+                            <mrow>
+                                <mrow>
+                                    <mi>i</mi>
+                                    <mo lspace="0">!</mo>
+                                </mrow>
+                                <mo>&#x2062;</mo>
+                                <mrow>
+                                    <mfenced>
+                                        <mrow>
+                                            <mi>n</mi>
+                                            <mo>-</mo>
+                                            <mn>1</mn>
+                                            <mo>-</mo>
+                                            <mi>i</mi>
+                                        </mrow>
+                                    </mfenced>
+                                    <mo lspace="0">!</mo>
+                                </mrow>
+                            </mrow>
+                        </mfrac>
+                    </mrow>
+                </mrow>
+                <mo>,</mo>
+            </math>
+        </td>
+        <td class="nomer">(5.2.7)</td>
+    </tr>
 </table>
-то существует 
+то существует
 <math display='inline'>
-<mfenced>
-	<mrow><mi>n</mi><mo>-</mo><mi>r</mi></mrow><mi>n</mi>
-</mfenced>
-</math>-код, исправляющий все ошибки веса <var>k</var> и менее.</p>
-<p>Всякий код, исправляющий <var>k</var>-кратные ошибки, а следовательно, и ошибки меньшей кратности, должен удовлетворять нижней границе Хэмминга. Но подбор характеристик, удовлетворяющих нижней границе Хэмминга, не всегда позволяет построить помехозащитный код. Нижняя граница Хэмминга есть <span class="termin">необходимое условие существования помехозащитного кода</span>.</p>
-<input type="button" value="Посмотреть границы Хэмминга" onclick="hemming()" />
-<p>Рассмотрим обоснование неравенства Хэмминга (5.2.6). Для 
-<math display='inline'>
-<mfenced>
-	<mi>m</mi><mi>n</mi>
-</mfenced>
-</math>-кода общее количество кодовых комбинаций составит 
-<math display='inline'>
-<msup><mn>2</mn><mi>n</mi></msup>
-</math>, из которых количество разрешенных кодовых комбинаций равно
-<math display='inline'>
-<msup><mn>2</mn><mi>m</mi></msup>
-</math>. Тогда запрещенных кодовых комбинаций будет 
-<math display='inline'>
-<mrow>
-	<msup><mn>2</mn><mi>n</mi></msup>
-	<mo>-</mo>
-	<msup><mn>2</mn><mi>m</mi></msup>
-</mrow>
-</math>.</p>
-<p>Каждая из 
-<math display='inline'>
-<msup><mn>2</mn><mi>m</mi></msup>
-</math>
-разрешенных кодовых комбинаций может быть передана с ошибкой, кратности не большей <var>k</var>, в одну из
-<table class="formula"><tr>
-<td class="formula">
-<math display="block">
-<mrow>
-    <munderover>
-      <mo>&#931;</mo>
-      <mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow>
-      <mi>k</mi>
-    </munderover>
-    <mfrac>
-      <mrow><mi>n</mi><mo lspace="0">!</mo></mrow>
-      <mrow>
-        <mrow><mi>i</mi><mo lspace="0">!</mo></mrow><mo>&#x2062;</mo>
+    <mfenced>
         <mrow>
-        		<mrow><mo>(</mo><mrow><mi>n</mi><mo>−</mo><mi>i</mi></mrow><mo>)</mo></mrow><mo lspace="0">!</mo>
+            <mi>n</mi>
+            <mo>-</mo>
+            <mi>r</mi>
         </mrow>
-      </mrow>
-    </mfrac>
-</mrow>
+        <mi>n</mi>
+    </mfenced>
 </math>
-</td><td class="nomer">(5.2.8)</td>
-</tr>
+-код, исправляющий все ошибки веса <var>k</var> и менее.</p>
+<p>Всякий код, исправляющий <var>k</var>-кратные ошибки, а следовательно, и ошибки меньшей кратности, должен
+    удовлетворять нижней границе Хэмминга. Но подбор характеристик, удовлетворяющих нижней границе Хэмминга, не всегда
+    позволяет построить помехозащитный код. Нижняя граница Хэмминга есть <span class="termin">необходимое условие существования помехозащитного кода</span>.
+</p>
+<input type="button" value="Посмотреть границы Хэмминга" onclick="hemming()"/>
+<p>Рассмотрим обоснование неравенства Хэмминга (5.2.6). Для
+    <math display='inline'>
+        <mfenced>
+            <mi>m</mi>
+            <mi>n</mi>
+        </mfenced>
+    </math>
+    -кода общее количество кодовых комбинаций составит
+    <math display='inline'>
+        <msup>
+            <mn>2</mn>
+            <mi>n</mi>
+        </msup>
+    </math>
+    , из которых количество разрешенных кодовых комбинаций равно
+    <math display='inline'>
+        <msup>
+            <mn>2</mn>
+            <mi>m</mi>
+        </msup>
+    </math>
+    . Тогда запрещенных кодовых комбинаций будет
+    <math display='inline'>
+        <mrow>
+            <msup>
+                <mn>2</mn>
+                <mi>n</mi>
+            </msup>
+            <mo>-</mo>
+            <msup>
+                <mn>2</mn>
+                <mi>m</mi>
+            </msup>
+        </mrow>
+    </math>
+    .
+</p>
+<p>Каждая из
+    <math display='inline'>
+        <msup>
+            <mn>2</mn>
+            <mi>m</mi>
+        </msup>
+    </math>
+    разрешенных кодовых комбинаций может быть передана с ошибкой, кратности не большей <var>k</var>, в одну из
+<table class="formula">
+    <tr>
+        <td class="formula">
+            <math display="block">
+                <mrow>
+                    <munderover>
+                        <mo>&#931;</mo>
+                        <mrow>
+                            <mi>i</mi>
+                            <mo>=</mo>
+                            <mn>1</mn>
+                        </mrow>
+                        <mi>k</mi>
+                    </munderover>
+                    <mfrac>
+                        <mrow>
+                            <mi>n</mi>
+                            <mo lspace="0">!</mo>
+                        </mrow>
+                        <mrow>
+                            <mrow>
+                                <mi>i</mi>
+                                <mo lspace="0">!</mo>
+                            </mrow>
+                            <mo>&#x2062;</mo>
+                            <mrow>
+                                <mrow>
+                                    <mo>(</mo>
+                                    <mrow>
+                                        <mi>n</mi>
+                                        <mo>−</mo>
+                                        <mi>i</mi>
+                                    </mrow>
+                                    <mo>)</mo>
+                                </mrow>
+                                <mo lspace="0">!</mo>
+                            </mrow>
+                        </mrow>
+                    </mfrac>
+                </mrow>
+            </math>
+        </td>
+        <td class="nomer">(5.2.8)</td>
+    </tr>
 </table>
 ошибочных кодовых комбинаций.</p>
-<p>Для возможности исправления всех ошибок кратности, не большей чем <var>k</var>, число запрещенных кодовых комбинаций должно быть не меньше числа ошибочных кодовых комбинаций с кратностью ошибок, не превышающей <var>k</var>:</p>
-<table  class="formula"><tr>
-<td class="formula">
-<math display="block">
-<mrow>
-	<mrow><msup><mn>2</mn><mi>n</mi></msup><mo>-</mo><msup><mn>2</mn><mi>m</mi></msup></mrow>
-	<mo>&#8805;</mo>
-	<msup><mn>2</mn><mi>m</mi></msup><mo>&#x2062;</mo>
-    <munderover>
-      <mo>&#931;</mo>
-      <mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow>
-      <mi>k</mi>
-    </munderover>
-    <mfrac>
-      <mrow><mi>n</mi><mo lspace="0">!</mo></mrow>
-      <mrow>
-        <mrow><mi>i</mi><mo lspace="0">!</mo></mrow><mo>&#x2062;</mo>
-        <mrow>
-        		<mrow><mo>(</mo><mrow><mi>n</mi><mo>−</mo><mi>i</mi></mrow><mo>)</mo></mrow><mo lspace="0">!</mo>
-        </mrow>
-      </mrow>
-    </mfrac>
-</mrow><mo>.</mo>
-</math>
-</td><td class="nomer">(5.2.9)</td>
-</tr>
+<p>Для возможности исправления всех ошибок кратности, не большей чем <var>k</var>, число запрещенных кодовых комбинаций
+    должно быть не меньше числа ошибочных кодовых комбинаций с кратностью ошибок, не превышающей <var>k</var>:</p>
+<table class="formula">
+    <tr>
+        <td class="formula">
+            <math display="block">
+                <mrow>
+                    <mrow>
+                        <msup>
+                            <mn>2</mn>
+                            <mi>n</mi>
+                        </msup>
+                        <mo>-</mo>
+                        <msup>
+                            <mn>2</mn>
+                            <mi>m</mi>
+                        </msup>
+                    </mrow>
+                    <mo>&#8805;</mo>
+                    <msup>
+                        <mn>2</mn>
+                        <mi>m</mi>
+                    </msup>
+                    <mo>&#x2062;</mo>
+                    <munderover>
+                        <mo>&#931;</mo>
+                        <mrow>
+                            <mi>i</mi>
+                            <mo>=</mo>
+                            <mn>1</mn>
+                        </mrow>
+                        <mi>k</mi>
+                    </munderover>
+                    <mfrac>
+                        <mrow>
+                            <mi>n</mi>
+                            <mo lspace="0">!</mo>
+                        </mrow>
+                        <mrow>
+                            <mrow>
+                                <mi>i</mi>
+                                <mo lspace="0">!</mo>
+                            </mrow>
+                            <mo>&#x2062;</mo>
+                            <mrow>
+                                <mrow>
+                                    <mo>(</mo>
+                                    <mrow>
+                                        <mi>n</mi>
+                                        <mo>−</mo>
+                                        <mi>i</mi>
+                                    </mrow>
+                                    <mo>)</mo>
+                                </mrow>
+                                <mo lspace="0">!</mo>
+                            </mrow>
+                        </mrow>
+                    </mfrac>
+                </mrow>
+                <mo>.</mo>
+            </math>
+        </td>
+        <td class="nomer">(5.2.9)</td>
+    </tr>
 </table>
 <p>Из (5.2.9) несложно получить неравенство
-<table class="formula"><tr>
-<td align="center" width="600">
-<math display="block">
-<mrow>
-	<msup><mn>2</mn><mi>r</mi></msup><mo>&#8805;</mo>
-    <munderover>
-      <mo>&#931;</mo>
-      <mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow>
-      <mi>k</mi>
-    </munderover>
-    <mfrac>
-      <mrow><mi>n</mi><mo lspace="0">!</mo></mrow>
-      <mrow>
-        <mi>i</mi><mo lspace="0">!</mo>
-        	<mrow>
-        		<mrow><mo>(</mo><mrow><mi>n</mi><mo>−</mo><mi>i</mi></mrow><mo>)</mo></mrow><mo lspace="0">!</mo>
-			</mrow>      
-      </mrow>
-    </mfrac>
-</mrow><mo>,</mo>
-</math></td>
-</tr>
+<table class="formula">
+    <tr>
+        <td align="center" width="600">
+            <math display="block">
+                <mrow>
+                    <msup>
+                        <mn>2</mn>
+                        <mi>r</mi>
+                    </msup>
+                    <mo>&#8805;</mo>
+                    <munderover>
+                        <mo>&#931;</mo>
+                        <mrow>
+                            <mi>i</mi>
+                            <mo>=</mo>
+                            <mn>0</mn>
+                        </mrow>
+                        <mi>k</mi>
+                    </munderover>
+                    <mfrac>
+                        <mrow>
+                            <mi>n</mi>
+                            <mo lspace="0">!</mo>
+                        </mrow>
+                        <mrow>
+                            <mi>i</mi>
+                            <mo lspace="0">!</mo>
+                            <mrow>
+                                <mrow>
+                                    <mo>(</mo>
+                                    <mrow>
+                                        <mi>n</mi>
+                                        <mo>−</mo>
+                                        <mi>i</mi>
+                                    </mrow>
+                                    <mo>)</mo>
+                                </mrow>
+                                <mo lspace="0">!</mo>
+                            </mrow>
+                        </mrow>
+                    </mfrac>
+                </mrow>
+                <mo>,</mo>
+            </math>
+        </td>
+    </tr>
 </table>
- из которого следует неравенство Хэмминга (5.2.6).</p>
-<p>Верхняя граница Варшамова-Гильберта задает <span class="termin">достаточное условие построения помехозащитного кода</span>. Достаточно подобрать характеристики кода, удовлетворяющие верхней границе Варшамова-Гильберта, чтобы по ним построить помехозащитный код.</p>
-<input type="button" value="Посмотреть границы Варшамова-Гильберта" onclick="gilbert()" />
+из которого следует неравенство Хэмминга (5.2.6).</p>
+<p>Верхняя граница Варшамова-Гильберта задает <span
+        class="termin">достаточное условие построения помехозащитного кода</span>. Достаточно подобрать характеристики
+    кода, удовлетворяющие верхней границе Варшамова-Гильберта, чтобы по ним построить помехозащитный код.</p>
+<input type="button" value="Посмотреть границы Варшамова-Гильберта" onclick="gilbert()"/>
 <h3>Упражнения</h3>
 <ol>
-<li>Пусть вероятность ошибочной передачи бита составляет <var>q = 0.001</var>. Вычислите вероятность передачи 8 бит с двумя ошибками.</li>
-<li>В системе электронных таблиц постройте код с контролем четности и продемонстрируйте обнаружение ошибки.</li>
-<li>В системе электронных таблиц постройте код с тройным повторением каждого бита и продемонстрируйте исправление допущенной ошибки.</li>
-<li>Вероятность ошибочной передачи бита равна 2%. Вычислите вероятность ошибочного приема бита в коде с тройным повторением каждого бита.</li>
-<li>Для 
-<math display='inline'>
-<mrow><mi>m</mi><mo>=</mo><mn>8</mn></mrow>
-</math>
- вычислите нижнюю границу Хэмминга и верхнюю границу Варшамова-Гильберта для канонического 
-<math display='inline'>
-<mfenced>
-	<mi>m</mi><mi>n</mi>
-</mfenced>
-</math>-кода, исправляющего ошибки кратности 
-<math display='inline'>
-<mrow><mi>k</mi><mo>=</mo><mn>2</mn></mrow>
-</math>.</li>
-<li>Имеется 
-<math display='inline'>
-<mfenced>
-	<mn>8</mn><mn>9</mn>
-</mfenced>
-</math>-код с проверкой четности. Вычислите вероятность того, что в случае ошибки этот код ее не обнаружит, если вероятность ошибки при передаче каждого бита равна 1%. Вычислите также вероятность ошибочной передачи без использования кода. Выполните аналогичные расчеты для случая, когда вероятность ошибки в десять раз меньше.</li>
-<li>Вычислите минимальную и максимальную оценки количества дополнительных разрядов <var>r</var> для кодового слова длины <var>n</var>, если требуется, чтобы минимальное расстояние между ними было <var>d</var>. Рассмотрите случаи 
-<math display='inline'>
-<mrow><mi>n</mi><mo>=</mo><mn>32</mn></mrow><mo>,</mo>
-<mrow><mi>d</mi><mo>=</mo><mn>3</mn></mrow>
-</math>
- и 
-<math display='inline'>
-<mrow><mi>n</mi><mo>=</mo><mn>23</mn></mrow><mo>,</mo>
-<mrow><mi>d</mi><mo>=</mo><mn>7</mn></mrow>
-</math>.</li>
-<li>Вычислите веса кодовых слов 
-<math display='inline'>
-<mfenced separators="">
-	<mn>1</mn><mn>0</mn><mn>0</mn><mn>0</mn><mn>1</mn><mn>1</mn><mn>0</mn><mn>0</mn>
-</mfenced>
-</math>
- и 
-<math display='inline'>
-<mfenced separators="">
-	<mn>0</mn><mn>1</mn><mn>0</mn><mn>0</mn><mn>1</mn><mn>1</mn><mn>0</mn><mn>1</mn>
-</mfenced>
-</math>, их поразрядную сумму, расстояние между ними и вероятность того, что второе слово будет принято как первое, если <var>q</var> &#8212; вероятность ошибочной передачи бита.</li>
-<li>Сколько ошибок обнаруживает и сколько исправляет 
-<math display='inline'>
-<mfenced>
-	<mn>3</mn><mn>7</mn>
-</mfenced>
-</math>-код?
-</li>
+    <li>Пусть вероятность ошибочной передачи бита составляет <var>q = 0.001</var>. Вычислите вероятность передачи 8 бит
+        с двумя ошибками.
+    </li>
+    <li>В системе электронных таблиц постройте код с контролем четности и продемонстрируйте обнаружение ошибки.</li>
+    <li>В системе электронных таблиц постройте код с тройным повторением каждого бита и продемонстрируйте исправление
+        допущенной ошибки.
+    </li>
+    <li>Вероятность ошибочной передачи бита равна 2%. Вычислите вероятность ошибочного приема бита в коде с тройным
+        повторением каждого бита.
+    </li>
+    <li>Для
+        <math display='inline'>
+            <mrow>
+                <mi>m</mi>
+                <mo>=</mo>
+                <mn>8</mn>
+            </mrow>
+        </math>
+        вычислите нижнюю границу Хэмминга и верхнюю границу Варшамова-Гильберта для канонического
+        <math display='inline'>
+            <mfenced>
+                <mi>m</mi>
+                <mi>n</mi>
+            </mfenced>
+        </math>
+        -кода, исправляющего ошибки кратности
+        <math display='inline'>
+            <mrow>
+                <mi>k</mi>
+                <mo>=</mo>
+                <mn>2</mn>
+            </mrow>
+        </math>
+        .
+    </li>
+    <li>Имеется
+        <math display='inline'>
+            <mfenced>
+                <mn>8</mn>
+                <mn>9</mn>
+            </mfenced>
+        </math>
+        -код с проверкой четности. Вычислите вероятность того, что в случае ошибки этот код ее не обнаружит, если
+        вероятность ошибки при передаче каждого бита равна 1%. Вычислите также вероятность ошибочной передачи без
+        использования кода. Выполните аналогичные расчеты для случая, когда вероятность ошибки в десять раз меньше.
+    </li>
+    <li>Вычислите минимальную и максимальную оценки количества дополнительных разрядов <var>r</var> для кодового слова
+        длины <var>n</var>, если требуется, чтобы минимальное расстояние между ними было <var>d</var>. Рассмотрите
+        случаи
+        <math display='inline'>
+            <mrow>
+                <mi>n</mi>
+                <mo>=</mo>
+                <mn>32</mn>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mi>d</mi>
+                <mo>=</mo>
+                <mn>3</mn>
+            </mrow>
+        </math>
+        и
+        <math display='inline'>
+            <mrow>
+                <mi>n</mi>
+                <mo>=</mo>
+                <mn>23</mn>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mi>d</mi>
+                <mo>=</mo>
+                <mn>7</mn>
+            </mrow>
+        </math>
+        .
+    </li>
+    <li>Вычислите веса кодовых слов
+        <math display='inline'>
+            <mfenced separators="">
+                <mn>1</mn>
+                <mn>0</mn>
+                <mn>0</mn>
+                <mn>0</mn>
+                <mn>1</mn>
+                <mn>1</mn>
+                <mn>0</mn>
+                <mn>0</mn>
+            </mfenced>
+        </math>
+        и
+        <math display='inline'>
+            <mfenced separators="">
+                <mn>0</mn>
+                <mn>1</mn>
+                <mn>0</mn>
+                <mn>0</mn>
+                <mn>1</mn>
+                <mn>1</mn>
+                <mn>0</mn>
+                <mn>1</mn>
+            </mfenced>
+        </math>
+        , их поразрядную сумму, расстояние между ними и вероятность того, что второе слово будет принято как первое,
+        если <var>q</var> &#8212; вероятность ошибочной передачи бита.
+    </li>
+    <li>Сколько ошибок обнаруживает и сколько исправляет
+        <math display='inline'>
+            <mfenced>
+                <mn>3</mn>
+                <mn>7</mn>
+            </mfenced>
+        </math>
+        -код?
+    </li>
 </ol>
 
 <p><a href="5_1.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="5_3.html">К следующему</a></p>
 </body>
+<script type="text/javascript">
+    MathJax.Hub.Configured()
+</script>
 </html>

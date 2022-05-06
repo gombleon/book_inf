@@ -1,509 +1,937 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset='UTF-8' />
-<link rel='stylesheet' type='text/css' href='style.css' />
-<meta name='author' content='leonid' />
-<title>Рекурсия</title>
-<script type="text/javascript">
-function hanoi(n) {
-	var win=open("", "newWindow"),  html, head, title, body, h3, p, fact, x=1, y=2, z=3;
-
-	function hb(n, x, y, z) {
-		var m;
-		if (n>0) {
-			m=n-1;
-			p=document.createElement("p");
-			p.textContent="Вызывается процедура hb("+m+","+x+","+z+","+y+").";
-			body.appendChild(p);		
-			hb(n-1, x, z, y);
-			m=n-1;
-			p=document.createElement("p");
-			p.textContent="Исполняется процедура hb("+m+","+x+","+z+","+y+").";
-			body.appendChild(p);						
-			p=document.createElement("p");
-			p.textContent=x+" на "+y;
-			body.appendChild(p);
-			p=document.createElement("p");
-			m=n-1;
-			p=document.createElement("p");			
-			p.textContent="Вызывается процедура hb("+m+","+z+","+y+","+x+").";
-			body.appendChild(p);		
-			hb(n-1, z, y, x);
-			
-		}
-	}	
-	win.document.open();
-	html=document.createElement("html");
-	win.document.appendChild(html);
-	head=document.createElement("head");
-	title=document.createElement("title");
-	title.textContent="Демонстрация порядка вызова и исполнения процедур решения задачи о Ханойских башнях";
-	head.appendChild(title);
-	html.appendChild(head);
-	body=document.createElement("body");
-	html.appendChild(body);
-	h3=document.createElement("h3");
-	h3.textContent="Демонстрация порядка вызова и исполнения процедур решения задачи о Ханойских башнях";
-	body.appendChild(h3);
-	p=document.createElement("p");
-	p.textContent="колец "+n;
-	body.appendChild(p);
-	hb(n, x, y, z);
-	win.document.close();	
-}
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+  extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});
 
 
-function pechat(n) {
-	var win=open("", "newWindow"),  html, head, title, body, h3, p, fact;
-	function print(n) {
-		if (n<10) {
-			p=document.createElement("p");
-			p.textContent="Вызывается процедура print("+n+")"+".";
-			body.appendChild(p);
-			
-			p=document.createElement("p");
-			p.textContent="Исполняется процедура print("+n+"): "+n;
-			body.appendChild(p);			
-		}
-		else {
-			p=document.createElement("p");
-			p.textContent="Вызывается процедура print("+n+")"+".";
-			body.appendChild(p);
-			print((n-(n % 10))/10);
-			p=document.createElement("p");
-			p.textContent="Исполняется процедура print("+n+"): "+n % 10;
-			body.appendChild(p);			
-		}
-		return fact;
-	}
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-	win.document.open();
-	html=document.createElement("html");
-	win.document.appendChild(html);
-	head=document.createElement("head");
-	title=document.createElement("title");
-	title.textContent="Демонстрация порядка вызова и исполнения процедур печати цифр натурального числа";
-	head.appendChild(title);
-	html.appendChild(head);
-	body=document.createElement("body");
-	html.appendChild(body);
-	h3=document.createElement("h3");
-	h3.textContent="Демонстрация порядка вызова и исполнения процедур печати цифр натурального числа";
-	body.appendChild(h3);
-	p=document.createElement("p");
-	p.textContent="n="+n;
-	body.appendChild(p);
-	print(n);
-	win.document.close();
-}
+    <meta charset='UTF-8'/>
+    <link rel='stylesheet' type='text/css' href='style.css'/>
+    <meta name='author' content='leonid'/>
+    <title>Рекурсия</title>
+    <script type="text/javascript">
+        function hanoi(n) {
+            var win = open("", "newWindow"), html, head, title, body, h3, p, fact, x = 1, y = 2, z = 3;
+
+            function hb(n, x, y, z) {
+                var m;
+                if (n > 0) {
+                    m = n - 1;
+                    p = document.createElement("p");
+                    p.textContent = "Вызывается процедура hb(" + m + "," + x + "," + z + "," + y + ").";
+                    body.appendChild(p);
+                    hb(n - 1, x, z, y);
+                    m = n - 1;
+                    p = document.createElement("p");
+                    p.textContent = "Исполняется процедура hb(" + m + "," + x + "," + z + "," + y + ").";
+                    body.appendChild(p);
+                    p = document.createElement("p");
+                    p.textContent = x + " на " + y;
+                    body.appendChild(p);
+                    p = document.createElement("p");
+                    m = n - 1;
+                    p = document.createElement("p");
+                    p.textContent = "Вызывается процедура hb(" + m + "," + z + "," + y + "," + x + ").";
+                    body.appendChild(p);
+                    hb(n - 1, z, y, x);
+
+                }
+            }
+
+            win.document.open();
+            html = document.createElement("html");
+            win.document.appendChild(html);
+            head = document.createElement("head");
+            title = document.createElement("title");
+            title.textContent = "Демонстрация порядка вызова и исполнения процедур решения задачи о Ханойских башнях";
+            head.appendChild(title);
+            html.appendChild(head);
+            body = document.createElement("body");
+            html.appendChild(body);
+            h3 = document.createElement("h3");
+            h3.textContent = "Демонстрация порядка вызова и исполнения процедур решения задачи о Ханойских башнях";
+            body.appendChild(h3);
+            p = document.createElement("p");
+            p.textContent = "колец " + n;
+            body.appendChild(p);
+            hb(n, x, y, z);
+            win.document.close();
+        }
 
 
-function stepen(a, n) {
-	var win=open("", "newWindow"),  html, head, title, body, h3, p, step=1;
-	function calc(a, n) {
-		var s;
-		if (n==0) {
-			p=document.createElement("p");
-			p.textContent="Вызывается процедура calc("+a+", "+n+").";
-			body.appendChild(p);
-			s=1;
-			p=document.createElement("p");
-			p.textContent="Исполняется процедура  calc("+a+", "+n+").";
-			body.appendChild(p);
-		}
-		else if (n % 2==1) {
-			p=document.createElement("p");
-			p.textContent="Вызывается процедура  calc("+a+", "+n+").";
-			body.appendChild(p);
-			s=calc(a, n-1)*a;
-			p=document.createElement("p");
-			p.textContent="Исполняется процедура  calc("+a+", "+n+").";
-			body.appendChild(p);				
-		}
-		else {
-			p=document.createElement("p");
-			p.textContent="Вызывается процедура  calc("+a+", "+n+").";
-			body.appendChild(p);
-			s=calc(a*a, n/2);
-			p=document.createElement("p");
-			p.textContent="Исполняется процедура  calc("+a+", "+n+").";
-			body.appendChild(p);				
-		}
-		return s;
-	}
-	win.document.open();
-	html=document.createElement("html");
-	win.document.appendChild(html);
-	head=document.createElement("head");
-	title=document.createElement("title");
-	title.textContent="Демонстрация порядка вызова и исполнения процедур вычисления степени";
-	head.appendChild(title);
-	html.appendChild(head);
-	body=document.createElement("body");
-	html.appendChild(body);
-	h3=document.createElement("h3");
-	h3.textContent="Демонстрация  порядка вызова и исполнения процедур вычисления степени";
-	body.appendChild(h3);
-	p=document.createElement("p");
-	p.textContent="Основание степени a="+a+";";
-	body.appendChild(p);	
-	p=document.createElement("p");
-	p.textContent="показатель степени n="+n+".";
-	body.appendChild(p);
-	step=calc(a, n);4
-	p=document.createElement("p");
-	p.textContent="Искомая степень= "+step+".";
-	body.appendChild(p);	
-	win.document.close();
-}
+        function pechat(n) {
+            var win = open("", "newWindow"), html, head, title, body, h3, p, fact;
 
-function isp(n) {
-	var win=open("", "newWindow"),  html, head, title, body, h3, p, fact;
-	function factor(n) {
-		if (n==1) {
-			p=document.createElement("p");
-			p.textContent="Вызывается процедура factor("+n+")"+".";
-			body.appendChild(p);
-			fact=1;
-			p=document.createElement("p");
-			p.textContent="Исполняется процедура factor("+n+"): "+n+"!="+fact+".";
-			body.appendChild(p);			
-		}
-		else {
-			p=document.createElement("p");
-			p.textContent="Вызывается процедура factor("+n+")"+".";
-			body.appendChild(p);
-			factor(n-1);
-			fact=fact*n;
-			p=document.createElement("p");
-			p.textContent="Исполняется процедура factor("+n+"): "+n+"!="+fact+".";
-			body.appendChild(p);			
-		}
-		return fact;
-	}
+            function print(n) {
+                if (n < 10) {
+                    p = document.createElement("p");
+                    p.textContent = "Вызывается процедура print(" + n + ")" + ".";
+                    body.appendChild(p);
 
-	win.document.open();
-	html=document.createElement("html");
-	win.document.appendChild(html);
-	head=document.createElement("head");
-	title=document.createElement("title");
-	title.textContent="Демонстрация  порядка вызова и исполнения процедур вычисления факториала";
-	head.appendChild(title);
-	html.appendChild(head);
-	body=document.createElement("body");
-	html.appendChild(body);
-	h3=document.createElement("h3");
-	h3.textContent="Демонстрация порядка вызова и исполнения процедур вычисления факториала";
-	body.appendChild(h3);
-	p=document.createElement("p");
-	p.textContent="n="+n;
-	body.appendChild(p);
-	factor(n);
-	win.document.close();
-}
-</script>
+                    p = document.createElement("p");
+                    p.textContent = "Исполняется процедура print(" + n + "): " + n;
+                    body.appendChild(p);
+                } else {
+                    p = document.createElement("p");
+                    p.textContent = "Вызывается процедура print(" + n + ")" + ".";
+                    body.appendChild(p);
+                    print((n - (n % 10)) / 10);
+                    p = document.createElement("p");
+                    p.textContent = "Исполняется процедура print(" + n + "): " + n % 10;
+                    body.appendChild(p);
+                }
+                return fact;
+            }
+
+            win.document.open();
+            html = document.createElement("html");
+            win.document.appendChild(html);
+            head = document.createElement("head");
+            title = document.createElement("title");
+            title.textContent = "Демонстрация порядка вызова и исполнения процедур печати цифр натурального числа";
+            head.appendChild(title);
+            html.appendChild(head);
+            body = document.createElement("body");
+            html.appendChild(body);
+            h3 = document.createElement("h3");
+            h3.textContent = "Демонстрация порядка вызова и исполнения процедур печати цифр натурального числа";
+            body.appendChild(h3);
+            p = document.createElement("p");
+            p.textContent = "n=" + n;
+            body.appendChild(p);
+            print(n);
+            win.document.close();
+        }
+
+
+        function stepen(a, n) {
+            var win = open("", "newWindow"), html, head, title, body, h3, p, step = 1;
+
+            function calc(a, n) {
+                var s;
+                if (n == 0) {
+                    p = document.createElement("p");
+                    p.textContent = "Вызывается процедура calc(" + a + ", " + n + ").";
+                    body.appendChild(p);
+                    s = 1;
+                    p = document.createElement("p");
+                    p.textContent = "Исполняется процедура  calc(" + a + ", " + n + ").";
+                    body.appendChild(p);
+                } else if (n % 2 == 1) {
+                    p = document.createElement("p");
+                    p.textContent = "Вызывается процедура  calc(" + a + ", " + n + ").";
+                    body.appendChild(p);
+                    s = calc(a, n - 1) * a;
+                    p = document.createElement("p");
+                    p.textContent = "Исполняется процедура  calc(" + a + ", " + n + ").";
+                    body.appendChild(p);
+                } else {
+                    p = document.createElement("p");
+                    p.textContent = "Вызывается процедура  calc(" + a + ", " + n + ").";
+                    body.appendChild(p);
+                    s = calc(a * a, n / 2);
+                    p = document.createElement("p");
+                    p.textContent = "Исполняется процедура  calc(" + a + ", " + n + ").";
+                    body.appendChild(p);
+                }
+                return s;
+            }
+
+            win.document.open();
+            html = document.createElement("html");
+            win.document.appendChild(html);
+            head = document.createElement("head");
+            title = document.createElement("title");
+            title.textContent = "Демонстрация порядка вызова и исполнения процедур вычисления степени";
+            head.appendChild(title);
+            html.appendChild(head);
+            body = document.createElement("body");
+            html.appendChild(body);
+            h3 = document.createElement("h3");
+            h3.textContent = "Демонстрация  порядка вызова и исполнения процедур вычисления степени";
+            body.appendChild(h3);
+            p = document.createElement("p");
+            p.textContent = "Основание степени a=" + a + ";";
+            body.appendChild(p);
+            p = document.createElement("p");
+            p.textContent = "показатель степени n=" + n + ".";
+            body.appendChild(p);
+            step = calc(a, n);
+            4
+            p = document.createElement("p");
+            p.textContent = "Искомая степень= " + step + ".";
+            body.appendChild(p);
+            win.document.close();
+        }
+
+        function isp(n) {
+            var win = open("", "newWindow"), html, head, title, body, h3, p, fact;
+
+            function factor(n) {
+                if (n == 1) {
+                    p = document.createElement("p");
+                    p.textContent = "Вызывается процедура factor(" + n + ")" + ".";
+                    body.appendChild(p);
+                    fact = 1;
+                    p = document.createElement("p");
+                    p.textContent = "Исполняется процедура factor(" + n + "): " + n + "!=" + fact + ".";
+                    body.appendChild(p);
+                } else {
+                    p = document.createElement("p");
+                    p.textContent = "Вызывается процедура factor(" + n + ")" + ".";
+                    body.appendChild(p);
+                    factor(n - 1);
+                    fact = fact * n;
+                    p = document.createElement("p");
+                    p.textContent = "Исполняется процедура factor(" + n + "): " + n + "!=" + fact + ".";
+                    body.appendChild(p);
+                }
+                return fact;
+            }
+
+            win.document.open();
+            html = document.createElement("html");
+            win.document.appendChild(html);
+            head = document.createElement("head");
+            title = document.createElement("title");
+            title.textContent = "Демонстрация  порядка вызова и исполнения процедур вычисления факториала";
+            head.appendChild(title);
+            html.appendChild(head);
+            body = document.createElement("body");
+            html.appendChild(body);
+            h3 = document.createElement("h3");
+            h3.textContent = "Демонстрация порядка вызова и исполнения процедур вычисления факториала";
+            body.appendChild(h3);
+            p = document.createElement("p");
+            p.textContent = "n=" + n;
+            body.appendChild(p);
+            factor(n);
+            win.document.close();
+        }
+    </script>
 </head>
 <body>
-<p><a href="8_11_3.html">К предыдущему</a> <a href="index.html">К содержанию</a><a href="8_12_2.html">К следующему</a></p>
-<h2>8.12.1. Рекурсия</h2>
-<p>Объект называется рекурсивным, если он содержит сам себя или определен с помощью самого себя. Приведем примеры рекурсивных определений натуральных чисел, древовидных структур и некоторых функций из <a href='litra.html#40'>[41], с. 116 &#151; 119</a>:</p>
-<ol type='1'>
-<li>Натуральные числа:
-<ol type='a'>
-<li>1 есть натуральное число;</li>
-<li>целое число, следующее за натуральным, есть натуральное число.</li>
-</ol>
-</li>
-<li><a href='8_9_6.html'>Древовидные структуры.</a></li>
-<li>Функция факториал <math><mi>n!</mi></math> для неотрицательных целых чисел:
-<ol type='a'>
-<li><math><mi>0!</mi><mo>=</mo><mn>1</m4n></math>;</li>
-<li>если <math><mi>n</mi><mo>&gt;</mo><mn>0</mn></math>, то 
-<math>
-	<mi>n!</mi>
-	<mo>=</mo>
-	<mrow>
-		<mi>n</mi><mo>&#x2062;</mo>
-		<mrow>
-			<mo>(</mo><mi>n</mi><mo>-</mo><mn>1</mn><mo>)</mo><mi>!</mi>
-		</mrow>
-	</mrow>	
-</math></li>
-</ol>
-</li>
-</ol>
-<p>Рекурсия позволяет определить бесконечное множество объектов посредством конечного высказывания. С помощью рекурсивных алгоритмов можно описать бесконечные вычисления. Особенно полезны рекурсии в тех случаях, когда вычисляемая функция или обрабатываемая структура определены посредством рекурсии (рекурсивны по своей природе).</p>
-<p>Рекурсивное определение программы реализуется через процедуры, в которых используется вызов именованных операторов. Рекурсивную программу <math><mi>P</mi></math> можно представить как композицию <math><mi>Q</mi></math> базовых операторов <math><msub><mi>S</mi><mi>i</mi></msub></math> языка программирования, не содержащих <math><mi>P</mi></math>, и самой программы <math><mi>P</mi></math>:
-<math><mi>P</mi><mo>&#8801;</mo><mi>Q</mi><mo>&#x2061;</mo><mfenced open='[' close=']'><msub><mi>S</mi><mi>i</mi></msub><mi>P</mi></mfenced></math>.
+<p><a href="8_11_3.html">К предыдущему</a> <a href="index.html">К содержанию</a><a href="8_12_2.html">К следующему</a>
 </p>
-<p>Если процедура <math><mi>P</mi></math> содержит явное обращение к самой себе, то она называется прямо рекурсивной; если же <math><mi>P</mi></math> содержит обращение к процедуре <math><mi>T</mi></math>, которая содержит, прямо или косвенно, обращение к <math><mi>P</mi></math>, то <math><mi>P</mi></math> называется косвенно рекурсивной.</p>
-<p>В процедуре задается множество локальных констант, типов, переменных и процедур. Всякий рекурсивный вызов процедуры приводит к созданию в своей области видимости нового множества локальных констант, типов, переменных и процедур, имеющих те же самые имена, но разные значения. Поэтому в целях экономии вычислительных ресурсов необходимо стремиться к использованию рекурсивных процедур с наименьшей  глубиной. </p>
-<p>Рекурсивные процедуры, как и циклы, могут привести к бесконечным вычислениям. Следовательно, рекурсивное выполнение процедуры необходимо подчинить некоторому условию, которое обязательно через некоторое количество операций перестает выполняться и прерывает рекурсивный вызов процедуры.</p>
+<h2>8.12.1. Рекурсия</h2>
+<p>Объект называется рекурсивным, если он содержит сам себя или определен с помощью самого себя. Приведем примеры
+    рекурсивных определений натуральных чисел, древовидных структур и некоторых функций из <a href='litra.html#40'>[41],
+        с. 116 &#151; 119</a>:</p>
+<ol type='1'>
+    <li>Натуральные числа:
+        <ol type='a'>
+            <li>1 есть натуральное число;</li>
+            <li>целое число, следующее за натуральным, есть натуральное число.</li>
+        </ol>
+    </li>
+    <li><a href='8_9_6.html'>Древовидные структуры.</a></li>
+    <li>Функция факториал
+        <math>
+            <mi>n!</mi>
+        </math>
+        для неотрицательных целых чисел:
+        <ol type='a'>
+            <li>
+                <math>
+                    <mi>0!</mi>
+                    <mo>=</mo>
+                    <mn>1</m4n>
+                </math>
+                ;
+            </li>
+            <li>если
+                <math>
+                    <mi>n</mi>
+                    <mo>&gt;</mo>
+                    <mn>0</mn>
+                </math>
+                , то
+                <math>
+                    <mi>n!</mi>
+                    <mo>=</mo>
+                    <mrow>
+                        <mi>n</mi>
+                        <mo>&#x2062;</mo>
+                        <mrow>
+                            <mo>(</mo>
+                            <mi>n</mi>
+                            <mo>-</mo>
+                            <mn>1</mn>
+                            <mo>)</mo>
+                            <mi>!</mi>
+                        </mrow>
+                    </mrow>
+                </math>
+            </li>
+        </ol>
+    </li>
+</ol>
+<p>Рекурсия позволяет определить бесконечное множество объектов посредством конечного высказывания. С помощью
+    рекурсивных алгоритмов можно описать бесконечные вычисления. Особенно полезны рекурсии в тех случаях, когда
+    вычисляемая функция или обрабатываемая структура определены посредством рекурсии (рекурсивны по своей природе).</p>
+<p>Рекурсивное определение программы реализуется через процедуры, в которых используется вызов именованных операторов.
+    Рекурсивную программу
+    <math>
+        <mi>P</mi>
+    </math>
+    можно представить как композицию
+    <math>
+        <mi>Q</mi>
+    </math>
+    базовых операторов
+    <math>
+        <msub>
+            <mi>S</mi>
+            <mi>i</mi>
+        </msub>
+    </math>
+    языка программирования, не содержащих
+    <math>
+        <mi>P</mi>
+    </math>
+    , и самой программы
+    <math>
+        <mi>P</mi>
+    </math>
+    :
+    <math>
+        <mi>P</mi>
+        <mo>&#8801;</mo>
+        <mi>Q</mi>
+        <mo>&#x2061;</mo>
+        <mfenced open='[' close=']'>
+            <msub>
+                <mi>S</mi>
+                <mi>i</mi>
+            </msub>
+            <mi>P</mi>
+        </mfenced>
+    </math>
+    .
+</p>
+<p>Если процедура
+    <math>
+        <mi>P</mi>
+    </math>
+    содержит явное обращение к самой себе, то она называется прямо рекурсивной; если же
+    <math>
+        <mi>P</mi>
+    </math>
+    содержит обращение к процедуре
+    <math>
+        <mi>T</mi>
+    </math>
+    , которая содержит, прямо или косвенно, обращение к
+    <math>
+        <mi>P</mi>
+    </math>
+    , то
+    <math>
+        <mi>P</mi>
+    </math>
+    называется косвенно рекурсивной.
+</p>
+<p>В процедуре задается множество локальных констант, типов, переменных и процедур. Всякий рекурсивный вызов процедуры
+    приводит к созданию в своей области видимости нового множества локальных констант, типов, переменных и процедур,
+    имеющих те же самые имена, но разные значения. Поэтому в целях экономии вычислительных ресурсов необходимо
+    стремиться к использованию рекурсивных процедур с наименьшей глубиной. </p>
+<p>Рекурсивные процедуры, как и циклы, могут привести к бесконечным вычислениям. Следовательно, рекурсивное выполнение
+    процедуры необходимо подчинить некоторому условию, которое обязательно через некоторое количество операций перестает
+    выполняться и прерывает рекурсивный вызов процедуры.</p>
 <p>При анализе рекурсивной программы возникает, как обычно, два вопроса:
 <ol type='a'>
-<li>почему программа заканчивает работу?</li>
-<li>почему она работает правильно, если заканчивает работу?</li>
+    <li>почему программа заканчивает работу?</li>
+    <li>почему она работает правильно, если заканчивает работу?</li>
 </ol>
 </p>
-<p>Для (b) достаточно проверить, что (содержащая рекурсивный вызов) программа работает правильно, предположив, что вызываемая ею
-одноименная программа работает правильно. В самом деле, в этом случае в цепочке рекурсивно вызываемых программ все программы работают правильно (убеждаемся в этом, идя от конца цепочки к началу).</p>
-<p>Чтобы доказать (a), обычно проверяют, что с каждым рекурсивным вызовом значение какого-то параметра уменьшается, и это не может продолжаться бесконечно.</p>
+<p>Для (b) достаточно проверить, что (содержащая рекурсивный вызов) программа работает правильно, предположив, что
+    вызываемая ею
+    одноименная программа работает правильно. В самом деле, в этом случае в цепочке рекурсивно вызываемых программ все
+    программы работают правильно (убеждаемся в этом, идя от конца цепочки к началу).</p>
+<p>Чтобы доказать (a), обычно проверяют, что с каждым рекурсивным вызовом значение какого-то параметра уменьшается, и
+    это не может продолжаться бесконечно.</p>
 <p>Перейдем рассмотрению примеров рекурсивных алгоритмов.</p>
-<p><span class="primer">Пример 8.12.1.1.</span> Рассмотрим рекурсивную программу вычисления факториала натурального числа <math><mi>n</mi></math>:</p>
+<p><span class="primer">Пример 8.12.1.1.</span> Рассмотрим рекурсивную программу вычисления факториала натурального
+    числа
+    <math>
+        <mi>n</mi>
+    </math>
+    :
+</p>
 <code>
-<p class='ind0'>MODULE fact1;</p>
-<p class='ind1'>IMPORT  Log := StdLog,  In := i21sysIn,  Math;</p>
-<p class='ind1'>PROCEDURE factorial(n: INTEGER; VAR fact: INTEGER);</p>
-<p class='ind2'>VAR</p>
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>IF n=1 THEN</p>
-<p class='ind3'>fact:=1;</p>
-<p class='ind2'>ELSE</p>
-<p class='ind3'>factorial(n-1, fact);</p>
-<p class='ind3'>fact:=n*fact;</p>
-<p class='ind2'>END;</p>
-<p class='ind1'>END factorial;</p>
-<p class='ind1'>PROCEDURE do*;</p>
-<p class='ind2'>VAR n, fact: INTEGER;</p>  
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>In.Open;</p>
-<p class='ind2'>In.Int(n);</p>
-<p class='ind2'>ASSERT(In.Done & (n &gt; 0));</p>
-<p class='ind2'>factorial(n, fact);</p>
-<p class='ind2'>Log.Int(fact);</p>
-<p class='ind2'>Log.Ln</p>
-<p class='ind1'>END do;</p>
-<p class='ind0'>END fact1.</p>
+    <p class='ind0'>MODULE fact1;</p>
+    <p class='ind1'>IMPORT Log := StdLog, In := i21sysIn, Math;</p>
+    <p class='ind1'>PROCEDURE factorial(n: INTEGER; VAR fact: INTEGER);</p>
+    <p class='ind2'>VAR</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>IF n=1 THEN</p>
+    <p class='ind3'>fact:=1;</p>
+    <p class='ind2'>ELSE</p>
+    <p class='ind3'>factorial(n-1, fact);</p>
+    <p class='ind3'>fact:=n*fact;</p>
+    <p class='ind2'>END;</p>
+    <p class='ind1'>END factorial;</p>
+    <p class='ind1'>PROCEDURE do*;</p>
+    <p class='ind2'>VAR n, fact: INTEGER;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>In.Open;</p>
+    <p class='ind2'>In.Int(n);</p>
+    <p class='ind2'>ASSERT(In.Done & (n &gt; 0));</p>
+    <p class='ind2'>factorial(n, fact);</p>
+    <p class='ind2'>Log.Int(fact);</p>
+    <p class='ind2'>Log.Ln</p>
+    <p class='ind1'>END do;</p>
+    <p class='ind0'>END fact1.</p>
 </code>
-<p>Обратите внимание на формальные параметры в процедуре 
-<math>
-	<mi>factorial</mi><mo>&#x2061;</mo>
-	<mrow>
-		<mo>(</mo>
-			<mrow><mi>n</mi><mo>&#058;</mo> <mi>INTEGER</mi></mrow>
-			<mo>;</mo> 
-			<mrow><mi>VAR</mi><mspace width='1ex'/> <mi>fact</mi><mo>&#058;</mo> <mi>INTEGER</mi></mrow>
-		<mo>)</mo>
-	</mrow>
-</math>, в которой передача параметра <math><mi>n</mi></math> происходит по значению, а параметра <math><mi>fact</mi></math> &#151; по ссылке.</p>
+<p>Обратите внимание на формальные параметры в процедуре
+    <math>
+        <mi>factorial</mi>
+        <mo>&#x2061;</mo>
+        <mrow>
+            <mo>(</mo>
+            <mrow>
+                <mi>n</mi>
+                <mo>&#058;</mo>
+                <mi>INTEGER</mi>
+            </mrow>
+            <mo>;</mo>
+            <mrow>
+                <mi>VAR</mi>
+                <mspace width='1ex'/>
+                <mi>fact</mi>
+                <mo>&#058;</mo>
+                <mi>INTEGER</mi>
+            </mrow>
+            <mo>)</mo>
+        </mrow>
+    </math>
+    , в которой передача параметра
+    <math>
+        <mi>n</mi>
+    </math>
+    происходит по значению, а параметра
+    <math>
+        <mi>fact</mi>
+    </math> &#151; по ссылке.
+</p>
 <p>Порядок вызова и исполнения процедур в рекурсивной программе вычисления факториала натурального числа:</p>
 <form id='f1'>
-Введите n <input type="text" id='num' size='2' />
-<input type="button" value="Найти" onclick="isp(num.value)" />
-<input type="reset" value="Сброс" />
+    Введите n <input type="text" id='num' size='2'/>
+    <input type="button" value="Найти" onclick="isp(num.value)"/>
+    <input type="reset" value="Сброс"/>
 </form>
-<p><span class="primer">Пример 8.12.1.2.</span> Рассмотрим рекурсивную программу возведения целого числа <math><mi>a</mi></math> в целую неотрицательную степень <math><mi>n</mi></math>:</p>
+<p><span class="primer">Пример 8.12.1.2.</span> Рассмотрим рекурсивную программу возведения целого числа
+    <math>
+        <mi>a</mi>
+    </math>
+    в целую неотрицательную степень
+    <math>
+        <mi>n</mi>
+    </math>
+    :
+</p>
 <a id="example8_12_1_2"></a>
 <code>
-<p class='ind0'>MODULE  степень;</p>
-<p class='ind1'>IMPORT  Log := StdLog,  In := i21sysIn;</p>
-<p class='ind1'>PROCEDURE step(a, n: INTEGER): INTEGER;</p>
-<p class='ind2'>VAR  s: INTEGER;</p>
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>IF (n=0) THEN</p>
-<p class='ind3'>s:=1</p>
-<p class='ind2'>ELSIF ODD(n) THEN</p>
-<p class='ind3'>s:=step(a, n-1)*a</p>
-<p class='ind2'>ELSE</p>
-<p class='ind3'>s:=step(a*a, n DIV 2)</p>
-<p class='ind2'>END;</p>
-<p class='ind2'>RETURN s;</p>
-<p class='ind1'>END step;</p>
-<p class='ind1'>PROCEDURE do*;</p>
-<p class='ind2'>VAR stepen, a, n: INTEGER;</p> 
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>In.Open;</p>
-<p class='ind2'>ASSERT(In.Done);</p>
-<p class='ind2'>In.Int(n);</p>
-<p class='ind2'>ASSERT(In.Done & (n &#8805; 0));</p>
-<p class='ind2'>In.Int(a);</p>
-<p class='ind2'>ASSERT(In.Done);</p>
-<p class='ind2'>stepen:=step(a, n);</p>
-<p class='ind2'>Log.Int(a);</p>
-<p class='ind2'>Log.String('^');</p>
-<p class='ind2'>Log.Int(n);</p>
-<p class='ind2'>Log.String(' = ');</p>
-<p class='ind2'>Log.Int(stepen);</p>
-<p class='ind2'>Log.Ln</p>
-<p class='ind1'>END do;</p>
-<p class='ind0'>END степень.</p>
+    <p class='ind0'>MODULE степень;</p>
+    <p class='ind1'>IMPORT Log := StdLog, In := i21sysIn;</p>
+    <p class='ind1'>PROCEDURE step(a, n: INTEGER): INTEGER;</p>
+    <p class='ind2'>VAR s: INTEGER;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>IF (n=0) THEN</p>
+    <p class='ind3'>s:=1</p>
+    <p class='ind2'>ELSIF ODD(n) THEN</p>
+    <p class='ind3'>s:=step(a, n-1)*a</p>
+    <p class='ind2'>ELSE</p>
+    <p class='ind3'>s:=step(a*a, n DIV 2)</p>
+    <p class='ind2'>END;</p>
+    <p class='ind2'>RETURN s;</p>
+    <p class='ind1'>END step;</p>
+    <p class='ind1'>PROCEDURE do*;</p>
+    <p class='ind2'>VAR stepen, a, n: INTEGER;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>In.Open;</p>
+    <p class='ind2'>ASSERT(In.Done);</p>
+    <p class='ind2'>In.Int(n);</p>
+    <p class='ind2'>ASSERT(In.Done & (n &#8805; 0));</p>
+    <p class='ind2'>In.Int(a);</p>
+    <p class='ind2'>ASSERT(In.Done);</p>
+    <p class='ind2'>stepen:=step(a, n);</p>
+    <p class='ind2'>Log.Int(a);</p>
+    <p class='ind2'>Log.String('^');</p>
+    <p class='ind2'>Log.Int(n);</p>
+    <p class='ind2'>Log.String(' = ');</p>
+    <p class='ind2'>Log.Int(stepen);</p>
+    <p class='ind2'>Log.Ln</p>
+    <p class='ind1'>END do;</p>
+    <p class='ind0'>END степень.</p>
 </code>
-<p>Нетрудно убедиться, что в приведенной выше рекурсивной программе имеет место оценка глубины рекурсии  
-<math><mi>C</mi><mo>&#x2062;</mo><mi>log</mi><mo>&#x2062;</mo><mi>n</mi></math>.
+<p>Нетрудно убедиться, что в приведенной выше рекурсивной программе имеет место оценка глубины рекурсии
+    <math>
+        <mi>C</mi>
+        <mo>&#x2062;</mo>
+        <mi>log</mi>
+        <mo>&#x2062;</mo>
+        <mi>n</mi>
+    </math>
+    .
 </p>
-<p>Демонстрация порядка вызова и исполнения процедур в рекурсивной программе вычисления неотрицательной степени целого числа:</p>
+<p>Демонстрация порядка вызова и исполнения процедур в рекурсивной программе вычисления неотрицательной степени целого
+    числа:</p>
 <form id='f2'>
-Введите основание a <input type="text" id='osn' size='2' />,
-введите показатель n <input type="text" id='pok' size='1' />.
-<input type="button" value="Вычислить" onclick="stepen(osn.value, pok.value)" />
-<input type="reset" value="Сброс" />
+    Введите основание a <input type="text" id='osn' size='2'/>,
+    введите показатель n <input type="text" id='pok' size='1'/>.
+    <input type="button" value="Вычислить" onclick="stepen(osn.value, pok.value)"/>
+    <input type="reset" value="Сброс"/>
 </form>
 <p><span class="primer">Пример 8.12.1.3.</span>Рекурсивная программа записи цифр натурального числа:</p>
 <a id="example8_12_3"></a>
 <code>
-<p class='ind0'>MODULE цифры;</p>
-<p class='ind1'>IMPORT  Log := StdLog,  In := i21sysIn;</p>
-<p class='ind1'>PROCEDURE do*;</p>
-<p class='ind2'>VAR  n: INTEGER;</p>
-<p class='ind2'>PROCEDURE print(n: INTEGER);</p>
-<p class='ind3'>VAR</p>  
-<p class='ind2'>BEGIN</p>
-<p class='ind3'>IF n &lt; 10 THEN</p>
-<p class='ind4'>Log.Int(n)</p>
-<p class='ind3'>ELSE</p>
-<p class='ind4'>print(n DIV 10);</p>
-<p class='ind4'>Log.Int(n MOD 10)</p>
-<p class='ind3'>END;</p>
-<p class='ind2'>END print;</p>
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>In.Open;</p>
-<p class='ind2'>In.Int(n);</p>
-<p class='ind2'>ASSERT(In.Done & (n &gt; 0));</p>
-<p class='ind2'>Log.Ln;</p>
-<p class='ind2'>Log.String('Число ');</p>
-<p class='ind2'>Log.Int(n);</p>
-<p class='ind2'>Log.Ln;</p>
-<p class='ind2'>Log.String('Цифры: ');</p>
-<p class='ind2'>print(n)</p>
-<p class='ind1'>END do;</p>
-<p class='ind0'>END цифры.</p>
+    <p class='ind0'>MODULE цифры;</p>
+    <p class='ind1'>IMPORT Log := StdLog, In := i21sysIn;</p>
+    <p class='ind1'>PROCEDURE do*;</p>
+    <p class='ind2'>VAR n: INTEGER;</p>
+    <p class='ind2'>PROCEDURE print(n: INTEGER);</p>
+    <p class='ind3'>VAR</p>
+    <p class='ind2'>BEGIN</p>
+    <p class='ind3'>IF n &lt; 10 THEN</p>
+    <p class='ind4'>Log.Int(n)</p>
+    <p class='ind3'>ELSE</p>
+    <p class='ind4'>print(n DIV 10);</p>
+    <p class='ind4'>Log.Int(n MOD 10)</p>
+    <p class='ind3'>END;</p>
+    <p class='ind2'>END print;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>In.Open;</p>
+    <p class='ind2'>In.Int(n);</p>
+    <p class='ind2'>ASSERT(In.Done & (n &gt; 0));</p>
+    <p class='ind2'>Log.Ln;</p>
+    <p class='ind2'>Log.String('Число ');</p>
+    <p class='ind2'>Log.Int(n);</p>
+    <p class='ind2'>Log.Ln;</p>
+    <p class='ind2'>Log.String('Цифры: ');</p>
+    <p class='ind2'>print(n)</p>
+    <p class='ind1'>END do;</p>
+    <p class='ind0'>END цифры.</p>
 </code>
 <p>Демонстрация порядка вызова и исполнения процедур в рекурсивной программе печати цифр натурального числа:</p>
 <form id='f3'>
-Введите натуральное число<input type="text" id='nat' size='6' />.
-<input type="button" value="Вычислить" onclick="pechat(nat.value)" />
-<input type="reset" value="Сброс" />
+    Введите натуральное число<input type="text" id='nat' size='6'/>.
+    <input type="button" value="Вычислить" onclick="pechat(nat.value)"/>
+    <input type="reset" value="Сброс"/>
 </form>
-<p><span class="primer">Пример 8.12.1.4.</span> Игра &quot;Ханойские башни&quot; состоит в следующем. Есть три стержня. На первый из них надета пирамидка из N колец (большие кольца снизу, меньшие сверху). Требуется переместить кольца на другой стержень. Разрешается перекладывать кольца со стержня на стержень, но класть большее кольцо поверх меньшего нельзя. Программа, указывающая требуемые действия, такая:</p>
+<p><span class="primer">Пример 8.12.1.4.</span> Игра &quot;Ханойские башни&quot; состоит в следующем. Есть три стержня.
+    На первый из них надета пирамидка из N колец (большие кольца снизу, меньшие сверху). Требуется переместить кольца на
+    другой стержень. Разрешается перекладывать кольца со стержня на стержень, но класть большее кольцо поверх меньшего
+    нельзя. Программа, указывающая требуемые действия, такая:</p>
 <code>
-<p class='ind0'>MODULE hanoi;</p>
-<p class='ind1'>IMPORT  Log := StdLog,  In := i21sysIn;</p>
-<p class='ind1'>PROCEDURE do*;</p>
-<p class='ind2'>CONST x=1; y=2; z=3;</p>
-<p class='ind2'>VAR  n: INTEGER;</p>
-<p class='ind2'>PROCEDURE move(n, x, y, z: INTEGER);</p>
-<p class='ind2'>BEGIN</p>
-<p class='ind3'>IF (n &gt; 0) THEN</p>
-<p class='ind4'>move(n-1, x, z, y);</p>
-<p class='ind4'>Log.String('ход ');</p>
-<p class='ind4'>Log.Int(x);</p>
-<p class='ind4'>Log.String(' &#8594; ');</p>
-<p class='ind4'>Log.Int(y);</p>
-<p class='ind4'>Log.Ln;</p>
-<p class='ind4'>move(n-1, z, y, x)</p>
-<p class='ind3'>END;</p>
-<p class='ind2'>END move;</p>
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>In.Open;</p>
-<p class='ind2'>In.Int(n);</p>
-<p class='ind2'>ASSERT(In.Done & (n &gt; 0));</p>
-<p class='ind2'>Log.Ln;</p>
-<p class='ind2'>Log.String('Всего колец ');</p>
-<p class='ind2'>Log.Int(n);</p>
-<p class='ind2'>Log.Ln;</p>
-<p class='ind2'>move(n, x, y, z)</p>
-<p class='ind1'>END do;</p>
-<p class='ind0'>END hanoi.</p>
+    <p class='ind0'>MODULE hanoi;</p>
+    <p class='ind1'>IMPORT Log := StdLog, In := i21sysIn;</p>
+    <p class='ind1'>PROCEDURE do*;</p>
+    <p class='ind2'>CONST x=1; y=2; z=3;</p>
+    <p class='ind2'>VAR n: INTEGER;</p>
+    <p class='ind2'>PROCEDURE move(n, x, y, z: INTEGER);</p>
+    <p class='ind2'>BEGIN</p>
+    <p class='ind3'>IF (n &gt; 0) THEN</p>
+    <p class='ind4'>move(n-1, x, z, y);</p>
+    <p class='ind4'>Log.String('ход ');</p>
+    <p class='ind4'>Log.Int(x);</p>
+    <p class='ind4'>Log.String(' &#8594; ');</p>
+    <p class='ind4'>Log.Int(y);</p>
+    <p class='ind4'>Log.Ln;</p>
+    <p class='ind4'>move(n-1, z, y, x)</p>
+    <p class='ind3'>END;</p>
+    <p class='ind2'>END move;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>In.Open;</p>
+    <p class='ind2'>In.Int(n);</p>
+    <p class='ind2'>ASSERT(In.Done & (n &gt; 0));</p>
+    <p class='ind2'>Log.Ln;</p>
+    <p class='ind2'>Log.String('Всего колец ');</p>
+    <p class='ind2'>Log.Int(n);</p>
+    <p class='ind2'>Log.Ln;</p>
+    <p class='ind2'>move(n, x, y, z)</p>
+    <p class='ind1'>END do;</p>
+    <p class='ind0'>END hanoi.</p>
 </code>
 
 <p>Демонстрация порядка вызова и исполнения процедур в рекурсивной программе решения задачи о Ханойских башнях:</p>
 <form id='f4'>
-Всего колец <input type="text" id='kolec' size='1' />.
-<input type="button" value="Вычислить" onclick="hanoi(kolec.value)" />
-<input type="reset" value="Сброс" />
+    Всего колец <input type="text" id='kolec' size='1'/>.
+    <input type="button" value="Вычислить" onclick="hanoi(kolec.value)"/>
+    <input type="reset" value="Сброс"/>
 </form>
 <h3>Вопросы и задачи</h3>
 <ol type='1'>
-<li>Каковы будут последствия замены в <a href='#example8_12_1_2'>примере 8.12.1.2</a> строки s:=step(a*a, n DIV 2) на s:=step(a, n DIV 2)*step(a, n DIV 2)?
-</li>
-<li>Составить рекурсивную программу суммирования элементов массива целых чисел.</li>
-<li>Дано натуральное число n. Составить рекурсивную программу вывода всех чисел от 1 до n.</li>
-<li>Даны два целых числа A и В. Составить рекурсивную программу вывода всех чисел от A до B включительно, в порядке возрастания, если A < B, или в порядке убывания в противном случае. </li>
-<li>В теории вычислимости важную роль играет функция Аккермана
-<math><mrow><mi>A</mi><mo>&#x2061;<mrow><mo>(</mo><mi>m</mi><mo>,</mo><mi>n</mi><mo>)</mo></mrow></mo></mrow></math>, определенная следующим образом: 
-<math display='block'>
-<mrow>
-	<mi>A</mi><mo>&#x2061;</mo>
-	<mrow><mo>(</mo><mi>m</mi><mo>,</mo><mi>n</mi><mo>)</mo></mrow>
-</mrow>
-<mo>=</mo>
-<mrow>
-	<mo>{</mo>
-	<mtable>
-		<mtr>
-			<mtd><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow><mo>,</mo><mi>m</mi><mo>=</mo><mn>0</mo><mo>;</mo></mtd>
-		</mtr>
-		<mtr>
-			<mtd>
-				<mrow>
-					<mi>A</mi><mo>&#x2061;</mo>
-					<mrow>
-						<mo>(</mo><mrow><mi>m</mi><mo>-</mo><mn>1</mn></mrow><mo>,</mo><mn>1</mn><mo>)</mo>
-					</mrow>
-				</mrow>			
-			<mo>,</mo><mrow><mi>n</mi><mo>=</mo><mn>0</mo><mo>,</mo><mi>m</mi><mo>&gt;</mo><mn>0</mn></mrow><mo>;</mo>
-			</mtd>
-		</mtr>
-		<mtr>
-			<mtd>
-				<mrow>
-					<mi>A</mi><mo>&#x2061;</mo>
-					<mrow>
-						<mo>(</mo><mrow><mi>m</mi><mo>-</mo><mn>1</mn></mrow><mo>,</mo>
-				<mrow>
-					<mi>A</mi><mo>&#x2061;</mo>
-					<mrow>
-						<mo>(</mo><mi>m</mi><mo>,</mo><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow><mo>)</mo>
-					</mrow>
-				</mrow>						
-						<mo>)</mo>
-					</mrow>
-				</mrow>			
-			<mo>,</mo><mrow><mi>n</mi><mo>&gt;</mo><mn>0</mo><mo>,</mo><mi>m</mi><mo>&gt;</mo><mn>0</mn></mrow><mo>.</mo>
-			</mtd>		
-		</mtr>
-	</mtable>
-</mrow>
-</math>
-По заданным целым неотрицательным <math><mi>m</mi></math> и <math><mi>n</mi></math> выведите
-<math><mrow><mi>A</mi><mo>&#x2061;<mrow><mo>(</mo><mi>m</mi><mo>,</mo><mi>n</mi><mo>)</mo></mrow></mo></mrow></math>. 
-</li>
-<li>Дано натуральное число <math><mi>N</mi></math>. Разработать рекурсивную программу, выводящую слово YES, если число N является точной степенью двойки, и слово NO &#151; в противном случае.
-</li>
-<li>Дано натуральное число <math><mi>N</mi></math>. Вычислите сумму его цифр. При решении этой задачи нельзя использовать строки, списки, массивы и циклы).</li>
-<li>Дано натуральное число <math><mi>N</mi></math>. Выведите все его цифры по одной, в обратном порядке, разделяя их пробелами или новыми строками. При решении этой задачи нельзя использовать строки, списки, массивы и циклы. Разрешена только рекурсия и целочисленная арифметика.</li>
-<li>Дано натуральное число <math><mi>N</mi></math>. Выведите все его цифры по одной, в обычном порядке, разделяя их пробелами или новыми строками. При решении этой задачи нельзя использовать строки, списки, массивы и циклы. Разрешена только рекурсия и целочисленная арифметика.</li>
-<li>Дано натуральное число <math><mi>n</mi></math>, большее единицы. Проверьте, является ли оно простым. Программа должна вывести слово YES, если число простое, и NO, если число составное. Алгоритм должен иметь сложность <math><mi>O</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>log</mi><mo>&#x2061;</mo><mi>n</mi><mo>)</mo></mrow></math>. <br/>Указание. Понятно, что задача сама по себе нерекурсивна, т.к. проверка числа <math><mi>n</mi></math> на простоту никак не сводится к проверке на простоту меньших чисел. Поэтому нужно сделать еще один параметр рекурсии: делитель числа, и именно по этому параметру и задать рекурсию. </li>
-<li>Дано натуральное число <math><mi>n</mi></math>, большее единицы. Выведите все простые множители этого числа в порядке неубывания с учетом кратности. Алгоритм должен иметь сложность <math><mi>O</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>log</mi><mo>&#x2061;</mo><mi>n</mi><mo>)</mo></mrow></math>.</li>
-<li>Дано слово, состоящее только из строчных латинских букв. Проверьте, является ли это слово палиндромом. Выведите YES или NO.
-При решении этой задачи нельзя пользоваться циклами. </li>
-<li>Дана последовательность натуральных чисел, завершающаяся числом 0. Выведите все нечетные числа из этой последовательности, сохраняя их порядок.<br/>
-В этой задаче нельзя использовать глобальные переменные и передавать какие-либо параметры в рекурсивную функцию. Функция не возвращает значение, а сразу же выводит результат на экран. Основная программа должна состоять только из вызова этой функции.</li>
-<li>Дана последовательность натуральных чисел (одно число в строке), завершающаяся числом 0. Выведите первое, третье, пятое и т.д. из введенных чисел. Завершающий ноль выводить не надо.<br/>
-В этой задаче нельзя использовать глобальные переменные и передавать какие-либо параметры в рекурсивную функцию. Функция не возвращает значение, а сразу же выводит результат на экран. Основная программа должна состоять только из вызова этой функции.</li>
-<li>Дана последовательность натуральных чисел (одно число в строке), завершающаяся числом 0. Определите наибольшее значение числа в этой последовательности.<br/>
-В этой задаче нельзя использовать глобальные переменные и передавать какие-либо параметры в рекурсивную функцию. Функция возвращает единственное значение: максимум считанной последовательности. Гарантируется, что последовательность содержит хотя бы одно число (кроме нуля). </li>
-<li>Дана последовательность натуральных чисел (одно число в строке), завершающаяся числом 0. Определите среднее значение элементов этой последовательности (без учета последнего нуля).<br/>
-В этой задаче нельзя использовать глобальные переменные. Функция не получает числа в виде параметра. Результат записывается в две переменные, которые передаются в функцию по ссылке.<br/>
-Гарантируется, что последовательность содержит хотя бы одно число (кроме нуля). </li>
-<li>Дана последовательность натуральных чисел (одно число в строке), завершающаяся числом 0. Определите значение второго по величине элемента в этой последовательности, то есть элемента, который будет наибольшим, если из последовательности удалить наибольший элемент.<br/>
-В этой задаче нельзя использовать глобальные переменные. Функция не получает числа в виде параметра и вообще не получает никаких параметров. Результат записывается в переменные, которые передаются в функцию по ссылке. Других параметров, кроме как используемых для возврата значения, функция не получает.<br/>
-Гарантируется, что последовательность содержит хотя бы два числа (кроме нуля). </li>
-<li>Дана последовательность натуральных чисел (одно число в строке), завершающаяся числом 0. Определите, какое количество элементов этой последовательности, равны ее наибольшему элементу.<br/>
-В этой задаче нельзя использовать глобальные переменные. Функция не получает числа в виде параметра и вообще не получает никаких параметров. В программе результат записывается в переменные, которые передаются в функцию по ссылке. Других параметров, кроме как используемых для возврата значения, функция не получает.<br/>
-Гарантируется, что последовательность содержит хотя бы одно число (кроме нуля). </li>
-<li>Дана последовательность натуральных чисел (одно число в строке), завершающаяся двумя числами 0 подряд. Определите, сколько раз в этой последовательности встречается число 1. Числа, идущие после двух нулей, необходимо игнорировать.<br/>
-В этой задаче нельзя использовать глобальные переменные и параметры, передаваемые в функцию. Функция не получает числа в виде параметров.</li>
-<li>Дана монотонная последовательность, в которой каждое натуральное число  <math><mi>k</mi></math> встречается ровно  <math><mi>k</mi></math> раз: <math><mfenced open='' close=''><mn>1</mn><mn>2</mn><mn>2</mn><mn>3</mn><mn>3</mn><mn>3</mn><mn>4</mn><mn>4</mn><mn>4</mn><mn>4</mn><mi>&#133;</mi></mfenced></math><br/>
-По данному натуральному n выведите первые n членов этой последовательности. Попробуйте обойтись только одним циклом for. </li>
-<li>Даны натуральные числа <math><mi>k</mi></math> и <math><mi>s</mi></math>. Определите, сколько существует <math><mi>k</mi></math>-значных натуральных чисел, сумма цифр которых равна <math><mi>d</mi></math>. Запись натурального числа не может начинаться с цифры <math><mn>0</mn></math>.
-В этой задаче можно использовать цикл для перебора всех цифр, стоящих на какой-либо позиции. </li>
-<li>Даны числа <math><mi>a</mi></math> и <math><mi>b</mi></math>. Определите, сколько существует последовательностей из <math><mi>a</mi></math> нулей и <math><mi>b</mi></math> единиц, в которых никакие два нуля не стоят рядом.</li>
-<li>Дано число <math><mi>n</mi></math>, десятичная запись которого не содержит нулей. Получите число, записанное теми же цифрами, но в противоположном порядке.<br/>
-При решении этой задачи нельзя использовать циклы, строки, списки, массивы, разрешается только рекурсия и целочисленная арифметика.<br/>
-Фунция должна возвращать целое число, являющееся результатом работы программы, выводить число по одной цифре нельзя. </li>
+    <li>Каковы будут последствия замены в <a href='#example8_12_1_2'>примере 8.12.1.2</a> строки s:=step(a*a, n DIV 2)
+        на s:=step(a, n DIV 2)*step(a, n DIV 2)?
+    </li>
+    <li>Составить рекурсивную программу суммирования элементов массива целых чисел.</li>
+    <li>Дано натуральное число n. Составить рекурсивную программу вывода всех чисел от 1 до n.</li>
+    <li>Даны два целых числа A и В. Составить рекурсивную программу вывода всех чисел от A до B включительно, в порядке
+        возрастания, если A < B, или в порядке убывания в противном случае.
+    </li>
+    <li>В теории вычислимости важную роль играет функция Аккермана
+        <math>
+            <mrow>
+                <mi>A</mi>
+                <mo>&#x2061;<mrow>
+                    <mo>(</mo>
+                    <mi>m</mi>
+                    <mo>,</mo>
+                    <mi>n</mi>
+                    <mo>)</mo>
+                </mrow>
+                </mo>
+            </mrow>
+        </math>
+        , определенная следующим образом:
+        <math display='block'>
+            <mrow>
+                <mi>A</mi>
+                <mo>&#x2061;</mo>
+                <mrow>
+                    <mo>(</mo>
+                    <mi>m</mi>
+                    <mo>,</mo>
+                    <mi>n</mi>
+                    <mo>)</mo>
+                </mrow>
+            </mrow>
+            <mo>=</mo>
+            <mrow>
+                <mo>{</mo>
+                <mtable>
+                    <mtr>
+                        <mtd>
+                            <mrow>
+                                <mi>n</mi>
+                                <mo>+</mo>
+                                <mn>1</mn>
+                            </mrow>
+                            <mo>,</mo>
+                            <mi>m</mi>
+                            <mo>=</mo>
+                            <mn>0</mo>
+                                <mo>;</mo>
+                        </mtd>
+                    </mtr>
+                    <mtr>
+                        <mtd>
+                            <mrow>
+                                <mi>A</mi>
+                                <mo>&#x2061;</mo>
+                                <mrow>
+                                    <mo>(</mo>
+                                    <mrow>
+                                        <mi>m</mi>
+                                        <mo>-</mo>
+                                        <mn>1</mn>
+                                    </mrow>
+                                    <mo>,</mo>
+                                    <mn>1</mn>
+                                    <mo>)</mo>
+                                </mrow>
+                            </mrow>
+                            <mo>,</mo>
+                            <mrow>
+                                <mi>n</mi>
+                                <mo>=</mo>
+                                <mn>0</mo>
+                                    <mo>,</mo>
+                                    <mi>m</mi>
+                                    <mo>&gt;</mo>
+                                    <mn>0</mn>
+                            </mrow>
+                            <mo>;</mo>
+                        </mtd>
+                    </mtr>
+                    <mtr>
+                        <mtd>
+                            <mrow>
+                                <mi>A</mi>
+                                <mo>&#x2061;</mo>
+                                <mrow>
+                                    <mo>(</mo>
+                                    <mrow>
+                                        <mi>m</mi>
+                                        <mo>-</mo>
+                                        <mn>1</mn>
+                                    </mrow>
+                                    <mo>,</mo>
+                                    <mrow>
+                                        <mi>A</mi>
+                                        <mo>&#x2061;</mo>
+                                        <mrow>
+                                            <mo>(</mo>
+                                            <mi>m</mi>
+                                            <mo>,</mo>
+                                            <mrow>
+                                                <mi>n</mi>
+                                                <mo>-</mo>
+                                                <mn>1</mn>
+                                            </mrow>
+                                            <mo>)</mo>
+                                        </mrow>
+                                    </mrow>
+                                    <mo>)</mo>
+                                </mrow>
+                            </mrow>
+                            <mo>,</mo>
+                            <mrow>
+                                <mi>n</mi>
+                                <mo>&gt;</mo>
+                                <mn>0</mo>
+                                    <mo>,</mo>
+                                    <mi>m</mi>
+                                    <mo>&gt;</mo>
+                                    <mn>0</mn>
+                            </mrow>
+                            <mo>.</mo>
+                        </mtd>
+                    </mtr>
+                </mtable>
+            </mrow>
+        </math>
+        По заданным целым неотрицательным
+        <math>
+            <mi>m</mi>
+        </math>
+        и
+        <math>
+            <mi>n</mi>
+        </math>
+        выведите
+        <math>
+            <mrow>
+                <mi>A</mi>
+                <mo>&#x2061;<mrow>
+                    <mo>(</mo>
+                    <mi>m</mi>
+                    <mo>,</mo>
+                    <mi>n</mi>
+                    <mo>)</mo>
+                </mrow>
+                </mo>
+            </mrow>
+        </math>
+        .
+    </li>
+    <li>Дано натуральное число
+        <math>
+            <mi>N</mi>
+        </math>
+        . Разработать рекурсивную программу, выводящую слово YES, если число N является точной степенью двойки, и слово
+        NO &#151; в противном случае.
+    </li>
+    <li>Дано натуральное число
+        <math>
+            <mi>N</mi>
+        </math>
+        . Вычислите сумму его цифр. При решении этой задачи нельзя использовать строки, списки, массивы и циклы).
+    </li>
+    <li>Дано натуральное число
+        <math>
+            <mi>N</mi>
+        </math>
+        . Выведите все его цифры по одной, в обратном порядке, разделяя их пробелами или новыми строками. При решении
+        этой задачи нельзя использовать строки, списки, массивы и циклы. Разрешена только рекурсия и целочисленная
+        арифметика.
+    </li>
+    <li>Дано натуральное число
+        <math>
+            <mi>N</mi>
+        </math>
+        . Выведите все его цифры по одной, в обычном порядке, разделяя их пробелами или новыми строками. При решении
+        этой задачи нельзя использовать строки, списки, массивы и циклы. Разрешена только рекурсия и целочисленная
+        арифметика.
+    </li>
+    <li>Дано натуральное число
+        <math>
+            <mi>n</mi>
+        </math>
+        , большее единицы. Проверьте, является ли оно простым. Программа должна вывести слово YES, если число простое, и
+        NO, если число составное. Алгоритм должен иметь сложность
+        <math>
+            <mi>O</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>(</mo>
+                <mi>log</mi>
+                <mo>&#x2061;</mo>
+                <mi>n</mi>
+                <mo>)</mo>
+            </mrow>
+        </math>
+        . <br/>Указание. Понятно, что задача сама по себе нерекурсивна, т.к. проверка числа
+        <math>
+            <mi>n</mi>
+        </math>
+        на простоту никак не сводится к проверке на простоту меньших чисел. Поэтому нужно сделать еще один параметр
+        рекурсии: делитель числа, и именно по этому параметру и задать рекурсию.
+    </li>
+    <li>Дано натуральное число
+        <math>
+            <mi>n</mi>
+        </math>
+        , большее единицы. Выведите все простые множители этого числа в порядке неубывания с учетом кратности. Алгоритм
+        должен иметь сложность
+        <math>
+            <mi>O</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>(</mo>
+                <mi>log</mi>
+                <mo>&#x2061;</mo>
+                <mi>n</mi>
+                <mo>)</mo>
+            </mrow>
+        </math>
+        .
+    </li>
+    <li>Дано слово, состоящее только из строчных латинских букв. Проверьте, является ли это слово палиндромом. Выведите
+        YES или NO.
+        При решении этой задачи нельзя пользоваться циклами.
+    </li>
+    <li>Дана последовательность натуральных чисел, завершающаяся числом 0. Выведите все нечетные числа из этой
+        последовательности, сохраняя их порядок.<br/>
+        В этой задаче нельзя использовать глобальные переменные и передавать какие-либо параметры в рекурсивную функцию.
+        Функция не возвращает значение, а сразу же выводит результат на экран. Основная программа должна состоять только
+        из вызова этой функции.
+    </li>
+    <li>Дана последовательность натуральных чисел (одно число в строке), завершающаяся числом 0. Выведите первое,
+        третье, пятое и т.д. из введенных чисел. Завершающий ноль выводить не надо.<br/>
+        В этой задаче нельзя использовать глобальные переменные и передавать какие-либо параметры в рекурсивную функцию.
+        Функция не возвращает значение, а сразу же выводит результат на экран. Основная программа должна состоять только
+        из вызова этой функции.
+    </li>
+    <li>Дана последовательность натуральных чисел (одно число в строке), завершающаяся числом 0. Определите наибольшее
+        значение числа в этой последовательности.<br/>
+        В этой задаче нельзя использовать глобальные переменные и передавать какие-либо параметры в рекурсивную функцию.
+        Функция возвращает единственное значение: максимум считанной последовательности. Гарантируется, что
+        последовательность содержит хотя бы одно число (кроме нуля).
+    </li>
+    <li>Дана последовательность натуральных чисел (одно число в строке), завершающаяся числом 0. Определите среднее
+        значение элементов этой последовательности (без учета последнего нуля).<br/>
+        В этой задаче нельзя использовать глобальные переменные. Функция не получает числа в виде параметра. Результат
+        записывается в две переменные, которые передаются в функцию по ссылке.<br/>
+        Гарантируется, что последовательность содержит хотя бы одно число (кроме нуля).
+    </li>
+    <li>Дана последовательность натуральных чисел (одно число в строке), завершающаяся числом 0. Определите значение
+        второго по величине элемента в этой последовательности, то есть элемента, который будет наибольшим, если из
+        последовательности удалить наибольший элемент.<br/>
+        В этой задаче нельзя использовать глобальные переменные. Функция не получает числа в виде параметра и вообще не
+        получает никаких параметров. Результат записывается в переменные, которые передаются в функцию по ссылке. Других
+        параметров, кроме как используемых для возврата значения, функция не получает.<br/>
+        Гарантируется, что последовательность содержит хотя бы два числа (кроме нуля).
+    </li>
+    <li>Дана последовательность натуральных чисел (одно число в строке), завершающаяся числом 0. Определите, какое
+        количество элементов этой последовательности, равны ее наибольшему элементу.<br/>
+        В этой задаче нельзя использовать глобальные переменные. Функция не получает числа в виде параметра и вообще не
+        получает никаких параметров. В программе результат записывается в переменные, которые передаются в функцию по
+        ссылке. Других параметров, кроме как используемых для возврата значения, функция не получает.<br/>
+        Гарантируется, что последовательность содержит хотя бы одно число (кроме нуля).
+    </li>
+    <li>Дана последовательность натуральных чисел (одно число в строке), завершающаяся двумя числами 0 подряд.
+        Определите, сколько раз в этой последовательности встречается число 1. Числа, идущие после двух нулей,
+        необходимо игнорировать.<br/>
+        В этой задаче нельзя использовать глобальные переменные и параметры, передаваемые в функцию. Функция не получает
+        числа в виде параметров.
+    </li>
+    <li>Дана монотонная последовательность, в которой каждое натуральное число
+        <math>
+            <mi>k</mi>
+        </math>
+        встречается ровно
+        <math>
+            <mi>k</mi>
+        </math>
+        раз:
+        <math>
+            <mfenced open='' close=''>
+                <mn>1</mn>
+                <mn>2</mn>
+                <mn>2</mn>
+                <mn>3</mn>
+                <mn>3</mn>
+                <mn>3</mn>
+                <mn>4</mn>
+                <mn>4</mn>
+                <mn>4</mn>
+                <mn>4</mn>
+                <mi>&#133;</mi>
+            </mfenced>
+        </math>
+        <br/>
+        По данному натуральному n выведите первые n членов этой последовательности. Попробуйте обойтись только одним
+        циклом for.
+    </li>
+    <li>Даны натуральные числа
+        <math>
+            <mi>k</mi>
+        </math>
+        и
+        <math>
+            <mi>s</mi>
+        </math>
+        . Определите, сколько существует
+        <math>
+            <mi>k</mi>
+        </math>
+        -значных натуральных чисел, сумма цифр которых равна
+        <math>
+            <mi>d</mi>
+        </math>
+        . Запись натурального числа не может начинаться с цифры
+        <math>
+            <mn>0</mn>
+        </math>
+        .
+        В этой задаче можно использовать цикл для перебора всех цифр, стоящих на какой-либо позиции.
+    </li>
+    <li>Даны числа
+        <math>
+            <mi>a</mi>
+        </math>
+        и
+        <math>
+            <mi>b</mi>
+        </math>
+        . Определите, сколько существует последовательностей из
+        <math>
+            <mi>a</mi>
+        </math>
+        нулей и
+        <math>
+            <mi>b</mi>
+        </math>
+        единиц, в которых никакие два нуля не стоят рядом.
+    </li>
+    <li>Дано число
+        <math>
+            <mi>n</mi>
+        </math>
+        , десятичная запись которого не содержит нулей. Получите число, записанное теми же цифрами, но в противоположном
+        порядке.<br/>
+        При решении этой задачи нельзя использовать циклы, строки, списки, массивы, разрешается только рекурсия и
+        целочисленная арифметика.<br/>
+        Фунция должна возвращать целое число, являющееся результатом работы программы, выводить число по одной цифре
+        нельзя.
+    </li>
 </ol>
-<p><a href="8_11_3.html">К предыдущему</a> <a href="index.html">К содержанию</a><a href="8_12_2.html">К следующему</a></p>
+<p><a href="8_11_3.html">К предыдущему</a> <a href="index.html">К содержанию</a><a href="8_12_2.html">К следующему</a>
+</p>
 </body>
+<script type="text/javascript">
+    MathJax.Hub.Configured()
+</script>
 </html>

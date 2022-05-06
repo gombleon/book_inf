@@ -1,1324 +1,1611 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" />
-<link rel='stylesheet' type="text/css" href="style.css"></link>
-<meta name="author" content="Rinchin" />
-<meta name="description" content="комбинаторные схемы, мультиплексор, декодер, компаратор"/>
-<meta name="keywords" content="Комбинаторные схемы" />
-<title>Комбинаторные схемы</title>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+  extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});
+
+
+
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <meta charset="UTF-8"/>
+    <link rel='stylesheet' type="text/css" href="style.css"></link>
+    <meta name="author" content="Rinchin"/>
+    <meta name="description" content="комбинаторные схемы, мультиплексор, декодер, компаратор"/>
+    <meta name="keywords" content="Комбинаторные схемы"/>
+    <title>Комбинаторные схемы</title>
 </head>
 <body>
 <p><a href="7_3.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="7_5.html">К следующему</a></p>
 <h1>7.4. Комбинаторные схемы</h1>
-<p><span class="teorema">Комбинаторными называют схемы, в которых выходные сигналы определяются входными сигналами.</span> Не все микросхемы являются комбинаторными. К примеру, в микросхемах памяти выходные сигналы задаются содержимым памяти, а не входными сигналами, и, следовательно, память не является комбинаторной микросхемой. Далее рассмотрим наиболее часто используемые комбинаторные схемы.</p>
+<p><span
+        class="teorema">Комбинаторными называют схемы, в которых выходные сигналы определяются входными сигналами.</span>
+    Не все микросхемы являются комбинаторными. К примеру, в микросхемах памяти выходные сигналы задаются содержимым
+    памяти, а не входными сигналами, и, следовательно, память не является комбинаторной микросхемой. Далее рассмотрим
+    наиболее часто используемые комбинаторные схемы.</p>
 <h2>7.4.1. Мультиплексоры</h2>
 <p><span class="teorema">На цифровом логическом уровне мультиплексор представляет собой микросхему с
-<math  display='inline'>
-	<msup><mn>2</mn><mi>n</mi></msup>
-</math>
-входами, одним выходом и  
-<math  display='inline'>
-	<mi>n</mi>
-</math>
-линиями управления, позволяющими выбрать вход и соединить его с выходом.</span></p>
-<p>На рисунке 7.4.1 изображена схема <a id='multiplexor'>восьмивходового мультиплексора</a>, включающего в себя восемь вентилей <a href='7_1.html#i'>И</a>, один вентиль <a href='7_1.html#ili'>ИЛИ</a> и три <a href='7_1.html#ne'>инвертора</a>. Три линии управлениия А, В, С кодируют трехразрядное число, служащее адресом входа, содержимое которого передается на выход F. 
-</p>
-<svg height = "340px"  width = "800px">
-	<path d="M300,30 H320 A10,10 0 0 1 320,50 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,60 H320 A10,10 0 0 1 320,80 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,90 H320 A10,10 0 0 1 320,110 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,120 H320 A10,10 0 0 1 320,140 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,150 H320 A10,10 0 0 1 320,170 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,180 H320 A10,10 0 0 1 320,200 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,210 H320 A10,10 0 0 1 320,230 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,240 H320 A10,10 0 0 1 320,260 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<text x="5" y="20" stroke="#000000" stroke-width="1" fill="none" font-size="12">D<tspan dy="7" font-size="10">0</tspan></text>	
-	<text x="5" y="50" stroke="#000000" stroke-width="1" fill="none" font-size="12">D<tspan dy="7" font-size="10">1</tspan></text>
-	<text x="5" y="80" stroke="#000000" stroke-width="1" fill="none" font-size="12">D<tspan dy="7" font-size="10">2</tspan></text>
-	<text x="5" y="110" stroke="#000000" stroke-width="1" fill="none" font-size="12">D<tspan dy="7" font-size="10">3</tspan></text>
-	<text x="5" y="140" stroke="#000000" stroke-width="1" fill="none" font-size="12">D<tspan dy="7" font-size="10">4</tspan></text>
-	<text x="5" y="170" stroke="#000000" stroke-width="1" fill="none" font-size="12">D<tspan dy="7" font-size="10">5</tspan></text>
-	<text x="5" y="200" stroke="#000000" stroke-width="1" fill="none" font-size="12">D<tspan dy="7" font-size="10">6</tspan></text>
-	<text x="5" y="230" stroke="#000000" stroke-width="1" fill="none" font-size="12">D<tspan dy="7" font-size="10">7</tspan></text>
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="20,15 85,15 85,31 300,31" />
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="20,45 80,45 80,61 300,61" />
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="20,75 75,75 75,91 300,91" />	
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="20,105 70,105 70,121 300,121" />
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="20,135 65,135 65,151 300,151" />
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="20,165 60,165 60,181 300,181" />
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="20,195 55,195 55,211 300,211" />
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="20,225 50,225 50,241 300,241" />
-	<text x="70" y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">A</text>
-	<polyline points="80,295 108,295 108,280" stroke="#000000" stroke-width="1" fill="none"/>
-	<text x="150" y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">B</text>
-	<polyline points="160,295 192,295 192,280" stroke="#000000" stroke-width="1" fill="none"/>
-	<text x="230" y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">C</text>
-	<polyline points="240,295 273,295 273,280" stroke="#000000" stroke-width="1" fill="none"/>
-	<polygon points="100,280 108,270 116,280" stroke="#000000" stroke-width="1" fill="none" />	
-	<circle cx="108" cy="267" r="3" stroke="#000000" stroke-width="1" fill="none" />
-	<polyline points="108,264 108,36 300,36" stroke="#000000" stroke-width="1" fill="none"/>
-	<line x1="108" y1="66" x2="300" y2="66" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="108" cy="66" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="108" y1="95" x2="300" y2="95" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="108" cy="95" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="108" y1="125" x2="300" y2="125" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="108" cy="125" r="2" stroke="#000000" stroke-width="1" fill="#000000" />	
-	<polygon points="185,280 193,270 201,280" stroke="#000000" stroke-width="1" fill="none" />	
-	<circle cx="193" cy="267" r="3" stroke="#000000" stroke-width="1" fill="none" />
-	<polyline points="193,264 193,41 300,41" stroke="#000000" stroke-width="1" fill="none"/>
-	<line x1="193" y1="71" x2="300" y2="71" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="193" cy="71" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="193" y1="155" x2="300" y2="155" stroke="#000000" stroke-width="1" fill="none"/>	
-	<circle cx="193" cy="155" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="193" y1="185" x2="300" y2="185" stroke="#000000" stroke-width="1" fill="none"/>	
-	<circle cx="193" cy="185" r="2" stroke="#000000" stroke-width="1" fill="#000000" />	
-	<polygon points="265,280 273,270 281,280" stroke="#000000" stroke-width="1" fill="none" />	
-	<circle cx="273" cy="267" r="3" stroke="#000000" stroke-width="1" fill="none" />
-	<polyline points="273,264 273,46 300,46" stroke="#000000" stroke-width="1" fill="none"/>
-	<line x1="273" y1="99" x2="300" y2="99" stroke="#000000" stroke-width="1" fill="none"/>	
-	<circle cx="273" cy="99" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="273" y1="159" x2="300" y2="159" stroke="#000000" stroke-width="1" fill="none"/>	
-	<circle cx="273" cy="159" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="273" y1="215" x2="300" y2="215" stroke="#000000" stroke-width="1" fill="none"/>	
-	<circle cx="273" cy="215" r="2" stroke="#000000" stroke-width="1" fill="#000000" />	
-	<polyline points="74,285 74,163 300,163" stroke="#000000" stroke-width="1" fill="none"/>	
-	<line x1="74" y1="190" x2="300" y2="190" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="74" cy="190" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="74" y1="220" x2="300" y2="220" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="74" cy="220" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="74" y1="246" x2="300" y2="246" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="74" cy="246" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<polyline points="153,285 153,104 300,104" stroke="#000000" stroke-width="1" fill="none"/>	
-	<line x1="153" y1="130" x2="300" y2="130" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="153" cy="130" r="2" stroke="#000000" stroke-width="1" fill="#000000" />	
-	<line x1="153" y1="225" x2="300" y2="225" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="153" cy="225" r="2" stroke="#000000" stroke-width="1" fill="#000000" />	
-	<line x1="153" y1="251" x2="300" y2="251" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="153" cy="251" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<polyline points="234,285 234,77 300,77" stroke="#000000" stroke-width="1" fill="none"/>
-	<line x1="234" y1="256" x2="300" y2="256" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="234" cy="256" r="2" stroke="#000000" stroke-width="1" fill="#000000" />	
-	<line x1="234" y1="196" x2="300" y2="196" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="234" cy="196" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="234" y1="135" x2="300" y2="135" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="234" cy="135" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<g transform="translate(300, 80)">	
-		<path stroke="#000000" fill="none" d="M80,80 Q100,60 80,40 Q120,40 140,60 Q120,80 80,80"/>	
-		<line x1="140" y1="60" x2="155" y2="60" stroke="#000000" stroke-width="1" fill="none"/>
-		<text x="159" y="65" stroke="#000000" stroke-width="1" fill="none" font-size="12">F</text>
-	</g>
-	<polyline points="330,40 370,40 370,121 381,121" stroke="#000000" stroke-width="1" fill="none"/>	
-	<polyline points="330,70 366,70 366,125 384,125" stroke="#000000" stroke-width="1" fill="none"/>	
-	<polyline points="330,100 362,100 362,129 386,129" stroke="#000000" stroke-width="1" fill="none"/>	
-	<polyline points="330,130 358,130 358,134 388,134" stroke="#000000" stroke-width="1" fill="none"/>	
-	<polyline points="330,160 358,160 358,140 389,140" stroke="#000000" stroke-width="1" fill="none"/>
-	<polyline points="330,190 362,190 362,146 389,146" stroke="#000000" stroke-width="1" fill="none"/>	
-	<polyline points="330,220 366, 220 366,152 387,152" stroke="#000000" stroke-width="1" fill="none"/>	
-	<polyline points="330,250 370, 250 370,158 383,158" stroke="#000000" stroke-width="1" fill="none"/>	
-<text x="20" y="330" stroke="none" fill="#000000" font-size="14" font-family="serif">Рис. 7.4.1. Восьмивходовой мультиплексор</text>
-</svg>
-<p>На рис. 7.4.2  представлена интерактивная схема восьмивходового мультиплексора:</p>
-<svg  height = "340px"  width = "800px">
-<script>
-function funcD0(D0,idA,idB,idC,Out) {
-var D0=document.getElementById(D0),	Out=document.getElementById(Out), idA=document.getElementById(idA), idB=document.getElementById(idB), idC=document.getElementById(idC);
-	if (D0.firstChild.nodeValue=='0') 
-  		D0.firstChild.nodeValue='1';
-   else   	 		
-  	  	D0.firstChild.nodeValue='0';
-  	if ((idA.firstChild.nodeValue=='0') && (idB.firstChild.nodeValue=='0') && (idC.firstChild.nodeValue=="0"))
-  		Out.firstChild.nodeValue=D0.firstChild.nodeValue;  	
-}
-
-function funcD1(D1,idA,idB,idC,Out) {
-var D1=document.getElementById(D1), idA=document.getElementById(idA), idB=document.getElementById(idB), idC=document.getElementById(idC), Out=document.getElementById(Out);
-	if (D1.firstChild.nodeValue=='0') 
-  		D1.firstChild.nodeValue='1';
-   else   	 		
-  	  	D1.firstChild.nodeValue='0';
-  	if ((idA.firstChild.nodeValue=="0")&&(idB.firstChild.nodeValue=="0")&&(idC.firstChild.nodeValue=="1"))
-  		Out.firstChild.nodeValue=D1.firstChild.nodeValue;  	
-}
-function funcD2(D2,idA,idB,idC,Out) {
-var D2=document.getElementById(D2), idA=document.getElementById(idA), idB=document.getElementById(idB), idC=document.getElementById(idC), Out=document.getElementById(Out);
-	if (D2.firstChild.nodeValue=='0') 
-  		D2.firstChild.nodeValue='1';
-   else   	 		
-  	  	D2.firstChild.nodeValue='0';
-  	if ((idA.firstChild.nodeValue=="0")&&(idB.firstChild.nodeValue=="1")&&(idC.firstChild.nodeValue=="0"))
-  		Out.firstChild.nodeValue=D2.firstChild.nodeValue;  	  	
-}
-function funcD3(D3,idA,idB,idC,Out) {
-var D3=document.getElementById(D3), idA=document.getElementById(idA), idB=document.getElementById(idB), idC=document.getElementById(idC), Out=document.getElementById(Out);
-	if (D3.firstChild.nodeValue=='0') 
-  		D3.firstChild.nodeValue='1';
-   else   	 		
-  	  	D3.firstChild.nodeValue='0';
-  	if ((idA.firstChild.nodeValue=="0")&&(idB.firstChild.nodeValue=="1")&&(idC.firstChild.nodeValue=="1"))
-  		Out.firstChild.nodeValue=D3.firstChild.nodeValue;  	  	  	
-}
-function funcD4(D4,idA,idB,idC,Out) {
-var D4=document.getElementById(D4), idA=document.getElementById(idA), idB=document.getElementById(idB), idC=document.getElementById(idC), Out=document.getElementById(Out);
-	if (D4.firstChild.nodeValue=='0') 
-  		D4.firstChild.nodeValue='1';
-   else   	 		
-  	  	D4.firstChild.nodeValue='0';
-  	if ((idA.firstChild.nodeValue=="1")&&(idB.firstChild.nodeValue=="0")&&(idC.firstChild.nodeValue=="0"))
-  		Out.firstChild.nodeValue=D4.firstChild.nodeValue;  	
-}
-function funcD5(D5,idA,idB,idC,Out) {
-var D5=document.getElementById(D5), idA=document.getElementById(idA), idB=document.getElementById(idB), idC=document.getElementById(idC), Out=document.getElementById(Out);
-	if (D5.firstChild.nodeValue=='0') 
-  		D5.firstChild.nodeValue='1';
-   else   	 		
-  	  	D5.firstChild.nodeValue='0';
-  	if ((idA.firstChild.nodeValue=="1")&&(idB.firstChild.nodeValue=="0")&&(idC.firstChild.nodeValue=="1"))
-  		Out.firstChild.nodeValue=D5.firstChild.nodeValue;  	
-}
-function funcD6(D6,idA,idB,idC,Out) {
-var D6=document.getElementById(D6), idA=document.getElementById(idA), idB=document.getElementById(idB), idC=document.getElementById(idC), Out=document.getElementById(Out);
-	if (D6.firstChild.nodeValue=='0') 
-  		D6.firstChild.nodeValue='1';
-   else   	 		
-  	  	D6.firstChild.nodeValue='0';
-  	if ((idA.firstChild.nodeValue=="1")&&(idB.firstChild.nodeValue=="1")&&(idC.firstChild.nodeValue=="0"))
-  		Out.firstChild.nodeValue=D6.firstChild.nodeValue;  	
-}
-function funcD7(D7,idA,idB,idC,Out) {
-var D7=document.getElementById(D7), idA=document.getElementById(idA), idB=document.getElementById(idB), idC=document.getElementById(idC), Out=document.getElementById(Out);
-	if (D7.firstChild.nodeValue=='0') 
-  		D7.firstChild.nodeValue='1';
-   else   	 		
-  	  	D7.firstChild.nodeValue='0';
-  	if ((idA.firstChild.nodeValue=="1")&&(idB.firstChild.nodeValue=="1")&&(idC.firstChild.nodeValue=="1"))
-  		Out.firstChild.nodeValue=D7.firstChild.nodeValue;  	  	  	
-}
-function funcA(idA,idB,idC,D0,D1,D2,D3,D4,D5,D6,D7,Out,neA) {
-var idA=document.getElementById(idA), idB=document.getElementById(idB), idC=document.getElementById(idC), Out=document.getElementById(Out), D0=document.getElementById(D0), D1=document.getElementById(D1), 	D2=document.getElementById(D2), D3=document.getElementById(D3), D4=document.getElementById(D4),
-D5=document.getElementById(D5), D6=document.getElementById(D6), D7=document.getElementById(D7), neA=document.getElementById(neA);
-	if (idA.firstChild.nodeValue=='0') {
-  		idA.firstChild.nodeValue='1';
-  		neA.firstChild.nodeValue='0';
-  	}	
-   else {  		
-  	  	idA.firstChild.nodeValue='0';
-  	  	neA.firstChild.nodeValue='1';
-  	}
-  	if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='0') 
-  		Out.firstChild.nodeValue=D0.firstChild.nodeValue;
-  	else if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='1')	
-	  	Out.firstChild.nodeValue=D1.firstChild.nodeValue;
-	else if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='1' && idC.firstChild.nodeValue=='0')	
-	  	Out.firstChild.nodeValue=D2.firstChild.nodeValue;
-	else if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='1' && idC.firstChild.nodeValue=='1')	
-	  	Out.firstChild.nodeValue=D3.firstChild.nodeValue;
-	else if (idA.firstChild.nodeValue=='1' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='0')	
-	  	Out.firstChild.nodeValue=D4.firstChild.nodeValue;	
-	else if (idA.firstChild.nodeValue=='1' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='1')	
-	  	Out.firstChild.nodeValue=D5.firstChild.nodeValue;
-	else if (idA.firstChild.nodeValue=='1' && idB.firstChild.nodeValue=='1' && idC.firstChild.nodeValue=='0')	
-	  	Out.firstChild.nodeValue=D6.firstChild.nodeValue;
-	else  		  		  	  		  	  	
-	  	Out.firstChild.nodeValue=D7.firstChild.nodeValue;
-}
-function funcB(idA,idB,idC,D0,D1,D2,D3,D4,D5,D6,D7,Out,neB) {
-var idA=document.getElementById(idA), idB=document.getElementById(idB), idC=document.getElementById(idC), Out=document.getElementById(Out), D0=document.getElementById(D0), D1=document.getElementById(D1), D2=document.getElementById(D2), D3=document.getElementById(D3), D4=document.getElementById(D4), D5=document.getElementById(D5), D6=document.getElementById(D6), D7=document.getElementById(D7), neB=document.getElementById(neB); 
-	if (idB.firstChild.nodeValue=='0') {
-  		idB.firstChild.nodeValue='1';
-  		neB.firstChild.nodeValue='0';
-  	}	
-   else {   	 		
-  	  	idB.firstChild.nodeValue='0';
-  	  	neB.firstChild.nodeValue='1';
-  	}  	
- 	if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='0') 
-  		Out.firstChild.nodeValue=D0.firstChild.nodeValue;
-  	else if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='1')	
-	  	Out.firstChild.nodeValue=D1.firstChild.nodeValue;
-	else if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='1' && idC.firstChild.nodeValue=='0')	
-	  	Out.firstChild.nodeValue=D2.firstChild.nodeValue;
-	else if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='1' && idC.firstChild.nodeValue=='1')	
-	  	Out.firstChild.nodeValue=D3.firstChild.nodeValue;
-	else if (idA.firstChild.nodeValue=='1' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='0')	
-	  	Out.firstChild.nodeValue=D4.firstChild.nodeValue;	
-	else if (idA.firstChild.nodeValue=='1' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='1')	
-	  	Out.firstChild.nodeValue=D5.firstChild.nodeValue;
-	else if (idA.firstChild.nodeValue=='1' && idB.firstChild.nodeValue=='1' && idC.firstChild.nodeValue=='0')	
-	  	Out.firstChild.nodeValue=D6.firstChild.nodeValue;
-	else  		  		  	  		  	  	
-	  	Out.firstChild.nodeValue=D7.firstChild.nodeValue;
-}
-function funcC(idA,idB,idC,D0,D1,D2,D3,D4,D5,D6,D7,Out,neC) {
-var idA=document.getElementById(idA), idB=document.getElementById(idB), idC=document.getElementById(idC), Out=document.getElementById(Out), D0=document.getElementById(D0), D1=document.getElementById(D1), D2=document.getElementById(D2), D3=document.getElementById(D3), D4=document.getElementById(D4), D5=document.getElementById(D5), D6=document.getElementById(D6), D7=document.getElementById(D7), neC=document.getElementById(neC); 
-	if (idC.firstChild.nodeValue=='0') { 
-  		idC.firstChild.nodeValue='1';
-  		neC.firstChild.nodeValue='0';
-  	}	
-   else {   	 		
-  	  	idC.firstChild.nodeValue='0';
-  	 	neC.firstChild.nodeValue='1'; 	
-  	}  	
- 	if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='0') 
-  		Out.firstChild.nodeValue=D0.firstChild.nodeValue;
-  	else if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='1')	
-	  	Out.firstChild.nodeValue=D1.firstChild.nodeValue;
-	else if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='1' && idC.firstChild.nodeValue=='0')	
-	  	Out.firstChild.nodeValue=D2.firstChild.nodeValue;
-	else if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='1' && idC.firstChild.nodeValue=='1')	
-	  	Out.firstChild.nodeValue=D3.firstChild.nodeValue;
-	else if (idA.firstChild.nodeValue=='1' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='0')	
-	  	Out.firstChild.nodeValue=D4.firstChild.nodeValue;	
-	else if (idA.firstChild.nodeValue=='1' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='1')	
-	  	Out.firstChild.nodeValue=D5.firstChild.nodeValue;
-	else if (idA.firstChild.nodeValue=='1' && idB.firstChild.nodeValue=='1' && idC.firstChild.nodeValue=='0')	
-	  	Out.firstChild.nodeValue=D6.firstChild.nodeValue;
-	else  		  		  	  		  	  	
-	  	Out.firstChild.nodeValue=D7.firstChild.nodeValue;
-}
-
-</script>
-	<path d="M300,30 H320 A10,10 0 0 1 320,50 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,60 H320 A10,10 0 0 1 320,80 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,90 H320 A10,10 0 0 1 320,110 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,120 H320 A10,10 0 0 1 320,140 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,150 H320 A10,10 0 0 1 320,170 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,180 H320 A10,10 0 0 1 320,200 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,210 H320 A10,10 0 0 1 320,230 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,240 H320 A10,10 0 0 1 320,260 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<text onclick="funcD0('D0','idA','idB','idC','Out')" id="D0" x="5" y="20" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>	
-	<text onclick="funcD1('D1','idA','idB','idC','Out')" id="D1" x="5" y="50" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
-	<text onclick="funcD2('D2','idA','idB','idC','Out')" id="D2" x="5" y="80" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
-	<text onclick="funcD3('D3','idA','idB','idC','Out')" id="D3" x="5" y="110" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
-	<text onclick="funcD4('D4','idA','idB','idC','Out')" id="D4" x="5" y="140" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
-	<text onclick="funcD5('D5','idA','idB','idC','Out')" id="D5" x="5" y="170" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
-	<text onclick="funcD6('D6','idA','idB','idC','Out')" id="D6" x="5" y="200" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
-	<text onclick="funcD7('D7','idA','idB','idC','Out')" id="D7" x="5" y="230" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="20,15 85,15 85,31 300,31" />
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="20,45 80,45 80,61 300,61" />
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="20,75 75,75 75,91 300,91" />	
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="20,105 70,105 70,121 300,121" />
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="20,135 65,135 65,151 300,151" />
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="20,165 60,165 60,181 300,181" />
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="20,195 55,195 55,211 300,211" />
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="20,225 50,225 50,241 300,241" />
-	<text onclick="funcA('idA','idB','idC','D0','D1','D2','D3','D4','D5','D6','D7','Out','neA')" id="idA" x="70" y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
-	<polyline points="80,295 108,295 108,280" stroke="#000000" stroke-width="1" fill="none"/>
-	<text  onclick="funcB('idA','idB','idC','D0','D1','D2','D3','D4','D5','D6','D7','Out','neB')" id="idB" x="150" y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
-	<polyline points="160,295 192,295 192,280" stroke="#000000" stroke-width="1" fill="none"/>
-	<text  onclick="funcC('idA','idB','idC','D0','D1','D2','D3','D4','D5','D6','D7','Out','neC')" id="idC" x="230" y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
-	<polyline points="240,295 273,295 273,280" stroke="#000000" stroke-width="1" fill="none"/>
-	<polygon points="100,280 108,270 116,280" stroke="#000000" stroke-width="1" fill="none" />	
-	<circle cx="108" cy="267" r="3" stroke="#000000" stroke-width="1" fill="none"/>
-	<text id="neA" x="113" y="262" stroke="#000000" stroke-width="1" fill="none" font-size="12">1</text>
-	<polyline points="108,264 108,36 300,36" stroke="#000000" stroke-width="1" fill="none"/>
-	<line x1="108" y1="66" x2="300" y2="66" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="108" cy="66" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="108" y1="95" x2="300" y2="95" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="108" cy="95" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="108" y1="125" x2="300" y2="125" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="108" cy="125" r="2" stroke="#000000" stroke-width="1" fill="#000000" />	
-	<polygon points="185,280 193,270 201,280" stroke="#000000" stroke-width="1" fill="none" />	
-	<circle cx="193" cy="267" r="3" stroke="#000000" stroke-width="1" fill="none" />
-	<text id="neB" x="198" y="265" stroke="#000000" stroke-width="1" fill="none" font-size="12">1</text>
-	<polyline points="193,264 193,41 300,41" stroke="#000000" stroke-width="1" fill="none"/>
-	<line x1="193" y1="71" x2="300" y2="71" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="193" cy="71" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="193" y1="155" x2="300" y2="155" stroke="#000000" stroke-width="1" fill="none"/>	
-	<circle cx="193" cy="155" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="193" y1="185" x2="300" y2="185" stroke="#000000" stroke-width="1" fill="none"/>	
-	<circle cx="193" cy="185" r="2" stroke="#000000" stroke-width="1" fill="#000000" />	
-	<polygon points="265,280 273,270 281,280" stroke="#000000" stroke-width="1" fill="none" />	
-	<circle cx="273" cy="267" r="3" stroke="#000000" stroke-width="1" fill="none" />
-	<text id="neC" x="280" y="267" stroke="#000000" stroke-width="1" fill="none" font-size="12">1</text>
-	<polyline points="273,264 273,46 300,46" stroke="#000000" stroke-width="1" fill="none"/>
-	<line x1="273" y1="99" x2="300" y2="99" stroke="#000000" stroke-width="1" fill="none"/>	
-	<circle cx="273" cy="99" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="273" y1="159" x2="300" y2="159" stroke="#000000" stroke-width="1" fill="none"/>	
-	<circle cx="273" cy="159" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="273" y1="215" x2="300" y2="215" stroke="#000000" stroke-width="1" fill="none"/>	
-	<circle cx="273" cy="215" r="2" stroke="#000000" stroke-width="1" fill="#000000" />	
-	<polyline points="74,285 74,163 300,163" stroke="#000000" stroke-width="1" fill="none"/>	
-	<line x1="74" y1="190" x2="300" y2="190" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="74" cy="190" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="74" y1="220" x2="300" y2="220" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="74" cy="220" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="74" y1="246" x2="300" y2="246" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="74" cy="246" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<polyline points="153,285 153,104 300,104" stroke="#000000" stroke-width="1" fill="none"/>	
-	<line x1="153" y1="130" x2="300" y2="130" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="153" cy="130" r="2" stroke="#000000" stroke-width="1" fill="#000000" />	
-	<line x1="153" y1="225" x2="300" y2="225" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="153" cy="225" r="2" stroke="#000000" stroke-width="1" fill="#000000" />	
-	<line x1="153" y1="251" x2="300" y2="251" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="153" cy="251" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<polyline points="234,285 234,77 300,77" stroke="#000000" stroke-width="1" fill="none"/>
-	<line x1="234" y1="256" x2="300" y2="256" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="234" cy="256" r="2" stroke="#000000" stroke-width="1" fill="#000000" />	
-	<line x1="234" y1="196" x2="300" y2="196" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="234" cy="196" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="234" y1="135" x2="300" y2="135" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="234" cy="135" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<g transform="translate(300, 80)">	
-		<path stroke="#000000" fill="none" d="M80,80 Q100,60 80,40 Q120,40 140,60 Q120,80 80,80"/>	
-		<line x1="140" y1="60" x2="155" y2="60" stroke="#000000" stroke-width="1" fill="none"/>
-		<text id="Out" x="159" y="65" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
-	</g>
-	<polyline points="330,40 370,40 370,121 381,121" stroke="#000000" stroke-width="1" fill="none"/>	
-	<polyline points="330,70 366,70 366,125 384,125" stroke="#000000" stroke-width="1" fill="none"/>	
-	<polyline points="330,100 362,100 362,129 386,129" stroke="#000000" stroke-width="1" fill="none"/>	
-	<polyline points="330,130 358,130 358,134 388,134" stroke="#000000" stroke-width="1" fill="none"/>	
-	<polyline points="330,160 358,160 358,140 389,140" stroke="#000000" stroke-width="1" fill="none"/>
-	<polyline points="330,190 362,190 362,146 389,146" stroke="#000000" stroke-width="1" fill="none"/>	
-	<polyline points="330,220 366, 220 366,152 387,152" stroke="#000000" stroke-width="1" fill="none"/>	
-	<polyline points="330,250 370, 250 370,158 383,158" stroke="#000000" stroke-width="1" fill="none"/>	
-	<text x="20" y="330" stroke="none" fill="#000000" font-size="14" font-family="serif">Рис. 7.4.2. Восьмивходовой мультиплексор</text>
-</svg>
-<p>Другим применением мультиплексора может быть преобразование параллельного кода в последовательный. Если подать на входы восемь бит и последовательно переключать линии управления для получения значений от 000 до 111, то восемь бит поступят на выходную линию последовательно. Такое преобразование параллельного кода в последовательный осуществляется при вводе информации с клавиатуры, поскольку каждое нажатие клавиши генерирует восьмиразрядное число, которое должно передаваться последовательно по телефонной линии.</p>
-<p>Рассмотрим пример использования мультиплексора для построения таблицы истинности <a href='7_2.html#t7_2_3'>функции большинства</a>. Если заземлить входы 
-<math   display='inline'>
-<mfenced open='' close=''>
-<msub><mi>D</mi><mn>0</mn></msub><msub><mi>D</mi><mn>1</mn></msub><msub><mi>D</mi><mn>2</mn></msub><msub><mi>D</mi><mn>4</mn></msub>
-</mfenced>
-</math>, а на остальные входы подать напряжение 
-<math   display='inline'>
-<mrow>
-<mo>+</mo>
-<msub><mi>v</mi><mi>cc</mi></msub>
-</mrow>
-</math>, то мультиплексор будет реализовывать функцию большинства:</p>
-<svg  height = "340px"  width = "800px">
-<script>
-function funcAb(idA,idB,idC,Out,neA) {
-var idA=document.getElementById(idA), idB=document.getElementById(idB), idC=document.getElementById(idC), Out=document.getElementById(Out), neA=document.getElementById(neA); 
-	if (idA.firstChild.nodeValue=='0') {
-  		idA.firstChild.nodeValue='1';
-  		neA.firstChild.nodeValue='0';
-  	}	
-   else {  		
-  	  	idA.firstChild.nodeValue='0';
-  	  	neA.firstChild.nodeValue='1';
-  	}
- 	if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='0') 
-  		Out.firstChild.nodeValue='0';
-  	else if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='1')	
-	  	Out.firstChild.nodeValue='0';
-	else if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='1' && idC.firstChild.nodeValue=='0')	
-	  	Out.firstChild.nodeValue='0';
-	else if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='1' && idC.firstChild.nodeValue=='1')	
-	  	Out.firstChild.nodeValue='1';
-	else if (idA.firstChild.nodeValue=='1' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='0')	
-	  	Out.firstChild.nodeValue='0';	
-	else if (idA.firstChild.nodeValue=='1' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='1')	
-	  	Out.firstChild.nodeValue='1';
-	else if (idA.firstChild.nodeValue=='1' && idB.firstChild.nodeValue=='1' && idC.firstChild.nodeValue=='0')	
-	  	Out.firstChild.nodeValue='1';
-	else  		  		  	  		  	  	
-	  	Out.firstChild.nodeValue='1';
-}
-function funcBb(idA,idB,idC,Out,neB) {
-var idA=document.getElementById(idA), idB=document.getElementById(idB), idC=document.getElementById(idC), Out=document.getElementById(Out), neB=document.getElementById(neB);
-	if (idB.firstChild.nodeValue=='0') {
-  		idB.firstChild.nodeValue='1';
-  		neB.firstChild.nodeValue='0';
-  	}	
-   else {   	 		
-  	  	idB.firstChild.nodeValue='0';
-  	  	neB.firstChild.nodeValue='1';
-  	}  	
- 	if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='0') 
-  		Out.firstChild.nodeValue='0';
-  	else if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='1')	
-	  	Out.firstChild.nodeValue='0';
-	else if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='1' && idC.firstChild.nodeValue=='0')	
-	  	Out.firstChild.nodeValue='0';
-	else if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='1' && idC.firstChild.nodeValue=='1')	
-	  	Out.firstChild.nodeValue='1';
-	else if (idA.firstChild.nodeValue=='1' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='0')	
-	  	Out.firstChild.nodeValue='0';	
-	else if (idA.firstChild.nodeValue=='1' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='1')	
-	  	Out.firstChild.nodeValue='1';
-	else if (idA.firstChild.nodeValue=='1' && idB.firstChild.nodeValue=='1' && idC.firstChild.nodeValue=='0')	
-	  	Out.firstChild.nodeValue='1';
-	else  		  		  	  		  	  	
-	  	Out.firstChild.nodeValue='1';
-}
-function funcCb(idA,idB,idC,Out,neC) {
-var idA=document.getElementById(idA), idB=document.getElementById(idB), idC=document.getElementById(idC), Out=document.getElementById(Out), neC=document.getElementById(neC);
-	if (idC.firstChild.nodeValue=='0') { 
-  		idC.firstChild.nodeValue='1';
-  		neC.firstChild.nodeValue='0';
-  	}	
-   else {   	 		
-  	  	idC.firstChild.nodeValue='0';
-  	 	neC.firstChild.nodeValue='1'; 	
-  	}  	
- 	if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='0') 
-  		Out.firstChild.nodeValue='0';
-  	else if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='1')	
-	  	Out.firstChild.nodeValue='0';
-	else if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='1' && idC.firstChild.nodeValue=='0')	
-	  	Out.firstChild.nodeValue='0';
-	else if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='1' && idC.firstChild.nodeValue=='1')	
-	  	Out.firstChild.nodeValue='1';
-	else if (idA.firstChild.nodeValue=='1' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='0')	
-	  	Out.firstChild.nodeValue='0';	
-	else if (idA.firstChild.nodeValue=='1' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='1')	
-	  	Out.firstChild.nodeValue='1';
-	else if (idA.firstChild.nodeValue=='1' && idB.firstChild.nodeValue=='1' && idC.firstChild.nodeValue=='0')	
-	  	Out.firstChild.nodeValue='1';
-	else  		  		  	  		  	  	
-	  	Out.firstChild.nodeValue='1';
-}
-
-</script>
-	<path d="M300,30 H320 A10,10 0 0 1 320,50 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,60 H320 A10,10 0 0 1 320,80 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,90 H320 A10,10 0 0 1 320,110 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,120 H320 A10,10 0 0 1 320,140 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,150 H320 A10,10 0 0 1 320,170 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,180 H320 A10,10 0 0 1 320,200 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,210 H320 A10,10 0 0 1 320,230 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,240 H320 A10,10 0 0 1 320,260 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<line x1="20" y1="31" x2="300" y2="31" stroke="#000000" stroke-width="1" fill="none"/>	
-	<line x1="20" y1="31" x2="20" y2="270" stroke="#000000" stroke-width="1" fill="none"/>
-	<line x1="13" y1="270" x2="27" y2="270" stroke="#000000" stroke-width="1" fill="none"/>	
-	<line x1="16" y1="273" x2="24" y2="273" stroke="#000000" stroke-width="1" fill="none"/>
-	<line x1="19" y1="276" x2="21" y2="276" stroke="#000000" stroke-width="1" fill="none"/>	
-	<line x1="20" y1="61" x2="300" y2="61" stroke="#000000" stroke-width="1" fill="none"/>	
-	<line x1="20" y1="91" x2="300" y2="91" stroke="#000000" stroke-width="1" fill="none"/>	
-	<line x1="20" y1="151" x2="300" y2="151" stroke="#000000" stroke-width="1" fill="none"/>	
-	<line x1="60" y1="121" x2="300" y2="121" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="60" cy="121" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
-	<line x1="60" y1="181" x2="300" y2="181" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="60" cy="181" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
-	<line x1="60" y1="211" x2="300" y2="211" stroke="#000000" stroke-width="1" fill="none"/>	
-	<circle cx="60" cy="211" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
-	<line x1="60" y1="241" x2="300" y2="241" stroke="#000000" stroke-width="1" fill="none"/>	
-	<line x1="60" y1="10" x2="60" y2="241" stroke="#000000" stroke-width="1" fill="none"/>
-	<text x="63" y="10" stroke="#000000" stroke-width="1" fill="none" font-size="12">+v<tspan dy='+7'>cc</tspan></text>
-	<text onclick="funcAb('idAb','idBb','idCb','Outb','neAb')" id="idAb" x="70" y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
-	<polyline points="80,295 108,295 108,280" stroke="#000000" stroke-width="1" fill="none"/>
-	<text  onclick="funcBb('idAb','idBb','idCb','Outb','neBb')" id="idBb" x="150" y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
-	<polyline points="160,295 192,295 192,280" stroke="#000000" stroke-width="1" fill="none"/>
-	<text  onclick="funcCb('idAb','idBb','idCb','Outb','neCb')" id="idCb" x="230" y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
-	<polyline points="240,295 273,295 273,280" stroke="#000000" stroke-width="1" fill="none"/>
-	<polygon points="100,280 108,270 116,280" stroke="#000000" stroke-width="1" fill="none" />	
-	<circle cx="108" cy="267" r="3" stroke="#000000" stroke-width="1" fill="none"/>
-	<text id="neAb" x="113" y="262" stroke="#000000" stroke-width="1" fill="none" font-size="12">1</text>
-	<polyline points="108,264 108,36 300,36" stroke="#000000" stroke-width="1" fill="none"/>
-	<line x1="108" y1="66" x2="300" y2="66" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="108" cy="66" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="108" y1="95" x2="300" y2="95" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="108" cy="95" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="108" y1="125" x2="300" y2="125" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="108" cy="125" r="2" stroke="#000000" stroke-width="1" fill="#000000" />	
-	<polygon points="185,280 193,270 201,280" stroke="#000000" stroke-width="1" fill="none" />	
-	<circle cx="193" cy="267" r="3" stroke="#000000" stroke-width="1" fill="none" />
-	<text id="neBb" x="198" y="265" stroke="#000000" stroke-width="1" fill="none" font-size="12">1</text>
-	<polyline points="193,264 193,41 300,41" stroke="#000000" stroke-width="1" fill="none"/>
-	<line x1="193" y1="71" x2="300" y2="71" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="193" cy="71" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="193" y1="155" x2="300" y2="155" stroke="#000000" stroke-width="1" fill="none"/>	
-	<circle cx="193" cy="155" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="193" y1="185" x2="300" y2="185" stroke="#000000" stroke-width="1" fill="none"/>	
-	<circle cx="193" cy="185" r="2" stroke="#000000" stroke-width="1" fill="#000000" />	
-	<polygon points="265,280 273,270 281,280" stroke="#000000" stroke-width="1" fill="none" />	
-	<circle cx="273" cy="267" r="3" stroke="#000000" stroke-width="1" fill="none" />
-	<text id="neCb" x="280" y="267" stroke="#000000" stroke-width="1" fill="none" font-size="12">1</text>
-	<polyline points="273,264 273,46 300,46" stroke="#000000" stroke-width="1" fill="none"/>
-	<line x1="273" y1="99" x2="300" y2="99" stroke="#000000" stroke-width="1" fill="none"/>	
-	<circle cx="273" cy="99" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="273" y1="159" x2="300" y2="159" stroke="#000000" stroke-width="1" fill="none"/>	
-	<circle cx="273" cy="159" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="273" y1="215" x2="300" y2="215" stroke="#000000" stroke-width="1" fill="none"/>	
-	<circle cx="273" cy="215" r="2" stroke="#000000" stroke-width="1" fill="#000000" />	
-	<polyline points="74,285 74,163 300,163" stroke="#000000" stroke-width="1" fill="none"/>	
-	<line x1="74" y1="190" x2="300" y2="190" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="74" cy="190" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="74" y1="220" x2="300" y2="220" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="74" cy="220" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="74" y1="246" x2="300" y2="246" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="74" cy="246" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<polyline points="153,285 153,104 300,104" stroke="#000000" stroke-width="1" fill="none"/>	
-	<line x1="153" y1="130" x2="300" y2="130" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="153" cy="130" r="2" stroke="#000000" stroke-width="1" fill="#000000" />	
-	<line x1="153" y1="225" x2="300" y2="225" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="153" cy="225" r="2" stroke="#000000" stroke-width="1" fill="#000000" />	
-	<line x1="153" y1="251" x2="300" y2="251" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="153" cy="251" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<polyline points="234,285 234,77 300,77" stroke="#000000" stroke-width="1" fill="none"/>
-	<line x1="234" y1="256" x2="300" y2="256" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="234" cy="256" r="2" stroke="#000000" stroke-width="1" fill="#000000" />	
-	<line x1="234" y1="196" x2="300" y2="196" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="234" cy="196" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="234" y1="135" x2="300" y2="135" stroke="#000000" stroke-width="1" fill="none"/>
-	<circle cx="234" cy="135" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<g transform="translate(300, 80)">	
-		<path stroke="#000000" fill="none" d="M80,80 Q100,60 80,40 Q120,40 140,60 Q120,80 80,80"/>	
-		<line x1="140" y1="60" x2="155" y2="60" stroke="#000000" stroke-width="1" fill="none"/>
-		<text id="Outb" x="159" y="65" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
-	</g>
-	<polyline points="330,40 370,40 370,121 381,121" stroke="#000000" stroke-width="1" fill="none"/>	
-	<polyline points="330,70 366,70 366,125 384,125" stroke="#000000" stroke-width="1" fill="none"/>	
-	<polyline points="330,100 362,100 362,129 386,129" stroke="#000000" stroke-width="1" fill="none"/>	
-	<polyline points="330,130 358,130 358,134 388,134" stroke="#000000" stroke-width="1" fill="none"/>	
-	<polyline points="330,160 358,160 358,140 389,140" stroke="#000000" stroke-width="1" fill="none"/>
-	<polyline points="330,190 362,190 362,146 389,146" stroke="#000000" stroke-width="1" fill="none"/>	
-	<polyline points="330,220 366, 220 366,152 387,152" stroke="#000000" stroke-width="1" fill="none"/>	
-	<polyline points="330,250 370, 250 370,158 383,158" stroke="#000000" stroke-width="1" fill="none"/>	
-	<text x="20" y="330" stroke="none" fill="#000000" font-size="14" font-family="serif">Рис. 7.4.3. Реализация функции большинства</text>
-</svg>
-<p><span class="teorema"><a id='demultiplexor'>Комбинаторная схема</a>, соединяющая единственный вход с одним из 
-<math   display='inline'>
-	<msup><mn>2</mn><mi>n</mi></msup>
-</math>
-выходов, в зависимости от значений сигналов в 
-<math   display='inline'>
-	<mi>n</mi>
-</math>
-линиях управления, называется демультиплексором.</span> Задание в линиях управления бинарного значения 
-<math   display='inline'>
-	<mi>k</mi>
-</math>
-означает выбор выхода
-<math   display='inline'>
-	<mi>k</mi>
-</math>. Очевидно, что функции мультиплексора и демультиплексора являются взаимно-обратными. 
-</p> 
-<h2>7.4.2. Декодеры</h2>
-<p><span class="teorema"><a id='dekoder'>Комбинаторная схема</a>, получающая на входе n-разрядное число и использующее его для выбора одной из 
 <math display='inline'>
 	<msup><mn>2</mn><mi>n</mi></msup>
 </math>
-выходных линий,называется декодером.</span> 
+входами, одним выходом и
+<math display='inline'>
+	<mi>n</mi>
+</math>
+линиями управления, позволяющими выбрать вход и соединить его с выходом.</span></p>
+<p>На рисунке 7.4.1 изображена схема <a id='multiplexor'>восьмивходового мультиплексора</a>, включающего в себя восемь
+    вентилей <a href='7_1.html#i'>И</a>, один вентиль <a href='7_1.html#ili'>ИЛИ</a> и три <a href='7_1.html#ne'>инвертора</a>.
+    Три линии управлениия А, В, С кодируют трехразрядное число, служащее адресом входа, содержимое которого передается
+    на выход F.
+</p>
+<svg height="340px" width="800px">
+    <path d="M300,30 H320 A10,10 0 0 1 320,50 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,60 H320 A10,10 0 0 1 320,80 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,90 H320 A10,10 0 0 1 320,110 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,120 H320 A10,10 0 0 1 320,140 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,150 H320 A10,10 0 0 1 320,170 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,180 H320 A10,10 0 0 1 320,200 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,210 H320 A10,10 0 0 1 320,230 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,240 H320 A10,10 0 0 1 320,260 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <text x="5" y="20" stroke="#000000" stroke-width="1" fill="none" font-size="12">D
+        <tspan dy="7" font-size="10">0</tspan>
+    </text>
+    <text x="5" y="50" stroke="#000000" stroke-width="1" fill="none" font-size="12">D
+        <tspan dy="7" font-size="10">1</tspan>
+    </text>
+    <text x="5" y="80" stroke="#000000" stroke-width="1" fill="none" font-size="12">D
+        <tspan dy="7" font-size="10">2</tspan>
+    </text>
+    <text x="5" y="110" stroke="#000000" stroke-width="1" fill="none" font-size="12">D
+        <tspan dy="7" font-size="10">3</tspan>
+    </text>
+    <text x="5" y="140" stroke="#000000" stroke-width="1" fill="none" font-size="12">D
+        <tspan dy="7" font-size="10">4</tspan>
+    </text>
+    <text x="5" y="170" stroke="#000000" stroke-width="1" fill="none" font-size="12">D
+        <tspan dy="7" font-size="10">5</tspan>
+    </text>
+    <text x="5" y="200" stroke="#000000" stroke-width="1" fill="none" font-size="12">D
+        <tspan dy="7" font-size="10">6</tspan>
+    </text>
+    <text x="5" y="230" stroke="#000000" stroke-width="1" fill="none" font-size="12">D
+        <tspan dy="7" font-size="10">7</tspan>
+    </text>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="20,15 85,15 85,31 300,31"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="20,45 80,45 80,61 300,61"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="20,75 75,75 75,91 300,91"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="20,105 70,105 70,121 300,121"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="20,135 65,135 65,151 300,151"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="20,165 60,165 60,181 300,181"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="20,195 55,195 55,211 300,211"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="20,225 50,225 50,241 300,241"/>
+    <text x="70" y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">A</text>
+    <polyline points="80,295 108,295 108,280" stroke="#000000" stroke-width="1" fill="none"/>
+    <text x="150" y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">B</text>
+    <polyline points="160,295 192,295 192,280" stroke="#000000" stroke-width="1" fill="none"/>
+    <text x="230" y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">C</text>
+    <polyline points="240,295 273,295 273,280" stroke="#000000" stroke-width="1" fill="none"/>
+    <polygon points="100,280 108,270 116,280" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="108" cy="267" r="3" stroke="#000000" stroke-width="1" fill="none"/>
+    <polyline points="108,264 108,36 300,36" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="108" y1="66" x2="300" y2="66" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="108" cy="66" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="108" y1="95" x2="300" y2="95" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="108" cy="95" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="108" y1="125" x2="300" y2="125" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="108" cy="125" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <polygon points="185,280 193,270 201,280" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="193" cy="267" r="3" stroke="#000000" stroke-width="1" fill="none"/>
+    <polyline points="193,264 193,41 300,41" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="193" y1="71" x2="300" y2="71" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="193" cy="71" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="193" y1="155" x2="300" y2="155" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="193" cy="155" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="193" y1="185" x2="300" y2="185" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="193" cy="185" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <polygon points="265,280 273,270 281,280" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="273" cy="267" r="3" stroke="#000000" stroke-width="1" fill="none"/>
+    <polyline points="273,264 273,46 300,46" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="273" y1="99" x2="300" y2="99" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="273" cy="99" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="273" y1="159" x2="300" y2="159" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="273" cy="159" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="273" y1="215" x2="300" y2="215" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="273" cy="215" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <polyline points="74,285 74,163 300,163" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="74" y1="190" x2="300" y2="190" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="74" cy="190" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="74" y1="220" x2="300" y2="220" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="74" cy="220" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="74" y1="246" x2="300" y2="246" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="74" cy="246" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <polyline points="153,285 153,104 300,104" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="153" y1="130" x2="300" y2="130" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="153" cy="130" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="153" y1="225" x2="300" y2="225" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="153" cy="225" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="153" y1="251" x2="300" y2="251" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="153" cy="251" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <polyline points="234,285 234,77 300,77" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="234" y1="256" x2="300" y2="256" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="234" cy="256" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="234" y1="196" x2="300" y2="196" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="234" cy="196" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="234" y1="135" x2="300" y2="135" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="234" cy="135" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <g transform="translate(300, 80)">
+        <path stroke="#000000" fill="none" d="M80,80 Q100,60 80,40 Q120,40 140,60 Q120,80 80,80"/>
+        <line x1="140" y1="60" x2="155" y2="60" stroke="#000000" stroke-width="1" fill="none"/>
+        <text x="159" y="65" stroke="#000000" stroke-width="1" fill="none" font-size="12">F</text>
+    </g>
+    <polyline points="330,40 370,40 370,121 381,121" stroke="#000000" stroke-width="1" fill="none"/>
+    <polyline points="330,70 366,70 366,125 384,125" stroke="#000000" stroke-width="1" fill="none"/>
+    <polyline points="330,100 362,100 362,129 386,129" stroke="#000000" stroke-width="1" fill="none"/>
+    <polyline points="330,130 358,130 358,134 388,134" stroke="#000000" stroke-width="1" fill="none"/>
+    <polyline points="330,160 358,160 358,140 389,140" stroke="#000000" stroke-width="1" fill="none"/>
+    <polyline points="330,190 362,190 362,146 389,146" stroke="#000000" stroke-width="1" fill="none"/>
+    <polyline points="330,220 366, 220 366,152 387,152" stroke="#000000" stroke-width="1" fill="none"/>
+    <polyline points="330,250 370, 250 370,158 383,158" stroke="#000000" stroke-width="1" fill="none"/>
+    <text x="20" y="330" stroke="none" fill="#000000" font-size="14" font-family="serif">Рис. 7.4.1. Восьмивходовой
+        мультиплексор
+    </text>
+</svg>
+<p>На рис. 7.4.2 представлена интерактивная схема восьмивходового мультиплексора:</p>
+<svg height="340px" width="800px">
+    <script>
+        function funcD0(D0, idA, idB, idC, Out) {
+            var D0 = document.getElementById(D0), Out = document.getElementById(Out),
+                idA = document.getElementById(idA), idB = document.getElementById(idB),
+                idC = document.getElementById(idC);
+            if (D0.firstChild.nodeValue == '0')
+                D0.firstChild.nodeValue = '1';
+            else
+                D0.firstChild.nodeValue = '0';
+            if ((idA.firstChild.nodeValue == '0') && (idB.firstChild.nodeValue == '0') && (idC.firstChild.nodeValue == "0"))
+                Out.firstChild.nodeValue = D0.firstChild.nodeValue;
+        }
+
+        function funcD1(D1, idA, idB, idC, Out) {
+            var D1 = document.getElementById(D1), idA = document.getElementById(idA),
+                idB = document.getElementById(idB), idC = document.getElementById(idC),
+                Out = document.getElementById(Out);
+            if (D1.firstChild.nodeValue == '0')
+                D1.firstChild.nodeValue = '1';
+            else
+                D1.firstChild.nodeValue = '0';
+            if ((idA.firstChild.nodeValue == "0") && (idB.firstChild.nodeValue == "0") && (idC.firstChild.nodeValue == "1"))
+                Out.firstChild.nodeValue = D1.firstChild.nodeValue;
+        }
+
+        function funcD2(D2, idA, idB, idC, Out) {
+            var D2 = document.getElementById(D2), idA = document.getElementById(idA),
+                idB = document.getElementById(idB), idC = document.getElementById(idC),
+                Out = document.getElementById(Out);
+            if (D2.firstChild.nodeValue == '0')
+                D2.firstChild.nodeValue = '1';
+            else
+                D2.firstChild.nodeValue = '0';
+            if ((idA.firstChild.nodeValue == "0") && (idB.firstChild.nodeValue == "1") && (idC.firstChild.nodeValue == "0"))
+                Out.firstChild.nodeValue = D2.firstChild.nodeValue;
+        }
+
+        function funcD3(D3, idA, idB, idC, Out) {
+            var D3 = document.getElementById(D3), idA = document.getElementById(idA),
+                idB = document.getElementById(idB), idC = document.getElementById(idC),
+                Out = document.getElementById(Out);
+            if (D3.firstChild.nodeValue == '0')
+                D3.firstChild.nodeValue = '1';
+            else
+                D3.firstChild.nodeValue = '0';
+            if ((idA.firstChild.nodeValue == "0") && (idB.firstChild.nodeValue == "1") && (idC.firstChild.nodeValue == "1"))
+                Out.firstChild.nodeValue = D3.firstChild.nodeValue;
+        }
+
+        function funcD4(D4, idA, idB, idC, Out) {
+            var D4 = document.getElementById(D4), idA = document.getElementById(idA),
+                idB = document.getElementById(idB), idC = document.getElementById(idC),
+                Out = document.getElementById(Out);
+            if (D4.firstChild.nodeValue == '0')
+                D4.firstChild.nodeValue = '1';
+            else
+                D4.firstChild.nodeValue = '0';
+            if ((idA.firstChild.nodeValue == "1") && (idB.firstChild.nodeValue == "0") && (idC.firstChild.nodeValue == "0"))
+                Out.firstChild.nodeValue = D4.firstChild.nodeValue;
+        }
+
+        function funcD5(D5, idA, idB, idC, Out) {
+            var D5 = document.getElementById(D5), idA = document.getElementById(idA),
+                idB = document.getElementById(idB), idC = document.getElementById(idC),
+                Out = document.getElementById(Out);
+            if (D5.firstChild.nodeValue == '0')
+                D5.firstChild.nodeValue = '1';
+            else
+                D5.firstChild.nodeValue = '0';
+            if ((idA.firstChild.nodeValue == "1") && (idB.firstChild.nodeValue == "0") && (idC.firstChild.nodeValue == "1"))
+                Out.firstChild.nodeValue = D5.firstChild.nodeValue;
+        }
+
+        function funcD6(D6, idA, idB, idC, Out) {
+            var D6 = document.getElementById(D6), idA = document.getElementById(idA),
+                idB = document.getElementById(idB), idC = document.getElementById(idC),
+                Out = document.getElementById(Out);
+            if (D6.firstChild.nodeValue == '0')
+                D6.firstChild.nodeValue = '1';
+            else
+                D6.firstChild.nodeValue = '0';
+            if ((idA.firstChild.nodeValue == "1") && (idB.firstChild.nodeValue == "1") && (idC.firstChild.nodeValue == "0"))
+                Out.firstChild.nodeValue = D6.firstChild.nodeValue;
+        }
+
+        function funcD7(D7, idA, idB, idC, Out) {
+            var D7 = document.getElementById(D7), idA = document.getElementById(idA),
+                idB = document.getElementById(idB), idC = document.getElementById(idC),
+                Out = document.getElementById(Out);
+            if (D7.firstChild.nodeValue == '0')
+                D7.firstChild.nodeValue = '1';
+            else
+                D7.firstChild.nodeValue = '0';
+            if ((idA.firstChild.nodeValue == "1") && (idB.firstChild.nodeValue == "1") && (idC.firstChild.nodeValue == "1"))
+                Out.firstChild.nodeValue = D7.firstChild.nodeValue;
+        }
+
+        function funcA(idA, idB, idC, D0, D1, D2, D3, D4, D5, D6, D7, Out, neA) {
+            var idA = document.getElementById(idA), idB = document.getElementById(idB),
+                idC = document.getElementById(idC), Out = document.getElementById(Out),
+                D0 = document.getElementById(D0), D1 = document.getElementById(D1), D2 = document.getElementById(D2),
+                D3 = document.getElementById(D3), D4 = document.getElementById(D4),
+                D5 = document.getElementById(D5), D6 = document.getElementById(D6), D7 = document.getElementById(D7),
+                neA = document.getElementById(neA);
+            if (idA.firstChild.nodeValue == '0') {
+                idA.firstChild.nodeValue = '1';
+                neA.firstChild.nodeValue = '0';
+            } else {
+                idA.firstChild.nodeValue = '0';
+                neA.firstChild.nodeValue = '1';
+            }
+            if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = D0.firstChild.nodeValue;
+            else if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '1')
+                Out.firstChild.nodeValue = D1.firstChild.nodeValue;
+            else if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '1' && idC.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = D2.firstChild.nodeValue;
+            else if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '1' && idC.firstChild.nodeValue == '1')
+                Out.firstChild.nodeValue = D3.firstChild.nodeValue;
+            else if (idA.firstChild.nodeValue == '1' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = D4.firstChild.nodeValue;
+            else if (idA.firstChild.nodeValue == '1' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '1')
+                Out.firstChild.nodeValue = D5.firstChild.nodeValue;
+            else if (idA.firstChild.nodeValue == '1' && idB.firstChild.nodeValue == '1' && idC.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = D6.firstChild.nodeValue;
+            else
+                Out.firstChild.nodeValue = D7.firstChild.nodeValue;
+        }
+
+        function funcB(idA, idB, idC, D0, D1, D2, D3, D4, D5, D6, D7, Out, neB) {
+            var idA = document.getElementById(idA), idB = document.getElementById(idB),
+                idC = document.getElementById(idC), Out = document.getElementById(Out),
+                D0 = document.getElementById(D0), D1 = document.getElementById(D1), D2 = document.getElementById(D2),
+                D3 = document.getElementById(D3), D4 = document.getElementById(D4), D5 = document.getElementById(D5),
+                D6 = document.getElementById(D6), D7 = document.getElementById(D7), neB = document.getElementById(neB);
+            if (idB.firstChild.nodeValue == '0') {
+                idB.firstChild.nodeValue = '1';
+                neB.firstChild.nodeValue = '0';
+            } else {
+                idB.firstChild.nodeValue = '0';
+                neB.firstChild.nodeValue = '1';
+            }
+            if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = D0.firstChild.nodeValue;
+            else if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '1')
+                Out.firstChild.nodeValue = D1.firstChild.nodeValue;
+            else if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '1' && idC.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = D2.firstChild.nodeValue;
+            else if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '1' && idC.firstChild.nodeValue == '1')
+                Out.firstChild.nodeValue = D3.firstChild.nodeValue;
+            else if (idA.firstChild.nodeValue == '1' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = D4.firstChild.nodeValue;
+            else if (idA.firstChild.nodeValue == '1' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '1')
+                Out.firstChild.nodeValue = D5.firstChild.nodeValue;
+            else if (idA.firstChild.nodeValue == '1' && idB.firstChild.nodeValue == '1' && idC.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = D6.firstChild.nodeValue;
+            else
+                Out.firstChild.nodeValue = D7.firstChild.nodeValue;
+        }
+
+        function funcC(idA, idB, idC, D0, D1, D2, D3, D4, D5, D6, D7, Out, neC) {
+            var idA = document.getElementById(idA), idB = document.getElementById(idB),
+                idC = document.getElementById(idC), Out = document.getElementById(Out),
+                D0 = document.getElementById(D0), D1 = document.getElementById(D1), D2 = document.getElementById(D2),
+                D3 = document.getElementById(D3), D4 = document.getElementById(D4), D5 = document.getElementById(D5),
+                D6 = document.getElementById(D6), D7 = document.getElementById(D7), neC = document.getElementById(neC);
+            if (idC.firstChild.nodeValue == '0') {
+                idC.firstChild.nodeValue = '1';
+                neC.firstChild.nodeValue = '0';
+            } else {
+                idC.firstChild.nodeValue = '0';
+                neC.firstChild.nodeValue = '1';
+            }
+            if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = D0.firstChild.nodeValue;
+            else if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '1')
+                Out.firstChild.nodeValue = D1.firstChild.nodeValue;
+            else if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '1' && idC.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = D2.firstChild.nodeValue;
+            else if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '1' && idC.firstChild.nodeValue == '1')
+                Out.firstChild.nodeValue = D3.firstChild.nodeValue;
+            else if (idA.firstChild.nodeValue == '1' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = D4.firstChild.nodeValue;
+            else if (idA.firstChild.nodeValue == '1' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '1')
+                Out.firstChild.nodeValue = D5.firstChild.nodeValue;
+            else if (idA.firstChild.nodeValue == '1' && idB.firstChild.nodeValue == '1' && idC.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = D6.firstChild.nodeValue;
+            else
+                Out.firstChild.nodeValue = D7.firstChild.nodeValue;
+        }
+
+    </script>
+    <path d="M300,30 H320 A10,10 0 0 1 320,50 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,60 H320 A10,10 0 0 1 320,80 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,90 H320 A10,10 0 0 1 320,110 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,120 H320 A10,10 0 0 1 320,140 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,150 H320 A10,10 0 0 1 320,170 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,180 H320 A10,10 0 0 1 320,200 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,210 H320 A10,10 0 0 1 320,230 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,240 H320 A10,10 0 0 1 320,260 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <text onclick="funcD0('D0','idA','idB','idC','Out')" id="D0" x="5" y="20" stroke="#000000" stroke-width="1"
+          fill="none" font-size="12">0
+    </text>
+    <text onclick="funcD1('D1','idA','idB','idC','Out')" id="D1" x="5" y="50" stroke="#000000" stroke-width="1"
+          fill="none" font-size="12">0
+    </text>
+    <text onclick="funcD2('D2','idA','idB','idC','Out')" id="D2" x="5" y="80" stroke="#000000" stroke-width="1"
+          fill="none" font-size="12">0
+    </text>
+    <text onclick="funcD3('D3','idA','idB','idC','Out')" id="D3" x="5" y="110" stroke="#000000" stroke-width="1"
+          fill="none" font-size="12">0
+    </text>
+    <text onclick="funcD4('D4','idA','idB','idC','Out')" id="D4" x="5" y="140" stroke="#000000" stroke-width="1"
+          fill="none" font-size="12">0
+    </text>
+    <text onclick="funcD5('D5','idA','idB','idC','Out')" id="D5" x="5" y="170" stroke="#000000" stroke-width="1"
+          fill="none" font-size="12">0
+    </text>
+    <text onclick="funcD6('D6','idA','idB','idC','Out')" id="D6" x="5" y="200" stroke="#000000" stroke-width="1"
+          fill="none" font-size="12">0
+    </text>
+    <text onclick="funcD7('D7','idA','idB','idC','Out')" id="D7" x="5" y="230" stroke="#000000" stroke-width="1"
+          fill="none" font-size="12">0
+    </text>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="20,15 85,15 85,31 300,31"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="20,45 80,45 80,61 300,61"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="20,75 75,75 75,91 300,91"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="20,105 70,105 70,121 300,121"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="20,135 65,135 65,151 300,151"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="20,165 60,165 60,181 300,181"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="20,195 55,195 55,211 300,211"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="20,225 50,225 50,241 300,241"/>
+    <text onclick="funcA('idA','idB','idC','D0','D1','D2','D3','D4','D5','D6','D7','Out','neA')" id="idA" x="70" y="300"
+          stroke="#000000" stroke-width="1" fill="none" font-size="12">0
+    </text>
+    <polyline points="80,295 108,295 108,280" stroke="#000000" stroke-width="1" fill="none"/>
+    <text onclick="funcB('idA','idB','idC','D0','D1','D2','D3','D4','D5','D6','D7','Out','neB')" id="idB" x="150"
+          y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">0
+    </text>
+    <polyline points="160,295 192,295 192,280" stroke="#000000" stroke-width="1" fill="none"/>
+    <text onclick="funcC('idA','idB','idC','D0','D1','D2','D3','D4','D5','D6','D7','Out','neC')" id="idC" x="230"
+          y="300" stroke="#000000" stroke-width="1" fill="none" font-size="12">0
+    </text>
+    <polyline points="240,295 273,295 273,280" stroke="#000000" stroke-width="1" fill="none"/>
+    <polygon points="100,280 108,270 116,280" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="108" cy="267" r="3" stroke="#000000" stroke-width="1" fill="none"/>
+    <text id="neA" x="113" y="262" stroke="#000000" stroke-width="1" fill="none" font-size="12">1</text>
+    <polyline points="108,264 108,36 300,36" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="108" y1="66" x2="300" y2="66" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="108" cy="66" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="108" y1="95" x2="300" y2="95" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="108" cy="95" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="108" y1="125" x2="300" y2="125" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="108" cy="125" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <polygon points="185,280 193,270 201,280" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="193" cy="267" r="3" stroke="#000000" stroke-width="1" fill="none"/>
+    <text id="neB" x="198" y="265" stroke="#000000" stroke-width="1" fill="none" font-size="12">1</text>
+    <polyline points="193,264 193,41 300,41" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="193" y1="71" x2="300" y2="71" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="193" cy="71" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="193" y1="155" x2="300" y2="155" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="193" cy="155" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="193" y1="185" x2="300" y2="185" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="193" cy="185" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <polygon points="265,280 273,270 281,280" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="273" cy="267" r="3" stroke="#000000" stroke-width="1" fill="none"/>
+    <text id="neC" x="280" y="267" stroke="#000000" stroke-width="1" fill="none" font-size="12">1</text>
+    <polyline points="273,264 273,46 300,46" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="273" y1="99" x2="300" y2="99" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="273" cy="99" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="273" y1="159" x2="300" y2="159" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="273" cy="159" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="273" y1="215" x2="300" y2="215" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="273" cy="215" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <polyline points="74,285 74,163 300,163" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="74" y1="190" x2="300" y2="190" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="74" cy="190" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="74" y1="220" x2="300" y2="220" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="74" cy="220" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="74" y1="246" x2="300" y2="246" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="74" cy="246" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <polyline points="153,285 153,104 300,104" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="153" y1="130" x2="300" y2="130" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="153" cy="130" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="153" y1="225" x2="300" y2="225" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="153" cy="225" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="153" y1="251" x2="300" y2="251" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="153" cy="251" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <polyline points="234,285 234,77 300,77" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="234" y1="256" x2="300" y2="256" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="234" cy="256" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="234" y1="196" x2="300" y2="196" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="234" cy="196" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="234" y1="135" x2="300" y2="135" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="234" cy="135" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <g transform="translate(300, 80)">
+        <path stroke="#000000" fill="none" d="M80,80 Q100,60 80,40 Q120,40 140,60 Q120,80 80,80"/>
+        <line x1="140" y1="60" x2="155" y2="60" stroke="#000000" stroke-width="1" fill="none"/>
+        <text id="Out" x="159" y="65" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+    </g>
+    <polyline points="330,40 370,40 370,121 381,121" stroke="#000000" stroke-width="1" fill="none"/>
+    <polyline points="330,70 366,70 366,125 384,125" stroke="#000000" stroke-width="1" fill="none"/>
+    <polyline points="330,100 362,100 362,129 386,129" stroke="#000000" stroke-width="1" fill="none"/>
+    <polyline points="330,130 358,130 358,134 388,134" stroke="#000000" stroke-width="1" fill="none"/>
+    <polyline points="330,160 358,160 358,140 389,140" stroke="#000000" stroke-width="1" fill="none"/>
+    <polyline points="330,190 362,190 362,146 389,146" stroke="#000000" stroke-width="1" fill="none"/>
+    <polyline points="330,220 366, 220 366,152 387,152" stroke="#000000" stroke-width="1" fill="none"/>
+    <polyline points="330,250 370, 250 370,158 383,158" stroke="#000000" stroke-width="1" fill="none"/>
+    <text x="20" y="330" stroke="none" fill="#000000" font-size="14" font-family="serif">Рис. 7.4.2. Восьмивходовой
+        мультиплексор
+    </text>
+</svg>
+<p>Другим применением мультиплексора может быть преобразование параллельного кода в последовательный. Если подать на
+    входы восемь бит и последовательно переключать линии управления для получения значений от 000 до 111, то восемь бит
+    поступят на выходную линию последовательно. Такое преобразование параллельного кода в последовательный
+    осуществляется при вводе информации с клавиатуры, поскольку каждое нажатие клавиши генерирует восьмиразрядное число,
+    которое должно передаваться последовательно по телефонной линии.</p>
+<p>Рассмотрим пример использования мультиплексора для построения таблицы истинности <a href='7_2.html#t7_2_3'>функции
+    большинства</a>. Если заземлить входы
+    <math display='inline'>
+        <mfenced open='' close=''>
+            <msub>
+                <mi>D</mi>
+                <mn>0</mn>
+            </msub>
+            <msub>
+                <mi>D</mi>
+                <mn>1</mn>
+            </msub>
+            <msub>
+                <mi>D</mi>
+                <mn>2</mn>
+            </msub>
+            <msub>
+                <mi>D</mi>
+                <mn>4</mn>
+            </msub>
+        </mfenced>
+    </math>
+    , а на остальные входы подать напряжение
+    <math display='inline'>
+        <mrow>
+            <mo>+</mo>
+            <msub>
+                <mi>v</mi>
+                <mi>cc</mi>
+            </msub>
+        </mrow>
+    </math>
+    , то мультиплексор будет реализовывать функцию большинства:
+</p>
+<svg height="340px" width="800px">
+    <script>
+        function funcAb(idA, idB, idC, Out, neA) {
+            var idA = document.getElementById(idA), idB = document.getElementById(idB),
+                idC = document.getElementById(idC), Out = document.getElementById(Out),
+                neA = document.getElementById(neA);
+            if (idA.firstChild.nodeValue == '0') {
+                idA.firstChild.nodeValue = '1';
+                neA.firstChild.nodeValue = '0';
+            } else {
+                idA.firstChild.nodeValue = '0';
+                neA.firstChild.nodeValue = '1';
+            }
+            if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = '0';
+            else if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '1')
+                Out.firstChild.nodeValue = '0';
+            else if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '1' && idC.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = '0';
+            else if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '1' && idC.firstChild.nodeValue == '1')
+                Out.firstChild.nodeValue = '1';
+            else if (idA.firstChild.nodeValue == '1' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = '0';
+            else if (idA.firstChild.nodeValue == '1' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '1')
+                Out.firstChild.nodeValue = '1';
+            else if (idA.firstChild.nodeValue == '1' && idB.firstChild.nodeValue == '1' && idC.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = '1';
+            else
+                Out.firstChild.nodeValue = '1';
+        }
+
+        function funcBb(idA, idB, idC, Out, neB) {
+            var idA = document.getElementById(idA), idB = document.getElementById(idB),
+                idC = document.getElementById(idC), Out = document.getElementById(Out),
+                neB = document.getElementById(neB);
+            if (idB.firstChild.nodeValue == '0') {
+                idB.firstChild.nodeValue = '1';
+                neB.firstChild.nodeValue = '0';
+            } else {
+                idB.firstChild.nodeValue = '0';
+                neB.firstChild.nodeValue = '1';
+            }
+            if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = '0';
+            else if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '1')
+                Out.firstChild.nodeValue = '0';
+            else if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '1' && idC.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = '0';
+            else if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '1' && idC.firstChild.nodeValue == '1')
+                Out.firstChild.nodeValue = '1';
+            else if (idA.firstChild.nodeValue == '1' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = '0';
+            else if (idA.firstChild.nodeValue == '1' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '1')
+                Out.firstChild.nodeValue = '1';
+            else if (idA.firstChild.nodeValue == '1' && idB.firstChild.nodeValue == '1' && idC.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = '1';
+            else
+                Out.firstChild.nodeValue = '1';
+        }
+
+        function funcCb(idA, idB, idC, Out, neC) {
+            var idA = document.getElementById(idA), idB = document.getElementById(idB),
+                idC = document.getElementById(idC), Out = document.getElementById(Out),
+                neC = document.getElementById(neC);
+            if (idC.firstChild.nodeValue == '0') {
+                idC.firstChild.nodeValue = '1';
+                neC.firstChild.nodeValue = '0';
+            } else {
+                idC.firstChild.nodeValue = '0';
+                neC.firstChild.nodeValue = '1';
+            }
+            if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = '0';
+            else if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '1')
+                Out.firstChild.nodeValue = '0';
+            else if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '1' && idC.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = '0';
+            else if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '1' && idC.firstChild.nodeValue == '1')
+                Out.firstChild.nodeValue = '1';
+            else if (idA.firstChild.nodeValue == '1' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = '0';
+            else if (idA.firstChild.nodeValue == '1' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '1')
+                Out.firstChild.nodeValue = '1';
+            else if (idA.firstChild.nodeValue == '1' && idB.firstChild.nodeValue == '1' && idC.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = '1';
+            else
+                Out.firstChild.nodeValue = '1';
+        }
+
+    </script>
+    <path d="M300,30 H320 A10,10 0 0 1 320,50 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,60 H320 A10,10 0 0 1 320,80 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,90 H320 A10,10 0 0 1 320,110 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,120 H320 A10,10 0 0 1 320,140 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,150 H320 A10,10 0 0 1 320,170 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,180 H320 A10,10 0 0 1 320,200 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,210 H320 A10,10 0 0 1 320,230 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,240 H320 A10,10 0 0 1 320,260 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="20" y1="31" x2="300" y2="31" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="20" y1="31" x2="20" y2="270" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="13" y1="270" x2="27" y2="270" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="16" y1="273" x2="24" y2="273" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="19" y1="276" x2="21" y2="276" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="20" y1="61" x2="300" y2="61" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="20" y1="91" x2="300" y2="91" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="20" y1="151" x2="300" y2="151" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="60" y1="121" x2="300" y2="121" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="60" cy="121" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="60" y1="181" x2="300" y2="181" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="60" cy="181" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="60" y1="211" x2="300" y2="211" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="60" cy="211" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="60" y1="241" x2="300" y2="241" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="60" y1="10" x2="60" y2="241" stroke="#000000" stroke-width="1" fill="none"/>
+    <text x="63" y="10" stroke="#000000" stroke-width="1" fill="none" font-size="12">+v
+        <tspan dy='+7'>cc</tspan>
+    </text>
+    <text onclick="funcAb('idAb','idBb','idCb','Outb','neAb')" id="idAb" x="70" y="300" stroke="#000000"
+          stroke-width="1" fill="none" font-size="12">0
+    </text>
+    <polyline points="80,295 108,295 108,280" stroke="#000000" stroke-width="1" fill="none"/>
+    <text onclick="funcBb('idAb','idBb','idCb','Outb','neBb')" id="idBb" x="150" y="300" stroke="#000000"
+          stroke-width="1" fill="none" font-size="12">0
+    </text>
+    <polyline points="160,295 192,295 192,280" stroke="#000000" stroke-width="1" fill="none"/>
+    <text onclick="funcCb('idAb','idBb','idCb','Outb','neCb')" id="idCb" x="230" y="300" stroke="#000000"
+          stroke-width="1" fill="none" font-size="12">0
+    </text>
+    <polyline points="240,295 273,295 273,280" stroke="#000000" stroke-width="1" fill="none"/>
+    <polygon points="100,280 108,270 116,280" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="108" cy="267" r="3" stroke="#000000" stroke-width="1" fill="none"/>
+    <text id="neAb" x="113" y="262" stroke="#000000" stroke-width="1" fill="none" font-size="12">1</text>
+    <polyline points="108,264 108,36 300,36" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="108" y1="66" x2="300" y2="66" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="108" cy="66" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="108" y1="95" x2="300" y2="95" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="108" cy="95" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="108" y1="125" x2="300" y2="125" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="108" cy="125" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <polygon points="185,280 193,270 201,280" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="193" cy="267" r="3" stroke="#000000" stroke-width="1" fill="none"/>
+    <text id="neBb" x="198" y="265" stroke="#000000" stroke-width="1" fill="none" font-size="12">1</text>
+    <polyline points="193,264 193,41 300,41" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="193" y1="71" x2="300" y2="71" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="193" cy="71" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="193" y1="155" x2="300" y2="155" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="193" cy="155" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="193" y1="185" x2="300" y2="185" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="193" cy="185" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <polygon points="265,280 273,270 281,280" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="273" cy="267" r="3" stroke="#000000" stroke-width="1" fill="none"/>
+    <text id="neCb" x="280" y="267" stroke="#000000" stroke-width="1" fill="none" font-size="12">1</text>
+    <polyline points="273,264 273,46 300,46" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="273" y1="99" x2="300" y2="99" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="273" cy="99" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="273" y1="159" x2="300" y2="159" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="273" cy="159" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="273" y1="215" x2="300" y2="215" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="273" cy="215" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <polyline points="74,285 74,163 300,163" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="74" y1="190" x2="300" y2="190" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="74" cy="190" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="74" y1="220" x2="300" y2="220" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="74" cy="220" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="74" y1="246" x2="300" y2="246" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="74" cy="246" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <polyline points="153,285 153,104 300,104" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="153" y1="130" x2="300" y2="130" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="153" cy="130" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="153" y1="225" x2="300" y2="225" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="153" cy="225" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="153" y1="251" x2="300" y2="251" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="153" cy="251" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <polyline points="234,285 234,77 300,77" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="234" y1="256" x2="300" y2="256" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="234" cy="256" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="234" y1="196" x2="300" y2="196" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="234" cy="196" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="234" y1="135" x2="300" y2="135" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="234" cy="135" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <g transform="translate(300, 80)">
+        <path stroke="#000000" fill="none" d="M80,80 Q100,60 80,40 Q120,40 140,60 Q120,80 80,80"/>
+        <line x1="140" y1="60" x2="155" y2="60" stroke="#000000" stroke-width="1" fill="none"/>
+        <text id="Outb" x="159" y="65" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+    </g>
+    <polyline points="330,40 370,40 370,121 381,121" stroke="#000000" stroke-width="1" fill="none"/>
+    <polyline points="330,70 366,70 366,125 384,125" stroke="#000000" stroke-width="1" fill="none"/>
+    <polyline points="330,100 362,100 362,129 386,129" stroke="#000000" stroke-width="1" fill="none"/>
+    <polyline points="330,130 358,130 358,134 388,134" stroke="#000000" stroke-width="1" fill="none"/>
+    <polyline points="330,160 358,160 358,140 389,140" stroke="#000000" stroke-width="1" fill="none"/>
+    <polyline points="330,190 362,190 362,146 389,146" stroke="#000000" stroke-width="1" fill="none"/>
+    <polyline points="330,220 366, 220 366,152 387,152" stroke="#000000" stroke-width="1" fill="none"/>
+    <polyline points="330,250 370, 250 370,158 383,158" stroke="#000000" stroke-width="1" fill="none"/>
+    <text x="20" y="330" stroke="none" fill="#000000" font-size="14" font-family="serif">Рис. 7.4.3. Реализация функции
+        большинства
+    </text>
+</svg>
+<p><span class="teorema"><a id='demultiplexor'>Комбинаторная схема</a>, соединяющая единственный вход с одним из
+<math display='inline'>
+	<msup><mn>2</mn><mi>n</mi></msup>
+</math>
+выходов, в зависимости от значений сигналов в
+<math display='inline'>
+	<mi>n</mi>
+</math>
+линиях управления, называется демультиплексором.</span> Задание в линиях управления бинарного значения
+    <math display='inline'>
+        <mi>k</mi>
+    </math>
+    означает выбор выхода
+    <math display='inline'>
+        <mi>k</mi>
+    </math>
+    . Очевидно, что функции мультиплексора и демультиплексора являются взаимно-обратными.
+</p>
+<h2>7.4.2. Декодеры</h2>
+<p><span class="teorema"><a id='dekoder'>Комбинаторная схема</a>, получающая на входе n-разрядное число и использующее его для выбора одной из
+<math display='inline'>
+	<msup><mn>2</mn><mi>n</mi></msup>
+</math>
+выходных линий,называется декодером.</span>
 </p>
 <p>На рисунке 7.4.4 представлен пример декодера для
-<math   display='inline'>
-	<mi>n</mi><mo>=</mo><mn>3</mn>
-</math>:
+    <math display='inline'>
+        <mi>n</mi>
+        <mo>=</mo>
+        <mn>3</mn>
+    </math>
+    :
 </p>
-<svg  height = "285px"  width = "800px">
-	<path d="M300,30 H320 A10,10 0 0 1 320,50 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,60 H320 A10,10 0 0 1 320,80 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,90 H320 A10,10 0 0 1 320,110 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,120 H320 A10,10 0 0 1 320,140 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,150 H320 A10,10 0 0 1 320,170 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,180 H320 A10,10 0 0 1 320,200 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,210 H320 A10,10 0 0 1 320,230 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,240 H320 A10,10 0 0 1 320,260 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<text x="10" y="70" stroke="#000000" stroke-width="1" fill="none" font-size="12">A</text>
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="20,65 150,65 150,245 300,245" />
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="40,65 40,95 60,95" />
-	<polygon  stroke="#000000" stroke-width="1" fill="none" points="60,90 70,95 60,100"/>
-	<circle cx="73" cy="95" r="3" stroke="#000000" stroke-width="1" fill="none" />
-	<line x1="76" y1="95" x2="300" y2="95" stroke="#000000" stroke-width="1" fill="none" />
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="170,95 170,35 300,35" />
-	<circle cx="170" cy="95" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="170,95 170,123 300,123" />	
-	<line x1="170" y1="65" x2="300" y2="65" stroke="#000000" stroke-width="1" fill="none" />	
-	<circle cx="170" cy="65" r="2" stroke="#000000" stroke-width="1" fill="#000000" />		
-	<line x1="150" y1="155" x2="300" y2="155" stroke="#000000" stroke-width="1" fill="none" />
-	<circle cx="150" cy="155" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="150" y1="185" x2="300" y2="185" stroke="#000000" stroke-width="1" fill="none" />
-	<circle cx="150" cy="185" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="150" y1="215" x2="300" y2="215" stroke="#000000" stroke-width="1" fill="none" />
-	<circle cx="150" cy="215" r="2" stroke="#000000" stroke-width="1" fill="#000000" />	
-	<text x="10" y="140" stroke="#000000" stroke-width="1" fill="none" font-size="12">B</text>
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="20,135 180,135 180,100 300,100" />	
-	<line x1="180" y1="135" x2="300" y2="135" stroke="#000000" stroke-width="1" fill="none" />	
-	<circle cx="180" cy="135" r="2" stroke="#000000" stroke-width="1" fill="#000000" />	
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="180,135 180,250 300,250" />		
-	<line x1="180" y1="220" x2="300" y2="220" stroke="#000000" stroke-width="1" fill="none" />
-	<circle cx="180" cy="220" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="40,135 40,165 60,165" />
-	<polygon  stroke="#000000" stroke-width="1" fill="none" points="60,160 70,165 60,170"/>
-	<circle cx="73" cy="165" r="3" stroke="#000000" stroke-width="1" fill="none" />
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="76,165 200,165 200,40 300,40" />
-	<line x1="200" y1="70" x2="300" y2="70" stroke="#000000" stroke-width="1" fill="none" />
-	<circle cx="200" cy="70" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="200" y1="160" x2="300" y2="160" stroke="#000000" stroke-width="1" fill="none" />
-	<circle cx="200" cy="160" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="200,165 200,190 300,190" />
-	<circle cx="200" cy="165" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<text x="10" y="210" stroke="#000000" stroke-width="1" fill="none" font-size="12">C</text>
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="20,206 220,206 220,75 300,75" />
-	<line x1="220" y1="129" x2="300" y2="129" stroke="#000000" stroke-width="1" fill="none" />	
-	<circle cx="220" cy="129" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="220" y1="195" x2="300" y2="195" stroke="#000000" stroke-width="1" fill="none" />	
-	<circle cx="220" cy="195" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="220,206 220,255 300,255 " />
-	<circle cx="220" cy="206" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="40,206 40,236 60,236" />
-	<polygon  stroke="#000000" stroke-width="1" fill="none" points="60,231 70,236 60,241"/>
-	<circle cx="73" cy="236" r="3" stroke="#000000" stroke-width="1" fill="none" />
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="76,236 240,236 240,46 300,46" />
-	<line x1="240" y1="106" x2="300" y2="106" stroke="#000000" stroke-width="1" fill="none" />	
-	<circle cx="240" cy="106" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="240" y1="166" x2="300" y2="166" stroke="#000000" stroke-width="1" fill="none" />	
-	<circle cx="240" cy="166" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="240" y1="225" x2="300" y2="225" stroke="#000000" stroke-width="1" fill="none" />	
-	<circle cx="240" cy="225" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="330" y1="40" x2="345" y2="40" stroke="#000000" stroke-width="1" fill="none" />
-	<line x1="330" y1="70" x2="345" y2="70" stroke="#000000" stroke-width="1" fill="none" />
-	<line x1="330" y1="100" x2="345" y2="100" stroke="#000000" stroke-width="1" fill="none" />
-	<line x1="330" y1="130" x2="345" y2="130" stroke="#000000" stroke-width="1" fill="none" />
-	<line x1="330" y1="160" x2="345" y2="160" stroke="#000000" stroke-width="1" fill="none" />
-	<line x1="330" y1="190" x2="345" y2="190" stroke="#000000" stroke-width="1" fill="none" />
-	<line x1="330" y1="220" x2="345" y2="220" stroke="#000000" stroke-width="1" fill="none" />
-	<line x1="330" y1="250" x2="345" y2="250" stroke="#000000" stroke-width="1" fill="none" />
-	<g transform="translate(10,0)">							
-		<text x="340" y="45" stroke="#000000" stroke-width="1" fill="none" font-size="12">D<tspan dy="7">0</tspan></text>
-		<text x="340" y="75" stroke="#000000" stroke-width="1" fill="none" font-size="12">D<tspan dy="7">1</tspan></text>
-		<text x="340" y="105" stroke="#000000" stroke-width="1" fill="none" font-size="12">D<tspan dy="7">2</tspan></text>
-		<text x="340" y="135" stroke="#000000" stroke-width="1" fill="none" font-size="12">D<tspan dy="7">3</tspan></text>
-		<text x="340" y="165" stroke="#000000" stroke-width="1" fill="none" font-size="12">D<tspan dy="7">4</tspan></text>
-		<text x="340" y="195" stroke="#000000" stroke-width="1" fill="none" font-size="12">D<tspan dy="7">5</tspan></text>
-		<text x="340" y="225" stroke="#000000" stroke-width="1" fill="none" font-size="12">D<tspan dy="7">6</tspan></text>
-		<text x="340" y="255" stroke="#000000" stroke-width="1" fill="none" font-size="12">D<tspan dy="7">7</tspan></text>
-	</g>
-	<text x="80" y="280" stroke="none" fill="#000000" font-size="14" font-family="serif">Рис. 7.4.4. Декодер</text>
+<svg height="285px" width="800px">
+    <path d="M300,30 H320 A10,10 0 0 1 320,50 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,60 H320 A10,10 0 0 1 320,80 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,90 H320 A10,10 0 0 1 320,110 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,120 H320 A10,10 0 0 1 320,140 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,150 H320 A10,10 0 0 1 320,170 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,180 H320 A10,10 0 0 1 320,200 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,210 H320 A10,10 0 0 1 320,230 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,240 H320 A10,10 0 0 1 320,260 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <text x="10" y="70" stroke="#000000" stroke-width="1" fill="none" font-size="12">A</text>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="20,65 150,65 150,245 300,245"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="40,65 40,95 60,95"/>
+    <polygon stroke="#000000" stroke-width="1" fill="none" points="60,90 70,95 60,100"/>
+    <circle cx="73" cy="95" r="3" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="76" y1="95" x2="300" y2="95" stroke="#000000" stroke-width="1" fill="none"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="170,95 170,35 300,35"/>
+    <circle cx="170" cy="95" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="170,95 170,123 300,123"/>
+    <line x1="170" y1="65" x2="300" y2="65" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="170" cy="65" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="150" y1="155" x2="300" y2="155" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="150" cy="155" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="150" y1="185" x2="300" y2="185" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="150" cy="185" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="150" y1="215" x2="300" y2="215" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="150" cy="215" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <text x="10" y="140" stroke="#000000" stroke-width="1" fill="none" font-size="12">B</text>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="20,135 180,135 180,100 300,100"/>
+    <line x1="180" y1="135" x2="300" y2="135" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="180" cy="135" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="180,135 180,250 300,250"/>
+    <line x1="180" y1="220" x2="300" y2="220" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="180" cy="220" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="40,135 40,165 60,165"/>
+    <polygon stroke="#000000" stroke-width="1" fill="none" points="60,160 70,165 60,170"/>
+    <circle cx="73" cy="165" r="3" stroke="#000000" stroke-width="1" fill="none"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="76,165 200,165 200,40 300,40"/>
+    <line x1="200" y1="70" x2="300" y2="70" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="200" cy="70" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="200" y1="160" x2="300" y2="160" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="200" cy="160" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="200,165 200,190 300,190"/>
+    <circle cx="200" cy="165" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <text x="10" y="210" stroke="#000000" stroke-width="1" fill="none" font-size="12">C</text>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="20,206 220,206 220,75 300,75"/>
+    <line x1="220" y1="129" x2="300" y2="129" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="220" cy="129" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="220" y1="195" x2="300" y2="195" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="220" cy="195" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="220,206 220,255 300,255 "/>
+    <circle cx="220" cy="206" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="40,206 40,236 60,236"/>
+    <polygon stroke="#000000" stroke-width="1" fill="none" points="60,231 70,236 60,241"/>
+    <circle cx="73" cy="236" r="3" stroke="#000000" stroke-width="1" fill="none"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="76,236 240,236 240,46 300,46"/>
+    <line x1="240" y1="106" x2="300" y2="106" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="240" cy="106" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="240" y1="166" x2="300" y2="166" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="240" cy="166" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="240" y1="225" x2="300" y2="225" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="240" cy="225" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="330" y1="40" x2="345" y2="40" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="330" y1="70" x2="345" y2="70" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="330" y1="100" x2="345" y2="100" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="330" y1="130" x2="345" y2="130" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="330" y1="160" x2="345" y2="160" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="330" y1="190" x2="345" y2="190" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="330" y1="220" x2="345" y2="220" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="330" y1="250" x2="345" y2="250" stroke="#000000" stroke-width="1" fill="none"/>
+    <g transform="translate(10,0)">
+        <text x="340" y="45" stroke="#000000" stroke-width="1" fill="none" font-size="12">D
+            <tspan dy="7">0</tspan>
+        </text>
+        <text x="340" y="75" stroke="#000000" stroke-width="1" fill="none" font-size="12">D
+            <tspan dy="7">1</tspan>
+        </text>
+        <text x="340" y="105" stroke="#000000" stroke-width="1" fill="none" font-size="12">D
+            <tspan dy="7">2</tspan>
+        </text>
+        <text x="340" y="135" stroke="#000000" stroke-width="1" fill="none" font-size="12">D
+            <tspan dy="7">3</tspan>
+        </text>
+        <text x="340" y="165" stroke="#000000" stroke-width="1" fill="none" font-size="12">D
+            <tspan dy="7">4</tspan>
+        </text>
+        <text x="340" y="195" stroke="#000000" stroke-width="1" fill="none" font-size="12">D
+            <tspan dy="7">5</tspan>
+        </text>
+        <text x="340" y="225" stroke="#000000" stroke-width="1" fill="none" font-size="12">D
+            <tspan dy="7">6</tspan>
+        </text>
+        <text x="340" y="255" stroke="#000000" stroke-width="1" fill="none" font-size="12">D
+            <tspan dy="7">7</tspan>
+        </text>
+    </g>
+    <text x="80" y="280" stroke="none" fill="#000000" font-size="14" font-family="serif">Рис. 7.4.4. Декодер</text>
 </svg>
 <p>Интерактивный вариант вышеприведенного декодера:</p>
 
-<svg  height = "290px"  width = "800px">
-<script>
-function funcAd(idA,idB,idC,D0,D1,D2,D3,D4,D5,D6,D7,neA) {
-var idA=document.getElementById(idA), idB=document.getElementById(idB), idC=document.getElementById(idC), D0=document.getElementById(D0), D1=document.getElementById(D1), D2=document.getElementById(D2), D3=document.getElementById(D3), D4=document.getElementById(D4), D5=document.getElementById(D5), D6=document.getElementById(D6), D7=document.getElementById(D7), neA=document.getElementById(neA);
-	if (idA.firstChild.nodeValue=='0') { 
-  		idA.firstChild.nodeValue='1';
-  		neA.firstChild.nodeValue='0';
-  	}	
-   else {
-   	idA.firstChild.nodeValue='0';
-  	 	neA.firstChild.nodeValue='1'; 	
-  	}  	
- 	if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='0') { 
-  		D0.firstChild.nodeValue='1';
-  		D1.firstChild.nodeValue='0';
-  		D2.firstChild.nodeValue='0';
-  		D3.firstChild.nodeValue='0';
-  		D4.firstChild.nodeValue='0';
-  		D5.firstChild.nodeValue='0';
-  		D6.firstChild.nodeValue='0';
-  		D7.firstChild.nodeValue='0';
-  	}	
-  	else if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='1') {	
-  		D0.firstChild.nodeValue='0';
-  		D1.firstChild.nodeValue='1';
-  		D2.firstChild.nodeValue='0';
-  		D3.firstChild.nodeValue='0';
-  		D4.firstChild.nodeValue='0';
-  		D5.firstChild.nodeValue='0';
-  		D6.firstChild.nodeValue='0';
-  		D7.firstChild.nodeValue='0';
-  	}  	
-	else if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='1' && idC.firstChild.nodeValue=='0') {
-	 	D0.firstChild.nodeValue='0';
-  		D1.firstChild.nodeValue='0';
-  		D2.firstChild.nodeValue='1';
-  		D3.firstChild.nodeValue='0';
-  		D4.firstChild.nodeValue='0';
-  		D5.firstChild.nodeValue='0';
-  		D6.firstChild.nodeValue='0';
-  		D7.firstChild.nodeValue='0';
-	}	
-	else if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='1' && idC.firstChild.nodeValue=='1') {
-  		D0.firstChild.nodeValue='0';
-  		D1.firstChild.nodeValue='0';
-  		D2.firstChild.nodeValue='0';
-  		D3.firstChild.nodeValue='1';
-  		D4.firstChild.nodeValue='0';
-  		D5.firstChild.nodeValue='0';
-  		D6.firstChild.nodeValue='0';
-  		D7.firstChild.nodeValue='0';	
-	}	
-	else if (idA.firstChild.nodeValue=='1' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='0') {
-  		D0.firstChild.nodeValue='0';
-  		D1.firstChild.nodeValue='0';
-  		D2.firstChild.nodeValue='0';
-  		D3.firstChild.nodeValue='0';
-  		D4.firstChild.nodeValue='1';
-  		D5.firstChild.nodeValue='0';
-  		D6.firstChild.nodeValue='0';
-  		D7.firstChild.nodeValue='0';	
-	}	
-	else if (idA.firstChild.nodeValue=='1' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='1') {
-  		D0.firstChild.nodeValue='0';
-  		D1.firstChild.nodeValue='0';
-  		D2.firstChild.nodeValue='0';
-  		D3.firstChild.nodeValue='0';
-  		D4.firstChild.nodeValue='0';
-  		D5.firstChild.nodeValue='1';
-  		D6.firstChild.nodeValue='0';
-  		D7.firstChild.nodeValue='0';	
-	}	
-	else if (idA.firstChild.nodeValue=='1' && idB.firstChild.nodeValue=='1' && idC.firstChild.nodeValue=='0') {
-  		D0.firstChild.nodeValue='0';
-  		D1.firstChild.nodeValue='0';
-  		D2.firstChild.nodeValue='0';
-  		D3.firstChild.nodeValue='0';
-  		D4.firstChild.nodeValue='0';
-  		D5.firstChild.nodeValue='0';
-  		D6.firstChild.nodeValue='1';
-  		D7.firstChild.nodeValue='0';	
-	}	
-	else {
-  		D0.firstChild.nodeValue='0';
-  		D1.firstChild.nodeValue='0';
-  		D2.firstChild.nodeValue='0';
-  		D3.firstChild.nodeValue='0';
-  		D4.firstChild.nodeValue='0';
-  		D5.firstChild.nodeValue='0';
-  		D6.firstChild.nodeValue='0';
-  		D7.firstChild.nodeValue='1';	
-	}  		  		  	  		  	  	
-}
-function funcBd(idA,idB,idC,D0,D1,D2,D3,D4,D5,D6,D7,neB) {
-var idA=document.getElementById(idA), idB=document.getElementById(idB), idC=document.getElementById(idC), D0=document.getElementById(D0), D1=document.getElementById(D1), D2=document.getElementById(D2), D3=document.getElementById(D3), D4=document.getElementById(D4), D5=document.getElementById(D5), D6=document.getElementById(D6), D7=document.getElementById(D7), neB=document.getElementById(neB);
-	if (idB.firstChild.nodeValue=='0') { 
-  		idB.firstChild.nodeValue='1';
-  		neB.firstChild.nodeValue='0';
-  	}	
-   else {   	 		
-  	  	idB.firstChild.nodeValue='0';
-  	 	neB.firstChild.nodeValue='1'; 	
-  	}  	
- 	if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='0') { 
-  		D0.firstChild.nodeValue='1';
-  		D1.firstChild.nodeValue='0';
-  		D2.firstChild.nodeValue='0';
-  		D3.firstChild.nodeValue='0';
-  		D4.firstChild.nodeValue='0';
-  		D5.firstChild.nodeValue='0';
-  		D6.firstChild.nodeValue='0';
-  		D7.firstChild.nodeValue='0';
-  	}	
-  	else if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='1') {	
-  		D0.firstChild.nodeValue='0';
-  		D1.firstChild.nodeValue='1';
-  		D2.firstChild.nodeValue='0';
-  		D3.firstChild.nodeValue='0';
-  		D4.firstChild.nodeValue='0';
-  		D5.firstChild.nodeValue='0';
-  		D6.firstChild.nodeValue='0';
-  		D7.firstChild.nodeValue='0';
-  	}  	
-	else if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='1' && idC.firstChild.nodeValue=='0') {
-	 	D0.firstChild.nodeValue='0';
-  		D1.firstChild.nodeValue='0';
-  		D2.firstChild.nodeValue='1';
-  		D3.firstChild.nodeValue='0';
-  		D4.firstChild.nodeValue='0';
-  		D5.firstChild.nodeValue='0';
-  		D6.firstChild.nodeValue='0';
-  		D7.firstChild.nodeValue='0';
-	}	
-	else if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='1' && idC.firstChild.nodeValue=='1') {
-  		D0.firstChild.nodeValue='0';
-  		D1.firstChild.nodeValue='0';
-  		D2.firstChild.nodeValue='0';
-  		D3.firstChild.nodeValue='1';
-  		D4.firstChild.nodeValue='0';
-  		D5.firstChild.nodeValue='0';
-  		D6.firstChild.nodeValue='0';
-  		D7.firstChild.nodeValue='0';	
-	}	
-	else if (idA.firstChild.nodeValue=='1' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='0') {
-  		D0.firstChild.nodeValue='0';
-  		D1.firstChild.nodeValue='0';
-  		D2.firstChild.nodeValue='0';
-  		D3.firstChild.nodeValue='0';
-  		D4.firstChild.nodeValue='1';
-  		D5.firstChild.nodeValue='0';
-  		D6.firstChild.nodeValue='0';
-  		D7.firstChild.nodeValue='0';	
-	}	
-	else if (idA.firstChild.nodeValue=='1' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='1') {
-  		D0.firstChild.nodeValue='0';
-  		D1.firstChild.nodeValue='0';
-  		D2.firstChild.nodeValue='0';
-  		D3.firstChild.nodeValue='0';
-  		D4.firstChild.nodeValue='0';
-  		D5.firstChild.nodeValue='1';
-  		D6.firstChild.nodeValue='0';
-  		D7.firstChild.nodeValue='0';	
-	}	
-	else if (idA.firstChild.nodeValue=='1' && idB.firstChild.nodeValue=='1' && idC.firstChild.nodeValue=='0') {
-  		D0.firstChild.nodeValue='0';
-  		D1.firstChild.nodeValue='0';
-  		D2.firstChild.nodeValue='0';
-  		D3.firstChild.nodeValue='0';
-  		D4.firstChild.nodeValue='0';
-  		D5.firstChild.nodeValue='0';
-  		D6.firstChild.nodeValue='1';
-  		D7.firstChild.nodeValue='0';	
-	}	
-	else {
-  		D0.firstChild.nodeValue='0';
-  		D1.firstChild.nodeValue='0';
-  		D2.firstChild.nodeValue='0';
-  		D3.firstChild.nodeValue='0';
-  		D4.firstChild.nodeValue='0';
-  		D5.firstChild.nodeValue='0';
-  		D6.firstChild.nodeValue='0';
-  		D7.firstChild.nodeValue='1';	
-	}  		  		  	  		  	  	
-}
-function funcCd(idA,idB,idC,D0,D1,D2,D3,D4,D5,D6,D7,neC) {
-var idA=document.getElementById(idA), idB=document.getElementById(idB), idC=document.getElementById(idC), D0=document.getElementById(D0), D1=document.getElementById(D1), D2=document.getElementById(D2), D3=document.getElementById(D3), D4=document.getElementById(D4), D5=document.getElementById(D5), D6=document.getElementById(D6), D7=document.getElementById(D7), neC=document.getElementById(neC);
-	if (idC.firstChild.nodeValue=='0') { 
-  		idC.firstChild.nodeValue='1';
-  		neC.firstChild.nodeValue='0';
-  	}	
-   else {
-   	idC.firstChild.nodeValue='0';	 		
-  	 	neC.firstChild.nodeValue='1'; 	
-  	}  	
- 	if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='0') { 
-  		D0.firstChild.nodeValue='1';
-  		D1.firstChild.nodeValue='0';
-  		D2.firstChild.nodeValue='0';
-  		D3.firstChild.nodeValue='0';
-  		D4.firstChild.nodeValue='0';
-  		D5.firstChild.nodeValue='0';
-  		D6.firstChild.nodeValue='0';
-  		D7.firstChild.nodeValue='0';
-  	}	
-  	else if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='1') {	
-  		D0.firstChild.nodeValue='0';
-  		D1.firstChild.nodeValue='1';
-  		D2.firstChild.nodeValue='0';
-  		D3.firstChild.nodeValue='0';
-  		D4.firstChild.nodeValue='0';
-  		D5.firstChild.nodeValue='0';
-  		D6.firstChild.nodeValue='0';
-  		D7.firstChild.nodeValue='0';
-  	}  	
-	else if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='1' && idC.firstChild.nodeValue=='0') {
-	 	D0.firstChild.nodeValue='0';
-  		D1.firstChild.nodeValue='0';
-  		D2.firstChild.nodeValue='1';
-  		D3.firstChild.nodeValue='0';
-  		D4.firstChild.nodeValue='0';
-  		D5.firstChild.nodeValue='0';
-  		D6.firstChild.nodeValue='0';
-  		D7.firstChild.nodeValue='0';
-	}	
-	else if (idA.firstChild.nodeValue=='0' && idB.firstChild.nodeValue=='1' && idC.firstChild.nodeValue=='1') {
-  		D0.firstChild.nodeValue='0';
-  		D1.firstChild.nodeValue='0';
-  		D2.firstChild.nodeValue='0';
-  		D3.firstChild.nodeValue='1';
-  		D4.firstChild.nodeValue='0';
-  		D5.firstChild.nodeValue='0';
-  		D6.firstChild.nodeValue='0';
-  		D7.firstChild.nodeValue='0';	
-	}	
-	else if (idA.firstChild.nodeValue=='1' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='0') {
-  		D0.firstChild.nodeValue='0';
-  		D1.firstChild.nodeValue='0';
-  		D2.firstChild.nodeValue='0';
-  		D3.firstChild.nodeValue='0';
-  		D4.firstChild.nodeValue='1';
-  		D5.firstChild.nodeValue='0';
-  		D6.firstChild.nodeValue='0';
-  		D7.firstChild.nodeValue='0';	
-	}	
-	else if (idA.firstChild.nodeValue=='1' && idB.firstChild.nodeValue=='0' && idC.firstChild.nodeValue=='1') {
-  		D0.firstChild.nodeValue='0';
-  		D1.firstChild.nodeValue='0';
-  		D2.firstChild.nodeValue='0';
-  		D3.firstChild.nodeValue='0';
-  		D4.firstChild.nodeValue='0';
-  		D5.firstChild.nodeValue='1';
-  		D6.firstChild.nodeValue='0';
-  		D7.firstChild.nodeValue='0';	
-	}	
-	else if (idA.firstChild.nodeValue=='1' && idB.firstChild.nodeValue=='1' && idC.firstChild.nodeValue=='0') {
-  		D0.firstChild.nodeValue='0';
-  		D1.firstChild.nodeValue='0';
-  		D2.firstChild.nodeValue='0';
-  		D3.firstChild.nodeValue='0';
-  		D4.firstChild.nodeValue='0';
-  		D5.firstChild.nodeValue='0';
-  		D6.firstChild.nodeValue='1';
-  		D7.firstChild.nodeValue='0';	
-	}	
-	else {
-  		D0.firstChild.nodeValue='0';
-  		D1.firstChild.nodeValue='0';
-  		D2.firstChild.nodeValue='0';
-  		D3.firstChild.nodeValue='0';
-  		D4.firstChild.nodeValue='0';
-  		D5.firstChild.nodeValue='0';
-  		D6.firstChild.nodeValue='0';
-  		D7.firstChild.nodeValue='1';	
-	}  		  		  	  		  	  	
-}
-</script>
-	<path d="M300,30 H320 A10,10 0 0 1 320,50 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,60 H320 A10,10 0 0 1 320,80 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,90 H320 A10,10 0 0 1 320,110 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,120 H320 A10,10 0 0 1 320,140 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,150 H320 A10,10 0 0 1 320,170 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,180 H320 A10,10 0 0 1 320,200 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,210 H320 A10,10 0 0 1 320,230 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M300,240 H320 A10,10 0 0 1 320,260 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
-	<text onclick="funcAd('idAd','idBd','idCd','D0d','D1d','D2d','D3d','D4d','D5d','D6d','D7d','neAd')" id="idAd" x="10" y="70" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="20,65 150,65 150,245 300,245" />
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="40,65 40,95 60,95" />
-	<polygon  stroke="#000000" stroke-width="1" fill="none" points="60,90 70,95 60,100"/>
-	<circle cx="73" cy="95" r="3" stroke="#000000" stroke-width="1" fill="none" />
-	<text id="neAd" x="80" y="112" stroke="#000000" stroke-width="1" fill="none" font-size="12">1</text>	
-	<line x1="76" y1="95" x2="300" y2="95" stroke="#000000" stroke-width="1" fill="none" />
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="170,95 170,35 300,35" />
-	<circle cx="170" cy="95" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="170,95 170,123 300,123" />	
-	<line x1="170" y1="65" x2="300" y2="65" stroke="#000000" stroke-width="1" fill="none" />	
-	<circle cx="170" cy="65" r="2" stroke="#000000" stroke-width="1" fill="#000000" />		
-	<line x1="150" y1="155" x2="300" y2="155" stroke="#000000" stroke-width="1" fill="none" />
-	<circle cx="150" cy="155" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="150" y1="185" x2="300" y2="185" stroke="#000000" stroke-width="1" fill="none" />
-	<circle cx="150" cy="185" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="150" y1="215" x2="300" y2="215" stroke="#000000" stroke-width="1" fill="none" />
-	<circle cx="150" cy="215" r="2" stroke="#000000" stroke-width="1" fill="#000000" />	
-	<text onclick="funcBd('idAd','idBd','idCd','D0d','D1d','D2d','D3d','D4d','D5d','D6d','D7d','neBd')" id="idBd" x="10" y="140" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="20,135 180,135 180,100 300,100" />	
-	<line x1="180" y1="135" x2="300" y2="135" stroke="#000000" stroke-width="1" fill="none" />	
-	<circle cx="180" cy="135" r="2" stroke="#000000" stroke-width="1" fill="#000000" />	
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="180,135 180,250 300,250" />		
-	<line x1="180" y1="220" x2="300" y2="220" stroke="#000000" stroke-width="1" fill="none" />
-	<circle cx="180" cy="220" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="40,135 40,165 60,165" />
-	<polygon  stroke="#000000" stroke-width="1" fill="none" points="60,160 70,165 60,170"/>
-	<circle cx="73" cy="165" r="3" stroke="#000000" stroke-width="1" fill="none" />
-	<text id="neBd" x="80" y="180" stroke="#000000" stroke-width="1" fill="none" font-size="12">1</text>
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="76,165 200,165 200,40 300,40" />
-	<line x1="200" y1="70" x2="300" y2="70" stroke="#000000" stroke-width="1" fill="none" />
-	<circle cx="200" cy="70" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="200" y1="160" x2="300" y2="160" stroke="#000000" stroke-width="1" fill="none" />
-	<circle cx="200" cy="160" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="200,165 200,190 300,190" />
-	<circle cx="200" cy="165" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<text onclick="funcCd('idAd','idBd','idCd','D0d','D1d','D2d','D3d','D4d','D5d','D6d','D7d','neCd')" id="idCd" x="10" y="210" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="20,206 220,206 220,75 300,75" />
-	<line x1="220" y1="129" x2="300" y2="129" stroke="#000000" stroke-width="1" fill="none" />	
-	<circle cx="220" cy="129" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="220" y1="195" x2="300" y2="195" stroke="#000000" stroke-width="1" fill="none" />	
-	<circle cx="220" cy="195" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="220,206 220,255 300,255 " />
-	<circle cx="220" cy="206" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="40,206 40,236 60,236" />
-	<polygon  stroke="#000000" stroke-width="1" fill="none" points="60,231 70,236 60,241"/>
-	<circle cx="73" cy="236" r="3" stroke="#000000" stroke-width="1" fill="none" />
-	<text id="neCd" x="80" y="250" stroke="#000000" stroke-width="1" fill="none" font-size="12">1</text>
-	<polyline stroke="#000000" stroke-width="1" fill="none" points="76,236 240,236 240,46 300,46" />
-	<line x1="240" y1="106" x2="300" y2="106" stroke="#000000" stroke-width="1" fill="none" />	
-	<circle cx="240" cy="106" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="240" y1="166" x2="300" y2="166" stroke="#000000" stroke-width="1" fill="none" />	
-	<circle cx="240" cy="166" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="240" y1="225" x2="300" y2="225" stroke="#000000" stroke-width="1" fill="none" />	
-	<circle cx="240" cy="225" r="2" stroke="#000000" stroke-width="1" fill="#000000" />
-	<line x1="330" y1="40" x2="345" y2="40" stroke="#000000" stroke-width="1" fill="none" />
-	<line x1="330" y1="70" x2="345" y2="70" stroke="#000000" stroke-width="1" fill="none" />
-	<line x1="330" y1="100" x2="345" y2="100" stroke="#000000" stroke-width="1" fill="none" />
-	<line x1="330" y1="130" x2="345" y2="130" stroke="#000000" stroke-width="1" fill="none" />
-	<line x1="330" y1="160" x2="345" y2="160" stroke="#000000" stroke-width="1" fill="none" />
-	<line x1="330" y1="190" x2="345" y2="190" stroke="#000000" stroke-width="1" fill="none" />
-	<line x1="330" y1="220" x2="345" y2="220" stroke="#000000" stroke-width="1" fill="none" />
-	<line x1="330" y1="250" x2="345" y2="250" stroke="#000000" stroke-width="1" fill="none" />
-	<g transform="translate(10,0)">							
-		<text id="D0d" x="340" y="45" stroke="#000000" stroke-width="1" fill="none" font-size="12">1</text>
-		<text id="D1d" x="340" y="75" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
-		<text id="D2d" x="340" y="105" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
-		<text id="D3d" x="340" y="135" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
-		<text id="D4d" x="340" y="165" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
-		<text id="D5d" x="340" y="195" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
-		<text id="D6d" x="340" y="225" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
-		<text id="D7d" x="340" y="255" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
-	</g>
-	<text x="80" y="280" stroke="none" fill="#000000" font-size="14" font-family="serif">Рис. 7.4.5. Декодер</text>
+<svg height="290px" width="800px">
+    <script>
+        function funcAd(idA, idB, idC, D0, D1, D2, D3, D4, D5, D6, D7, neA) {
+            var idA = document.getElementById(idA), idB = document.getElementById(idB),
+                idC = document.getElementById(idC), D0 = document.getElementById(D0), D1 = document.getElementById(D1),
+                D2 = document.getElementById(D2), D3 = document.getElementById(D3), D4 = document.getElementById(D4),
+                D5 = document.getElementById(D5), D6 = document.getElementById(D6), D7 = document.getElementById(D7),
+                neA = document.getElementById(neA);
+            if (idA.firstChild.nodeValue == '0') {
+                idA.firstChild.nodeValue = '1';
+                neA.firstChild.nodeValue = '0';
+            } else {
+                idA.firstChild.nodeValue = '0';
+                neA.firstChild.nodeValue = '1';
+            }
+            if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '0') {
+                D0.firstChild.nodeValue = '1';
+                D1.firstChild.nodeValue = '0';
+                D2.firstChild.nodeValue = '0';
+                D3.firstChild.nodeValue = '0';
+                D4.firstChild.nodeValue = '0';
+                D5.firstChild.nodeValue = '0';
+                D6.firstChild.nodeValue = '0';
+                D7.firstChild.nodeValue = '0';
+            } else if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '1') {
+                D0.firstChild.nodeValue = '0';
+                D1.firstChild.nodeValue = '1';
+                D2.firstChild.nodeValue = '0';
+                D3.firstChild.nodeValue = '0';
+                D4.firstChild.nodeValue = '0';
+                D5.firstChild.nodeValue = '0';
+                D6.firstChild.nodeValue = '0';
+                D7.firstChild.nodeValue = '0';
+            } else if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '1' && idC.firstChild.nodeValue == '0') {
+                D0.firstChild.nodeValue = '0';
+                D1.firstChild.nodeValue = '0';
+                D2.firstChild.nodeValue = '1';
+                D3.firstChild.nodeValue = '0';
+                D4.firstChild.nodeValue = '0';
+                D5.firstChild.nodeValue = '0';
+                D6.firstChild.nodeValue = '0';
+                D7.firstChild.nodeValue = '0';
+            } else if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '1' && idC.firstChild.nodeValue == '1') {
+                D0.firstChild.nodeValue = '0';
+                D1.firstChild.nodeValue = '0';
+                D2.firstChild.nodeValue = '0';
+                D3.firstChild.nodeValue = '1';
+                D4.firstChild.nodeValue = '0';
+                D5.firstChild.nodeValue = '0';
+                D6.firstChild.nodeValue = '0';
+                D7.firstChild.nodeValue = '0';
+            } else if (idA.firstChild.nodeValue == '1' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '0') {
+                D0.firstChild.nodeValue = '0';
+                D1.firstChild.nodeValue = '0';
+                D2.firstChild.nodeValue = '0';
+                D3.firstChild.nodeValue = '0';
+                D4.firstChild.nodeValue = '1';
+                D5.firstChild.nodeValue = '0';
+                D6.firstChild.nodeValue = '0';
+                D7.firstChild.nodeValue = '0';
+            } else if (idA.firstChild.nodeValue == '1' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '1') {
+                D0.firstChild.nodeValue = '0';
+                D1.firstChild.nodeValue = '0';
+                D2.firstChild.nodeValue = '0';
+                D3.firstChild.nodeValue = '0';
+                D4.firstChild.nodeValue = '0';
+                D5.firstChild.nodeValue = '1';
+                D6.firstChild.nodeValue = '0';
+                D7.firstChild.nodeValue = '0';
+            } else if (idA.firstChild.nodeValue == '1' && idB.firstChild.nodeValue == '1' && idC.firstChild.nodeValue == '0') {
+                D0.firstChild.nodeValue = '0';
+                D1.firstChild.nodeValue = '0';
+                D2.firstChild.nodeValue = '0';
+                D3.firstChild.nodeValue = '0';
+                D4.firstChild.nodeValue = '0';
+                D5.firstChild.nodeValue = '0';
+                D6.firstChild.nodeValue = '1';
+                D7.firstChild.nodeValue = '0';
+            } else {
+                D0.firstChild.nodeValue = '0';
+                D1.firstChild.nodeValue = '0';
+                D2.firstChild.nodeValue = '0';
+                D3.firstChild.nodeValue = '0';
+                D4.firstChild.nodeValue = '0';
+                D5.firstChild.nodeValue = '0';
+                D6.firstChild.nodeValue = '0';
+                D7.firstChild.nodeValue = '1';
+            }
+        }
+
+        function funcBd(idA, idB, idC, D0, D1, D2, D3, D4, D5, D6, D7, neB) {
+            var idA = document.getElementById(idA), idB = document.getElementById(idB),
+                idC = document.getElementById(idC), D0 = document.getElementById(D0), D1 = document.getElementById(D1),
+                D2 = document.getElementById(D2), D3 = document.getElementById(D3), D4 = document.getElementById(D4),
+                D5 = document.getElementById(D5), D6 = document.getElementById(D6), D7 = document.getElementById(D7),
+                neB = document.getElementById(neB);
+            if (idB.firstChild.nodeValue == '0') {
+                idB.firstChild.nodeValue = '1';
+                neB.firstChild.nodeValue = '0';
+            } else {
+                idB.firstChild.nodeValue = '0';
+                neB.firstChild.nodeValue = '1';
+            }
+            if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '0') {
+                D0.firstChild.nodeValue = '1';
+                D1.firstChild.nodeValue = '0';
+                D2.firstChild.nodeValue = '0';
+                D3.firstChild.nodeValue = '0';
+                D4.firstChild.nodeValue = '0';
+                D5.firstChild.nodeValue = '0';
+                D6.firstChild.nodeValue = '0';
+                D7.firstChild.nodeValue = '0';
+            } else if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '1') {
+                D0.firstChild.nodeValue = '0';
+                D1.firstChild.nodeValue = '1';
+                D2.firstChild.nodeValue = '0';
+                D3.firstChild.nodeValue = '0';
+                D4.firstChild.nodeValue = '0';
+                D5.firstChild.nodeValue = '0';
+                D6.firstChild.nodeValue = '0';
+                D7.firstChild.nodeValue = '0';
+            } else if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '1' && idC.firstChild.nodeValue == '0') {
+                D0.firstChild.nodeValue = '0';
+                D1.firstChild.nodeValue = '0';
+                D2.firstChild.nodeValue = '1';
+                D3.firstChild.nodeValue = '0';
+                D4.firstChild.nodeValue = '0';
+                D5.firstChild.nodeValue = '0';
+                D6.firstChild.nodeValue = '0';
+                D7.firstChild.nodeValue = '0';
+            } else if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '1' && idC.firstChild.nodeValue == '1') {
+                D0.firstChild.nodeValue = '0';
+                D1.firstChild.nodeValue = '0';
+                D2.firstChild.nodeValue = '0';
+                D3.firstChild.nodeValue = '1';
+                D4.firstChild.nodeValue = '0';
+                D5.firstChild.nodeValue = '0';
+                D6.firstChild.nodeValue = '0';
+                D7.firstChild.nodeValue = '0';
+            } else if (idA.firstChild.nodeValue == '1' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '0') {
+                D0.firstChild.nodeValue = '0';
+                D1.firstChild.nodeValue = '0';
+                D2.firstChild.nodeValue = '0';
+                D3.firstChild.nodeValue = '0';
+                D4.firstChild.nodeValue = '1';
+                D5.firstChild.nodeValue = '0';
+                D6.firstChild.nodeValue = '0';
+                D7.firstChild.nodeValue = '0';
+            } else if (idA.firstChild.nodeValue == '1' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '1') {
+                D0.firstChild.nodeValue = '0';
+                D1.firstChild.nodeValue = '0';
+                D2.firstChild.nodeValue = '0';
+                D3.firstChild.nodeValue = '0';
+                D4.firstChild.nodeValue = '0';
+                D5.firstChild.nodeValue = '1';
+                D6.firstChild.nodeValue = '0';
+                D7.firstChild.nodeValue = '0';
+            } else if (idA.firstChild.nodeValue == '1' && idB.firstChild.nodeValue == '1' && idC.firstChild.nodeValue == '0') {
+                D0.firstChild.nodeValue = '0';
+                D1.firstChild.nodeValue = '0';
+                D2.firstChild.nodeValue = '0';
+                D3.firstChild.nodeValue = '0';
+                D4.firstChild.nodeValue = '0';
+                D5.firstChild.nodeValue = '0';
+                D6.firstChild.nodeValue = '1';
+                D7.firstChild.nodeValue = '0';
+            } else {
+                D0.firstChild.nodeValue = '0';
+                D1.firstChild.nodeValue = '0';
+                D2.firstChild.nodeValue = '0';
+                D3.firstChild.nodeValue = '0';
+                D4.firstChild.nodeValue = '0';
+                D5.firstChild.nodeValue = '0';
+                D6.firstChild.nodeValue = '0';
+                D7.firstChild.nodeValue = '1';
+            }
+        }
+
+        function funcCd(idA, idB, idC, D0, D1, D2, D3, D4, D5, D6, D7, neC) {
+            var idA = document.getElementById(idA), idB = document.getElementById(idB),
+                idC = document.getElementById(idC), D0 = document.getElementById(D0), D1 = document.getElementById(D1),
+                D2 = document.getElementById(D2), D3 = document.getElementById(D3), D4 = document.getElementById(D4),
+                D5 = document.getElementById(D5), D6 = document.getElementById(D6), D7 = document.getElementById(D7),
+                neC = document.getElementById(neC);
+            if (idC.firstChild.nodeValue == '0') {
+                idC.firstChild.nodeValue = '1';
+                neC.firstChild.nodeValue = '0';
+            } else {
+                idC.firstChild.nodeValue = '0';
+                neC.firstChild.nodeValue = '1';
+            }
+            if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '0') {
+                D0.firstChild.nodeValue = '1';
+                D1.firstChild.nodeValue = '0';
+                D2.firstChild.nodeValue = '0';
+                D3.firstChild.nodeValue = '0';
+                D4.firstChild.nodeValue = '0';
+                D5.firstChild.nodeValue = '0';
+                D6.firstChild.nodeValue = '0';
+                D7.firstChild.nodeValue = '0';
+            } else if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '1') {
+                D0.firstChild.nodeValue = '0';
+                D1.firstChild.nodeValue = '1';
+                D2.firstChild.nodeValue = '0';
+                D3.firstChild.nodeValue = '0';
+                D4.firstChild.nodeValue = '0';
+                D5.firstChild.nodeValue = '0';
+                D6.firstChild.nodeValue = '0';
+                D7.firstChild.nodeValue = '0';
+            } else if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '1' && idC.firstChild.nodeValue == '0') {
+                D0.firstChild.nodeValue = '0';
+                D1.firstChild.nodeValue = '0';
+                D2.firstChild.nodeValue = '1';
+                D3.firstChild.nodeValue = '0';
+                D4.firstChild.nodeValue = '0';
+                D5.firstChild.nodeValue = '0';
+                D6.firstChild.nodeValue = '0';
+                D7.firstChild.nodeValue = '0';
+            } else if (idA.firstChild.nodeValue == '0' && idB.firstChild.nodeValue == '1' && idC.firstChild.nodeValue == '1') {
+                D0.firstChild.nodeValue = '0';
+                D1.firstChild.nodeValue = '0';
+                D2.firstChild.nodeValue = '0';
+                D3.firstChild.nodeValue = '1';
+                D4.firstChild.nodeValue = '0';
+                D5.firstChild.nodeValue = '0';
+                D6.firstChild.nodeValue = '0';
+                D7.firstChild.nodeValue = '0';
+            } else if (idA.firstChild.nodeValue == '1' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '0') {
+                D0.firstChild.nodeValue = '0';
+                D1.firstChild.nodeValue = '0';
+                D2.firstChild.nodeValue = '0';
+                D3.firstChild.nodeValue = '0';
+                D4.firstChild.nodeValue = '1';
+                D5.firstChild.nodeValue = '0';
+                D6.firstChild.nodeValue = '0';
+                D7.firstChild.nodeValue = '0';
+            } else if (idA.firstChild.nodeValue == '1' && idB.firstChild.nodeValue == '0' && idC.firstChild.nodeValue == '1') {
+                D0.firstChild.nodeValue = '0';
+                D1.firstChild.nodeValue = '0';
+                D2.firstChild.nodeValue = '0';
+                D3.firstChild.nodeValue = '0';
+                D4.firstChild.nodeValue = '0';
+                D5.firstChild.nodeValue = '1';
+                D6.firstChild.nodeValue = '0';
+                D7.firstChild.nodeValue = '0';
+            } else if (idA.firstChild.nodeValue == '1' && idB.firstChild.nodeValue == '1' && idC.firstChild.nodeValue == '0') {
+                D0.firstChild.nodeValue = '0';
+                D1.firstChild.nodeValue = '0';
+                D2.firstChild.nodeValue = '0';
+                D3.firstChild.nodeValue = '0';
+                D4.firstChild.nodeValue = '0';
+                D5.firstChild.nodeValue = '0';
+                D6.firstChild.nodeValue = '1';
+                D7.firstChild.nodeValue = '0';
+            } else {
+                D0.firstChild.nodeValue = '0';
+                D1.firstChild.nodeValue = '0';
+                D2.firstChild.nodeValue = '0';
+                D3.firstChild.nodeValue = '0';
+                D4.firstChild.nodeValue = '0';
+                D5.firstChild.nodeValue = '0';
+                D6.firstChild.nodeValue = '0';
+                D7.firstChild.nodeValue = '1';
+            }
+        }
+    </script>
+    <path d="M300,30 H320 A10,10 0 0 1 320,50 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,60 H320 A10,10 0 0 1 320,80 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,90 H320 A10,10 0 0 1 320,110 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,120 H320 A10,10 0 0 1 320,140 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,150 H320 A10,10 0 0 1 320,170 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,180 H320 A10,10 0 0 1 320,200 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,210 H320 A10,10 0 0 1 320,230 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M300,240 H320 A10,10 0 0 1 320,260 H300 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <text onclick="funcAd('idAd','idBd','idCd','D0d','D1d','D2d','D3d','D4d','D5d','D6d','D7d','neAd')" id="idAd" x="10"
+          y="70" stroke="#000000" stroke-width="1" fill="none" font-size="12">0
+    </text>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="20,65 150,65 150,245 300,245"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="40,65 40,95 60,95"/>
+    <polygon stroke="#000000" stroke-width="1" fill="none" points="60,90 70,95 60,100"/>
+    <circle cx="73" cy="95" r="3" stroke="#000000" stroke-width="1" fill="none"/>
+    <text id="neAd" x="80" y="112" stroke="#000000" stroke-width="1" fill="none" font-size="12">1</text>
+    <line x1="76" y1="95" x2="300" y2="95" stroke="#000000" stroke-width="1" fill="none"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="170,95 170,35 300,35"/>
+    <circle cx="170" cy="95" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="170,95 170,123 300,123"/>
+    <line x1="170" y1="65" x2="300" y2="65" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="170" cy="65" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="150" y1="155" x2="300" y2="155" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="150" cy="155" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="150" y1="185" x2="300" y2="185" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="150" cy="185" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="150" y1="215" x2="300" y2="215" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="150" cy="215" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <text onclick="funcBd('idAd','idBd','idCd','D0d','D1d','D2d','D3d','D4d','D5d','D6d','D7d','neBd')" id="idBd" x="10"
+          y="140" stroke="#000000" stroke-width="1" fill="none" font-size="12">0
+    </text>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="20,135 180,135 180,100 300,100"/>
+    <line x1="180" y1="135" x2="300" y2="135" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="180" cy="135" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="180,135 180,250 300,250"/>
+    <line x1="180" y1="220" x2="300" y2="220" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="180" cy="220" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="40,135 40,165 60,165"/>
+    <polygon stroke="#000000" stroke-width="1" fill="none" points="60,160 70,165 60,170"/>
+    <circle cx="73" cy="165" r="3" stroke="#000000" stroke-width="1" fill="none"/>
+    <text id="neBd" x="80" y="180" stroke="#000000" stroke-width="1" fill="none" font-size="12">1</text>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="76,165 200,165 200,40 300,40"/>
+    <line x1="200" y1="70" x2="300" y2="70" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="200" cy="70" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="200" y1="160" x2="300" y2="160" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="200" cy="160" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="200,165 200,190 300,190"/>
+    <circle cx="200" cy="165" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <text onclick="funcCd('idAd','idBd','idCd','D0d','D1d','D2d','D3d','D4d','D5d','D6d','D7d','neCd')" id="idCd" x="10"
+          y="210" stroke="#000000" stroke-width="1" fill="none" font-size="12">0
+    </text>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="20,206 220,206 220,75 300,75"/>
+    <line x1="220" y1="129" x2="300" y2="129" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="220" cy="129" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="220" y1="195" x2="300" y2="195" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="220" cy="195" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="220,206 220,255 300,255 "/>
+    <circle cx="220" cy="206" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="40,206 40,236 60,236"/>
+    <polygon stroke="#000000" stroke-width="1" fill="none" points="60,231 70,236 60,241"/>
+    <circle cx="73" cy="236" r="3" stroke="#000000" stroke-width="1" fill="none"/>
+    <text id="neCd" x="80" y="250" stroke="#000000" stroke-width="1" fill="none" font-size="12">1</text>
+    <polyline stroke="#000000" stroke-width="1" fill="none" points="76,236 240,236 240,46 300,46"/>
+    <line x1="240" y1="106" x2="300" y2="106" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="240" cy="106" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="240" y1="166" x2="300" y2="166" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="240" cy="166" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="240" y1="225" x2="300" y2="225" stroke="#000000" stroke-width="1" fill="none"/>
+    <circle cx="240" cy="225" r="2" stroke="#000000" stroke-width="1" fill="#000000"/>
+    <line x1="330" y1="40" x2="345" y2="40" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="330" y1="70" x2="345" y2="70" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="330" y1="100" x2="345" y2="100" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="330" y1="130" x2="345" y2="130" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="330" y1="160" x2="345" y2="160" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="330" y1="190" x2="345" y2="190" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="330" y1="220" x2="345" y2="220" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="330" y1="250" x2="345" y2="250" stroke="#000000" stroke-width="1" fill="none"/>
+    <g transform="translate(10,0)">
+        <text id="D0d" x="340" y="45" stroke="#000000" stroke-width="1" fill="none" font-size="12">1</text>
+        <text id="D1d" x="340" y="75" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+        <text id="D2d" x="340" y="105" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+        <text id="D3d" x="340" y="135" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+        <text id="D4d" x="340" y="165" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+        <text id="D5d" x="340" y="195" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+        <text id="D6d" x="340" y="225" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+        <text id="D7d" x="340" y="255" stroke="#000000" stroke-width="1" fill="none" font-size="12">0</text>
+    </g>
+    <text x="80" y="280" stroke="none" fill="#000000" font-size="14" font-family="serif">Рис. 7.4.5. Декодер</text>
 </svg>
-<p>Например, рассмотренный выше декодер может применяться для выбора одной из восьми микросхем памяти заданием адреса из трех бит.</p>
+<p>Например, рассмотренный выше декодер может применяться для выбора одной из восьми микросхем памяти заданием адреса из
+    трех бит.</p>
 <h2>7.4.3. Компараторы</h2>
-<p><span class="teorema"><a id='komparator'>Комбинаторная схема компаратор</a> сравнивает два слова, которые поступают на вход. Если слова совпадают, то компаратор на выход передает сигнал 1, в противном случае &#8212; 0.</span> </p>
-<p>На рисунке 7.4.6 компаратор из четырех вентилей <a href='7_2.html#xor'>XOR</a> и одного вентиля <a href='7_1.html#ne_ili'>НЕ-ИЛИ</a> сравнивает четырехбитные слова 
-<math   display='inline'>
-<mfenced separators="">
-	<msub><mi>A</mi><mn>0</mn></msub>
-	<msub><mi>A</mi><mn>1</mn></msub>
-	<msub><mi>A</mi><mn>2</mn></msub>
-	<msub><mi>A</mi><mn>3</mn></msub>
-</mfenced>
-</math>
-и
-<math   display='inline'>
-<mfenced separators="">
-	<msub><mi>B</mi><mn>0</mn></msub>
-	<msub><mi>B</mi><mn>1</mn></msub>
-	<msub><mi>B</mi><mn>2</mn></msub>
-	<msub><mi>B</mi><mn>3</mn></msub>
-</mfenced>
-</math>:
+<p><span class="teorema"><a id='komparator'>Комбинаторная схема компаратор</a> сравнивает два слова, которые поступают на вход. Если слова совпадают, то компаратор на выход передает сигнал 1, в противном случае &#8212; 0.</span>
 </p>
-<svg  height = "330px"  width = "300px">
-<defs>
-    <marker id="Triangle"
-      viewBox="0 0 10 10" refX="0" refY="5" 
-      markerUnits="strokeWidth"
-      markerWidth="8" markerHeight="8"
-      orient="auto">
-      <path d="M 0 0 L 10 5 L 0 10 z" />
-    </marker>
- </defs>
-	<path d="M100,50 Q125,48 140,65 M100,80 Q125,78 140,65 M100,50 A30,30 0 0 1 100,80" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M95,50 A30,30 0 0 1 95,80" stroke="#000000" stroke-width="1" fill="none"/>
-	<line x1="52" y1="54" x2="102" y2="54" stroke="#000000" stroke-width="1" fill="none"/>
-	<line x1="52" y1="76" x2="102" y2="76" stroke="#000000" stroke-width="1" fill="none"/>
-	<text x="30" y="56" stroke="#000000" fill="none" font-size="12">A<tspan dy="7">0</tspan></text>
-	<text x="30" y="78" stroke="#000000" fill="none"  font-size="12">B<tspan dy="7">0</tspan></text>
-	<text x="150" y="20" stroke="#000000" fill="none">XOR</text>
-	<line x1="152" y1="26" x2="129" y2="45" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)" />	
-	<g transform="translate(0 70)">
-		<path d="M100,50 Q125,48 140,65 M100,80 Q125,78 140,65 M100,50 A30,30 0 0 1 100,80" stroke="#000000" stroke-width="1" fill="none"/>
-		<path d="M95,50 A30,30 0 0 1 95,80" stroke="#000000" stroke-width="1" fill="none"/>
-		<line x1="52" y1="54" x2="102" y2="54" stroke="#000000" stroke-width="1" fill="none"/>
-		<line x1="52" y1="76" x2="102" y2="76" stroke="#000000" stroke-width="1" fill="none"/>
-		<text x="30" y="56" stroke="#000000" fill="none" font-size="12">A<tspan dy="7">1</tspan></text>
-		<text x="30" y="78" stroke="#000000" fill="none"  font-size="12">B<tspan dy="7">1</tspan></text>
-	</g>
-	<g transform="translate(0 140)">
-		<path d="M100,50 Q125,48 140,65 M100,80 Q125,78 140,65 M100,50 A30,30 0 0 1 100,80" stroke="#000000" stroke-width="1" fill="none"/>
-		<path d="M95,50 A30,30 0 0 1 95,80" stroke="#000000" stroke-width="1" fill="none"/>
-		<line x1="52" y1="54" x2="102" y2="54" stroke="#000000" stroke-width="1" fill="none"/>
-		<line x1="52" y1="76" x2="102" y2="76" stroke="#000000" stroke-width="1" fill="none"/>
-		<text x="30" y="56" stroke="#000000" fill="none" font-size="12">A<tspan dy="7">2</tspan></text>
-		<text x="30" y="78" stroke="#000000" fill="none"  font-size="12">B<tspan dy="7">2</tspan></text>
-	</g>
-	<g transform="translate(0 210)">
-		<path d="M100,50 Q125,48 140,65 M100,80 Q125,78 140,65 M100,50 A30,30 0 0 1 100,80" stroke="#000000" stroke-width="1" fill="none"/>
-		<path d="M95,50 A30,30 0 0 1 95,80" stroke="#000000" stroke-width="1" fill="none"/>
-		<line x1="52" y1="54" x2="102" y2="54" stroke="#000000" stroke-width="1" fill="none"/>
-		<line x1="52" y1="76" x2="102" y2="76" stroke="#000000" stroke-width="1" fill="none"/>
-		<text x="30" y="56" stroke="#000000" fill="none" font-size="12">A<tspan dy="7">3</tspan></text>
-		<text x="30" y="78" stroke="#000000" fill="none"  font-size="12">B<tspan dy="7">3</tspan></text>
-	</g>	
-	<g transform="translate(100 105)">
-		<path d="M100,50 Q125,48 140,65 M100,80 Q125,78 140,65 M100,50 A30,30 0 0 1 100,80" stroke="#000000" stroke-width="1" fill="none"/>
-		<circle cx="143" cy="65" r="3"  stroke="#000000" stroke-width="1" fill="none"/>
-		<line x1="146" y1="65" x2="185" y2="65" stroke="#000000" stroke-width="1" fill="none"/>
-		<text x="150" y="48" stroke="#000000" fill="none">A=B</text>		
-	</g>
-	<polyline  stroke="#000000" fill="none" points="140,65 180,65 180,158 201,158" />
-	<polyline  stroke="#000000" fill="none" points="140,135 170,135 170,164 203,164" />	
-	<polyline  stroke="#000000" fill="none" points="140,205 170,205 170,170 203,170" />	
-	<polyline  stroke="#000000" fill="none" points="140,275 180,275 180,176 202,176" />	
-	<text x="25" y="325" stroke="none" fill="#000000" font-size="14" font-family="serif">Рис. 7.4.6. Компаратор</text>	
+<p>На рисунке 7.4.6 компаратор из четырех вентилей <a href='7_2.html#xor'>XOR</a> и одного вентиля <a
+        href='7_1.html#ne_ili'>НЕ-ИЛИ</a> сравнивает четырехбитные слова
+    <math display='inline'>
+        <mfenced separators="">
+            <msub>
+                <mi>A</mi>
+                <mn>0</mn>
+            </msub>
+            <msub>
+                <mi>A</mi>
+                <mn>1</mn>
+            </msub>
+            <msub>
+                <mi>A</mi>
+                <mn>2</mn>
+            </msub>
+            <msub>
+                <mi>A</mi>
+                <mn>3</mn>
+            </msub>
+        </mfenced>
+    </math>
+    и
+    <math display='inline'>
+        <mfenced separators="">
+            <msub>
+                <mi>B</mi>
+                <mn>0</mn>
+            </msub>
+            <msub>
+                <mi>B</mi>
+                <mn>1</mn>
+            </msub>
+            <msub>
+                <mi>B</mi>
+                <mn>2</mn>
+            </msub>
+            <msub>
+                <mi>B</mi>
+                <mn>3</mn>
+            </msub>
+        </mfenced>
+    </math>
+    :
+</p>
+<svg height="330px" width="300px">
+    <defs>
+        <marker id="Triangle"
+                viewBox="0 0 10 10" refX="0" refY="5"
+                markerUnits="strokeWidth"
+                markerWidth="8" markerHeight="8"
+                orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z"/>
+        </marker>
+    </defs>
+    <path d="M100,50 Q125,48 140,65 M100,80 Q125,78 140,65 M100,50 A30,30 0 0 1 100,80" stroke="#000000"
+          stroke-width="1" fill="none"/>
+    <path d="M95,50 A30,30 0 0 1 95,80" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="52" y1="54" x2="102" y2="54" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="52" y1="76" x2="102" y2="76" stroke="#000000" stroke-width="1" fill="none"/>
+    <text x="30" y="56" stroke="#000000" fill="none" font-size="12">A
+        <tspan dy="7">0</tspan>
+    </text>
+    <text x="30" y="78" stroke="#000000" fill="none" font-size="12">B
+        <tspan dy="7">0</tspan>
+    </text>
+    <text x="150" y="20" stroke="#000000" fill="none">XOR</text>
+    <line x1="152" y1="26" x2="129" y2="45" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+    <g transform="translate(0 70)">
+        <path d="M100,50 Q125,48 140,65 M100,80 Q125,78 140,65 M100,50 A30,30 0 0 1 100,80" stroke="#000000"
+              stroke-width="1" fill="none"/>
+        <path d="M95,50 A30,30 0 0 1 95,80" stroke="#000000" stroke-width="1" fill="none"/>
+        <line x1="52" y1="54" x2="102" y2="54" stroke="#000000" stroke-width="1" fill="none"/>
+        <line x1="52" y1="76" x2="102" y2="76" stroke="#000000" stroke-width="1" fill="none"/>
+        <text x="30" y="56" stroke="#000000" fill="none" font-size="12">A
+            <tspan dy="7">1</tspan>
+        </text>
+        <text x="30" y="78" stroke="#000000" fill="none" font-size="12">B
+            <tspan dy="7">1</tspan>
+        </text>
+    </g>
+    <g transform="translate(0 140)">
+        <path d="M100,50 Q125,48 140,65 M100,80 Q125,78 140,65 M100,50 A30,30 0 0 1 100,80" stroke="#000000"
+              stroke-width="1" fill="none"/>
+        <path d="M95,50 A30,30 0 0 1 95,80" stroke="#000000" stroke-width="1" fill="none"/>
+        <line x1="52" y1="54" x2="102" y2="54" stroke="#000000" stroke-width="1" fill="none"/>
+        <line x1="52" y1="76" x2="102" y2="76" stroke="#000000" stroke-width="1" fill="none"/>
+        <text x="30" y="56" stroke="#000000" fill="none" font-size="12">A
+            <tspan dy="7">2</tspan>
+        </text>
+        <text x="30" y="78" stroke="#000000" fill="none" font-size="12">B
+            <tspan dy="7">2</tspan>
+        </text>
+    </g>
+    <g transform="translate(0 210)">
+        <path d="M100,50 Q125,48 140,65 M100,80 Q125,78 140,65 M100,50 A30,30 0 0 1 100,80" stroke="#000000"
+              stroke-width="1" fill="none"/>
+        <path d="M95,50 A30,30 0 0 1 95,80" stroke="#000000" stroke-width="1" fill="none"/>
+        <line x1="52" y1="54" x2="102" y2="54" stroke="#000000" stroke-width="1" fill="none"/>
+        <line x1="52" y1="76" x2="102" y2="76" stroke="#000000" stroke-width="1" fill="none"/>
+        <text x="30" y="56" stroke="#000000" fill="none" font-size="12">A
+            <tspan dy="7">3</tspan>
+        </text>
+        <text x="30" y="78" stroke="#000000" fill="none" font-size="12">B
+            <tspan dy="7">3</tspan>
+        </text>
+    </g>
+    <g transform="translate(100 105)">
+        <path d="M100,50 Q125,48 140,65 M100,80 Q125,78 140,65 M100,50 A30,30 0 0 1 100,80" stroke="#000000"
+              stroke-width="1" fill="none"/>
+        <circle cx="143" cy="65" r="3" stroke="#000000" stroke-width="1" fill="none"/>
+        <line x1="146" y1="65" x2="185" y2="65" stroke="#000000" stroke-width="1" fill="none"/>
+        <text x="150" y="48" stroke="#000000" fill="none">A=B</text>
+    </g>
+    <polyline stroke="#000000" fill="none" points="140,65 180,65 180,158 201,158"/>
+    <polyline stroke="#000000" fill="none" points="140,135 170,135 170,164 203,164"/>
+    <polyline stroke="#000000" fill="none" points="140,205 170,205 170,170 203,170"/>
+    <polyline stroke="#000000" fill="none" points="140,275 180,275 180,176 202,176"/>
+    <text x="25" y="325" stroke="none" fill="#000000" font-size="14" font-family="serif">Рис. 7.4.6. Компаратор</text>
 </svg>
 <p>Работу компаратора демонстрирует схема на рисунке 7.4.7:</p>
-<svg  height = "330px"  width = "300px">
-<script>
-function funcA0k(A0,B0,C0,A1,B1,C1,A2,B2,C2,A3,B3,C3,Out) {
-var A0=document.getElementById(A0), B0=document.getElementById(B0), C0=document.getElementById(C0), Out=document.getElementById(Out), A1=document.getElementById(A1), B1=document.getElementById(B1), C1=document.getElementById(C1), A2=document.getElementById(A2), B2=document.getElementById(B2), C2=document.getElementById(C2), A3=document.getElementById(A3), B3=document.getElementById(B3), C3=document.getElementById(C3);		
-	if (A0.firstChild.nodeValue=='0') 
-  		A0.firstChild.nodeValue='1';
-   else   	 		
-  	  	A0.firstChild.nodeValue='0';
-  	if (A0.firstChild.nodeValue==B0.firstChild.nodeValue)
-  		C0.firstChild.nodeValue='0';
-  	else
-  		C0.firstChild.nodeValue='1';
-	if (C0.firstChild.nodeValue=='0' && C1.firstChild.nodeValue=='0' && C2.firstChild.nodeValue=='0' && C3.firstChild.nodeValue=='0')  		
-  		Out.firstChild.nodeValue='1';
-  	else
-  		Out.firstChild.nodeValue='0';  		
-}
-function funcB0k(A0,B0,C0,A1,B1,C1,A2,B2,C2,A3,B3,C3,Out) {
-var A0=document.getElementById(A0), B0=document.getElementById(B0), C0=document.getElementById(C0), Out=document.getElementById(Out), A1=document.getElementById(A1), B1=document.getElementById(B1), C1=document.getElementById(C1), A2=document.getElementById(A2), B2=document.getElementById(B2), C2=document.getElementById(C2), A3=document.getElementById(A3), B3=document.getElementById(B3), C3=document.getElementById(C3);		
-	if (B0.firstChild.nodeValue=='0') 
-  		B0.firstChild.nodeValue='1';
-   else   	 		
-  	  	B0.firstChild.nodeValue='0';
-  	if (A0.firstChild.nodeValue==B0.firstChild.nodeValue)
-  		C0.firstChild.nodeValue='0';
-  	else
-  		C0.firstChild.nodeValue='1';
-	if (C0.firstChild.nodeValue=='0' && C1.firstChild.nodeValue=='0' && C2.firstChild.nodeValue=='0' && C3.firstChild.nodeValue=='0')  		
-  		Out.firstChild.nodeValue='1';
-  	else
-  		Out.firstChild.nodeValue='0';  		
-}
+<svg height="330px" width="300px">
+    <script>
+        function funcA0k(A0, B0, C0, A1, B1, C1, A2, B2, C2, A3, B3, C3, Out) {
+            var A0 = document.getElementById(A0), B0 = document.getElementById(B0), C0 = document.getElementById(C0),
+                Out = document.getElementById(Out), A1 = document.getElementById(A1), B1 = document.getElementById(B1),
+                C1 = document.getElementById(C1), A2 = document.getElementById(A2), B2 = document.getElementById(B2),
+                C2 = document.getElementById(C2), A3 = document.getElementById(A3), B3 = document.getElementById(B3),
+                C3 = document.getElementById(C3);
+            if (A0.firstChild.nodeValue == '0')
+                A0.firstChild.nodeValue = '1';
+            else
+                A0.firstChild.nodeValue = '0';
+            if (A0.firstChild.nodeValue == B0.firstChild.nodeValue)
+                C0.firstChild.nodeValue = '0';
+            else
+                C0.firstChild.nodeValue = '1';
+            if (C0.firstChild.nodeValue == '0' && C1.firstChild.nodeValue == '0' && C2.firstChild.nodeValue == '0' && C3.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = '1';
+            else
+                Out.firstChild.nodeValue = '0';
+        }
 
-function funcA1k(A0,B0,C0,A1,B1,C1,A2,B2,C2,A3,B3,C3,Out) {
-var A0=document.getElementById(A0), B0=document.getElementById(B0), C0=document.getElementById(C0), Out=document.getElementById(Out), A1=document.getElementById(A1), B1=document.getElementById(B1), C1=document.getElementById(C1), A2=document.getElementById(A2), B2=document.getElementById(B2), C2=document.getElementById(C2), A3=document.getElementById(A3), B3=document.getElementById(B3), C3=document.getElementById(C3);		
-	if (A1.firstChild.nodeValue=='0') 
-  		A1.firstChild.nodeValue='1';
-   else   	 		
-  	  	A1.firstChild.nodeValue='0';
-  	if (A1.firstChild.nodeValue==B1.firstChild.nodeValue)
-  		C1.firstChild.nodeValue='0';
-  	else
-  		C1.firstChild.nodeValue='1';
-	if (C0.firstChild.nodeValue=='0' && C1.firstChild.nodeValue=='0' && C2.firstChild.nodeValue=='0' && C3.firstChild.nodeValue=='0')  		
-  		Out.firstChild.nodeValue='1';
-  	else
-  		Out.firstChild.nodeValue='0';  		
-}
-function funcB1k(A0,B0,C0,A1,B1,C1,A2,B2,C2,A3,B3,C3,Out) {
-var A0=document.getElementById(A0), B0=document.getElementById(B0), C0=document.getElementById(C0), Out=document.getElementById(Out), A1=document.getElementById(A1), B1=document.getElementById(B1), C1=document.getElementById(C1), A2=document.getElementById(A2), B2=document.getElementById(B2), C2=document.getElementById(C2), A3=document.getElementById(A3), B3=document.getElementById(B3), C3=document.getElementById(C3);	
-	if (B1.firstChild.nodeValue=='0') 
-  		B1.firstChild.nodeValue='1';
-   else   	 		
-  	  	B1.firstChild.nodeValue='0';
-  	if (A1.firstChild.nodeValue==B1.firstChild.nodeValue)
-  		C1.firstChild.nodeValue='0';
-  	else
-  		C1.firstChild.nodeValue='1';
-	if (C0.firstChild.nodeValue=='0' && C1.firstChild.nodeValue=='0' && C2.firstChild.nodeValue=='0' && C3.firstChild.nodeValue=='0')  		
-  		Out.firstChild.nodeValue='1';
-  	else
-  		Out.firstChild.nodeValue='0';  		
-}
+        function funcB0k(A0, B0, C0, A1, B1, C1, A2, B2, C2, A3, B3, C3, Out) {
+            var A0 = document.getElementById(A0), B0 = document.getElementById(B0), C0 = document.getElementById(C0),
+                Out = document.getElementById(Out), A1 = document.getElementById(A1), B1 = document.getElementById(B1),
+                C1 = document.getElementById(C1), A2 = document.getElementById(A2), B2 = document.getElementById(B2),
+                C2 = document.getElementById(C2), A3 = document.getElementById(A3), B3 = document.getElementById(B3),
+                C3 = document.getElementById(C3);
+            if (B0.firstChild.nodeValue == '0')
+                B0.firstChild.nodeValue = '1';
+            else
+                B0.firstChild.nodeValue = '0';
+            if (A0.firstChild.nodeValue == B0.firstChild.nodeValue)
+                C0.firstChild.nodeValue = '0';
+            else
+                C0.firstChild.nodeValue = '1';
+            if (C0.firstChild.nodeValue == '0' && C1.firstChild.nodeValue == '0' && C2.firstChild.nodeValue == '0' && C3.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = '1';
+            else
+                Out.firstChild.nodeValue = '0';
+        }
 
-function funcA2k(A0,B0,C0,A1,B1,C1,A2,B2,C2,A3,B3,C3,Out) {
-var A0=document.getElementById(A0), B0=document.getElementById(B0), C0=document.getElementById(C0), Out=document.getElementById(Out), A1=document.getElementById(A1), B1=document.getElementById(B1), C1=document.getElementById(C1), A2=document.getElementById(A2), B2=document.getElementById(B2), C2=document.getElementById(C2), A3=document.getElementById(A3), B3=document.getElementById(B3), C3=document.getElementById(C3);	
-	if (A2.firstChild.nodeValue=='0') 
-  		A2.firstChild.nodeValue='1';
-   else   	 		
-  	  	A2.firstChild.nodeValue='0';
-  	if (A2.firstChild.nodeValue==B2.firstChild.nodeValue)
-  		C2.firstChild.nodeValue='0';
-  	else
-  		C2.firstChild.nodeValue='1';
-	if (C0.firstChild.nodeValue=='0' && C1.firstChild.nodeValue=='0' && C2.firstChild.nodeValue=='0' && C3.firstChild.nodeValue=='0')  		
-  		Out.firstChild.nodeValue='1';
-  	else
-  		Out.firstChild.nodeValue='0';  		
-}
-function funcB2k(A0,B0,C0,A1,B1,C1,A2,B2,C2,A3,B3,C3,Out) {
-var A0=document.getElementById(A0), B0=document.getElementById(B0), C0=document.getElementById(C0), Out=document.getElementById(Out), A1=document.getElementById(A1), B1=document.getElementById(B1), C1=document.getElementById(C1), A2=document.getElementById(A2), B2=document.getElementById(B2), C2=document.getElementById(C2), A3=document.getElementById(A3), B3=document.getElementById(B3), C3=document.getElementById(C3);		
-	if (B2.firstChild.nodeValue=='0') 
-  		B2.firstChild.nodeValue='1';
-   else   	 		
-  	  	B2.firstChild.nodeValue='0';
-  	if (A2.firstChild.nodeValue==B2.firstChild.nodeValue)
-  		C2.firstChild.nodeValue='0';
-  	else
-  		C2.firstChild.nodeValue='1';
-	if (C0.firstChild.nodeValue=='0' && C1.firstChild.nodeValue=='0' && C2.firstChild.nodeValue=='0' && C3.firstChild.nodeValue=='0')  		
-  		Out.firstChild.nodeValue='1';
-  	else
-  		Out.firstChild.nodeValue='0';  		
-}
+        function funcA1k(A0, B0, C0, A1, B1, C1, A2, B2, C2, A3, B3, C3, Out) {
+            var A0 = document.getElementById(A0), B0 = document.getElementById(B0), C0 = document.getElementById(C0),
+                Out = document.getElementById(Out), A1 = document.getElementById(A1), B1 = document.getElementById(B1),
+                C1 = document.getElementById(C1), A2 = document.getElementById(A2), B2 = document.getElementById(B2),
+                C2 = document.getElementById(C2), A3 = document.getElementById(A3), B3 = document.getElementById(B3),
+                C3 = document.getElementById(C3);
+            if (A1.firstChild.nodeValue == '0')
+                A1.firstChild.nodeValue = '1';
+            else
+                A1.firstChild.nodeValue = '0';
+            if (A1.firstChild.nodeValue == B1.firstChild.nodeValue)
+                C1.firstChild.nodeValue = '0';
+            else
+                C1.firstChild.nodeValue = '1';
+            if (C0.firstChild.nodeValue == '0' && C1.firstChild.nodeValue == '0' && C2.firstChild.nodeValue == '0' && C3.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = '1';
+            else
+                Out.firstChild.nodeValue = '0';
+        }
 
-function funcA3k(A0,B0,C0,A1,B1,C1,A2,B2,C2,A3,B3,C3,Out) {
-var A0=document.getElementById(A0), B0=document.getElementById(B0), C0=document.getElementById(C0), Out=document.getElementById(Out), A1=document.getElementById(A1), B1=document.getElementById(B1), C1=document.getElementById(C1), A2=document.getElementById(A2), B2=document.getElementById(B2), C2=document.getElementById(C2), A3=document.getElementById(A3), B3=document.getElementById(B3), C3=document.getElementById(C3);
-	if (A3.firstChild.nodeValue=='0') 
-  		A3.firstChild.nodeValue='1';
-   else   	 		
-  	  	A3.firstChild.nodeValue='0';
-  	if (A3.firstChild.nodeValue==B3.firstChild.nodeValue)
-  		C3.firstChild.nodeValue='0';
-  	else
-  		C3.firstChild.nodeValue='1';
-	if (C0.firstChild.nodeValue=='0' && C1.firstChild.nodeValue=='0' && C2.firstChild.nodeValue=='0' && C3.firstChild.nodeValue=='0')  		
-  		Out.firstChild.nodeValue='1';
-  	else
-  		Out.firstChild.nodeValue='0';  		
-}
-function funcB3k(A0,B0,C0,A1,B1,C1,A2,B2,C2,A3,B3,C3,Out) {
-var A0=document.getElementById(A0), B0=document.getElementById(B0), C0=document.getElementById(C0), Out=document.getElementById(Out), A1=document.getElementById(A1), B1=document.getElementById(B1), C1=document.getElementById(C1), A2=document.getElementById(A2), B2=document.getElementById(B2), C2=document.getElementById(C2), A3=document.getElementById(A3), B3=document.getElementById(B3), C3=document.getElementById(C3);
-	if (B3.firstChild.nodeValue=='0') 
-  		B3.firstChild.nodeValue='1';
-   else   	 		
-  	  	B3.firstChild.nodeValue='0';
-  	if (A3.firstChild.nodeValue==B3.firstChild.nodeValue)
-  		C3.firstChild.nodeValue='0';
-  	else
-  		C3.firstChild.nodeValue='1';
-	if (C0.firstChild.nodeValue=='0' && C1.firstChild.nodeValue=='0' && C2.firstChild.nodeValue=='0' && C3.firstChild.nodeValue=='0')  		
-  		Out.firstChild.nodeValue='1';
-  	else
-  		Out.firstChild.nodeValue='0';  		
-}
-</script>
-<defs>
-    <marker id="Triangle"
-      viewBox="0 0 10 10" refX="0" refY="5" 
-      markerUnits="strokeWidth"
-      markerWidth="8" markerHeight="8"
-      orient="auto">
-      <path d="M 0 0 L 10 5 L 0 10 z" />
-    </marker>
- </defs>
-	<path d="M100,50 Q125,48 140,65 M100,80 Q125,78 140,65 M100,50 A30,30 0 0 1 100,80" stroke="#000000" stroke-width="1" fill="none"/>
-	<path d="M95,50 A30,30 0 0 1 95,80" stroke="#000000" stroke-width="1" fill="none"/>
-	<line x1="52" y1="54" x2="102" y2="54" stroke="#000000" stroke-width="1" fill="none"/>
-	<line x1="52" y1="76" x2="102" y2="76" stroke="#000000" stroke-width="1" fill="none"/>
-	<text onclick="funcA0k('A0k','B0k','C0k','A1k','B1k','C1k','A2k','B2k','C2k','A3k','B3k','C3k','Outk')" id="A0k" x="30" y="56" stroke="#000000" fill="none" font-size="12">0</text>
-	<text onclick="funcB0k('A0k','B0k','C0k','A1k','B1k','C1k','A2k','B2k','C2k','A3k','B3k','C3k','Outk')" id="B0k" x="30" y="78" stroke="#000000" fill="none"  font-size="12">0</text>
-	<text x="150" y="20" stroke="#000000" fill="none">XOR</text>
-	<line x1="152" y1="26" x2="129" y2="45" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)" />	
-	<g transform="translate(0 70)">
-		<path d="M100,50 Q125,48 140,65 M100,80 Q125,78 140,65 M100,50 A30,30 0 0 1 100,80" stroke="#000000" stroke-width="1" fill="none"/>
-		<path d="M95,50 A30,30 0 0 1 95,80" stroke="#000000" stroke-width="1" fill="none"/>
-		<line x1="52" y1="54" x2="102" y2="54" stroke="#000000" stroke-width="1" fill="none"/>
-		<line x1="52" y1="76" x2="102" y2="76" stroke="#000000" stroke-width="1" fill="none"/>
-		<text onclick="funcA1k('A0k','B0k','C0k','A1k','B1k','C1k','A2k','B2k','C2k','A3k','B3k','C3k','Outk')" id="A1k" x="30" y="56" stroke="#000000" fill="none" font-size="12">0</text>
-		<text onclick="funcB1k('A0k','B0k','C0k','A1k','B1k','C1k','A2k','B2k','C2k','A3k','B3k','C3k','Outk')" id="B1k" x="30" y="78" stroke="#000000" fill="none"  font-size="12">0</text>
-	</g>
-	<g transform="translate(0 140)">
-		<path d="M100,50 Q125,48 140,65 M100,80 Q125,78 140,65 M100,50 A30,30 0 0 1 100,80" stroke="#000000" stroke-width="1" fill="none"/>
-		<path d="M95,50 A30,30 0 0 1 95,80" stroke="#000000" stroke-width="1" fill="none"/>
-		<line x1="52" y1="54" x2="102" y2="54" stroke="#000000" stroke-width="1" fill="none"/>
-		<line x1="52" y1="76" x2="102" y2="76" stroke="#000000" stroke-width="1" fill="none"/>
-		<text onclick="funcA2k('A0k','B0k','C0k','A1k','B1k','C1k','A2k','B2k','C2k','A3k','B3k','C3k','Outk')" id="A2k" x="30" y="56" stroke="#000000" fill="none" font-size="12">0</text>
-		<text onclick="funcB2k('A0k','B0k','C0k','A1k','B1k','C1k','A2k','B2k','C2k','A3k','B3k','C3k','Outk')" id="B2k" x="30" y="78" stroke="#000000" fill="none"  font-size="12">0</text>
-	</g>
-	<g transform="translate(0 210)">
-		<path d="M100,50 Q125,48 140,65 M100,80 Q125,78 140,65 M100,50 A30,30 0 0 1 100,80" stroke="#000000" stroke-width="1" fill="none"/>
-		<path d="M95,50 A30,30 0 0 1 95,80" stroke="#000000" stroke-width="1" fill="none"/>
-		<line x1="52" y1="54" x2="102" y2="54" stroke="#000000" stroke-width="1" fill="none"/>
-		<line x1="52" y1="76" x2="102" y2="76" stroke="#000000" stroke-width="1" fill="none"/>
-		<text onclick="funcA3k('A0k','B0k','C0k','A1k','B1k','C1k','A2k','B2k','C2k','A3k','B3k','C3k','Outk')" id="A3k" x="30" y="56" stroke="#000000" fill="none" font-size="12">0</text>
-		<text onclick="funcB3k('A0k','B0k','C0k','A1k','B1k','C1k','A2k','B2k','C2k','A3k','B3k','C3k','Outk')" id="B3k" x="30" y="78" stroke="#000000" fill="none"  font-size="12">0</text>
-	</g>	
-	<g transform="translate(100 105)">
-		<path d="M100,50 Q125,48 140,65 M100,80 Q125,78 140,65 M100,50 A30,30 0 0 1 100,80" stroke="#000000" stroke-width="1" fill="none"/>
-		<circle cx="143" cy="65" r="3"  stroke="#000000" stroke-width="1" fill="none"/>
-		<line x1="146" y1="65" x2="175" y2="65" stroke="#000000" stroke-width="1" fill="none"/>
-		<text id="Outk" x="178" y="68" stroke="#000000" fill="none">1</text>		
-	</g>
-	<polyline  stroke="#000000" fill="none" points="140,65 180,65 180,158 201,158" />
-	<text id="C0k" x="145" y="60" stroke="#000000" fill="none">0</text>
-	<polyline  stroke="#000000" fill="none" points="140,135 170,135 170,164 203,164" />
-	<text id="C1k" x="145" y="130" stroke="#000000" fill="none">0</text>
-	<polyline  stroke="#000000" fill="none" points="140,205 170,205 170,170 203,170" />
-	<text id="C2k" x="145" y="200" stroke="#000000" fill="none">0</text>
-	<polyline  stroke="#000000" fill="none" points="140,275 180,275 180,176 202,176" />
-	<text id="C3k" x="145" y="270" stroke="#000000" fill="none">0</text>
-	<text x="25" y="325" stroke="none" fill="#000000" font-size="14" font-family="serif">Рис. 7.4.7. Компаратор</text>	
+        function funcB1k(A0, B0, C0, A1, B1, C1, A2, B2, C2, A3, B3, C3, Out) {
+            var A0 = document.getElementById(A0), B0 = document.getElementById(B0), C0 = document.getElementById(C0),
+                Out = document.getElementById(Out), A1 = document.getElementById(A1), B1 = document.getElementById(B1),
+                C1 = document.getElementById(C1), A2 = document.getElementById(A2), B2 = document.getElementById(B2),
+                C2 = document.getElementById(C2), A3 = document.getElementById(A3), B3 = document.getElementById(B3),
+                C3 = document.getElementById(C3);
+            if (B1.firstChild.nodeValue == '0')
+                B1.firstChild.nodeValue = '1';
+            else
+                B1.firstChild.nodeValue = '0';
+            if (A1.firstChild.nodeValue == B1.firstChild.nodeValue)
+                C1.firstChild.nodeValue = '0';
+            else
+                C1.firstChild.nodeValue = '1';
+            if (C0.firstChild.nodeValue == '0' && C1.firstChild.nodeValue == '0' && C2.firstChild.nodeValue == '0' && C3.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = '1';
+            else
+                Out.firstChild.nodeValue = '0';
+        }
+
+        function funcA2k(A0, B0, C0, A1, B1, C1, A2, B2, C2, A3, B3, C3, Out) {
+            var A0 = document.getElementById(A0), B0 = document.getElementById(B0), C0 = document.getElementById(C0),
+                Out = document.getElementById(Out), A1 = document.getElementById(A1), B1 = document.getElementById(B1),
+                C1 = document.getElementById(C1), A2 = document.getElementById(A2), B2 = document.getElementById(B2),
+                C2 = document.getElementById(C2), A3 = document.getElementById(A3), B3 = document.getElementById(B3),
+                C3 = document.getElementById(C3);
+            if (A2.firstChild.nodeValue == '0')
+                A2.firstChild.nodeValue = '1';
+            else
+                A2.firstChild.nodeValue = '0';
+            if (A2.firstChild.nodeValue == B2.firstChild.nodeValue)
+                C2.firstChild.nodeValue = '0';
+            else
+                C2.firstChild.nodeValue = '1';
+            if (C0.firstChild.nodeValue == '0' && C1.firstChild.nodeValue == '0' && C2.firstChild.nodeValue == '0' && C3.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = '1';
+            else
+                Out.firstChild.nodeValue = '0';
+        }
+
+        function funcB2k(A0, B0, C0, A1, B1, C1, A2, B2, C2, A3, B3, C3, Out) {
+            var A0 = document.getElementById(A0), B0 = document.getElementById(B0), C0 = document.getElementById(C0),
+                Out = document.getElementById(Out), A1 = document.getElementById(A1), B1 = document.getElementById(B1),
+                C1 = document.getElementById(C1), A2 = document.getElementById(A2), B2 = document.getElementById(B2),
+                C2 = document.getElementById(C2), A3 = document.getElementById(A3), B3 = document.getElementById(B3),
+                C3 = document.getElementById(C3);
+            if (B2.firstChild.nodeValue == '0')
+                B2.firstChild.nodeValue = '1';
+            else
+                B2.firstChild.nodeValue = '0';
+            if (A2.firstChild.nodeValue == B2.firstChild.nodeValue)
+                C2.firstChild.nodeValue = '0';
+            else
+                C2.firstChild.nodeValue = '1';
+            if (C0.firstChild.nodeValue == '0' && C1.firstChild.nodeValue == '0' && C2.firstChild.nodeValue == '0' && C3.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = '1';
+            else
+                Out.firstChild.nodeValue = '0';
+        }
+
+        function funcA3k(A0, B0, C0, A1, B1, C1, A2, B2, C2, A3, B3, C3, Out) {
+            var A0 = document.getElementById(A0), B0 = document.getElementById(B0), C0 = document.getElementById(C0),
+                Out = document.getElementById(Out), A1 = document.getElementById(A1), B1 = document.getElementById(B1),
+                C1 = document.getElementById(C1), A2 = document.getElementById(A2), B2 = document.getElementById(B2),
+                C2 = document.getElementById(C2), A3 = document.getElementById(A3), B3 = document.getElementById(B3),
+                C3 = document.getElementById(C3);
+            if (A3.firstChild.nodeValue == '0')
+                A3.firstChild.nodeValue = '1';
+            else
+                A3.firstChild.nodeValue = '0';
+            if (A3.firstChild.nodeValue == B3.firstChild.nodeValue)
+                C3.firstChild.nodeValue = '0';
+            else
+                C3.firstChild.nodeValue = '1';
+            if (C0.firstChild.nodeValue == '0' && C1.firstChild.nodeValue == '0' && C2.firstChild.nodeValue == '0' && C3.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = '1';
+            else
+                Out.firstChild.nodeValue = '0';
+        }
+
+        function funcB3k(A0, B0, C0, A1, B1, C1, A2, B2, C2, A3, B3, C3, Out) {
+            var A0 = document.getElementById(A0), B0 = document.getElementById(B0), C0 = document.getElementById(C0),
+                Out = document.getElementById(Out), A1 = document.getElementById(A1), B1 = document.getElementById(B1),
+                C1 = document.getElementById(C1), A2 = document.getElementById(A2), B2 = document.getElementById(B2),
+                C2 = document.getElementById(C2), A3 = document.getElementById(A3), B3 = document.getElementById(B3),
+                C3 = document.getElementById(C3);
+            if (B3.firstChild.nodeValue == '0')
+                B3.firstChild.nodeValue = '1';
+            else
+                B3.firstChild.nodeValue = '0';
+            if (A3.firstChild.nodeValue == B3.firstChild.nodeValue)
+                C3.firstChild.nodeValue = '0';
+            else
+                C3.firstChild.nodeValue = '1';
+            if (C0.firstChild.nodeValue == '0' && C1.firstChild.nodeValue == '0' && C2.firstChild.nodeValue == '0' && C3.firstChild.nodeValue == '0')
+                Out.firstChild.nodeValue = '1';
+            else
+                Out.firstChild.nodeValue = '0';
+        }
+    </script>
+    <defs>
+        <marker id="Triangle"
+                viewBox="0 0 10 10" refX="0" refY="5"
+                markerUnits="strokeWidth"
+                markerWidth="8" markerHeight="8"
+                orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z"/>
+        </marker>
+    </defs>
+    <path d="M100,50 Q125,48 140,65 M100,80 Q125,78 140,65 M100,50 A30,30 0 0 1 100,80" stroke="#000000"
+          stroke-width="1" fill="none"/>
+    <path d="M95,50 A30,30 0 0 1 95,80" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="52" y1="54" x2="102" y2="54" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="52" y1="76" x2="102" y2="76" stroke="#000000" stroke-width="1" fill="none"/>
+    <text onclick="funcA0k('A0k','B0k','C0k','A1k','B1k','C1k','A2k','B2k','C2k','A3k','B3k','C3k','Outk')" id="A0k"
+          x="30" y="56" stroke="#000000" fill="none" font-size="12">0
+    </text>
+    <text onclick="funcB0k('A0k','B0k','C0k','A1k','B1k','C1k','A2k','B2k','C2k','A3k','B3k','C3k','Outk')" id="B0k"
+          x="30" y="78" stroke="#000000" fill="none" font-size="12">0
+    </text>
+    <text x="150" y="20" stroke="#000000" fill="none">XOR</text>
+    <line x1="152" y1="26" x2="129" y2="45" stroke="#000000" stroke-width="1" fill="none" marker-end="url(#Triangle)"/>
+    <g transform="translate(0 70)">
+        <path d="M100,50 Q125,48 140,65 M100,80 Q125,78 140,65 M100,50 A30,30 0 0 1 100,80" stroke="#000000"
+              stroke-width="1" fill="none"/>
+        <path d="M95,50 A30,30 0 0 1 95,80" stroke="#000000" stroke-width="1" fill="none"/>
+        <line x1="52" y1="54" x2="102" y2="54" stroke="#000000" stroke-width="1" fill="none"/>
+        <line x1="52" y1="76" x2="102" y2="76" stroke="#000000" stroke-width="1" fill="none"/>
+        <text onclick="funcA1k('A0k','B0k','C0k','A1k','B1k','C1k','A2k','B2k','C2k','A3k','B3k','C3k','Outk')" id="A1k"
+              x="30" y="56" stroke="#000000" fill="none" font-size="12">0
+        </text>
+        <text onclick="funcB1k('A0k','B0k','C0k','A1k','B1k','C1k','A2k','B2k','C2k','A3k','B3k','C3k','Outk')" id="B1k"
+              x="30" y="78" stroke="#000000" fill="none" font-size="12">0
+        </text>
+    </g>
+    <g transform="translate(0 140)">
+        <path d="M100,50 Q125,48 140,65 M100,80 Q125,78 140,65 M100,50 A30,30 0 0 1 100,80" stroke="#000000"
+              stroke-width="1" fill="none"/>
+        <path d="M95,50 A30,30 0 0 1 95,80" stroke="#000000" stroke-width="1" fill="none"/>
+        <line x1="52" y1="54" x2="102" y2="54" stroke="#000000" stroke-width="1" fill="none"/>
+        <line x1="52" y1="76" x2="102" y2="76" stroke="#000000" stroke-width="1" fill="none"/>
+        <text onclick="funcA2k('A0k','B0k','C0k','A1k','B1k','C1k','A2k','B2k','C2k','A3k','B3k','C3k','Outk')" id="A2k"
+              x="30" y="56" stroke="#000000" fill="none" font-size="12">0
+        </text>
+        <text onclick="funcB2k('A0k','B0k','C0k','A1k','B1k','C1k','A2k','B2k','C2k','A3k','B3k','C3k','Outk')" id="B2k"
+              x="30" y="78" stroke="#000000" fill="none" font-size="12">0
+        </text>
+    </g>
+    <g transform="translate(0 210)">
+        <path d="M100,50 Q125,48 140,65 M100,80 Q125,78 140,65 M100,50 A30,30 0 0 1 100,80" stroke="#000000"
+              stroke-width="1" fill="none"/>
+        <path d="M95,50 A30,30 0 0 1 95,80" stroke="#000000" stroke-width="1" fill="none"/>
+        <line x1="52" y1="54" x2="102" y2="54" stroke="#000000" stroke-width="1" fill="none"/>
+        <line x1="52" y1="76" x2="102" y2="76" stroke="#000000" stroke-width="1" fill="none"/>
+        <text onclick="funcA3k('A0k','B0k','C0k','A1k','B1k','C1k','A2k','B2k','C2k','A3k','B3k','C3k','Outk')" id="A3k"
+              x="30" y="56" stroke="#000000" fill="none" font-size="12">0
+        </text>
+        <text onclick="funcB3k('A0k','B0k','C0k','A1k','B1k','C1k','A2k','B2k','C2k','A3k','B3k','C3k','Outk')" id="B3k"
+              x="30" y="78" stroke="#000000" fill="none" font-size="12">0
+        </text>
+    </g>
+    <g transform="translate(100 105)">
+        <path d="M100,50 Q125,48 140,65 M100,80 Q125,78 140,65 M100,50 A30,30 0 0 1 100,80" stroke="#000000"
+              stroke-width="1" fill="none"/>
+        <circle cx="143" cy="65" r="3" stroke="#000000" stroke-width="1" fill="none"/>
+        <line x1="146" y1="65" x2="175" y2="65" stroke="#000000" stroke-width="1" fill="none"/>
+        <text id="Outk" x="178" y="68" stroke="#000000" fill="none">1</text>
+    </g>
+    <polyline stroke="#000000" fill="none" points="140,65 180,65 180,158 201,158"/>
+    <text id="C0k" x="145" y="60" stroke="#000000" fill="none">0</text>
+    <polyline stroke="#000000" fill="none" points="140,135 170,135 170,164 203,164"/>
+    <text id="C1k" x="145" y="130" stroke="#000000" fill="none">0</text>
+    <polyline stroke="#000000" fill="none" points="140,205 170,205 170,170 203,170"/>
+    <text id="C2k" x="145" y="200" stroke="#000000" fill="none">0</text>
+    <polyline stroke="#000000" fill="none" points="140,275 180,275 180,176 202,176"/>
+    <text id="C3k" x="145" y="270" stroke="#000000" fill="none">0</text>
+    <text x="25" y="325" stroke="none" fill="#000000" font-size="14" font-family="serif">Рис. 7.4.7. Компаратор</text>
 </svg>
 <h3>Упражнения</h3>
 <ol>
-<li>Используя мультиплексор с тремя переменными (<a href='#multiplexor'>рис. 7.4.1</a>), реализуйте функцию, значение которой равно 1 тогда и только тогда, когда нечетное количество входных сигналов равно 1.</li>
-<li>Мультиплексор с тремя переменными (<a href='#multiplexor'>рис. 7.4.1</a>) в действительности способен вычислить произвольную функции от четырех логических переменных. Опишите, как это происходит, и постройте логическую переменную для функции, которая принимает значение 0, если слово, соответствующее строке таблицы истинности, содержит четное количество букв, и 1, если оно содержит нечетное количество букв (например, строка 0000 из таблицы истинности представляет слово ноль, состоящее из четырех букв, следовательно, функция должна принять на строке 0000 значение 0; строка 0010 представляет слово два, состоящее из трех букв, поэтому на строке 0010 функция принимает значение 1; строке 0111 соответствует слово семь, состоящее из четырех букв, следовательно, на этой строке функция принимает значение 0; строка 1010 представляет слово десять, состоящее из 6 букв, следовательно, на этой строке функция принимает значение 0). Подсказка: четвертую входную переменную назовем D. Тогда восемь входных переменных можно связать с 
-<math   display='inline'>
-<msub><mi>v</mi><mi>cc</mi>
-</msub>
-</math>, землей, D или
-<math   display='inline'>
-	<mover accent="true">
-    <mi>D</mi>
-    <mo>&#x203E;</mo>
-  </mover>
-</math>.
-</li>
-<li>Нарисуйте логическую схему двухразрядного <a href='#demultiplexor'>демультиплексора</a>, у которого сигнал на единственной входной линии направляется к одной из четырех выходных линий в зависимости от значений двух линий управления.</li>
-<li>Нарисуйте логическую схему двухразрядного <a href='#dekoder'>кодера</a>, который содержит четыре входные и две выходные линии. Одна из входных линий всегда равна 1. Двухразрядное двоичное число на двух выходных линиях показывает, какая именно входная линия равна 1.</li>
-<li>Для четырехразрядного <a href='#komparator'>компаратора</a> постройте результирующую логическую функцию и представьте ее в <a href='7_2.html#snf'>СДНФ</a> (<a href='7_2.html#snf'>СКНФ</a>).</li>
+    <li>Используя мультиплексор с тремя переменными (<a href='#multiplexor'>рис. 7.4.1</a>), реализуйте функцию,
+        значение которой равно 1 тогда и только тогда, когда нечетное количество входных сигналов равно 1.
+    </li>
+    <li>Мультиплексор с тремя переменными (<a href='#multiplexor'>рис. 7.4.1</a>) в действительности способен вычислить
+        произвольную функции от четырех логических переменных. Опишите, как это происходит, и постройте логическую
+        переменную для функции, которая принимает значение 0, если слово, соответствующее строке таблицы истинности,
+        содержит четное количество букв, и 1, если оно содержит нечетное количество букв (например, строка 0000 из
+        таблицы истинности представляет слово ноль, состоящее из четырех букв, следовательно, функция должна принять на
+        строке 0000 значение 0; строка 0010 представляет слово два, состоящее из трех букв, поэтому на строке 0010
+        функция принимает значение 1; строке 0111 соответствует слово семь, состоящее из четырех букв, следовательно, на
+        этой строке функция принимает значение 0; строка 1010 представляет слово десять, состоящее из 6 букв,
+        следовательно, на этой строке функция принимает значение 0). Подсказка: четвертую входную переменную назовем D.
+        Тогда восемь входных переменных можно связать с
+        <math display='inline'>
+            <msub>
+                <mi>v</mi>
+                <mi>cc</mi>
+            </msub>
+        </math>
+        , землей, D или
+        <math display='inline'>
+            <mover accent="true">
+                <mi>D</mi>
+                <mo>&#x203E;</mo>
+            </mover>
+        </math>
+        .
+    </li>
+    <li>Нарисуйте логическую схему двухразрядного <a href='#demultiplexor'>демультиплексора</a>, у которого сигнал на
+        единственной входной линии направляется к одной из четырех выходных линий в зависимости от значений двух линий
+        управления.
+    </li>
+    <li>Нарисуйте логическую схему двухразрядного <a href='#dekoder'>кодера</a>, который содержит четыре входные и две
+        выходные линии. Одна из входных линий всегда равна 1. Двухразрядное двоичное число на двух выходных линиях
+        показывает, какая именно входная линия равна 1.
+    </li>
+    <li>Для четырехразрядного <a href='#komparator'>компаратора</a> постройте результирующую логическую функцию и
+        представьте ее в <a href='7_2.html#snf'>СДНФ</a> (<a href='7_2.html#snf'>СКНФ</a>).
+    </li>
 </ol>
 <p><a href="7_3.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="7_5.html">К следующему</a></p>
-</body>			
+</body>
+<script type="text/javascript">
+    MathJax.Hub.Configured()
+</script>
 </html>

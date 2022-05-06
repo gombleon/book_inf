@@ -1,1201 +1,1801 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" />
-<link rel='stylesheet' type="text/css" href="style.css"></link>
-<meta name="author" content="leonid" />
-<meta name="description" content="кодирование и обработка в компьютере целых чисел со знаком" />
-<meta name="keywords" content="сложение целых чисел со знаком, умножение целых чисел со знаком, переполнение разрядной сетки" />
-<title>Кодирование и обработка в компьютере целых чисел со знаком</title>
-<script type="text/javascript" src='syst_chisl.js'>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+  extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});
 
-</script>
-<script type="text/javascript">
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <meta charset="UTF-8"/>
+
+    <link rel='stylesheet' type="text/css" href="style.css"></link>
+    <meta name="author" content="leonid"/>
+    <meta name="description" content="кодирование и обработка в компьютере целых чисел со знаком"/>
+    <meta name="keywords"
+          content="сложение целых чисел со знаком, умножение целых чисел со знаком, переполнение разрядной сетки"/>
+    <title>Кодирование и обработка в компьютере целых чисел со знаком</title>
+    <script type="text/javascript" src='syst_chisl.js'>
+
+    </script>
+    <script type="text/javascript">
 
 
-//проверяем операнды
-function start(par) {
-var nm1=document.getElementById("num1").value, nm2=document.getElementById("num2").value, abs_nm1=Math.abs(nm1),  abs_nm2=Math.abs(nm2), dv_nm1, dv_nm2, perep1=false, perep2=false, razr;
+        //проверяем операнды
+        function start(par) {
+            var nm1 = document.getElementById("num1").value, nm2 = document.getElementById("num2").value,
+                abs_nm1 = Math.abs(nm1), abs_nm2 = Math.abs(nm2), dv_nm1, dv_nm2, perep1 = false, perep2 = false, razr;
 
-	if (proverka_des_znak(nm1) && proverka_des_znak(nm2)) {
-		if (document.getElementById("r8").checked)
-			razr=8;
-		else
-			if (document.getElementById("r16").checked)
-				razr=16;
-			else
-				if (document.getElementById("r32").checked)
-					razr=32;
-		if (nm1>=0) {
-			dv_nm1=perevod10_q(nm1,2);
-			if (dv_nm1.length< razr){
-				perep1=false;
-			while(dv_nm1.length< razr)	
-				dv_nm1='0'+dv_nm1;
-			}	
-			else
-				perep1=true;
-		}		
-		else {
-			dv_nm1=perevod10_q(abs_nm1,2); 
-			if (abs_nm1<=Math.pow(2,razr-1)) {
-				perep1=false;
-				if (abs_nm1< Math.pow(2,razr-1)) {
-					while(dv_nm1.length< razr-1)	
-						dv_nm1='0'+dv_nm1;	
-					dv_nm1='1'+dv_nm1;
-				}		
-			}	
-			else
-				perep1=true;	
-		}
-		if (nm2>=0) {
-			dv_nm2=perevod10_q(nm2,2);
-			if (dv_nm2.length< razr) {
-				perep2=false;
-				while(dv_nm2.length< razr)	
-					dv_nm2='0'+dv_nm2;
-			}	
-			else
-				perep2=true;
-		}		
-		else {
-			dv_nm2=perevod10_q(abs_nm2,2); 
-			if (abs_nm2<=Math.pow(2,razr-1)) {
-				perep2=false;
-				if (abs_nm2< Math.pow(2,razr-1)) {
-					while(dv_nm2.length< razr-1)	
-						dv_nm2='0'+dv_nm2;	
-					dv_nm2='1'+dv_nm2;
-				}		
-			}	
-			else
-				perep2=true;	
-		}
-		if (perep1 || perep2)
-			alert("Переполнение разрядной сетки. Повторите ввод.");
-		else {
-			switch (par) {
-				case 1: summ(nm1, nm2, dv_nm1, dv_nm2, razr);break;
-				case 2: mult(nm1, nm2, dv_nm1, dv_nm2, razr);break;
-				case 3: divide(nm1, nm2, dv_nm1, dv_nm2, razr);break;
-			}
-		}				
-	}
-	else {
-		alert('Ошибка! Повторите ввод.');
-}
-}
+            if (proverka_des_znak(nm1) && proverka_des_znak(nm2)) {
+                if (document.getElementById("r8").checked)
+                    razr = 8;
+                else if (document.getElementById("r16").checked)
+                    razr = 16;
+                else if (document.getElementById("r32").checked)
+                    razr = 32;
+                if (nm1 >= 0) {
+                    dv_nm1 = perevod10_q(nm1, 2);
+                    if (dv_nm1.length < razr) {
+                        perep1 = false;
+                        while (dv_nm1.length < razr)
+                            dv_nm1 = '0' + dv_nm1;
+                    } else
+                        perep1 = true;
+                } else {
+                    dv_nm1 = perevod10_q(abs_nm1, 2);
+                    if (abs_nm1 <= Math.pow(2, razr - 1)) {
+                        perep1 = false;
+                        if (abs_nm1 < Math.pow(2, razr - 1)) {
+                            while (dv_nm1.length < razr - 1)
+                                dv_nm1 = '0' + dv_nm1;
+                            dv_nm1 = '1' + dv_nm1;
+                        }
+                    } else
+                        perep1 = true;
+                }
+                if (nm2 >= 0) {
+                    dv_nm2 = perevod10_q(nm2, 2);
+                    if (dv_nm2.length < razr) {
+                        perep2 = false;
+                        while (dv_nm2.length < razr)
+                            dv_nm2 = '0' + dv_nm2;
+                    } else
+                        perep2 = true;
+                } else {
+                    dv_nm2 = perevod10_q(abs_nm2, 2);
+                    if (abs_nm2 <= Math.pow(2, razr - 1)) {
+                        perep2 = false;
+                        if (abs_nm2 < Math.pow(2, razr - 1)) {
+                            while (dv_nm2.length < razr - 1)
+                                dv_nm2 = '0' + dv_nm2;
+                            dv_nm2 = '1' + dv_nm2;
+                        }
+                    } else
+                        perep2 = true;
+                }
+                if (perep1 || perep2)
+                    alert("Переполнение разрядной сетки. Повторите ввод.");
+                else {
+                    switch (par) {
+                        case 1:
+                            summ(nm1, nm2, dv_nm1, dv_nm2, razr);
+                            break;
+                        case 2:
+                            mult(nm1, nm2, dv_nm1, dv_nm2, razr);
+                            break;
+                        case 3:
+                            divide(nm1, nm2, dv_nm1, dv_nm2, razr);
+                            break;
+                    }
+                }
+            } else {
+                alert('Ошибка! Повторите ввод.');
+            }
+        }
 
-//сложение операндов
+        //сложение операндов
 
-function summ(nm1, nm2, dv_nm1, dv_nm2, razr) {
-var dv_dop1, dv_dop2, sum, div=document.getElementById("summa"), p, table, caption, tr, td, h4, abs_nm1=Math.abs(nm1),  abs_nm2=Math.abs(nm2);
-	
-	if ((nm1<0)&&(abs_nm1< Math.pow(2,razr-1)))
-		dv_dop1=dop_cod('0'+dv_nm1.substring(1,dv_nm1.length));
-	else
-		dv_dop1=dv_nm1;
-	if ((nm2<0)&&(abs_nm2< Math.pow(2,razr-1)))
-		dv_dop2=dop_cod('0'+dv_nm2.substring(1,dv_nm2.length));
-	else
-		dv_dop2=dv_nm2;
-	sum=summa(dv_dop1,dv_dop2);
-	sum=sum.substring(1,sum.length);
-	while (div.firstChild) {
-		div.removeChild(div.firstChild);	
-	}		
-	h4=document.createElement("h4");
-	h4.textContent="Сложение целых чисел со знаком";
-	div.appendChild(h4);
-	table=document.createElement("table");
-	table.border="1";
-	div.appendChild(table);	
-	caption=document.createElement("caption");
-	caption.textContent="Операнды в десятичной системе счисления";
-	table.appendChild(caption);
-	tr=document.createElement("tr");
-	table.appendChild(tr);
-	td=document.createElement("td");
-	td.textContent="Операнд 1";
-	tr.appendChild(td);
-	td=document.createElement("td");
-	td.textContent=nm1;
-	tr.appendChild(td);
-	tr=document.createElement("tr");
-	table.appendChild(tr);
-	td=document.createElement("td");
-	td.textContent="Операнд 2";
-	tr.appendChild(td);
-	td=document.createElement("td");
-	td.textContent=nm2;
-	tr.appendChild(td);
+        function summ(nm1, nm2, dv_nm1, dv_nm2, razr) {
+            var dv_dop1, dv_dop2, sum, div = document.getElementById("summa"), p, table, caption, tr, td, h4,
+                abs_nm1 = Math.abs(nm1), abs_nm2 = Math.abs(nm2);
 
-	table=document.createElement("table");
-	table.border="1";
-	div.appendChild(table);	
-	caption=document.createElement("caption");
-	caption.textContent="Операнды в прямом коде";
-	table.appendChild(caption);
-	tr=document.createElement("tr");
-	table.appendChild(tr);
-	td=document.createElement("td");
-	td.textContent="Операнд 1";
-	tr.appendChild(td);
-	td=document.createElement("td");
-	td.textContent=dv_nm1;
-	tr.appendChild(td);
-	tr=document.createElement("tr");
-	table.appendChild(tr);
-	td=document.createElement("td");
-	td.textContent="Операнд 2";
-	tr.appendChild(td);
-	td=document.createElement("td");
-	td.textContent=dv_nm2;
-	tr.appendChild(td);
+            if ((nm1 < 0) && (abs_nm1 < Math.pow(2, razr - 1)))
+                dv_dop1 = dop_cod('0' + dv_nm1.substring(1, dv_nm1.length));
+            else
+                dv_dop1 = dv_nm1;
+            if ((nm2 < 0) && (abs_nm2 < Math.pow(2, razr - 1)))
+                dv_dop2 = dop_cod('0' + dv_nm2.substring(1, dv_nm2.length));
+            else
+                dv_dop2 = dv_nm2;
+            sum = summa(dv_dop1, dv_dop2);
+            sum = sum.substring(1, sum.length);
+            while (div.firstChild) {
+                div.removeChild(div.firstChild);
+            }
+            h4 = document.createElement("h4");
+            h4.textContent = "Сложение целых чисел со знаком";
+            div.appendChild(h4);
+            table = document.createElement("table");
+            table.border = "1";
+            div.appendChild(table);
+            caption = document.createElement("caption");
+            caption.textContent = "Операнды в десятичной системе счисления";
+            table.appendChild(caption);
+            tr = document.createElement("tr");
+            table.appendChild(tr);
+            td = document.createElement("td");
+            td.textContent = "Операнд 1";
+            tr.appendChild(td);
+            td = document.createElement("td");
+            td.textContent = nm1;
+            tr.appendChild(td);
+            tr = document.createElement("tr");
+            table.appendChild(tr);
+            td = document.createElement("td");
+            td.textContent = "Операнд 2";
+            tr.appendChild(td);
+            td = document.createElement("td");
+            td.textContent = nm2;
+            tr.appendChild(td);
 
-	table=document.createElement("table");
-	table.border="1";
-	div.appendChild(table);	
-	caption=document.createElement("caption");
-	caption.textContent="Операнды в дополнительном коде";
-	table.appendChild(caption);
-	tr=document.createElement("tr");
-	table.appendChild(tr);
-	td=document.createElement("td");
-	td.textContent="Операнд 1";
-	tr.appendChild(td);
-	td=document.createElement("td");
-	td.textContent=dv_dop1;
-	tr.appendChild(td);
-	tr=document.createElement("tr");
-	table.appendChild(tr);
-	td=document.createElement("td");
-	td.textContent="Операнд 2";
-	tr.appendChild(td);
-	td=document.createElement("td");
-	td.textContent=dv_dop2;
-	tr.appendChild(td);
+            table = document.createElement("table");
+            table.border = "1";
+            div.appendChild(table);
+            caption = document.createElement("caption");
+            caption.textContent = "Операнды в прямом коде";
+            table.appendChild(caption);
+            tr = document.createElement("tr");
+            table.appendChild(tr);
+            td = document.createElement("td");
+            td.textContent = "Операнд 1";
+            tr.appendChild(td);
+            td = document.createElement("td");
+            td.textContent = dv_nm1;
+            tr.appendChild(td);
+            tr = document.createElement("tr");
+            table.appendChild(tr);
+            td = document.createElement("td");
+            td.textContent = "Операнд 2";
+            tr.appendChild(td);
+            td = document.createElement("td");
+            td.textContent = dv_nm2;
+            tr.appendChild(td);
 
-	tr=document.createElement("tr");
-	table.appendChild(tr);
-	td=document.createElement("td");
-	td.textContent="Сумма";
-	tr.appendChild(td);
-	td=document.createElement("td");
-	td.textContent=sum;
-	tr.appendChild(td);
-	if (((nm1>0)&&(nm2>0)&&(sum.charAt(0)=='1'))||((nm1<0)&&(nm2<0)&&(sum.charAt(0)=='0'))) {
-		h4=createElement("h4");
-		h4.textContent="Переполнение разрядной сетки."
-		div.appendChild(h4);	
-	}	
-}
+            table = document.createElement("table");
+            table.border = "1";
+            div.appendChild(table);
+            caption = document.createElement("caption");
+            caption.textContent = "Операнды в дополнительном коде";
+            table.appendChild(caption);
+            tr = document.createElement("tr");
+            table.appendChild(tr);
+            td = document.createElement("td");
+            td.textContent = "Операнд 1";
+            tr.appendChild(td);
+            td = document.createElement("td");
+            td.textContent = dv_dop1;
+            tr.appendChild(td);
+            tr = document.createElement("tr");
+            table.appendChild(tr);
+            td = document.createElement("td");
+            td.textContent = "Операнд 2";
+            tr.appendChild(td);
+            td = document.createElement("td");
+            td.textContent = dv_dop2;
+            tr.appendChild(td);
 
-//описываем умножение
-function mult(nm1, nm2, dv_nm1, dv_nm2, razr) {
-	var dv_mult1, dv_mult2, p1, p2, per='0', mult='0', reg_per='0', len=dv_nm1.length, i, win=open("", "newWindow"),  html, head, title, body, h2, h4, p, table, caption, tr, td;
-	win.document.open();
-	html=document.createElement("html");
-	win.document.appendChild(html);
-	head=document.createElement("head");
-	title=document.createElement("title");
-	title.textContent="Умножение целых чисел со знаком";
-	head.appendChild(title);
-	html.appendChild(head);
-	body=document.createElement("body");
-	html.appendChild(body);
-	h2=document.createElement("h2");
-	h2.textContent="Умножение целых чисел со знаком";
-	body.appendChild(h2);
-	h4=document.createElement("h4");
-	h4.textContent="Операнды в десятичной системе счисления:";
-	body.appendChild(h4);
-	p=document.createElement("p");
-	p.textContent="Операнд 1= "+nm1+" ,";
-	body.appendChild(p);
-	p=document.createElement("p");
-	p.textContent="операнд 2= "+nm2+".";
-	body.appendChild(p);
-	h4=document.createElement("h4");
-	h4.textContent="Операнды в прямом коде:";
-	body.appendChild(h4);
-	p=document.createElement("p");
-	p.textContent="Операнд 1= "+dv_nm1+" ,";
-	body.appendChild(p);
-	p=document.createElement("p");
-	p.textContent="операнд 2= "+dv_nm2+".";
-	body.appendChild(p);
-	//Произведение модулей операндов
-	i=0;
-	if ((dv_nm1.charAt(0)=='1') && (Math.abs(nm1)!=Math.pow(2, razr-1)))
-		dv_mult1='0'+dv_nm1.substring(1,dv_nm1.length);
-	else
-	dv_mult1=dv_nm1;
-	if ((dv_nm2.charAt(0)=='1')&&(Math.abs(nm2)!=Math.pow(2, razr-1)))
-		dv_mult2='0'+dv_nm2.substring(1,dv_nm2.length);
-	else
-		dv_mult2=dv_nm2;
-	mult='0';
-	i=0;
-	p1=Number(dv_nm1.charAt(0));
-	p2=Number(dv_nm2.charAt(0));
-	if ((dv_mult1.charAt(0)=='0')&&(dv_mult2.charAt(0)=='0')) {
-		p=document.createElement("p");
-		p.textContent="Вычисление произведения модулей операндов";
-		body.appendChild(p);	
-		p=document.createElement("p");
-		p.textContent="Модуль операнда 1= "+dv_mult1+" ,";
-		body.appendChild(p);
-		p=document.createElement("p");
-		p.textContent="Модуль операнда 2= "+dv_mult2+".";
-		body.appendChild(p);	
-		table=document.createElement("table");
-		table.border="1";
-		body.appendChild(table);
-		caption=document.createElement("caption");
-		caption.textContent="Умножение в двоичной системе счисления";
-		table.appendChild(caption);
-		
-		while(i< len) {
-			if(dv_mult2.charAt(len-i-1)=='1') {
-				mult=summa(mult, dv_mult1);
-				mult=mult.substring(1, mult.length);
-				tr=document.createElement("tr");
-				table.appendChild(tr);
-				td=document.createElement("td");
-				td.textContent="Сдвиг операнда 1";
-				tr.appendChild(td);
-				td=document.createElement("td");
-				td.textContent=dv_mult1;
-				tr.appendChild(td);
-				tr=document.createElement("tr");
-				table.appendChild(tr);
-				td=document.createElement("td");
-				td.textContent="Текущая сумма";
-				tr.appendChild(td);				
-				td=document.createElement("td");
-				td.textContent=mult;
-				tr.appendChild(td);	
-			}
-			if(mult.charAt(0)=='1') {
-				tr=document.createElement("tr");
-				table.appendChild(tr);
-				td=document.createElement("td");
-				td.textContent="Переполнение суммы";
-				tr.appendChild(td);				
-				td=document.createElement("td");
-				tr.appendChild(td);				
-				i=len;
-				per='1';
-			}
-			else {
-				dv_mult1=dv_mult1.substring(1, len)+'0';
-				if ((dv_mult1.charAt(0)=='1')&&(dv_mult2.charAt(len-i-2)=='1')) {
-					tr=document.createElement("tr");
-					table.appendChild(tr);
-					td=document.createElement("td");
-					td.textContent="Переполнение текущего слагаемого";
-					tr.appendChild(td);				
-					td=document.createElement("td");
-					tr.appendChild(td);				
-					i=len;
-					per='1';
-				}
-			}
-			i++;
-		}
-		
-		if (per=='0') {
-			tr=document.createElement("tr");
-			table.appendChild(tr);
-			td=document.createElement("td");
-			td.textContent="Произведение модулей";
-			tr.appendChild(td);
-			td=document.createElement("td");
-			td.textContent=mult;
-			tr.appendChild(td);
-			if ((p1+p2)%2==1)
-				mult=dop_cod(mult);
-			h4=document.createElement("h4");
-			h4.textContent="Произведение в дополнительном коде:";
-			body.appendChild(h4);	
-			p=document.createElement("p");
-			p.textContent=mult;
-			body.appendChild(p);
-		}
-		else {
-			p=document.createElement("p");
-			p.textContent="Переполнение";
-			body.appendChild(p);
-		}
-		
-	}	
-	else {
-			//формируем 1 и миним отр. число
-			p1='1';
-			p2='1';
-			for(i=1;i<razr;i++) {
-				p1='0'+p1;
-				p2=p2+'0';
-			}
-			if(((dv_nm1==p1)&&(dv_nm2==p2))||((dv_nm1==p2)&&(dv_nm2==p1))) {
-				mult=p2;
-				h4=document.createElement("h4");
-				h4.textContent="Произведение в дополнительном коде:";
-				body.appendChild(h4);	
-				p=document.createElement("p");
-				p.textContent=mult;
-				body.appendChild(p);	
-			}
-			else {
-				h4=document.createElement("h4");
-				h4.textContent="Произведение в дополнительном коде:";
-				body.appendChild(h4);
-			}		
-		}
-	win.document.close();
-}
-//деление операндов
-function divide(nm1, nm2, dv_nm1, dv_nm2, razr) {
-var nol='', divisor, ost, result='', win=open("", "newWindow"), html, head, title, body, h2, h4, p, table, caption, tr, td;
-	win.document.open();
-	html=document.createElement("html");
-	win.document.appendChild(html);
-	head=document.createElement("head");
-	title=document.createElement("title");
-	title.textContent="Деление целых чисел со знаком";
-	head.appendChild(title);
-	html.appendChild(head);
-	body=document.createElement("body");
-	html.appendChild(body);
-	h2=document.createElement("h2");
-	h2.textContent="Деление целых чисел со знаком";
-	body.appendChild(h2);
-	h4=document.createElement("h4");
-	h4.textContent="Операнды в десятичной системе счисления:";
-	body.appendChild(h4);
-	p=document.createElement("p");
-	p.textContent="Операнд 1= "+nm1+" ,";
-	body.appendChild(p);
-	p=document.createElement("p");
-	p.textContent="операнд 2= "+nm2+".";
-	body.appendChild(p);
-	h4=document.createElement("h4");
-	h4.textContent="Операнды в прямом коде:";
-	body.appendChild(h4);
-	p=document.createElement("p");
-	p.textContent="Операнд 1= "+dv_nm1+" ,";
-	body.appendChild(p);
-	p=document.createElement("p");
-	p.textContent="операнд 2= "+dv_nm2+".";
-	body.appendChild(p);
-	h4=document.createElement("h4");
-	h4.textContent="Вычисление частного и остатка в дополнительных кодах";
-	body.appendChild(h4);
-	for(var i=0;i< razr;i++)
-		nol+='0';
-	result=nol;	
-	if(dv_nm2==nol) {
-		p=document.createElement("p");
-		p.textContent="Деление на ноль! Повторите ввод.";
-		body.appendChild(p);
-		win.document.close();
-	}
+            tr = document.createElement("tr");
+            table.appendChild(tr);
+            td = document.createElement("td");
+            td.textContent = "Сумма";
+            tr.appendChild(td);
+            td = document.createElement("td");
+            td.textContent = sum;
+            tr.appendChild(td);
+            if (((nm1 > 0) && (nm2 > 0) && (sum.charAt(0) == '1')) || ((nm1 < 0) && (nm2 < 0) && (sum.charAt(0) == '0'))) {
+                h4 = createElement("h4");
+                h4.textContent = "Переполнение разрядной сетки."
+                div.appendChild(h4);
+            }
+        }
+
+        //описываем умножение
+        function mult(nm1, nm2, dv_nm1, dv_nm2, razr) {
+            var dv_mult1, dv_mult2, p1, p2, per = '0', mult = '0', reg_per = '0', len = dv_nm1.length, i,
+                win = open("", "newWindow"), html, head, title, body, h2, h4, p, table, caption, tr, td;
+            win.document.open();
+            html = document.createElement("html");
+            win.document.appendChild(html);
+            head = document.createElement("head");
+            title = document.createElement("title");
+            title.textContent = "Умножение целых чисел со знаком";
+            head.appendChild(title);
+            html.appendChild(head);
+            body = document.createElement("body");
+            html.appendChild(body);
+            h2 = document.createElement("h2");
+            h2.textContent = "Умножение целых чисел со знаком";
+            body.appendChild(h2);
+            h4 = document.createElement("h4");
+            h4.textContent = "Операнды в десятичной системе счисления:";
+            body.appendChild(h4);
+            p = document.createElement("p");
+            p.textContent = "Операнд 1= " + nm1 + " ,";
+            body.appendChild(p);
+            p = document.createElement("p");
+            p.textContent = "операнд 2= " + nm2 + ".";
+            body.appendChild(p);
+            h4 = document.createElement("h4");
+            h4.textContent = "Операнды в прямом коде:";
+            body.appendChild(h4);
+            p = document.createElement("p");
+            p.textContent = "Операнд 1= " + dv_nm1 + " ,";
+            body.appendChild(p);
+            p = document.createElement("p");
+            p.textContent = "операнд 2= " + dv_nm2 + ".";
+            body.appendChild(p);
+            //Произведение модулей операндов
+            i = 0;
+            if ((dv_nm1.charAt(0) == '1') && (Math.abs(nm1) != Math.pow(2, razr - 1)))
+                dv_mult1 = '0' + dv_nm1.substring(1, dv_nm1.length);
+            else
+                dv_mult1 = dv_nm1;
+            if ((dv_nm2.charAt(0) == '1') && (Math.abs(nm2) != Math.pow(2, razr - 1)))
+                dv_mult2 = '0' + dv_nm2.substring(1, dv_nm2.length);
+            else
+                dv_mult2 = dv_nm2;
+            mult = '0';
+            i = 0;
+            p1 = Number(dv_nm1.charAt(0));
+            p2 = Number(dv_nm2.charAt(0));
+            if ((dv_mult1.charAt(0) == '0') && (dv_mult2.charAt(0) == '0')) {
+                p = document.createElement("p");
+                p.textContent = "Вычисление произведения модулей операндов";
+                body.appendChild(p);
+                p = document.createElement("p");
+                p.textContent = "Модуль операнда 1= " + dv_mult1 + " ,";
+                body.appendChild(p);
+                p = document.createElement("p");
+                p.textContent = "Модуль операнда 2= " + dv_mult2 + ".";
+                body.appendChild(p);
+                table = document.createElement("table");
+                table.border = "1";
+                body.appendChild(table);
+                caption = document.createElement("caption");
+                caption.textContent = "Умножение в двоичной системе счисления";
+                table.appendChild(caption);
+
+                while (i < len) {
+                    if (dv_mult2.charAt(len - i - 1) == '1') {
+                        mult = summa(mult, dv_mult1);
+                        mult = mult.substring(1, mult.length);
+                        tr = document.createElement("tr");
+                        table.appendChild(tr);
+                        td = document.createElement("td");
+                        td.textContent = "Сдвиг операнда 1";
+                        tr.appendChild(td);
+                        td = document.createElement("td");
+                        td.textContent = dv_mult1;
+                        tr.appendChild(td);
+                        tr = document.createElement("tr");
+                        table.appendChild(tr);
+                        td = document.createElement("td");
+                        td.textContent = "Текущая сумма";
+                        tr.appendChild(td);
+                        td = document.createElement("td");
+                        td.textContent = mult;
+                        tr.appendChild(td);
+                    }
+                    if (mult.charAt(0) == '1') {
+                        tr = document.createElement("tr");
+                        table.appendChild(tr);
+                        td = document.createElement("td");
+                        td.textContent = "Переполнение суммы";
+                        tr.appendChild(td);
+                        td = document.createElement("td");
+                        tr.appendChild(td);
+                        i = len;
+                        per = '1';
+                    } else {
+                        dv_mult1 = dv_mult1.substring(1, len) + '0';
+                        if ((dv_mult1.charAt(0) == '1') && (dv_mult2.charAt(len - i - 2) == '1')) {
+                            tr = document.createElement("tr");
+                            table.appendChild(tr);
+                            td = document.createElement("td");
+                            td.textContent = "Переполнение текущего слагаемого";
+                            tr.appendChild(td);
+                            td = document.createElement("td");
+                            tr.appendChild(td);
+                            i = len;
+                            per = '1';
+                        }
+                    }
+                    i++;
+                }
+
+                if (per == '0') {
+                    tr = document.createElement("tr");
+                    table.appendChild(tr);
+                    td = document.createElement("td");
+                    td.textContent = "Произведение модулей";
+                    tr.appendChild(td);
+                    td = document.createElement("td");
+                    td.textContent = mult;
+                    tr.appendChild(td);
+                    if ((p1 + p2) % 2 == 1)
+                        mult = dop_cod(mult);
+                    h4 = document.createElement("h4");
+                    h4.textContent = "Произведение в дополнительном коде:";
+                    body.appendChild(h4);
+                    p = document.createElement("p");
+                    p.textContent = mult;
+                    body.appendChild(p);
+                } else {
+                    p = document.createElement("p");
+                    p.textContent = "Переполнение";
+                    body.appendChild(p);
+                }
+
+            } else {
+                //формируем 1 и миним отр. число
+                p1 = '1';
+                p2 = '1';
+                for (i = 1; i < razr; i++) {
+                    p1 = '0' + p1;
+                    p2 = p2 + '0';
+                }
+                if (((dv_nm1 == p1) && (dv_nm2 == p2)) || ((dv_nm1 == p2) && (dv_nm2 == p1))) {
+                    mult = p2;
+                    h4 = document.createElement("h4");
+                    h4.textContent = "Произведение в дополнительном коде:";
+                    body.appendChild(h4);
+                    p = document.createElement("p");
+                    p.textContent = mult;
+                    body.appendChild(p);
+                } else {
+                    h4 = document.createElement("h4");
+                    h4.textContent = "Произведение в дополнительном коде:";
+                    body.appendChild(h4);
+                }
+            }
+            win.document.close();
+        }
+
+        //деление операндов
+        function divide(nm1, nm2, dv_nm1, dv_nm2, razr) {
+            var nol = '', divisor, ost, result = '', win = open("", "newWindow"), html, head, title, body, h2, h4, p,
+                table, caption, tr, td;
+            win.document.open();
+            html = document.createElement("html");
+            win.document.appendChild(html);
+            head = document.createElement("head");
+            title = document.createElement("title");
+            title.textContent = "Деление целых чисел со знаком";
+            head.appendChild(title);
+            html.appendChild(head);
+            body = document.createElement("body");
+            html.appendChild(body);
+            h2 = document.createElement("h2");
+            h2.textContent = "Деление целых чисел со знаком";
+            body.appendChild(h2);
+            h4 = document.createElement("h4");
+            h4.textContent = "Операнды в десятичной системе счисления:";
+            body.appendChild(h4);
+            p = document.createElement("p");
+            p.textContent = "Операнд 1= " + nm1 + " ,";
+            body.appendChild(p);
+            p = document.createElement("p");
+            p.textContent = "операнд 2= " + nm2 + ".";
+            body.appendChild(p);
+            h4 = document.createElement("h4");
+            h4.textContent = "Операнды в прямом коде:";
+            body.appendChild(h4);
+            p = document.createElement("p");
+            p.textContent = "Операнд 1= " + dv_nm1 + " ,";
+            body.appendChild(p);
+            p = document.createElement("p");
+            p.textContent = "операнд 2= " + dv_nm2 + ".";
+            body.appendChild(p);
+            h4 = document.createElement("h4");
+            h4.textContent = "Вычисление частного и остатка в дополнительных кодах";
+            body.appendChild(h4);
+            for (var i = 0; i < razr; i++)
+                nol += '0';
+            result = nol;
+            if (dv_nm2 == nol) {
+                p = document.createElement("p");
+                p.textContent = "Деление на ноль! Повторите ввод.";
+                body.appendChild(p);
+                win.document.close();
+            }
 //операнды положительные
-	if((dv_nm1.charAt(0)=='0')&&(dv_nm2.charAt(0)=='0')) {
-		table=document.createElement("table");
-		table.border="1";
-		body.appendChild(table);
-		caption=document.createElement("caption");
-		caption.textContent="Деление в двоичной системе счисления";
-		table.appendChild(caption);
-		tr=document.createElement("tr");
-		table.appendChild(tr);
-		td=document.createElement("td");
-		td.textContent="Операнд 1";
-		tr.appendChild(td);
-		td=document.createElement("td");
-		td.textContent=dv_nm1;
-		tr.appendChild(td);
-		tr=document.createElement("tr");
-		table.appendChild(tr);
-		td=document.createElement("td");
-		td.textContent="Операнд 2 в дополнительном коде";
-		tr.appendChild(td);
-		td=document.createElement("td");
-		td.textContent=dop_cod(dv_nm2);
-		tr.appendChild(td);
-		while(more(dv_nm1,dv_nm2)) {
-			dv_nm1=summa(dv_nm1,dop_cod(dv_nm2));
-			dv_nm1=dv_nm1.substring(1,dv_nm1.length)
-			result=summa(result,'1');
-			result=result.substring(1,result.length)
-			tr=document.createElement("tr");
-			table.appendChild(tr);
-			td=document.createElement("td");
-			td.textContent="Операнд 1 = Операнд 1 + операнд 2 в в дополнительном коде";
-			tr.appendChild(td);
-			td=document.createElement("td");
-			td.textContent=dv_nm1;
-			tr.appendChild(td);			
-			tr=document.createElement("tr");
-			table.appendChild(tr);
-			td=document.createElement("td");
-			td.textContent="Промежуточное частное";
-			tr.appendChild(td);
-			td=document.createElement("td");
-			td.textContent=result;
-			tr.appendChild(td);
-		}
-		tr=document.createElement("tr");
-		table.appendChild(tr);
-		td=document.createElement("td");
-		td.textContent="Частное";
-		tr.appendChild(td);
-		td=document.createElement("td");
-		td.textContent=result;
-		tr.appendChild(td);
-		tr=document.createElement("tr");
-		table.appendChild(tr);
-		td=document.createElement("td");
-		td.textContent="Остаток";
-		tr.appendChild(td);
-		td=document.createElement("td");
-		td.textContent=dv_nm1;
-		tr.appendChild(td);
-	}
+            if ((dv_nm1.charAt(0) == '0') && (dv_nm2.charAt(0) == '0')) {
+                table = document.createElement("table");
+                table.border = "1";
+                body.appendChild(table);
+                caption = document.createElement("caption");
+                caption.textContent = "Деление в двоичной системе счисления";
+                table.appendChild(caption);
+                tr = document.createElement("tr");
+                table.appendChild(tr);
+                td = document.createElement("td");
+                td.textContent = "Операнд 1";
+                tr.appendChild(td);
+                td = document.createElement("td");
+                td.textContent = dv_nm1;
+                tr.appendChild(td);
+                tr = document.createElement("tr");
+                table.appendChild(tr);
+                td = document.createElement("td");
+                td.textContent = "Операнд 2 в дополнительном коде";
+                tr.appendChild(td);
+                td = document.createElement("td");
+                td.textContent = dop_cod(dv_nm2);
+                tr.appendChild(td);
+                while (more(dv_nm1, dv_nm2)) {
+                    dv_nm1 = summa(dv_nm1, dop_cod(dv_nm2));
+                    dv_nm1 = dv_nm1.substring(1, dv_nm1.length)
+                    result = summa(result, '1');
+                    result = result.substring(1, result.length)
+                    tr = document.createElement("tr");
+                    table.appendChild(tr);
+                    td = document.createElement("td");
+                    td.textContent = "Операнд 1 = Операнд 1 + операнд 2 в в дополнительном коде";
+                    tr.appendChild(td);
+                    td = document.createElement("td");
+                    td.textContent = dv_nm1;
+                    tr.appendChild(td);
+                    tr = document.createElement("tr");
+                    table.appendChild(tr);
+                    td = document.createElement("td");
+                    td.textContent = "Промежуточное частное";
+                    tr.appendChild(td);
+                    td = document.createElement("td");
+                    td.textContent = result;
+                    tr.appendChild(td);
+                }
+                tr = document.createElement("tr");
+                table.appendChild(tr);
+                td = document.createElement("td");
+                td.textContent = "Частное";
+                tr.appendChild(td);
+                td = document.createElement("td");
+                td.textContent = result;
+                tr.appendChild(td);
+                tr = document.createElement("tr");
+                table.appendChild(tr);
+                td = document.createElement("td");
+                td.textContent = "Остаток";
+                tr.appendChild(td);
+                td = document.createElement("td");
+                td.textContent = dv_nm1;
+                tr.appendChild(td);
+            }
 //операнды отрицательные
-	else
-		if ((dv_nm1.charAt(0)=='1')&&(dv_nm2.charAt(0)=='1')) {
-			table=document.createElement("table");
-			table.border="1";
-			body.appendChild(table);
-			caption=document.createElement("caption");
-			caption.textContent="Деление в двоичной системе счисления";
-			table.appendChild(caption);
-			if (dop_cod(dv_nm1)!=dv_nm1)
-				dv_nm1='0'+dv_nm1.substring(1,dv_nm1.length);
-			if (dop_cod(dv_nm2)!=dv_nm2)
-				dv_nm2='0'+dv_nm2.substring(1,dv_nm2.length);
-			tr=document.createElement("tr");
-			table.appendChild(tr);
-			td=document.createElement("td");
-			td.textContent="Операнд 1 в дополнительном коде";
-			tr.appendChild(td);
-			td=document.createElement("td");
-			td.textContent=dop_cod(dv_nm1);
-			tr.appendChild(td);
-			tr=document.createElement("tr");
-			table.appendChild(tr);
-			td=document.createElement("td");
-			td.textContent="Операнд 2 в дополнительном коде";
-			tr.appendChild(td);
-			td=document.createElement("td");
-			td.textContent=dop_cod(dv_nm2);
-			tr.appendChild(td);			
-			while(more(dv_nm1,dv_nm2)) {
-				dv_nm1=summa(dv_nm1,dop_cod(dv_nm2));
-				dv_nm1=dv_nm1.substring(1,dv_nm1.length);
-				result=summa(result,'1');
-				result=result.substring(1,result.length);
-				tr=document.createElement("tr");
-				table.appendChild(tr);
-				td=document.createElement("td");
-				td.textContent="Операнд 1";
-				tr.appendChild(td);
-				td=document.createElement("td");
-				td.textContent=dop_cod(dv_nm1);
-				tr.appendChild(td);
+            else if ((dv_nm1.charAt(0) == '1') && (dv_nm2.charAt(0) == '1')) {
+                table = document.createElement("table");
+                table.border = "1";
+                body.appendChild(table);
+                caption = document.createElement("caption");
+                caption.textContent = "Деление в двоичной системе счисления";
+                table.appendChild(caption);
+                if (dop_cod(dv_nm1) != dv_nm1)
+                    dv_nm1 = '0' + dv_nm1.substring(1, dv_nm1.length);
+                if (dop_cod(dv_nm2) != dv_nm2)
+                    dv_nm2 = '0' + dv_nm2.substring(1, dv_nm2.length);
+                tr = document.createElement("tr");
+                table.appendChild(tr);
+                td = document.createElement("td");
+                td.textContent = "Операнд 1 в дополнительном коде";
+                tr.appendChild(td);
+                td = document.createElement("td");
+                td.textContent = dop_cod(dv_nm1);
+                tr.appendChild(td);
+                tr = document.createElement("tr");
+                table.appendChild(tr);
+                td = document.createElement("td");
+                td.textContent = "Операнд 2 в дополнительном коде";
+                tr.appendChild(td);
+                td = document.createElement("td");
+                td.textContent = dop_cod(dv_nm2);
+                tr.appendChild(td);
+                while (more(dv_nm1, dv_nm2)) {
+                    dv_nm1 = summa(dv_nm1, dop_cod(dv_nm2));
+                    dv_nm1 = dv_nm1.substring(1, dv_nm1.length);
+                    result = summa(result, '1');
+                    result = result.substring(1, result.length);
+                    tr = document.createElement("tr");
+                    table.appendChild(tr);
+                    td = document.createElement("td");
+                    td.textContent = "Операнд 1";
+                    tr.appendChild(td);
+                    td = document.createElement("td");
+                    td.textContent = dop_cod(dv_nm1);
+                    tr.appendChild(td);
 
-				tr=document.createElement("tr");
-				table.appendChild(tr);
-				td=document.createElement("td");
-				td.textContent="Операнд 2";
-				tr.appendChild(td);
-				td=document.createElement("td");
-				td.textContent=dv_nm2;
-				tr.appendChild(td);
-				
-				tr=document.createElement("tr");
-				table.appendChild(tr);
-				td=document.createElement("td");
-				td.textContent="Промежуточное частное";
-				tr.appendChild(td);
-				td=document.createElement("td");
-				td.textContent=result;
-				tr.appendChild(td);
-			}
+                    tr = document.createElement("tr");
+                    table.appendChild(tr);
+                    td = document.createElement("td");
+                    td.textContent = "Операнд 2";
+                    tr.appendChild(td);
+                    td = document.createElement("td");
+                    td.textContent = dv_nm2;
+                    tr.appendChild(td);
+
+                    tr = document.createElement("tr");
+                    table.appendChild(tr);
+                    td = document.createElement("td");
+                    td.textContent = "Промежуточное частное";
+                    tr.appendChild(td);
+                    td = document.createElement("td");
+                    td.textContent = result;
+                    tr.appendChild(td);
+                }
 
 
-			if (result.charAt(0)=='0') {
-				tr=document.createElement("tr");
-				table.appendChild(tr);
-				td=document.createElement("td");
-				td.textContent="Частное";
-				tr.appendChild(td);
-				td=document.createElement("td");
-				td.textContent=result;
-				tr.appendChild(td);
-				tr=document.createElement("tr");
-				table.appendChild(tr);
-				td=document.createElement("td");
-				td.textContent="Остаток";
-				tr.appendChild(td);
-				td=document.createElement("td");
-				td.textContent=dop_cod(dv_nm1);
-				tr.appendChild(td);
-			}
-			else {
-				p=document.createElement("p");
-				p.textContent="Переполнение";
-				body.appendChild(p);
-			}
-	
-		}
-		else
+                if (result.charAt(0) == '0') {
+                    tr = document.createElement("tr");
+                    table.appendChild(tr);
+                    td = document.createElement("td");
+                    td.textContent = "Частное";
+                    tr.appendChild(td);
+                    td = document.createElement("td");
+                    td.textContent = result;
+                    tr.appendChild(td);
+                    tr = document.createElement("tr");
+                    table.appendChild(tr);
+                    td = document.createElement("td");
+                    td.textContent = "Остаток";
+                    tr.appendChild(td);
+                    td = document.createElement("td");
+                    td.textContent = dop_cod(dv_nm1);
+                    tr.appendChild(td);
+                } else {
+                    p = document.createElement("p");
+                    p.textContent = "Переполнение";
+                    body.appendChild(p);
+                }
+
+            } else
 //делимое отрицательное, а делитель положительный
-			if ((dv_nm1.charAt(0)=='1')&&(dv_nm2.charAt(0)=='0')) {
-				if(dv_nm1!=dop_cod(dv_nm1)) { 
-					dv_nm1='0'+dv_nm1.substring(1,dv_nm1.length);
-					dv_nm1=dop_cod(dv_nm1);
-				}
-				table=document.createElement("table");
-				table.border="1";
-				body.appendChild(table);
-				tr=document.createElement("tr");
-				table.appendChild(tr);
-				td=document.createElement("td");
-				td.textContent="Операнд 1";
-				tr.appendChild(td);
-				td=document.createElement("td");
-				td.textContent=dv_nm1;
-				tr.appendChild(td);
-				tr=document.createElement("tr");
-				table.appendChild(tr);
-				td=document.createElement("td");
-				td.textContent="Операнд 2";
-				tr.appendChild(td);
-				td=document.createElement("td");
-				td.textContent=dv_nm2;
-				tr.appendChild(td);
-				while (dv_nm1.charAt(0)=='1') {
-					dv_nm1=summa(dv_nm1,dv_nm2);
-					dv_nm1=dv_nm1.substring(1,dv_nm1.length);
-					result=summa(result,'1');
-					result=result.substring(1,result.length);
-					tr=document.createElement("tr");
-					table.appendChild(tr);
-					td=document.createElement("td");
-					td.textContent="Операнд 1";
-					tr.appendChild(td);
-					td=document.createElement("td");
-					td.textContent=dv_nm1;
-					tr.appendChild(td);
-					tr=document.createElement("tr");
-					table.appendChild(tr);
-					td=document.createElement("td");
-					td.textContent="Промежуточное частное";
-					tr.appendChild(td);
-					td=document.createElement("td");
-					td.textContent=result;
-					tr.appendChild(td);
-				}
-				result=dop_cod(result);
-				tr=document.createElement("tr");
-				table.appendChild(tr);
-				td=document.createElement("td");
-				td.textContent="Частное";
-				tr.appendChild(td);
-				td=document.createElement("td");
-				td.textContent=result;
-				tr.appendChild(td);
-				tr=document.createElement("tr");
-				table.appendChild(tr);
-				td=document.createElement("td");
-				td.textContent="Остаток";
-				tr.appendChild(td);
-				td=document.createElement("td");
-				td.textContent=dv_nm1;
-				tr.appendChild(td);
-			}
-			else {
+            if ((dv_nm1.charAt(0) == '1') && (dv_nm2.charAt(0) == '0')) {
+                if (dv_nm1 != dop_cod(dv_nm1)) {
+                    dv_nm1 = '0' + dv_nm1.substring(1, dv_nm1.length);
+                    dv_nm1 = dop_cod(dv_nm1);
+                }
+                table = document.createElement("table");
+                table.border = "1";
+                body.appendChild(table);
+                tr = document.createElement("tr");
+                table.appendChild(tr);
+                td = document.createElement("td");
+                td.textContent = "Операнд 1";
+                tr.appendChild(td);
+                td = document.createElement("td");
+                td.textContent = dv_nm1;
+                tr.appendChild(td);
+                tr = document.createElement("tr");
+                table.appendChild(tr);
+                td = document.createElement("td");
+                td.textContent = "Операнд 2";
+                tr.appendChild(td);
+                td = document.createElement("td");
+                td.textContent = dv_nm2;
+                tr.appendChild(td);
+                while (dv_nm1.charAt(0) == '1') {
+                    dv_nm1 = summa(dv_nm1, dv_nm2);
+                    dv_nm1 = dv_nm1.substring(1, dv_nm1.length);
+                    result = summa(result, '1');
+                    result = result.substring(1, result.length);
+                    tr = document.createElement("tr");
+                    table.appendChild(tr);
+                    td = document.createElement("td");
+                    td.textContent = "Операнд 1";
+                    tr.appendChild(td);
+                    td = document.createElement("td");
+                    td.textContent = dv_nm1;
+                    tr.appendChild(td);
+                    tr = document.createElement("tr");
+                    table.appendChild(tr);
+                    td = document.createElement("td");
+                    td.textContent = "Промежуточное частное";
+                    tr.appendChild(td);
+                    td = document.createElement("td");
+                    td.textContent = result;
+                    tr.appendChild(td);
+                }
+                result = dop_cod(result);
+                tr = document.createElement("tr");
+                table.appendChild(tr);
+                td = document.createElement("td");
+                td.textContent = "Частное";
+                tr.appendChild(td);
+                td = document.createElement("td");
+                td.textContent = result;
+                tr.appendChild(td);
+                tr = document.createElement("tr");
+                table.appendChild(tr);
+                td = document.createElement("td");
+                td.textContent = "Остаток";
+                tr.appendChild(td);
+                td = document.createElement("td");
+                td.textContent = dv_nm1;
+                tr.appendChild(td);
+            } else {
 //делимое положительное, а делитель отрицательный
-				if (dv_nm2!=dop_cod(dv_nm2)) {
-					dv_nm2='0'+dv_nm2.substring(1,dv_nm2.length);
-					dv_nm2=dop_cod(dv_nm2);
-				}
-				table=document.createElement("table");
-				table.border="1";
-				body.appendChild(table);
-				tr=document.createElement("tr");
-				table.appendChild(tr);
-				td=document.createElement("td");
-				td.textContent="Операнд 1";
-				tr.appendChild(td);
-				td=document.createElement("td");
-				td.textContent=dv_nm1;
-				tr.appendChild(td);
-				tr=document.createElement("tr");
-				table.appendChild(tr);
-				td=document.createElement("td");
-				td.textContent="Операнд 2";
-				tr.appendChild(td);
-				td=document.createElement("td");
-				td.textContent=dv_nm2;
-				tr.appendChild(td);
-				while ((dv_nm1.charAt(0)=='0')&&(dv_nm1!=nol)) {
-					dv_nm1=summa(dv_nm1,dv_nm2);
-					dv_nm1=dv_nm1.substring(1,dv_nm1.length);
-					result=summa(result,'1');
-					result=result.substring(1,result.length);
-					tr=document.createElement("tr");
-					table.appendChild(tr);
-					td=document.createElement("td");
-					td.textContent="Операнд 1";
-					tr.appendChild(td);
-					td=document.createElement("td");
-					td.textContent=dv_nm1;
-					tr.appendChild(td);
-					tr=document.createElement("tr");
-					table.appendChild(tr);
-					td=document.createElement("td");
-					td.textContent="Промежуточное частное";
-					tr.appendChild(td);
-					td=document.createElement("td");
-					td.textContent=result;
-					tr.appendChild(td);
-				}
-				result=dop_cod(result);
-				tr=document.createElement("tr");
-				table.appendChild(tr);
-				td=document.createElement("td");
-				td.textContent="Частное";
-				tr.appendChild(td);
-				td=document.createElement("td");
-				td.textContent=result;
-				tr.appendChild(td);
-				tr=document.createElement("tr");
-				table.appendChild(tr);
-				td=document.createElement("td");
-				td.textContent="Остаток";
-				tr.appendChild(td);
-				td=document.createElement("td");
-				td.textContent=dv_nm1;
-				tr.appendChild(td);
-			}
-	win.document.close();
-}
+                if (dv_nm2 != dop_cod(dv_nm2)) {
+                    dv_nm2 = '0' + dv_nm2.substring(1, dv_nm2.length);
+                    dv_nm2 = dop_cod(dv_nm2);
+                }
+                table = document.createElement("table");
+                table.border = "1";
+                body.appendChild(table);
+                tr = document.createElement("tr");
+                table.appendChild(tr);
+                td = document.createElement("td");
+                td.textContent = "Операнд 1";
+                tr.appendChild(td);
+                td = document.createElement("td");
+                td.textContent = dv_nm1;
+                tr.appendChild(td);
+                tr = document.createElement("tr");
+                table.appendChild(tr);
+                td = document.createElement("td");
+                td.textContent = "Операнд 2";
+                tr.appendChild(td);
+                td = document.createElement("td");
+                td.textContent = dv_nm2;
+                tr.appendChild(td);
+                while ((dv_nm1.charAt(0) == '0') && (dv_nm1 != nol)) {
+                    dv_nm1 = summa(dv_nm1, dv_nm2);
+                    dv_nm1 = dv_nm1.substring(1, dv_nm1.length);
+                    result = summa(result, '1');
+                    result = result.substring(1, result.length);
+                    tr = document.createElement("tr");
+                    table.appendChild(tr);
+                    td = document.createElement("td");
+                    td.textContent = "Операнд 1";
+                    tr.appendChild(td);
+                    td = document.createElement("td");
+                    td.textContent = dv_nm1;
+                    tr.appendChild(td);
+                    tr = document.createElement("tr");
+                    table.appendChild(tr);
+                    td = document.createElement("td");
+                    td.textContent = "Промежуточное частное";
+                    tr.appendChild(td);
+                    td = document.createElement("td");
+                    td.textContent = result;
+                    tr.appendChild(td);
+                }
+                result = dop_cod(result);
+                tr = document.createElement("tr");
+                table.appendChild(tr);
+                td = document.createElement("td");
+                td.textContent = "Частное";
+                tr.appendChild(td);
+                td = document.createElement("td");
+                td.textContent = result;
+                tr.appendChild(td);
+                tr = document.createElement("tr");
+                table.appendChild(tr);
+                td = document.createElement("td");
+                td.textContent = "Остаток";
+                tr.appendChild(td);
+                td = document.createElement("td");
+                td.textContent = dv_nm1;
+                tr.appendChild(td);
+            }
+            win.document.close();
+        }
 
-</script>
+    </script>
 </head>
 <body>
 <p><a href="4_4.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="4_6.html">К следующему</a></p>
 <h2>4.5. Кодирование в компьютере целых чисел со знаком</h2>
-<p>Представление числа в форме &quot;знак-величина&quot; в <var>n</var>-разрядной сетке, когда старший бит используется для кодирования знака числа, а остальные <var>n-1</var> бит, поле числа, представляют цифровые разряды числа в двоичной системе счисления, называется <span class="termin">прямым кодом</span> двоичного числа. Положительный знак числа кодируется &quot;<var>0</var>&quot;, а отрицательный &#8212; &quot;<var>1</var>&quot;. Например, в восьмиразрядной сетке старший седьмой разряд будет знаковым разрядом, а разряды с шестого по нулевой служат для записи значения числа. Наибольшее число, кодируемое в прямом коде в восьмиразрядной сетке, равно 
-<math display='inline'>
-<mrow>
-	<msub><mi>Z</mi><mi>max</mi></msub><mo>=</mo>
-	<mrow><msup><mn>2</mn><mn>7</mn></msup><mo>-</mo><mn>1</mn></mrow><mo>=</mo>
-	<msub><mn>127</mn><mn>10</mn></msub><mo>=</mo>
-	<msub><mn>01111111</mn><mn>2</mn></msub>
-</mrow>
-</math>, а наименьшее число &#8212; 
-<math display='inline'>
-<mrow>
-	<msub><mi>Z</mi><mi>min</mi></msub><mo>=</mo>
-	<msub><mrow><mo>-</mo><mn>127</mn></mrow><mn>10</mn></msub><mo>=</mo>
-	<msub><mn>11111111</mn><mn>2</mn></msub>
-</mrow>
-</math>.
-Число ноль кодируется двумя равноправными кодами:</p>
+<p>Представление числа в форме &quot;знак-величина&quot; в <var>n</var>-разрядной сетке, когда старший бит используется
+    для кодирования знака числа, а остальные <var>n-1</var> бит, поле числа, представляют цифровые разряды числа в
+    двоичной системе счисления, называется <span class="termin">прямым кодом</span> двоичного числа. Положительный знак
+    числа кодируется &quot;<var>0</var>&quot;, а отрицательный &#8212; &quot;<var>1</var>&quot;. Например, в
+    восьмиразрядной сетке старший седьмой разряд будет знаковым разрядом, а разряды с шестого по нулевой служат для
+    записи значения числа. Наибольшее число, кодируемое в прямом коде в восьмиразрядной сетке, равно
+    <math display='inline'>
+        <mrow>
+            <msub>
+                <mi>Z</mi>
+                <mi>max</mi>
+            </msub>
+            <mo>=</mo>
+            <mrow>
+                <msup>
+                    <mn>2</mn>
+                    <mn>7</mn>
+                </msup>
+                <mo>-</mo>
+                <mn>1</mn>
+            </mrow>
+            <mo>=</mo>
+            <msub>
+                <mn>127</mn>
+                <mn>10</mn>
+            </msub>
+            <mo>=</mo>
+            <msub>
+                <mn>01111111</mn>
+                <mn>2</mn>
+            </msub>
+        </mrow>
+    </math>
+    , а наименьшее число &#8212;
+    <math display='inline'>
+        <mrow>
+            <msub>
+                <mi>Z</mi>
+                <mi>min</mi>
+            </msub>
+            <mo>=</mo>
+            <msub>
+                <mrow>
+                    <mo>-</mo>
+                    <mn>127</mn>
+                </mrow>
+                <mn>10</mn>
+            </msub>
+            <mo>=</mo>
+            <msub>
+                <mn>11111111</mn>
+                <mn>2</mn>
+            </msub>
+        </mrow>
+    </math>
+    .
+    Число ноль кодируется двумя равноправными кодами:
+</p>
 <table align="center">
-<tr>
-<td align="center"><var>00&#8230;0</var></td>
-<td align="center"> &#8212; положительный ноль,</td>
-</tr>
-<tr>
-<td align="center"><var>10&#8230;0</var></td>
-<td align="center"> &#8212; отрицательный ноль.</td>
-</tr>
+    <tr>
+        <td align="center"><var>00&#8230;0</var></td>
+        <td align="center"> &#8212; положительный ноль,</td>
+    </tr>
+    <tr>
+        <td align="center"><var>10&#8230;0</var></td>
+        <td align="center"> &#8212; отрицательный ноль.</td>
+    </tr>
 </table>
-<p>Прямой код используется для хранения положительных и отрицательных чисел в запоминающих устройствах и для представления положительных чисел при выполнении операций в арифметических устройствах.</p>
-<p>Для выполнения арифметических операций над целыми числами со знаком прямой код не применяется, так как при этом следовало бы выполнить ряд дополнительных действий. Так, при сложении нужно проверить знаки обоих слагаемых и определить знак суммы. Если знаки одинаковы, то вычисляется сумма слагаемых и ей присваивается их общий знак. Если знаки противоположны, то из большего по абсолютной величине вычитается меньшее и результату присваивается знак первого операнда. Знаковый бит приходится рассматривать отдельно, а арифметические действия производить только над полем числа. Программы,реализующие такой алгоритм выполнения арифметических действий над целыми числами, достаточно сложны и требуют специальных команд. По этой причине для обработки целых чисел со знаком используются <span class="termin">дополнительные коды</span>.</p>
-<p>Дополнительный код положительного числа совпадает с прямым кодом этого числа, а для отрицательного числа <var>Z</var> в n-разрядной сетке он равен двоичному представлению дополнения <var>D</var> модуля числа <var>Z</var> до  
-<math display='inline'>
-<mrow>
-	<msup><mn>2</mn><mi>n</mi></msup><mo>:</mo>
-	<mi>D</mi><mo>=</mo>
-	<mrow><msup><mn>2</mn><mi>n</mi></msup><mo>-</mo><mi>|Z|</mi></mrow>
-</mrow>
-</math>.</p>
-<p>Идею построения дополнительных кодов рассмотрим на примере восьмиразрядной сетки. Числу ноль ставится в соответствие кодовая последовательность <var>00000000</var>. Двоичные представления чисел от 1 до 127 в восьмиразрядной сетке будут служить их дополнительными кодами:</p>
+<p>Прямой код используется для хранения положительных и отрицательных чисел в запоминающих устройствах и для
+    представления положительных чисел при выполнении операций в арифметических устройствах.</p>
+<p>Для выполнения арифметических операций над целыми числами со знаком прямой код не применяется, так как при этом
+    следовало бы выполнить ряд дополнительных действий. Так, при сложении нужно проверить знаки обоих слагаемых и
+    определить знак суммы. Если знаки одинаковы, то вычисляется сумма слагаемых и ей присваивается их общий знак. Если
+    знаки противоположны, то из большего по абсолютной величине вычитается меньшее и результату присваивается знак
+    первого операнда. Знаковый бит приходится рассматривать отдельно, а арифметические действия производить только над
+    полем числа. Программы,реализующие такой алгоритм выполнения арифметических действий над целыми числами, достаточно
+    сложны и требуют специальных команд. По этой причине для обработки целых чисел со знаком используются <span
+            class="termin">дополнительные коды</span>.</p>
+<p>Дополнительный код положительного числа совпадает с прямым кодом этого числа, а для отрицательного числа <var>Z</var>
+    в n-разрядной сетке он равен двоичному представлению дополнения <var>D</var> модуля числа <var>Z</var> до
+    <math display='inline'>
+        <mrow>
+            <msup>
+                <mn>2</mn>
+                <mi>n</mi>
+            </msup>
+            <mo>:</mo>
+            <mi>D</mi>
+            <mo>=</mo>
+            <mrow>
+                <msup>
+                    <mn>2</mn>
+                    <mi>n</mi>
+                </msup>
+                <mo>-</mo>
+                <mi>|Z|</mi>
+            </mrow>
+        </mrow>
+    </math>
+    .
+</p>
+<p>Идею построения дополнительных кодов рассмотрим на примере восьмиразрядной сетки. Числу ноль ставится в соответствие
+    кодовая последовательность <var>00000000</var>. Двоичные представления чисел от 1 до 127 в восьмиразрядной сетке
+    будут служить их дополнительными кодами:</p>
 <table border="1" align="center">
-<caption>Таблица 4.5.1. Дополнительные коды неотрицательных чисел в восьмиразрядной сетке</caption>
+    <caption>Таблица 4.5.1. Дополнительные коды неотрицательных чисел в восьмиразрядной сетке</caption>
 
-<th>Число в 10-чной системе счисления</th><th>Код числа</th>
+    <th>Число в 10-чной системе счисления</th>
+    <th>Код числа</th>
 
-<tr>
-<td align="center">0</td><td>00000000</td>
-</tr>
-<tr>
-<td align="center">1</td><td>00000001</td>
-</tr>
-<tr>
-<td align="center">2</td><td>00000010</td>
-</tr>
-<tr>
-<td align="center">&#8230;</td><td align="center">&#8230;</td>
-</tr>
-<tr>
-<td align="center">127</td><td>01111111</td>
-</tr>
+    <tr>
+        <td align="center">0</td>
+        <td>00000000</td>
+    </tr>
+    <tr>
+        <td align="center">1</td>
+        <td>00000001</td>
+    </tr>
+    <tr>
+        <td align="center">2</td>
+        <td>00000010</td>
+    </tr>
+    <tr>
+        <td align="center">&#8230;</td>
+        <td align="center">&#8230;</td>
+    </tr>
+    <tr>
+        <td align="center">127</td>
+        <td>01111111</td>
+    </tr>
 </table>
-<p>Двоичное представление <var>100000000</var> числа <var>256</var> в восьмиразрядной сетке тоже можно считать кодом нуля, поскольку восемь нулей попадают в разрядную сетку, а &quot;<var>1</var>&quot; &#8212; в регистр переноса, что в данном случае не трактуется как ошибка переполнения разрядной сетки. Тогда двоичные представления чисел от <var>128</var> до <var>255</var> будут служить дополнительными кодами отрицательных чисел. Например, число <var>255</var> является дополнением <var>1</var> до <var>256</var>, а сумма двоичных представлений чисел <var>255</var> и <var>1</var> дает код нуля в восьмиразрядной сетке. Поэтому двоичное представление <var>255</var> есть дополнительный код числа 
-<math display='inline'>
-<mrow><mo>-</mo><mn>1</mn></mrow>
-</math>:</p>
+<p>Двоичное представление <var>100000000</var> числа <var>256</var> в восьмиразрядной сетке тоже можно считать кодом
+    нуля, поскольку восемь нулей попадают в разрядную сетку, а &quot;<var>1</var>&quot; &#8212; в регистр переноса, что
+    в данном случае не трактуется как ошибка переполнения разрядной сетки. Тогда двоичные представления чисел от <var>128</var>
+    до <var>255</var> будут служить дополнительными кодами отрицательных чисел. Например, число <var>255</var> является
+    дополнением <var>1</var> до <var>256</var>, а сумма двоичных представлений чисел <var>255</var> и <var>1</var> дает
+    код нуля в восьмиразрядной сетке. Поэтому двоичное представление <var>255</var> есть дополнительный код числа
+    <math display='inline'>
+        <mrow>
+            <mo>-</mo>
+            <mn>1</mn>
+        </mrow>
+    </math>
+    :
+</p>
 <table align="center" border="1">
-<tr>
-<td>1</td><td  align='right'>00000001</td>
-</tr>
-<tr>
-<td>255</td><td  align='right'>11111111</td>
-</tr>
-<tr>
-<td>256</td><td>100000000</td>
-</tr>
+    <tr>
+        <td>1</td>
+        <td align='right'>00000001</td>
+    </tr>
+    <tr>
+        <td>255</td>
+        <td align='right'>11111111</td>
+    </tr>
+    <tr>
+        <td>256</td>
+        <td>100000000</td>
+    </tr>
 </table>
 <p>Дополним Таблицу 4.5.1 следующей таблицей:</p>
 <table border="1" align="center">
-<caption>Таблица 4.5.2. Дополнительные коды отрицательных чисел в восьмиразрядной сетке</caption>
-<th>Кодируемое число</th><th>Дополнение модуля кодируемого числа</th><th>Дополнительный код</th>
-<tr>
-<td align="center">
-<math display='inline'>
-<mrow><mo>-</mo><mn>128</mn></mrow>
-</math>
-</td><td align="center">128</td><td align="center">10000000</td>
-</tr>
-<tr>
-<td align="center">
-<math display='inline'>
-<mrow><mo>-</mo><mn>127</mn></mrow>
-</math>
-</td><td align="center">129</td><td align="center">10000001</td>
-</tr>
-<tr>
-<td align="center">
-<math display='inline'>
-<mrow><mo>-</mo><mn>126</mn></mrow>
-</math>
-</td><td align="center">130</td><td align="center">10000010</td>
-</tr>
-<tr>
-<td align="center">
-<math display='inline'>
-<mrow><mo>-</mo><mn>125</mn></mrow>
-</math>
-</td><td align="center">131</td><td align="center">10000011</td>
-</tr>
-<tr>
-<td align="center">&#8230;</td><td align="center">&#8230;</td><td align="center">...</td>
-</tr>
-<tr>
-<td align="center">
-<math display='inline'>
-<mrow><mo>-</mo><mn>1</mn></mrow>
-</math>
-</td><td align="center">255</td><td align="center">11111111</td>
-</tr>
+    <caption>Таблица 4.5.2. Дополнительные коды отрицательных чисел в восьмиразрядной сетке</caption>
+    <th>Кодируемое число</th>
+    <th>Дополнение модуля кодируемого числа</th>
+    <th>Дополнительный код</th>
+    <tr>
+        <td align="center">
+            <math display='inline'>
+                <mrow>
+                    <mo>-</mo>
+                    <mn>128</mn>
+                </mrow>
+            </math>
+        </td>
+        <td align="center">128</td>
+        <td align="center">10000000</td>
+    </tr>
+    <tr>
+        <td align="center">
+            <math display='inline'>
+                <mrow>
+                    <mo>-</mo>
+                    <mn>127</mn>
+                </mrow>
+            </math>
+        </td>
+        <td align="center">129</td>
+        <td align="center">10000001</td>
+    </tr>
+    <tr>
+        <td align="center">
+            <math display='inline'>
+                <mrow>
+                    <mo>-</mo>
+                    <mn>126</mn>
+                </mrow>
+            </math>
+        </td>
+        <td align="center">130</td>
+        <td align="center">10000010</td>
+    </tr>
+    <tr>
+        <td align="center">
+            <math display='inline'>
+                <mrow>
+                    <mo>-</mo>
+                    <mn>125</mn>
+                </mrow>
+            </math>
+        </td>
+        <td align="center">131</td>
+        <td align="center">10000011</td>
+    </tr>
+    <tr>
+        <td align="center">&#8230;</td>
+        <td align="center">&#8230;</td>
+        <td align="center">...</td>
+    </tr>
+    <tr>
+        <td align="center">
+            <math display='inline'>
+                <mrow>
+                    <mo>-</mo>
+                    <mn>1</mn>
+                </mrow>
+            </math>
+        </td>
+        <td align="center">255</td>
+        <td align="center">11111111</td>
+    </tr>
 </table>
 <p>Другой способ нахождения дополнительного кода отрицательного числа такой:</p>
 <ul>
-<li>выписать прямой код модуля числа;</li>
-<li>инвертировать прямой код (заменить &quot;<var>0</var>&quot; на &quot;<var>1</var>&quot; и наоборот);</li>
-<li>прибавить код числа <var>1</var> к инвертированному коду.</li>
+    <li>выписать прямой код модуля числа;</li>
+    <li>инвертировать прямой код (заменить &quot;<var>0</var>&quot; на &quot;<var>1</var>&quot; и наоборот);</li>
+    <li>прибавить код числа <var>1</var> к инвертированному коду.</li>
 </ul>
 <div class="examp">
-<p><span class="primer">Пример 4.5.1</span>. Вычислим дополнительный код числа 
-<math display='inline'>
-<mrow><mo>-</mo><mn>2</mn></mrow>
-</math>
-в восьмиразрядной сетке:</p>
-<table align="center" border="1">
-<tr>
-<td>Прямой код числа 2</td><td>00000010</td>
-</tr>
-<tr>
-<td>Инверсия прямого кода</td><td>11111101</td>
-</tr>
-<tr>
-<td>Код 1</td><td>00000001</td>
-</tr>
-<tr>
-<td>Дополнительный код</td><td>11111110</td>
-</tr>
-</table>
-<p>Очевидно, что сумма дополнительных кодов 2 и 
-<math display='inline'>
-<mrow><mo>-</mo><mn>2</mn></mrow>
-</math>
- в восьмиразрядной сетке равна коду нуля:
-<math display='inline'>
-<mrow>
-	<mfenced separators="" open="" close="">
-		<mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn><mn>1</mn><mn>0</mn>
-	</mfenced>
-	<mo>+</mo>
-	<mfenced separators="" open="" close="">
-		<mn>1</mn><mn>1</mn><mn>1</mn><mn>1</mn><mn>1</mn><mn>1</mn><mn>1</mn><mn>0</mn>
-	</mfenced><mo>=</mo>
-	<mfenced separators="" open="" close="">
-		<mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn>
-	</mfenced>		
-</mrow>
-</math>.</p> 
+    <p><span class="primer">Пример 4.5.1</span>. Вычислим дополнительный код числа
+        <math display='inline'>
+            <mrow>
+                <mo>-</mo>
+                <mn>2</mn>
+            </mrow>
+        </math>
+        в восьмиразрядной сетке:
+    </p>
+    <table align="center" border="1">
+        <tr>
+            <td>Прямой код числа 2</td>
+            <td>00000010</td>
+        </tr>
+        <tr>
+            <td>Инверсия прямого кода</td>
+            <td>11111101</td>
+        </tr>
+        <tr>
+            <td>Код 1</td>
+            <td>00000001</td>
+        </tr>
+        <tr>
+            <td>Дополнительный код</td>
+            <td>11111110</td>
+        </tr>
+    </table>
+    <p>Очевидно, что сумма дополнительных кодов 2 и
+        <math display='inline'>
+            <mrow>
+                <mo>-</mo>
+                <mn>2</mn>
+            </mrow>
+        </math>
+        в восьмиразрядной сетке равна коду нуля:
+        <math display='inline'>
+            <mrow>
+                <mfenced separators="" open="" close="">
+                    <mn>0</mn>
+                    <mn>0</mn>
+                    <mn>0</mn>
+                    <mn>0</mn>
+                    <mn>0</mn>
+                    <mn>0</mn>
+                    <mn>1</mn>
+                    <mn>0</mn>
+                </mfenced>
+                <mo>+</mo>
+                <mfenced separators="" open="" close="">
+                    <mn>1</mn>
+                    <mn>1</mn>
+                    <mn>1</mn>
+                    <mn>1</mn>
+                    <mn>1</mn>
+                    <mn>1</mn>
+                    <mn>1</mn>
+                    <mn>0</mn>
+                </mfenced>
+                <mo>=</mo>
+                <mfenced separators="" open="" close="">
+                    <mn>0</mn>
+                    <mn>0</mn>
+                    <mn>0</mn>
+                    <mn>0</mn>
+                    <mn>0</mn>
+                    <mn>0</mn>
+                    <mn>0</mn>
+                    <mn>0</mn>
+                </mfenced>
+            </mrow>
+        </math>
+        .
+    </p>
 </div>
-<p>О знаке числа можно судить по состоянию старшего бита дополнительного кода: у положительного числа его значение &quot;0&quot;, у отрицательного &#8212; &quot;1&quot;.</p>
-<p>В 16-разрядной сетке двоичные представления чисел от 1 до 32767 являются их дополнительными кодами, дополнительными кодами отрицательных чисел от 
-<math display='inline'>
-<mrow><mo>-</mo><mn>32768</mn></mrow>
-</math>
-до 
-<math display='inline'>
-<mrow><mo>-</mo><mn>1</mn></mrow>
-</math>
-служат соответствующие двоичные представления чисел от  32768 до 65535:</p>
+<p>О знаке числа можно судить по состоянию старшего бита дополнительного кода: у положительного числа его значение
+    &quot;0&quot;, у отрицательного &#8212; &quot;1&quot;.</p>
+<p>В 16-разрядной сетке двоичные представления чисел от 1 до 32767 являются их дополнительными кодами, дополнительными
+    кодами отрицательных чисел от
+    <math display='inline'>
+        <mrow>
+            <mo>-</mo>
+            <mn>32768</mn>
+        </mrow>
+    </math>
+    до
+    <math display='inline'>
+        <mrow>
+            <mo>-</mo>
+            <mn>1</mn>
+        </mrow>
+    </math>
+    служат соответствующие двоичные представления чисел от 32768 до 65535:
+</p>
 <table align="center" border="1">
-<caption>Таблица 4.5.3. Дополнительные коды чисел в шестнадцатиразрядной сетке</caption>
-<th>Кодируемое число</th><th>Дополнение модуля кодируемого числа</th><th>Дополнительный код</th>
-<tr>
-<td align="center">
-<math display='inline'>
-<mrow><mo>-</mo><mn>32768</mn></mrow>
-</math>
-</td><td align="center">32768</td><td align="center">1000000000000000</td>
-</tr>
-<tr>
-<td align="center">
-<math display='inline'>
-<mrow><mo>-</mo><mn>32767</mn></mrow>
-</math>
-</td><td align="center">32769</td><td align="center">1000000000000001</td>
-</tr>
-<tr>
-<td align="center">
-<math display='inline'>
-<mrow><mo>-</mo><mn>32766</mn></mrow>
-</math>
-</td><td align="center">32770</td><td align="center">1000000000000010</td>
-</tr>
-<tr>
-<td align="center">&#8230;</td><td align="center">&#8230;</td><td align="center">&#8230;</td>
-</tr>
-<tr>
-<td align="center">
-<math display='inline'>
-<mrow><mo>-</mo><mn>1</mn></mrow>
-</math>
-</td><td align="center">65535</td><td align="center">1111111111111111</td>
-</tr>
-<tr>
-<td align="center">0</td><td align="center"> &#8212; </td><td align="center">0000000000000000</td>
-</tr>
-<tr>
-<td align="center">1</td><td align="center"> &#8212; </td><td align="center">0000000000000001</td>
-</tr>
-<tr>
-<td align="center">&#8230;</td><td align="center">&#8230;</td><td align="center">&#8230;</td>
-</tr>
-<tr>
-<td align="center">32767</td><td align="center"> &#8212; </td><td align="center">0111111111111111</td>
-</tr>
+    <caption>Таблица 4.5.3. Дополнительные коды чисел в шестнадцатиразрядной сетке</caption>
+    <th>Кодируемое число</th>
+    <th>Дополнение модуля кодируемого числа</th>
+    <th>Дополнительный код</th>
+    <tr>
+        <td align="center">
+            <math display='inline'>
+                <mrow>
+                    <mo>-</mo>
+                    <mn>32768</mn>
+                </mrow>
+            </math>
+        </td>
+        <td align="center">32768</td>
+        <td align="center">1000000000000000</td>
+    </tr>
+    <tr>
+        <td align="center">
+            <math display='inline'>
+                <mrow>
+                    <mo>-</mo>
+                    <mn>32767</mn>
+                </mrow>
+            </math>
+        </td>
+        <td align="center">32769</td>
+        <td align="center">1000000000000001</td>
+    </tr>
+    <tr>
+        <td align="center">
+            <math display='inline'>
+                <mrow>
+                    <mo>-</mo>
+                    <mn>32766</mn>
+                </mrow>
+            </math>
+        </td>
+        <td align="center">32770</td>
+        <td align="center">1000000000000010</td>
+    </tr>
+    <tr>
+        <td align="center">&#8230;</td>
+        <td align="center">&#8230;</td>
+        <td align="center">&#8230;</td>
+    </tr>
+    <tr>
+        <td align="center">
+            <math display='inline'>
+                <mrow>
+                    <mo>-</mo>
+                    <mn>1</mn>
+                </mrow>
+            </math>
+        </td>
+        <td align="center">65535</td>
+        <td align="center">1111111111111111</td>
+    </tr>
+    <tr>
+        <td align="center">0</td>
+        <td align="center"> &#8212;</td>
+        <td align="center">0000000000000000</td>
+    </tr>
+    <tr>
+        <td align="center">1</td>
+        <td align="center"> &#8212;</td>
+        <td align="center">0000000000000001</td>
+    </tr>
+    <tr>
+        <td align="center">&#8230;</td>
+        <td align="center">&#8230;</td>
+        <td align="center">&#8230;</td>
+    </tr>
+    <tr>
+        <td align="center">32767</td>
+        <td align="center"> &#8212;</td>
+        <td align="center">0111111111111111</td>
+    </tr>
 </table>
 <p>Рассмотрим выполнение арифметических операций над целыми числами со знаком.</p>
-<p>Операция вычитания заменяется <a href='7_5.html#alu'>сложением</a> в дополнительных кодах. Например, в восьмиразрядной сетке вычислим разность 
-<math display='inline'>
-<mrow><mn>3</mn><mo>-</mo><mn>2</mn></mrow>
-</math>:</p>
+<p>Операция вычитания заменяется <a href='7_5.html#alu'>сложением</a> в дополнительных кодах. Например, в
+    восьмиразрядной сетке вычислим разность
+    <math display='inline'>
+        <mrow>
+            <mn>3</mn>
+            <mo>-</mo>
+            <mn>2</mn>
+        </mrow>
+    </math>
+    :
+</p>
 <table border="1" align="center">
-<th> </th><th>Число в 10-чной системе счисления</th><th>Дополнительный код</th>
-<tr align="center">
-<td>Операнд 1</td><td>3</td><td>00000011</td>
-</tr>
-<tr align="center">
-<td>Операнд 2</td><td>
-<math display='inline'>
-<mrow><mo>-</mo><mn>2</mn></mrow>
-</math>
-</td><td>11111110</td>
-</tr>
-<tr align="center">
-<td>Сумма</td><td>1</td><td>00000001</td>
-</tr>
+    <th></th>
+    <th>Число в 10-чной системе счисления</th>
+    <th>Дополнительный код</th>
+    <tr align="center">
+        <td>Операнд 1</td>
+        <td>3</td>
+        <td>00000011</td>
+    </tr>
+    <tr align="center">
+        <td>Операнд 2</td>
+        <td>
+            <math display='inline'>
+                <mrow>
+                    <mo>-</mo>
+                    <mn>2</mn>
+                </mrow>
+            </math>
+        </td>
+        <td>11111110</td>
+    </tr>
+    <tr align="center">
+        <td>Сумма</td>
+        <td>1</td>
+        <td>00000001</td>
+    </tr>
 </table>
-<p>В результате сложения дополнительных кодов чисел 3 и 
-<math display='inline'>
-<mrow><mo>-</mo><mn>2</mn></mrow>
-</math>
-в бите переноса оказывается &quot;1&quot;, что не трактуется как ошибка переполнения.</p>
-<p>При выполнении операции сложения 
-<math display='inline'>
-<mrow>
-	<mi>Z</mi><mo>=</mo>
-	<mrow>
-		<msub><mi>Z</mi><mn>1</mn></msub><mo>+</mo>
-		<msub><mi>Z</mi><mn>2</mn></msub>
-	</mrow>
-</mrow>
-</math>
-руководствуются следующими правилами:</p>
+<p>В результате сложения дополнительных кодов чисел 3 и
+    <math display='inline'>
+        <mrow>
+            <mo>-</mo>
+            <mn>2</mn>
+        </mrow>
+    </math>
+    в бите переноса оказывается &quot;1&quot;, что не трактуется как ошибка переполнения.
+</p>
+<p>При выполнении операции сложения
+    <math display='inline'>
+        <mrow>
+            <mi>Z</mi>
+            <mo>=</mo>
+            <mrow>
+                <msub>
+                    <mi>Z</mi>
+                    <mn>1</mn>
+                </msub>
+                <mo>+</mo>
+                <msub>
+                    <mi>Z</mi>
+                    <mn>2</mn>
+                </msub>
+            </mrow>
+        </mrow>
+    </math>
+    руководствуются следующими правилами:
+</p>
 <table cellpadding="0" cellspacing="0" border="1" align="center">
-<caption>Таблица 4.5.4. Таблица корректности выполнения операции сложения</caption>
-<th align="center" valign="middle">Старший бит 
-<math display='inline'>
-<msub><mi>Z</mi><mn>1</mn></msub>
-</math>
-</th>
-<th align="center" valign="middle">Старший бит 
-<math display='inline'>
-<msub><mi>Z</mi><mn>2</mn></msub>
-</math>
-</th>
-<th align="center" valign="middle">Старший бит Z</th>
-<th align="center" valign="middle">Регистр переноса</th>
-<th align="center" valign="middle">Комментарий</th>
-<tr align="center" valign="middle">
-<td>0</td><td>0</td><td>0</td><td>0</td><td align='left'>Сложение двух положительных чисел без переполнения. Результат корректен.</td>
-</tr>
-<tr align="center" valign="middle">
-<td>0</td><td>0</td><td>1</td><td>0</td><td align='left'>Переполнение при сложении двух положительных чисел. Результат некорректен.</td>
-</tr>
-<tr align="center" valign="middle">
-<td>1</td><td>1</td><td>1</td><td>1</td><td align='left'>Сложение двух отрицательных чисел без переполнения. Результат корректен.</td>
-</tr>
-<tr align="center" valign="middle">
-<td>1</td><td>1</td><td>0</td><td>1</td><td align='left'>Переполнение при сложении двух отрицательных чисел. Результат некорректен.</td>
-</tr>
+    <caption>Таблица 4.5.4. Таблица корректности выполнения операции сложения</caption>
+    <th align="center" valign="middle">Старший бит
+        <math display='inline'>
+            <msub>
+                <mi>Z</mi>
+                <mn>1</mn>
+            </msub>
+        </math>
+    </th>
+    <th align="center" valign="middle">Старший бит
+        <math display='inline'>
+            <msub>
+                <mi>Z</mi>
+                <mn>2</mn>
+            </msub>
+        </math>
+    </th>
+    <th align="center" valign="middle">Старший бит Z</th>
+    <th align="center" valign="middle">Регистр переноса</th>
+    <th align="center" valign="middle">Комментарий</th>
+    <tr align="center" valign="middle">
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td align='left'>Сложение двух положительных чисел без переполнения. Результат корректен.</td>
+    </tr>
+    <tr align="center" valign="middle">
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td align='left'>Переполнение при сложении двух положительных чисел. Результат некорректен.</td>
+    </tr>
+    <tr align="center" valign="middle">
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td align='left'>Сложение двух отрицательных чисел без переполнения. Результат корректен.</td>
+    </tr>
+    <tr align="center" valign="middle">
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td align='left'>Переполнение при сложении двух отрицательных чисел. Результат некорректен.</td>
+    </tr>
 </table>
-<p>Умножение целых чисел в выбранной разрядной сетке сводится к выполнению умножения модулей операндов (как последовательности <a href='7_5.html#sdvig'>сдвигов</a> и <a href='7_5.html#alu'>сложений</a>) с последующим вычислением дополнительного кода результата с учетом знаков сомножителей.</p>
+<p>Умножение целых чисел в выбранной разрядной сетке сводится к выполнению умножения модулей операндов (как
+    последовательности <a href='7_5.html#sdvig'>сдвигов</a> и <a href='7_5.html#alu'>сложений</a>) с последующим
+    вычислением дополнительного кода результата с учетом знаков сомножителей.</p>
 <div class="examp">
-<p><span class="primer">Пример 4.5.2</span>. Вычислим произведение 3 на 
-<math display='inline'>
-<mrow><mo>-</mo><mn>2</mn></mrow>
-</math>
-в восьмиразрядной сетке:</p>
-<p>Код числа 3 в восьмиразрядной сетке равен 00000011, а код 2 &#8212; 00000010, их произведение кодируется последовательностью 00000110 (результат сдвига 00000011 на 1 разряд влево). Произведение должно быть отрицательным, поэтому находим дополнительный код прямого кода 00000110:</p>
-<ul>
-<li>11111001 &#8212; инверсия прямого кода;</li>
-<li>11111010 &#8212; искомый дополнительный код произведения как сумма инверсии 11111001 и 00000001.</li>
-</ul></div>
-<p>Над целыми числами со знаком допустима операция целочисленного деления с нахождением остатка от целочисленного деления.</p>
-<a name="f4_5_1"></a>
-<p>Пусть <var>Z</var> &#8212; делимое, <var>D</var> &#8212; делитель, <var>L</var> &#8212; результат целочисленного деления, а <var>R</var> &#8212; остаток. Эти целые числа связаны соотношением:
-<table class='formula'><tr>
-<td class='formula'>
-<math display="block">
-<mrow>
-	<mi>Z</mi><mo>=</mo>
-	<mrow>
-		<mrow><mi>L</mi><mo>&#x2062;</mo><mi>D</mi></mrow><mo>+</mo><mi>R</mi>	
-	</mrow>
-</mrow><mo>,</mo>
-</math></td>
-<td class="nomer">(4.5.1)</td>
-</tr></table>
-где 
-<math display='inline'>
-<mrow>
-	<mrow><mo>|</mo><mi>R</mi><mo>|</mo></mrow><mo>&lt;</mo><mrow><mo>|</mo><mi>D</mi><mo>|</mo></mrow>
-</mrow>
-</math>.</p>
-<a name="delenie"></a>
-<p>В математике остаток R должен удовлетворять условию 
-<math display='inline'>
-<mrow>
-	<mn>0</mn><mo>&#8804;</mo><mi>R</mi><mo>&lt;</mo><mi>|D|</mi>
-</mrow>
-</math>, тогда как в прикладных программах и в языках программирования остаток от целочисленного деления определяется неоднозначно. Например, в электронных таблицах OpenOffice.org 2.3 Calc, Excell, Gnumeric, языке программирования Компонентный Паскаль знак остатка совпадает со знаком делителя. В Java, Borland C++, Turbo Pascal 7.0 знак остатка совпадает со знаком делимого. В языке программирования C, по стандарту ANSII, остаток от целочисленного деления положительный, если делимое и делитель одного знака, в противном случае &#8212; отрицательный. Примем обозначения: <var>mod(Z, D)</var> &#8212; остаток, а <var>div(Z, D)</var> &#8212; результат целочисленного деления <var>Z</var> на <var>D</var>.</p> 
-<div class="examp"><span class="primer">Пример 4.5.3</span>. Примеры целочисленного деления в математике и  Компонентном Паскале:
-<table border="1" align="center">
-<th>В математике</th><th>В Компонентном Паскале</th>
-<tr>
-<td>
-<math display='inline'>
-<mrow>
-	<mrow>
-		<mrow><mi>div</mi><mo>&#x2061;</mo><mfenced><mn>10</mn><mn>3</mn></mfenced></mrow><mo>=</mo><mn>3</mn>
-	</mrow>
-	<mo>,</mo>
-	<mrow>	
-		<mrow><mi>mod</mi><mo>&#x2061;</mo><mfenced><mn>10</mn><mn>3</mn></mfenced></mrow><mo>=</mo><mn>1</mn>
-	</mrow>
-</mrow>
-</math>
-</td>
-<td>
-<math display='inline'>
-<mrow>
-	<mrow>
-		<mrow><mi>div</mi><mo>&#x2061;</mo><mfenced><mn>10</mn><mn>3</mn></mfenced></mrow><mo>=</mo><mn>3</mn>
-	</mrow>
-	<mo>,</mo>
-	<mrow>	
-		<mrow><mi>mod</mi><mo>&#x2061;</mo><mfenced><mn>10</mn><mn>3</mn></mfenced></mrow><mo>=</mo><mn>1</mn>
-	</mrow>
-</mrow>
-</math>
-</td>
-</tr>
-<tr>
-<td>
-<math display='inline'>
-<mrow>
-	<mrow>
-		<mrow><mi>div</mi><mo>&#x2061;</mo><mfenced><mrow><mo>-</mo><mn>10</mn></mrow><mn>3</mn></mfenced></mrow><mo>=</mo><mrow><mo>-</mo><mn>4</mn></mrow>
-	</mrow>
-	<mo>,</mo>
-	<mrow>	
-		<mrow><mi>mod</mi><mo>&#x2061;</mo><mfenced><mrow><mo>-</mo><mn>10</mn></mrow><mn>3</mn></mfenced></mrow><mo>=</mo><mn>2</mn>
-	</mrow>
-</mrow>
-</math>
-</td>
-<td>
-<math display='inline'>
-<mrow>
-	<mrow>
-		<mrow><mi>div</mi><mo>&#x2061;</mo><mfenced><mrow><mo>-</mo><mn>10</mn></mrow><mn>3</mn></mfenced></mrow><mo>=</mo><mrow><mo>-</mo><mn>4</mn></mrow>
-	</mrow>
-	<mo>,</mo>
-	<mrow>	
-		<mrow><mi>mod</mi><mo>&#x2061;</mo><mfenced><mrow><mo>-</mo><mn>10</mn></mrow><mn>3</mn></mfenced></mrow><mo>=</mo><mn>2</mn>
-	</mrow>
-</mrow>
-</math>
-</td>
-</tr>
-<tr>
-<td>
-<math display='inline'>
-<mrow>
-	<mrow>
-		<mrow><mi>div</mi><mo>&#x2061;</mo><mfenced><mn>10</mn><mrow><mo>-</mo><mn>3</mn></mrow></mfenced></mrow><mo>=</mo><mrow><mo>-</mo><mn>3</mn></mrow>
-	</mrow>
-	<mo>,</mo>
-	<mrow>	
-		<mrow><mi>mod</mi><mo>&#x2061;</mo><mfenced><mn>10</mn><mrow><mo>-</mo><mn>3</mn></mrow></mfenced></mrow><mo>=</mo><mn>1</mn>
-	</mrow>
-</mrow>
-</math>
-</td>
-<td>
-<math display='inline'>
-<mrow>
-	<mrow>
-		<mrow><mi>div</mi><mo>&#x2061;</mo><mfenced><mn>10</mn><mrow><mo>-</mo><mn>3</mn></mrow></mfenced></mrow>
-		<mo>=</mo><mrow><mo>-</mo><mn>4</mn></mrow>
-	</mrow>
-	<mo>,</mo>
-	<mrow>	
-		<mrow><mi>mod</mi><mo>&#x2061;</mo><mfenced><mn>10</mn><mrow><mo>-</mo><mn>3</mn></mrow></mfenced></mrow>
-		<mo>=</mo><mrow><mo>-</mo><mn>2</mn></mrow>
-	</mrow>
-</mrow>
-</math>
-</td>
-</tr>
-<tr>
-<td>
-<math display='inline'>
-<mrow>
-	<mrow>
-		<mrow><mi>div</mi><mo>&#x2061;</mo><mfenced><mrow><mo>-</mo><mn>10</mn></mrow><mrow><mo>-</mo><mn>3</mn></mrow></mfenced></mrow>
-		<mo>=</mo><mn>4</mn>
-	</mrow>
-	<mo>,</mo>
-	<mrow>	
-		<mrow><mi>mod</mi><mo>&#x2061;</mo><mfenced><mrow><mo>-</mo><mn>10</mn></mrow><mrow><mo>-</mo><mn>3</mn></mrow></mfenced></mrow>
-		<mo>=</mo><mn>2</mn>
-	</mrow>
-</mrow>
-</math>
-</td>
-<td>
-<math display='inline'>
-<mrow>
-	<mrow>
-		<mrow><mi>div</mi><mo>&#x2061;</mo><mfenced><mrow><mo>-</mo><mn>10</mn></mrow><mrow><mo>-</mo><mn>3</mn></mrow></mfenced></mrow>
-		<mo>=</mo><mn>3</mn>
-	</mrow>
-	<mo>,</mo>
-	<mrow>	
-		<mrow><mi>mod</mi><mo>&#x2061;</mo><mfenced><mrow><mo>-</mo><mn>10</mn></mrow><mrow><mo>-</mo><mn>3</mn></mrow></mfenced></mrow>
-		<mo>=</mo><mrow><mo>-</mo><mn>1</mn></mrow>
-	</mrow>
-</mrow>
-</math>
-</td>
-</tr>
-</table>
+    <p><span class="primer">Пример 4.5.2</span>. Вычислим произведение 3 на
+        <math display='inline'>
+            <mrow>
+                <mo>-</mo>
+                <mn>2</mn>
+            </mrow>
+        </math>
+        в восьмиразрядной сетке:
+    </p>
+    <p>Код числа 3 в восьмиразрядной сетке равен 00000011, а код 2 &#8212; 00000010, их произведение кодируется
+        последовательностью 00000110 (результат сдвига 00000011 на 1 разряд влево). Произведение должно быть
+        отрицательным, поэтому находим дополнительный код прямого кода 00000110:</p>
+    <ul>
+        <li>11111001 &#8212; инверсия прямого кода;</li>
+        <li>11111010 &#8212; искомый дополнительный код произведения как сумма инверсии 11111001 и 00000001.</li>
+    </ul>
 </div>
-<p>Мы будем придерживаться определения целочисленного деления, принятого в Компонентном Паскале: в <a href="#f4_5_1">(4.5.1)</a> знак остатка <var>R</var> совпадает со знаком делителя <var>D</var>, результат целочисленного деления <var>L</var> неотрицательный в случае совпадения знаков делимого и делителя, в противном случае &#8212; неположительный.</p>
-<p>Таким образом, над целыми числами со знаком не существуют самостоятельные операции вычитания, умножения и деления нацело: они сводятся к операции сложения в дополнительных кодах или к серии операций сложения и сдвига влево.</p>
+<p>Над целыми числами со знаком допустима операция целочисленного деления с нахождением остатка от целочисленного
+    деления.</p>
+<a name="f4_5_1"></a>
+<p>Пусть <var>Z</var> &#8212; делимое, <var>D</var> &#8212; делитель, <var>L</var> &#8212; результат целочисленного
+    деления, а <var>R</var> &#8212; остаток. Эти целые числа связаны соотношением:
+<table class='formula'>
+    <tr>
+        <td class='formula'>
+            <math display="block">
+                <mrow>
+                    <mi>Z</mi>
+                    <mo>=</mo>
+                    <mrow>
+                        <mrow>
+                            <mi>L</mi>
+                            <mo>&#x2062;</mo>
+                            <mi>D</mi>
+                        </mrow>
+                        <mo>+</mo>
+                        <mi>R</mi>
+                    </mrow>
+                </mrow>
+                <mo>,</mo>
+            </math>
+        </td>
+        <td class="nomer">(4.5.1)</td>
+    </tr>
+</table>
+где
+<math display='inline'>
+    <mrow>
+        <mrow>
+            <mo>|</mo>
+            <mi>R</mi>
+            <mo>|</mo>
+        </mrow>
+        <mo>&lt;</mo>
+        <mrow>
+            <mo>|</mo>
+            <mi>D</mi>
+            <mo>|</mo>
+        </mrow>
+    </mrow>
+</math>
+.</p>
+<a name="delenie"></a>
+<p>В математике остаток R должен удовлетворять условию
+    <math display='inline'>
+        <mrow>
+            <mn>0</mn>
+            <mo>&#8804;</mo>
+            <mi>R</mi>
+            <mo>&lt;</mo>
+            <mi>|D|</mi>
+        </mrow>
+    </math>
+    , тогда как в прикладных программах и в языках программирования остаток от целочисленного деления определяется
+    неоднозначно. Например, в электронных таблицах OpenOffice.org 2.3 Calc, Excell, Gnumeric, языке программирования
+    Компонентный Паскаль знак остатка совпадает со знаком делителя. В Java, Borland C++, Turbo Pascal 7.0 знак остатка
+    совпадает со знаком делимого. В языке программирования C, по стандарту ANSII, остаток от целочисленного деления
+    положительный, если делимое и делитель одного знака, в противном случае &#8212; отрицательный. Примем обозначения:
+    <var>mod(Z, D)</var> &#8212; остаток, а <var>div(Z, D)</var> &#8212; результат целочисленного деления <var>Z</var>
+    на <var>D</var>.
+</p>
+<div class="examp"><span class="primer">Пример 4.5.3</span>. Примеры целочисленного деления в математике и Компонентном
+    Паскале:
+    <table border="1" align="center">
+        <th>В математике</th>
+        <th>В Компонентном Паскале</th>
+        <tr>
+            <td>
+                <math display='inline'>
+                    <mrow>
+                        <mrow>
+                            <mrow>
+                                <mi>div</mi>
+                                <mo>&#x2061;</mo>
+                                <mfenced>
+                                    <mn>10</mn>
+                                    <mn>3</mn>
+                                </mfenced>
+                            </mrow>
+                            <mo>=</mo>
+                            <mn>3</mn>
+                        </mrow>
+                        <mo>,</mo>
+                        <mrow>
+                            <mrow>
+                                <mi>mod</mi>
+                                <mo>&#x2061;</mo>
+                                <mfenced>
+                                    <mn>10</mn>
+                                    <mn>3</mn>
+                                </mfenced>
+                            </mrow>
+                            <mo>=</mo>
+                            <mn>1</mn>
+                        </mrow>
+                    </mrow>
+                </math>
+            </td>
+            <td>
+                <math display='inline'>
+                    <mrow>
+                        <mrow>
+                            <mrow>
+                                <mi>div</mi>
+                                <mo>&#x2061;</mo>
+                                <mfenced>
+                                    <mn>10</mn>
+                                    <mn>3</mn>
+                                </mfenced>
+                            </mrow>
+                            <mo>=</mo>
+                            <mn>3</mn>
+                        </mrow>
+                        <mo>,</mo>
+                        <mrow>
+                            <mrow>
+                                <mi>mod</mi>
+                                <mo>&#x2061;</mo>
+                                <mfenced>
+                                    <mn>10</mn>
+                                    <mn>3</mn>
+                                </mfenced>
+                            </mrow>
+                            <mo>=</mo>
+                            <mn>1</mn>
+                        </mrow>
+                    </mrow>
+                </math>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <math display='inline'>
+                    <mrow>
+                        <mrow>
+                            <mrow>
+                                <mi>div</mi>
+                                <mo>&#x2061;</mo>
+                                <mfenced>
+                                    <mrow>
+                                        <mo>-</mo>
+                                        <mn>10</mn>
+                                    </mrow>
+                                    <mn>3</mn>
+                                </mfenced>
+                            </mrow>
+                            <mo>=</mo>
+                            <mrow>
+                                <mo>-</mo>
+                                <mn>4</mn>
+                            </mrow>
+                        </mrow>
+                        <mo>,</mo>
+                        <mrow>
+                            <mrow>
+                                <mi>mod</mi>
+                                <mo>&#x2061;</mo>
+                                <mfenced>
+                                    <mrow>
+                                        <mo>-</mo>
+                                        <mn>10</mn>
+                                    </mrow>
+                                    <mn>3</mn>
+                                </mfenced>
+                            </mrow>
+                            <mo>=</mo>
+                            <mn>2</mn>
+                        </mrow>
+                    </mrow>
+                </math>
+            </td>
+            <td>
+                <math display='inline'>
+                    <mrow>
+                        <mrow>
+                            <mrow>
+                                <mi>div</mi>
+                                <mo>&#x2061;</mo>
+                                <mfenced>
+                                    <mrow>
+                                        <mo>-</mo>
+                                        <mn>10</mn>
+                                    </mrow>
+                                    <mn>3</mn>
+                                </mfenced>
+                            </mrow>
+                            <mo>=</mo>
+                            <mrow>
+                                <mo>-</mo>
+                                <mn>4</mn>
+                            </mrow>
+                        </mrow>
+                        <mo>,</mo>
+                        <mrow>
+                            <mrow>
+                                <mi>mod</mi>
+                                <mo>&#x2061;</mo>
+                                <mfenced>
+                                    <mrow>
+                                        <mo>-</mo>
+                                        <mn>10</mn>
+                                    </mrow>
+                                    <mn>3</mn>
+                                </mfenced>
+                            </mrow>
+                            <mo>=</mo>
+                            <mn>2</mn>
+                        </mrow>
+                    </mrow>
+                </math>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <math display='inline'>
+                    <mrow>
+                        <mrow>
+                            <mrow>
+                                <mi>div</mi>
+                                <mo>&#x2061;</mo>
+                                <mfenced>
+                                    <mn>10</mn>
+                                    <mrow>
+                                        <mo>-</mo>
+                                        <mn>3</mn>
+                                    </mrow>
+                                </mfenced>
+                            </mrow>
+                            <mo>=</mo>
+                            <mrow>
+                                <mo>-</mo>
+                                <mn>3</mn>
+                            </mrow>
+                        </mrow>
+                        <mo>,</mo>
+                        <mrow>
+                            <mrow>
+                                <mi>mod</mi>
+                                <mo>&#x2061;</mo>
+                                <mfenced>
+                                    <mn>10</mn>
+                                    <mrow>
+                                        <mo>-</mo>
+                                        <mn>3</mn>
+                                    </mrow>
+                                </mfenced>
+                            </mrow>
+                            <mo>=</mo>
+                            <mn>1</mn>
+                        </mrow>
+                    </mrow>
+                </math>
+            </td>
+            <td>
+                <math display='inline'>
+                    <mrow>
+                        <mrow>
+                            <mrow>
+                                <mi>div</mi>
+                                <mo>&#x2061;</mo>
+                                <mfenced>
+                                    <mn>10</mn>
+                                    <mrow>
+                                        <mo>-</mo>
+                                        <mn>3</mn>
+                                    </mrow>
+                                </mfenced>
+                            </mrow>
+                            <mo>=</mo>
+                            <mrow>
+                                <mo>-</mo>
+                                <mn>4</mn>
+                            </mrow>
+                        </mrow>
+                        <mo>,</mo>
+                        <mrow>
+                            <mrow>
+                                <mi>mod</mi>
+                                <mo>&#x2061;</mo>
+                                <mfenced>
+                                    <mn>10</mn>
+                                    <mrow>
+                                        <mo>-</mo>
+                                        <mn>3</mn>
+                                    </mrow>
+                                </mfenced>
+                            </mrow>
+                            <mo>=</mo>
+                            <mrow>
+                                <mo>-</mo>
+                                <mn>2</mn>
+                            </mrow>
+                        </mrow>
+                    </mrow>
+                </math>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <math display='inline'>
+                    <mrow>
+                        <mrow>
+                            <mrow>
+                                <mi>div</mi>
+                                <mo>&#x2061;</mo>
+                                <mfenced>
+                                    <mrow>
+                                        <mo>-</mo>
+                                        <mn>10</mn>
+                                    </mrow>
+                                    <mrow>
+                                        <mo>-</mo>
+                                        <mn>3</mn>
+                                    </mrow>
+                                </mfenced>
+                            </mrow>
+                            <mo>=</mo>
+                            <mn>4</mn>
+                        </mrow>
+                        <mo>,</mo>
+                        <mrow>
+                            <mrow>
+                                <mi>mod</mi>
+                                <mo>&#x2061;</mo>
+                                <mfenced>
+                                    <mrow>
+                                        <mo>-</mo>
+                                        <mn>10</mn>
+                                    </mrow>
+                                    <mrow>
+                                        <mo>-</mo>
+                                        <mn>3</mn>
+                                    </mrow>
+                                </mfenced>
+                            </mrow>
+                            <mo>=</mo>
+                            <mn>2</mn>
+                        </mrow>
+                    </mrow>
+                </math>
+            </td>
+            <td>
+                <math display='inline'>
+                    <mrow>
+                        <mrow>
+                            <mrow>
+                                <mi>div</mi>
+                                <mo>&#x2061;</mo>
+                                <mfenced>
+                                    <mrow>
+                                        <mo>-</mo>
+                                        <mn>10</mn>
+                                    </mrow>
+                                    <mrow>
+                                        <mo>-</mo>
+                                        <mn>3</mn>
+                                    </mrow>
+                                </mfenced>
+                            </mrow>
+                            <mo>=</mo>
+                            <mn>3</mn>
+                        </mrow>
+                        <mo>,</mo>
+                        <mrow>
+                            <mrow>
+                                <mi>mod</mi>
+                                <mo>&#x2061;</mo>
+                                <mfenced>
+                                    <mrow>
+                                        <mo>-</mo>
+                                        <mn>10</mn>
+                                    </mrow>
+                                    <mrow>
+                                        <mo>-</mo>
+                                        <mn>3</mn>
+                                    </mrow>
+                                </mfenced>
+                            </mrow>
+                            <mo>=</mo>
+                            <mrow>
+                                <mo>-</mo>
+                                <mn>1</mn>
+                            </mrow>
+                        </mrow>
+                    </mrow>
+                </math>
+            </td>
+        </tr>
+    </table>
+</div>
+<p>Мы будем придерживаться определения целочисленного деления, принятого в Компонентном Паскале: в <a href="#f4_5_1">(4.5.1)</a>
+    знак остатка <var>R</var> совпадает со знаком делителя <var>D</var>, результат целочисленного деления <var>L</var>
+    неотрицательный в случае совпадения знаков делимого и делителя, в противном случае &#8212; неположительный.</p>
+<p>Таким образом, над целыми числами со знаком не существуют самостоятельные операции вычитания, умножения и деления
+    нацело: они сводятся к операции сложения в дополнительных кодах или к серии операций сложения и сдвига влево.</p>
 <p>Ниже представлен калькулятор для демонстрации арифметических операций над целыми числами со знаком:</p>
 <form id='f1'>
-Выберите разрядную сетку:<br />
-<input type='radio' id="r8" name="bit" value="8" checked="checked" />8-битная<br />
-<input type='radio' id="r16" name="bit" value="16" />16-битная<br />
-<input type='radio' id="r32" name="bit" value="32" />32-битная<br />
-Введите в 10-ой  системе счисления операнды:<br />
-Операнд 1:<input type="text" id='num1' size='10' /><br />
-Операнд 2:<input type="text" id='num2' size='10' /><br />
-<input type='button' value="Сложить" onclick="start(1)" />
-<input type='button' value="Перемножить" onclick="start(2)" />
-<input type='button' value="Разделить" onclick="start(3)" />
-<input type='reset' value="Очистить" /><br />
+    Выберите разрядную сетку:<br/>
+    <input type='radio' id="r8" name="bit" value="8" checked="checked"/>8-битная<br/>
+    <input type='radio' id="r16" name="bit" value="16"/>16-битная<br/>
+    <input type='radio' id="r32" name="bit" value="32"/>32-битная<br/>
+    Введите в 10-ой системе счисления операнды:<br/>
+    Операнд 1:<input type="text" id='num1' size='10'/><br/>
+    Операнд 2:<input type="text" id='num2' size='10'/><br/>
+    <input type='button' value="Сложить" onclick="start(1)"/>
+    <input type='button' value="Перемножить" onclick="start(2)"/>
+    <input type='button' value="Разделить" onclick="start(3)"/>
+    <input type='reset' value="Очистить"/><br/>
 </form>
 <div id='summa'></div>
 <h3>Контрольные вопросы и упражнения</h3>
 <ol>
-<li>Сколько отрицательных (положительных) целых чисел кодируется в прямом коде в 8-разрядной (16-разрядной) сетке?</li>
-<li>Какие арифметические операции допустимы в области целых чисел со знаком?</li>
-<li>Укажите признаки переполнения разрядной сетки при кодировании целых чисел со знаком.</li>
-<li>Пусть <var>n</var> и <var>m</var> равны числу дня рождения и номеру месяца Вашего рождения соответственно. Вычислите 8-битные (16-битные) дополнительные коды 
-<math display='inline'>
-	<mfenced open="" close="">
-		<mi>n</mi><mi>m</mi><mrow><mo>-</mo><mi>n</mi></mrow><mrow><mo>-</mo><mi>m</mi></mrow>
-	</mfenced>
-</math>
-двумя способами в системе электронных таблиц. Выполните операции 
-<math display='inline'>
-	<mrow><mi>n</mi><mo>+</mo><mi>m</mi></mrow><mo>,</mo>
-	<mrow><mrow><mo>-</mo><mi>n</mi></mrow><mo>+</mo><mi>m</mi></mrow><mo>,</mo>
-	<mrow><mi>n</mi><mo>-</mo><mi>m</mi></mrow><mo>,</mo>
-	<mrow><mrow><mo>-</mo><mi>n</mi></mrow><mo>-</mo><mi>m</mi></mrow><mo>,</mo>
-	<mrow><mi>n</mi><mo>&#215;</mo><mi>m</mi></mrow><mo>,</mo>
-	<mrow><mrow><mo>-</mo><mi>n</mi></mrow><mo>&#215;</mo><mi>m</mi></mrow><mo>,</mo>
-	<mrow><mi>n</mi><mo>&#215;</mo><mrow><mo>(</mo><mo>-</mo><mi>m</mi><mo>)</mo></mrow></mrow><mo>,</mo>
-	<mrow><mrow><mo>-</mo><mi>n</mi></mrow><mo>&#215;</mo><mrow><mo>(</mo><mo>-</mo><mi>m</mi><mo>)</mo></mrow></mrow><mo>,</mo>				
-</math>
- над 8-битными (16-битными) кодами <var>n</var> и <var>m</var> в системе электронных таблиц.</li>
-<li> Пусть <var>n</var> и <var>m</var> &#8212; числа из предыдущей задачи. Выполните математическую операцию деления нацело <var>n</var> на <var>m</var>, 
-<math display='inline'>
-<mrow><mo>-</mo><mi>n</mi></mrow>
-</math>
-на <var>m</var>, <var>n</var> на 
-<math display='inline'>
-<mrow><mo>-</mo><mi>m</mi></mrow>
-</math>, 
-<math display='inline'>
-<mrow><mo>-</mo><mi>n</mi></mrow>
-</math>
-на 
-<math display='inline'>
-<mrow><mo>-</mo><mi>m</mi></mrow>
-</math>. В системе электронных таблиц представьте операцию деления нацело над 8-разрядными кодами перечисленных чисел как серию операций сложения и сдвига.</li>
+    <li>Сколько отрицательных (положительных) целых чисел кодируется в прямом коде в 8-разрядной (16-разрядной) сетке?
+    </li>
+    <li>Какие арифметические операции допустимы в области целых чисел со знаком?</li>
+    <li>Укажите признаки переполнения разрядной сетки при кодировании целых чисел со знаком.</li>
+    <li>Пусть <var>n</var> и <var>m</var> равны числу дня рождения и номеру месяца Вашего рождения соответственно.
+        Вычислите 8-битные (16-битные) дополнительные коды
+        <math display='inline'>
+            <mfenced open="" close="">
+                <mi>n</mi>
+                <mi>m</mi>
+                <mrow>
+                    <mo>-</mo>
+                    <mi>n</mi>
+                </mrow>
+                <mrow>
+                    <mo>-</mo>
+                    <mi>m</mi>
+                </mrow>
+            </mfenced>
+        </math>
+        двумя способами в системе электронных таблиц. Выполните операции
+        <math display='inline'>
+            <mrow>
+                <mi>n</mi>
+                <mo>+</mo>
+                <mi>m</mi>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mrow>
+                    <mo>-</mo>
+                    <mi>n</mi>
+                </mrow>
+                <mo>+</mo>
+                <mi>m</mi>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mi>n</mi>
+                <mo>-</mo>
+                <mi>m</mi>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mrow>
+                    <mo>-</mo>
+                    <mi>n</mi>
+                </mrow>
+                <mo>-</mo>
+                <mi>m</mi>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mi>n</mi>
+                <mo>&#215;</mo>
+                <mi>m</mi>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mrow>
+                    <mo>-</mo>
+                    <mi>n</mi>
+                </mrow>
+                <mo>&#215;</mo>
+                <mi>m</mi>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mi>n</mi>
+                <mo>&#215;</mo>
+                <mrow>
+                    <mo>(</mo>
+                    <mo>-</mo>
+                    <mi>m</mi>
+                    <mo>)</mo>
+                </mrow>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mrow>
+                    <mo>-</mo>
+                    <mi>n</mi>
+                </mrow>
+                <mo>&#215;</mo>
+                <mrow>
+                    <mo>(</mo>
+                    <mo>-</mo>
+                    <mi>m</mi>
+                    <mo>)</mo>
+                </mrow>
+            </mrow>
+            <mo>,</mo>
+        </math>
+        над 8-битными (16-битными) кодами <var>n</var> и <var>m</var> в системе электронных таблиц.
+    </li>
+    <li> Пусть <var>n</var> и <var>m</var> &#8212; числа из предыдущей задачи. Выполните математическую операцию деления
+        нацело <var>n</var> на <var>m</var>,
+        <math display='inline'>
+            <mrow>
+                <mo>-</mo>
+                <mi>n</mi>
+            </mrow>
+        </math>
+        на <var>m</var>, <var>n</var> на
+        <math display='inline'>
+            <mrow>
+                <mo>-</mo>
+                <mi>m</mi>
+            </mrow>
+        </math>
+        ,
+        <math display='inline'>
+            <mrow>
+                <mo>-</mo>
+                <mi>n</mi>
+            </mrow>
+        </math>
+        на
+        <math display='inline'>
+            <mrow>
+                <mo>-</mo>
+                <mi>m</mi>
+            </mrow>
+        </math>
+        . В системе электронных таблиц представьте операцию деления нацело над 8-разрядными кодами перечисленных чисел
+        как серию операций сложения и сдвига.
+    </li>
 </ol>
 <p><a href="4_4.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="4_6.html">К следующему</a></p>
 </body>
+<script type="text/javascript">
+    MathJax.Hub.Configured()
+</script>
 </html>

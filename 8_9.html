@@ -1,252 +1,316 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset='UTF-8' />
-<link rel='stylesheet' type='text/css' href='style.css' />
-<meta name='author' content='leonid' />
-<title>Записи и указатели</title>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+  extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});
+
+
+
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <meta charset='UTF-8'/>
+    <link rel='stylesheet' type='text/css' href='style.css'/>
+    <meta name='author' content='leonid'/>
+    <title>Записи и указатели</title>
 </head>
 <body>
-<p><a href="8_8.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_10.html">К следующему</a> </p>
+<p><a href="8_8.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_10.html">К следующему</a></p>
 <h2>8.9. Записи и указатели</h2>
 <h3>8.9.1. Записи</h3>
-<p><span class='teorema'>Запись это структура, состоящая из фиксированного количества элементов, называемых полями, возможно, имеющих разные типы.</span> Описание типа записей указывает имя и тип каждого поля. Область видимости идентификаторов полей распространяется от точки их описания до конца данного типа, но они также видимы внутри составных имен, обозначающих поля переменных данного типа. Если тип записей экспортируется, то идентификаторы полей, которые нужно иметь видимыми вне описывающего модуля, должны быть соответствующим образом помечены. Они называются публичными полями [public fields]; непомеченные элементы называются приватными полями [private fields].
+<p><span class='teorema'>Запись это структура, состоящая из фиксированного количества элементов, называемых полями, возможно, имеющих разные типы.</span>
+    Описание типа записей указывает имя и тип каждого поля. Область видимости идентификаторов полей распространяется от
+    точки их описания до конца данного типа, но они также видимы внутри составных имен, обозначающих поля переменных
+    данного типа. Если тип записей экспортируется, то идентификаторы полей, которые нужно иметь видимыми вне
+    описывающего модуля, должны быть соответствующим образом помечены. Они называются публичными полями [public fields];
+    непомеченные элементы называются приватными полями [private fields].
 </p>
 <p> Синтаксис типа записи в РФБН:</p>
 <code>
-<p class='ind0'>Имя_типа = Атрибут RECORD ["("Тип-предок")"]</p>
-<p class='ind1'>Поле: Тип {";" Поле: Тип}</p>
-<p class='ind0'>END</p>
-<p>атрибут = [ABSTRACT | EXTENSIBLE | LIMITED].</p>
-</p>
+    <p class='ind0'>Имя_типа = Атрибут RECORD ["("Тип-предок")"]</p>
+    <p class='ind1'>Поле: Тип {";" Поле: Тип}</p>
+    <p class='ind0'>END</p>
+    <p>атрибут = [ABSTRACT | EXTENSIBLE | LIMITED].</p>
+    </p>
 </code>
 <p>
-Использование каждого типа записей ограничено наличием или отсутствием одного из следующих атрибутов:
-ABSTRACT, EXTENSIBLE и LIMITED.
+    Использование каждого типа записей ограничено наличием или отсутствием одного из следующих атрибутов:
+    ABSTRACT, EXTENSIBLE и LIMITED.
 </p>
 <p>
-Переменные типа записей, помеченного как ABSTRACT, не могут быть размещены: не может существовать ни переменных, ни полей такого типа. Абстрактные типы, т.е. описанные с атрибутом ABSTRACT, используются только как базовые типы для других типов записей.
+    Переменные типа записей, помеченного как ABSTRACT, не могут быть размещены: не может существовать ни переменных, ни
+    полей такого типа. Абстрактные типы, т.е. описанные с атрибутом ABSTRACT, используются только как базовые типы для
+    других типов записей.
 </p>
 <p>
-Переменные типа записей, имеющего атрибут LIMITED, могут размещаться [allocated] только внутри того модуля, где описан данный тип. Ограничение применимо как к статическому размещению посредством описания переменных, так и к динамическому размещению с помощью стандартной процедуры NEW().
+    Переменные типа записей, имеющего атрибут LIMITED, могут размещаться [allocated] только внутри того модуля, где
+    описан данный тип. Ограничение применимо как к статическому размещению посредством описания переменных, так и к
+    динамическому размещению с помощью стандартной процедуры NEW().
 </p>
 <p>
-Тип записей, помеченный как ABSTRACT или EXTENSIBLE, является расширяемым, т.е. можно определить новый тип записей как расширение такого типа.  Все идентификаторы, описанные в типе-потомке, должны быть отличны от идентификаторов, описанных в его предке. Тип-предок абстрактного типа записей должен быть абстрактным.
+    Тип записей, помеченный как ABSTRACT или EXTENSIBLE, является расширяемым, т.е. можно определить новый тип записей
+    как расширение такого типа. Все идентификаторы, описанные в типе-потомке, должны быть отличны от идентификаторов,
+    описанных в его предке. Тип-предок абстрактного типа записей должен быть абстрактным.
 </p>
 <div class="examp">
-<p><span class="primer">Пример</span> 8.9.1:</p>
-<code>
-<p class='ind0'>TYPE T0 = ABSTRACT RECORD</p>
-<p class='ind2'>x: INTEGER</p>
-<p class='ind1'>END</p>
-<p class='ind1'>T1 = RECORD (T0)</p>
-<p class='ind2'>y: REAL</p>
-<p class='ind1'>END</p>
-<p class='ind1'>VAR p: T1;</p>
-</code>
-<p>Тип <var>T1</var> является (непосредственным) потомком [extension] типа <var>T0</var>, а <var>T0</var> &#151; (непосредственным) предком [base type] для <var>T1</var>. Тип-потомок [extended type] <var>T1</var> состоит из полей типа-предка и полей, объявленных в <var>T1</var>, следовательно, переменная <var>p</var> типа <var>T1</var> содержит поля <var>p.x</var> и <var>p.y</var>. Было бы ошибкой объявить переменную типа <var>T0</var>, поскольку <var>T0</var> &#151; абстрактный тип. 
-</p>
+    <p><span class="primer">Пример</span> 8.9.1:</p>
+    <code>
+        <p class='ind0'>TYPE T0 = ABSTRACT RECORD</p>
+        <p class='ind2'>x: INTEGER</p>
+        <p class='ind1'>END</p>
+        <p class='ind1'>T1 = RECORD (T0)</p>
+        <p class='ind2'>y: REAL</p>
+        <p class='ind1'>END</p>
+        <p class='ind1'>VAR p: T1;</p>
+    </code>
+    <p>Тип <var>T1</var> является (непосредственным) потомком [extension] типа <var>T0</var>, а <var>T0</var> &#151;
+        (непосредственным) предком [base type] для <var>T1</var>. Тип-потомок [extended type] <var>T1</var> состоит из
+        полей типа-предка и полей, объявленных в <var>T1</var>, следовательно, переменная <var>p</var> типа
+        <var>T1</var> содержит поля <var>p.x</var> и <var>p.y</var>. Было бы ошибкой объявить переменную типа
+        <var>T0</var>, поскольку <var>T0</var> &#151; абстрактный тип.
+    </p>
 </div>
 <p>
-В качестве типа-предка можно использовать указательный тип. В этом случае в качестве типа-предка описываемого типа записей используется базовый тип записей данного указателя.
+    В качестве типа-предка можно использовать указательный тип. В этом случае в качестве типа-предка описываемого типа
+    записей используется базовый тип записей данного указателя.
 </p>
 <div class="examp">
-<p><span class="primer">Пример</span> 8.9.2:</p>
-<code>
-<p class='ind0'>TYPE  T0=ABSTRACT RECORD</p>
-<p class='ind2'>x: INTEGER</p>
-<p class='ind1'>END;</p>
-<p class='ind1'>указатель=POINTER TO T0;</p>
-<p class='ind1'>T1=RECORD (указатель)</p>
-<p class='ind2'>y*, z-: INTEGER</p>
-<p class='ind1'>END;</p>
-</code>
+    <p><span class="primer">Пример</span> 8.9.2:</p>
+    <code>
+        <p class='ind0'>TYPE T0=ABSTRACT RECORD</p>
+        <p class='ind2'>x: INTEGER</p>
+        <p class='ind1'>END;</p>
+        <p class='ind1'>указатель=POINTER TO T0;</p>
+        <p class='ind1'>T1=RECORD (указатель)</p>
+        <p class='ind2'>y*, z-: INTEGER</p>
+        <p class='ind1'>END;</p>
+    </code>
 
-<p>Тип <var>T1</mi></var> &#151; потомок указательного типа <var>указатель</var>. Поле <var>y</var> экспортируется для чтения для чтения и записи, а <var>z</var> &#151; только для чтения.</p>
+    <p>Тип <var>T1</mi></var> &#151; потомок указательного типа <var>указатель</var>. Поле <var>y</var> экспортируется
+        для чтения для чтения и записи, а <var>z</var> &#151; только для чтения.</p>
 </div>
 <p>
-Нельзя экспортировать тип записей, являющийся потомком скрытого (т.е. не экспортированного) типа записей.
+    Нельзя экспортировать тип записей, являющийся потомком скрытого (т.е. не экспортированного) типа записей.
 </p>
 <p>
-Каждая запись является неявным потомком предопределенного типа ANYREC. ANYREC не содержит никаких полей и может использоваться только в описаниях указателей и параметров-переменных.</p>
+    Каждая запись является неявным потомком предопределенного типа ANYREC. ANYREC не содержит никаких полей и может
+    использоваться только в описаниях указателей и параметров-переменных.</p>
 
 <table border='1'>
-<caption>Таблица 8.9.1. Сводка атрибутов</caption>
-<tr>
-<th>Атрибут</th>
-<th>Определение потомков [extension]</th>
-<th>Размещение</th>
-</tr>
-<tr>
-<td>отсутствует</td>
-<td>нет</td>
-<td>да</td>
-</tr>
+    <caption>Таблица 8.9.1. Сводка атрибутов</caption>
+    <tr>
+        <th>Атрибут</th>
+        <th>Определение потомков [extension]</th>
+        <th>Размещение</th>
+    </tr>
+    <tr>
+        <td>отсутствует</td>
+        <td>нет</td>
+        <td>да</td>
+    </tr>
 
-<tr>
-<td>EXTENSIBLE</td>
-<td>да</td>
-<td>да</td>
-</tr>
+    <tr>
+        <td>EXTENSIBLE</td>
+        <td>да</td>
+        <td>да</td>
+    </tr>
 
-<tr>
-<td>ABSTRACT</td>
-<td>да</td>
-<td>нет</td>
-</tr>
+    <tr>
+        <td>ABSTRACT</td>
+        <td>да</td>
+        <td>нет</td>
+    </tr>
 
-<tr>
-<td>LIMITED</td>
-<td>только в определяющем модуле</td>
-<td>только в определяющем модуле</td>
-</tr>
+    <tr>
+        <td>LIMITED</td>
+        <td>только в определяющем модуле</td>
+        <td>только в определяющем модуле</td>
+    </tr>
 
 </table>
 <div class="examp">
-<p><span class="primer">Пример</span> 8.9.3, в котором объявлены абстрактный записевый тип <var>человек</var>, типы <var>студент</var>, <var>школьник</var> и <var>сотрудник</var>, как потомки типа <var>человек</var>, причем тип <var>сотрудник</var> имеет в качестве второго предка указательный тип <var>указатель</var>.</p>
-<code>
-<p class='ind0'>MODULE zapis1;</p>
-<p class='ind1'>	IMPORT  Log := StdLog,  In := i21sysIn,  Math;</p>
-<p class='ind1'>	TYPE человек= ABSTRACT RECORD</p>
-<p class='ind3'>			имя: ARRAY 20 OF CHAR</p>
-<p class='ind2'>		END;</p>
-<p class='ind2'>		указатель=POINTER TO человек;</p>
-<p class='ind2'>		студент=LIMITED RECORD (человек)</p>
-<p class='ind3'>			вуз: ARRAY 30 OF CHAR</p>
-<p class='ind2'>		END;</p>
-<p class='ind2'>		школьник=LIMITED RECORD (человек)</p>
-<p class='ind3'>			школа: ARRAY 30 OF CHAR</p>
-<p class='ind2'>		END;</p>
-<p class='ind2'>		сотрудник=LIMITED RECORD (указатель)</p>
-<p class='ind3'>			должность: ARRAY 20 OF CHAR</p>
-<p class='ind2'>		END;</p>
-<p class='ind1'>	PROCEDURE do*;</p>
-<p class='ind2'>		VAR  a: студент;</p>
-<p class='ind3'>			b: школьник;</p>
-<p class='ind3'>			c: сотрудник;</p>
-<p class='ind1'>	BEGIN</p>
-<p class='ind2'>		In.Open;</p>
-<p class='ind2'>		ASSERT(In.Done);</p>
-<p class='ind2'>		Log.String('Школьник: ');</p>
-<p class='ind2'>		In.String(b.имя);</p>
-<p class='ind2'>		ASSERT(In.Done);</p>
-<p class='ind2'>		In.String(b.школа);</p>
-<p class='ind2'>		ASSERT(In.Done);</p>
-<p class='ind2'>		Log.String(b.имя);</p>
-<p class='ind2'>		Log.String(', ');</p>
-<p class='ind2'>		Log.String(b.школа);</p>
-<p class='ind2'>		Log.Ln;</p>
-<p class='ind2'>		In.String(a.имя);</p>
-<p class='ind2'>		ASSERT(In.Done);</p>
-<p class='ind2'>		In.String(a.вуз);</p>
-<p class='ind2'>		ASSERT(In.Done);</p>
-<p class='ind2'>		Log.String('Студент: ');</p>
-<p class='ind2'>		Log.String(a.имя);</p>
-<p class='ind2'>		Log.String(', ');</p>
-<p class='ind2'>		Log.String(a.вуз);</p>
-<p class='ind2'>		Log.Ln;</p>
-<p class='ind2'>		In.String(c.имя);</p>
-<p class='ind2'>		ASSERT(In.Done);</p>
-<p class='ind2'>		In.String(c.должность);</p>
-<p class='ind2'>		ASSERT(In.Done);</p>
-<p class='ind2'>		Log.String('Сотрудник: ');</p>
-<p class='ind2'>		Log.String(c.имя);</p>
-<p class='ind2'>		Log.String(', ');</p>
-<p class='ind2'>		Log.String(c.должность);</p>		
-<p class='ind2'>		Log.Ln;</p>
-<p class='ind1'>	END do;</p>
-<p class='ind0'>END zapis1.</p>
-<table>
-<tr>
-<td align='right' valign='bottom'>
-<svg width='35' height='40'>
-<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
-<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
-</svg>
-</td>
-<td align='left' valign='middle'>zapis1.do 'Петров Иван' 'Школа ¹32' 'Сидоров Сергей' 'МАИ' 'Иванов Николай' 'программист'</td>
-</tr>
-</table>
-</code>
+    <p><span class="primer">Пример</span> 8.9.3, в котором объявлены абстрактный записевый тип <var>человек</var>, типы
+        <var>студент</var>, <var>школьник</var> и <var>сотрудник</var>, как потомки типа <var>человек</var>, причем тип
+        <var>сотрудник</var> имеет в качестве второго предка указательный тип <var>указатель</var>.</p>
+    <code>
+        <p class='ind0'>MODULE zapis1;</p>
+        <p class='ind1'> IMPORT Log := StdLog, In := i21sysIn, Math;</p>
+        <p class='ind1'> TYPE человек= ABSTRACT RECORD</p>
+        <p class='ind3'> имя: ARRAY 20 OF CHAR</p>
+        <p class='ind2'> END;</p>
+        <p class='ind2'> указатель=POINTER TO человек;</p>
+        <p class='ind2'> студент=LIMITED RECORD (человек)</p>
+        <p class='ind3'> вуз: ARRAY 30 OF CHAR</p>
+        <p class='ind2'> END;</p>
+        <p class='ind2'> школьник=LIMITED RECORD (человек)</p>
+        <p class='ind3'> школа: ARRAY 30 OF CHAR</p>
+        <p class='ind2'> END;</p>
+        <p class='ind2'> сотрудник=LIMITED RECORD (указатель)</p>
+        <p class='ind3'> должность: ARRAY 20 OF CHAR</p>
+        <p class='ind2'> END;</p>
+        <p class='ind1'> PROCEDURE do*;</p>
+        <p class='ind2'> VAR a: студент;</p>
+        <p class='ind3'> b: школьник;</p>
+        <p class='ind3'> c: сотрудник;</p>
+        <p class='ind1'> BEGIN</p>
+        <p class='ind2'> In.Open;</p>
+        <p class='ind2'> ASSERT(In.Done);</p>
+        <p class='ind2'> Log.String('Школьник: ');</p>
+        <p class='ind2'> In.String(b.имя);</p>
+        <p class='ind2'> ASSERT(In.Done);</p>
+        <p class='ind2'> In.String(b.школа);</p>
+        <p class='ind2'> ASSERT(In.Done);</p>
+        <p class='ind2'> Log.String(b.имя);</p>
+        <p class='ind2'> Log.String(', ');</p>
+        <p class='ind2'> Log.String(b.школа);</p>
+        <p class='ind2'> Log.Ln;</p>
+        <p class='ind2'> In.String(a.имя);</p>
+        <p class='ind2'> ASSERT(In.Done);</p>
+        <p class='ind2'> In.String(a.вуз);</p>
+        <p class='ind2'> ASSERT(In.Done);</p>
+        <p class='ind2'> Log.String('Студент: ');</p>
+        <p class='ind2'> Log.String(a.имя);</p>
+        <p class='ind2'> Log.String(', ');</p>
+        <p class='ind2'> Log.String(a.вуз);</p>
+        <p class='ind2'> Log.Ln;</p>
+        <p class='ind2'> In.String(c.имя);</p>
+        <p class='ind2'> ASSERT(In.Done);</p>
+        <p class='ind2'> In.String(c.должность);</p>
+        <p class='ind2'> ASSERT(In.Done);</p>
+        <p class='ind2'> Log.String('Сотрудник: ');</p>
+        <p class='ind2'> Log.String(c.имя);</p>
+        <p class='ind2'> Log.String(', ');</p>
+        <p class='ind2'> Log.String(c.должность);</p>
+        <p class='ind2'> Log.Ln;</p>
+        <p class='ind1'> END do;</p>
+        <p class='ind0'>END zapis1.</p>
+        <table>
+            <tr>
+                <td align='right' valign='bottom'>
+                    <svg width='35' height='40'>
+                        <circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+                        <text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+                    </svg>
+                </td>
+                <td align='left' valign='middle'>zapis1.do 'Петров Иван' 'Школа ¹32' 'Сидоров Сергей' 'МАИ' 'Иванов
+                    Николай' 'программист'
+                </td>
+            </tr>
+        </table>
+    </code>
 </div>
 
 <h3>8.9.2. Указатели</h3>
-<p>Переменные, имеющие указательный тип P, принимают в качестве значений указатели на переменные некоторого типа T. T называется базовым типом [pointer base type] для P и должен быть записевым или массивовым типом. Указательные типы наследуют отношение потомок-предок для своих базовых типов: если тип T1 является потомком типа T, а P1 является типом POINTER TO T1, то P1 также является потомком типа P.</p>
+<p>Переменные, имеющие указательный тип P, принимают в качестве значений указатели на переменные некоторого типа T. T
+    называется базовым типом [pointer base type] для P и должен быть записевым или массивовым типом. Указательные типы
+    наследуют отношение потомок-предок для своих базовых типов: если тип T1 является потомком типа T, а P1 является
+    типом POINTER TO T1, то P1 также является потомком типа P.</p>
 <p>Синтаксис:</p>
 <code>
-<p class='ind0'>Имя_типа = POINTER TO Type</p>
+    <p class='ind0'>Имя_типа = POINTER TO Type</p>
 </code>
 
-<p>Если <var>p</var> &#151; переменная типа <var>P = POINTER TO T</var>, то вызов предопределенной процедуры <var>NEW(p)</var> размещает переменную типа <var>T</var> в свободной памяти. Если <var>T</var> — записевый тип или массивовый тип с фикси­ро­ванной длиной, то размещение следует выполнять оператором <var>NEW(p)</var>; если <var>T</var> — n-мерный открытый массив, то размещение следует выполнять оператором
-<math display='inline'>
-<mi>NEW</mi><mo>&#x2061;</mo>
-<mfenced>
-<msub><mi>e</mi><mn>0</mn></msub>
-<mi>&#133;</mi>
-<msub>
-	<mi>e</mi>
-	<mrow>
-		<mi>n</mi>
-		<mo>-</mo>
-		<mn>1</mn>
-	<mrow>
-</msub>
-</mfenced>
-</math>, где <var>T</var> размещается с длинами, задаваемыми выражениями
-<math display='inline'>
-<mfenced>
-<msub><mi>e</mi><mn>0</mn></msub>
-<mi>&#133;</mi>
-<msub>
-	<mi>e</mi>
-	<mrow>
-		<mi>n</mi>
-		<mo>-</mo>
-		<mn>1</mn>
-	<mrow>
-</msub>
-</mfenced>
-</math>. В обоих случаях указатель на размещенную переменную присваивается переменной <var>p</var>, имеющей тип <var>P</var>. Разыменованная [referenced] переменная <var>p^</var> (читается: p-разыменованная), имеет тип <var>T</var>. Любой указатель может принимать значение <var>NIL</var>, которое не указывает ни на какую переменную вообще.</p>
+<p>Если <var>p</var> &#151; переменная типа <var>P = POINTER TO T</var>, то вызов предопределенной процедуры
+    <var>NEW(p)</var> размещает переменную типа <var>T</var> в свободной памяти. Если <var>T</var> — записевый тип или
+    массивовый тип с фикси­ро­ванной длиной, то размещение следует выполнять оператором <var>NEW(p)</var>; если
+    <var>T</var> — n-мерный открытый массив, то размещение следует выполнять оператором
+    <math display='inline'>
+        <mi>NEW</mi>
+        <mo>&#x2061;</mo>
+        <mfenced>
+            <msub>
+                <mi>e</mi>
+                <mn>0</mn>
+            </msub>
+            <mi>&#133;</mi>
+            <msub>
+                <mi>e</mi>
+                <mrow>
+                    <mi>n</mi>
+                    <mo>-</mo>
+                    <mn>1</mn>
+                    <mrow>
+            </msub>
+        </mfenced>
+    </math>
+    , где <var>T</var> размещается с длинами, задаваемыми выражениями
+    <math display='inline'>
+        <mfenced>
+            <msub>
+                <mi>e</mi>
+                <mn>0</mn>
+            </msub>
+            <mi>&#133;</mi>
+            <msub>
+                <mi>e</mi>
+                <mrow>
+                    <mi>n</mi>
+                    <mo>-</mo>
+                    <mn>1</mn>
+                    <mrow>
+            </msub>
+        </mfenced>
+    </math>
+    . В обоих случаях указатель на размещенную переменную присваивается переменной <var>p</var>, имеющей тип
+    <var>P</var>. Разыменованная [referenced] переменная <var>p^</var> (читается: p-разыменованная), имеет тип
+    <var>T</var>. Любой указатель может принимать значение <var>NIL</var>, которое не указывает ни на какую переменную
+    вообще.
+</p>
 <p>
-Все поля и элементы вновь размещенной записи или массива очищаются; в частности, значения всех содержащихся в них указательных и процедурных переменных устанавливаются в <var>NIL</var>.
-Предопределенный тип <var>ANYPTR</var> определяется как <var>POINTER TO ANYREC</var>. Поэтому любой указатель на какой-либо записевый тип является потомком типа <var>ANYPTR</var>. Процедуру <var>NEW</var> применять к переменным типа <var>ANYPTR</var> нельзя.
+    Все поля и элементы вновь размещенной записи или массива очищаются; в частности, значения всех содержащихся в них
+    указательных и процедурных переменных устанавливаются в <var>NIL</var>.
+    Предопределенный тип <var>ANYPTR</var> определяется как <var>POINTER TO ANYREC</var>. Поэтому любой указатель на
+    какой-либо записевый тип является потомком типа <var>ANYPTR</var>. Процедуру <var>NEW</var> применять к переменным
+    типа <var>ANYPTR</var> нельзя.
 </p>
 <div class="examp">
-<p><span class="primer">Пример</span> 8.9.4, в котором объявлены тип <var>ptr</var>, как указатель на массив целых чисел, и переменная <var>a</var> типа <var>ptr</var>. Размер и значения динамического массива определяются генератором псевдослучайных чисел, а массив размещается оператором NEW.</p>
-<code>
-<p class='ind0'>MODULE указатель;</p>
-<p class='ind1'>	IMPORT  Log := StdLog,  Ran := i21eduRandom;</p>
-<p class='ind1'>	PROCEDURE do*;</p>
-<p class='ind2'>		TYPE ptr=POINTER TO ARRAY OF INTEGER;</p>
-<p class='ind2'>		VAR  n, i: INTEGER;</p>
-<p class='ind3'>			a: ptr;</p>
-<p class='ind1'>	BEGIN</p>
-<p class='ind2'>		n:=Ran.Int(20);</p>
-<p class='ind2'>		NEW(a, n);</p>
-<p class='ind2'>		Log.String('Массив случайных чисел: ');</p>
-<p class='ind2'>		FOR i := 0 TO n-1 DO</p>
-<p class='ind3'>			a[i]:=Ran.Int(10)-5;</p>
-<p class='ind3'>			Log.Int(a[i])</p>
-<p class='ind2'>		END;</p>
-<p class='ind2'>		a:=NIL;</p>
-<p class='ind2'>		Log.Ln</p>
-<p class='ind1'>	END do;</p>
-<p class='ind0'>END указатель.</p>
-<table>
-<tr>
-<td align='right' valign='bottom'>
-<svg width='35' height='40'>
-<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
-<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
-</svg>
-</td>
-<td align='left' valign='middle'>указатель.do</td>
-</tr>
-</table>
-</code>
+    <p><span class="primer">Пример</span> 8.9.4, в котором объявлены тип <var>ptr</var>, как указатель на массив целых
+        чисел, и переменная <var>a</var> типа <var>ptr</var>. Размер и значения динамического массива определяются
+        генератором псевдослучайных чисел, а массив размещается оператором NEW.</p>
+    <code>
+        <p class='ind0'>MODULE указатель;</p>
+        <p class='ind1'> IMPORT Log := StdLog, Ran := i21eduRandom;</p>
+        <p class='ind1'> PROCEDURE do*;</p>
+        <p class='ind2'> TYPE ptr=POINTER TO ARRAY OF INTEGER;</p>
+        <p class='ind2'> VAR n, i: INTEGER;</p>
+        <p class='ind3'> a: ptr;</p>
+        <p class='ind1'> BEGIN</p>
+        <p class='ind2'> n:=Ran.Int(20);</p>
+        <p class='ind2'> NEW(a, n);</p>
+        <p class='ind2'> Log.String('Массив случайных чисел: ');</p>
+        <p class='ind2'> FOR i := 0 TO n-1 DO</p>
+        <p class='ind3'> a[i]:=Ran.Int(10)-5;</p>
+        <p class='ind3'> Log.Int(a[i])</p>
+        <p class='ind2'> END;</p>
+        <p class='ind2'> a:=NIL;</p>
+        <p class='ind2'> Log.Ln</p>
+        <p class='ind1'> END do;</p>
+        <p class='ind0'>END указатель.</p>
+        <table>
+            <tr>
+                <td align='right' valign='bottom'>
+                    <svg width='35' height='40'>
+                        <circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+                        <text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+                    </svg>
+                </td>
+                <td align='left' valign='middle'>указатель.do</td>
+            </tr>
+        </table>
+    </code>
 </div>
 <h3>Задачи для самостоятельного решения из [1].</h3>
 <p>§9. Вычисления с хранением последовательности значений</p>
-<p><a href="8_8.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_10.html">К следующему</a> </p>
+<p><a href="8_8.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_10.html">К следующему</a></p>
 </body>
+<script type="text/javascript">
+    MathJax.Hub.Configured()
+</script>
 </html>

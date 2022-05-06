@@ -1,946 +1,1306 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" />
-<link rel='stylesheet' type="text/css" href="style.css"></link>
-<meta name="author" content="leonid" />
-<meta name="description" content="Электронная подпись" />
-<meta name="keywords" content="криптосистема с открытым ключом, электронная подпись, секретный ключ" /> 
-<title>Электронная подпись</title>
-<script type="text/javascript">
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+  extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});
 
-//вычисляем 10-чное значение 8-битного кода
-function des(str) {
-var val=0, bit;
-	for(var i=0;i< str.length;i++) {
-		bit=Number(str.charAt(i));
-		val=(2*val+bit);
-	}
-	return val;
-}
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-//вычисляем 16-битный код
-function dv_kod(num) {
-var cod='', nomer=num;
-	while(nomer>0) {
-		cod=String(nomer%2)+cod;
-		nomer=(nomer-nomer%2)/2;
-	}
-	while(cod.length<16)
-		cod='0'+cod;
-	return cod
-}
+    <meta charset="UTF-8"/>
+    <link rel='stylesheet' type="text/css" href="style.css"></link>
+    <meta name="author" content="leonid"/>
+    <meta name="description" content="Электронная подпись"/>
+    <meta name="keywords" content="криптосистема с открытым ключом, электронная подпись, секретный ключ"/>
+    <title>Электронная подпись</title>
+    <script type="text/javascript">
 
-function mod(num, pokazatel, r) {
-var m=1;
-	for(var i=0;i< pokazatel;i++) {
-		m=m*num;	
-		m=m%r;
-	}
-	return m;
-}
+        //вычисляем 10-чное значение 8-битного кода
+        function des(str) {
+            var val = 0, bit;
+            for (var i = 0; i < str.length; i++) {
+                bit = Number(str.charAt(i));
+                val = (2 * val + bit);
+            }
+            return val;
+        }
+
+        //вычисляем 16-битный код
+        function dv_kod(num) {
+            var cod = '', nomer = num;
+            while (nomer > 0) {
+                cod = String(nomer % 2) + cod;
+                nomer = (nomer - nomer % 2) / 2;
+            }
+            while (cod.length < 16)
+                cod = '0' + cod;
+            return cod
+        }
+
+        function mod(num, pokazatel, r) {
+            var m = 1;
+            for (var i = 0; i < pokazatel; i++) {
+                m = m * num;
+                m = m % r;
+            }
+            return m;
+        }
 
 
-function start() {
-var a=23, alpha=2983, ra=69133, b=29, beta=39029, rb=71273, dv_kod16=[], dv_kod8=[], ch_kod=[], m=[], m1 =[], m2=[], 
-m3=[], dv_stroka="", stroka=document.getElementById("stroka").value, bin_cod='', k=0, div=document.getElementById("result"),  p, len=stroka.length, table, tr1, tr2, tr3, tr4, tr5, td, t=0, caption;
-	p=document.createElement("p");
-	p.textContent="Сообщение: "+stroka;
-	div.appendChild(p);
-	table=document.createElement("table");
-	table.border="1";
-	div.appendChild(table);
-	tr1=document.createElement("tr");
-	table.appendChild(tr1);
-	tr2=document.createElement("tr");
-	table.appendChild(tr2);
-	td=document.createElement("td");
-	td.textContent="Символ";
-	tr1.appendChild(td);
-	td=document.createElement("td");
-	td.textContent="Десятичный код";
-	tr2.appendChild(td);
-	td=document.createElement("td");
-	td.textContent="Двоичный код";
-	tr3=document.createElement("tr");
-	table.appendChild(tr3);
-	tr3.appendChild(td);
-	for (var i=0; i<len; i++) {
-		td=document.createElement("td");
-		td.textContent=stroka[i];
-		tr1.appendChild(td);
-		td=document.createElement("td");
-		ch_kod[i]=stroka.charCodeAt(i);
-		td.textContent=ch_kod[i];
-		tr2.appendChild(td);
-		dv_kod16[i]=dv_kod(ch_kod[i]);
-		dv_stroka+=dv_kod16[i]
-		dv_kod8[k]=dv_kod16[i].slice(0, 8);
-		m[k]=des(dv_kod8[k]);
-		k++;
-		dv_kod8[k]=dv_kod16[i].slice(-8);
-		m[k]=des(dv_kod8[k]);
-		k++;
-		td=document.createElement("td");
-		td.textContent=dv_kod16[i];
-		tr3.appendChild(td);
-	}
-	p=document.createElement("p");
-	p.textContent="Сообщение в двоичном коде:";
-	div.appendChild(p);
-	p=document.createElement("p");
-	p.textContent=dv_stroka;
-	div.appendChild(p);	
-	table=document.createElement("table");
-	table.border="1";
-	div.appendChild(table);
-	caption=document.createElement("caption");
-	caption.textContent="Фрагментирование двоичной последовательности";
-	table.appendChild(caption);
-	tr1=document.createElement("tr");
-	table.appendChild(tr1);
-	tr2=document.createElement("tr");
-	table.appendChild(tr2);
-	td=document.createElement("td");
-	td.textContent="Фрагмент";
-	tr1.appendChild(td);
-	td=document.createElement("td");
-	td.textContent="m";
-	tr2.appendChild(td);
-	len=dv_kod8.length;
-	for (var i=0; i<len; i++) {
-		td=document.createElement("td");
-		td.textContent=dv_kod8[i];
-		tr1.appendChild(td);
-		td=document.createElement("td");
-		td.textContent=m[i];
-		tr2.appendChild(td);
-	}
-	table=document.createElement("table");
-	table.border="1";
-	div.appendChild(table);
-	caption=document.createElement("caption");
-	caption.textContent="Шифрует абонент А";
-	table.appendChild(caption);
-	tr1=document.createElement("tr");
-	table.appendChild(tr1);
-	tr2=document.createElement("tr");
-	table.appendChild(tr2);
-	tr3=document.createElement("tr");
-	table.appendChild(tr3);	
-	td=document.createElement("td");
-	td.textContent="m";
-	tr1.appendChild(td);
-	td=document.createElement("td");
-	td.textContent="m1";
-	tr2.appendChild(td);
-	td=document.createElement("td");
-	td.textContent="m2";
-	tr3.appendChild(td);	
-	for (var i=0; i<len; i++) {
-		td=document.createElement("td");
-		td.textContent=m[i];
-		tr1.appendChild(td);
-		td=document.createElement("td");
-		m1[i]=mod(m[i],alpha,ra)		
-		td.textContent=m1[i];
-		tr2.appendChild(td);
-		td=document.createElement("td");
-		m2[i]=mod(m1[i],b,rb);		
-		td.textContent=m2[i];
-		tr3.appendChild(td);		
-	}
-	table=document.createElement("table");
-	table.border="1";
-	div.appendChild(table);
-	caption=document.createElement("caption");
-	caption.textContent="Дешифрует абонент В";
-	table.appendChild(caption);
-	tr1=document.createElement("tr");
-	table.appendChild(tr1);
-	tr2=document.createElement("tr");
-	table.appendChild(tr2);
-	tr3=document.createElement("tr");
-	table.appendChild(tr3);	
-	tr4=document.createElement("tr");
-	table.appendChild(tr4);	
-	td=document.createElement("td");
-	td.textContent="m2";
-	tr1.appendChild(td);
-	td=document.createElement("td");
-	td.textContent="m1";
-	tr2.appendChild(td);
-	td=document.createElement("td");
-	td.textContent="m";
-	tr3.appendChild(td);
-	td=document.createElement("td");
-	td.textContent="Двоичный код";
-	tr4.appendChild(td);
-	
-	for (var i=0; i<len; i++) {
-		td=document.createElement("td");
-		td.textContent=m2[i];
-		tr1.appendChild(td);
-		td=document.createElement("td");
-		m1[i]=mod(m2[i],beta,rb)		
-		td.textContent=m1[i];
-		tr2.appendChild(td);
-		td=document.createElement("td");
-		m[i]=mod(m1[i],a,ra);		
-		td.textContent=m[i];
-		tr3.appendChild(td);	
-		td=document.createElement("td");
-		td.textContent=dv_kod8[i];
-		tr4.appendChild(td);			
-	}	
-	p=document.createElement("p");
-	p.textContent="Сообщение в двоичном коде:";
-	div.appendChild(p);
-	p=document.createElement("p");
-	p.textContent=dv_stroka;
-	div.appendChild(p);	
-	
-	table=document.createElement("table");
-	table.border="1";
-	div.appendChild(table);
-	caption=document.createElement("caption");
-	caption.textContent="Декодирование";
-	table.appendChild(caption);
-	div.appendChild(table);
-	tr1=document.createElement("tr");
-	table.appendChild(tr1);
-	tr2=document.createElement("tr");
-	table.appendChild(tr2);
-	td=document.createElement("td");
-	td.textContent="Код";
-	tr1.appendChild(td);
-	td=document.createElement("td");
-	td.textContent="Символ";
-	tr2.appendChild(td);	
-	len=stroka.length;
-	for (var i=0; i<len; i++) {
-		td=document.createElement("td");
-		td.textContent=dv_kod16[i];
-		tr1.appendChild(td);
-		td=document.createElement("td");
-		td.textContent=stroka[i];
-		tr2.appendChild(td);
-	}	
-	p=document.createElement("p");
-	p.textContent="Сообщение: "+stroka;
-	div.appendChild(p);	
-}
+        function start() {
+            var a = 23, alpha = 2983, ra = 69133, b = 29, beta = 39029, rb = 71273, dv_kod16 = [], dv_kod8 = [],
+                ch_kod = [], m = [], m1 = [], m2 = [],
+                m3 = [], dv_stroka = "", stroka = document.getElementById("stroka").value, bin_cod = '', k = 0,
+                div = document.getElementById("result"), p, len = stroka.length, table, tr1, tr2, tr3, tr4, tr5, td,
+                t = 0, caption;
+            p = document.createElement("p");
+            p.textContent = "Сообщение: " + stroka;
+            div.appendChild(p);
+            table = document.createElement("table");
+            table.border = "1";
+            div.appendChild(table);
+            tr1 = document.createElement("tr");
+            table.appendChild(tr1);
+            tr2 = document.createElement("tr");
+            table.appendChild(tr2);
+            td = document.createElement("td");
+            td.textContent = "Символ";
+            tr1.appendChild(td);
+            td = document.createElement("td");
+            td.textContent = "Десятичный код";
+            tr2.appendChild(td);
+            td = document.createElement("td");
+            td.textContent = "Двоичный код";
+            tr3 = document.createElement("tr");
+            table.appendChild(tr3);
+            tr3.appendChild(td);
+            for (var i = 0; i < len; i++) {
+                td = document.createElement("td");
+                td.textContent = stroka[i];
+                tr1.appendChild(td);
+                td = document.createElement("td");
+                ch_kod[i] = stroka.charCodeAt(i);
+                td.textContent = ch_kod[i];
+                tr2.appendChild(td);
+                dv_kod16[i] = dv_kod(ch_kod[i]);
+                dv_stroka += dv_kod16[i]
+                dv_kod8[k] = dv_kod16[i].slice(0, 8);
+                m[k] = des(dv_kod8[k]);
+                k++;
+                dv_kod8[k] = dv_kod16[i].slice(-8);
+                m[k] = des(dv_kod8[k]);
+                k++;
+                td = document.createElement("td");
+                td.textContent = dv_kod16[i];
+                tr3.appendChild(td);
+            }
+            p = document.createElement("p");
+            p.textContent = "Сообщение в двоичном коде:";
+            div.appendChild(p);
+            p = document.createElement("p");
+            p.textContent = dv_stroka;
+            div.appendChild(p);
+            table = document.createElement("table");
+            table.border = "1";
+            div.appendChild(table);
+            caption = document.createElement("caption");
+            caption.textContent = "Фрагментирование двоичной последовательности";
+            table.appendChild(caption);
+            tr1 = document.createElement("tr");
+            table.appendChild(tr1);
+            tr2 = document.createElement("tr");
+            table.appendChild(tr2);
+            td = document.createElement("td");
+            td.textContent = "Фрагмент";
+            tr1.appendChild(td);
+            td = document.createElement("td");
+            td.textContent = "m";
+            tr2.appendChild(td);
+            len = dv_kod8.length;
+            for (var i = 0; i < len; i++) {
+                td = document.createElement("td");
+                td.textContent = dv_kod8[i];
+                tr1.appendChild(td);
+                td = document.createElement("td");
+                td.textContent = m[i];
+                tr2.appendChild(td);
+            }
+            table = document.createElement("table");
+            table.border = "1";
+            div.appendChild(table);
+            caption = document.createElement("caption");
+            caption.textContent = "Шифрует абонент А";
+            table.appendChild(caption);
+            tr1 = document.createElement("tr");
+            table.appendChild(tr1);
+            tr2 = document.createElement("tr");
+            table.appendChild(tr2);
+            tr3 = document.createElement("tr");
+            table.appendChild(tr3);
+            td = document.createElement("td");
+            td.textContent = "m";
+            tr1.appendChild(td);
+            td = document.createElement("td");
+            td.textContent = "m1";
+            tr2.appendChild(td);
+            td = document.createElement("td");
+            td.textContent = "m2";
+            tr3.appendChild(td);
+            for (var i = 0; i < len; i++) {
+                td = document.createElement("td");
+                td.textContent = m[i];
+                tr1.appendChild(td);
+                td = document.createElement("td");
+                m1[i] = mod(m[i], alpha, ra)
+                td.textContent = m1[i];
+                tr2.appendChild(td);
+                td = document.createElement("td");
+                m2[i] = mod(m1[i], b, rb);
+                td.textContent = m2[i];
+                tr3.appendChild(td);
+            }
+            table = document.createElement("table");
+            table.border = "1";
+            div.appendChild(table);
+            caption = document.createElement("caption");
+            caption.textContent = "Дешифрует абонент В";
+            table.appendChild(caption);
+            tr1 = document.createElement("tr");
+            table.appendChild(tr1);
+            tr2 = document.createElement("tr");
+            table.appendChild(tr2);
+            tr3 = document.createElement("tr");
+            table.appendChild(tr3);
+            tr4 = document.createElement("tr");
+            table.appendChild(tr4);
+            td = document.createElement("td");
+            td.textContent = "m2";
+            tr1.appendChild(td);
+            td = document.createElement("td");
+            td.textContent = "m1";
+            tr2.appendChild(td);
+            td = document.createElement("td");
+            td.textContent = "m";
+            tr3.appendChild(td);
+            td = document.createElement("td");
+            td.textContent = "Двоичный код";
+            tr4.appendChild(td);
 
-</script>
+            for (var i = 0; i < len; i++) {
+                td = document.createElement("td");
+                td.textContent = m2[i];
+                tr1.appendChild(td);
+                td = document.createElement("td");
+                m1[i] = mod(m2[i], beta, rb)
+                td.textContent = m1[i];
+                tr2.appendChild(td);
+                td = document.createElement("td");
+                m[i] = mod(m1[i], a, ra);
+                td.textContent = m[i];
+                tr3.appendChild(td);
+                td = document.createElement("td");
+                td.textContent = dv_kod8[i];
+                tr4.appendChild(td);
+            }
+            p = document.createElement("p");
+            p.textContent = "Сообщение в двоичном коде:";
+            div.appendChild(p);
+            p = document.createElement("p");
+            p.textContent = dv_stroka;
+            div.appendChild(p);
+
+            table = document.createElement("table");
+            table.border = "1";
+            div.appendChild(table);
+            caption = document.createElement("caption");
+            caption.textContent = "Декодирование";
+            table.appendChild(caption);
+            div.appendChild(table);
+            tr1 = document.createElement("tr");
+            table.appendChild(tr1);
+            tr2 = document.createElement("tr");
+            table.appendChild(tr2);
+            td = document.createElement("td");
+            td.textContent = "Код";
+            tr1.appendChild(td);
+            td = document.createElement("td");
+            td.textContent = "Символ";
+            tr2.appendChild(td);
+            len = stroka.length;
+            for (var i = 0; i < len; i++) {
+                td = document.createElement("td");
+                td.textContent = dv_kod16[i];
+                tr1.appendChild(td);
+                td = document.createElement("td");
+                td.textContent = stroka[i];
+                tr2.appendChild(td);
+            }
+            p = document.createElement("p");
+            p.textContent = "Сообщение: " + stroka;
+            div.appendChild(p);
+        }
+
+    </script>
 </head>
 <body>
 <p><a href="6_3.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="6_5.html">К следующему</a></p>
 <h2>6.4. Электронная подпись</h2>
-<p>Пусть А и В &#8212; абоненты <a href="6_3.html">криптосистемы с открытым ключом</a>, и в книге паролей имеются их открытые ключи (<span class="termin">электронные подписи</span>):
-<math display='inline'>
-<mrow>
-	<mi>A</mi>
-	<mo>:</mo>
-	<mo>(</mo>
-	<msub><mi>r</mi><mi>A</mi></msub>
-	<mo>,</mo>
-	<mi>a</mi>
-	<mo>)</mo>
-</mrow>
-<mo>,</mo>
-<mrow>
-	<mi>B</mi>
-	<mo>:</mo>
-	<mo>(</mo>
-	<msub><mi>r</mi><mi>B</mi></msub>
-	<mo>,</mo>
-	<mi>b</mi>
-	<mo>)</mo>
-</mrow>
-</math>. Обозначим &#945; &#8212; секретный ключ А, а &#946; &#8212; секретный ключ В. Возможность 
-<math display='inline'>
-<msub><mi>r</mi><mi>A</mi></msub>
-<mo>=</mo>
-<msub><mi>r</mi><mi>B</mi></msub>
-</math>
- исключаем.</p>
-<p>Допустим, что абонент А готовит секретное сообщение абоненту В. Для этого он фрагментирует сообщение таким образом, чтобы числовой код <var>m</var> фрагмента удовлетворял следующим двум условиям:
-<math display='inline'>
-<mrow>
-	<mi>m</mi><mo>&lt;</mo>
-	<mrow>
-		<msub><mi>r</mi><mi>A</mi></msub>
-		<mo>-</mo>
-		<mn>1</mn>	
-	</mrow>
-</mrow>
-<mo>,</mo>
-<mrow>
-	<mi>m</mi><mo>&lt;</mo>
-	<mrow>
-		<msub><mi>r</mi><mi>B</mi></msub>
-		<mo>-</mo>
-		<mn>1</mn>			
-	</mrow>
-</mrow>
-</math>.</p>
-<p>Пусть имеется договоренность, что если 
-<math display='inline'>
-<mrow>
-	<msub><mi>r</mi><mi>A</mi></msub>
-	<mo>&lt;</mo>
-	<msub><mi>r</mi><mi>B</mi></msub>
-</mrow>
-</math>,
- то абонент А сначала шифрует код <var>m</var>  своим секретным ключом 
-<math display='inline'>
-<mrow>
-	<mo>(</mo>
-	<msub><mi>r</mi><mi>A</mi></msub>
-	<mo>,</mo>
-	<mi>&#945;</mi>
-	<mo>)</mo>
-</mrow>
-</math>, а затем открытым ключом
-<math display='inline'>
-<mrow>
-	<mo>(</mo>
-	<msub><mi>r</mi><mi>B</mi></msub>
-	<mo>,</mo>
-	<mi>b</mi>
-	<mo>)</mo>
-</mrow>
-</math>
- абонента В:
-<math display='inline'>
-<mrow>
-	<msub><mi>m</mi><mn>1</mn></msub>
-	<mo>=</mo>
-	<mi>mod</mi><mo>&#x2061;</mo>
-	<mrow>
-		<mo>(</mo>
-		<msup><mi>m</mi><mi>&#945;</mi></msup>
-		<mo>,</mo>
-		<msub><mi>r</mi><mi>A</mi></msub>
-		<mo>)</mo>
-	</mrow>
-</mrow>
-<mo>,</mo>
-<mrow>
-	<msub><mi>m</mi><mn>2</mn></msub>
-	<mo>=</mo>
-	<mi>mod</mi><mo>&#x2061;</mo>
-	<mrow>
-		<mo>(</mo>
-		<msup>
-			<msub><mi>m</mi><mi>1</mi></msub>
-			<mi>b</mi>
-		</msup>
-		<mo>,</mo>
-		<msub><mi>r</mi><mi>B</mi></msub>
-		<mo>)</mo>
-	</mrow>
-</mrow>
-</math>. 
+<p>Пусть А и В &#8212; абоненты <a href="6_3.html">криптосистемы с открытым ключом</a>, и в книге паролей имеются их
+    открытые ключи (<span class="termin">электронные подписи</span>):
+    <math display='inline'>
+        <mrow>
+            <mi>A</mi>
+            <mo>:</mo>
+            <mo>(</mo>
+            <msub>
+                <mi>r</mi>
+                <mi>A</mi>
+            </msub>
+            <mo>,</mo>
+            <mi>a</mi>
+            <mo>)</mo>
+        </mrow>
+        <mo>,</mo>
+        <mrow>
+            <mi>B</mi>
+            <mo>:</mo>
+            <mo>(</mo>
+            <msub>
+                <mi>r</mi>
+                <mi>B</mi>
+            </msub>
+            <mo>,</mo>
+            <mi>b</mi>
+            <mo>)</mo>
+        </mrow>
+    </math>
+    . Обозначим &#945; &#8212; секретный ключ А, а &#946; &#8212; секретный ключ В. Возможность
+    <math display='inline'>
+        <msub>
+            <mi>r</mi>
+            <mi>A</mi>
+        </msub>
+        <mo>=</mo>
+        <msub>
+            <mi>r</mi>
+            <mi>B</mi>
+        </msub>
+    </math>
+    исключаем.
 </p>
-<p>Если же 
-<math display='inline'>
-<mrow>
-	<msub><mi>r</mi><mi>A</mi></msub>
-	<mo>&gt;</mo>
-	<msub><mi>r</mi><mi>B</mi></msub>
-</mrow>
-</math>,
- то абонент А сначала шифрует код <var>m</var> открытым ключом
-<math display='inline'>
-<mrow>
-	<mo>(</mo>
-	<msub><mi>r</mi><mi>B</mi></msub>
-	<mo>,</mo>
-	<mi>b</mi>
-	<mo>)</mo>
-</mrow>
-</math> абонента В, а затем своим секретным ключом
-<math display='inline'>
-<mrow>
-	<mo>(</mo>
-	<msub><mi>r</mi><mi>A</mi></msub>
-	<mo>,</mo>
-	<mi>&#945;</mi>
-	<mo>)</mo>
-</mrow>
-</math>:
+<p>Допустим, что абонент А готовит секретное сообщение абоненту В. Для этого он фрагментирует сообщение таким образом,
+    чтобы числовой код <var>m</var> фрагмента удовлетворял следующим двум условиям:
+    <math display='inline'>
+        <mrow>
+            <mi>m</mi>
+            <mo>&lt;</mo>
+            <mrow>
+                <msub>
+                    <mi>r</mi>
+                    <mi>A</mi>
+                </msub>
+                <mo>-</mo>
+                <mn>1</mn>
+            </mrow>
+        </mrow>
+        <mo>,</mo>
+        <mrow>
+            <mi>m</mi>
+            <mo>&lt;</mo>
+            <mrow>
+                <msub>
+                    <mi>r</mi>
+                    <mi>B</mi>
+                </msub>
+                <mo>-</mo>
+                <mn>1</mn>
+            </mrow>
+        </mrow>
+    </math>
+    .
+</p>
+<p>Пусть имеется договоренность, что если
+    <math display='inline'>
+        <mrow>
+            <msub>
+                <mi>r</mi>
+                <mi>A</mi>
+            </msub>
+            <mo>&lt;</mo>
+            <msub>
+                <mi>r</mi>
+                <mi>B</mi>
+            </msub>
+        </mrow>
+    </math>
+    ,
+    то абонент А сначала шифрует код <var>m</var> своим секретным ключом
+    <math display='inline'>
+        <mrow>
+            <mo>(</mo>
+            <msub>
+                <mi>r</mi>
+                <mi>A</mi>
+            </msub>
+            <mo>,</mo>
+            <mi>&#945;</mi>
+            <mo>)</mo>
+        </mrow>
+    </math>
+    , а затем открытым ключом
+    <math display='inline'>
+        <mrow>
+            <mo>(</mo>
+            <msub>
+                <mi>r</mi>
+                <mi>B</mi>
+            </msub>
+            <mo>,</mo>
+            <mi>b</mi>
+            <mo>)</mo>
+        </mrow>
+    </math>
+    абонента В:
+    <math display='inline'>
+        <mrow>
+            <msub>
+                <mi>m</mi>
+                <mn>1</mn>
+            </msub>
+            <mo>=</mo>
+            <mi>mod</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>(</mo>
+                <msup>
+                    <mi>m</mi>
+                    <mi>&#945;</mi>
+                </msup>
+                <mo>,</mo>
+                <msub>
+                    <mi>r</mi>
+                    <mi>A</mi>
+                </msub>
+                <mo>)</mo>
+            </mrow>
+        </mrow>
+        <mo>,</mo>
+        <mrow>
+            <msub>
+                <mi>m</mi>
+                <mn>2</mn>
+            </msub>
+            <mo>=</mo>
+            <mi>mod</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>(</mo>
+                <msup>
+                    <msub>
+                        <mi>m</mi>
+                        <mi>1</mi>
+                    </msub>
+                    <mi>b</mi>
+                </msup>
+                <mo>,</mo>
+                <msub>
+                    <mi>r</mi>
+                    <mi>B</mi>
+                </msub>
+                <mo>)</mo>
+            </mrow>
+        </mrow>
+    </math>
+    .
+</p>
+<p>Если же
+    <math display='inline'>
+        <mrow>
+            <msub>
+                <mi>r</mi>
+                <mi>A</mi>
+            </msub>
+            <mo>&gt;</mo>
+            <msub>
+                <mi>r</mi>
+                <mi>B</mi>
+            </msub>
+        </mrow>
+    </math>
+    ,
+    то абонент А сначала шифрует код <var>m</var> открытым ключом
+    <math display='inline'>
+        <mrow>
+            <mo>(</mo>
+            <msub>
+                <mi>r</mi>
+                <mi>B</mi>
+            </msub>
+            <mo>,</mo>
+            <mi>b</mi>
+            <mo>)</mo>
+        </mrow>
+    </math>
+    абонента В, а затем своим секретным ключом
+    <math display='inline'>
+        <mrow>
+            <mo>(</mo>
+            <msub>
+                <mi>r</mi>
+                <mi>A</mi>
+            </msub>
+            <mo>,</mo>
+            <mi>&#945;</mi>
+            <mo>)</mo>
+        </mrow>
+    </math>
+    :
 
-<math display='inline'>
-<mrow>
-	<msub><mi>m</mi><mn>1</mn></msub>
-	<mo>=</mo>
-	<mi>mod</mi><mo>&#x2061;</mo>
-	<mrow>
-		<mo>(</mo>
-		<msup><mi>m</mi><mi>b</mi></msup>
-		<mo>,</mo>
-		<msub><mi>r</mi><mi>B</mi></msub>
-		<mo>)</mo>
-	</mrow>
-</mrow>
-<mo>,</mo>
-<mrow>
-	<msub><mi>m</mi><mn>2</mn></msub>
-	<mo>=</mo>
-	<mi>mod</mi><mo>&#x2061;</mo>
-	<mrow>
-		<mo>(</mo>
-		<msup>
-			<msub><mi>m</mi><mi>1</mi></msub>
-			<mi>&#945;</mi>
-		</msup>
-		<mo>,</mo>
-		<msub><mi>r</mi><mi>A</mi></msub>
-		<mo>)</mo>
-	</mrow>
-</mrow>
-</math>.</p>
-<p>Зашифровав таким образом каждый фрагмент сообщения, абонент А подписывает секретное сообщение своей электронной подписью (своим открытым ключом
-<math display='inline'>
-<mrow>
-	<mo>(</mo>
-	<msub><mi>r</mi><mi>A</mi></msub>
-	<mo>,</mo>
-	<mi>a</mi>
-	<mo>)</mo>
-</mrow>
-</math>
- из книги паролей) и отправляет его абоненту В.</p>
-<p>Получив секретное сообщение, абонент В по электронной подписи определяет его автора и дешифрует каждый числовой код 
-<math display='inline'>
-<msub><mi>m</mi><mn>2</mn></msub>
-</math>
- в следующем порядке: если 
-<math display='inline'>
-<mrow>
-	<msub><mi>r</mi><mi>A</mi></msub>
-	<mo>&lt;</mo>
-	<msub><mi>r</mi><mi>B</mi></msub>
-</mrow>
-</math>, то сначала он применяет свой секретный ключ
-<math display='inline'>
-<mrow>
-	<mo>(</mo>
-	<msub><mi>r</mi><mi>B</mi></msub>
-	<mo>,</mo>
-	<mi>&#946;</mi>
-	<mo>)</mo>
-</mrow>
-</math>:
-<math display='inline'>
-<mrow>
-	<msub><mi>m</mi><mn>3</mn></msub>
-	<mo>=</mo>
-	<mi>mod</mi><mo>&#x2061;</mo>
-	<mrow>
-		<mo>(</mo>
-		<msup>
-			<msub><mi>m</mi><mn>2</mn></msub>
-			<mi>&#946;</mi>
-		</msup>
-		<mo>,</mo>
-		<msub><mi>r</mi><mi>B</mi></msub>
-		<mo>)</mo>
-	</mrow>
-</mrow>
-</math>, а затем открытый ключ
-<math display='inline'>
-<mrow>
-	<mo>(</mo>
-	<msub><mi>r</mi><mi>A</mi></msub>
-	<mo>,</mo>
-	<mi>a</mi>
-	<mo>)</mo>
-</mrow>
-</math>
-абонента А:
-<math display='inline'>
-<mrow>
-	<msub><mi>m</mi><mn>4</mn></msub>
-	<mo>=</mo>
-	<mi>mod</mi><mo>&#x2061;</mo>
-	<mrow>
-		<mo>(</mo>
-		<msup>
-			<msub><mi>m</mi><mn>3</mn></msub>
-			<mi>a</mi>
-		</msup>
-		<mo>,</mo>
-		<msub><mi>r</mi><mi>A</mi></msub>
-		<mo>)</mo>
-	</mrow>
-</mrow>
-</math>. 
-В противном случае порядок применения своего секретного ключа и открытого ключа абонента А меняется на противоположный.</p>
-<p>Нетрудно убедиться (см. <a href="6_3.html">Криптосистемы с открытым ключом</a>), что 
-<math display='inline'>
-<msub><mi>m</mi><mn>3</mn></msub>
-<mo>=</mo>
-<msub><mi>m</mi><mn>1</mn></msub>
-</math>, а
-<math display='inline'>
-<msub><mi>m</mi><mn>4</mn></msub>
-<mo>=</mo>
-<mi>m</mi>
-</math>.
+    <math display='inline'>
+        <mrow>
+            <msub>
+                <mi>m</mi>
+                <mn>1</mn>
+            </msub>
+            <mo>=</mo>
+            <mi>mod</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>(</mo>
+                <msup>
+                    <mi>m</mi>
+                    <mi>b</mi>
+                </msup>
+                <mo>,</mo>
+                <msub>
+                    <mi>r</mi>
+                    <mi>B</mi>
+                </msub>
+                <mo>)</mo>
+            </mrow>
+        </mrow>
+        <mo>,</mo>
+        <mrow>
+            <msub>
+                <mi>m</mi>
+                <mn>2</mn>
+            </msub>
+            <mo>=</mo>
+            <mi>mod</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>(</mo>
+                <msup>
+                    <msub>
+                        <mi>m</mi>
+                        <mi>1</mi>
+                    </msub>
+                    <mi>&#945;</mi>
+                </msup>
+                <mo>,</mo>
+                <msub>
+                    <mi>r</mi>
+                    <mi>A</mi>
+                </msub>
+                <mo>)</mo>
+            </mrow>
+        </mrow>
+    </math>
+    .
+</p>
+<p>Зашифровав таким образом каждый фрагмент сообщения, абонент А подписывает секретное сообщение своей электронной
+    подписью (своим открытым ключом
+    <math display='inline'>
+        <mrow>
+            <mo>(</mo>
+            <msub>
+                <mi>r</mi>
+                <mi>A</mi>
+            </msub>
+            <mo>,</mo>
+            <mi>a</mi>
+            <mo>)</mo>
+        </mrow>
+    </math>
+    из книги паролей) и отправляет его абоненту В.
+</p>
+<p>Получив секретное сообщение, абонент В по электронной подписи определяет его автора и дешифрует каждый числовой код
+    <math display='inline'>
+        <msub>
+            <mi>m</mi>
+            <mn>2</mn>
+        </msub>
+    </math>
+    в следующем порядке: если
+    <math display='inline'>
+        <mrow>
+            <msub>
+                <mi>r</mi>
+                <mi>A</mi>
+            </msub>
+            <mo>&lt;</mo>
+            <msub>
+                <mi>r</mi>
+                <mi>B</mi>
+            </msub>
+        </mrow>
+    </math>
+    , то сначала он применяет свой секретный ключ
+    <math display='inline'>
+        <mrow>
+            <mo>(</mo>
+            <msub>
+                <mi>r</mi>
+                <mi>B</mi>
+            </msub>
+            <mo>,</mo>
+            <mi>&#946;</mi>
+            <mo>)</mo>
+        </mrow>
+    </math>
+    :
+    <math display='inline'>
+        <mrow>
+            <msub>
+                <mi>m</mi>
+                <mn>3</mn>
+            </msub>
+            <mo>=</mo>
+            <mi>mod</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>(</mo>
+                <msup>
+                    <msub>
+                        <mi>m</mi>
+                        <mn>2</mn>
+                    </msub>
+                    <mi>&#946;</mi>
+                </msup>
+                <mo>,</mo>
+                <msub>
+                    <mi>r</mi>
+                    <mi>B</mi>
+                </msub>
+                <mo>)</mo>
+            </mrow>
+        </mrow>
+    </math>
+    , а затем открытый ключ
+    <math display='inline'>
+        <mrow>
+            <mo>(</mo>
+            <msub>
+                <mi>r</mi>
+                <mi>A</mi>
+            </msub>
+            <mo>,</mo>
+            <mi>a</mi>
+            <mo>)</mo>
+        </mrow>
+    </math>
+    абонента А:
+    <math display='inline'>
+        <mrow>
+            <msub>
+                <mi>m</mi>
+                <mn>4</mn>
+            </msub>
+            <mo>=</mo>
+            <mi>mod</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>(</mo>
+                <msup>
+                    <msub>
+                        <mi>m</mi>
+                        <mn>3</mn>
+                    </msub>
+                    <mi>a</mi>
+                </msup>
+                <mo>,</mo>
+                <msub>
+                    <mi>r</mi>
+                    <mi>A</mi>
+                </msub>
+                <mo>)</mo>
+            </mrow>
+        </mrow>
+    </math>
+    .
+    В противном случае порядок применения своего секретного ключа и открытого ключа абонента А меняется на
+    противоположный.
+</p>
+<p>Нетрудно убедиться (см. <a href="6_3.html">Криптосистемы с открытым ключом</a>), что
+    <math display='inline'>
+        <msub>
+            <mi>m</mi>
+            <mn>3</mn>
+        </msub>
+        <mo>=</mo>
+        <msub>
+            <mi>m</mi>
+            <mn>1</mn>
+        </msub>
+    </math>
+    , а
+    <math display='inline'>
+        <msub>
+            <mi>m</mi>
+            <mn>4</mn>
+        </msub>
+        <mo>=</mo>
+        <mi>m</mi>
+    </math>
+    .
 </p>
 <div class="examp">
-<p><span class="primer">Пример 6.4.1</span>. Пусть абонент А выбрал простые числа 
-<math display='inline'>
-<mrow>
-	<msub><mi>p</mi><mn>1</mn></msub>
-	<mo>=</mo>
-	<mn>17</mn>
-</mrow>
-<mo>,</mo>
-<mrow>
-	<msub><mi>q</mi><mn>1</mn></msub>
-	<mo>=</mo>
-	<mn>19</mn>
-</mrow>
-</math>, а в качестве открытого ключа &#8212;
-<math display='inline'>
-<mrow>
-	<mo>(</mo>
-	<msub><mi>r</mi><mi>A</mi></msub>
-	<mo>,</mo>
-	<mi>a</mi>
-	<mo>)</mo>
-</mrow>
-<mo>=</mo>
-<mrow>
-	<mo>(</mo>
-	<mn>323</mn>
-	<mo>,</mo>
-	<mn>13</mn>	
-	<mo>)</mo>	
-</mrow>
-</math>. 
- Здесь 
-<math display='inline'>
-<mrow>
-	<mi>&#966;</mi><mo>&#x2061;</mo>
-	<mrow>
-		<mo>(</mo>
-		<mn>323</mn>
-		<mo>)</mo>
-	</mrow>
-	<mo>=</mo>
-	<mn>288</mn>
-</mrow>
-<mo>,</mo>
-<mrow>
-	<mi>НОД</mi><mo>&#x2061;</mo>
-	<mrow>
-		<mo>(</mo>
-		<mn>288</mn>
-		<mo>,</mo>
-		<mn>13</mn>
-		<mo>)</mo>
-	</mrow>
-	<mo>=</mo>
-	<mn>1</mn>
-</mrow>
-</math>. Секретный ключ будет таким 
-<math display='inline'>
-<mfenced><msub><mi>r</mi><mi>A</mi></msub><mi>&#945;</mi></mfenced>
-<mo>=</mo>
-<mfenced><mn>323</mn><mn>133</mn></mfenced>
-</math>. Абонент В задал следующие характеристики: 
-<math display='inline'>
-<mrow>
-	<msub><mi>p</mi><mn>2</mn></msub><mo>=</mo><mn>23</mn>
-</mrow>
-<mo>,</mo>
-<mrow>
-	<msub><mi>q</mi><mn>2</mn></msub><mo>=</mo><mn>13</mn>
-</mrow>
-<mo>,</mo>
-<mrow>
-	<msub><mi>r</mi><mi>B</mi></msub><mo>=</mo><mn>299</mn>
-</mrow>
-<mo>,</mo>
-<mrow>
-	<mrow>
-	<mi>&#966;</mi><mo>&#x2061;</mo>
-	<mrow>
-		<mo>(</mo>
-			<mn>299</mn>
-		<mo>)</mo>	
-	</mrow>
-	</mrow>
-	<mo>=</mo>
-	<mn>264</mn>
-</mrow>
-<mo>,</mo>
-<mrow>
-	<mi>b</mi><mo>=</mo><mn>17</mn>
-</mrow>
-<mo>,</mo>
-<mrow>
-	<mi>&#946;</mi><mo>=</mo><mn>233</mn>
-</mrow>
-</math>.
-</p>
-<p>В книге паролей публикуются электронные ключи абонентов A и B:
-<math display='inline'>
-<mrow>
-	<mi>A</mi><mo>:</mo>
-	<mrow>
-		<mo>(</mo><mn>323</mn><mo>,</mo><mn>13</mn><mo>)</mo>
-	</mrow>
-</mrow>
-<mo>,</mo>
-<mrow>
-	<mi>B</mi><mo>:</mo>
-	<mrow>
-		<mo>(</mo><mn>299</mn><mo>,</mo><mn>17</mn><mo>)</mo>
-	</mrow>
-</mrow>
-</math>.
-</p>
-<p>Абонент А шифрует числовой код 
-<math display='inline'>
-<mrow><mi>m</mi><mo>=</mo><mn>25</mn></mrow>
-</math>
-своим секретным ключом 
-<math display='inline'>
-<mrow>
-	<mrow>
-		<mo>(</mo><mn>323</mn><mo>,</mo><mn>133</mn><mo>)</mo>
-	</mrow>
-</mrow>
-<mo>:</mo>
-<mrow>
-	<msub><mi>m</mi><mn>1</mn></msub>
-	<mo>=</mo>
-	<mrow>
-	<mi>mod</mi><mo>&#x2061;</mo>
-	<mrow>
-		<mo>(</mo>
-		<msup><mn>25</mn><mn>133</mn></msup>
-		<mo>,</mo>
-		<mn>323</mn>
-		<mo>)</mo>
-	</mrow>
-	</mrow>
-	<mo>=</mo>
-	<mn>9</mn>
-</mrow>
-</math>. Затем он полученный код 
-<math display='inline'>
-<mrow>
-	<msub><mi>m</mi><mn>1</mn></msub>
-	<mo>=</mo>
-	<mn>9</mn>
-</mrow>
-</math>
- шифрует открытым ключом 
-<math display='inline'>
-<mrow>
-	<mfenced><msub><mi>r</mi><mi>B</mi></msub><mi>b</mi></mfenced>
-	<mo>=</mo>
-	<mfenced><mn>299</mn><mn>17</mn></mfenced>
-</mrow>
-</math> 
- абонента В: 
-<math display='inline'>
-<mrow>
-	<msub><mi>m</mi><mn>2</mn></msub>
-	<mo>=</mo>
-	<mrow>
-		<mi>mod</mi><mo>&#x2061;</mo>
-		<mrow>
-			<mo>(</mo>
-			<msup><mn>9</mn><mn>17</mn></msup>
-			<mo>,</mo>
-			<mn>299</mn>
-			<mo>)</mo>
-		</mrow>
-	<mo>=</mo>
-	<mn>3</mn>
-	</mrow>
-</mrow>
-</math>. Шифр 
-<math display='inline'>
-<mrow>
-	<msub><mi>m</mi><mn>2</mn></msub>
-	<mo>=</mo>
-	<mn>3</mn>
-</mrow>
-</math>
- и электронную подпись 
-<math display='inline'> 
-<mrow>
-	<mi>A</mi><mo>:</mo>
-	<mfenced><mn>323</mn><mn>13</mn></mfenced>
-</mrow> 
-</math> 
-абонент А отправляет абоненту В.</p>
-<p>Абонент В, зная порядок шифрования абонентом А числового кода <var>m</var>, применяет к 
-<math display='inline'>
-<mrow>
-	<msub><mi>m</mi><mn>2</mn></msub>
-	<mo>=</mo>
-	<mn>3</mn>
-</mrow>
-</math>
-свой секретный ключ 
-<math display='inline'>
-<mrow>
-	<mfenced>
-		<msub><mi>r</mi><mi>B</mi></msub>
-		<mi>&#946;</mi>
-	</mfenced>
-	<mo>=</mo>
-	<mfenced>
-		<mn>299</mn>
-		<mn>233</mn>	
-	</mfenced>
-</mrow>
-<mo>:</mo>
-<mrow>
-	<mrow>
-		<mi>mod</mi><mo>&#x2061;</mo>
-		<mfenced>
-			<msup><mn>3</mn><mn>233</mn></msup>
-			<mn>299</mn>
-		</mfenced>
-	</mrow>
-	<mo>=</mo>
-	<mn>9</mn>
-</mrow>
-</math>,
- тем самым восстанавливая 
-<math display='inline'>
-<mrow>
-	<msub><mi>m</mi><mn>1</mn></msub>
-	<mo>=</mo>
-	<mn>9</mn>
-</mrow>
-</math>. Затем к 
-<math display='inline'>
-	<msub><mi>m</mi><mn>1</mn></msub>
-</math>
-применяет открытый ключ 
-<math display='inline'>
-<mrow>
-<mfenced>
-	<msub><mi>r</mi><mi>A</mi></msub>
-	<mi>a</mi>
-</mfenced>
-<mo>=</mo>
-<mfenced>
-	<mn>323</mn>
-	<mn>13</mn>
-</mfenced>
-</mrow>
-</math>
- абонента А: 
-<math display='inline'>
-<mrow>
-	<mrow>
-	<mi>mod</mi><mo>&#x2061;</mo>
-	<mfenced>
-		<msup><mn>9</mn><mn>13</mn></msup>
-		<mn>323</mn>
-	</mfenced>
-	</mrow>
-	<mo>=</mo>
-	<mn>25</mn>
-</mrow>
-</math>. Таким образом, абонент В восстановил сообщение 
-<math display='inline'>
-<mrow><mi>m</mi><mo>=</mo><mn>25</mn></mrow>
-</math>
- абонента А.</p>
+    <p><span class="primer">Пример 6.4.1</span>. Пусть абонент А выбрал простые числа
+        <math display='inline'>
+            <mrow>
+                <msub>
+                    <mi>p</mi>
+                    <mn>1</mn>
+                </msub>
+                <mo>=</mo>
+                <mn>17</mn>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <msub>
+                    <mi>q</mi>
+                    <mn>1</mn>
+                </msub>
+                <mo>=</mo>
+                <mn>19</mn>
+            </mrow>
+        </math>
+        , а в качестве открытого ключа &#8212;
+        <math display='inline'>
+            <mrow>
+                <mo>(</mo>
+                <msub>
+                    <mi>r</mi>
+                    <mi>A</mi>
+                </msub>
+                <mo>,</mo>
+                <mi>a</mi>
+                <mo>)</mo>
+            </mrow>
+            <mo>=</mo>
+            <mrow>
+                <mo>(</mo>
+                <mn>323</mn>
+                <mo>,</mo>
+                <mn>13</mn>
+                <mo>)</mo>
+            </mrow>
+        </math>
+        .
+        Здесь
+        <math display='inline'>
+            <mrow>
+                <mi>&#966;</mi>
+                <mo>&#x2061;</mo>
+                <mrow>
+                    <mo>(</mo>
+                    <mn>323</mn>
+                    <mo>)</mo>
+                </mrow>
+                <mo>=</mo>
+                <mn>288</mn>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mi>НОД</mi>
+                <mo>&#x2061;</mo>
+                <mrow>
+                    <mo>(</mo>
+                    <mn>288</mn>
+                    <mo>,</mo>
+                    <mn>13</mn>
+                    <mo>)</mo>
+                </mrow>
+                <mo>=</mo>
+                <mn>1</mn>
+            </mrow>
+        </math>
+        . Секретный ключ будет таким
+        <math display='inline'>
+            <mfenced>
+                <msub>
+                    <mi>r</mi>
+                    <mi>A</mi>
+                </msub>
+                <mi>&#945;</mi>
+            </mfenced>
+            <mo>=</mo>
+            <mfenced>
+                <mn>323</mn>
+                <mn>133</mn>
+            </mfenced>
+        </math>
+        . Абонент В задал следующие характеристики:
+        <math display='inline'>
+            <mrow>
+                <msub>
+                    <mi>p</mi>
+                    <mn>2</mn>
+                </msub>
+                <mo>=</mo>
+                <mn>23</mn>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <msub>
+                    <mi>q</mi>
+                    <mn>2</mn>
+                </msub>
+                <mo>=</mo>
+                <mn>13</mn>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <msub>
+                    <mi>r</mi>
+                    <mi>B</mi>
+                </msub>
+                <mo>=</mo>
+                <mn>299</mn>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mrow>
+                    <mi>&#966;</mi>
+                    <mo>&#x2061;</mo>
+                    <mrow>
+                        <mo>(</mo>
+                        <mn>299</mn>
+                        <mo>)</mo>
+                    </mrow>
+                </mrow>
+                <mo>=</mo>
+                <mn>264</mn>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mi>b</mi>
+                <mo>=</mo>
+                <mn>17</mn>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mi>&#946;</mi>
+                <mo>=</mo>
+                <mn>233</mn>
+            </mrow>
+        </math>
+        .
+    </p>
+    <p>В книге паролей публикуются электронные ключи абонентов A и B:
+        <math display='inline'>
+            <mrow>
+                <mi>A</mi>
+                <mo>:</mo>
+                <mrow>
+                    <mo>(</mo>
+                    <mn>323</mn>
+                    <mo>,</mo>
+                    <mn>13</mn>
+                    <mo>)</mo>
+                </mrow>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mi>B</mi>
+                <mo>:</mo>
+                <mrow>
+                    <mo>(</mo>
+                    <mn>299</mn>
+                    <mo>,</mo>
+                    <mn>17</mn>
+                    <mo>)</mo>
+                </mrow>
+            </mrow>
+        </math>
+        .
+    </p>
+    <p>Абонент А шифрует числовой код
+        <math display='inline'>
+            <mrow>
+                <mi>m</mi>
+                <mo>=</mo>
+                <mn>25</mn>
+            </mrow>
+        </math>
+        своим секретным ключом
+        <math display='inline'>
+            <mrow>
+                <mrow>
+                    <mo>(</mo>
+                    <mn>323</mn>
+                    <mo>,</mo>
+                    <mn>133</mn>
+                    <mo>)</mo>
+                </mrow>
+            </mrow>
+            <mo>:</mo>
+            <mrow>
+                <msub>
+                    <mi>m</mi>
+                    <mn>1</mn>
+                </msub>
+                <mo>=</mo>
+                <mrow>
+                    <mi>mod</mi>
+                    <mo>&#x2061;</mo>
+                    <mrow>
+                        <mo>(</mo>
+                        <msup>
+                            <mn>25</mn>
+                            <mn>133</mn>
+                        </msup>
+                        <mo>,</mo>
+                        <mn>323</mn>
+                        <mo>)</mo>
+                    </mrow>
+                </mrow>
+                <mo>=</mo>
+                <mn>9</mn>
+            </mrow>
+        </math>
+        . Затем он полученный код
+        <math display='inline'>
+            <mrow>
+                <msub>
+                    <mi>m</mi>
+                    <mn>1</mn>
+                </msub>
+                <mo>=</mo>
+                <mn>9</mn>
+            </mrow>
+        </math>
+        шифрует открытым ключом
+        <math display='inline'>
+            <mrow>
+                <mfenced>
+                    <msub>
+                        <mi>r</mi>
+                        <mi>B</mi>
+                    </msub>
+                    <mi>b</mi>
+                </mfenced>
+                <mo>=</mo>
+                <mfenced>
+                    <mn>299</mn>
+                    <mn>17</mn>
+                </mfenced>
+            </mrow>
+        </math>
+        абонента В:
+        <math display='inline'>
+            <mrow>
+                <msub>
+                    <mi>m</mi>
+                    <mn>2</mn>
+                </msub>
+                <mo>=</mo>
+                <mrow>
+                    <mi>mod</mi>
+                    <mo>&#x2061;</mo>
+                    <mrow>
+                        <mo>(</mo>
+                        <msup>
+                            <mn>9</mn>
+                            <mn>17</mn>
+                        </msup>
+                        <mo>,</mo>
+                        <mn>299</mn>
+                        <mo>)</mo>
+                    </mrow>
+                    <mo>=</mo>
+                    <mn>3</mn>
+                </mrow>
+            </mrow>
+        </math>
+        . Шифр
+        <math display='inline'>
+            <mrow>
+                <msub>
+                    <mi>m</mi>
+                    <mn>2</mn>
+                </msub>
+                <mo>=</mo>
+                <mn>3</mn>
+            </mrow>
+        </math>
+        и электронную подпись
+        <math display='inline'>
+            <mrow>
+                <mi>A</mi>
+                <mo>:</mo>
+                <mfenced>
+                    <mn>323</mn>
+                    <mn>13</mn>
+                </mfenced>
+            </mrow>
+        </math>
+        абонент А отправляет абоненту В.
+    </p>
+    <p>Абонент В, зная порядок шифрования абонентом А числового кода <var>m</var>, применяет к
+        <math display='inline'>
+            <mrow>
+                <msub>
+                    <mi>m</mi>
+                    <mn>2</mn>
+                </msub>
+                <mo>=</mo>
+                <mn>3</mn>
+            </mrow>
+        </math>
+        свой секретный ключ
+        <math display='inline'>
+            <mrow>
+                <mfenced>
+                    <msub>
+                        <mi>r</mi>
+                        <mi>B</mi>
+                    </msub>
+                    <mi>&#946;</mi>
+                </mfenced>
+                <mo>=</mo>
+                <mfenced>
+                    <mn>299</mn>
+                    <mn>233</mn>
+                </mfenced>
+            </mrow>
+            <mo>:</mo>
+            <mrow>
+                <mrow>
+                    <mi>mod</mi>
+                    <mo>&#x2061;</mo>
+                    <mfenced>
+                        <msup>
+                            <mn>3</mn>
+                            <mn>233</mn>
+                        </msup>
+                        <mn>299</mn>
+                    </mfenced>
+                </mrow>
+                <mo>=</mo>
+                <mn>9</mn>
+            </mrow>
+        </math>
+        ,
+        тем самым восстанавливая
+        <math display='inline'>
+            <mrow>
+                <msub>
+                    <mi>m</mi>
+                    <mn>1</mn>
+                </msub>
+                <mo>=</mo>
+                <mn>9</mn>
+            </mrow>
+        </math>
+        . Затем к
+        <math display='inline'>
+            <msub>
+                <mi>m</mi>
+                <mn>1</mn>
+            </msub>
+        </math>
+        применяет открытый ключ
+        <math display='inline'>
+            <mrow>
+                <mfenced>
+                    <msub>
+                        <mi>r</mi>
+                        <mi>A</mi>
+                    </msub>
+                    <mi>a</mi>
+                </mfenced>
+                <mo>=</mo>
+                <mfenced>
+                    <mn>323</mn>
+                    <mn>13</mn>
+                </mfenced>
+            </mrow>
+        </math>
+        абонента А:
+        <math display='inline'>
+            <mrow>
+                <mrow>
+                    <mi>mod</mi>
+                    <mo>&#x2061;</mo>
+                    <mfenced>
+                        <msup>
+                            <mn>9</mn>
+                            <mn>13</mn>
+                        </msup>
+                        <mn>323</mn>
+                    </mfenced>
+                </mrow>
+                <mo>=</mo>
+                <mn>25</mn>
+            </mrow>
+        </math>
+        . Таким образом, абонент В восстановил сообщение
+        <math display='inline'>
+            <mrow>
+                <mi>m</mi>
+                <mo>=</mo>
+                <mn>25</mn>
+            </mrow>
+        </math>
+        абонента А.
+    </p>
 </div>
 <div class="examp">
-<p><span class="primer">Пример 6.4.2</span>. Построим демонстрационную криптосистему с электронной подписью. Зададим для абонента А 
-<math display='inline'>
-<mrow>
-	<mrow>	
-		<msub><mi>p</mi><mn>1</mn></msub>
-		<mo>=</mo>
-		<mn>257</mn>
-	</mrow>
-	<mo>,</mo>
-	<mrow>
-		<msub><mi>q</mi><mn>1</mn></msub>
-		<mo>=</mo>
-		<mn>269</mn>
-	</mrow>
-	<mo>,</mo>
-	<mrow>
-		<mi>a</mi>
-		<mo>=</mo>
-		<mn>23</mn>
-	</mrow>
-</mrow>
-</math>. Тогда 
-<math display='inline'>
-<mrow>
-	<msub><mi>r</mi><mi>A</mi></msub>
-	<mo>=</mo>
-	<mn>69133</mn>
-</mrow>
-<mo>,</mo>
-<mrow>
-	<mrow>
-	<mi>&#966;</mi><mo>&#x2061;</mo>
-	<mrow>
-		<mo>(</mo>
-			<mn>69133</mn>
-		<mo>)</mo>	
-	</mrow>
-	</mrow>
-	<mo>=</mo>
-	<mn>68608</mn>
-</mrow>
-<mo>,</mo>
-<mrow>
-	<mi>&#945;</mi>
-	<mo>=</mo>
-	<mn>2983</mn>
-</mrow>
-</math>.
-Для абонента В пусть
-<math display='inline'>
-<mrow>
-	<mrow>	
-		<msub><mi>p</mi><mn>2</mn></msub>
-		<mo>=</mo>
-		<mn>263</mn>
-	</mrow>
-	<mo>,</mo>
-	<mrow>
-		<msub><mi>q</mi><mn>2</mn></msub>
-		<mo>=</mo>
-		<mn>271</mn>
-	</mrow>
-	<mo>,</mo>
-	<mrow>
-		<mi>b</mi>
-		<mo>=</mo>
-		<mn>29</mn>
-	</mrow>
-</mrow>
-</math>. Вычислили значения
-<math display='inline'>
-<mrow>
-	<msub><mi>r</mi><mi>B</mi></msub>
-	<mo>=</mo>
-	<mn>71273</mn>
-</mrow>
-<mo>,</mo>
-<mrow>
-	<mrow>
-	<mi>&#966;</mi><mo>&#x2061;</mo>
-	<mrow>
-		<mo>(</mo>
-			<mn>71273</mn>
-		<mo>)</mo>	
-	</mrow>
-	</mrow>
-	<mo>=</mo>
-	<mn>70740</mn>
-</mrow>
-<mo>,</mo>
-<mrow>
-	<mi>&#946;</mi>
-	<mo>=</mo>
-	<mn>39029</mn>
-</mrow>
-</math>.
-</p>
-<p>В книге паролей будут следующие электронные подписи:
-<math display='inline'>
-<mrow>
-	<mi>A</mi><mo>:</mo>
-	<mfenced>
-		<mn>69133</mn><mn>23</mn>
-	</mfenced>
-</mrow>
-<mo>,</mo>
-<mrow>
-	<mi>B</mi><mo>:</mo>
-	<mfenced>
-		<mn>71273</mn><mn>29</mn>
-	</mfenced>
-</mrow>
-<mo>.</mo>
-</math>
-</p>
-<p>Числовой код <var>m</var> фрагмента бинарного кода текста не должен превышать 
-<math display='inline'>
-<mrow>
-	<mi>min</mi><mo>&#x2061;</mo>
-	<mrow>
-		<mo>(</mo>
-		<mrow>
-			<msub><mi>r</mi><mi>A</mi></msub>
-			<mo>-</mo>
-			<mn>1</mn>	
-		</mrow>
-		<mo>,</mo>
-		<mrow>
-			<msub><mi>r</mi><mi>B</mi></msub>
-			<mo>-</mo>
-			<mn>1</mn>	
-		</mrow>
-		<mo>)</mo>
-	</mrow>
-	<mo>=</mo>
-	<mn>69132</mn>	
-</mrow>
-</math>. Длину фрагмента можем взять равной, например, 8 битам. В качестве номеров символов используем их 16-битные коды Unicode.</p>
-<form id="f1">
-Введите сообщение<br />
-<textarea rows="3" id="stroka" cols="80"></textarea><br />
-<input type="button" value="Вычислить" onclick="start()" />
-<input type="reset" value="Обновить" />
-</form>
+    <p><span class="primer">Пример 6.4.2</span>. Построим демонстрационную криптосистему с электронной подписью. Зададим
+        для абонента А
+        <math display='inline'>
+            <mrow>
+                <mrow>
+                    <msub>
+                        <mi>p</mi>
+                        <mn>1</mn>
+                    </msub>
+                    <mo>=</mo>
+                    <mn>257</mn>
+                </mrow>
+                <mo>,</mo>
+                <mrow>
+                    <msub>
+                        <mi>q</mi>
+                        <mn>1</mn>
+                    </msub>
+                    <mo>=</mo>
+                    <mn>269</mn>
+                </mrow>
+                <mo>,</mo>
+                <mrow>
+                    <mi>a</mi>
+                    <mo>=</mo>
+                    <mn>23</mn>
+                </mrow>
+            </mrow>
+        </math>
+        . Тогда
+        <math display='inline'>
+            <mrow>
+                <msub>
+                    <mi>r</mi>
+                    <mi>A</mi>
+                </msub>
+                <mo>=</mo>
+                <mn>69133</mn>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mrow>
+                    <mi>&#966;</mi>
+                    <mo>&#x2061;</mo>
+                    <mrow>
+                        <mo>(</mo>
+                        <mn>69133</mn>
+                        <mo>)</mo>
+                    </mrow>
+                </mrow>
+                <mo>=</mo>
+                <mn>68608</mn>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mi>&#945;</mi>
+                <mo>=</mo>
+                <mn>2983</mn>
+            </mrow>
+        </math>
+        .
+        Для абонента В пусть
+        <math display='inline'>
+            <mrow>
+                <mrow>
+                    <msub>
+                        <mi>p</mi>
+                        <mn>2</mn>
+                    </msub>
+                    <mo>=</mo>
+                    <mn>263</mn>
+                </mrow>
+                <mo>,</mo>
+                <mrow>
+                    <msub>
+                        <mi>q</mi>
+                        <mn>2</mn>
+                    </msub>
+                    <mo>=</mo>
+                    <mn>271</mn>
+                </mrow>
+                <mo>,</mo>
+                <mrow>
+                    <mi>b</mi>
+                    <mo>=</mo>
+                    <mn>29</mn>
+                </mrow>
+            </mrow>
+        </math>
+        . Вычислили значения
+        <math display='inline'>
+            <mrow>
+                <msub>
+                    <mi>r</mi>
+                    <mi>B</mi>
+                </msub>
+                <mo>=</mo>
+                <mn>71273</mn>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mrow>
+                    <mi>&#966;</mi>
+                    <mo>&#x2061;</mo>
+                    <mrow>
+                        <mo>(</mo>
+                        <mn>71273</mn>
+                        <mo>)</mo>
+                    </mrow>
+                </mrow>
+                <mo>=</mo>
+                <mn>70740</mn>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mi>&#946;</mi>
+                <mo>=</mo>
+                <mn>39029</mn>
+            </mrow>
+        </math>
+        .
+    </p>
+    <p>В книге паролей будут следующие электронные подписи:
+        <math display='inline'>
+            <mrow>
+                <mi>A</mi>
+                <mo>:</mo>
+                <mfenced>
+                    <mn>69133</mn>
+                    <mn>23</mn>
+                </mfenced>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mi>B</mi>
+                <mo>:</mo>
+                <mfenced>
+                    <mn>71273</mn>
+                    <mn>29</mn>
+                </mfenced>
+            </mrow>
+            <mo>.</mo>
+        </math>
+    </p>
+    <p>Числовой код <var>m</var> фрагмента бинарного кода текста не должен превышать
+        <math display='inline'>
+            <mrow>
+                <mi>min</mi>
+                <mo>&#x2061;</mo>
+                <mrow>
+                    <mo>(</mo>
+                    <mrow>
+                        <msub>
+                            <mi>r</mi>
+                            <mi>A</mi>
+                        </msub>
+                        <mo>-</mo>
+                        <mn>1</mn>
+                    </mrow>
+                    <mo>,</mo>
+                    <mrow>
+                        <msub>
+                            <mi>r</mi>
+                            <mi>B</mi>
+                        </msub>
+                        <mo>-</mo>
+                        <mn>1</mn>
+                    </mrow>
+                    <mo>)</mo>
+                </mrow>
+                <mo>=</mo>
+                <mn>69132</mn>
+            </mrow>
+        </math>
+        . Длину фрагмента можем взять равной, например, 8 битам. В качестве номеров символов используем их 16-битные
+        коды Unicode.
+    </p>
+    <form id="f1">
+        Введите сообщение<br/>
+        <textarea rows="3" id="stroka" cols="80"></textarea><br/>
+        <input type="button" value="Вычислить" onclick="start()"/>
+        <input type="reset" value="Обновить"/>
+    </form>
 </div>
 <div id='result'></div>
 <h3>Упражнения</h3>
 <ol>
-<li>Для пар простых чисел 
-<math display='inline'>
-<mrow>
-	<msub><mi>p</mi><mn>1</mn></msub>
-	<mo>=</mo>
-	<mn>19</mn>
-</mrow>
-<mo>,</mo>
-<mrow>
-	<msub><mi>q</mi><mn>1</mn></msub>
-	<mo>=</mo>
-	<mn>17</mn>
-</mrow>
-</math>
- и 
-<math display='inline'>
-<mrow>
-	<msub><mi>p</mi><mn>2</mn></msub>
-	<mo>=</mo>
-	<mn>13</mn>
-</mrow>
-<mo>,</mo>
-<mrow>
-	<msub><mi>q</mi><mn>2</mn></msub>
-	<mo>=</mo>
-	<mn>23</mn>
-</mrow>
-</math> 
- вычислите максимально возможную для шифрования в криптосистеме с открытым ключом длину фрагмента бинарного кода текста.</li>
-<li>В системе электронных таблиц постройте криптосистему с электронной подписью и пример шифрования некоторого числового кода <var>m</var> и расшифрования полученной криптограммы.</li>
+    <li>Для пар простых чисел
+        <math display='inline'>
+            <mrow>
+                <msub>
+                    <mi>p</mi>
+                    <mn>1</mn>
+                </msub>
+                <mo>=</mo>
+                <mn>19</mn>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <msub>
+                    <mi>q</mi>
+                    <mn>1</mn>
+                </msub>
+                <mo>=</mo>
+                <mn>17</mn>
+            </mrow>
+        </math>
+        и
+        <math display='inline'>
+            <mrow>
+                <msub>
+                    <mi>p</mi>
+                    <mn>2</mn>
+                </msub>
+                <mo>=</mo>
+                <mn>13</mn>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <msub>
+                    <mi>q</mi>
+                    <mn>2</mn>
+                </msub>
+                <mo>=</mo>
+                <mn>23</mn>
+            </mrow>
+        </math>
+        вычислите максимально возможную для шифрования в криптосистеме с открытым ключом длину фрагмента бинарного кода
+        текста.
+    </li>
+    <li>В системе электронных таблиц постройте криптосистему с электронной подписью и пример шифрования некоторого
+        числового кода <var>m</var> и расшифрования полученной криптограммы.
+    </li>
 </ol>
 <p><a href="6_3.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="6_5.html">К следующему</a></p>
 </body>
+<script type="text/javascript">
+    MathJax.Hub.Configured()
+</script>
 </html>

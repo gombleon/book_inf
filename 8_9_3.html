@@ -1,182 +1,211 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset='UTF-8' />
-<link rel='stylesheet' type='text/css' href='style.css' />
-<meta name='author' content='leonid' />
-<title>Деки</title>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+  extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});
+
+
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <meta charset='UTF-8'/>
+    <link rel='stylesheet' type='text/css' href='style.css'/>
+    <meta name='author' content='leonid'/>
+    <title>Деки</title>
 </head>
 <body>
-<p><a href="8_9_2.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_9_4.html">К следующему</a> </p>
+<p><a href="8_9_2.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_9_4.html">К следующему</a>
+</p>
 <h2>8.9.3. Деки</h2>
-<p><span class='teorema'>Дек или двусторонняя очередь (double-ended queue) &#151; это линейный список, в котором все операции вставки и удаления (и, как правило, операции доступа к данным) выполняются на обоих концах списка.</span></p>
-<p>Пусть узел дека содержит два ссылочных поля, в одном будет храниться ссылка на предыдущий узел, а в другом &#151; ссылка на следующий узел:</p>
+<p><span class='teorema'>Дек или двусторонняя очередь (double-ended queue) &#151; это линейный список, в котором все операции вставки и удаления (и, как правило, операции доступа к данным) выполняются на обоих концах списка.</span>
+</p>
+<p>Пусть узел дека содержит два ссылочных поля, в одном будет храниться ссылка на предыдущий узел, а в другом &#151;
+    ссылка на следующий узел:</p>
 <code>
-<p class='ind0'>TYPE узел=RECORD</p>
-<p class='ind2'>name: ARRAY 20 OF CHAR;</p>
-<p class='ind2'>prev: указатель</p>
-<p class='ind2'>next: указатель</p>
-<p class='ind1'>END;</p>
-<p class='ind1'>указатель=POINTER TO узел;</p>
+    <p class='ind0'>TYPE узел=RECORD</p>
+    <p class='ind2'>name: ARRAY 20 OF CHAR;</p>
+    <p class='ind2'>prev: указатель</p>
+    <p class='ind2'>next: указатель</p>
+    <p class='ind1'>END;</p>
+    <p class='ind1'>указатель=POINTER TO узел;</p>
 </code>
 
 <p>В этом случае дек задается начальным узлом first и конечным узлом last:</p>
 <code>
-<p class='ind1'>NEW(first);</p>
-<p class='ind1'>first.prev:=NIL;</p>
-<p class='ind1'>first.name:'первый узел'</p>
-<p class='ind1'>NEW(last);</p>
-<p class='ind1'>first.next:=last;</p>
-<p class='ind1'>last.next:=NIL;</p>
-<p class='ind1'>last.prev:=first;</p>
-<p class='ind1'>last.name:='последний узел';</p>
-</code> 
- <p>Начальный узел дека в поле prev содержит ссылку на NIL, конечный узел дека в поле next также ссылается на NIL.</p>
-<p><span class="primer">Пример</span> 8.9.3.1 создания дека, добавления в дек узла, удаления узла из дека и просмотра содержимого информационного поля дека.</p>
+    <p class='ind1'>NEW(first);</p>
+    <p class='ind1'>first.prev:=NIL;</p>
+    <p class='ind1'>first.name:'первый узел'</p>
+    <p class='ind1'>NEW(last);</p>
+    <p class='ind1'>first.next:=last;</p>
+    <p class='ind1'>last.next:=NIL;</p>
+    <p class='ind1'>last.prev:=first;</p>
+    <p class='ind1'>last.name:='последний узел';</p>
+</code>
+<p>Начальный узел дека в поле prev содержит ссылку на NIL, конечный узел дека в поле next также ссылается на NIL.</p>
+<p><span class="primer">Пример</span> 8.9.3.1 создания дека, добавления в дек узла, удаления узла из дека и просмотра
+    содержимого информационного поля дека.</p>
 </p>
 <code>
-<p class='ind0'>MODULE dec;</p>
-<p class='ind1'>	IMPORT  Log := StdLog,  In := i21sysIn,  Math;</p>
-<p class='ind1'>	TYPE список=RECORD</p>
-<p class='ind3'>		name: ARRAY 20 OF CHAR;</p>
-<p class='ind3'>		prev:указатель;</p>
-<p class='ind3'>		next:указатель;</p>
-<p class='ind2'>	END;</p>
-<p class='ind2'>	указатель=POINTER TO список;</p>
-<p class='ind2'>		VAR first, last:указатель;</p>
-		
-<p class='ind1'>	PROCEDURE new*;</p>
-<p class='ind2'>		VAR x: указатель;</p>
-<p class='ind1'>	BEGIN</p>
-<p class='ind2'>		IF first=NIL THEN</p>
-<p class='ind3'>			NEW(first);</p>
-<p class='ind3'>			In.Open;</p>
-<p class='ind3'>			ASSERT( In.done );</p>
-<p class='ind3'>			In.String(first.name);</p>
-<p class='ind3'>			ASSERT( In.done );</p>
-<p class='ind3'>			first.next:=NIL;</p>
-<p class='ind3'>			first.prev:=NIL;</p>
-<p class='ind3'>			last:=first;</p>
-<p class='ind3'>			Log.String('Создан первый элемент дека.');</p>
-<p class='ind3'>			Log.Ln</p>
-<p class='ind2'>		ELSE</p>
-<p class='ind3'>			Log.String('Очередь уже существует.');</p>
-<p class='ind3'>			Log.Ln</p>
-<p class='ind2'>		END;</p>
-<p class='ind1'>	END new;</p>
-	
-<p class='ind1'>	PROCEDURE append_first*;</p>
-<p class='ind2'>		VAR x: указатель;</p>
-<p class='ind1'>	BEGIN</p>
-<p class='ind2'>		IF first#NIL THEN</p>
-<p class='ind3'>			NEW(x);</p>
-<p class='ind3'>			In.Open;</p>
-<p class='ind3'>			ASSERT( In.done );</p>
-<p class='ind3'>			In.String(x.name);</p>
-<p class='ind3'>			ASSERT( In.done );</p>
-<p class='ind3'>			x.next:=first;</p>
-<p class='ind3'>			first.prev:=x;</p>
-<p class='ind3'>			x.prev:=NIL;</p>
-<p class='ind3'>			first:=x;</p>
-<p class='ind3'>			Log.String('Добавлен новый элемент в начало дека.');</p>
-<p class='ind3'>			Log.Ln</p>
-<p class='ind2'>		ELSE</p>
-<p class='ind3'>			new</p>
-<p class='ind2'>		END;</p>
-<p class='ind1'>	END append_first;</p>
-<p class='ind1'>	PROCEDURE append_last*;</p>
-<p class='ind2'>		VAR x: указатель;</p>
-<p class='ind1'>	BEGIN</p>
-<p class='ind2'>		IF first#NIL THEN</p>
-<p class='ind3'>			NEW(x);</p>
-<p class='ind3'>			In.Open;</p>
-<p class='ind3'>			ASSERT( In.done );</p>
-<p class='ind3'>			In.String(x.name);</p>
-<p class='ind3'>			ASSERT( In.done );</p>
-<p class='ind3'>			x.prev:=last;</p>
-<p class='ind3'>			last:=x;</p>
-<p class='ind3'>			last.next:=NIL;</p>
-<p class='ind3'>			Log.String('Добавлен новый элемент в конец дека.');</p>
-<p class='ind3'>			Log.Ln</p>
-<p class='ind2'>		ELSE</p>
-<p class='ind3'>			new</p>
-<p class='ind2'>		END;</p>
-<p class='ind1'>	END append_last;</p>
-	
-<p class='ind1'>	PROCEDURE delete_first*;</p>
-<p class='ind2'>		VAR</p>
-<p class='ind1'>	BEGIN</p>
-<p class='ind2'>		IF first#NIL THEN</p>
-<p class='ind3'>			first:=first.next;</p>
-<p class='ind3'>			first.prev:=NIL;</p>
-<p class='ind3'>			Log.String("Удалили первый элемент дека.");</p>
-<p class='ind3'>			Log.Ln</p>
-<p class='ind2'>		ELSE</p>
-<p class='ind3'>			Log.String("Дек не существует.")</p>
-<p class='ind2'>		END;</p>
-<p class='ind1'>	END delete_first;</p>
-	
-<p class='ind1'>	PROCEDURE delete_last*;</p>
-<p class='ind2'>		VAR</p>
-<p class='ind1'>	BEGIN</p>
-<p class='ind2'>		IF last#NIL THEN</p>
-<p class='ind3'>			last:=last.prev;</p>
-<p class='ind3'>			last.next:=NIL;</p>
-<p class='ind3'>			Log.String("Удалили последний элемент дека.");</p>
-<p class='ind3'>			Log.Ln</p>
-<p class='ind2'>		ELSE</p>
-<p class='ind3'>			Log.String("Дек не существует.");</p>
-<p class='ind3'>			Log.Ln</p>
-<p class='ind2'>		END;</p>
-<p class='ind1'>	END delete_last;</p>
-	
-<p class='ind1'>	PROCEDURE view1*;</p>
-<p class='ind2'>			VAR x: указатель;</p>
-<p class='ind1'>	BEGIN</p>
-<p class='ind2'>			IF first#NIL THEN</p>
-<p class='ind3'>				x:=first;</p>
-<p class='ind3'>				WHILE x.next#NIL DO</p>
-<p class='ind4'>					Log.String(x.name);</p>
-<p class='ind4'>					Log.Ln;</p>
-<p class='ind4'>					x:=x.next</p>
-<p class='ind3'>				END;</p>
-<p class='ind3'>				Log.String(x.name);</p>
-<p class='ind3'>				Log.Ln;</p>
-<p class='ind2'>			ELSE</p>
-<p class='ind3'>				Log.String('Дек не существует.');</p>
-<p class='ind3'>				Log.Ln</p>
-<p class='ind2'>			END;</p>
-<p class='ind1'>		END view1;</p>
-<p class='ind1'>		PROCEDURE view2*;</p>
-<p class='ind2'>			VAR x: указатель;</p>
-<p class='ind1'>		BEGIN</p>
-<p class='ind2'>			IF last#NIL THEN</p>
-<p class='ind3'>				x:=last;</p>
-<p class='ind3'>				WHILE x.prev#NIL DO</p>
-<p class='ind4'>					Log.String(x.name);</p>
-<p class='ind4'>					Log.Ln;</p>
-<p class='ind4'>					x:=x.prev</p>
-<p class='ind3'>				END;</p>
-<p class='ind3'>				Log.String(x.name);</p>
-<p class='ind3'>				Log.Ln;</p>
-<p class='ind2'>			ELSE</p>
-<p class='ind3'>				Log.String('Дек не существует.');</p>
-<p class='ind3'>				Log.Ln</p>
-<p class='ind2'>			END;</p>
-<p class='ind1'>		END view2;</p>	
-<p class='ind0'>END dec.</p>
+    <p class='ind0'>MODULE dec;</p>
+    <p class='ind1'> IMPORT Log := StdLog, In := i21sysIn, Math;</p>
+    <p class='ind1'> TYPE список=RECORD</p>
+    <p class='ind3'> name: ARRAY 20 OF CHAR;</p>
+    <p class='ind3'> prev:указатель;</p>
+    <p class='ind3'> next:указатель;</p>
+    <p class='ind2'> END;</p>
+    <p class='ind2'> указатель=POINTER TO список;</p>
+    <p class='ind2'> VAR first, last:указатель;</p>
+
+    <p class='ind1'> PROCEDURE new*;</p>
+    <p class='ind2'> VAR x: указатель;</p>
+    <p class='ind1'> BEGIN</p>
+    <p class='ind2'> IF first=NIL THEN</p>
+    <p class='ind3'> NEW(first);</p>
+    <p class='ind3'> In.Open;</p>
+    <p class='ind3'> ASSERT( In.done );</p>
+    <p class='ind3'> In.String(first.name);</p>
+    <p class='ind3'> ASSERT( In.done );</p>
+    <p class='ind3'> first.next:=NIL;</p>
+    <p class='ind3'> first.prev:=NIL;</p>
+    <p class='ind3'> last:=first;</p>
+    <p class='ind3'> Log.String('Создан первый элемент дека.');</p>
+    <p class='ind3'> Log.Ln</p>
+    <p class='ind2'> ELSE</p>
+    <p class='ind3'> Log.String('Очередь уже существует.');</p>
+    <p class='ind3'> Log.Ln</p>
+    <p class='ind2'> END;</p>
+    <p class='ind1'> END new;</p>
+
+    <p class='ind1'> PROCEDURE append_first*;</p>
+    <p class='ind2'> VAR x: указатель;</p>
+    <p class='ind1'> BEGIN</p>
+    <p class='ind2'> IF first#NIL THEN</p>
+    <p class='ind3'> NEW(x);</p>
+    <p class='ind3'> In.Open;</p>
+    <p class='ind3'> ASSERT( In.done );</p>
+    <p class='ind3'> In.String(x.name);</p>
+    <p class='ind3'> ASSERT( In.done );</p>
+    <p class='ind3'> x.next:=first;</p>
+    <p class='ind3'> first.prev:=x;</p>
+    <p class='ind3'> x.prev:=NIL;</p>
+    <p class='ind3'> first:=x;</p>
+    <p class='ind3'> Log.String('Добавлен новый элемент в начало дека.');</p>
+    <p class='ind3'> Log.Ln</p>
+    <p class='ind2'> ELSE</p>
+    <p class='ind3'> new</p>
+    <p class='ind2'> END;</p>
+    <p class='ind1'> END append_first;</p>
+    <p class='ind1'> PROCEDURE append_last*;</p>
+    <p class='ind2'> VAR x: указатель;</p>
+    <p class='ind1'> BEGIN</p>
+    <p class='ind2'> IF first#NIL THEN</p>
+    <p class='ind3'> NEW(x);</p>
+    <p class='ind3'> In.Open;</p>
+    <p class='ind3'> ASSERT( In.done );</p>
+    <p class='ind3'> In.String(x.name);</p>
+    <p class='ind3'> ASSERT( In.done );</p>
+    <p class='ind3'> x.prev:=last;</p>
+    <p class='ind3'> last:=x;</p>
+    <p class='ind3'> last.next:=NIL;</p>
+    <p class='ind3'> Log.String('Добавлен новый элемент в конец дека.');</p>
+    <p class='ind3'> Log.Ln</p>
+    <p class='ind2'> ELSE</p>
+    <p class='ind3'> new</p>
+    <p class='ind2'> END;</p>
+    <p class='ind1'> END append_last;</p>
+
+    <p class='ind1'> PROCEDURE delete_first*;</p>
+    <p class='ind2'> VAR</p>
+    <p class='ind1'> BEGIN</p>
+    <p class='ind2'> IF first#NIL THEN</p>
+    <p class='ind3'> first:=first.next;</p>
+    <p class='ind3'> first.prev:=NIL;</p>
+    <p class='ind3'> Log.String("Удалили первый элемент дека.");</p>
+    <p class='ind3'> Log.Ln</p>
+    <p class='ind2'> ELSE</p>
+    <p class='ind3'> Log.String("Дек не существует.")</p>
+    <p class='ind2'> END;</p>
+    <p class='ind1'> END delete_first;</p>
+
+    <p class='ind1'> PROCEDURE delete_last*;</p>
+    <p class='ind2'> VAR</p>
+    <p class='ind1'> BEGIN</p>
+    <p class='ind2'> IF last#NIL THEN</p>
+    <p class='ind3'> last:=last.prev;</p>
+    <p class='ind3'> last.next:=NIL;</p>
+    <p class='ind3'> Log.String("Удалили последний элемент дека.");</p>
+    <p class='ind3'> Log.Ln</p>
+    <p class='ind2'> ELSE</p>
+    <p class='ind3'> Log.String("Дек не существует.");</p>
+    <p class='ind3'> Log.Ln</p>
+    <p class='ind2'> END;</p>
+    <p class='ind1'> END delete_last;</p>
+
+    <p class='ind1'> PROCEDURE view1*;</p>
+    <p class='ind2'> VAR x: указатель;</p>
+    <p class='ind1'> BEGIN</p>
+    <p class='ind2'> IF first#NIL THEN</p>
+    <p class='ind3'> x:=first;</p>
+    <p class='ind3'> WHILE x.next#NIL DO</p>
+    <p class='ind4'> Log.String(x.name);</p>
+    <p class='ind4'> Log.Ln;</p>
+    <p class='ind4'> x:=x.next</p>
+    <p class='ind3'> END;</p>
+    <p class='ind3'> Log.String(x.name);</p>
+    <p class='ind3'> Log.Ln;</p>
+    <p class='ind2'> ELSE</p>
+    <p class='ind3'> Log.String('Дек не существует.');</p>
+    <p class='ind3'> Log.Ln</p>
+    <p class='ind2'> END;</p>
+    <p class='ind1'> END view1;</p>
+    <p class='ind1'> PROCEDURE view2*;</p>
+    <p class='ind2'> VAR x: указатель;</p>
+    <p class='ind1'> BEGIN</p>
+    <p class='ind2'> IF last#NIL THEN</p>
+    <p class='ind3'> x:=last;</p>
+    <p class='ind3'> WHILE x.prev#NIL DO</p>
+    <p class='ind4'> Log.String(x.name);</p>
+    <p class='ind4'> Log.Ln;</p>
+    <p class='ind4'> x:=x.prev</p>
+    <p class='ind3'> END;</p>
+    <p class='ind3'> Log.String(x.name);</p>
+    <p class='ind3'> Log.Ln;</p>
+    <p class='ind2'> ELSE</p>
+    <p class='ind3'> Log.String('Дек не существует.');</p>
+    <p class='ind3'> Log.Ln</p>
+    <p class='ind2'> END;</p>
+    <p class='ind1'> END view2;</p>
+    <p class='ind0'>END dec.</p>
 </code>
-</div> 
+</div>
 
 <h3>Задачи для самостоятельного решения</h3>
 <ol>
-<li>Как реализовать дек ограниченного размера на базе массива так, чтобы каждая операция требовала ограниченного числа действий?</li>
-<li>Имеется дек элементов типа T и конечное число переменных типа T и целого типа. В начальном состоянии в деке некоторое число элементов. Составить программу, после исполнения которой в деке остались бы те же самые элементы, а их число было бы в одной из целых переменных.</li>
-<li>Задачи для самостоятельного решения из сборника задач по программированию под редакцией С.А. Абрамова, Г.Г. Гнездиловой, Е.Н. Капустиной, М.И. Селюн. Задачи по программированию:</p>
-<p><a href='zadachi/14.html'>§14 Вычисление с хранением последовательностей, число членов которых зависит от исходных данных</a></p>
-<p><a href='zadachi/36.html'>§36. Некоторые приемы программирования</a></p>
-</li>
+    <li>Как реализовать дек ограниченного размера на базе массива так, чтобы каждая операция требовала ограниченного
+        числа действий?
+    </li>
+    <li>Имеется дек элементов типа T и конечное число переменных типа T и целого типа. В начальном состоянии в деке
+        некоторое число элементов. Составить программу, после исполнения которой в деке остались бы те же самые
+        элементы, а их число было бы в одной из целых переменных.
+    </li>
+    <li>Задачи для самостоятельного решения из сборника задач по программированию под редакцией С.А. Абрамова, Г.Г.
+        Гнездиловой, Е.Н. Капустиной, М.И. Селюн. Задачи по программированию:</p>
+        <p><a href='zadachi/14.html'>§14 Вычисление с хранением последовательностей, число членов которых зависит от
+            исходных данных</a></p>
+        <p><a href='zadachi/36.html'>§36. Некоторые приемы программирования</a></p>
+    </li>
 </ol>
-<p><a href="8_9_2.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_9_4.html">К следующему</a> </p>
+<p><a href="8_9_2.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_9_4.html">К следующему</a>
+</p>
 </body>
+<script type="text/javascript">
+    MathJax.Hub.Configured()
+</script>
 </html>

@@ -1,105 +1,140 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset='UTF-8' />
-<link rel='stylesheet' type='text/css' href='style.css' />
-<meta name='author' content='leonid' />
-<title>Задача поиска по дереву с включением</title>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+  extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});
+
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <meta charset='UTF-8'/>
+    <link rel='stylesheet' type='text/css' href='style.css'/>
+    <meta name='author' content='leonid'/>
+    <title>Задача поиска по дереву с включением</title>
 </head>
 <body>
-<p><a href="8_9_8.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_10.html">К следующему</a> </p>
+<p><a href="8_9_8.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_10.html">К следующему</a></p>
 <h2>8.9.9. Задача поиска по дереву с включением</h2>
-<p><span class='teorema'>Задача поиска по дереву с включением определяется как задача определения частоты вхождения слов в заданную последовательность слов посредством бинарного дерева.</span></p>
-<p>На начальном этапе дерево пусто. Если слово найдено в дереве, то счетчик его вхождений увеличивается на единицу, если нет, то слово включается в дерево с единичным значением счетчика.</span>></p>
-<p>Пример 8.9.9.1. Пример реализации задачи поиска по дереву с включением, если последовательность слов задана во входном потоке:</p>
+<p><span class='teorema'>Задача поиска по дереву с включением определяется как задача определения частоты вхождения слов в заданную последовательность слов посредством бинарного дерева.</span>
+</p>
+<p>На начальном этапе дерево пусто. Если слово найдено в дереве, то счетчик его вхождений увеличивается на единицу, если
+    нет, то слово включается в дерево с единичным значением счетчика.</span>></p>
+<p>Пример 8.9.9.1. Пример реализации задачи поиска по дереву с включением, если последовательность слов задана во
+    входном потоке:</p>
 <code>
-<p class='ind0'>MODULE word_tree;</p>
-<p class='ind1'>IMPORT  Log := StdLog,  In := i21sysIn;</p>
-<p class='ind1'>TYPE words=POINTER TO wordtree;</p>
-<p class='ind2'>wordtree=RECORD</p>
-<p class='ind3'>data: ARRAY 20 OF CHAR;</p>
-<p class='ind3'>k: INTEGER;</p>
-<p class='ind3'>left, right: words</p>
-<p class='ind2'>END;</p>
-<p class='ind1'>VAR n: INTEGER;</p>
-<p class='ind2'>kd: words;</p>
-<p class='ind2'>x: ARRAY 20 OF CHAR;</p>			
-<p class='ind1'>PROCEDURE new(x: ARRAY OF  CHAR; VAR  p: words);</p>
-<p class='ind2'>VAR  i: INTEGER;</p> 
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>IF p=NIL THEN</p>
-<p class='ind3'>NEW(p);</p>
-<p class='ind3'>p.k:=1;</p>		
-<p class='ind3'>p.left:=NIL;</p>
-<p class='ind3'>p.right:=NIL;</p>
-<p class='ind3'>FOR  i:= 0 TO LEN(x)-1 DO</p>
-<p class='ind4'>p.data[i]:=x[i];</p>	
-<p class='ind3'>END;</p>
-<p class='ind2'>ELSE</p>
-<p class='ind3'>IF x &gt; p.data THEN</p>
-<p class='ind4'>new(x, p.left)</p>					
-<p class='ind3'>ELSIF x &lt; p.data THEN</p>
-<p class='ind4'>new(x, p.right)</p>
-<p class='ind3'>ELSE</p>
-<p class='ind4'>INC(p.k)</p>					
-<p class='ind3'>END;</p>				
-<p class='ind2'>END;</p>	
-<p class='ind1'>END new;</p>
-<p class='ind1'>PROCEDURE print(t: words; h: INTEGER);</p>
-<p class='ind2'>VAR  i: INTEGER;</p>
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>IF t#NIL THEN</p>
-<p class='ind3'>print(t.left, h+1);</p>
-<p class='ind3'>FOR i := 1 TO  h DO</p>
-<p class='ind4'>Log.String('      ');</p>			
-<p class='ind3'>END;</p>
-<p class='ind3'>Log.String(t.data);</p>
-<p class='ind3'>Log.Char('(');</p>
-<p class='ind3'>Log.Int(t.k);</p>
-<p class='ind3'>Log.Char(')');</p>
-<p class='ind3'>Log.Ln;</p>
-<p class='ind3'>print(t.right, h+1);</p>		
-<p class='ind2'>END;</p>	
-<p class='ind1'>END print;</p>
-<p class='ind1'>PROCEDURE do*;</p>
-<p class='ind2'>VAR</p>  
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>In.Open;</p>
-<p class='ind2'>ASSERT(In.Done);</p>
-<p class='ind2'>In.Int(n);</p>
-<p class='ind2'>ASSERT(In.Done & (n &gt; 0));</p>
-<p class='ind2'>WHILE n &gt; 0 DO</p>
-<p class='ind3'>In.String(x);</p>
-<p class='ind3'>new(x, kd);</p>
-<p class='ind3'>DEC(n)</p>
-<p class='ind2'>END;</p>
-<p class='ind2'>print(kd, 0)</p>
-<p class='ind1'>END do;</p>
-<p class='ind0'>END word_tree.</p>
-word_tree.do 14 'мороз' 'дело' 'сад' 'комар' 'трава' 'олива' 'мир' 'чудо' 'сад' 'комар' 'трава' 'олива' 'сено' 'трава' 'олива'
+    <p class='ind0'>MODULE word_tree;</p>
+    <p class='ind1'>IMPORT Log := StdLog, In := i21sysIn;</p>
+    <p class='ind1'>TYPE words=POINTER TO wordtree;</p>
+    <p class='ind2'>wordtree=RECORD</p>
+    <p class='ind3'>data: ARRAY 20 OF CHAR;</p>
+    <p class='ind3'>k: INTEGER;</p>
+    <p class='ind3'>left, right: words</p>
+    <p class='ind2'>END;</p>
+    <p class='ind1'>VAR n: INTEGER;</p>
+    <p class='ind2'>kd: words;</p>
+    <p class='ind2'>x: ARRAY 20 OF CHAR;</p>
+    <p class='ind1'>PROCEDURE new(x: ARRAY OF CHAR; VAR p: words);</p>
+    <p class='ind2'>VAR i: INTEGER;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>IF p=NIL THEN</p>
+    <p class='ind3'>NEW(p);</p>
+    <p class='ind3'>p.k:=1;</p>
+    <p class='ind3'>p.left:=NIL;</p>
+    <p class='ind3'>p.right:=NIL;</p>
+    <p class='ind3'>FOR i:= 0 TO LEN(x)-1 DO</p>
+    <p class='ind4'>p.data[i]:=x[i];</p>
+    <p class='ind3'>END;</p>
+    <p class='ind2'>ELSE</p>
+    <p class='ind3'>IF x &gt; p.data THEN</p>
+    <p class='ind4'>new(x, p.left)</p>
+    <p class='ind3'>ELSIF x &lt; p.data THEN</p>
+    <p class='ind4'>new(x, p.right)</p>
+    <p class='ind3'>ELSE</p>
+    <p class='ind4'>INC(p.k)</p>
+    <p class='ind3'>END;</p>
+    <p class='ind2'>END;</p>
+    <p class='ind1'>END new;</p>
+    <p class='ind1'>PROCEDURE print(t: words; h: INTEGER);</p>
+    <p class='ind2'>VAR i: INTEGER;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>IF t#NIL THEN</p>
+    <p class='ind3'>print(t.left, h+1);</p>
+    <p class='ind3'>FOR i := 1 TO h DO</p>
+    <p class='ind4'>Log.String(' ');</p>
+    <p class='ind3'>END;</p>
+    <p class='ind3'>Log.String(t.data);</p>
+    <p class='ind3'>Log.Char('(');</p>
+    <p class='ind3'>Log.Int(t.k);</p>
+    <p class='ind3'>Log.Char(')');</p>
+    <p class='ind3'>Log.Ln;</p>
+    <p class='ind3'>print(t.right, h+1);</p>
+    <p class='ind2'>END;</p>
+    <p class='ind1'>END print;</p>
+    <p class='ind1'>PROCEDURE do*;</p>
+    <p class='ind2'>VAR</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>In.Open;</p>
+    <p class='ind2'>ASSERT(In.Done);</p>
+    <p class='ind2'>In.Int(n);</p>
+    <p class='ind2'>ASSERT(In.Done & (n &gt; 0));</p>
+    <p class='ind2'>WHILE n &gt; 0 DO</p>
+    <p class='ind3'>In.String(x);</p>
+    <p class='ind3'>new(x, kd);</p>
+    <p class='ind3'>DEC(n)</p>
+    <p class='ind2'>END;</p>
+    <p class='ind2'>print(kd, 0)</p>
+    <p class='ind1'>END do;</p>
+    <p class='ind0'>END word_tree.</p>
+    word_tree.do 14 'мороз' 'дело' 'сад' 'комар' 'трава' 'олива' 'мир' 'чудо' 'сад' 'комар' 'трава' 'олива' 'сено'
+    'трава' 'олива'
 </code>
 
 <h3>Контрольные вопросы и упражнения</h3>
 <ol>
-<li>Почему в примере 8.9.9.1 <math><mi>p</mi></math> передается в процедуру <math><mi>new</mi></math> как параметр-переменная?</li>
-<li>Сколько копий процедуры <math><mi>new</mi></math> будет в памяти в момент включения в дерево элемента Анна, если обрабатываются следующие данные:
-<ol type='a'>
-<li>Света;</li>
-<li>Лена;</li>
-<li>Петр;</li>
-<li>Сергей;</li>
-<li>Владимир;</li>
-<li>Наталья;</li>
-<li>Влад;</li>
-<li>Анна;</li>
-<li>Ольга?</li>
+    <li>Почему в примере 8.9.9.1
+        <math>
+            <mi>p</mi>
+        </math>
+        передается в процедуру
+        <math>
+            <mi>new</mi>
+        </math>
+        как параметр-переменная?
+    </li>
+    <li>Сколько копий процедуры
+        <math>
+            <mi>new</mi>
+        </math>
+        будет в памяти в момент включения в дерево элемента Анна, если обрабатываются следующие данные:
+        <ol type='a'>
+            <li>Света;</li>
+            <li>Лена;</li>
+            <li>Петр;</li>
+            <li>Сергей;</li>
+            <li>Владимир;</li>
+            <li>Наталья;</li>
+            <li>Влад;</li>
+            <li>Анна;</li>
+            <li>Ольга?</li>
+        </ol>
+    </li>
 </ol>
-</li>
-</ol>
-<p>Задачи для самостоятельного решения из сборника задач по программированию под редакцией С.А. Абрамова, Г.Г. Гнездиловой, Е.Н. Капустиной, М.И. Селюн. Задачи по программированию:</p>
-<p><a href='zadachi/14.html'>§14 Вычисление с хранением последовательностей, число членов которых зависит от исходных данных</a></p>
+<p>Задачи для самостоятельного решения из сборника задач по программированию под редакцией С.А. Абрамова, Г.Г.
+    Гнездиловой, Е.Н. Капустиной, М.И. Селюн. Задачи по программированию:</p>
+<p><a href='zadachi/14.html'>§14 Вычисление с хранением последовательностей, число членов которых зависит от исходных
+    данных</a></p>
 <p><a href='zadachi/36.html'>§36. Некоторые приемы программирования</a></p>
 
-<p><a href="8_9_8.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_10.html">К следующему</a> </p>
+<p><a href="8_9_8.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_10.html">К следующему</a></p>
 </body>
+<script type="text/javascript">
+    MathJax.Hub.Configured()
+</script>
 </html>

@@ -1,595 +1,893 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" />
-<link rel='stylesheet' type="text/css" href="style.css"></link>
-<meta name="author" content="leonid" />
-<meta name="description" content="кодирование и обработка в компьютере целых чисел без знака" />
-<meta name="keywords" content="сложение целых чисел без знака, умножение целых чисел без знака, переполнение разрядной сетки" />
-<title>Кодирование и обработка в компьютере целых чисел без знака</title>
-<script type="text/javascript">
-function proverka_des(num) {
-var found=false, str='0123456789';
-	for (var i=0;i<num.length;i++) {
-		found=false;
-		for (var j=0;j<10;j++) {
-			if (str.charAt(j)==num.charAt(i)) {
-				found=true;
-				j=10;	
-			}
-		}
-		if (found==false)
-		break;
-	}
-	return 	found;
-}
-function perevod10_q(num1,osn1) {
-var drob=Number(num1)%1, num1=Number(num1)-drob, osn1=Number(osn1), p="", tmp, ost=0;
-	while(num1>0) {
-		ost=num1%osn1;
-	switch(ost) {
-		case 10:p='a'+p;break;
-		case 11:p='b'+p;break;
-		case 12:p='c'+p;break;
-		case 13:p='d'+p;break;
-		case 14:p='e'+p;break;
-		case 15:p='f'+p;break;
-		default:p=String(ost)+p
-	}
-	num1=(num1-ost)/osn1;
-	}
-	if (drob!=0) {
-		p=p+'.';
-		for (var i=0;i<10;i++) {
-			drob=drob*osn1;
-			tmp=drob-drob%1;
-			switch(tmp) {
-				case 10:p+='a';break;
-				case 11:p+='b';break;
-				case 12:p+='c';break;
-				case 13:p+='d';break;
-				case 14:p+='e';break;
-				case 15:p+='f';break;
-				default:p+=String(tmp);
-			}
-			drob=drob%1;
-			if (drob==0)
-				i=10
-		}
-	}
-return p;
-}
-function summa(nm1,nm2) {
-var reg_per='0', sm='', n1=String(nm1), n2=String(nm2), len1=n1.length, len2=n2.length;
-	if (len1>len2) {
-		for (var i=0;i<len1-len2;i++)
-			n2='0'+n2;
-	}
-	else {
-		if (len2>len1)
-			for (var i=0;i<len2-len1;i++)
-				n1='0'+n1;
-	}
-	for (var i=n1.length-1;i>=0;i--) {
-		if ((n1.charAt(i)=='0')&&(n2.charAt(i)=='0'))
-			{sm=reg_per+sm;reg_per='0'}
-		else
-			if (((n1.charAt(i)=='1')&&(n2.charAt(i)=='0'))||((n1.charAt(i)=='0')&&(n2.charAt(i)=='1'))) {
-				if (reg_per=='0')
-					{sm='1'+sm;reg_per='0';}
-				else
-					{sm='0'+sm;reg_per='1';}
-			}
-			else
-				if ((n1.charAt(i)=='1')&&(n2.charAt(i)=='1')) 
-					if (reg_per=='0')
-						{sm='0'+sm;reg_per='1';}
-					else
-						{sm='1'+sm;reg_per='1';}
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+  extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-	}
-	sm=reg_per+sm;
-return sm;
-}
+    <meta charset="UTF-8"/>
+    <link rel='stylesheet' type="text/css" href="style.css"></link>
+    <meta name="author" content="leonid"/>
+    <meta name="description" content="кодирование и обработка в компьютере целых чисел без знака"/>
+    <meta name="keywords"
+          content="сложение целых чисел без знака, умножение целых чисел без знака, переполнение разрядной сетки"/>
+    <title>Кодирование и обработка в компьютере целых чисел без знака</title>
+    <script type="text/javascript">
+        function proverka_des(num) {
+            var found = false, str = '0123456789';
+            for (var i = 0; i < num.length; i++) {
+                found = false;
+                for (var j = 0; j < 10; j++) {
+                    if (str.charAt(j) == num.charAt(i)) {
+                        found = true;
+                        j = 10;
+                    }
+                }
+                if (found == false)
+                    break;
+            }
+            return found;
+        }
 
-function start(par)	{
-	var nm1=document.getElementById("num1").value, nm2=document.getElementById("num2").value, razr, dv_nm1, dv_nm2;
-	if (!((proverka_des(nm1))&&(proverka_des(nm2))))
-		alert('Ошибка! Повторите ввод.')
-	else {
-			if (document.getElementById("r8").checked)
-				razr=8;
-			else
-				if (document.getElementById("r16").checked)
-					razr=16;
-				else
-					if (document.getElementById("r32").checked)
-						razr=32;
-		dv_nm1=perevod10_q(nm1,2);
-		dv_nm2=perevod10_q(nm2,2);
-		while (dv_nm1.length< razr) {
-			dv_nm1='0'+dv_nm1;
-		}
-		while (dv_nm2.length< razr) {
-			dv_nm2='0'+dv_nm2;
-		}	
-		if ((dv_nm1.length>razr)||(dv_nm2.length>razr))
-			alert("Переполнение! Повторите ввод.")
-		else
-			if (par==1)
-				summir(dv_nm1, dv_nm2);
-			else
-				perenm(razr,dv_nm1, dv_nm2);
-		}
-}
+        function perevod10_q(num1, osn1) {
+            var drob = Number(num1) % 1, num1 = Number(num1) - drob, osn1 = Number(osn1), p = "", tmp, ost = 0;
+            while (num1 > 0) {
+                ost = num1 % osn1;
+                switch (ost) {
+                    case 10:
+                        p = 'a' + p;
+                        break;
+                    case 11:
+                        p = 'b' + p;
+                        break;
+                    case 12:
+                        p = 'c' + p;
+                        break;
+                    case 13:
+                        p = 'd' + p;
+                        break;
+                    case 14:
+                        p = 'e' + p;
+                        break;
+                    case 15:
+                        p = 'f' + p;
+                        break;
+                    default:
+                        p = String(ost) + p
+                }
+                num1 = (num1 - ost) / osn1;
+            }
+            if (drob != 0) {
+                p = p + '.';
+                for (var i = 0; i < 10; i++) {
+                    drob = drob * osn1;
+                    tmp = drob - drob % 1;
+                    switch (tmp) {
+                        case 10:
+                            p += 'a';
+                            break;
+                        case 11:
+                            p += 'b';
+                            break;
+                        case 12:
+                            p += 'c';
+                            break;
+                        case 13:
+                            p += 'd';
+                            break;
+                        case 14:
+                            p += 'e';
+                            break;
+                        case 15:
+                            p += 'f';
+                            break;
+                        default:
+                            p += String(tmp);
+                    }
+                    drob = drob % 1;
+                    if (drob == 0)
+                        i = 10
+                }
+            }
+            return p;
+        }
 
-function summir(dv1, dv2)	{
-	var sum, reg_per, table=document.getElementById("table_sum"), caption, tr, td;
-	while (table.firstChild) {
-		table.removeChild(table.firstChild);	
-	}	
-	table.border="1";
-	caption=document.createElement("caption");
-	caption.textContent="Сложение целых чисел без знака";
-	table.appendChild(caption);
-	tr=document.createElement("tr");
-	table.appendChild(tr);
-	td=document.createElement("td");
-	td.textContent="Операнд 1"
-	tr.appendChild(td);
-	td=document.createElement("td");
-	td.textContent=dv1;
-	tr.appendChild(td);
-	tr=document.createElement("tr");
-	table.appendChild(tr);
-	td=document.createElement("td");
-	td.textContent="Операнд 2"
-	tr.appendChild(td);
-	td=document.createElement("td");
-	td.textContent=dv2;
-	tr.appendChild(td);
-	tr=document.createElement("tr");
-	table.appendChild(tr);
-	td=document.createElement("td");
-	sum=summa(dv1, dv2);
-	reg_per=sum.charAt(0);
-	if(reg_per=='0') {
-		td.textContent="Сумма"
-		tr.appendChild(td);
-		td=document.createElement("td");
-		td.textContent=sum.slice(1);
-		tr.appendChild(td);
-	}
-	else {
-		td.textContent="Переполнение"
-		tr.appendChild(td);
-		tr=document.createElement("tr");
-		table.appendChild(tr);
-		td=document.createElement("td");
-		td.textContent="Регистр переполнения";
-		tr.appendChild(td);
-		td=document.createElement("td");
-		td.textContent=reg_per;
-		tr.appendChild(td);
-	}
-}
+        function summa(nm1, nm2) {
+            var reg_per = '0', sm = '', n1 = String(nm1), n2 = String(nm2), len1 = n1.length, len2 = n2.length;
+            if (len1 > len2) {
+                for (var i = 0; i < len1 - len2; i++)
+                    n2 = '0' + n2;
+            } else {
+                if (len2 > len1)
+                    for (var i = 0; i < len2 - len1; i++)
+                        n1 = '0' + n1;
+            }
+            for (var i = n1.length - 1; i >= 0; i--) {
+                if ((n1.charAt(i) == '0') && (n2.charAt(i) == '0')) {
+                    sm = reg_per + sm;
+                    reg_per = '0'
+                } else if (((n1.charAt(i) == '1') && (n2.charAt(i) == '0')) || ((n1.charAt(i) == '0') && (n2.charAt(i) == '1'))) {
+                    if (reg_per == '0') {
+                        sm = '1' + sm;
+                        reg_per = '0';
+                    } else {
+                        sm = '0' + sm;
+                        reg_per = '1';
+                    }
+                } else if ((n1.charAt(i) == '1') && (n2.charAt(i) == '1'))
+                    if (reg_per == '0') {
+                        sm = '0' + sm;
+                        reg_per = '1';
+                    } else {
+                        sm = '1' + sm;
+                        reg_per = '1';
+                    }
 
-function perenm(razr,dv1,dv2) {
-	var sum, reg_per, per1, per2='0', mult='', i=0, len=dv1.length, win=open("", "newWindow"), html, head, title, body, h2, h4, p, table, caption, tr, td;
-	
-	win.document.open();
-	html=document.createElement("html");
-	win.document.appendChild(html);
-	head=document.createElement("head");
-	title=document.createElement("title");
-	title.textContent="Умножение целых чисел без знака";
-	head.appendChild(title);
-	html.appendChild(head);
-	body=document.createElement("body");
-	html.appendChild(body);
-	h2=document.createElement("h2");
-	h2.textContent="Умножение целых чисел без знака";
-	body.appendChild(h2);
-	h4=document.createElement("h4");
-	h4.textContent="Операнды в десятичной системе счисления:";
-	body.appendChild(h4);
-	p=document.createElement("p");
-	p.textContent="Операнд 1= "+document.getElementById("num1").value+" ,";
-	body.appendChild(p);
-	p=document.createElement("p");
-	p.textContent="операнд 2= "+document.getElementById("num2").value+".";
-	body.appendChild(p);
-	table=document.createElement("table");
-	table.border="1";
-	body.appendChild(table);
-	caption=document.createElement("caption");
-	caption.textContent="Умножение в двоичной системе счисления";
-	table.appendChild(caption);
-	tr=document.createElement("tr");
-	table.appendChild(tr);
-	td=document.createElement("td");
-	td.textContent="Операнд 1";
-	tr.appendChild(td);
-	td=document.createElement("td");
-	td.textContent=dv1;
-	tr.appendChild(td);
-	tr=document.createElement("tr");
-	table.appendChild(tr);
-	td=document.createElement("td");
-	td.textContent="Операнд 2";
-	tr.appendChild(td);
-	td=document.createElement("td");
-	td.textContent=dv2;
-	tr.appendChild(td);
-	while(i< len) {
-		if(dv2.charAt(len-i-1)=='1')	{
-			mult=summa(mult,dv1);
-			reg_per=mult.charAt(0);
-			mult=mult.substring(1, mult.length);
-			tr=document.createElement("tr");
-			table.appendChild(tr);
-			td=document.createElement("td");
-			td.textContent="Сдвиг операнда 1";
-			tr.appendChild(td);
-			td=document.createElement("td");
-			td.textContent=dv1;
-			tr.appendChild(td);
-			tr=document.createElement("tr");
-			table.appendChild(tr);
-			td=document.createElement("td");
-			td.textContent="Текущая сумма";
-			tr.appendChild(td);
-			td=document.createElement("td");
-			td.textContent=mult;
-			tr.appendChild(td);			
-		}
-		if(reg_per=='1')	{
-			tr=document.createElement("tr");
-			table.appendChild(tr);
-			td=document.createElement("td");
-			td.textContent="Переполнение суммы";
-			tr.appendChild(td);
-			td=document.createElement("td");
-			tr.appendChild(td);
-			i=len;
-		}
-		else	{
-			per1=dv1.charAt(0);
-			dv1=dv1.substring(1, len)+'0';
-			if ((per1=='1')&&(dv2.charAt(len-i-2)=='1'))	{
-				tr=document.createElement("tr");
-				table.appendChild(tr);
-				td=document.createElement("td");
-				td.textContent="Переполнение текущего слагаемого";
-				tr.appendChild(td);
-				td=document.createElement("td");
-				tr.appendChild(td);
-				i=len;
-				per2='1';
-			}
-		}
-	i++;
-	}
-	if((per2=='0')&&(reg_per=='0'))
-		tr=document.createElement("tr");
-		table.appendChild(tr);
-		td=document.createElement("td");
-		td.textContent="Произведение";
-		tr.appendChild(td);
-		td=document.createElement("td");
-		td.textContent=mult;
-		tr.appendChild(td);
-		win.document.close();
-}
-</script>
+            }
+            sm = reg_per + sm;
+            return sm;
+        }
+
+        function start(par) {
+            var nm1 = document.getElementById("num1").value, nm2 = document.getElementById("num2").value, razr, dv_nm1,
+                dv_nm2;
+            if (!((proverka_des(nm1)) && (proverka_des(nm2))))
+                alert('Ошибка! Повторите ввод.')
+            else {
+                if (document.getElementById("r8").checked)
+                    razr = 8;
+                else if (document.getElementById("r16").checked)
+                    razr = 16;
+                else if (document.getElementById("r32").checked)
+                    razr = 32;
+                dv_nm1 = perevod10_q(nm1, 2);
+                dv_nm2 = perevod10_q(nm2, 2);
+                while (dv_nm1.length < razr) {
+                    dv_nm1 = '0' + dv_nm1;
+                }
+                while (dv_nm2.length < razr) {
+                    dv_nm2 = '0' + dv_nm2;
+                }
+                if ((dv_nm1.length > razr) || (dv_nm2.length > razr))
+                    alert("Переполнение! Повторите ввод.")
+                else if (par == 1)
+                    summir(dv_nm1, dv_nm2);
+                else
+                    perenm(razr, dv_nm1, dv_nm2);
+            }
+        }
+
+        function summir(dv1, dv2) {
+            var sum, reg_per, table = document.getElementById("table_sum"), caption, tr, td;
+            while (table.firstChild) {
+                table.removeChild(table.firstChild);
+            }
+            table.border = "1";
+            caption = document.createElement("caption");
+            caption.textContent = "Сложение целых чисел без знака";
+            table.appendChild(caption);
+            tr = document.createElement("tr");
+            table.appendChild(tr);
+            td = document.createElement("td");
+            td.textContent = "Операнд 1"
+            tr.appendChild(td);
+            td = document.createElement("td");
+            td.textContent = dv1;
+            tr.appendChild(td);
+            tr = document.createElement("tr");
+            table.appendChild(tr);
+            td = document.createElement("td");
+            td.textContent = "Операнд 2"
+            tr.appendChild(td);
+            td = document.createElement("td");
+            td.textContent = dv2;
+            tr.appendChild(td);
+            tr = document.createElement("tr");
+            table.appendChild(tr);
+            td = document.createElement("td");
+            sum = summa(dv1, dv2);
+            reg_per = sum.charAt(0);
+            if (reg_per == '0') {
+                td.textContent = "Сумма"
+                tr.appendChild(td);
+                td = document.createElement("td");
+                td.textContent = sum.slice(1);
+                tr.appendChild(td);
+            } else {
+                td.textContent = "Переполнение"
+                tr.appendChild(td);
+                tr = document.createElement("tr");
+                table.appendChild(tr);
+                td = document.createElement("td");
+                td.textContent = "Регистр переполнения";
+                tr.appendChild(td);
+                td = document.createElement("td");
+                td.textContent = reg_per;
+                tr.appendChild(td);
+            }
+        }
+
+        function perenm(razr, dv1, dv2) {
+            var sum, reg_per, per1, per2 = '0', mult = '', i = 0, len = dv1.length, win = open("", "newWindow"), html,
+                head, title, body, h2, h4, p, table, caption, tr, td;
+
+            win.document.open();
+            html = document.createElement("html");
+            win.document.appendChild(html);
+            head = document.createElement("head");
+            title = document.createElement("title");
+            title.textContent = "Умножение целых чисел без знака";
+            head.appendChild(title);
+            html.appendChild(head);
+            body = document.createElement("body");
+            html.appendChild(body);
+            h2 = document.createElement("h2");
+            h2.textContent = "Умножение целых чисел без знака";
+            body.appendChild(h2);
+            h4 = document.createElement("h4");
+            h4.textContent = "Операнды в десятичной системе счисления:";
+            body.appendChild(h4);
+            p = document.createElement("p");
+            p.textContent = "Операнд 1= " + document.getElementById("num1").value + " ,";
+            body.appendChild(p);
+            p = document.createElement("p");
+            p.textContent = "операнд 2= " + document.getElementById("num2").value + ".";
+            body.appendChild(p);
+            table = document.createElement("table");
+            table.border = "1";
+            body.appendChild(table);
+            caption = document.createElement("caption");
+            caption.textContent = "Умножение в двоичной системе счисления";
+            table.appendChild(caption);
+            tr = document.createElement("tr");
+            table.appendChild(tr);
+            td = document.createElement("td");
+            td.textContent = "Операнд 1";
+            tr.appendChild(td);
+            td = document.createElement("td");
+            td.textContent = dv1;
+            tr.appendChild(td);
+            tr = document.createElement("tr");
+            table.appendChild(tr);
+            td = document.createElement("td");
+            td.textContent = "Операнд 2";
+            tr.appendChild(td);
+            td = document.createElement("td");
+            td.textContent = dv2;
+            tr.appendChild(td);
+            while (i < len) {
+                if (dv2.charAt(len - i - 1) == '1') {
+                    mult = summa(mult, dv1);
+                    reg_per = mult.charAt(0);
+                    mult = mult.substring(1, mult.length);
+                    tr = document.createElement("tr");
+                    table.appendChild(tr);
+                    td = document.createElement("td");
+                    td.textContent = "Сдвиг операнда 1";
+                    tr.appendChild(td);
+                    td = document.createElement("td");
+                    td.textContent = dv1;
+                    tr.appendChild(td);
+                    tr = document.createElement("tr");
+                    table.appendChild(tr);
+                    td = document.createElement("td");
+                    td.textContent = "Текущая сумма";
+                    tr.appendChild(td);
+                    td = document.createElement("td");
+                    td.textContent = mult;
+                    tr.appendChild(td);
+                }
+                if (reg_per == '1') {
+                    tr = document.createElement("tr");
+                    table.appendChild(tr);
+                    td = document.createElement("td");
+                    td.textContent = "Переполнение суммы";
+                    tr.appendChild(td);
+                    td = document.createElement("td");
+                    tr.appendChild(td);
+                    i = len;
+                } else {
+                    per1 = dv1.charAt(0);
+                    dv1 = dv1.substring(1, len) + '0';
+                    if ((per1 == '1') && (dv2.charAt(len - i - 2) == '1')) {
+                        tr = document.createElement("tr");
+                        table.appendChild(tr);
+                        td = document.createElement("td");
+                        td.textContent = "Переполнение текущего слагаемого";
+                        tr.appendChild(td);
+                        td = document.createElement("td");
+                        tr.appendChild(td);
+                        i = len;
+                        per2 = '1';
+                    }
+                }
+                i++;
+            }
+            if ((per2 == '0') && (reg_per == '0'))
+                tr = document.createElement("tr");
+            table.appendChild(tr);
+            td = document.createElement("td");
+            td.textContent = "Произведение";
+            tr.appendChild(td);
+            td = document.createElement("td");
+            td.textContent = mult;
+            tr.appendChild(td);
+            win.document.close();
+        }
+    </script>
 </head>
 <body>
 <p><a href="4_3.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="4_5.html">К следующему</a></p>
 <h2>4.4. Кодирование и обработка в компьютере целых чисел без знака</h2>
-<p>Числа в компьютере могут быть представлены двумя способами: если они встречаются в тексте, то интерпретируются как набор цифр и их коды получаются из кодовой таблицы. Если же числа используются в вычислениях, то они кодируются по определенным правилам и размещаются в памяти компьютера. Нас интересует использование чисел для вычислений.</p>
-<p>На основании содержания предыдущих параграфов мы можем утверждать, что между двоичным представлением числа и его представлением в любой другой позиционной системе счисления существует однозначное соответствие. Имеются алгоритмы перевода числа из одной системы счисления в другую. Важной особенностью компьютерного представления чисел является то, что в силу ограниченности памяти компьютера на кодирование чисел отводится ограниченное количество разрядов. По этой причине бесконечное множество чисел отображается в конечное множество их компьютерных представлений. Способы кодирования чисел и операций над ними оказываются различными для следующих множеств:</p>
+<p>Числа в компьютере могут быть представлены двумя способами: если они встречаются в тексте, то интерпретируются как
+    набор цифр и их коды получаются из кодовой таблицы. Если же числа используются в вычислениях, то они кодируются по
+    определенным правилам и размещаются в памяти компьютера. Нас интересует использование чисел для вычислений.</p>
+<p>На основании содержания предыдущих параграфов мы можем утверждать, что между двоичным представлением числа и его
+    представлением в любой другой позиционной системе счисления существует однозначное соответствие. Имеются алгоритмы
+    перевода числа из одной системы счисления в другую. Важной особенностью компьютерного представления чисел является
+    то, что в силу ограниченности памяти компьютера на кодирование чисел отводится ограниченное количество разрядов. По
+    этой причине бесконечное множество чисел отображается в конечное множество их компьютерных представлений. Способы
+    кодирования чисел и операций над ними оказываются различными для следующих множеств:</p>
 <ul>
-<li>множества целых чисел без знака;</li>
-<li>множества целых чисел со знаком;</li>
-<li>множества вещественных чисел.</li>
+    <li>множества целых чисел без знака;</li>
+    <li>множества целых чисел со знаком;</li>
+    <li>множества вещественных чисел.</li>
 </ul>
-<p>Для записи числа в компьютере выделяется фиксированное количество разрядов. Например, в языках программирования объявляется тип переменной, что означает резервирование для переменной в памяти компьютера определенного количества разрядов с задание адреса переменной и определение перечня допустимых операций над ним. Например, в восьмиразрядной сетке максимальное число без знака равняется 
-<math display='inline'>
-<mrow>
-	<mrow><msup><mn>2</mn><mn>8</mn></msup><mo>-</mo><mn>1</mn></mrow><mo>=</mo><mn>255</mn>
-</mrow>
-</math>
-и кодируется последовательностью из восьми единиц: 
-<math display='inline'>
-<mfenced separators="" open="" close="">
-	<mn>1</mn><mn>1</mn><mn>1</mn><mn>1</mn><mn>1</mn><mn>1</mn><mn>1</mn><mn>1</mn>
-</mfenced>
-</math>. Минимальное целое без знака типа байт равняется нулю и кодируется последовательностью из восьми нулей:
-<math display='inline'>
-<mfenced separators="" open="" close="">
-	<mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn>
-</mfenced>
-</math>.</p>
-<p>Перечислим некоторые типы переменных целого типа (со знаком)  в порядке возрастания их размера:</p>
+<p>Для записи числа в компьютере выделяется фиксированное количество разрядов. Например, в языках программирования
+    объявляется тип переменной, что означает резервирование для переменной в памяти компьютера определенного количества
+    разрядов с задание адреса переменной и определение перечня допустимых операций над ним. Например, в восьмиразрядной
+    сетке максимальное число без знака равняется
+    <math display='inline'>
+        <mrow>
+            <mrow>
+                <msup>
+                    <mn>2</mn>
+                    <mn>8</mn>
+                </msup>
+                <mo>-</mo>
+                <mn>1</mn>
+            </mrow>
+            <mo>=</mo>
+            <mn>255</mn>
+        </mrow>
+    </math>
+    и кодируется последовательностью из восьми единиц:
+    <math display='inline'>
+        <mfenced separators="" open="" close="">
+            <mn>1</mn>
+            <mn>1</mn>
+            <mn>1</mn>
+            <mn>1</mn>
+            <mn>1</mn>
+            <mn>1</mn>
+            <mn>1</mn>
+            <mn>1</mn>
+        </mfenced>
+    </math>
+    . Минимальное целое без знака типа байт равняется нулю и кодируется последовательностью из восьми нулей:
+    <math display='inline'>
+        <mfenced separators="" open="" close="">
+            <mn>0</mn>
+            <mn>0</mn>
+            <mn>0</mn>
+            <mn>0</mn>
+            <mn>0</mn>
+            <mn>0</mn>
+            <mn>0</mn>
+            <mn>0</mn>
+        </mfenced>
+    </math>
+    .
+</p>
+<p>Перечислим некоторые типы переменных целого типа (со знаком) в порядке возрастания их размера:</p>
 <ul>
-<li> BYTE &#8212; байтовый тип;</li>
-<li>SHORTINT &#8212; короткий целый тип;</li>
-<li>INTEGER &#8212; целый тип;</li>
-<li>LONGINT &#8212; длинный целый тип.</li>
+    <li> BYTE &#8212; байтовый тип;</li>
+    <li>SHORTINT &#8212; короткий целый тип;</li>
+    <li>INTEGER &#8212; целый тип;</li>
+    <li>LONGINT &#8212; длинный целый тип.</li>
 </ul>
-<p>Переменные типа BYTE кодируются последовательностью из восьми нулей и единиц. Количество байт у остальных типов зависит от разрядности процессора.</p>
-<p>Рассмотрим подробнее кодирование и обработку целых чисел без знака. Если количество разрядов <var>k</var>, то максимальное целое число без знака, кодируемое в такой разрядной сетке, равняется 
-<math display='inline'>
-<mrow>
-	<msup><mn>2</mn><mi>k</mi></msup><mo>-</mo><mn>1</mn>
-</mrow>
-</math>. Попытка записи числа, превышающего допустимое максимальное значение, приведет к переполнению разрядной сетки и сообщению об ошибке.</p>
-<p>Вычитание из одного неотрицательного целого числа другого неотрицательного целого числа может быть и отрицательным числом. Но отрицательные числа кодируются, как мы увидим далее, несколько иначе. При делении одного целого числа на другое целое число можем получить нецелое число. Поэтому над целыми числами без знака определены лишь две операции: <a href='7_5.html#summator'>сложение</a> и умножение. Для выполнения арифметических операций над целыми числами без знака используется еще один дополнительный бит, называемый <a href='7_5.html#perenos'>битом переноса</a> (или переполнения).</p>
+<p>Переменные типа BYTE кодируются последовательностью из восьми нулей и единиц. Количество байт у остальных типов
+    зависит от разрядности процессора.</p>
+<p>Рассмотрим подробнее кодирование и обработку целых чисел без знака. Если количество разрядов <var>k</var>, то
+    максимальное целое число без знака, кодируемое в такой разрядной сетке, равняется
+    <math display='inline'>
+        <mrow>
+            <msup>
+                <mn>2</mn>
+                <mi>k</mi>
+            </msup>
+            <mo>-</mo>
+            <mn>1</mn>
+        </mrow>
+    </math>
+    . Попытка записи числа, превышающего допустимое максимальное значение, приведет к переполнению разрядной сетки и
+    сообщению об ошибке.
+</p>
+<p>Вычитание из одного неотрицательного целого числа другого неотрицательного целого числа может быть и отрицательным
+    числом. Но отрицательные числа кодируются, как мы увидим далее, несколько иначе. При делении одного целого числа на
+    другое целое число можем получить нецелое число. Поэтому над целыми числами без знака определены лишь две операции:
+    <a href='7_5.html#summator'>сложение</a> и умножение. Для выполнения арифметических операций над целыми числами без
+    знака используется еще один дополнительный бит, называемый <a href='7_5.html#perenos'>битом переноса</a> (или
+    переполнения).</p>
 <p>Правила выполнения операции <a href='7_5.html#t7.5.2'>сложения</a> целых чисел без знака следующие:</p>
 <ul>
-<li>
-	<math display='inline'>
-		<mrow><ms>0</ms><mo>+</mo><ms>0</ms><mo>=</mo><ms>0</ms></mrow>
-	</math>;
-</li>
-<li>
-	<math display='inline'>
-		<mrow><ms>0</ms><mo>+</mo><ms>1</ms><mo>=</mo><ms>1</ms></mrow>
-	</math>;
-</li>
-<li>
-	<math display='inline'>
-		<mrow><ms>1</ms><mo>+</mo><ms>0</ms><mo>=</mo><ms>1</ms></mrow>
-	</math>;
-</li>
-<li>
-	<math display='inline'>
-		<mrow><ms>1</ms><mo>+</mo><ms>1</ms><mo>=</mo><ms>10</ms></mrow>
-	</math>.
-</li>
+    <li>
+        <math display='inline'>
+            <mrow>
+                <ms>0</ms>
+                <mo>+</mo>
+                <ms>0</ms>
+                <mo>=</mo>
+                <ms>0</ms>
+            </mrow>
+        </math>
+        ;
+    </li>
+    <li>
+        <math display='inline'>
+            <mrow>
+                <ms>0</ms>
+                <mo>+</mo>
+                <ms>1</ms>
+                <mo>=</mo>
+                <ms>1</ms>
+            </mrow>
+        </math>
+        ;
+    </li>
+    <li>
+        <math display='inline'>
+            <mrow>
+                <ms>1</ms>
+                <mo>+</mo>
+                <ms>0</ms>
+                <mo>=</mo>
+                <ms>1</ms>
+            </mrow>
+        </math>
+        ;
+    </li>
+    <li>
+        <math display='inline'>
+            <mrow>
+                <ms>1</ms>
+                <mo>+</mo>
+                <ms>1</ms>
+                <mo>=</mo>
+                <ms>10</ms>
+            </mrow>
+        </math>
+        .
+    </li>
 </ul>
-<p>В последнем случае в бит переноса заносится 
-<math display='inline'>
-<ms>1</ms>
-</math>, а в текущий разряд &#8212; 
-<math display='inline'>
-<ms>0</ms>
-</math>.</p>
+<p>В последнем случае в бит переноса заносится
+    <math display='inline'>
+        <ms>1</ms>
+    </math>
+    , а в текущий разряд &#8212;
+    <math display='inline'>
+        <ms>0</ms>
+    </math>
+    .
+</p>
 <div class="examp">
-<p><span class="primer">Пример 4.4.1.</span> Рассмотрим пример сложения двух чисел без знака в восьмиразрядной сетке. Пусть первое число равняется <var>12</var>, а второе  &#8212; <var>27</var>:</p>
-<table align="center">
-<tr>
-<td></td>
-<td>
-<math display='inline'>
-	<mfenced separators="" open="" close="">
-		<mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn><mn>1</mn><mn>1</mn><mn>0</mn><mn>0</mn>
-	</mfenced>
-</math>
-</td>
-</tr>
-<tr>
-<td>+</td>
-<td>
-<math display='inline'>
-	<mfenced separators="" open="" close="">
-		<mn>0</mn><mn>0</mn><mn>0</mn><mn>1</mn><mn>1</mn><mn>0</mn><mn>1</mn><mn>1</mn>
-	</mfenced>
-</math>
-</td>
-</tr>
-<tr>
-<td></td><td><hr/></td>
-</tr>
-<tr>
-<td></td>
-<td>
-<math display='inline'>
-	<mfenced separators="" open="" close="">
-		<mn>0</mn><mn>0</mn><mn>1</mn><mn>0</mn><mn>0</mn><mn>1</mn><mn>1</mn><mn>1</mn>
-	</mfenced>
-</math>
-</td>
-</tr>
-</table>
-<p>В нулевом, первом и втором разрядах хранятся &quot;0&quot; и &quot;1&quot;, дающие в сумме в каждом разряде &quot;1&quot;. Сумма содержимых 3-го разряда равна &quot;10&quot; &#8212; &quot;0&quot; заносится в текущий третий разряд результата, а &quot;1&quot; &#8212; в <a href='7_5.html#summator'>бит переноса</a>. В четвертом разряде имеем &quot;0&quot;+&quot;1&quot;=&quot;1&quot;, в который переносится из бита переноса еще &quot;1&quot;, что в сумме составит &quot;10&quot;. &quot;0&quot; заносится в текущий четвертый разряд, а в бит переноса &#8212; &quot;1&quot;. В пятом разряде к сумме &quot;0&quot;+&quot;0&quot; добавляется содержимое бита переноса &quot;1&quot; и в результат записывается &quot;1&quot;. В остальных разрядах содержатся &quot;0&quot;. В бите переноса в конечном итоге оказывается &quot;0&quot;, что означает корректность результата выполнения операции сложения в восьмиразрядной сетке.</p>
+    <p><span class="primer">Пример 4.4.1.</span> Рассмотрим пример сложения двух чисел без знака в восьмиразрядной
+        сетке. Пусть первое число равняется <var>12</var>, а второе &#8212; <var>27</var>:</p>
+    <table align="center">
+        <tr>
+            <td></td>
+            <td>
+                <math display='inline'>
+                    <mfenced separators="" open="" close="">
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                        <mn>1</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                    </mfenced>
+                </math>
+            </td>
+        </tr>
+        <tr>
+            <td>+</td>
+            <td>
+                <math display='inline'>
+                    <mfenced separators="" open="" close="">
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                        <mn>1</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                        <mn>1</mn>
+                    </mfenced>
+                </math>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <hr/>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <math display='inline'>
+                    <mfenced separators="" open="" close="">
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                        <mn>1</mn>
+                        <mn>1</mn>
+                    </mfenced>
+                </math>
+            </td>
+        </tr>
+    </table>
+    <p>В нулевом, первом и втором разрядах хранятся &quot;0&quot; и &quot;1&quot;, дающие в сумме в каждом разряде
+        &quot;1&quot;. Сумма содержимых 3-го разряда равна &quot;10&quot; &#8212; &quot;0&quot; заносится в текущий
+        третий разряд результата, а &quot;1&quot; &#8212; в <a href='7_5.html#summator'>бит переноса</a>. В четвертом
+        разряде имеем &quot;0&quot;+&quot;1&quot;=&quot;1&quot;, в который переносится из бита переноса еще &quot;1&quot;,
+        что в сумме составит &quot;10&quot;. &quot;0&quot; заносится в текущий четвертый разряд, а в бит переноса
+        &#8212; &quot;1&quot;. В пятом разряде к сумме &quot;0&quot;+&quot;0&quot; добавляется содержимое бита переноса
+        &quot;1&quot; и в результат записывается &quot;1&quot;. В остальных разрядах содержатся &quot;0&quot;. В бите
+        переноса в конечном итоге оказывается &quot;0&quot;, что означает корректность результата выполнения операции
+        сложения в восьмиразрядной сетке.</p>
 </div>
 <p>Рассмотрим пример некорректного выполнения сложения двух целых чисел без знака.</p>
 <div class="examp">
-<p><span class="primer">Пример 4.4.2</span>. Рассмотрим случай переполнения восьмиразрядной сетки при сложении целых чисел без знака. Пусть первое слагаемое равняется <var>255</var>, а второе &#8212; <var>3</var>:</p>
-<table align="center">
-<tr>
-<td></td>
-<td>
-<math display='inline'>
-	<mfenced separators="" open="" close="">
-		<mn>1</mn><mn>1</mn><mn>1</mn><mn>1</mn><mn>1</mn><mn>1</mn><mn>1</mn><mn>1</mn>
-	</mfenced>
-</math>
-</td>
-</tr>
-<tr>
-<td>+</td>
-<td>
-<math display='inline'>
-	<mfenced separators="" open="" close="">
-		<mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn><mn>1</mn><mn>1</mn>
-	</mfenced>
-</math>
-</td>
-</tr>
-<tr>
-<td></td><td><hr/></td>
-</tr>
-<tr>
-<td></td>
-<td>
-<math display='inline'>
-	<mfenced separators="" open="" close="">
-		<mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn><mn>1</mn><mn>0</mn>
-	</mfenced>
-</math>
-</td>
-</tr>
-</table>
-<p>В бите переноса оказывается &quot;1&quot;, что говорит о переполнении разрядной сетки и некорректности выполнения сложения чисел <var>255</var> и <var>3</var> в выбранной разрядной сетке.</p>
- </div>
- <p>Умножение выполняют по следующим правилам:</p>
-<ul>
-<li>
-	<math display='inline'>
-		<mrow><ms>0</ms><mo>&#215;</mo><ms>0</ms><mo>=</mo><ms>0</ms></mrow>
-	</math>;
-</li>
-<li>
-	<math display='inline'>
-		<mrow><ms>0</ms><mo>&#215;</mo><ms>1</ms><mo>=</mo><ms>0</ms></mrow>
-	</math>;
-</li>
-<li>
-	<math display='inline'>
-		<mrow><ms>1</ms><mo>&#215;</mo><ms>0</ms><mo>=</mo><ms>0</ms></mrow>
-	</math>;
-</li>
-<li>
-	<math display='inline'>
-		<mrow><ms>1</ms><mo>&#215;</mo><ms>1</ms><mo>=</mo><ms>1</ms></mrow>
-	</math>.
-</li>
-</ul>
-<p>Реализация отдельной операции умножения не требуется, так как умножение сводится к операциям <a href='7_5.html#sdvig'>сдвига</a> влево и сложения. Сдвиг влево на один разряд сопровождается добавлением &quot;0&quot; в младший разряд и потерей либо &quot;0&quot;, либо &quot;1&quot; в старшем разряде. Потеря &quot;1&quot; трактуется как переполнение разрядной сетки и некорректность выполнения умножения в выбранной разрядной сетке.</p>
-<div class="examp">
-<p><span class="primer">Пример 4.4.3</span>. Рассмотрим пример умножения в восьмиразрядной сетке целых чисел без знака <var>9</var> и <var>5</var>:</p>
-<table align="center">
-<tr>
-<td></td>
-<td>
-<math display='inline'>
-	<mfenced separators="" open="" close="">
-		<mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn><mn>1</mn><mn>0</mn><mn>0</mn><mn>1</mn>
-	</mfenced>
-</math>
-</td><td></td>
-</tr>
-<tr>
-<td>&#215;</td>
-<td>
-<math display='inline'>
-	<mfenced separators="" open="" close="">
-		<mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn><mn>1</mn><mn>0</mn><mn>1</mn>
-	</mfenced>
-</math>
-</td><td>.</td>
-</tr>
-</table>
-<p>Умножение первого сомножителя на 1 из нулевого разряда второго сомножителя означает повторение первого сомножителя, которое служит промежуточным результатом:</p>
-<table align="center">
-<tr>
-<td>
-<math display='inline'>
-	<mfenced separators="" open="" close="">
-		<mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn><mn>1</mn><mn>0</mn><mn>0</mn><mn>1</mn>
-	</mfenced>
-</math>.
-</td>
-</tr>
-</table>
-<p>Результат умножения первого сомножителя на 0 из первого разряда второго сомножителя представляет собой последовательность из 8 нулей, которая в сумме с предыдущим промежуточным результатом дает:</p>
-<table align="center">
-<tr>
-<td>
-<math display='inline'>
-	<mfenced separators="" open="" close="">
-		<mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn><mn>1</mn><mn>0</mn><mn>0</mn><mn>1</mn>
-	</mfenced>
-</math>.
-</td>
-</tr>
-</table>
-<p>Умножение первого сомножителя на 1 из второго разряда второго сомножителя сводится к повторению первого сомножителя с последующим сдвигом на 2 разряда влево, потерей незначащих нулей слева и добавлением двух нулей в младшие разряды:</p>
-<table align="center">
-<tr>
-<td>
-<math display='inline'>
-	<mfenced separators="" open="" close="">
-		<mn>0</mn><mn>0</mn><mn>1</mn><mn>0</mn><mn>0</mn><mn>1</mn><mn>0</mn><mn>0</mn>
-	</mfenced>
-</math>.
-</td>
-</tr>
-</table>
-<p>Полученное число прибавляют к промежуточному результату и получают новый промежуточный результат:</p>
-<table align="center">
-<tr>
-<td></td>
-<td>
-<math display='inline'>
-	<mfenced separators="" open="" close="">
-		<mn>0</mn><mn>0</mn><mn>0</mn><mn>0</mn><mn>1</mn><mn>0</mn><mn>0</mn><mn>1</mn>
-	</mfenced>
-</math>
-</td>
-</tr>
-<tr>
-<td>+</td>
-<td>
-<math display='inline'>
-	<mfenced separators="" open="" close="">
-		<mn>0</mn><mn>0</mn><mn>1</mn><mn>0</mn><mn>0</mn><mn>1</mn><mn>0</mn><mn>0</mn>
-	</mfenced>
-</math>
-</td>
-</tr>
-<tr>
-<td></td><td><hr/></td>
-</tr>
-<tr>
-<td></td>
-<td>
-<math display='inline'>
-	<mfenced separators="" open="" close="">
-		<mn>0</mn><mn>0</mn><mn>1</mn><mn>0</mn><mn>1</mn><mn>1</mn><mn>0</mn><mn>1</mn>
-	</mfenced>
-</math>
-</td>
-</tr>
-</table>
-<p>Продолжив описанный процесс, в конечном итоге получаем следующий результат:</p>
-<table align="center">
-<tr>
-<td></td>
-<td>
-<math display='inline'>
-	<mfenced separators="" open="" close="">
-		<mn>0</mn><mn>0</mn><mn>1</mn><mn>0</mn><mn>1</mn><mn>1</mn><mn>0</mn><mn>1</mn>
-	</mfenced>
-</math>.
-</td>
-</tr>
-</table>
+    <p><span class="primer">Пример 4.4.2</span>. Рассмотрим случай переполнения восьмиразрядной сетки при сложении целых
+        чисел без знака. Пусть первое слагаемое равняется <var>255</var>, а второе &#8212; <var>3</var>:</p>
+    <table align="center">
+        <tr>
+            <td></td>
+            <td>
+                <math display='inline'>
+                    <mfenced separators="" open="" close="">
+                        <mn>1</mn>
+                        <mn>1</mn>
+                        <mn>1</mn>
+                        <mn>1</mn>
+                        <mn>1</mn>
+                        <mn>1</mn>
+                        <mn>1</mn>
+                        <mn>1</mn>
+                    </mfenced>
+                </math>
+            </td>
+        </tr>
+        <tr>
+            <td>+</td>
+            <td>
+                <math display='inline'>
+                    <mfenced separators="" open="" close="">
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                        <mn>1</mn>
+                    </mfenced>
+                </math>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <hr/>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <math display='inline'>
+                    <mfenced separators="" open="" close="">
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                        <mn>0</mn>
+                    </mfenced>
+                </math>
+            </td>
+        </tr>
+    </table>
+    <p>В бите переноса оказывается &quot;1&quot;, что говорит о переполнении разрядной сетки и некорректности выполнения
+        сложения чисел <var>255</var> и <var>3</var> в выбранной разрядной сетке.</p>
 </div>
-<p>Очевидно, что при выполнении операции умножения переполнение разрядной сетки может произойти как при сдвиге, так и при сложении операндов.</p>
-<p>Ниже представлен калькулятор для демонстрации <a href='7_5.html#ia_alu'>сложения</a> и умножения целых чисел без знака.</p>
+<p>Умножение выполняют по следующим правилам:</p>
+<ul>
+    <li>
+        <math display='inline'>
+            <mrow>
+                <ms>0</ms>
+                <mo>&#215;</mo>
+                <ms>0</ms>
+                <mo>=</mo>
+                <ms>0</ms>
+            </mrow>
+        </math>
+        ;
+    </li>
+    <li>
+        <math display='inline'>
+            <mrow>
+                <ms>0</ms>
+                <mo>&#215;</mo>
+                <ms>1</ms>
+                <mo>=</mo>
+                <ms>0</ms>
+            </mrow>
+        </math>
+        ;
+    </li>
+    <li>
+        <math display='inline'>
+            <mrow>
+                <ms>1</ms>
+                <mo>&#215;</mo>
+                <ms>0</ms>
+                <mo>=</mo>
+                <ms>0</ms>
+            </mrow>
+        </math>
+        ;
+    </li>
+    <li>
+        <math display='inline'>
+            <mrow>
+                <ms>1</ms>
+                <mo>&#215;</mo>
+                <ms>1</ms>
+                <mo>=</mo>
+                <ms>1</ms>
+            </mrow>
+        </math>
+        .
+    </li>
+</ul>
+<p>Реализация отдельной операции умножения не требуется, так как умножение сводится к операциям <a
+        href='7_5.html#sdvig'>сдвига</a> влево и сложения. Сдвиг влево на один разряд сопровождается добавлением &quot;0&quot;
+    в младший разряд и потерей либо &quot;0&quot;, либо &quot;1&quot; в старшем разряде. Потеря &quot;1&quot; трактуется
+    как переполнение разрядной сетки и некорректность выполнения умножения в выбранной разрядной сетке.</p>
+<div class="examp">
+    <p><span class="primer">Пример 4.4.3</span>. Рассмотрим пример умножения в восьмиразрядной сетке целых чисел без
+        знака <var>9</var> и <var>5</var>:</p>
+    <table align="center">
+        <tr>
+            <td></td>
+            <td>
+                <math display='inline'>
+                    <mfenced separators="" open="" close="">
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                    </mfenced>
+                </math>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>&#215;</td>
+            <td>
+                <math display='inline'>
+                    <mfenced separators="" open="" close="">
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                    </mfenced>
+                </math>
+            </td>
+            <td>.</td>
+        </tr>
+    </table>
+    <p>Умножение первого сомножителя на 1 из нулевого разряда второго сомножителя означает повторение первого
+        сомножителя, которое служит промежуточным результатом:</p>
+    <table align="center">
+        <tr>
+            <td>
+                <math display='inline'>
+                    <mfenced separators="" open="" close="">
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                    </mfenced>
+                </math>
+                .
+            </td>
+        </tr>
+    </table>
+    <p>Результат умножения первого сомножителя на 0 из первого разряда второго сомножителя представляет собой
+        последовательность из 8 нулей, которая в сумме с предыдущим промежуточным результатом дает:</p>
+    <table align="center">
+        <tr>
+            <td>
+                <math display='inline'>
+                    <mfenced separators="" open="" close="">
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                    </mfenced>
+                </math>
+                .
+            </td>
+        </tr>
+    </table>
+    <p>Умножение первого сомножителя на 1 из второго разряда второго сомножителя сводится к повторению первого
+        сомножителя с последующим сдвигом на 2 разряда влево, потерей незначащих нулей слева и добавлением двух нулей в
+        младшие разряды:</p>
+    <table align="center">
+        <tr>
+            <td>
+                <math display='inline'>
+                    <mfenced separators="" open="" close="">
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                    </mfenced>
+                </math>
+                .
+            </td>
+        </tr>
+    </table>
+    <p>Полученное число прибавляют к промежуточному результату и получают новый промежуточный результат:</p>
+    <table align="center">
+        <tr>
+            <td></td>
+            <td>
+                <math display='inline'>
+                    <mfenced separators="" open="" close="">
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                    </mfenced>
+                </math>
+            </td>
+        </tr>
+        <tr>
+            <td>+</td>
+            <td>
+                <math display='inline'>
+                    <mfenced separators="" open="" close="">
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                        <mn>0</mn>
+                        <mn>0</mn>
+                    </mfenced>
+                </math>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <hr/>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <math display='inline'>
+                    <mfenced separators="" open="" close="">
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                        <mn>1</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                    </mfenced>
+                </math>
+            </td>
+        </tr>
+    </table>
+    <p>Продолжив описанный процесс, в конечном итоге получаем следующий результат:</p>
+    <table align="center">
+        <tr>
+            <td></td>
+            <td>
+                <math display='inline'>
+                    <mfenced separators="" open="" close="">
+                        <mn>0</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                        <mn>1</mn>
+                        <mn>0</mn>
+                        <mn>1</mn>
+                    </mfenced>
+                </math>
+                .
+            </td>
+        </tr>
+    </table>
+</div>
+<p>Очевидно, что при выполнении операции умножения переполнение разрядной сетки может произойти как при сдвиге, так и
+    при сложении операндов.</p>
+<p>Ниже представлен калькулятор для демонстрации <a href='7_5.html#ia_alu'>сложения</a> и умножения целых чисел без
+    знака.</p>
 <form id="f1">
-Выберите разрядную сетку:<br />
-<input type='radio' id="r8" name='bit' value="8" checked='checked' />8-битная<br />
-<input type='radio' id="r16" name="bit" value="16" />16-битная<br />
-<input type='radio' id="r32" name="bit" value="32" />32-битная<br />
-Введите в десятичной системе счисления операнды:<br />
-Операнд 1:<input type='text' id="num1" size='10' /><br />
-Операнд 2:<input type='text' id="num2" size='10' /><br />
-<input type='button' value="Сложить" onclick="start(1)" />
-<input type='button' value="Перемножить" onclick="start(2)" />
-<input type='reset' value='Очистить' /><br />
+    Выберите разрядную сетку:<br/>
+    <input type='radio' id="r8" name='bit' value="8" checked='checked'/>8-битная<br/>
+    <input type='radio' id="r16" name="bit" value="16"/>16-битная<br/>
+    <input type='radio' id="r32" name="bit" value="32"/>32-битная<br/>
+    Введите в десятичной системе счисления операнды:<br/>
+    Операнд 1:<input type='text' id="num1" size='10'/><br/>
+    Операнд 2:<input type='text' id="num2" size='10'/><br/>
+    <input type='button' value="Сложить" onclick="start(1)"/>
+    <input type='button' value="Перемножить" onclick="start(2)"/>
+    <input type='reset' value='Очистить'/><br/>
 </form>
 <table id='table_sum'></table>
 <h3>Контрольные вопросы и упражнения</h3>
 <ol>
-<li>Что означает определить тип числовой переменной?</li>
-<li>Вычислите максимальное целое число без знака, кодируемое в 16-разрядной сетке.</li>
-<li>Сколько целых чисел без знака кодируется в 8-разрядной (16-разрядной) сетке?</li>
-<li>В 8-разрядной сетке закодируйте, как целые числа без знака, число дня и номер месяца своего рождения. В тетради (в системе электронных таблиц) выполните операции сложения и умножения заданных чисел в указанной разрядной сетке. Результат проверьте на встроенном калькуляторе.</li>
+    <li>Что означает определить тип числовой переменной?</li>
+    <li>Вычислите максимальное целое число без знака, кодируемое в 16-разрядной сетке.</li>
+    <li>Сколько целых чисел без знака кодируется в 8-разрядной (16-разрядной) сетке?</li>
+    <li>В 8-разрядной сетке закодируйте, как целые числа без знака, число дня и номер месяца своего рождения. В тетради
+        (в системе электронных таблиц) выполните операции сложения и умножения заданных чисел в указанной разрядной
+        сетке. Результат проверьте на встроенном калькуляторе.
+    </li>
 </ol>
 <p><a href="4_3.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="4_5.html">К следующему</a></p>
 </body>
+<script type="text/javascript">
+    MathJax.Hub.Configured()
+</script>
 </html>

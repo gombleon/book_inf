@@ -1,396 +1,1147 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset='UTF-8' />
-<link rel='stylesheet' type='text/css' href='style.css' />
-<meta name='author' content='leonid' />
-<title>Алгоритмы с возвратом</title>
-<script type="text/javascript">
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+  extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});
+
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <meta charset='UTF-8'/>
+    <link rel='stylesheet' type='text/css' href='style.css'/>
+    <meta name='author' content='leonid'/>
+    <title>Алгоритмы с возвратом</title>
+    <script type="text/javascript">
 
 
-</script>
+    </script>
 </head>
 <body>
 <p><a href="8_12_3.html">К предыдущему</a> <a href="index.html">К содержанию</a></p>
 <h2>8.12.4. Алгоритмы с возвратом</h2>
-<p>В настоящем параграфе рассмотрим поиск решения определенной задачи методом проб и ошибок. Задача поиска решения сводится к отдельным подзадачам, которые описываются посредством рекурсии. Процесс проб и ошибок строит и рассматривает дерево подзадач. Обычно с ростом параметра задачи такие деревья растут в экспоненциальном порядке, и возникает необходимость сведения количества операций к разумным пределам.</p>
-<p>На примере задачи обхода конем шахматной доски рассмотрим общий принцип разбиения задачи на подзадачи и использование в них рекурсии.</p>
-<p>Пусть дана доска <math><mn>8</mn><mo>&#215;</mo><mn>8</mn></math> из <math><msup><mn>8</mn><mn>2</mn></msup></math> полей. Начальное положение коня на доске задается координатами <math><mfenced open='' close=''><msub><mi>x</mi><mn>0</mn></msub><msub><mi>y</mi><mn>0</mn></msub></mfenced></math>. Ходы конь выполняет по шахматным правилам. Требуется найти пути обхода доски конем (если они существуют), при которых каждая клетка посещается конем один раз. Очевидно, что если существует такой обход доски, то всего ходов должно быть <math><msup><mn>8</mn><mn>2</mn></msup><mo>-</mo><mn>1</mn></math>.</p>
-<p>Алгоритм (из книги Н. Вирта Алгоритмы + структуры данных = программы) решения задачи сводится к задаче выполнения очередного хода или установления невозможности следующего хода:</p>
+<p>В настоящем параграфе рассмотрим поиск решения определенной задачи методом проб и ошибок. Задача поиска решения
+    сводится к отдельным подзадачам, которые описываются посредством рекурсии. Процесс проб и ошибок строит и
+    рассматривает дерево подзадач. Обычно с ростом параметра задачи такие деревья растут в экспоненциальном порядке, и
+    возникает необходимость сведения количества операций к разумным пределам.</p>
+<p>На примере задачи обхода конем шахматной доски рассмотрим общий принцип разбиения задачи на подзадачи и использование
+    в них рекурсии.</p>
+<p>Пусть дана доска
+    <math>
+        <mn>8</mn>
+        <mo>&#215;</mo>
+        <mn>8</mn>
+    </math>
+    из
+    <math>
+        <msup>
+            <mn>8</mn>
+            <mn>2</mn>
+        </msup>
+    </math>
+    полей. Начальное положение коня на доске задается координатами
+    <math>
+        <mfenced open='' close=''>
+            <msub>
+                <mi>x</mi>
+                <mn>0</mn>
+            </msub>
+            <msub>
+                <mi>y</mi>
+                <mn>0</mn>
+            </msub>
+        </mfenced>
+    </math>
+    . Ходы конь выполняет по шахматным правилам. Требуется найти пути обхода доски конем (если они существуют), при
+    которых каждая клетка посещается конем один раз. Очевидно, что если существует такой обход доски, то всего ходов
+    должно быть
+    <math>
+        <msup>
+            <mn>8</mn>
+            <mn>2</mn>
+        </msup>
+        <mo>-</mo>
+        <mn>1</mn>
+    </math>
+    .
+</p>
+<p>Алгоритм (из книги Н. Вирта Алгоритмы + структуры данных = программы) решения задачи сводится к задаче выполнения
+    очередного хода или установления невозможности следующего хода:</p>
 <code>
-<p class='ind0'>PROCEDURE attempt_next;</p>
-<p class="ind0">BEGIN</p>
-<p class="ind1">REPEAT</p>
-<p class="ind2">IF ход_возможен THEN</p>
-<p class="ind3">записать_ход;</p>
-<p class="ind3">IF доска_не_заполнена THEN</p>
-<p class="ind4">attempt_next;</p>
-<p class="ind4">IF неудача THEN</p>
-<p class="ind5">отменить_предыдущий_ход;</p>
-<p class="ind4">END;</p>
-<p class="ind3">END;</p>
-<p class="ind2">END;</p>
-<p class="ind1">UNTIL (ход_удачный OR нет_хода)</p>
-<p class="ind0">END attempt_next;</p>
+    <p class='ind0'>PROCEDURE attempt_next;</p>
+    <p class="ind0">BEGIN</p>
+    <p class="ind1">REPEAT</p>
+    <p class="ind2">IF ход_возможен THEN</p>
+    <p class="ind3">записать_ход;</p>
+    <p class="ind3">IF доска_не_заполнена THEN</p>
+    <p class="ind4">attempt_next;</p>
+    <p class="ind4">IF неудача THEN</p>
+    <p class="ind5">отменить_предыдущий_ход;</p>
+    <p class="ind4">END;</p>
+    <p class="ind3">END;</p>
+    <p class="ind2">END;</p>
+    <p class="ind1">UNTIL (ход_удачный OR нет_хода)</p>
+    <p class="ind0">END attempt_next;</p>
 </code>
 <p>Перейдем к представлению данных. Историю ходов будем хранить в двумерном массиве h целого типа:</p>
 <ul>
-<li><math><mrow><mi>h</mi><mo>&#x2061;</mo><mrow><mo>[</mo><mi>x</mi><mo>, </mo><mi>y</mi><mo>]</mo></mrow></mrow><mo>=</mo><mn>0</mi></math>: поле <math><mo>&lt;</mo><mi>x</mi><mo>, </mo><mi>y</mi><mo>&gt;</mo></math> не посещалось конем;</li>
-<li><math><mrow><mi>h</mi><mo>&#x2061;</mo><mrow><mo>[</mo><mi>x</mi><mo>, </mo><mi>y</mi><mo>]</mo></mrow></mrow><mo>=</mo><mi>i</mi></math>: поле <math><mo>&lt;</mo><mi>x</mi><mo>, </mo><mi>y</mi><mo>&gt;</mo></math> посещалось конем на <math><mi>i</mi></math>-м ходу.</li>
+    <li>
+        <math>
+            <mrow>
+                <mi>h</mi>
+                <mo>&#x2061;</mo>
+                <mrow>
+                    <mo>[</mo>
+                    <mi>x</mi>
+                    <mo>,</mo>
+                    <mi>y</mi>
+                    <mo>]</mo>
+                </mrow>
+            </mrow>
+            <mo>=</mo>
+            <mn>0</mi>
+        </math>
+        : поле
+        <math>
+            <mo>&lt;</mo>
+            <mi>x</mi>
+            <mo>,</mo>
+            <mi>y</mi>
+            <mo>&gt;</mo>
+        </math>
+        не посещалось конем;
+    </li>
+    <li>
+        <math>
+            <mrow>
+                <mi>h</mi>
+                <mo>&#x2061;</mo>
+                <mrow>
+                    <mo>[</mo>
+                    <mi>x</mi>
+                    <mo>,</mo>
+                    <mi>y</mi>
+                    <mo>]</mo>
+                </mrow>
+            </mrow>
+            <mo>=</mo>
+            <mi>i</mi>
+        </math>
+        : поле
+        <math>
+            <mo>&lt;</mo>
+            <mi>x</mi>
+            <mo>,</mo>
+            <mi>y</mi>
+            <mo>&gt;</mo>
+        </math>
+        посещалось конем на
+        <math>
+            <mi>i</mi>
+        </math>
+        -м ходу.
+    </li>
 </ul>
-<p>Начальными условиями для следующего хода будут служить координаты <math><mo>&lt;</mo><mi>x</mi><mo>, </mo><mi>y</mi><mo>&gt;</mo></math> текущего положения коня и номер хода <math><mi>i</mi></math>. В логической переменной <math><mi>b</mi></math> будет фиксироваться результат следующего хода: <math><mi>b</mi><mo>=</mo><mi>TRUE</mi></math>, если ход выполнен; <math><mi>b</mi><mo>=</mo><mi>FALSE</mi></math>, если ход невозможен.</p>
-<p>Очевидно, что состояние &quot;конь доску не обошел&quot; определяется неравенством <math><mi>i</mi><mo>&lt;</mo><msup><mn>8</mn><mn>2</mn></msup></math>. </p>
-<p>Перейдем к определению допустимости хода коня с текущего поля <math><mo>&lt;</mo><mi>x</mi><mo>, </mo><mi>y</mi><mo>&gt;</mo></math> на поле <math><mo>&lt;</mo><mi>u</mi><mo>, </mo><mi>v</mi><mo>&gt;</mo></math>.
+<p>Начальными условиями для следующего хода будут служить координаты
+    <math>
+        <mo>&lt;</mo>
+        <mi>x</mi>
+        <mo>,</mo>
+        <mi>y</mi>
+        <mo>&gt;</mo>
+    </math>
+    текущего положения коня и номер хода
+    <math>
+        <mi>i</mi>
+    </math>
+    . В логической переменной
+    <math>
+        <mi>b</mi>
+    </math>
+    будет фиксироваться результат следующего хода:
+    <math>
+        <mi>b</mi>
+        <mo>=</mo>
+        <mi>TRUE</mi>
+    </math>
+    , если ход выполнен;
+    <math>
+        <mi>b</mi>
+        <mo>=</mo>
+        <mi>FALSE</mi>
+    </math>
+    , если ход невозможен.
 </p>
-<p>Во-первых, поле <math><mo>&lt;</mo><mi>u</mi><mo>, </mo><mi>v</mi><mo>&gt;</mo></math> должно быть в пределах доски: 
-<math><mn>0</mn><mo>&#8804;</mo><mi>u</mi><mo>&#8804;</mo><mn>7</mn></math> и <math><mn>0</mn><mo>&#8804;</mo><mi>v</mi><mo>&#8804;</mo><mn>7</mn></math>.
+<p>Очевидно, что состояние &quot;конь доску не обошел&quot; определяется неравенством
+    <math>
+        <mi>i</mi>
+        <mo>&lt;</mo>
+        <msup>
+            <mn>8</mn>
+            <mn>2</mn>
+        </msup>
+    </math>
+    .
 </p>
-<p>Во-вторых, конь ранее не должен был его посещать: 
-<math><mrow><mi>h</mi><mo>&#x2061;</mo><mrow><mo>[</mo><mi>u</mi><mo>, </mo><mi>v</mi><mo>]</mo></mrow></mrow><mo>=</mo><mn>0</mn></math>.
+<p>Перейдем к определению допустимости хода коня с текущего поля
+    <math>
+        <mo>&lt;</mo>
+        <mi>x</mi>
+        <mo>,</mo>
+        <mi>y</mi>
+        <mo>&gt;</mo>
+    </math>
+    на поле
+    <math>
+        <mo>&lt;</mo>
+        <mi>u</mi>
+        <mo>,</mo>
+        <mi>v</mi>
+        <mo>&gt;</mo>
+    </math>
+    .
 </p>
-<p>В третьих, конь с поля <math><mo>&lt;</mo><mi>x</mi><mo>, </mo><mi>y</mi><mo>&gt;</mo></math> перейти на поле <math><mo>&lt;</mo><mi>u</mi><mo>, </mo><mi>v</mi><mo>&gt;</mo></math> может при выполнении условия
-<math>
-<mrow>
-	<mo>(</mo>
-	<mrow>
-		<mo>(</mo>
-		<mrow><mo>|</mo><mi>x</mi><mo>-</mo><mi>u</mi><mo>|</mo></mrow><mo>=</mo><mn>2</mn>
-		<mo>)</mo>	
-	</mrow>
-	<mo>&</mo>
-	<mrow>
-		<mo>(</mo>
-		<mrow><mo>|</mo><mi>y</mi><mo>-</mo><mi>v</mi><mo>|</mo></mrow><mo>=</mo><mn>1</mn>
-		<mo>)</mo>
-	</mrow>
-	<mo>)</mo>
-</mrow>
-<mo>OR</mo>
-<mrow>
-	<mo>(</mo>
-	<mrow>
-		<mo>(</mo>
-		<mrow><mo>|</mo><mi>x</mi><mo>-</mo><mi>u</mi><mo>|</mo></mrow><mo>=</mo><mn>1</mn>
-		<mo>)</mo>
-	</mrow>
-	<mo>&</mo>
-	<mrow>
-		<mo>(</mo>
-		<mrow><mo>|</mo><mi>y</mi><mo>-</mo><mi>v</mi><mo>|</mo></mrow><mo>=</mo><mn>2</mn>
-		<mo>)</mo>
-	</mrow>
-	<mo>)</mo>
-</mrow>
-</math>.
+<p>Во-первых, поле
+    <math>
+        <mo>&lt;</mo>
+        <mi>u</mi>
+        <mo>,</mo>
+        <mi>v</mi>
+        <mo>&gt;</mo>
+    </math>
+    должно быть в пределах доски:
+    <math>
+        <mn>0</mn>
+        <mo>&#8804;</mo>
+        <mi>u</mi>
+        <mo>&#8804;</mo>
+        <mn>7</mn>
+    </math>
+    и
+    <math>
+        <mn>0</mn>
+        <mo>&#8804;</mo>
+        <mi>v</mi>
+        <mo>&#8804;</mo>
+        <mn>7</mn>
+    </math>
+    .
 </p>
-<p>Факт перехода коня на поле <math><mo>&lt;</mo><mi>u</mi><mo>, </mo><mi>v</mi><mo>&gt;</mo></math> отмечается операцией присваивания 
-<math><mrow><mi>h</mi><mo>&#x2061;</mo><mrow><mo>[</mo><mi>u</mi><mo>, </mo><mi>v</mi><mo>]</mo></mrow></mrow><mo>:=</mo><mi>i</mi></math>. Отмена хода выполняется операцией  <math><mrow><mi>h</mi><mo>&#x2061;</mo><mrow><mo>[</mo><mi>u</mi><mo>, </mo><mi>v</mi><mo>]</mo></mrow></mrow><mo>:=</mo><mn>0</mn></math>.
+<p>Во-вторых, конь ранее не должен был его посещать:
+    <math>
+        <mrow>
+            <mi>h</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>[</mo>
+                <mi>u</mi>
+                <mo>,</mo>
+                <mi>v</mi>
+                <mo>]</mo>
+            </mrow>
+        </mrow>
+        <mo>=</mo>
+        <mn>0</mn>
+    </math>
+    .
+</p>
+<p>В третьих, конь с поля
+    <math>
+        <mo>&lt;</mo>
+        <mi>x</mi>
+        <mo>,</mo>
+        <mi>y</mi>
+        <mo>&gt;</mo>
+    </math>
+    перейти на поле
+    <math>
+        <mo>&lt;</mo>
+        <mi>u</mi>
+        <mo>,</mo>
+        <mi>v</mi>
+        <mo>&gt;</mo>
+    </math>
+    может при выполнении условия
+    <math>
+        <mrow>
+            <mo>(</mo>
+            <mrow>
+                <mo>(</mo>
+                <mrow>
+                    <mo>|</mo>
+                    <mi>x</mi>
+                    <mo>-</mo>
+                    <mi>u</mi>
+                    <mo>|</mo>
+                </mrow>
+                <mo>=</mo>
+                <mn>2</mn>
+                <mo>)</mo>
+            </mrow>
+            <mo>&</mo>
+            <mrow>
+                <mo>(</mo>
+                <mrow>
+                    <mo>|</mo>
+                    <mi>y</mi>
+                    <mo>-</mo>
+                    <mi>v</mi>
+                    <mo>|</mo>
+                </mrow>
+                <mo>=</mo>
+                <mn>1</mn>
+                <mo>)</mo>
+            </mrow>
+            <mo>)</mo>
+        </mrow>
+        <mo>OR</mo>
+        <mrow>
+            <mo>(</mo>
+            <mrow>
+                <mo>(</mo>
+                <mrow>
+                    <mo>|</mo>
+                    <mi>x</mi>
+                    <mo>-</mo>
+                    <mi>u</mi>
+                    <mo>|</mo>
+                </mrow>
+                <mo>=</mo>
+                <mn>1</mn>
+                <mo>)</mo>
+            </mrow>
+            <mo>&</mo>
+            <mrow>
+                <mo>(</mo>
+                <mrow>
+                    <mo>|</mo>
+                    <mi>y</mi>
+                    <mo>-</mo>
+                    <mi>v</mi>
+                    <mo>|</mo>
+                </mrow>
+                <mo>=</mo>
+                <mn>2</mn>
+                <mo>)</mo>
+            </mrow>
+            <mo>)</mo>
+        </mrow>
+    </math>
+    .
+</p>
+<p>Факт перехода коня на поле
+    <math>
+        <mo>&lt;</mo>
+        <mi>u</mi>
+        <mo>,</mo>
+        <mi>v</mi>
+        <mo>&gt;</mo>
+    </math>
+    отмечается операцией присваивания
+    <math>
+        <mrow>
+            <mi>h</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>[</mo>
+                <mi>u</mi>
+                <mo>,</mo>
+                <mi>v</mi>
+                <mo>]</mo>
+            </mrow>
+        </mrow>
+        <mo>:=</mo>
+        <mi>i</mi>
+    </math>
+    . Отмена хода выполняется операцией
+    <math>
+        <mrow>
+            <mi>h</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>[</mo>
+                <mi>u</mi>
+                <mo>,</mo>
+                <mi>v</mi>
+                <mo>]</mo>
+            </mrow>
+        </mrow>
+        <mo>:=</mo>
+        <mn>0</mn>
+    </math>
+    .
 </p>
 <code>
-<p class='ind0'>MODULE touring;</p>
-<p class='ind1'>IMPORT  Log := StdLog,  In := i21sysIn;</p>
-<p class='ind1'>PROCEDURE do*;</p>
-<p class='ind2'>VAR h: POINTER TO ARRAY OF ARRAY OF INTEGER;</p>
-<p class='ind3'>n, n_kv, x0, y0, i, j: INTEGER;</p>
-<p class='ind3'>a, b: ARRAY 8 OF INTEGER;</p>
-<p class='ind3'>q: BOOLEAN;</p>
-<p class='ind2'>PROCEDURE print(q: BOOLEAN);</p>
-<p class='ind3'>VAR  i, j: INTEGER;</p>
-<p class='ind2'>BEGIN</p>
-<p class='ind3'>IF q THEN</p>
-<p class='ind4'>Log.Ln;</p>
-<p class='ind4'>FOR i := 0 TO n-1  DO</p>
-<p class='ind5'>FOR j :=0  TO n-1  DO</p>
-<p class='ind6'>Log.Int(h[i, j]); Log.Tab;</p>			
-<p class='ind5'>END;</p>
-<p class='ind5'>Log.Ln</p>
-<p class='ind4'>END;</p>
-<p class='ind3'>ELSE</p>
-<p class='ind4'>Log.String('Нет решения');</p>
-<p class='ind3'>END;</p>	
-<p class='ind2'>END print;</p>
-<p class='ind2'>PROCEDURE attempt_next(i: INTEGER; OUT x, y: INTEGER): BOOLEAN;</p>
-<p class='ind3'>VAR q1: BOOLEAN; k, u, v: INTEGER;</p>
-<p class='ind2'>BEGIN</p>
-<p class='ind3'>k:=-1;</p>
-<p class='ind3'>REPEAT</p>
-<p class='ind4'>INC(k);</p>
-<p class='ind4'>q1:=FALSE;</p>
-<p class='ind4'>u:=x+a[k]; v:=y+b[k];</p>
-<p class='ind4'>IF (u&#8805;0) & (u&lt;n) & (v&#8805;0) & (v&lt;n) & (h[u, v]=0) THEN</p>
-<p class='ind5'>h[u, v]:=i;</p>
-<p class='ind5'>IF i=n_kv THEN</p>
-<p class='ind6'>q1:=TRUE;</p>
-<p class='ind5'>ELSE</p>
-<p class='ind6'>q1:=attempt_next(i+1, u, v);</p>
-<p class='ind6'>IF ~q1 THEN</p>
-<p class='ind7'>h[u, v]:=0</p>
-<p class='ind6'>END;</p>
-<p class='ind5'>END;</p>
-<p class='ind4'>END;</p>
-<p class='ind3'>UNTIL q1 OR (k=7);</p>
-<p class='ind3'>RETURN q1;</p>
-<p class='ind2'>END attempnt_next;</p>	
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>In.Open;</p>
-<p class='ind2'>In.Int(n); In.Int(x0); In.Int(y0);</p>
-<p class='ind2'>n_kv:=n*n;</p>
-<p class='ind2'>NEW(h, n, n);</p>
-<p class='ind2'>FOR i :=0  TO n-1 DO</p>
-<p class='ind3'>FOR j :=0  TO n-1 DO</p>
-<p class='ind4'>h[i, j]:=0</p>
-<p class='ind3'>END;</p>
-<p class='ind2'>END;</p>
-<p class='ind2'>a[0]:=2; b[0]:=1;</p>
-<p class='ind2'>a[1]:=1; b[1]:=2;</p>
-<p class='ind2'>a[2]:=-1; b[2]:=2;</p>
-<p class='ind2'>a[3]:=-2; b[3]:=1;</p>
-<p class='ind2'>a[4]:=-2; b[4]:=-1;</p>
-<p class='ind2'>a[5]:=-1; b[5]:=-2;</p>
-<p class='ind2'>a[6]:=1; b[6]:=-2;</p>
-<p class='ind2'>a[7]:=2; b[7]:=-1;</p>
-<p class='ind2'>i:=1;</p>
-<p class='ind2'>h[x0, y0]:=i;</p>
-<p class='ind2'>print(attempt_next(i+1, x0, y0));</p>
-<p class='ind1'>END do;</p>
-<p class='ind0'>END touring.</p>
+    <p class='ind0'>MODULE touring;</p>
+    <p class='ind1'>IMPORT Log := StdLog, In := i21sysIn;</p>
+    <p class='ind1'>PROCEDURE do*;</p>
+    <p class='ind2'>VAR h: POINTER TO ARRAY OF ARRAY OF INTEGER;</p>
+    <p class='ind3'>n, n_kv, x0, y0, i, j: INTEGER;</p>
+    <p class='ind3'>a, b: ARRAY 8 OF INTEGER;</p>
+    <p class='ind3'>q: BOOLEAN;</p>
+    <p class='ind2'>PROCEDURE print(q: BOOLEAN);</p>
+    <p class='ind3'>VAR i, j: INTEGER;</p>
+    <p class='ind2'>BEGIN</p>
+    <p class='ind3'>IF q THEN</p>
+    <p class='ind4'>Log.Ln;</p>
+    <p class='ind4'>FOR i := 0 TO n-1 DO</p>
+    <p class='ind5'>FOR j :=0 TO n-1 DO</p>
+    <p class='ind6'>Log.Int(h[i, j]); Log.Tab;</p>
+    <p class='ind5'>END;</p>
+    <p class='ind5'>Log.Ln</p>
+    <p class='ind4'>END;</p>
+    <p class='ind3'>ELSE</p>
+    <p class='ind4'>Log.String('Нет решения');</p>
+    <p class='ind3'>END;</p>
+    <p class='ind2'>END print;</p>
+    <p class='ind2'>PROCEDURE attempt_next(i: INTEGER; OUT x, y: INTEGER): BOOLEAN;</p>
+    <p class='ind3'>VAR q1: BOOLEAN; k, u, v: INTEGER;</p>
+    <p class='ind2'>BEGIN</p>
+    <p class='ind3'>k:=-1;</p>
+    <p class='ind3'>REPEAT</p>
+    <p class='ind4'>INC(k);</p>
+    <p class='ind4'>q1:=FALSE;</p>
+    <p class='ind4'>u:=x+a[k]; v:=y+b[k];</p>
+    <p class='ind4'>IF (u&#8805;0) & (u&lt;n) & (v&#8805;0) & (v&lt;n) & (h[u, v]=0) THEN</p>
+    <p class='ind5'>h[u, v]:=i;</p>
+    <p class='ind5'>IF i=n_kv THEN</p>
+    <p class='ind6'>q1:=TRUE;</p>
+    <p class='ind5'>ELSE</p>
+    <p class='ind6'>q1:=attempt_next(i+1, u, v);</p>
+    <p class='ind6'>IF ~q1 THEN</p>
+    <p class='ind7'>h[u, v]:=0</p>
+    <p class='ind6'>END;</p>
+    <p class='ind5'>END;</p>
+    <p class='ind4'>END;</p>
+    <p class='ind3'>UNTIL q1 OR (k=7);</p>
+    <p class='ind3'>RETURN q1;</p>
+    <p class='ind2'>END attempnt_next;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>In.Open;</p>
+    <p class='ind2'>In.Int(n); In.Int(x0); In.Int(y0);</p>
+    <p class='ind2'>n_kv:=n*n;</p>
+    <p class='ind2'>NEW(h, n, n);</p>
+    <p class='ind2'>FOR i :=0 TO n-1 DO</p>
+    <p class='ind3'>FOR j :=0 TO n-1 DO</p>
+    <p class='ind4'>h[i, j]:=0</p>
+    <p class='ind3'>END;</p>
+    <p class='ind2'>END;</p>
+    <p class='ind2'>a[0]:=2; b[0]:=1;</p>
+    <p class='ind2'>a[1]:=1; b[1]:=2;</p>
+    <p class='ind2'>a[2]:=-1; b[2]:=2;</p>
+    <p class='ind2'>a[3]:=-2; b[3]:=1;</p>
+    <p class='ind2'>a[4]:=-2; b[4]:=-1;</p>
+    <p class='ind2'>a[5]:=-1; b[5]:=-2;</p>
+    <p class='ind2'>a[6]:=1; b[6]:=-2;</p>
+    <p class='ind2'>a[7]:=2; b[7]:=-1;</p>
+    <p class='ind2'>i:=1;</p>
+    <p class='ind2'>h[x0, y0]:=i;</p>
+    <p class='ind2'>print(attempt_next(i+1, x0, y0));</p>
+    <p class='ind1'>END do;</p>
+    <p class='ind0'>END touring.</p>
 </code>
-<p>Другим известным примером применения метода проб и ошибок и алгоритма с возвратом является задача о расстановке восьми ферзей на шахматной доске таким образом, чтобы ни один из них не был под боем. </p>
-<p>Первым ее сформулировал в 1848 г. немецкий шахматист М. Беццель. Доктор Ф. Наук (слепой от рождения) нашел 60 решений и опубликовал их в газете &quot;Illustrierte Zeitung&quot; от 1 июня 1850 г. Этой задачей интересовался и Карл Гаусс, который нашел 72 решения задачи и сообщил об этом в письме к своему другу астроному Шумахеру 2 сентября 1850 г. Полный же набор решений, состоящий из 92 позиций, получил все тот же Ф. Наук (он привел их в упомянутой газете 21 сентября 1850 г.). Эта хронология установлена известным немецким исследователем математических развлечений В. Аренсом, который в своих книгах немало места уделил рассматриваемой задаче.</p>
-<p>Доказательство того, что 92 решения исчерпывают все возможности, было получено лишь в 1874 г. английским математиком Д. Глэшером (при помощи теории определителей).</p>
-<p>Очевидно, что ни один из восьми ферзей не будет под боем в том случае, если на каждой вертикали, горизонтали и диагонали шахматной доски находился один и только один ферзь. Пронумеруем ферзи по занимаемым ими вертикалям шахматной доски: i-ый ферзь занимает i-ую вертикаль. Определить положение i-го ферзя на i-ой вертикали означает выбрать подходящий j-ый номер одного из восьми горизонталей доски. В рекурсивную же процедуру достаточно передать номер i размещаемого на текущем шаге ферзя и логическую переменную, служащую для фиксации факта нахождения решения задачи. На каждой нисходящей диагонали шахматной доски сохраняет свою величину выражение <math><mrow><mi>i</mi><mo>-</mo><mi>j</mi><mo>+</mo><mn>7</mn></mrow></math>, а на каждой восходящей диагонали &#151; сумма <math><mrow><mi>i</mi><mo>+</mo><mi>j</mi></mrow></math>. Поэтому нисходящим диагоналям присвоим номера <math><mrow><mi>i</mi><mo>-</mo><mi>j</mi><mo>+</mo><mn>7</mn></mrow></math>, а восходящим &#151; <math><mrow><mi>i</mi><mo>+</mo><mi>j</mi></mrow></math>. Как <math><mrow><mi>i</mi><mo>-</mo><mi>j</mi><mo>+</mo><mn>7</mn></mrow></math>, так и <math><mrow><mi>i</mi><mo>+</mo><mi>j</mi></mrow></math> меняются от 0 до 14.</p>
-<p>Обсудим представление данных. Представление доски в виде двумерного массива усложняет проверку безопасности клетки по причине громоздкости логического условия. Проверка упрощается при таком представлении данных:</p>
+<p>Другим известным примером применения метода проб и ошибок и алгоритма с возвратом является задача о расстановке
+    восьми ферзей на шахматной доске таким образом, чтобы ни один из них не был под боем. </p>
+<p>Первым ее сформулировал в 1848 г. немецкий шахматист М. Беццель. Доктор Ф. Наук (слепой от рождения) нашел 60 решений
+    и опубликовал их в газете &quot;Illustrierte Zeitung&quot; от 1 июня 1850 г. Этой задачей интересовался и Карл
+    Гаусс, который нашел 72 решения задачи и сообщил об этом в письме к своему другу астроному Шумахеру 2 сентября 1850
+    г. Полный же набор решений, состоящий из 92 позиций, получил все тот же Ф. Наук (он привел их в упомянутой газете 21
+    сентября 1850 г.). Эта хронология установлена известным немецким исследователем математических развлечений В.
+    Аренсом, который в своих книгах немало места уделил рассматриваемой задаче.</p>
+<p>Доказательство того, что 92 решения исчерпывают все возможности, было получено лишь в 1874 г. английским математиком
+    Д. Глэшером (при помощи теории определителей).</p>
+<p>Очевидно, что ни один из восьми ферзей не будет под боем в том случае, если на каждой вертикали, горизонтали и
+    диагонали шахматной доски находился один и только один ферзь. Пронумеруем ферзи по занимаемым ими вертикалям
+    шахматной доски: i-ый ферзь занимает i-ую вертикаль. Определить положение i-го ферзя на i-ой вертикали означает
+    выбрать подходящий j-ый номер одного из восьми горизонталей доски. В рекурсивную же процедуру достаточно передать
+    номер i размещаемого на текущем шаге ферзя и логическую переменную, служащую для фиксации факта нахождения решения
+    задачи. На каждой нисходящей диагонали шахматной доски сохраняет свою величину выражение
+    <math>
+        <mrow>
+            <mi>i</mi>
+            <mo>-</mo>
+            <mi>j</mi>
+            <mo>+</mo>
+            <mn>7</mn>
+        </mrow>
+    </math>
+    , а на каждой восходящей диагонали &#151; сумма
+    <math>
+        <mrow>
+            <mi>i</mi>
+            <mo>+</mo>
+            <mi>j</mi>
+        </mrow>
+    </math>
+    . Поэтому нисходящим диагоналям присвоим номера
+    <math>
+        <mrow>
+            <mi>i</mi>
+            <mo>-</mo>
+            <mi>j</mi>
+            <mo>+</mo>
+            <mn>7</mn>
+        </mrow>
+    </math>
+    , а восходящим &#151;
+    <math>
+        <mrow>
+            <mi>i</mi>
+            <mo>+</mo>
+            <mi>j</mi>
+        </mrow>
+    </math>
+    . Как
+    <math>
+        <mrow>
+            <mi>i</mi>
+            <mo>-</mo>
+            <mi>j</mi>
+            <mo>+</mo>
+            <mn>7</mn>
+        </mrow>
+    </math>
+    , так и
+    <math>
+        <mrow>
+            <mi>i</mi>
+            <mo>+</mo>
+            <mi>j</mi>
+        </mrow>
+    </math>
+    меняются от 0 до 14.
+</p>
+<p>Обсудим представление данных. Представление доски в виде двумерного массива усложняет проверку безопасности клетки по
+    причине громоздкости логического условия. Проверка упрощается при таком представлении данных:</p>
 <ul>
-<li>в целочисленном массиве <math><mi>x</mi></math> из восьми элементов фиксировать расстановку ферзей (<math><mrow><mi>x</mi><mo>[</mo><mi>i</mi><mo>]</mo></mrow><mo>=</mo><mi>j</mi></math> означает, что на i-ой вертикали клетку с номером j занял i-ый ферзь);</li>
-<li>в массиве <math><mi>a</mi></math> из восьми логических элементов  фиксировать занятость горизонталей (<math><mrow><mi>a</mi><mo>[</mo><mi>j</mi><mo>]</mo></mrow><mo>:=</mo><mi>FALSE</mi></math> означает, что j-ая горизонталь не под боем); </li>
-<li>в массиве <math><mi>b</mi></math> из пятнадцати логических элементов фиксировать занятость нисходящих диагоналей, а в другом подобном массиве c &#151; занятость восходящих диагоналей (например, <math><mrow><mi>b</mi><mo>[</mo><mrow><mi>i</mi><mo>-</mo><mi>j</mi><mo>+</mo><mn>7</mn></mrow><mo>]</mo></mrow><mo>=</mo><mi>TRUE</mi></math> означает, что нисходящая диагональ с номером <math><mrow><mi>i</mi><mo>-</mo><mi>j</mi><mo>+</mo><mn>7</mn></mrow></math> под боем, а условие <math><mrow><mi>c</mi><mo>[</mo><mrow><mi>i</mi><mo>+</mo><mi>j</mi></mrow><mo>]</mo></mrow><mo>=</mo><mi>FALSE</mi></math> &#151; восходящая диагональ с номером <math><mrow><mi>i</mi><mo>+</mo><mi>j</mi></mrow></math> свободна).</li>
+    <li>в целочисленном массиве
+        <math>
+            <mi>x</mi>
+        </math>
+        из восьми элементов фиксировать расстановку ферзей (
+        <math>
+            <mrow>
+                <mi>x</mi>
+                <mo>[</mo>
+                <mi>i</mi>
+                <mo>]</mo>
+            </mrow>
+            <mo>=</mo>
+            <mi>j</mi>
+        </math>
+        означает, что на i-ой вертикали клетку с номером j занял i-ый ферзь);
+    </li>
+    <li>в массиве
+        <math>
+            <mi>a</mi>
+        </math>
+        из восьми логических элементов фиксировать занятость горизонталей (
+        <math>
+            <mrow>
+                <mi>a</mi>
+                <mo>[</mo>
+                <mi>j</mi>
+                <mo>]</mo>
+            </mrow>
+            <mo>:=</mo>
+            <mi>FALSE</mi>
+        </math>
+        означает, что j-ая горизонталь не под боем);
+    </li>
+    <li>в массиве
+        <math>
+            <mi>b</mi>
+        </math>
+        из пятнадцати логических элементов фиксировать занятость нисходящих диагоналей, а в другом подобном массиве c
+        &#151; занятость восходящих диагоналей (например,
+        <math>
+            <mrow>
+                <mi>b</mi>
+                <mo>[</mo>
+                <mrow>
+                    <mi>i</mi>
+                    <mo>-</mo>
+                    <mi>j</mi>
+                    <mo>+</mo>
+                    <mn>7</mn>
+                </mrow>
+                <mo>]</mo>
+            </mrow>
+            <mo>=</mo>
+            <mi>TRUE</mi>
+        </math>
+        означает, что нисходящая диагональ с номером
+        <math>
+            <mrow>
+                <mi>i</mi>
+                <mo>-</mo>
+                <mi>j</mi>
+                <mo>+</mo>
+                <mn>7</mn>
+            </mrow>
+        </math>
+        под боем, а условие
+        <math>
+            <mrow>
+                <mi>c</mi>
+                <mo>[</mo>
+                <mrow>
+                    <mi>i</mi>
+                    <mo>+</mo>
+                    <mi>j</mi>
+                </mrow>
+                <mo>]</mo>
+            </mrow>
+            <mo>=</mo>
+            <mi>FALSE</mi>
+        </math> &#151; восходящая диагональ с номером
+        <math>
+            <mrow>
+                <mi>i</mi>
+                <mo>+</mo>
+                <mi>j</mi>
+            </mrow>
+        </math>
+        свободна).
+    </li>
 </ul>
 <p>Алгоритм решения задачи может быть таким:</p>
 <code>
-<p class='ind0'>try(i: INTEGER, VAR задача_решена: BOOLEAN);</p>
-<p class='ind1'>j:=-1;</p>
-<p class='ind1'>REPEAT;</p>
-<p class='ind2'>INC(j); задача_решена:= FALSE;</p>
-<p class='ind2'>IF клетка (i, j) не под боем THEN</p>
-<p class='ind3'>занять клетку (i, j);</p>
-<p class='ind3'>отметить вертикаль i, горизонталь j и диагонали (7+i-j), (i+j) под боем;</p>
-<p class='ind3'>IF i&lt;7 THEN</p>
-<p class='ind4'>try(i+1, q); (*попытаться найти на следующей вертикали свободную клетку для следующего ферзя*)</p>
-<p class='ind4'>IF ~задача_решена THEN</p> 
-<p class='ind5'>отменить ход</p>
-<p class='ind4'>END;</p>
-<p class='ind3'>ELSE</p>
-<p class='ind4'>задача_решена:= TRUE; (*i-ый ферзь последний*)</p>
-<p class='ind3'>END;</p>
-<p class='ind1'>UNTIL (j=7) OR задача решена;</p>
-<p class='ind0'>END try;</p>
+    <p class='ind0'>try(i: INTEGER, VAR задача_решена: BOOLEAN);</p>
+    <p class='ind1'>j:=-1;</p>
+    <p class='ind1'>REPEAT;</p>
+    <p class='ind2'>INC(j); задача_решена:= FALSE;</p>
+    <p class='ind2'>IF клетка (i, j) не под боем THEN</p>
+    <p class='ind3'>занять клетку (i, j);</p>
+    <p class='ind3'>отметить вертикаль i, горизонталь j и диагонали (7+i-j), (i+j) под боем;</p>
+    <p class='ind3'>IF i&lt;7 THEN</p>
+    <p class='ind4'>try(i+1, q); (*попытаться найти на следующей вертикали свободную клетку для следующего ферзя*)</p>
+    <p class='ind4'>IF ~задача_решена THEN</p>
+    <p class='ind5'>отменить ход</p>
+    <p class='ind4'>END;</p>
+    <p class='ind3'>ELSE</p>
+    <p class='ind4'>задача_решена:= TRUE; (*i-ый ферзь последний*)</p>
+    <p class='ind3'>END;</p>
+    <p class='ind1'>UNTIL (j=7) OR задача решена;</p>
+    <p class='ind0'>END try;</p>
 </code>
-<p>Выполнение процедуры <math><mi>try</mi></math> начинается с поиска на i-ой вертикали клетки не под боем. Если такая клетка будет найдена, то ее занимает i-ый ферзь, после чего будет вызвана следующая процедура <math><mi>try</mi></math> для нахождения свободной клетки на следующей вертикали или, в случае <math><mi>i</mo><mo>=</mo><mn>7</mn></math>, присвоение переменной задача_решена значения <math><mi>TRUE</mi></math> и завершение всех процедур <math><mi>try</mi></math>. В противном случае происходит выход из цикла REPEAT с сохранением переменной <math><mi>задача_решена</mi></math> значения <math><mi>FALSE</mi></math>, а также выход из процедуры <math><mi>try</mi></math> и возврат в предыдущую процедуру <math><mi>try</mi></math>, где, по условию <math><mi>задача_решена</mo><mo>=</mo><mi>FALSE</mi></math>, произойдет отмена последнего хода.</p>
-<p>Ниже представлена программа поиска решения задачи о расстановке восьми ферзей на шахматной доске (из книги Н. Вирта Алгоритмы + структуры данных = программы):</p>
+<p>Выполнение процедуры
+    <math>
+        <mi>try</mi>
+    </math>
+    начинается с поиска на i-ой вертикали клетки не под боем. Если такая клетка будет найдена, то ее занимает i-ый
+    ферзь, после чего будет вызвана следующая процедура
+    <math>
+        <mi>try</mi>
+    </math>
+    для нахождения свободной клетки на следующей вертикали или, в случае
+    <math>
+        <mi>i</mo>
+            <mo>=</mo>
+            <mn>7</mn>
+    </math>
+    , присвоение переменной задача_решена значения
+    <math>
+        <mi>TRUE</mi>
+    </math>
+    и завершение всех процедур
+    <math>
+        <mi>try</mi>
+    </math>
+    . В противном случае происходит выход из цикла REPEAT с сохранением переменной
+    <math>
+        <mi>задача_решена</mi>
+    </math>
+    значения
+    <math>
+        <mi>FALSE</mi>
+    </math>
+    , а также выход из процедуры
+    <math>
+        <mi>try</mi>
+    </math>
+    и возврат в предыдущую процедуру
+    <math>
+        <mi>try</mi>
+    </math>
+    , где, по условию
+    <math>
+        <mi>задача_решена</mo>
+            <mo>=</mo>
+            <mi>FALSE</mi>
+    </math>
+    , произойдет отмена последнего хода.
+</p>
+<p>Ниже представлена программа поиска решения задачи о расстановке восьми ферзей на шахматной доске (из книги Н. Вирта
+    Алгоритмы + структуры данных = программы):</p>
 <code>
-<p class='ind0'>MODULE queen1;</p>
-<p class='ind1'>IMPORT Log:=StdLog;</p>
-<p class='ind1'>PROCEDURE do*;</p>
-<p class='ind2'>VAR a: ARRAY 8 OF BOOLEAN;</p>
-<p class='ind3'>b, c: ARRAY 15 OF  BOOLEAN;</p>
-<p class='ind3'>x: ARRAY 8 OF INTEGER;</p>
-<p class='ind3'>q: BOOLEAN;</p>
-<p class='ind3'>k, sch: INTEGER;</p>
-<p class='ind2'>PROCEDURE try(i: INTEGER; VAR q: BOOLEAN);</p>
-<p class='ind3'>VAR  j: INTEGER;</p>
-<p class='ind2'>BEGIN</p>
-<p class='ind3'>j:=-1;</p>
-<p class='ind3'>REPEAT</p>
-<p class='ind4'>INC(j);</p>
-<p class='ind4'>q:=FALSE;</p>
-<p class='ind4'>IF a[j] & b[i+j] & c[7+i-j] THEN</p>
-<p class='ind5'>x[i]:=j;</p>
-<p class='ind5'>a[j]:=FALSE;</p>
-<p class='ind5'>b[i+j]:=FALSE;</p>
-<p class='ind5'>c[7+i-j]:=FALSE;</p>
-<p class='ind5'>IF i<7 THEN</p>
-<p class='ind6'>try(i+1,q);</p>
-<p class='ind6'>IF ~q THEN</p>
-<p class='ind7'>a[j]:=TRUE;</p>
-<p class='ind7'>b[i+j]:=TRUE;</p>
-<p class='ind7'>c[7+i-j]:=TRUE;</p>
-<p class='ind6'>END;</p>
-<p class='ind5'>ELSE</p>
-<p class='ind6'>q:=TRUE</p>	
-<p class='ind5'>END;</p>
-<p class='ind4'>END;</p>
-<p class='ind3'>UNTIL q OR (j=7);</p>	
-<p class='ind2'>END try;</p>	
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>sch:=0;</p>
-<p class='ind2'>FOR k :=0  TO 7 DO</p>
-<p class='ind3'>a[k]:=TRUE;</p>
-<p class='ind2'>END;</p>
-<p class='ind2'>FOR k :=0  TO 14 DO</p>
-<p class='ind3'>b[k]:=TRUE;</p>
-<p class='ind3'>c[k]:=TRUE</p>
-<p class='ind2'>END;</p>
-<p class='ind2'>try(0,q);</p>
-<p class='ind2'>IF q THEN</p>
-<p class='ind3'>FOR k:=0  TO 7 DO</p>
-<p class='ind4'>Log.Int(x[k]); Log.Tab;</p>
-<p class='ind3'>END;</p>
-<p class='ind3'>Log.Ln</p>
-<p class='ind2'>END;</p>
-<p class='ind1'>END do;</p>
-<p class='ind0'>END queen1.</p>
+    <p class='ind0'>MODULE queen1;</p>
+    <p class='ind1'>IMPORT Log:=StdLog;</p>
+    <p class='ind1'>PROCEDURE do*;</p>
+    <p class='ind2'>VAR a: ARRAY 8 OF BOOLEAN;</p>
+    <p class='ind3'>b, c: ARRAY 15 OF BOOLEAN;</p>
+    <p class='ind3'>x: ARRAY 8 OF INTEGER;</p>
+    <p class='ind3'>q: BOOLEAN;</p>
+    <p class='ind3'>k, sch: INTEGER;</p>
+    <p class='ind2'>PROCEDURE try(i: INTEGER; VAR q: BOOLEAN);</p>
+    <p class='ind3'>VAR j: INTEGER;</p>
+    <p class='ind2'>BEGIN</p>
+    <p class='ind3'>j:=-1;</p>
+    <p class='ind3'>REPEAT</p>
+    <p class='ind4'>INC(j);</p>
+    <p class='ind4'>q:=FALSE;</p>
+    <p class='ind4'>IF a[j] & b[i+j] & c[7+i-j] THEN</p>
+    <p class='ind5'>x[i]:=j;</p>
+    <p class='ind5'>a[j]:=FALSE;</p>
+    <p class='ind5'>b[i+j]:=FALSE;</p>
+    <p class='ind5'>c[7+i-j]:=FALSE;</p>
+    <p class='ind5'>IF i<7 THEN</p>
+    <p class='ind6'>try(i+1,q);</p>
+    <p class='ind6'>IF ~q THEN</p>
+    <p class='ind7'>a[j]:=TRUE;</p>
+    <p class='ind7'>b[i+j]:=TRUE;</p>
+    <p class='ind7'>c[7+i-j]:=TRUE;</p>
+    <p class='ind6'>END;</p>
+    <p class='ind5'>ELSE</p>
+    <p class='ind6'>q:=TRUE</p>
+    <p class='ind5'>END;</p>
+    <p class='ind4'>END;</p>
+    <p class='ind3'>UNTIL q OR (j=7);</p>
+    <p class='ind2'>END try;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>sch:=0;</p>
+    <p class='ind2'>FOR k :=0 TO 7 DO</p>
+    <p class='ind3'>a[k]:=TRUE;</p>
+    <p class='ind2'>END;</p>
+    <p class='ind2'>FOR k :=0 TO 14 DO</p>
+    <p class='ind3'>b[k]:=TRUE;</p>
+    <p class='ind3'>c[k]:=TRUE</p>
+    <p class='ind2'>END;</p>
+    <p class='ind2'>try(0,q);</p>
+    <p class='ind2'>IF q THEN</p>
+    <p class='ind3'>FOR k:=0 TO 7 DO</p>
+    <p class='ind4'>Log.Int(x[k]); Log.Tab;</p>
+    <p class='ind3'>END;</p>
+    <p class='ind3'>Log.Ln</p>
+    <p class='ind2'>END;</p>
+    <p class='ind1'>END do;</p>
+    <p class='ind0'>END queen1.</p>
 </code>
-<p>Рассмотрим задачу поиска всех вариантов безопасной расстановки восьми ферзей на шахматной доске. В предыдущей задаче ферзь с нулевым номером ставился обязательно на нулевую клетку нулевой вертикали. Здесь же следует рассмотреть варианты, в которых начальной клеткой может быть любая клетка на любой из восьми вертикалей шахматной доски. Поэтому логично использовать вложенный во внешний цикл по j от 0 до 7 неявный цикл с индексом по номеру вертикали i от 0 до 7 (рекурсию по i). </p>
-<p>Ниже представлен вариант программы решения задачи поиска всех решений задачи безопасной расстановки на шахматной доске восьми ферзей (из книги Н. Вирта Алгоритмы + структуры данных = программы):</p>
+<p>Рассмотрим задачу поиска всех вариантов безопасной расстановки восьми ферзей на шахматной доске. В предыдущей задаче
+    ферзь с нулевым номером ставился обязательно на нулевую клетку нулевой вертикали. Здесь же следует рассмотреть
+    варианты, в которых начальной клеткой может быть любая клетка на любой из восьми вертикалей шахматной доски. Поэтому
+    логично использовать вложенный во внешний цикл по j от 0 до 7 неявный цикл с индексом по номеру вертикали i от 0 до
+    7 (рекурсию по i). </p>
+<p>Ниже представлен вариант программы решения задачи поиска всех решений задачи безопасной расстановки на шахматной
+    доске восьми ферзей (из книги Н. Вирта Алгоритмы + структуры данных = программы):</p>
 <code>
-<p class='ind0'>MODULE queen2;</p>
-<p class='ind1'>IMPORT  Log := StdLog;</p>
-<p class='ind1'>PROCEDURE do*;</p>
-<p class='ind2'>VAR a: ARRAY 8 OF BOOLEAN;</p>
-<p class='ind3'>b, c: ARRAY 15 OF  BOOLEAN;</p>
-<p class='ind3'>x: ARRAY 8 OF INTEGER;</p>
-<p class='ind3'>k: INTEGER;</p>
-<p class='ind2'>PROCEDURE print;</p>
-<p class='ind3'>VAR  k: INTEGER;</p>
-<p class='ind2'>BEGIN</p>
-<p class='ind3'>FOR k:=0  TO 7 DO</p>
-<p class='ind4'>Log.Int(x[k]); Log.Tab;</p>
-<p class='ind3'>END;</p>
-<p class='ind3'>Log.Ln</p>		
-<p class='ind2'>END print;</p>
-<p class='ind2'>PROCEDURE try(i: INTEGER);</p>
-<p class='ind3'>VAR  j: INTEGER;</p>
-<p class='ind2'>BEGIN</p>
-<p class='ind3'>FOR j :=0  TO 7 DO</p>
-<p class='ind4'>IF a[j] & b[i+j] & c[7+i-j] THEN</p>
-<p class='ind5'>x[i]:=j;</p>
-<p class='ind5'>a[j]:=FALSE;</p>
-<p class='ind5'>b[i+j]:=FALSE;</p>
-<p class='ind5'>c[7+i-j]:=FALSE;</p>
-<p class='ind5'>IF i<7 THEN</p>
-<p class='ind6'>try(i+1)</p>
-<p class='ind5'>ELSE</p>
-<p class='ind6'>print()</p>
-<p class='ind5'>END;</p>
-<p class='ind5'>a[j]:=TRUE;</p>
-<p class='ind5'>b[i+j]:=TRUE;</p>
-<p class='ind5'>c[7+i-j]:=TRUE;</p>						
-<p class='ind4'>END;</p>
-<p class='ind3'>END;</p>
-<p class='ind2'>END try;</p>
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>FOR k :=0  TO 7 DO</p>
-<p class='ind3'>a[k]:=TRUE;</p>
-<p class='ind2'>END;</p>
-<p class='ind2'>FOR k :=0  TO 14 DO</p>
-<p class='ind3'>b[k]:=TRUE;</p>
-<p class='ind3'>c[k]:=TRUE</p>
-<p class='ind2'>END;</p>
-<p class='ind2'>try(0);</p>
-<p class='ind1'>END do;</p>
-<p class='ind0'>END queen2.</p>
+    <p class='ind0'>MODULE queen2;</p>
+    <p class='ind1'>IMPORT Log := StdLog;</p>
+    <p class='ind1'>PROCEDURE do*;</p>
+    <p class='ind2'>VAR a: ARRAY 8 OF BOOLEAN;</p>
+    <p class='ind3'>b, c: ARRAY 15 OF BOOLEAN;</p>
+    <p class='ind3'>x: ARRAY 8 OF INTEGER;</p>
+    <p class='ind3'>k: INTEGER;</p>
+    <p class='ind2'>PROCEDURE print;</p>
+    <p class='ind3'>VAR k: INTEGER;</p>
+    <p class='ind2'>BEGIN</p>
+    <p class='ind3'>FOR k:=0 TO 7 DO</p>
+    <p class='ind4'>Log.Int(x[k]); Log.Tab;</p>
+    <p class='ind3'>END;</p>
+    <p class='ind3'>Log.Ln</p>
+    <p class='ind2'>END print;</p>
+    <p class='ind2'>PROCEDURE try(i: INTEGER);</p>
+    <p class='ind3'>VAR j: INTEGER;</p>
+    <p class='ind2'>BEGIN</p>
+    <p class='ind3'>FOR j :=0 TO 7 DO</p>
+    <p class='ind4'>IF a[j] & b[i+j] & c[7+i-j] THEN</p>
+    <p class='ind5'>x[i]:=j;</p>
+    <p class='ind5'>a[j]:=FALSE;</p>
+    <p class='ind5'>b[i+j]:=FALSE;</p>
+    <p class='ind5'>c[7+i-j]:=FALSE;</p>
+    <p class='ind5'>IF i<7 THEN</p>
+    <p class='ind6'>try(i+1)</p>
+    <p class='ind5'>ELSE</p>
+    <p class='ind6'>print()</p>
+    <p class='ind5'>END;</p>
+    <p class='ind5'>a[j]:=TRUE;</p>
+    <p class='ind5'>b[i+j]:=TRUE;</p>
+    <p class='ind5'>c[7+i-j]:=TRUE;</p>
+    <p class='ind4'>END;</p>
+    <p class='ind3'>END;</p>
+    <p class='ind2'>END try;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>FOR k :=0 TO 7 DO</p>
+    <p class='ind3'>a[k]:=TRUE;</p>
+    <p class='ind2'>END;</p>
+    <p class='ind2'>FOR k :=0 TO 14 DO</p>
+    <p class='ind3'>b[k]:=TRUE;</p>
+    <p class='ind3'>c[k]:=TRUE</p>
+    <p class='ind2'>END;</p>
+    <p class='ind2'>try(0);</p>
+    <p class='ind1'>END do;</p>
+    <p class='ind0'>END queen2.</p>
 </code>
-<p>Из каждого решения задачи о расстановке восьми ферзей можно получить еще три решения посредством поворотов доски вокруг центра на 90, 180 и 270 против часовой стрелки (по часовой стрелке). Пусть <math><mfenced open="&lt;" close="&gt;"><mi>i</mi><mi>j</mi></mfenced></math> &#151; координаты ферзя на шахматной доске до операции поворота против часовой стрелки, а <math><mfenced open="&lt;" close="&gt;"><mi>i'</mi><mi>j'</mi></mfenced></math> &#151; после поворота на соответствующий угол. Связь между старыми и новыми координатами представлена в таблице ниже:</p>
+<p>Из каждого решения задачи о расстановке восьми ферзей можно получить еще три решения посредством поворотов доски
+    вокруг центра на 90, 180 и 270 против часовой стрелки (по часовой стрелке). Пусть
+    <math>
+        <mfenced open="&lt;" close="&gt;">
+            <mi>i</mi>
+            <mi>j</mi>
+        </mfenced>
+    </math> &#151; координаты ферзя на шахматной доске до операции поворота против часовой стрелки, а
+    <math>
+        <mfenced open="&lt;" close="&gt;">
+            <mi>i'</mi>
+            <mi>j'</mi>
+        </mfenced>
+    </math> &#151; после поворота на соответствующий угол. Связь между старыми и новыми координатами представлена в
+    таблице ниже:
+</p>
 <table border="1">
-<caption>Таблица 8.12.4.1</caption>
-<tr>
-<td>Угол</td>
-<td><math><mn>90</mn></math></td>
-<td><math><mn>180</mn></math></td>
-<td><math><mn>270</mn></math></td>
-</tr>
-<tr>
-<td>i'</td>
-<td><math><mi>j</mi></math></td>
-<td><math><mrow><mn>7</mn><mo>-</mo><mi>i</mi></mrow></math></td>
-<td><math><mrow><mn>7</mn><mo>-</mo><mi>j</mi></mrow></math></td>
-</tr>
-<tr>
-<td>j'</td>
-<td><math><mrow><mn>7</mn><mo>-</mo><mi>i</mi></mrow></math></td>
-<td><math><mrow><mn>7</mn><mo>-</mo><mi>j</mi></mrow></math></td>
-<td><math><mi>i</mi></math></td>
-</tr>
+    <caption>Таблица 8.12.4.1</caption>
+    <tr>
+        <td>Угол</td>
+        <td>
+            <math>
+                <mn>90</mn>
+            </math>
+        </td>
+        <td>
+            <math>
+                <mn>180</mn>
+            </math>
+        </td>
+        <td>
+            <math>
+                <mn>270</mn>
+            </math>
+        </td>
+    </tr>
+    <tr>
+        <td>i'</td>
+        <td>
+            <math>
+                <mi>j</mi>
+            </math>
+        </td>
+        <td>
+            <math>
+                <mrow>
+                    <mn>7</mn>
+                    <mo>-</mo>
+                    <mi>i</mi>
+                </mrow>
+            </math>
+        </td>
+        <td>
+            <math>
+                <mrow>
+                    <mn>7</mn>
+                    <mo>-</mo>
+                    <mi>j</mi>
+                </mrow>
+            </math>
+        </td>
+    </tr>
+    <tr>
+        <td>j'</td>
+        <td>
+            <math>
+                <mrow>
+                    <mn>7</mn>
+                    <mo>-</mo>
+                    <mi>i</mi>
+                </mrow>
+            </math>
+        </td>
+        <td>
+            <math>
+                <mrow>
+                    <mn>7</mn>
+                    <mo>-</mo>
+                    <mi>j</mi>
+                </mrow>
+            </math>
+        </td>
+        <td>
+            <math>
+                <mi>i</mi>
+            </math>
+        </td>
+    </tr>
 </table>
-<p>Четыре зеркальных отражения доски относительно диагоналей доски или линий, делящих доску на два равных прямоугольника, также дают решения задачи расстановки ферзей (возможно, совпадающих с исходным решением).</p>
+<p>Четыре зеркальных отражения доски относительно диагоналей доски или линий, делящих доску на два равных
+    прямоугольника, также дают решения задачи расстановки ферзей (возможно, совпадающих с исходным решением).</p>
 <table border="1">
-<caption>Таблица 8.12.4.2</caption>
-<tr>
-<td>Отражения</td>
-<td>по вертикальной линии</td>
-<td>по горизонтальной линии</td>
-<td>по главной диагонали</td>
-<td>по побочной диагонали</td>
-</tr>
-<tr>
-<td>i'</td>
-<td><math><mrow><mn>7</mn><mo>-</mo><mi>i</mi></mrow></math></td>
-<td><math><mi>i</mi></math></td>
-<td><math><mi>j</mi></math></td>
-<td><math><mrow><mn>7</mn><mo>-</mo><mi>j</mi></mrow></math></td>
-</tr>
-<tr>
-<td>j'</td>
-<td><math><mi>j</mi></math></td>
-<td><math><mrow><mn>7</mn><mo>-</mo><mi>j</mi></mrow></math></td>
-<td><math><mi>i</mi></math></td>
-<td><math><mrow><mn>7</mn><mo>-</mo><mi>i</mi></mrow></math></td>
-</tr>
+    <caption>Таблица 8.12.4.2</caption>
+    <tr>
+        <td>Отражения</td>
+        <td>по вертикальной линии</td>
+        <td>по горизонтальной линии</td>
+        <td>по главной диагонали</td>
+        <td>по побочной диагонали</td>
+    </tr>
+    <tr>
+        <td>i'</td>
+        <td>
+            <math>
+                <mrow>
+                    <mn>7</mn>
+                    <mo>-</mo>
+                    <mi>i</mi>
+                </mrow>
+            </math>
+        </td>
+        <td>
+            <math>
+                <mi>i</mi>
+            </math>
+        </td>
+        <td>
+            <math>
+                <mi>j</mi>
+            </math>
+        </td>
+        <td>
+            <math>
+                <mrow>
+                    <mn>7</mn>
+                    <mo>-</mo>
+                    <mi>j</mi>
+                </mrow>
+            </math>
+        </td>
+    </tr>
+    <tr>
+        <td>j'</td>
+        <td>
+            <math>
+                <mi>j</mi>
+            </math>
+        </td>
+        <td>
+            <math>
+                <mrow>
+                    <mn>7</mn>
+                    <mo>-</mo>
+                    <mi>j</mi>
+                </mrow>
+            </math>
+        </td>
+        <td>
+            <math>
+                <mi>i</mi>
+            </math>
+        </td>
+        <td>
+            <math>
+                <mrow>
+                    <mn>7</mn>
+                    <mo>-</mo>
+                    <mi>i</mi>
+                </mrow>
+            </math>
+        </td>
+    </tr>
 </table>
-<p>Все решения задачи расстановки ферзей можно разделить на два класса: простые и симметрические. Если при повороте доски на 90 градусов получается новое решение, а четыре отражения дают лишь два новых решения, то исходное решение называют симметрическим. Если же три поворота и четыре отражения дают семь новых решений, то исходное решение называют простым.</p>
-<p>Множество решений задачи расстановки восьми ферзей называется основным,если они, во-первых, не переходят друг в друга при поворотах и отражениях доски, и, во-вторых, любое другое решение получается из какой-нибудь основного решения при помощи этих преобразований. Известно, что всякий набор основных решений задачи содержит ровно 12 позиций (расстановок восьми ферзей). Пример такого набора:</p>
+<p>Все решения задачи расстановки ферзей можно разделить на два класса: простые и симметрические. Если при повороте
+    доски на 90 градусов получается новое решение, а четыре отражения дают лишь два новых решения, то исходное решение
+    называют симметрическим. Если же три поворота и четыре отражения дают семь новых решений, то исходное решение
+    называют простым.</p>
+<p>Множество решений задачи расстановки восьми ферзей называется основным,если они, во-первых, не переходят друг в друга
+    при поворотах и отражениях доски, и, во-вторых, любое другое решение получается из какой-нибудь основного решения
+    при помощи этих преобразований. Известно, что всякий набор основных решений задачи содержит ровно 12 позиций
+    (расстановок восьми ферзей). Пример такого набора:</p>
 <table>
-<caption>Таблица 8.12.4.3</caption>
-<tr>
-<td>3</td><td>0</td><td>4</td><td>7</td><td>5</td><td>2</td><td>6</td><td>1</td>
-</tr>
-<tr>
-<td>3</td><td>1</td><td>4</td><td>7</td><td>5</td><td>0</td><td>2</td><td>6</td>
-</tr>
-<tr>
-<td>3</td><td>1</td><td>6</td><td>2</td><td>5</td><td>7</td><td>0</td><td>4</td>
-</tr>
-<tr>
-<td>3</td><td>1</td><td>6</td><td>2</td><td>5</td><td>7</td><td>4</td><td>0</td>
-</tr>
-<tr>
-<td>2</td><td>4</td><td>1</td><td>7</td><td>5</td><td>3</td><td>6</td><td>1</td>
-</tr>
-<tr>
-<td>2</td><td>6</td><td>1</td><td>7</td><td>4</td><td>0</td><td>3</td><td>5</td>
-</tr>
-<tr>
-<td>3</td><td>6</td><td>2</td><td>7</td><td>1</td><td>4</td><td>0</td><td>5</td>
-</tr>
-<tr>
-<td>5</td><td>3</td><td>1</td><td>7</td><td>4</td><td>6</td><td>0</td><td>2</td>
-</tr>
-<tr>
-<td>3</td><td>7</td><td>0</td><td>4</td><td>6</td><td>1</td><td>5</td><td>2</td>
-</tr>
-<tr>
-<td>3</td><td>1</td><td>6</td><td>4</td><td>0</td><td>7</td><td>5</td><td>2</td>
-</tr>
-<tr>
-<td>5</td><td>1</td><td>6</td><td>0</td><td>3</td><td>7</td><td>4</td><td>2</td>
-</tr>
-<tr>
-<td>4</td><td>2</td><td>0</td><td>6</td><td>1</td><td>7</td><td>5</td><td>3</td>
-</tr>
+    <caption>Таблица 8.12.4.3</caption>
+    <tr>
+        <td>3</td>
+        <td>0</td>
+        <td>4</td>
+        <td>7</td>
+        <td>5</td>
+        <td>2</td>
+        <td>6</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>1</td>
+        <td>4</td>
+        <td>7</td>
+        <td>5</td>
+        <td>0</td>
+        <td>2</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>1</td>
+        <td>6</td>
+        <td>2</td>
+        <td>5</td>
+        <td>7</td>
+        <td>0</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>1</td>
+        <td>6</td>
+        <td>2</td>
+        <td>5</td>
+        <td>7</td>
+        <td>4</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>4</td>
+        <td>1</td>
+        <td>7</td>
+        <td>5</td>
+        <td>3</td>
+        <td>6</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>6</td>
+        <td>1</td>
+        <td>7</td>
+        <td>4</td>
+        <td>0</td>
+        <td>3</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>6</td>
+        <td>2</td>
+        <td>7</td>
+        <td>1</td>
+        <td>4</td>
+        <td>0</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>3</td>
+        <td>1</td>
+        <td>7</td>
+        <td>4</td>
+        <td>6</td>
+        <td>0</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>7</td>
+        <td>0</td>
+        <td>4</td>
+        <td>6</td>
+        <td>1</td>
+        <td>5</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>1</td>
+        <td>6</td>
+        <td>4</td>
+        <td>0</td>
+        <td>7</td>
+        <td>5</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>1</td>
+        <td>6</td>
+        <td>0</td>
+        <td>3</td>
+        <td>7</td>
+        <td>4</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>2</td>
+        <td>0</td>
+        <td>6</td>
+        <td>1</td>
+        <td>7</td>
+        <td>5</td>
+        <td>3</td>
+    </tr>
 </table>
-<p>Остальные 80 позиций получаются из этих двенадцати в результате поворотов и отражений доски. Первые 11 расстановок являются простыми, и лишь последняя &#151; симметрической. Таким образом, всего на доске существуют <math><mrow><mn>11</mn><mo>×</mo><mn>8</mn><mo>+</mo> <mn>1</mn><mo>×</mo><mn>4</mn></mrow><mo>=</mo><mn>92</mn></math> расстановки восьми ферзей, не угрожающих друг другу.</p>
+<p>Остальные 80 позиций получаются из этих двенадцати в результате поворотов и отражений доски. Первые 11 расстановок
+    являются простыми, и лишь последняя &#151; симметрической. Таким образом, всего на доске существуют
+    <math>
+        <mrow>
+            <mn>11</mn>
+            <mo>×</mo>
+            <mn>8</mn>
+            <mo>+</mo>
+            <mn>1</mn>
+            <mo>×</mo>
+            <mn>4</mn>
+        </mrow>
+        <mo>=</mo>
+        <mn>92</mn>
+    </math>
+    расстановки восьми ферзей, не угрожающих друг другу.
+</p>
 <h3>Задачи длясамостоятельного решения</h3>
 <ol>
-<li>Для доски <math><mn>5</mn><mo>&#215;</mo><mn>5</mn></math> укажите поля, обход доски с которых завершается неудачно.</li>
-<li>Составьте программу обхода конем прямоугольной шахматной доски <math><mi>m</mi><mo>&#215;</mo><mi>n</mi></math>.</li>
-<li>Модифицируйте программу обхода конем шахматной доски таким образом, чтобы она вычисляла количество рекурсивных вызовов процедуры attempt_next().</li>
-<li>В системе электронных таблиц из основного множества решений задачи безопасной расстановки восьми ферзей на шахматной доске сгенерируйте производные решения.</li>
-<li>Сколько всего симметрических решений имеет задача безопасной расстановки восьми ферзей на шахматной доске?</li>
-<li>Можно ли преобразовать симметрическое решение задачи безопасной расстановки восьми ферзей на шахматной доске в обычное посредством операций поворота доски вокруг центра или отражения относительно диагоналей доски (или горизонтальных и вертикальных линий)?</li>
-<li>В программе поиска всех решений задачи безопасной расстановки восьми ферзей на шахматной доске замените в рекурсивной процедуре цикл FOR на цикл Дейкстры и задайте условие, запрещающее занятие ферзем на нулевой вертикали клеток ниже второй. Будет ли это условие препятствовать генерированию решений, симметричных относительно вертикальной линии, делящей доску на два равных прямоугольника?</li>
-<li>Модифицируйте программу поиска всех решений задачи безопасной расстановки восьми ферзей на шахматной доске таким образом, чтобы в двумерный массив заносились только независимые друг от друга решения (каждое очередное найденное решение должно проверяться на предмет независимости от уже занесенных решений).</li>
+    <li>Для доски
+        <math>
+            <mn>5</mn>
+            <mo>&#215;</mo>
+            <mn>5</mn>
+        </math>
+        укажите поля, обход доски с которых завершается неудачно.
+    </li>
+    <li>Составьте программу обхода конем прямоугольной шахматной доски
+        <math>
+            <mi>m</mi>
+            <mo>&#215;</mo>
+            <mi>n</mi>
+        </math>
+        .
+    </li>
+    <li>Модифицируйте программу обхода конем шахматной доски таким образом, чтобы она вычисляла количество рекурсивных
+        вызовов процедуры attempt_next().
+    </li>
+    <li>В системе электронных таблиц из основного множества решений задачи безопасной расстановки восьми ферзей на
+        шахматной доске сгенерируйте производные решения.
+    </li>
+    <li>Сколько всего симметрических решений имеет задача безопасной расстановки восьми ферзей на шахматной доске?</li>
+    <li>Можно ли преобразовать симметрическое решение задачи безопасной расстановки восьми ферзей на шахматной доске в
+        обычное посредством операций поворота доски вокруг центра или отражения относительно диагоналей доски (или
+        горизонтальных и вертикальных линий)?
+    </li>
+    <li>В программе поиска всех решений задачи безопасной расстановки восьми ферзей на шахматной доске замените в
+        рекурсивной процедуре цикл FOR на цикл Дейкстры и задайте условие, запрещающее занятие ферзем на нулевой
+        вертикали клеток ниже второй. Будет ли это условие препятствовать генерированию решений, симметричных
+        относительно вертикальной линии, делящей доску на два равных прямоугольника?
+    </li>
+    <li>Модифицируйте программу поиска всех решений задачи безопасной расстановки восьми ферзей на шахматной доске таким
+        образом, чтобы в двумерный массив заносились только независимые друг от друга решения (каждое очередное
+        найденное решение должно проверяться на предмет независимости от уже занесенных решений).
+    </li>
 </ol>
 <p><a href='zadachi/36.html'>§36. Некоторые приемы программирования</a></p>
 <p><a href="8_12_3.html">К предыдущему</a> <a href="index.html">К содержанию</a></p>
 </body>
+<script type="text/javascript">
+    MathJax.Hub.Configured()
+</script>
 </html>

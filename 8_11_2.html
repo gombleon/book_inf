@@ -1,63 +1,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset='UTF-8' />
-<link rel='stylesheet' type='text/css' href='style.css' />
-<meta name='author' content='leonid' />
-<title>Алгоритм Кнута-Морриса-Пратта</title>
-<script type="text/javascript">
-function pref_suff(str) {
-	var win=open("", "newWindow"),  html, head, title, body, h2, p, n, len, mas=[];
-	win.document.open();
-	html=document.createElement("html");
-	win.document.appendChild(html);
-	head=document.createElement("head");
-	title=document.createElement("title");
-	title.textContent="Префиксы-суффиксы";
-	head.appendChild(title);
-	html.appendChild(head);
-	body=document.createElement("body");
-	html.appendChild(body);
-	h2=document.createElement("h2");
-	h2.textContent="Префиксы-суффиксы";
-	body.appendChild(h2);
-	n=str.length;
-	p=document.createElement("p");
-	p.textContent="Слово: '"+str+"'.";
-	body.appendChild(p);
-	i=0;
-	mas[0]=0;
-	
-	while (i!=n-1) {
-		len=mas[i];
-		p=document.createElement("p");
-		p.textContent="Слово "+str.substr(0,i+1)+", l("+i+")="+mas[i]+". Префикс-суффикс: "+str.substr(0,mas[i]);
-		body.appendChild(p);		
-		while ((str[len]!=str[i+1]) && (len>0)) {
-			len=mas[len-1];
-		}	
-		if (str[len]==str[i+1]) {
-			mas[i+1]=len+1;
-		}
-		else {
-			mas[i+1]=0;
-		}
-		i++;
-	}
-	p=document.createElement("p");
-	p.textContent="Слово "+str.substr(0,i+1)+", l("+i+")="+mas[i]+". Префикс-суффикс "+str.substr(0,mas[i]);
-	body.appendChild(p);		
-	win.document.close();
-}
-</script>	
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+  extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});
+
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <meta charset='UTF-8'/>
+    <link rel='stylesheet' type='text/css' href='style.css'/>
+    <meta name='author' content='leonid'/>
+    <title>Алгоритм Кнута-Морриса-Пратта</title>
+    <script type="text/javascript">
+        function pref_suff(str) {
+            var win = open("", "newWindow"), html, head, title, body, h2, p, n, len, mas = [];
+            win.document.open();
+            html = document.createElement("html");
+            win.document.appendChild(html);
+            head = document.createElement("head");
+            title = document.createElement("title");
+            title.textContent = "Префиксы-суффиксы";
+            head.appendChild(title);
+            html.appendChild(head);
+            body = document.createElement("body");
+            html.appendChild(body);
+            h2 = document.createElement("h2");
+            h2.textContent = "Префиксы-суффиксы";
+            body.appendChild(h2);
+            n = str.length;
+            p = document.createElement("p");
+            p.textContent = "Слово: '" + str + "'.";
+            body.appendChild(p);
+            i = 0;
+            mas[0] = 0;
+
+            while (i != n - 1) {
+                len = mas[i];
+                p = document.createElement("p");
+                p.textContent = "Слово " + str.substr(0, i + 1) + ", l(" + i + ")=" + mas[i] + ". Префикс-суффикс: " + str.substr(0, mas[i]);
+                body.appendChild(p);
+                while ((str[len] != str[i + 1]) && (len > 0)) {
+                    len = mas[len - 1];
+                }
+                if (str[len] == str[i + 1]) {
+                    mas[i + 1] = len + 1;
+                } else {
+                    mas[i + 1] = 0;
+                }
+                i++;
+            }
+            p = document.createElement("p");
+            p.textContent = "Слово " + str.substr(0, i + 1) + ", l(" + i + ")=" + mas[i] + ". Префикс-суффикс " + str.substr(0, mas[i]);
+            body.appendChild(p);
+            win.document.close();
+        }
+    </script>
 </head>
 <body>
-<p><a href="8_11_1.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_11_3.html">К следующему</a> </p>
+<p><a href="8_11_1.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_11_3.html">К следующему</a>
+</p>
 <h2>8.11.2. Алгоритм Кнута-Морриса-Пратта</h2>
-<p>Задача поиска строки в тексте заключается в поиске вхождения одной строки в другую строку. Самый простой и самый неэффективный алгоритм поиска вхождения одной строки в другую &#151; линейный.</p>
+<p>Задача поиска строки в тексте заключается в поиске вхождения одной строки в другую строку. Самый простой и самый
+    неэффективный алгоритм поиска вхождения одной строки в другую &#151; линейный.</p>
 <p>Пример реализации линейного поиска в Компонентном Паскале:</p>
 <p class='ind0'>MODULE poisk_podstr;</p>
-<p class='ind1'>IMPORT  Log := StdLog,  In := i21sysIn, Strings ;</p>
+<p class='ind1'>IMPORT Log := StdLog, In := i21sysIn, Strings ;</p>
 <p class='ind1'>PROCEDURE do*;</p>
 <p class='ind2'>TYPE stroka=POINTER TO ARRAY OF CHAR;</p>
 <p class='ind2'>VAR str, podstr: stroka;</p>
@@ -100,426 +114,962 @@ function pref_suff(str) {
 <p class='ind0'>END poisk_podstr.</p>
 <p class='ind0'>poisk_podstr.do "водоворот" "вор"</p>
 
-<p>Пусть 
-<math>
-	<mrow><mi>X</mi></mrow>
-	<mo>=</mo>
-	<mfenced open='' close='' separators=''>
-	<msub><mi>x</mi><mn>0</mn></msub>
-	<mi>&#133;</mi>
-	<msub><mi>x</mi><mrow><mi>n</mn><mo>-</mo><mn>1</mn></mrow></msub>
-	</mfenced>
-</math> &#151; некоторое слово (последовательность символов), 
-<math><mrow><mi>l</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>X</mi><mo>)</mo></mrow></mrow></math> &#151; наиболее длинный префикс <math><mrow><mi>X</mi></mrow></math>, одновременно являющийся и суффиксом <math><mrow><mi>X</mi></mrow></math>, причем 
-<math><mrow><mi>l</mi><mo>&#x2061;</mo><mrow><mo>(</mo><mi>X</mi><mo>)</mo></mrow></mrow></math> короче 
-<math><mi>X</mi></math>.
-Положим
-<math>
-<msub><mi>l</mi><mi>i</mi></msub>
-</math> &#151; длина слова
+<p>Пусть
+    <math>
+        <mrow>
+            <mi>X</mi>
+        </mrow>
+        <mo>=</mo>
+        <mfenced open='' close='' separators=''>
+            <msub>
+                <mi>x</mi>
+                <mn>0</mn>
+            </msub>
+            <mi>&#133;</mi>
+            <msub>
+                <mi>x</mi>
+                <mrow>
+                    <mi>n</mn>
+                        <mo>-</mo>
+                        <mn>1</mn>
+                </mrow>
+            </msub>
+        </mfenced>
+    </math> &#151; некоторое слово (последовательность символов),
+    <math>
+        <mrow>
+            <mi>l</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>(</mo>
+                <mi>X</mi>
+                <mo>)</mo>
+            </mrow>
+        </mrow>
+    </math> &#151; наиболее длинный префикс
+    <math>
+        <mrow>
+            <mi>X</mi>
+        </mrow>
+    </math>
+    , одновременно являющийся и суффиксом
+    <math>
+        <mrow>
+            <mi>X</mi>
+        </mrow>
+    </math>
+    , причем
+    <math>
+        <mrow>
+            <mi>l</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>(</mo>
+                <mi>X</mi>
+                <mo>)</mo>
+            </mrow>
+        </mrow>
+    </math>
+    короче
+    <math>
+        <mi>X</mi>
+    </math>
+    .
+    Положим
+    <math>
+        <msub>
+            <mi>l</mi>
+            <mi>i</mi>
+        </msub>
+    </math> &#151; длина слова
 
-<math>
+    <math>
 
-<mrow>
-	<mi>l</mi><mo>&#x2061;</mo>
-	<mrow>
-		<mo>(</mo>
-		<mfenced open='' close='' separators=''>
-			<msub><mi>x</mi><mn>0</mn></msub>
-			<mi>&#133;</mi>
-			<msub><mi>x</mi><mi>i</mi></msub>
-		</mfenced>
-		<mo>)</mo>
-	</mrow>
-</mrow>
-<mo>=</mo>
-	<mfenced open='' close='' separators=''>
-		<msub><mi>x</mi><mn>0</mn></msub>
-		<mi>&#133;</mi>
-		<msub>
-			<mi>x</mi>
-			<mrow>
-				<msub><mi>l</mi><mi>i</mi></msub>
-				<mo>-</mo>
-				<mn>1</mn>
-			</mrow>	
-		</msub>
-	</mfenced>
-<mo>,</mo>
-<mrow>
-	<mi>i</mi><mo>=</mo>
-	<mfenced open='' close=''><mn>0</mn><mi>&#133;</mi><mrow><mi>n</mn><mo>-</mo><mn>1</mn><mrow></mfenced>
-</mrow>
-</math>.
+        <mrow>
+            <mi>l</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>(</mo>
+                <mfenced open='' close='' separators=''>
+                    <msub>
+                        <mi>x</mi>
+                        <mn>0</mn>
+                    </msub>
+                    <mi>&#133;</mi>
+                    <msub>
+                        <mi>x</mi>
+                        <mi>i</mi>
+                    </msub>
+                </mfenced>
+                <mo>)</mo>
+            </mrow>
+        </mrow>
+        <mo>=</mo>
+        <mfenced open='' close='' separators=''>
+            <msub>
+                <mi>x</mi>
+                <mn>0</mn>
+            </msub>
+            <mi>&#133;</mi>
+            <msub>
+                <mi>x</mi>
+                <mrow>
+                    <msub>
+                        <mi>l</mi>
+                        <mi>i</mi>
+                    </msub>
+                    <mo>-</mo>
+                    <mn>1</mn>
+                </mrow>
+            </msub>
+        </mfenced>
+        <mo>,</mo>
+        <mrow>
+            <mi>i</mi>
+            <mo>=</mo>
+            <mfenced open='' close=''>
+                <mn>0</mn>
+                <mi>&#133;</mi>
+                <mrow>
+                    <mi>n</mn>
+                        <mo>-</mo>
+                        <mn>1</mn>
+                        <mrow>
+            </mfenced>
+        </mrow>
+    </math>
+    .
 
 </p>
-<p>Например, 
-<math><msub><mi>l</mi><mn>1</mn</msub></math>  &#151; длина наиболее длинного префикс-суффикса слова 
-<math>
-	<mfenced open='' close='' separators=''>
-			<msub><mi>x</mi><mn>0</mn></msub>
-			<msub><mi>x</mi><mn>1</mn></msub>
-	</mfenced>
-</math>;
-<math><msub><mi>l</mi><mn>2</mn</msub></math>  &#151; длина наиболее длинного префикс-суффикса слова 
-<math>
-	<mfenced open='' close='' separators=''>
-			<msub><mi>x</mi><mn>0</mn></msub>
-			<msub><mi>x</mi><mn>1</mn></msub>
-			<msub><mi>x</mi><mn>2</mn></msub>
-	</mfenced>
-</math>; 
-<math>
-	<mrow>
-		<mi>l</mi><mo>&#x2061;</mo>
-		<mrow>
-			<mo>(</mo>
-			<mfenced open='' close='' separators=''><mi>a</mi><mi>b</mi><mi>a</mi></mfenced>
-			<mo>)</mo>
-		</mrow>
-	</mrow>
-	<mo>=</mo>
-	<mi>a</mi>
-</math>,
-<math>
-	<mrow>
-		<mi>l</mi><mo>&#x2061;</mo>
-		<mrow>
-			<mo>(</mo>
-			<mfenced open='' close='' separators=''><mi>a</mi><mi>b</mi><mi>a</mi><mi>b</mi><mi>a</mi></mfenced>
-			<mo>)</mo>
-		</mrow>
-	</mrow>
-	<mo>=</mo>
-	<mfenced open='' close='' separators=''>
-		<mi>a</mi><mi>b</mi><mi>a</mi>
-	</mfenced>
-</math>, 
-<math>
-	<mrow>
-		<mi>l</mi><mo>&#x2061;</mo>
-		<mrow>
-			<mo>(</mo>
-			<mfenced open='' close='' separators=''><mi>a</mi><mi>b</mi><mi>c</mi></mfenced>
-			<mo>)</mo>
-		</mrow>
-	</mrow>
-	<mo>=</mo>
-	<mi>&#x2205;</mi>
-</math> &#151; пустое множество. Для 
-<math>
-	<mi>X</mi><mo>=</mo>
-	<mfenced open='' close='' separators=''>
-		<mi>a</mi><mi>b</mi><mi>a</mi><mi>b</mi><mi>c</mi>
-	</mfenced>
-</math>
-<math>	
-		<mfenced open='' close=''>
-			<mrow><msub><mi>l</mi><mn>0</mn></msub><mo>=</mo><mn>0</mn></mrow>
-			<mrow><msub><mi>l</mi><mn>1</mn></msub><mo>=</mo><mn>0</mn></mrow>
-			<mrow><msub><mi>l</mi><mn>2</mn></msub><mo>=</mo><mn>1</mn></mrow>
-			<mrow><msub><mi>l</mi><mn>3</mn></msub><mo>=</mo><mn>2</mn></mrow>
-			<mrow><msub><mi>l</mi><mn>4</mn></msub><mo>=</mo><mn>0</mn></mrow>
-		</mfenced>
-</math>.
+<p>Например,
+    <math>
+        <msub>
+            <mi>l</mi>
+            <mn>1</mn
+        </msub>
+    </math> &#151; длина наиболее длинного префикс-суффикса слова
+    <math>
+        <mfenced open='' close='' separators=''>
+            <msub>
+                <mi>x</mi>
+                <mn>0</mn>
+            </msub>
+            <msub>
+                <mi>x</mi>
+                <mn>1</mn>
+            </msub>
+        </mfenced>
+    </math>
+    ;
+    <math>
+        <msub>
+            <mi>l</mi>
+            <mn>2</mn
+        </msub>
+    </math> &#151; длина наиболее длинного префикс-суффикса слова
+    <math>
+        <mfenced open='' close='' separators=''>
+            <msub>
+                <mi>x</mi>
+                <mn>0</mn>
+            </msub>
+            <msub>
+                <mi>x</mi>
+                <mn>1</mn>
+            </msub>
+            <msub>
+                <mi>x</mi>
+                <mn>2</mn>
+            </msub>
+        </mfenced>
+    </math>
+    ;
+    <math>
+        <mrow>
+            <mi>l</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>(</mo>
+                <mfenced open='' close='' separators=''>
+                    <mi>a</mi>
+                    <mi>b</mi>
+                    <mi>a</mi>
+                </mfenced>
+                <mo>)</mo>
+            </mrow>
+        </mrow>
+        <mo>=</mo>
+        <mi>a</mi>
+    </math>
+    ,
+    <math>
+        <mrow>
+            <mi>l</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>(</mo>
+                <mfenced open='' close='' separators=''>
+                    <mi>a</mi>
+                    <mi>b</mi>
+                    <mi>a</mi>
+                    <mi>b</mi>
+                    <mi>a</mi>
+                </mfenced>
+                <mo>)</mo>
+            </mrow>
+        </mrow>
+        <mo>=</mo>
+        <mfenced open='' close='' separators=''>
+            <mi>a</mi>
+            <mi>b</mi>
+            <mi>a</mi>
+        </mfenced>
+    </math>
+    ,
+    <math>
+        <mrow>
+            <mi>l</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>(</mo>
+                <mfenced open='' close='' separators=''>
+                    <mi>a</mi>
+                    <mi>b</mi>
+                    <mi>c</mi>
+                </mfenced>
+                <mo>)</mo>
+            </mrow>
+        </mrow>
+        <mo>=</mo>
+        <mi>&#x2205;</mi>
+    </math> &#151; пустое множество. Для
+    <math>
+        <mi>X</mi>
+        <mo>=</mo>
+        <mfenced open='' close='' separators=''>
+            <mi>a</mi>
+            <mi>b</mi>
+            <mi>a</mi>
+            <mi>b</mi>
+            <mi>c</mi>
+        </mfenced>
+    </math>
+    <math>
+        <mfenced open='' close=''>
+            <mrow>
+                <msub>
+                    <mi>l</mi>
+                    <mn>0</mn>
+                </msub>
+                <mo>=</mo>
+                <mn>0</mn>
+            </mrow>
+            <mrow>
+                <msub>
+                    <mi>l</mi>
+                    <mn>1</mn>
+                </msub>
+                <mo>=</mo>
+                <mn>0</mn>
+            </mrow>
+            <mrow>
+                <msub>
+                    <mi>l</mi>
+                    <mn>2</mn>
+                </msub>
+                <mo>=</mo>
+                <mn>1</mn>
+            </mrow>
+            <mrow>
+                <msub>
+                    <mi>l</mi>
+                    <mn>3</mn>
+                </msub>
+                <mo>=</mo>
+                <mn>2</mn>
+            </mrow>
+            <mrow>
+                <msub>
+                    <mi>l</mi>
+                    <mn>4</mn>
+                </msub>
+                <mo>=</mo>
+                <mn>0</mn>
+            </mrow>
+        </mfenced>
+    </math>
+    .
 </p>
 
 
 <p><a id='knut_morris_pratt'>Алгоритм Кнута-Морриса_Пратта</a> для заданной строки символов
-<math>
-	<mrow><mi>X</mi></mrow>
-	<mo>=</mo>
-	<mfenced open='' close='' separators=''>
-	<msub><mi>x</mi><mn>0</mn></msub>
-	<mi>&#133;</mi>
-	<msub><mi>x</mi><mrow><mi>n</mn><mo>-</mo><mn>1</mn></mrow></msub>
-	</mfenced>
-</math>
- вычисляет длины 
-<math>
-<msub><mi>l</mi><mi>i</mi></msub>
-</math>
-для всех
-<math>
-	<mi>i</mi><mo>=</mo>
-	<mfenced open='' close=''><mn>1</mn><mi>&#133;</mi><mrow><mi>n</mn><mo>-</mo><mn>1</mn></mrow></mfenced>
-</math>.
+    <math>
+        <mrow>
+            <mi>X</mi>
+        </mrow>
+        <mo>=</mo>
+        <mfenced open='' close='' separators=''>
+            <msub>
+                <mi>x</mi>
+                <mn>0</mn>
+            </msub>
+            <mi>&#133;</mi>
+            <msub>
+                <mi>x</mi>
+                <mrow>
+                    <mi>n</mn>
+                        <mo>-</mo>
+                        <mn>1</mn>
+                </mrow>
+            </msub>
+        </mfenced>
+    </math>
+    вычисляет длины
+    <math>
+        <msub>
+            <mi>l</mi>
+            <mi>i</mi>
+        </msub>
+    </math>
+    для всех
+    <math>
+        <mi>i</mi>
+        <mo>=</mo>
+        <mfenced open='' close=''>
+            <mn>1</mn>
+            <mi>&#133;</mi>
+            <mrow>
+                <mi>n</mn>
+                    <mo>-</mo>
+                    <mn>1</mn>
+            </mrow>
+        </mfenced>
+    </math>
+    .
 </p>
 <p>Для описания алгоритма Кнута-Морриса-Пратта понадобятся два утверждения.</p>
 <p><span class='teorema'>Утверждение 1</span>. Все элементы последовательности
-<math>
-<mfenced open='' close=''>
-	<mrow>
-		<mi>l</mi><mo>&#x2061;</mo>
-		<mrow><mo>(</mo><mi>X</mi><mo>)</mo>
-		</mrow>
-	</mrow>
-	<mrow><mi>l</mi><mo>&#x2061;</mo>
-		<mrow><mo>(</mo>
-			<mi>l</mi><mo>&#x2061;</mo>
-			<mrow><mo>(</mo><mi>X</mi><mo>)</mo></mrow>
-		<mo>)</mo></mrow>
-	</mrow>
-	<mrow><mi>l</mi><mo>&#x2061;</mo>
-		<mrow><mo>(</mo>	
-			<mrow><mi>l</mi><mo>&#x2061;</mo>
-				<mrow><mo>(</mo>
-					<mi>l</mi><mo>&#x2061;</mo>
-					<mrow><mo>(</mo><mi>X</mi><mo>)</mo></mrow>
-				<mo>)</mo></mrow>
-			</mrow>
-		<mo>)</mo></mrow>
-	</mrow>	
-	<mi>&#133;</mi>
-</mfenced>	
-</math>
-являются как суффиксами, так и префиксами слова <math><mi>X</mi></math>.
+    <math>
+        <mfenced open='' close=''>
+            <mrow>
+                <mi>l</mi>
+                <mo>&#x2061;</mo>
+                <mrow>
+                    <mo>(</mo>
+                    <mi>X</mi>
+                    <mo>)</mo>
+                </mrow>
+            </mrow>
+            <mrow>
+                <mi>l</mi>
+                <mo>&#x2061;</mo>
+                <mrow>
+                    <mo>(</mo>
+                    <mi>l</mi>
+                    <mo>&#x2061;</mo>
+                    <mrow>
+                        <mo>(</mo>
+                        <mi>X</mi>
+                        <mo>)</mo>
+                    </mrow>
+                    <mo>)</mo>
+                </mrow>
+            </mrow>
+            <mrow>
+                <mi>l</mi>
+                <mo>&#x2061;</mo>
+                <mrow>
+                    <mo>(</mo>
+                    <mrow>
+                        <mi>l</mi>
+                        <mo>&#x2061;</mo>
+                        <mrow>
+                            <mo>(</mo>
+                            <mi>l</mi>
+                            <mo>&#x2061;</mo>
+                            <mrow>
+                                <mo>(</mo>
+                                <mi>X</mi>
+                                <mo>)</mo>
+                            </mrow>
+                            <mo>)</mo>
+                        </mrow>
+                    </mrow>
+                    <mo>)</mo>
+                </mrow>
+            </mrow>
+            <mi>&#133;</mi>
+        </mfenced>
+    </math>
+    являются как суффиксами, так и префиксами слова
+    <math>
+        <mi>X</mi>
+    </math>
+    .
 </p>
-<p>Действительно, всякий элемент последовательности 
-<math>
-<mfenced open='' close=''>
-	<mrow>
-		<mi>l</mi><mo>&#x2061;</mo>
-		<mrow><mo>(</mo><mi>X</mi><mo>)</mo>
-		</mrow>
-	</mrow>
-	<mrow><mi>l</mi><mo>&#x2061;</mo>
-		<mrow><mo>(</mo>
-			<mi>l</mi><mo>&#x2061;</mo>
-			<mrow><mo>(</mo><mi>X</mi><mo>)</mo></mrow>
-		<mo>)</mo></mrow>
-	</mrow>
-	<mrow><mi>l</mi><mo>&#x2061;</mo>
-		<mrow><mo>(</mo>	
-			<mrow><mi>l</mi><mo>&#x2061;</mo>
-				<mrow><mo>(</mo>
-					<mi>l</mi><mo>&#x2061;</mo>
-					<mrow><mo>(</mo><mi>X</mi><mo>)</mo></mrow>
-				<mo>)</mo></mrow>
-			</mrow>
-		<mo>)</mo></mrow>
-	</mrow>	
-	<mi>&#133;</mi>
-</mfenced>	
-</math>
-по определению является как префиксом, так и суффиксом предыдущего элемента. Следовательно, всякий его элемент является как суффиксом, так и префиксом слова <math><mi>X</mi></math>.</p>
-<p><span class='teorema'>Утверждение 2</span>. Всякий префикс слова <math><mi>X</mi></math>, одновременно являющийся и его суффиксом, есть элемент последовательности
-<math>
-<mfenced open='' close=''>
-	<mrow>
-		<mi>l</mi><mo>&#x2061;</mo>
-		<mrow><mo>(</mo><mi>X</mi><mo>)</mo>
-		</mrow>
-	</mrow>
-	<mrow><mi>l</mi><mo>&#x2061;</mo>
-		<mrow><mo>(</mo>
-			<mi>l</mi><mo>&#x2061;</mo>
-			<mrow><mo>(</mo><mi>X</mi><mo>)</mo></mrow>
-		<mo>)</mo></mrow>
-	</mrow>
-	<mrow><mi>l</mi><mo>&#x2061;</mo>
-		<mrow><mo>(</mo>	
-			<mrow><mi>l</mi><mo>&#x2061;</mo>
-				<mrow><mo>(</mo>
-					<mi>l</mi><mo>&#x2061;</mo>
-					<mrow><mo>(</mo><mi>X</mi><mo>)</mo></mrow>
-				<mo>)</mo></mrow>
-			</mrow>
-		<mo>)</mo></mrow>
-	</mrow>	
-	<mi>&#133;</mi>
-</mfenced>	
-</math>.
+<p>Действительно, всякий элемент последовательности
+    <math>
+        <mfenced open='' close=''>
+            <mrow>
+                <mi>l</mi>
+                <mo>&#x2061;</mo>
+                <mrow>
+                    <mo>(</mo>
+                    <mi>X</mi>
+                    <mo>)</mo>
+                </mrow>
+            </mrow>
+            <mrow>
+                <mi>l</mi>
+                <mo>&#x2061;</mo>
+                <mrow>
+                    <mo>(</mo>
+                    <mi>l</mi>
+                    <mo>&#x2061;</mo>
+                    <mrow>
+                        <mo>(</mo>
+                        <mi>X</mi>
+                        <mo>)</mo>
+                    </mrow>
+                    <mo>)</mo>
+                </mrow>
+            </mrow>
+            <mrow>
+                <mi>l</mi>
+                <mo>&#x2061;</mo>
+                <mrow>
+                    <mo>(</mo>
+                    <mrow>
+                        <mi>l</mi>
+                        <mo>&#x2061;</mo>
+                        <mrow>
+                            <mo>(</mo>
+                            <mi>l</mi>
+                            <mo>&#x2061;</mo>
+                            <mrow>
+                                <mo>(</mo>
+                                <mi>X</mi>
+                                <mo>)</mo>
+                            </mrow>
+                            <mo>)</mo>
+                        </mrow>
+                    </mrow>
+                    <mo>)</mo>
+                </mrow>
+            </mrow>
+            <mi>&#133;</mi>
+        </mfenced>
+    </math>
+    по определению является как префиксом, так и суффиксом предыдущего элемента. Следовательно, всякий его элемент
+    является как суффиксом, так и префиксом слова
+    <math>
+        <mi>X</mi>
+    </math>
+    .
 </p>
-<p>Докажем утверждение 2. Пусть <math><mi>Y</mi></math> &#151; произвольный префикс слова <math><mi>X</mi></math>, одновременно являющийся его суффиксом. Тогда <math><mi>Y</mi></math> либо совпадает с 
-<math>
-	<mi>l</mi><mo>&#x2061;</mo>
-	<mrow><mo>(</mo><mi>X</mi><mo>)</mo></mrow>
-</math>, либо является его префиксом и суффиксом, так как 
-<math>
-	<mi>l</mi><mo>&#x2061;</mo>
-	<mrow><mo>(</mo><mi>X</mi><mo>)</mo></mrow>
-</math> &#151; самый длинный префикс <math><mi>X</mi></math>, одновременно являющийся его суффиксом. Если <math><mi>Y</mi></math> не совпадает с   
-<math>
-	<mi>l</mi><mo>&#x2061;</mo>
-	<mrow><mo>(</mo><mi>X</mi><mo>)</mo></mrow>
-</math>, то сравниваем его с 
-<math>
-<mi>l</mi><mo>&#x2061;</mo>
-<mrow><mo>(</mo>
-	<mi>l</mi><mo>&#x2061;</mo>
-	<mrow><mo>(</mo><mi>X</mi><mo>)</mo></mrow>
-<mo>)</mo></mrow>	
-</math>.
-Продолжая описанный процесс, в конечном итоге, получим элемент последовательности
-<math>
-<mfenced open='' close=''>
-	<mrow>
-		<mi>l</mi><mo>&#x2061;</mo>
-		<mrow><mo>(</mo><mi>X</mi><mo>)</mo>
-		</mrow>
-	</mrow>
-	<mrow><mi>l</mi><mo>&#x2061;</mo>
-		<mrow><mo>(</mo>
-			<mi>l</mi><mo>&#x2061;</mo>
-			<mrow><mo>(</mo><mi>X</mi><mo>)</mo></mrow>
-		<mo>)</mo></mrow>
-	</mrow>
-	<mrow><mi>l</mi><mo>&#x2061;</mo>
-		<mrow><mo>(</mo>	
-			<mrow><mi>l</mi><mo>&#x2061;</mo>
-				<mrow><mo>(</mo>
-					<mi>l</mi><mo>&#x2061;</mo>
-					<mrow><mo>(</mo><mi>X</mi><mo>)</mo></mrow>
-				<mo>)</mo></mrow>
-			</mrow>
-		<mo>)</mo></mrow>
-	</mrow>	
-	<mi>&#133;</mi>
-</mfenced>	
-</math>, совпадающий с <math><mi>Y</mi></math>.
+<p><span class='teorema'>Утверждение 2</span>. Всякий префикс слова
+    <math>
+        <mi>X</mi>
+    </math>
+    , одновременно являющийся и его суффиксом, есть элемент последовательности
+    <math>
+        <mfenced open='' close=''>
+            <mrow>
+                <mi>l</mi>
+                <mo>&#x2061;</mo>
+                <mrow>
+                    <mo>(</mo>
+                    <mi>X</mi>
+                    <mo>)</mo>
+                </mrow>
+            </mrow>
+            <mrow>
+                <mi>l</mi>
+                <mo>&#x2061;</mo>
+                <mrow>
+                    <mo>(</mo>
+                    <mi>l</mi>
+                    <mo>&#x2061;</mo>
+                    <mrow>
+                        <mo>(</mo>
+                        <mi>X</mi>
+                        <mo>)</mo>
+                    </mrow>
+                    <mo>)</mo>
+                </mrow>
+            </mrow>
+            <mrow>
+                <mi>l</mi>
+                <mo>&#x2061;</mo>
+                <mrow>
+                    <mo>(</mo>
+                    <mrow>
+                        <mi>l</mi>
+                        <mo>&#x2061;</mo>
+                        <mrow>
+                            <mo>(</mo>
+                            <mi>l</mi>
+                            <mo>&#x2061;</mo>
+                            <mrow>
+                                <mo>(</mo>
+                                <mi>X</mi>
+                                <mo>)</mo>
+                            </mrow>
+                            <mo>)</mo>
+                        </mrow>
+                    </mrow>
+                    <mo>)</mo>
+                </mrow>
+            </mrow>
+            <mi>&#133;</mi>
+        </mfenced>
+    </math>
+    .
 </p>
-<p>Опишем алгоритм Кнута-Морриса-Пратта. Очевидно, что 
-<math>
-<msub><mi>l</mi><mn>0</mn></msub><mo>=</mo><mn>0</mn>
-</math>. Пусть вычислены значения
-<math>
-<mfenced open='' close=''>
-	<msub><mi>l</mi><mn>1</mn></msub>
-	<mi>&#133;</mi>
-	<msub><mi>l</mi><mi>i</mi></msub>	
-</mfenced>
-</math>, и требуется вычислить 
-<math><msub><mi>l</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub></math>.
+<p>Докажем утверждение 2. Пусть
+    <math>
+        <mi>Y</mi>
+    </math> &#151; произвольный префикс слова
+    <math>
+        <mi>X</mi>
+    </math>
+    , одновременно являющийся его суффиксом. Тогда
+    <math>
+        <mi>Y</mi>
+    </math>
+    либо совпадает с
+    <math>
+        <mi>l</mi>
+        <mo>&#x2061;</mo>
+        <mrow>
+            <mo>(</mo>
+            <mi>X</mi>
+            <mo>)</mo>
+        </mrow>
+    </math>
+    , либо является его префиксом и суффиксом, так как
+    <math>
+        <mi>l</mi>
+        <mo>&#x2061;</mo>
+        <mrow>
+            <mo>(</mo>
+            <mi>X</mi>
+            <mo>)</mo>
+        </mrow>
+    </math> &#151; самый длинный префикс
+    <math>
+        <mi>X</mi>
+    </math>
+    , одновременно являющийся его суффиксом. Если
+    <math>
+        <mi>Y</mi>
+    </math>
+    не совпадает с
+    <math>
+        <mi>l</mi>
+        <mo>&#x2061;</mo>
+        <mrow>
+            <mo>(</mo>
+            <mi>X</mi>
+            <mo>)</mo>
+        </mrow>
+    </math>
+    , то сравниваем его с
+    <math>
+        <mi>l</mi>
+        <mo>&#x2061;</mo>
+        <mrow>
+            <mo>(</mo>
+            <mi>l</mi>
+            <mo>&#x2061;</mo>
+            <mrow>
+                <mo>(</mo>
+                <mi>X</mi>
+                <mo>)</mo>
+            </mrow>
+            <mo>)</mo>
+        </mrow>
+    </math>
+    .
+    Продолжая описанный процесс, в конечном итоге, получим элемент последовательности
+    <math>
+        <mfenced open='' close=''>
+            <mrow>
+                <mi>l</mi>
+                <mo>&#x2061;</mo>
+                <mrow>
+                    <mo>(</mo>
+                    <mi>X</mi>
+                    <mo>)</mo>
+                </mrow>
+            </mrow>
+            <mrow>
+                <mi>l</mi>
+                <mo>&#x2061;</mo>
+                <mrow>
+                    <mo>(</mo>
+                    <mi>l</mi>
+                    <mo>&#x2061;</mo>
+                    <mrow>
+                        <mo>(</mo>
+                        <mi>X</mi>
+                        <mo>)</mo>
+                    </mrow>
+                    <mo>)</mo>
+                </mrow>
+            </mrow>
+            <mrow>
+                <mi>l</mi>
+                <mo>&#x2061;</mo>
+                <mrow>
+                    <mo>(</mo>
+                    <mrow>
+                        <mi>l</mi>
+                        <mo>&#x2061;</mo>
+                        <mrow>
+                            <mo>(</mo>
+                            <mi>l</mi>
+                            <mo>&#x2061;</mo>
+                            <mrow>
+                                <mo>(</mo>
+                                <mi>X</mi>
+                                <mo>)</mo>
+                            </mrow>
+                            <mo>)</mo>
+                        </mrow>
+                    </mrow>
+                    <mo>)</mo>
+                </mrow>
+            </mrow>
+            <mi>&#133;</mi>
+        </mfenced>
+    </math>
+    , совпадающий с
+    <math>
+        <mi>Y</mi>
+    </math>
+    .
+</p>
+<p>Опишем алгоритм Кнута-Морриса-Пратта. Очевидно, что
+    <math>
+        <msub>
+            <mi>l</mi>
+            <mn>0</mn>
+        </msub>
+        <mo>=</mo>
+        <mn>0</mn>
+    </math>
+    . Пусть вычислены значения
+    <math>
+        <mfenced open='' close=''>
+            <msub>
+                <mi>l</mi>
+                <mn>1</mn>
+            </msub>
+            <mi>&#133;</mi>
+            <msub>
+                <mi>l</mi>
+                <mi>i</mi>
+            </msub>
+        </mfenced>
+    </math>
+    , и требуется вычислить
+    <math>
+        <msub>
+            <mi>l</mi>
+            <mrow>
+                <mi>i</mi>
+                <mo>+</mo>
+                <mn>1</mn>
+            </mrow>
+        </msub>
+    </math>
+    .
 </p>
 <p> Наиболее длинный префикс слова
-<math>
-<mfenced open='' close='' separators=''>
-	<msub><mi>x</mi><mn>0</mn></msub>
-	<mi>&#133;</mi>
-	<msub><mi>x</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub>	
-</mfenced>
-</math>, одновременно являющийся и его суффиксом, следует искать среди префикс-суффиксов слова 
-<math>
-	<mfenced open='' close='' separators=''>
-		<msub><mi>x</mi><mn>0</mn></msub>
-		<mi>&#133;</mi>
-		<msub><mi>x</mi><mi>i</mi></msub>
-	</mfenced>
-</math>. К слову
-<math>
-	<mi>l</mi>
-	<mo>&#x2061;</mo>
-	<mfenced separators=''>
-		<msub><mi>x</mi><mn>0</mn></msub>
-		<mi>&#133;</mi>
-		<msub><mi>x</mi><mi>i</mi></msub>
-	</mfenced>
-</math> длиной
-<math><msub><mi>l</mi><mi>i</mi></msub></math>
-присоединяют символ <math><msub><mi>x</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub></math> и проверяют на предмет того, будет ли полученное слово префикс-суффиксом слова 
-<math>
-<mfenced open='' close='' separators=''>
-	<msub><mi>x</mi><mn>0</mn></msub>
-	<mi>&#133;</mi>
-	<msub><mi>x</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub>	
-</mfenced>
-</math>. Если ответ отрицательный, то символ
-<math><msub><mi>x</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub></math>
-присоединяют к слову
-<math>
-	<mi>l</mi>
-	<mo>&#x2061;</mo>
-	<mrow>
-		<mo>(</mo>
-		<mi>l</mi>
-		<mo>&#x2061;</mo>
-		<mfenced separators=''>
-			<msub><mi>x</mi><mn>0</mn></msub>
-			<mi>&#133;</mi>
-			<msub><mi>x</mi><mi>i</mi></msub>
-		</mfenced>
-		<mo>)</mo>
-	</mrow>
-</math>
-и опять проверяют на предмет его совпадения с префикс-суффиксом слова
-<math>
-<mfenced open='' close='' separators=''>
-	<msub><mi>x</mi><mn>0</mn></msub>
-	<mi>&#133;</mi>
-	<msub><mi>x</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub>	
-</mfenced>
-</math>. Продолжая описанный процесс, на основании утверждений 1 и 2, получим искомый префикс-суффикс
-<math>
-	<mi>l</mi>
-	<mo>&#x2061;</mo>
-	<mfenced separators=''>
-		<msub><mi>x</mi><mn>0</mn></msub>
-		<mi>&#133;</mi>
-		<msub><mi>x</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub>
-	</mfenced>
-</math>.
+    <math>
+        <mfenced open='' close='' separators=''>
+            <msub>
+                <mi>x</mi>
+                <mn>0</mn>
+            </msub>
+            <mi>&#133;</mi>
+            <msub>
+                <mi>x</mi>
+                <mrow>
+                    <mi>i</mi>
+                    <mo>+</mo>
+                    <mn>1</mn>
+                </mrow>
+            </msub>
+        </mfenced>
+    </math>
+    , одновременно являющийся и его суффиксом, следует искать среди префикс-суффиксов слова
+    <math>
+        <mfenced open='' close='' separators=''>
+            <msub>
+                <mi>x</mi>
+                <mn>0</mn>
+            </msub>
+            <mi>&#133;</mi>
+            <msub>
+                <mi>x</mi>
+                <mi>i</mi>
+            </msub>
+        </mfenced>
+    </math>
+    . К слову
+    <math>
+        <mi>l</mi>
+        <mo>&#x2061;</mo>
+        <mfenced separators=''>
+            <msub>
+                <mi>x</mi>
+                <mn>0</mn>
+            </msub>
+            <mi>&#133;</mi>
+            <msub>
+                <mi>x</mi>
+                <mi>i</mi>
+            </msub>
+        </mfenced>
+    </math>
+    длиной
+    <math>
+        <msub>
+            <mi>l</mi>
+            <mi>i</mi>
+        </msub>
+    </math>
+    присоединяют символ
+    <math>
+        <msub>
+            <mi>x</mi>
+            <mrow>
+                <mi>i</mi>
+                <mo>+</mo>
+                <mn>1</mn>
+            </mrow>
+        </msub>
+    </math>
+    и проверяют на предмет того, будет ли полученное слово префикс-суффиксом слова
+    <math>
+        <mfenced open='' close='' separators=''>
+            <msub>
+                <mi>x</mi>
+                <mn>0</mn>
+            </msub>
+            <mi>&#133;</mi>
+            <msub>
+                <mi>x</mi>
+                <mrow>
+                    <mi>i</mi>
+                    <mo>+</mo>
+                    <mn>1</mn>
+                </mrow>
+            </msub>
+        </mfenced>
+    </math>
+    . Если ответ отрицательный, то символ
+    <math>
+        <msub>
+            <mi>x</mi>
+            <mrow>
+                <mi>i</mi>
+                <mo>+</mo>
+                <mn>1</mn>
+            </mrow>
+        </msub>
+    </math>
+    присоединяют к слову
+    <math>
+        <mi>l</mi>
+        <mo>&#x2061;</mo>
+        <mrow>
+            <mo>(</mo>
+            <mi>l</mi>
+            <mo>&#x2061;</mo>
+            <mfenced separators=''>
+                <msub>
+                    <mi>x</mi>
+                    <mn>0</mn>
+                </msub>
+                <mi>&#133;</mi>
+                <msub>
+                    <mi>x</mi>
+                    <mi>i</mi>
+                </msub>
+            </mfenced>
+            <mo>)</mo>
+        </mrow>
+    </math>
+    и опять проверяют на предмет его совпадения с префикс-суффиксом слова
+    <math>
+        <mfenced open='' close='' separators=''>
+            <msub>
+                <mi>x</mi>
+                <mn>0</mn>
+            </msub>
+            <mi>&#133;</mi>
+            <msub>
+                <mi>x</mi>
+                <mrow>
+                    <mi>i</mi>
+                    <mo>+</mo>
+                    <mn>1</mn>
+                </mrow>
+            </msub>
+        </mfenced>
+    </math>
+    . Продолжая описанный процесс, на основании утверждений 1 и 2, получим искомый префикс-суффикс
+    <math>
+        <mi>l</mi>
+        <mo>&#x2061;</mo>
+        <mfenced separators=''>
+            <msub>
+                <mi>x</mi>
+                <mn>0</mn>
+            </msub>
+            <mi>&#133;</mi>
+            <msub>
+                <mi>x</mi>
+                <mrow>
+                    <mi>i</mi>
+                    <mo>+</mo>
+                    <mn>1</mn>
+                </mrow>
+            </msub>
+        </mfenced>
+    </math>
+    .
 </p>
-<p>Ниже представлен демонстратор алгоритма Кнута-Морриса-Пратта: 
+<p>Ниже представлен демонстратор алгоритма Кнута-Морриса-Пратта:
 </p>
 <form id='f1'>
-<p>Введите слово</p>
-<textarea cols="80" rows="2" id="slovo" title="Введите текст"></textarea><br />
-<input type="button" value="Найти" onclick="pref_suff(slovo.value)" />
-<input type="reset" value="Сброс" />
+    <p>Введите слово</p>
+    <textarea cols="80" rows="2" id="slovo" title="Введите текст"></textarea><br/>
+    <input type="button" value="Найти" onclick="pref_suff(slovo.value)"/>
+    <input type="reset" value="Сброс"/>
 </form>
 <p>Пример реализации алгоритма Кнута-Морриса-Пратта в Компонентном Паскале:</p>
 
 <code>
-<p class='ind0'>MODULE kmp;</p>
-<p class='ind1'>IMPORT  Log := StdLog,  In := i21sysIn;</p>
-<p class='ind1'>PROCEDURE do*;</p>
-<p class='ind2'>VAR a: ARRAY 100 OF CHAR;</p>
-<p class='ind2'>l: ARRAY 100 OF INTEGER;</p>
-<p class='ind2'>len, i, n, dlina: INTEGER;</p>
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>In.Open;</p>
-<p class='ind2'>ASSERT(In.Done);</p>
-<p class='ind2'>In.String(a);</p>
-<p class='ind2'>ASSERT(In.Done);</p>
-<p class='ind2'>l[0]:=0;</p>
-<p class='ind2'>n:=0;</p>
-<p class='ind2'>Log.Ln;</p>
-<p class='ind2'>WHILE (a[n]#0X) & (n &lt; 25) DO</p>
-<p class='ind3'>Log.Char(a[n]);</p>
-<p class='ind3'>INC(n)</p>
-<p class='ind2'>END;</p>
-<p class='ind2'>Log.Ln;</p>
-<p class='ind2'>i:=0;</p>
-<p class='ind2'>WHILE i#n-1 DO</p>
-<p class='ind3'>len:=l[i];</p>
-<p class='ind3'>WHILE (a[len]#a[i+1]) & (len &gt; 0) DO</p>
-<p class='ind4'>len:=l[len-1]</p>
-<p class='ind3'>END;</p>
-<p class='ind3'>IF (a[len]=a[i+1]) THEN</p>
-<p class='ind4'>l[i+1]:=len+1;</p>
-<p class='ind3'>ELSE</p>
-<p class='ind4'>l[i+1]:=0</p>
-<p class='ind3'>END;</p>
-<p class='ind4'>INC(i)</p>
-<p class='ind2'>END;</p>
-<p class='ind2'>FOR i :=0  TO n-1  DO</p>
-<p class='ind3'>Log.String('l(');</p>
-<p class='ind3'>Log.Int(i);</p>
-<p class='ind3'>Log.String(')=');</p>
-<p class='ind3'>Log.Int(l[i]);</p>
-<p class='ind3'>Log.String(', ')</p>
-<p class='ind2'>END;</p>
-<p class='ind2'>Log.Ln</p>
-<p class='ind1'>END do;</p>
-<p class='ind0'>END kmp.</p>
+    <p class='ind0'>MODULE kmp;</p>
+    <p class='ind1'>IMPORT Log := StdLog, In := i21sysIn;</p>
+    <p class='ind1'>PROCEDURE do*;</p>
+    <p class='ind2'>VAR a: ARRAY 100 OF CHAR;</p>
+    <p class='ind2'>l: ARRAY 100 OF INTEGER;</p>
+    <p class='ind2'>len, i, n, dlina: INTEGER;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>In.Open;</p>
+    <p class='ind2'>ASSERT(In.Done);</p>
+    <p class='ind2'>In.String(a);</p>
+    <p class='ind2'>ASSERT(In.Done);</p>
+    <p class='ind2'>l[0]:=0;</p>
+    <p class='ind2'>n:=0;</p>
+    <p class='ind2'>Log.Ln;</p>
+    <p class='ind2'>WHILE (a[n]#0X) & (n &lt; 25) DO</p>
+    <p class='ind3'>Log.Char(a[n]);</p>
+    <p class='ind3'>INC(n)</p>
+    <p class='ind2'>END;</p>
+    <p class='ind2'>Log.Ln;</p>
+    <p class='ind2'>i:=0;</p>
+    <p class='ind2'>WHILE i#n-1 DO</p>
+    <p class='ind3'>len:=l[i];</p>
+    <p class='ind3'>WHILE (a[len]#a[i+1]) & (len &gt; 0) DO</p>
+    <p class='ind4'>len:=l[len-1]</p>
+    <p class='ind3'>END;</p>
+    <p class='ind3'>IF (a[len]=a[i+1]) THEN</p>
+    <p class='ind4'>l[i+1]:=len+1;</p>
+    <p class='ind3'>ELSE</p>
+    <p class='ind4'>l[i+1]:=0</p>
+    <p class='ind3'>END;</p>
+    <p class='ind4'>INC(i)</p>
+    <p class='ind2'>END;</p>
+    <p class='ind2'>FOR i :=0 TO n-1 DO</p>
+    <p class='ind3'>Log.String('l(');</p>
+    <p class='ind3'>Log.Int(i);</p>
+    <p class='ind3'>Log.String(')=');</p>
+    <p class='ind3'>Log.Int(l[i]);</p>
+    <p class='ind3'>Log.String(', ')</p>
+    <p class='ind2'>END;</p>
+    <p class='ind2'>Log.Ln</p>
+    <p class='ind1'>END do;</p>
+    <p class='ind0'>END kmp.</p>
 </code>
-<p>Если необходимо найти вхождение слова <math><mi>A</mi></math> в слово <math><mi>B</mi></math>, то алгоритм Кнута-Морриса-Пратта можно применить к слову <math><mfenced open='' close='' separators=''><mi>A</mi><mi>#</mi><mi>B</mi></mfenced></math>,  где <math><mi>#</mi></math> есть символ, не встречающийся ни в <math><mi>A</mi></math>, ни в <math><mi>B</mi></math>.  Слово 
-<math><mi>A</mi></math> входит в слово <math><mi>B</mi></math>, если среди чисел <math><msub><mi>l</mi><mi>i</mi></msub><mo>,</mo><mrow><mi>i</mi><mo>=</mo><mfenced open='' close=''><mn>0</mn><mn>1</mn><mi>&#133;</mi><mrow><mi>i</mi><mo>-</mo><mn>1</mn></mrow></mfenced></mrow><mo>,</mo></math> найдется число, равное длине слова <math><mi>A</mi></math>.    
+<p>Если необходимо найти вхождение слова
+    <math>
+        <mi>A</mi>
+    </math>
+    в слово
+    <math>
+        <mi>B</mi>
+    </math>
+    , то алгоритм Кнута-Морриса-Пратта можно применить к слову
+    <math>
+        <mfenced open='' close='' separators=''>
+            <mi>A</mi>
+            <mi>#</mi>
+            <mi>B</mi>
+        </mfenced>
+    </math>
+    , где
+    <math>
+        <mi>#</mi>
+    </math>
+    есть символ, не встречающийся ни в
+    <math>
+        <mi>A</mi>
+    </math>
+    , ни в
+    <math>
+        <mi>B</mi>
+    </math>
+    . Слово
+    <math>
+        <mi>A</mi>
+    </math>
+    входит в слово
+    <math>
+        <mi>B</mi>
+    </math>
+    , если среди чисел
+    <math>
+        <msub>
+            <mi>l</mi>
+            <mi>i</mi>
+        </msub>
+        <mo>,</mo>
+        <mrow>
+            <mi>i</mi>
+            <mo>=</mo>
+            <mfenced open='' close=''>
+                <mn>0</mn>
+                <mn>1</mn>
+                <mi>&#133;</mi>
+                <mrow>
+                    <mi>i</mi>
+                    <mo>-</mo>
+                    <mn>1</mn>
+                </mrow>
+            </mfenced>
+        </mrow>
+        <mo>,</mo>
+    </math>
+    найдется число, равное длине слова
+    <math>
+        <mi>A</mi>
+    </math>
+    .
 </p>
-<h3>Задачи для самостоятельного решения из сборника задач по программированию под редакцией С.А. Абрамова, Г.Г. Гнездиловой, Е.Н. Капустиной, М.И. Селюн. Задачи по программированию:</h3>
+<h3>Задачи для самостоятельного решения из сборника задач по программированию под редакцией С.А. Абрамова, Г.Г.
+    Гнездиловой, Е.Н. Капустиной, М.И. Селюн. Задачи по программированию:</h3>
 <a href="zadachi/27.html">§27. Тексты</a>
 
-<p><a href="8_11_1.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_11_3.html">К следующему</a> </p>
+<p><a href="8_11_1.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_11_3.html">К следующему</a>
+</p>
 </body>
+<script type="text/javascript">
+    MathJax.Hub.Configured()
+</script>
 </html>

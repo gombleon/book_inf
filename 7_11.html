@@ -1,625 +1,803 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" />
-<link rel='stylesheet' type="text/css" href="style.css"></link>
-<meta name="author" content="leonid" />
-<meta name="description" content="Шина, центральный процессор, ввод, вывод, команда, адрес, данные"/>
-<meta name="keywords" content="память, шина, процессор, микросхема, ввод, вывод, адрес, данные" />
-<title>Синхронизация шины</title>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+  extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});
+
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <meta charset="UTF-8"/>
+    <link rel='stylesheet' type="text/css" href="style.css"></link>
+    <meta name="author" content="leonid"/>
+    <meta name="description" content="Шина, центральный процессор, ввод, вывод, команда, адрес, данные"/>
+    <meta name="keywords" content="память, шина, процессор, микросхема, ввод, вывод, адрес, данные"/>
+    <title>Синхронизация шины</title>
 </head>
 <body>
-<p><a href="7_10.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="7_12.html">К следующему</a> </p>
+<p><a href="7_10.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="7_12.html">К следующему</a></p>
 <h1>7.11. Синхронизация шины</h1>
-<p>В зависимости от синхронизации различают синхронные и асинхронные шины. <span class='teorema'>Синхронная шина содержит линию, связанную с кварцевым генератором</span>. Всякая операция шины занимает целое число циклов, задаваемых кварцевым генератором. <span class='teorema'>Асинхронная шина не содержит задающий генератор, и циклы шины могут быть произвольными и неодинаковыми для разных пар устройств</span>.</p>
-<p>Рассмотрим упрощенный вариант функционирования синхронной шины с частотой генератора 100 МГц, задающего цикл в 10 нс. Как уже было отмечено в предыдущем параграфе, причиной такой относительно низкой частоты шины может быть перекос шины или проблемы совместимости устройств. Предположим, что считывание слова из памяти занимает 15 нс с момента установления адреса. Далее мы убедимся, что для считывания слова понадобиться три цикла шины. На рис. 7.11.1 представлена временная диаграмма процесса считывания на синхронной шине:</p>
+<p>В зависимости от синхронизации различают синхронные и асинхронные шины. <span class='teorema'>Синхронная шина содержит линию, связанную с кварцевым генератором</span>.
+    Всякая операция шины занимает целое число циклов, задаваемых кварцевым генератором. <span class='teorema'>Асинхронная шина не содержит задающий генератор, и циклы шины могут быть произвольными и неодинаковыми для разных пар устройств</span>.
+</p>
+<p>Рассмотрим упрощенный вариант функционирования синхронной шины с частотой генератора 100 МГц, задающего цикл в 10 нс.
+    Как уже было отмечено в предыдущем параграфе, причиной такой относительно низкой частоты шины может быть перекос
+    шины или проблемы совместимости устройств. Предположим, что считывание слова из памяти занимает 15 нс с момента
+    установления адреса. Далее мы убедимся, что для считывания слова понадобиться три цикла шины. На рис. 7.11.1
+    представлена временная диаграмма процесса считывания на синхронной шине:</p>
 <a id='ris7_11_1'/>
-<svg height = "450px"  width = "800px">
-<defs>
-    <marker id="Triangle"
-      viewBox="0 0 10 10" refX="0" refY="5" 
-      markerUnits="strokeWidth"
-      markerWidth="8" markerHeight="8"
-      orient="auto">
-      <path d="M 0 0 L 10 5 L 0 10 z" />
-    </marker>
-    <marker id="Triangle1"
-      viewBox="0 0 10 10" refX="0" refY="5" 
-      markerUnits="strokeWidth"
-      markerWidth="8" markerHeight="8"
-      orient="auto">
-      <path d="M 10 0 L 0 5 L 10 10 z" />
-    </marker>
-  </defs>
-<text x="250" y="30" stroke="none" fill="#000000" font-size="12">Цикл чтения с единым периодом ожидания</text>
-<line x1="240px" y1="26px" x2="110px" y2="26px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
-<line x1="535px" y1="26px" x2="690px" y2="26px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+<svg height="450px" width="800px">
+    <defs>
+        <marker id="Triangle"
+                viewBox="0 0 10 10" refX="0" refY="5"
+                markerUnits="strokeWidth"
+                markerWidth="8" markerHeight="8"
+                orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z"/>
+        </marker>
+        <marker id="Triangle1"
+                viewBox="0 0 10 10" refX="0" refY="5"
+                markerUnits="strokeWidth"
+                markerWidth="8" markerHeight="8"
+                orient="auto">
+            <path d="M 10 0 L 0 5 L 10 10 z"/>
+        </marker>
+    </defs>
+    <text x="250" y="30" stroke="none" fill="#000000" font-size="12">Цикл чтения с единым периодом ожидания</text>
+    <line x1="240px" y1="26px" x2="110px" y2="26px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+    <line x1="535px" y1="26px" x2="690px" y2="26px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
 
 
-<text x="397" y="50" stroke="none" fill="#000000" font-size="12">T<tspan dy="5">2</tspan></text>
-<text x="197" y="50" stroke="none" fill="#000000" font-size="12">T<tspan dy="5">1</tspan></text>
-<text x="597" y="50" stroke="none" fill="#000000" font-size="12">T<tspan dy="5">3</tspan></text>
-<line x1="300px" y1="40px" x2="300px" y2="110px" stroke="#000000" stroke-width="1"/>
-<line x1="500px" y1="40px" x2="500px" y2="110px" stroke="#000000" stroke-width="1"/>
-<line x1="200px" y1="60px" x2="200px" y2="110px" stroke="#000000" stroke-width="1"/>
-<line x1="400px" y1="60px" x2="400px" y2="110px" stroke="#000000" stroke-width="1"/>
-<line x1="600px" y1="60px" x2="600px" y2="110px" stroke="#000000" stroke-width="1"/>
+    <text x="397" y="50" stroke="none" fill="#000000" font-size="12">T
+        <tspan dy="5">2</tspan>
+    </text>
+    <text x="197" y="50" stroke="none" fill="#000000" font-size="12">T
+        <tspan dy="5">1</tspan>
+    </text>
+    <text x="597" y="50" stroke="none" fill="#000000" font-size="12">T
+        <tspan dy="5">3</tspan>
+    </text>
+    <line x1="300px" y1="40px" x2="300px" y2="110px" stroke="#000000" stroke-width="1"/>
+    <line x1="500px" y1="40px" x2="500px" y2="110px" stroke="#000000" stroke-width="1"/>
+    <line x1="200px" y1="60px" x2="200px" y2="110px" stroke="#000000" stroke-width="1"/>
+    <line x1="400px" y1="60px" x2="400px" y2="110px" stroke="#000000" stroke-width="1"/>
+    <line x1="600px" y1="60px" x2="600px" y2="110px" stroke="#000000" stroke-width="1"/>
 
-<path d="M 70 90 L 90 90 L 110 70 L 190 70 L 210 90 L 290 90 L 310 70 L 390 70 410 90 L 490 90 L 510 70 L 590 70 L 610 90 L 690 90 L 710 70 L 730 70" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M 70 90 L 90 90 L 110 70 L 190 70 L 210 90 L 290 90 L 310 70 L 390 70 410 90 L 490 90 L 510 70 L 590 70 L 610 90 L 690 90 L 710 70 L 730 70"
+          stroke="#000000" stroke-width="1" fill="none"/>
 
-<line x1="100px" y1="100px" x2="132px" y2="100px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)" marker-start="url(#Triangle1)"/>
-<path d="M 140 120 L 150 110 L 620 110 L 630 120 L 620 130 L 150 130 z" stroke="#000000" stroke-width="1" fill="none"/>
-<path d="M 140 120 L 130 110 L 70 110 L 70 130 L 130 130 z" stroke="#999999" stroke-width="1" fill="#999999"/>
-<path d="M 630 120 L 640 110 L 730 110 L 730 130 L 640 130 z" stroke="#999999" stroke-width="1" fill="#999999"/>
-<text x="30" y="123" stroke="none" fill="#000000" font-size="12">Адрес</text>
-<text x="2" y="86" stroke="none" fill="#000000" font-size="12">Тактовый</text>
-<text x="1" y="99" stroke="none" fill="#000000" font-size="12">генератор</text>
-<text x="270" y="124" stroke="none" fill="#000000" font-size="12">Считываемый адрес памяти</text>
-<text x="107" y="92" stroke="none" fill="#000000" font-size="12">T<tspan dy="5" font-size="10">AD</tspan></text>
-<path d="M 70 160 L 70 180 L 550 180 L 560 170 L 550 160" stroke="#999999" stroke-width="1" fill="#999999"/>
-<path d="M 560 170 L 570 160 L 650 160 L 660 170 L 650 180 L 570 180 z" stroke="#000000" stroke-width="1" fill="none"/>
-<path d="M 660 170 L 670 160 L 730 160 L 730 180 L 670 180 z" stroke="#999999" stroke-width="1" fill="#999999"/>
-<text x="18" y="173" stroke="none" fill="#000000" font-size="12">Данные</text>
-<text x="585" y="173" stroke="none" fill="#000000" font-size="12">Данные</text>
-<line x1="660px" y1="150px" x2="660px" y2="400px" stroke="#000000" stroke-width="1"/>
-<line x1="600px" y1="130px" x2="600px" y2="160px" stroke="#000000" stroke-width="1"/>
+    <line x1="100px" y1="100px" x2="132px" y2="100px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"
+          marker-start="url(#Triangle1)"/>
+    <path d="M 140 120 L 150 110 L 620 110 L 630 120 L 620 130 L 150 130 z" stroke="#000000" stroke-width="1"
+          fill="none"/>
+    <path d="M 140 120 L 130 110 L 70 110 L 70 130 L 130 130 z" stroke="#999999" stroke-width="1" fill="#999999"/>
+    <path d="M 630 120 L 640 110 L 730 110 L 730 130 L 640 130 z" stroke="#999999" stroke-width="1" fill="#999999"/>
+    <text x="30" y="123" stroke="none" fill="#000000" font-size="12">Адрес</text>
+    <text x="2" y="86" stroke="none" fill="#000000" font-size="12">Тактовый</text>
+    <text x="1" y="99" stroke="none" fill="#000000" font-size="12">генератор</text>
+    <text x="270" y="124" stroke="none" fill="#000000" font-size="12">Считываемый адрес памяти</text>
+    <text x="107" y="92" stroke="none" fill="#000000" font-size="12">T
+        <tspan dy="5" font-size="10">AD</tspan>
+    </text>
+    <path d="M 70 160 L 70 180 L 550 180 L 560 170 L 550 160" stroke="#999999" stroke-width="1" fill="#999999"/>
+    <path d="M 560 170 L 570 160 L 650 160 L 660 170 L 650 180 L 570 180 z" stroke="#000000" stroke-width="1"
+          fill="none"/>
+    <path d="M 660 170 L 670 160 L 730 160 L 730 180 L 670 180 z" stroke="#999999" stroke-width="1" fill="#999999"/>
+    <text x="18" y="173" stroke="none" fill="#000000" font-size="12">Данные</text>
+    <text x="585" y="173" stroke="none" fill="#000000" font-size="12">Данные</text>
+    <line x1="660px" y1="150px" x2="660px" y2="400px" stroke="#000000" stroke-width="1"/>
+    <line x1="600px" y1="130px" x2="600px" y2="160px" stroke="#000000" stroke-width="1"/>
 
-<line x1="560px" y1="152px" x2="560px" y2="188px" stroke="#000000" stroke-width="1"/>
-<line x1="562px" y1="154px" x2="593px" y2="154px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)" marker-start="url(#Triangle1)"/>
-<text x="568" y="145" stroke="none" fill="#000000" font-size="12">T<tspan dy="5" font-size="10">DS</tspan></text>
-<path d="M 70 220 L 215 220 L 235 240 L 635 240 655 220 730 220" stroke="#000000" stroke-width="1" fill="none"/>
-<line x1="225px" y1="210px" x2="225px" y2="250px" stroke="#000000" stroke-width="1"/>
-<line x1="645px" y1="210px" x2="645px" y2="240px" stroke="#000000" stroke-width="1"/>
-<text x="25" y="223" stroke="none" fill="#000000" font-size="12">MREQ</text>
-<line x1="25px" y1="208px" x2="65px" y2="208px" stroke="#000000" stroke-width="1"/>
-<text x="165" y="250" stroke="none" fill="#000000" font-size="12">T<tspan dy="5" font-size="10">ML</tspan> </text>
-<line x1="163px" y1="245px" x2="150px" y2="245px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
-<line x1="183px" y1="245px" x2="218px" y2="245px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
-<line x1="200px" y1="215px" x2="218px" y2="215px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)" marker-start="url(#Triangle1)"/>
-<line x1="600px" y1="215px" x2="636px" y2="215px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)" marker-start="url(#Triangle1)"/>
-<text x="609" y="208" stroke="none" fill="#000000" font-size="12">T<tspan dy="5" font-size="10">MH</tspan> </text>
-<text x="202" y="205" stroke="none" fill="#000000" font-size="12">T<tspan dy="5" font-size="10">M</tspan> </text>
-<text x="45" y="295" stroke="none" fill="#000000" font-size="12">RD</text>
-<line x1="45px" y1="280px" x2="64px" y2="280px" stroke="#000000" stroke-width="1"/>
+    <line x1="560px" y1="152px" x2="560px" y2="188px" stroke="#000000" stroke-width="1"/>
+    <line x1="562px" y1="154px" x2="593px" y2="154px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"
+          marker-start="url(#Triangle1)"/>
+    <text x="568" y="145" stroke="none" fill="#000000" font-size="12">T
+        <tspan dy="5" font-size="10">DS</tspan>
+    </text>
+    <path d="M 70 220 L 215 220 L 235 240 L 635 240 655 220 730 220" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="225px" y1="210px" x2="225px" y2="250px" stroke="#000000" stroke-width="1"/>
+    <line x1="645px" y1="210px" x2="645px" y2="240px" stroke="#000000" stroke-width="1"/>
+    <text x="25" y="223" stroke="none" fill="#000000" font-size="12">MREQ</text>
+    <line x1="25px" y1="208px" x2="65px" y2="208px" stroke="#000000" stroke-width="1"/>
+    <text x="165" y="250" stroke="none" fill="#000000" font-size="12">T
+        <tspan dy="5" font-size="10">ML</tspan>
+    </text>
+    <line x1="163px" y1="245px" x2="150px" y2="245px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+    <line x1="183px" y1="245px" x2="218px" y2="245px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+    <line x1="200px" y1="215px" x2="218px" y2="215px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"
+          marker-start="url(#Triangle1)"/>
+    <line x1="600px" y1="215px" x2="636px" y2="215px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"
+          marker-start="url(#Triangle1)"/>
+    <text x="609" y="208" stroke="none" fill="#000000" font-size="12">T
+        <tspan dy="5" font-size="10">MH</tspan>
+    </text>
+    <text x="202" y="205" stroke="none" fill="#000000" font-size="12">T
+        <tspan dy="5" font-size="10">M</tspan>
+    </text>
+    <text x="45" y="295" stroke="none" fill="#000000" font-size="12">RD</text>
+    <line x1="45px" y1="280px" x2="64px" y2="280px" stroke="#000000" stroke-width="1"/>
 
 
-<path d="M 70 290 L 215 290 L 235 310 L 635 310 655 290 730 290" stroke="#000000" stroke-width="1" fill="none"/>
-<line x1="225px" y1="290px" x2="225px" y2="315px" stroke="#000000" stroke-width="1"/>
-<text x="207" y="327" stroke="none" fill="#000000" font-size="12">T<tspan dy="5" font-size="10">LR</tspan> </text>
-<line x1="645px" y1="290px" x2="645px" y2="320px" stroke="#000000" stroke-width="1"/>
-<line x1="200px" y1="310px" x2="217px" y2="310px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)" marker-start="url(#Triangle1)" />
-<text x="635" y="335" stroke="none" fill="#000000" font-size="12">T<tspan dy="5" font-size="10">DH</tspan> </text>
-<line x1="620px" y1="317px" x2="636px" y2="317px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
-<line x1="690px" y1="317px" x2="669px" y2="317px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
-<line x1="601px" y1="292px" x2="636px" y2="292px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)" marker-start="url(#Triangle1)"/>
-<text x="608" y="285" stroke="none" fill="#000000" font-size="12">T<tspan dy="5" font-size="10">RH</tspan> </text>
-<text x="31" y="364" stroke="none" fill="#000000" font-size="12">WAIT</text>
-<line x1="31px" y1="350px" x2="64px" y2="350px" stroke="#000000" stroke-width="1"/>
-<path d="M 70 360 L 290 360 L 310 380 L 490 380 510 360 730 360" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M 70 290 L 215 290 L 235 310 L 635 310 655 290 730 290" stroke="#000000" stroke-width="1" fill="none"/>
+    <line x1="225px" y1="290px" x2="225px" y2="315px" stroke="#000000" stroke-width="1"/>
+    <text x="207" y="327" stroke="none" fill="#000000" font-size="12">T
+        <tspan dy="5" font-size="10">LR</tspan>
+    </text>
+    <line x1="645px" y1="290px" x2="645px" y2="320px" stroke="#000000" stroke-width="1"/>
+    <line x1="200px" y1="310px" x2="217px" y2="310px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"
+          marker-start="url(#Triangle1)"/>
+    <text x="635" y="335" stroke="none" fill="#000000" font-size="12">T
+        <tspan dy="5" font-size="10">DH</tspan>
+    </text>
+    <line x1="620px" y1="317px" x2="636px" y2="317px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+    <line x1="690px" y1="317px" x2="669px" y2="317px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+    <line x1="601px" y1="292px" x2="636px" y2="292px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"
+          marker-start="url(#Triangle1)"/>
+    <text x="608" y="285" stroke="none" fill="#000000" font-size="12">T
+        <tspan dy="5" font-size="10">RH</tspan>
+    </text>
+    <text x="31" y="364" stroke="none" fill="#000000" font-size="12">WAIT</text>
+    <line x1="31px" y1="350px" x2="64px" y2="350px" stroke="#000000" stroke-width="1"/>
+    <path d="M 70 360 L 290 360 L 310 380 L 490 380 510 360 730 360" stroke="#000000" stroke-width="1" fill="none"/>
 
-<line x1="195px" y1="45px" x2="110px" y2="45px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
-<line x1="217px" y1="45px" x2="290px" y2="45px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
-<line x1="395px" y1="45px" x2="310px" y2="45px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
-<line x1="417px" y1="45px" x2="490px" y2="45px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
-<line x1="595px" y1="45px" x2="510px" y2="45px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
-<line x1="617px" y1="45px" x2="690px" y2="45px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
-<line x1="100px" y1="20px" x2="100px" y2="400px" stroke="#000000" stroke-width="1"/>
-<line x1="140px" y1="90px" x2="140px" y2="260px" stroke="#000000" stroke-width="1"/>
-<line x1="200px" y1="130px" x2="200px" y2="400px" stroke="#000000" stroke-width="1"/>
-<line x1="300px" y1="130px" x2="300px" y2="400px" stroke="#000000" stroke-width="1"/>
-<line x1="400px" y1="130px" x2="400px" y2="400px" stroke="#000000" stroke-width="1"/>
-<line x1="500px" y1="130px" x2="500px" y2="400px" stroke="#000000" stroke-width="1"/>
-<line x1="600px" y1="180px" x2="600px" y2="400px" stroke="#000000" stroke-width="1"/>
-<line x1="700px" y1="20px" x2="700px" y2="400px" stroke="#000000" stroke-width="1"/>
-<text x="340" y="420" stroke="none" fill="#000000" font-size="12">Время</text>
-<line x1="390px" y1="417px" x2="417px" y2="417px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
-<text x="40" y="445" stroke="none" fill="#000000">Рис. 7.11.1. Временная диаграмма процесса считывания на синхронной шине</text>
+    <line x1="195px" y1="45px" x2="110px" y2="45px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+    <line x1="217px" y1="45px" x2="290px" y2="45px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+    <line x1="395px" y1="45px" x2="310px" y2="45px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+    <line x1="417px" y1="45px" x2="490px" y2="45px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+    <line x1="595px" y1="45px" x2="510px" y2="45px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+    <line x1="617px" y1="45px" x2="690px" y2="45px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+    <line x1="100px" y1="20px" x2="100px" y2="400px" stroke="#000000" stroke-width="1"/>
+    <line x1="140px" y1="90px" x2="140px" y2="260px" stroke="#000000" stroke-width="1"/>
+    <line x1="200px" y1="130px" x2="200px" y2="400px" stroke="#000000" stroke-width="1"/>
+    <line x1="300px" y1="130px" x2="300px" y2="400px" stroke="#000000" stroke-width="1"/>
+    <line x1="400px" y1="130px" x2="400px" y2="400px" stroke="#000000" stroke-width="1"/>
+    <line x1="500px" y1="130px" x2="500px" y2="400px" stroke="#000000" stroke-width="1"/>
+    <line x1="600px" y1="180px" x2="600px" y2="400px" stroke="#000000" stroke-width="1"/>
+    <line x1="700px" y1="20px" x2="700px" y2="400px" stroke="#000000" stroke-width="1"/>
+    <text x="340" y="420" stroke="none" fill="#000000" font-size="12">Время</text>
+    <line x1="390px" y1="417px" x2="417px" y2="417px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+    <text x="40" y="445" stroke="none" fill="#000000">Рис. 7.11.1. Временная диаграмма процесса считывания на синхронной
+        шине
+    </text>
 </svg>
-<p>Первый цикл начинается на фронте отрезка 
-<math  display='inline'>
-<msub>
-<mi>T</mi><mn>1</mn>
-</msub>
-</math>, а третий заканчивается на фронте отрезка 
-<math   display='inline'>
-<msub>
-<mi>T</mi><mn>4</mn>
-</msub>
-</math>.
- Поскольку ни один электрический сигнал не изменяется мгновенно, будем считать, что как фронт, так и спад занимают 1 нс. Все линии на рис. 7.11.1 показаны в масштабе времени. Одинарные линии представляют сигналы в один бит, тогда как адрес и данные являются совокупностью бит, и поэтому изображены в виде полос с пересечениями границ в моменты изменения значений. Серый цвет полосы подчеркивает тот факт, что значение адреса или данных на соответствующем интервале времени не имеет значения.</p>
-<p><a id='tab7_11_1'/>В таблице 7.11.1 поясняются обозначения временных характеристик процесса считывания на синхронной шине:</p>
+<p>Первый цикл начинается на фронте отрезка
+    <math display='inline'>
+        <msub>
+            <mi>T</mi>
+            <mn>1</mn>
+        </msub>
+    </math>
+    , а третий заканчивается на фронте отрезка
+    <math display='inline'>
+        <msub>
+            <mi>T</mi>
+            <mn>4</mn>
+        </msub>
+    </math>
+    .
+    Поскольку ни один электрический сигнал не изменяется мгновенно, будем считать, что как фронт, так и спад занимают 1
+    нс. Все линии на рис. 7.11.1 показаны в масштабе времени. Одинарные линии представляют сигналы в один бит, тогда как
+    адрес и данные являются совокупностью бит, и поэтому изображены в виде полос с пересечениями границ в моменты
+    изменения значений. Серый цвет полосы подчеркивает тот факт, что значение адреса или данных на соответствующем
+    интервале времени не имеет значения.
+</p>
+<p><a id='tab7_11_1'/>В таблице 7.11.1 поясняются обозначения временных характеристик процесса считывания на синхронной
+    шине:</p>
 <table border="1">
-<caption>Таблица 7.11.1. Временные характеристики процесса считывания на синхронной шине</caption>
-<tr><th>Символ</th><th>Значение</th><th>Минимум</th><th>Максимум</th></tr>
-<tr>
-<td>
-<math display='inline'>
-<msub>
-<mi>T</mi><mi>AD</mi>
-</msub>
-</math>
-</td>
-<td align="left">
-Задержка выдачи адреса
-</td>
-<td></td>
-<td>4</td>
-</tr>
-<tr>
-<td>
-<math   display='inline'>
-<msub>
-<mi>T</mi><mi>ML</mi>
-</msub>
-</math>
-</td>
-<td align="left">
-Промежуток между стабилизацией адреса и установкой сигнала
-<math   form='inline'>
-	<mover>
-		<mi>MREQ</mi>
-		<mo>&#x203E;</mo>
-	</mover>
-</math>
+    <caption>Таблица 7.11.1. Временные характеристики процесса считывания на синхронной шине</caption>
+    <tr>
+        <th>Символ</th>
+        <th>Значение</th>
+        <th>Минимум</th>
+        <th>Максимум</th>
+    </tr>
+    <tr>
+        <td>
+            <math display='inline'>
+                <msub>
+                    <mi>T</mi>
+                    <mi>AD</mi>
+                </msub>
+            </math>
+        </td>
+        <td align="left">
+            Задержка выдачи адреса
+        </td>
+        <td></td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>
+            <math display='inline'>
+                <msub>
+                    <mi>T</mi>
+                    <mi>ML</mi>
+                </msub>
+            </math>
+        </td>
+        <td align="left">
+            Промежуток между стабилизацией адреса и установкой сигнала
+            <math display='inline'>
+                <mover>
+                    <mi>MREQ</mi>
+                    <mo>&#x203E;</mo>
+                </mover>
+            </math>
 
-</td>
-<td>2</td>
-<td></td>
-</tr>
+        </td>
+        <td>2</td>
+        <td></td>
+    </tr>
 
-<tr>
-<td>
-<math   display='inline'>
-<msub>
-<mi>T</mi><mi>M</mi>
-</msub>
-</math>
-</td>
-<td align="left">
-Промежуток между спадом синхронизирующего сигнала в цикле 
-<math   display='inline'>
-<msub>
-<mi>T</mi><mn>1</mn>
-</msub>
-</math>
- и установкой сигнала
-<math   form='inline'>
-	<mover>
-		<mi>MREQ</mi>
-		<mo>&#x203E;</mo>
-	</mover>
-</math>
-</td>
-<td></td>
-<td>3</td>
-</tr>
+    <tr>
+        <td>
+            <math display='inline'>
+                <msub>
+                    <mi>T</mi>
+                    <mi>M</mi>
+                </msub>
+            </math>
+        </td>
+        <td align="left">
+            Промежуток между спадом синхронизирующего сигнала в цикле
+            <math display='inline'>
+                <msub>
+                    <mi>T</mi>
+                    <mn>1</mn>
+                </msub>
+            </math>
+            и установкой сигнала
+            <math display='inline'>
+                <mover>
+                    <mi>MREQ</mi>
+                    <mo>&#x203E;</mo>
+                </mover>
+            </math>
+        </td>
+        <td></td>
+        <td>3</td>
+    </tr>
 
-<tr>
-<td>
-<math   display='inline'>
-<msub>
-<mi>T</mi><mi>RL</mi>
-</msub>
-</math>
-</td>
-<td align="left">
-Промежуток между спадом синхронизирующего сигнала в цикле 
-<math   display='inline'>
-<msub>
-<mi>T</mi><mn>1</mn>
-</msub>
-</math>
- и установкой сигнала
- <math   form='inline'>
-	<mover>
-		<mi>RD</mi>
-		<mo>&#x203E;</mo>
-	</mover>
-</math>
-</td>
-<td></td>
-<td>3</td>
-</tr>
+    <tr>
+        <td>
+            <math display='inline'>
+                <msub>
+                    <mi>T</mi>
+                    <mi>RL</mi>
+                </msub>
+            </math>
+        </td>
+        <td align="left">
+            Промежуток между спадом синхронизирующего сигнала в цикле
+            <math display='inline'>
+                <msub>
+                    <mi>T</mi>
+                    <mn>1</mn>
+                </msub>
+            </math>
+            и установкой сигнала
+            <math display='inline'>
+                <mover>
+                    <mi>RD</mi>
+                    <mo>&#x203E;</mo>
+                </mover>
+            </math>
+        </td>
+        <td></td>
+        <td>3</td>
+    </tr>
 
-<tr>
-<td>
-<math   display='inline'>
-<msub>
-<mi>T</mi><mi>DS</mi>
-</msub>
-</math>
-</td>
-<td align="left">
-Период передачи данных до спада синхронизирующего сигнала
-</td>
-<td>2</td>
-<td></td>
-</tr>
+    <tr>
+        <td>
+            <math display='inline'>
+                <msub>
+                    <mi>T</mi>
+                    <mi>DS</mi>
+                </msub>
+            </math>
+        </td>
+        <td align="left">
+            Период передачи данных до спада синхронизирующего сигнала
+        </td>
+        <td>2</td>
+        <td></td>
+    </tr>
 
-<tr>
-<td>
-<math   display='inline'>
-<msub>
-<mi>T</mi><mi>MH</mi>
-</msub>
-</math>
-</td>
-<td align="left">
-Промежуток между спадом синхронизирующего сигнала в цикле
-<math   display='inline'>
-<msub>
-<mi>T</mi><mn>3</mn>
-</msub>
-</math>
- и сбросом сигнала
- <math   form='inline'>
-	<mover>
-		<mi>MREQ</mi>
-		<mo>&#x203E;</mo>
-	</mover>
-</math>
- 
-</td>
-<td></td>
-<td>3</td>
-</tr>
+    <tr>
+        <td>
+            <math display='inline'>
+                <msub>
+                    <mi>T</mi>
+                    <mi>MH</mi>
+                </msub>
+            </math>
+        </td>
+        <td align="left">
+            Промежуток между спадом синхронизирующего сигнала в цикле
+            <math display='inline'>
+                <msub>
+                    <mi>T</mi>
+                    <mn>3</mn>
+                </msub>
+            </math>
+            и сбросом сигнала
+            <math display='inline'>
+                <mover>
+                    <mi>MREQ</mi>
+                    <mo>&#x203E;</mo>
+                </mover>
+            </math>
 
-<tr>
-<td>
-<math   display='inline'>
-<msub>
-<mi>T</mi><mi>RH</mi>
-</msub>
-</math>
-</td>
-<td align="left">
-Промежуток между спадом синхронизирующего сигнала в цикле
-<math   display='inline'>
-<msub>
-<mi>T</mi><mn>3</mn>
-</msub>
-</math>
- и сбросом сигнала
-<math   form='inline'>
-	<mover>
-		<mi>RD</mi>
-		<mo>&#x203E;</mo>
-	</mover>
-</math> 
- </td>
-<td></td>
-<td>3</td>
-</tr>
+        </td>
+        <td></td>
+        <td>3</td>
+    </tr>
 
-<tr>
-<td>
-<math   display='inline'>
-<msub>
-<mi>T</mi><mi>DH</mi>
-</msub>
-</math>
-</td>
-<td align="left">
-Период продолжения передачи данных с момента сброса сигнала
-<math   form='inline'>
-	<mover>
-		<mi>RD</mi>
-		<mo>&#x203E;</mo>
-	</mover>
-</math> 
-</td>
-<td>0</td>
-<td></td>
-</tr>
+    <tr>
+        <td>
+            <math display='inline'>
+                <msub>
+                    <mi>T</mi>
+                    <mi>RH</mi>
+                </msub>
+            </math>
+        </td>
+        <td align="left">
+            Промежуток между спадом синхронизирующего сигнала в цикле
+            <math display='inline'>
+                <msub>
+                    <mi>T</mi>
+                    <mn>3</mn>
+                </msub>
+            </math>
+            и сбросом сигнала
+            <math display='inline'>
+                <mover>
+                    <mi>RD</mi>
+                    <mo>&#x203E;</mo>
+                </mover>
+            </math>
+        </td>
+        <td></td>
+        <td>3</td>
+    </tr>
+
+    <tr>
+        <td>
+            <math display='inline'>
+                <msub>
+                    <mi>T</mi>
+                    <mi>DH</mi>
+                </msub>
+            </math>
+        </td>
+        <td align="left">
+            Период продолжения передачи данных с момента сброса сигнала
+            <math display='inline'>
+                <mover>
+                    <mi>RD</mi>
+                    <mo>&#x203E;</mo>
+                </mover>
+            </math>
+        </td>
+        <td>0</td>
+        <td></td>
+    </tr>
 </table>
 <p>В момент, когда адресные линии будут готовы принять новые значения, устанавливаются сигналы
-<math   form='inline'>
-	<mover>
-		<mi>MREQ</mi>
-		<mo>&#x203E;</mo>
-	</mover>
-</math>
-и
-<math   form='inline'>
-	<mover>
-		<mi>RD</mi>
-		<mo>&#x203E;</mo>
-	</mover>
-</math>.
-Первый фиксирует факт доступа к памяти, а второй &#8212; чтение из памяти. Временной интервал
-<math   display='inline'>
-<msub>
-<mi>T</mi><mi>AD</mi>
-</msub>
-</math>
-должен быть не больше, чем 4 нс. Производитель процессора гарантирует, что во время любого цикла считывания процессор выдаст требуемый адрес за время  
-<math   display='inline'>
-<msub><mi>T</mi><mn>1</mn></msub>
-</math>. 
-После установки адреса, считывание данных из памяти занимает 15 нс, следовательно, за время 
-<math   display='inline'>
-<msub><mi>T</mi><mn>2</mn></msub>
-</math> память не успевает передать данные процессору. Во избежание простоя процессора, память устанавливает сигнал
-<math   form='inline'>
-	<mover>
-		<mi>WAIT</mi>
-		<mo>&#x203E;</mo>
-	</mover>
-</math>
-в начале отрезка
-<math   display='inline'>
-<msub><mi>T</mi><mn>2</mn></msub>
-</math>, что означает ввод периода ожидания по причине медленной работы памяти. До отмены памятью периода ожидания (сброса сигнала 
-<math   form='inline'>
-	<mover>
-		<mi>WAIT</mi>
-		<mo>&#x203E;</mo>
-	</mover>
-</math> в начале отрезка 
-<math   display='inline'>
-<msub><mi>T</mi><mn>3</mn></msub>
-</math>) процессор не будет ожидать поступления данных из памяти и будет выполнять другие команды.
+    <math display='inline'>
+        <mover>
+            <mi>MREQ</mi>
+            <mo>&#x203E;</mo>
+        </mover>
+    </math>
+    и
+    <math display='inline'>
+        <mover>
+            <mi>RD</mi>
+            <mo>&#x203E;</mo>
+        </mover>
+    </math>
+    .
+    Первый фиксирует факт доступа к памяти, а второй &#8212; чтение из памяти. Временной интервал
+    <math display='inline'>
+        <msub>
+            <mi>T</mi>
+            <mi>AD</mi>
+        </msub>
+    </math>
+    должен быть не больше, чем 4 нс. Производитель процессора гарантирует, что во время любого цикла считывания
+    процессор выдаст требуемый адрес за время
+    <math display='inline'>
+        <msub>
+            <mi>T</mi>
+            <mn>1</mn>
+        </msub>
+    </math>
+    .
+    После установки адреса, считывание данных из памяти занимает 15 нс, следовательно, за время
+    <math display='inline'>
+        <msub>
+            <mi>T</mi>
+            <mn>2</mn>
+        </msub>
+    </math>
+    память не успевает передать данные процессору. Во избежание простоя процессора, память устанавливает сигнал
+    <math display='inline'>
+        <mover>
+            <mi>WAIT</mi>
+            <mo>&#x203E;</mo>
+        </mover>
+    </math>
+    в начале отрезка
+    <math display='inline'>
+        <msub>
+            <mi>T</mi>
+            <mn>2</mn>
+        </msub>
+    </math>
+    , что означает ввод периода ожидания по причине медленной работы памяти. До отмены памятью периода ожидания (сброса
+    сигнала
+    <math display='inline'>
+        <mover>
+            <mi>WAIT</mi>
+            <mo>&#x203E;</mo>
+        </mover>
+    </math>
+    в начале отрезка
+    <math display='inline'>
+        <msub>
+            <mi>T</mi>
+            <mn>3</mn>
+        </msub>
+    </math>
+    ) процессор не будет ожидать поступления данных из памяти и будет выполнять другие команды.
 </p>
-<p>В течение первой половины цикла 
-<math   display='inline'>
-<msub><mi>T</mi><mn>3</mn></msub>
-</math> память помещает данные на информационные линии. 
-По условиям синхронизации данные должны поступить на информационные линии минимум за 
-<math   display='inline'>
-<msub>
-<mi>T</mi><mi>DS</mi>
-</msub>
-<mo>=</mo>
-<mn>2</mn>
-</math>
- нс до спада сигнала
-<math   display='inline'>
-<msub><mi>T</mi><mn>3</mn></msub>
-</math>.
-Согласно  ограничениям на 
-<math   display='inline'>
-<msub>
-<mi>T</mi><mi>AD</mi>
-</msub>
-</math>
-и
-<math   display='inline'>
-<msub>
-<mi>T</mi><mi>DS</mi>
-</msub>
-</math>
-с момента появления адреса до момента передачи данных на информационные линии должно пройти не более
-<math   display='inline'>
-<mrow>
-<msub><mi>T</mi><mn>1</mn></msub>
-<mo>+</mo>
-<msub><mi>T</mi><mn>2</mn></msub>
-<mo>+</mo>
-<mfrac>
-<msub><mi>T</mi><mn>3</mn></msub>
-<mn>2</mn>
-</mfrac>
-<mo>-</mo>
-<msub>
-<mi>T</mi><mi>AD</mi>
-</msub>
-<mo>-</mo>
-<msub>
-<mi>T</mi><mi>DS</mi>
-</msub>
-</mrow>
-<mo>=</mo>
-<mn>19</mn>
-</math> 
- нс.
-  
-На спаде сигнала
-<math   display='inline'>
-<msub><mi>T</mi><mn>3</mn></msub>
-</math>
- процессор стробирует (считывает) информационные линии и помещает их значения во внутренний регистр. После этого процессор сбрасывает сигналы 
-<math   form='inline'>
-	<mover>
-		<mi>MREQ</mi>
-		<mo>&#x203E;</mo>
-	</mover>
-</math>
-и
-<math   form='inline'>
-	<mover>
-		<mi>RD</mi>
-		<mo>&#x203E;</mo>
-	</mover>
-</math>.
-Интервалы 
-<math   display='inline'>
-<msub><mi>T</mi><mi>MH</mi></msub>
-</math>
-и
-<math   display='inline'>
-<msub><mi>T</mi><mi>RH</mi></msub>
-</math>
-определяют необходимое время на отмену сигналов 
-<math   form='inline'>
-	<mover>
-		<mi>MREQ</mi>
-		<mo>&#x203E;</mo>
-	</mover>
-</math>
-и
-<math   form='inline'>
-	<mover>
-		<mi>RD</mi>
-		<mo>&#x203E;</mo>
-	</mover>
-</math>
-по завершению стробирования данных. Согласно ограничению на параметр 
-<math   form='inline'>
-<msub><mi>T</mi><mi>DH</mi></msub>
-</math>, память удалит данные по снятию сигнала
-<math   form='inline'>
-	<mover>
-		<mi>RD</mi>
-		<mo>&#x203E;</mo>
-	</mover>
-</math>.
+<p>В течение первой половины цикла
+    <math display='inline'>
+        <msub>
+            <mi>T</mi>
+            <mn>3</mn>
+        </msub>
+    </math>
+    память помещает данные на информационные линии.
+    По условиям синхронизации данные должны поступить на информационные линии минимум за
+    <math display='inline'>
+        <msub>
+            <mi>T</mi>
+            <mi>DS</mi>
+        </msub>
+        <mo>=</mo>
+        <mn>2</mn>
+    </math>
+    нс до спада сигнала
+    <math display='inline'>
+        <msub>
+            <mi>T</mi>
+            <mn>3</mn>
+        </msub>
+    </math>
+    .
+    Согласно ограничениям на
+    <math display='inline'>
+        <msub>
+            <mi>T</mi>
+            <mi>AD</mi>
+        </msub>
+    </math>
+    и
+    <math display='inline'>
+        <msub>
+            <mi>T</mi>
+            <mi>DS</mi>
+        </msub>
+    </math>
+    с момента появления адреса до момента передачи данных на информационные линии должно пройти не более
+    <math display='inline'>
+        <mrow>
+            <msub>
+                <mi>T</mi>
+                <mn>1</mn>
+            </msub>
+            <mo>+</mo>
+            <msub>
+                <mi>T</mi>
+                <mn>2</mn>
+            </msub>
+            <mo>+</mo>
+            <mfrac>
+                <msub>
+                    <mi>T</mi>
+                    <mn>3</mn>
+                </msub>
+                <mn>2</mn>
+            </mfrac>
+            <mo>-</mo>
+            <msub>
+                <mi>T</mi>
+                <mi>AD</mi>
+            </msub>
+            <mo>-</mo>
+            <msub>
+                <mi>T</mi>
+                <mi>DS</mi>
+            </msub>
+        </mrow>
+        <mo>=</mo>
+        <mn>19</mn>
+    </math>
+    нс.
+
+    На спаде сигнала
+    <math display='inline'>
+        <msub>
+            <mi>T</mi>
+            <mn>3</mn>
+        </msub>
+    </math>
+    процессор стробирует (считывает) информационные линии и помещает их значения во внутренний регистр. После этого
+    процессор сбрасывает сигналы
+    <math display='inline'>
+        <mover>
+            <mi>MREQ</mi>
+            <mo>&#x203E;</mo>
+        </mover>
+    </math>
+    и
+    <math display='inline'>
+        <mover>
+            <mi>RD</mi>
+            <mo>&#x203E;</mo>
+        </mover>
+    </math>
+    .
+    Интервалы
+    <math display='inline'>
+        <msub>
+            <mi>T</mi>
+            <mi>MH</mi>
+        </msub>
+    </math>
+    и
+    <math display='inline'>
+        <msub>
+            <mi>T</mi>
+            <mi>RH</mi>
+        </msub>
+    </math>
+    определяют необходимое время на отмену сигналов
+    <math display='inline'>
+        <mover>
+            <mi>MREQ</mi>
+            <mo>&#x203E;</mo>
+        </mover>
+    </math>
+    и
+    <math display='inline'>
+        <mover>
+            <mi>RD</mi>
+            <mo>&#x203E;</mo>
+        </mover>
+    </math>
+    по завершению стробирования данных. Согласно ограничению на параметр
+    <math display='inline'>
+        <msub>
+            <mi>T</mi>
+            <mi>DH</mi>
+        </msub>
+    </math>
+    , память удалит данные по снятию сигнала
+    <math display='inline'>
+        <mover>
+            <mi>RD</mi>
+            <mo>&#x203E;</mo>
+        </mover>
+    </math>
+    .
 </p>
-<p>Синхронные шины обладают рядом недостатков. Во-первых, шина подстраивается под самое медленное устройство, связанное с ней, в то время, как более быстрые устройства, подключенные к шине, будут простаивать. Во-вторых, замена устройств ввода-вывода на более быстрые не всегда будет приводить к росту производительности компьютера, поскольку этому будет препятствовать раз и навсегда определенный цикл шины (например, замена памяти на более быструю не даст желаемого эффекта повышения производительности системы, так как чтение шина выполняет за прежнее количество циклов). В третьих, устройства ввода-вывода могут завершить свои операции за неполное количество циклов, но, по причине запрета шиной неполных циклов, вынуждены будут продлить их до полного количества циклов.</p>
-<p><a id='ris7_11_2'/>На рис. 7.11.2 изображена принципиальная схема функционирования асинхронной шины, т.е. шины без тактового генератора.</p>
-<svg  height = "330px"  width = "600px">
-<text x="20" y="25" stroke="none" fill="#000000" font-size="12">Адрес</text>
-<path d="M 70 30 L 70 10 120 10 130 20 120 30 z" stroke="#999999" stroke-width="1" fill="#999999"/>
-<path d="M 130 20 L 140 10 500 10 510 20 500 30 140 30 z" stroke="#000000" stroke-width="1" fill="none"/>
-<path d="M 510 20  L 520 10 570 10 570 30 520 30 z" stroke="#999999" stroke-width="1" fill="#999999"/>
-<text x="220" y="25" stroke="none" fill="#000000" font-size="12">Считываемый адрес памяти</text>
-<text x="20" y="70" stroke="none" fill="#000000" font-size="12">MREQ</text>
-<line x1="20px" y1="55px" x2="60px" y2="55px" stroke="#000000" stroke-width="1"/>
-<path d="M 70 65 L 200 65 220 85 475 85 495 65 570 65" stroke="#000000" stroke-width="1" fill="none"/>
-<text x="40" y="125" stroke="none" fill="#000000" font-size="12">RD</text>
-<line x1="40px" y1="110px" x2="60px" y2="110px" stroke="#000000" stroke-width="1"/>
-<path d="M 70 120 L 200 120 220 140 475 140 495 120 570 120" stroke="#000000" stroke-width="1" fill="none"/>
-<text x="20" y="180" stroke="none" fill="#000000" font-size="12">MSYN</text>
-<line x1="20px" y1="165px" x2="60px" y2="165px" stroke="#000000" stroke-width="1"/>
-<path d="M 70 175 L 200 175 220 195 475 195 495 175 570 175" stroke="#000000" stroke-width="1" fill="none"/>
-<text x="10" y="235" stroke="none" fill="#000000" font-size="12">Данные</text>
-<path d="M 70 240 L 70 220 430 220 440 230 430 240 z" stroke="#999999" stroke-width="1" fill="#999999"/>
-<path d="M 440 230 450 220 510 220 520 230 510 240 450 240 z" stroke="#000000" stroke-width="1" fill="none"/>
-<text x="455" y="235" stroke="none" fill="#000000" font-size="12">Данные</text>
-<path d="M 520 230 L 530 220 570 220 570 240 530 240 z" stroke="#999999" stroke-width="1" fill="#999999"/>
-<text x="20" y="275" stroke="none" fill="#000000" font-size="12">SSYN</text>
-<line x1="21px" y1="260px" x2="57px" y2="260px" stroke="#000000" stroke-width="1"/>
-<path d="M 70 265 L 450 265 470 285 505 285 525 265 570 265" stroke="#000000" stroke-width="1" fill="none"/>
-<text x="40" y="320" stroke="none" fill="#000000">Рис. 7.11.2. Схема функционирования асинхронной шины</text>
+<p>Синхронные шины обладают рядом недостатков. Во-первых, шина подстраивается под самое медленное устройство, связанное
+    с ней, в то время, как более быстрые устройства, подключенные к шине, будут простаивать. Во-вторых, замена устройств
+    ввода-вывода на более быстрые не всегда будет приводить к росту производительности компьютера, поскольку этому будет
+    препятствовать раз и навсегда определенный цикл шины (например, замена памяти на более быструю не даст желаемого
+    эффекта повышения производительности системы, так как чтение шина выполняет за прежнее количество циклов). В
+    третьих, устройства ввода-вывода могут завершить свои операции за неполное количество циклов, но, по причине запрета
+    шиной неполных циклов, вынуждены будут продлить их до полного количества циклов.</p>
+<p><a id='ris7_11_2'/>На рис. 7.11.2 изображена принципиальная схема функционирования асинхронной шины, т.е. шины без
+    тактового генератора.</p>
+<svg height="330px" width="600px">
+    <text x="20" y="25" stroke="none" fill="#000000" font-size="12">Адрес</text>
+    <path d="M 70 30 L 70 10 120 10 130 20 120 30 z" stroke="#999999" stroke-width="1" fill="#999999"/>
+    <path d="M 130 20 L 140 10 500 10 510 20 500 30 140 30 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M 510 20  L 520 10 570 10 570 30 520 30 z" stroke="#999999" stroke-width="1" fill="#999999"/>
+    <text x="220" y="25" stroke="none" fill="#000000" font-size="12">Считываемый адрес памяти</text>
+    <text x="20" y="70" stroke="none" fill="#000000" font-size="12">MREQ</text>
+    <line x1="20px" y1="55px" x2="60px" y2="55px" stroke="#000000" stroke-width="1"/>
+    <path d="M 70 65 L 200 65 220 85 475 85 495 65 570 65" stroke="#000000" stroke-width="1" fill="none"/>
+    <text x="40" y="125" stroke="none" fill="#000000" font-size="12">RD</text>
+    <line x1="40px" y1="110px" x2="60px" y2="110px" stroke="#000000" stroke-width="1"/>
+    <path d="M 70 120 L 200 120 220 140 475 140 495 120 570 120" stroke="#000000" stroke-width="1" fill="none"/>
+    <text x="20" y="180" stroke="none" fill="#000000" font-size="12">MSYN</text>
+    <line x1="20px" y1="165px" x2="60px" y2="165px" stroke="#000000" stroke-width="1"/>
+    <path d="M 70 175 L 200 175 220 195 475 195 495 175 570 175" stroke="#000000" stroke-width="1" fill="none"/>
+    <text x="10" y="235" stroke="none" fill="#000000" font-size="12">Данные</text>
+    <path d="M 70 240 L 70 220 430 220 440 230 430 240 z" stroke="#999999" stroke-width="1" fill="#999999"/>
+    <path d="M 440 230 450 220 510 220 520 230 510 240 450 240 z" stroke="#000000" stroke-width="1" fill="none"/>
+    <text x="455" y="235" stroke="none" fill="#000000" font-size="12">Данные</text>
+    <path d="M 520 230 L 530 220 570 220 570 240 530 240 z" stroke="#999999" stroke-width="1" fill="#999999"/>
+    <text x="20" y="275" stroke="none" fill="#000000" font-size="12">SSYN</text>
+    <line x1="21px" y1="260px" x2="57px" y2="260px" stroke="#000000" stroke-width="1"/>
+    <path d="M 70 265 L 450 265 470 285 505 285 525 265 570 265" stroke="#000000" stroke-width="1" fill="none"/>
+    <text x="40" y="320" stroke="none" fill="#000000">Рис. 7.11.2. Схема функционирования асинхронной шины</text>
 </svg>
-<p>Задающее устройство устанавливает адрес, сигналы 
-<math   form='inline'>
-	<mover>
-		<mi>MREQ</mi>
-		<mo>&#x203E;</mo>
-	</mover>
-</math>
-и
-<math   form='inline'>
-	<mover>
-		<mi>RD</mi>
-		<mo>&#x203E;</mo>
-	</mover>
-</math>, после чего посылает подчиненному устройству синхронизирующий сигнал
-<math   form='inline'>
-	<mover>
-		<mi>MSYN</mi>
-		<mo>&#x203E;</mo>
-	</mover>
-</math> (Master SYNchronization). Подчиненное устройство, получив этот сигнал, выполняет команду и подает сигнал 
-<math   form='inline'>
-	<mover>
-		<mi>SSYN</mi>
-		<mo>&#x203E;</mo>
-	</mover>
-</math> (Slave SYNchronization), извещающий задающее устройство о доступности данных на информационных линиях. Задающее устройство фиксирует данные и сбрасывает адресные линии и сигналы
-<math   form='inline'>
-	<mover>
-		<mi>MREQ</mi>
-		<mo>&#x203E;</mo>
-	</mover>
-</math>, 
-<math   form='inline'>
-	<mover>
-		<mi>RD</mi>
-		<mo>&#x203E;</mo>
-	</mover>
-</math> 
-и 
-<math   form='inline'>
-	<mover>
-		<mi>MSYN</mi>
-		<mo>&#x203E;</mo>
-	</mover>
-</math>. Сброс сигнала 
-<math   form='inline'>
-	<mover>
-		<mi>MSYN</mi>
-		<mo>&#x203E;</mo>
-	</mover>
-</math>
- извещает подчиненное устройство об окончании цикла, и подчиненное устройство сбрасывает сигнал
- <math   form='inline'>
-	<mover>
-		<mi>SSYN</mi>
-		<mo>&#x203E;</mo>
-	</mover>
-</math>. 
+<p>Задающее устройство устанавливает адрес, сигналы
+    <math display='inline'>
+        <mover>
+            <mi>MREQ</mi>
+            <mo>&#x203E;</mo>
+        </mover>
+    </math>
+    и
+    <math display='inline'>
+        <mover>
+            <mi>RD</mi>
+            <mo>&#x203E;</mo>
+        </mover>
+    </math>
+    , после чего посылает подчиненному устройству синхронизирующий сигнал
+    <math display='inline'>
+        <mover>
+            <mi>MSYN</mi>
+            <mo>&#x203E;</mo>
+        </mover>
+    </math>
+    (Master SYNchronization). Подчиненное устройство, получив этот сигнал, выполняет команду и подает сигнал
+    <math display='inline'>
+        <mover>
+            <mi>SSYN</mi>
+            <mo>&#x203E;</mo>
+        </mover>
+    </math>
+    (Slave SYNchronization), извещающий задающее устройство о доступности данных на информационных линиях. Задающее
+    устройство фиксирует данные и сбрасывает адресные линии и сигналы
+    <math display='inline'>
+        <mover>
+            <mi>MREQ</mi>
+            <mo>&#x203E;</mo>
+        </mover>
+    </math>
+    ,
+    <math display='inline'>
+        <mover>
+            <mi>RD</mi>
+            <mo>&#x203E;</mo>
+        </mover>
+    </math>
+    и
+    <math display='inline'>
+        <mover>
+            <mi>MSYN</mi>
+            <mo>&#x203E;</mo>
+        </mover>
+    </math>
+    . Сброс сигнала
+    <math display='inline'>
+        <mover>
+            <mi>MSYN</mi>
+            <mo>&#x203E;</mo>
+        </mover>
+    </math>
+    извещает подчиненное устройство об окончании цикла, и подчиненное устройство сбрасывает сигнал
+    <math display='inline'>
+        <mover>
+            <mi>SSYN</mi>
+            <mo>&#x203E;</mo>
+        </mover>
+    </math>
+    .
 </p>
-<p>Описанный выше набор взамообусловленных сигналов называется <span class='teorema'>полным квитированием</span>. Необходимо подчеркнуть, что взаимообусловленность сигналов не является синхронной &#8212; причиной появления события является предыдущее событие, а не импульсы генератора. При этом медленная работа задающего и подчиненного устройств не оказывает влияние на скорость работы других таких пар устройств.</p>
-<p>Несмотря на очевидные преимущества асинхронной шины, большинство шин синхронные. Причина в том, что построить синхронные системы проще, нежели асинхронные &#8212; процессор генерирует сигналы, а устройство ввода-вывода реагирует на них без всякой причинно-следственной связи. При удачном подборе комплектующих система будет работать с высокой скоростью и без квитирования.</p>
+<p>Описанный выше набор взамообусловленных сигналов называется <span class='teorema'>полным квитированием</span>.
+    Необходимо подчеркнуть, что взаимообусловленность сигналов не является синхронной &#8212; причиной появления события
+    является предыдущее событие, а не импульсы генератора. При этом медленная работа задающего и подчиненного устройств
+    не оказывает влияние на скорость работы других таких пар устройств.</p>
+<p>Несмотря на очевидные преимущества асинхронной шины, большинство шин синхронные. Причина в том, что построить
+    синхронные системы проще, нежели асинхронные &#8212; процессор генерирует сигналы, а устройство ввода-вывода
+    реагирует на них без всякой причинно-следственной связи. При удачном подборе комплектующих система будет работать с
+    высокой скоростью и без квитирования.</p>
 <h3>Упражнения</h3>
 <ol>
-<li>Вернемся к временной диаграмме на <a href='#ris7_11_1'>рис. 7.11.1</a>. Предположим, что вы замедлили задающий генератор до 20 нс вместо 10 нс, а остальные временные ограничения остались без изменения. Сколько времени, в худшем случае, будет у памяти, чтобы передать данные во время третьего цикла
-<math   display='inline'>
-<msub><mi>T</mi><mn>3</mn></msub>
-</math>
- после того, как будет установлен сигнал
-<math   form='inline'>
-	<mover>
-		<mi>MREQ</mi>
-		<mo>&#x203E;</mo>
-	</mover>
-</math>. 
-</li>
-<li>
-Пусть тактовый генератор работает с частотой 100 МГц (см. <a href='#ris7_11_1'>рис. 7.11.1</a>), время 
-<math   display='inline'>
-<msub>
-<mi>T</mi><mi>AD</mi>
-</msub>
-</math>
-возросло до 5 нс, а остальные характеристики системы остались без изменения. Можно ли при этом использовать микросхему памяти, считывание слова из которой занимает 10 нс?
-</li>
-<li>
-В <a href='#tab7_11_1'>таблице 7.11.1</a> показано, что значение 
-<math   display='inline'>
-<msub>
-<mi>T</mi><mi>ML</mi>
-</msub>
-</math>
-должно быть, по меньшей мере, 2 нс. Может ли быть этот показатель отрицательным, т.е. может ли процессор устанавливать сигнал
-<math   form='inline'>
-	<mover>
-		<mi>MREQ</mi>
-		<mo>&#x203E;</mo>
-	</mover>
-</math>
-до выяснения адреса?
-</li>
-<li>Посмотрите на <a href='#ris7_11_2'>схему 7.11.2</a>. Обозначьте время передачи адресных линий как 
-<math   display='inline'>
-<msub>
-<mi>T</mi><mi>A1</mi>
-</msub>
-<mo>,</mo>
-<msub>
-<mi>T</mi><mi>A2</mi>
-</msub>
-</math>, время передачи линии 
-<math   form='inline'>
-	<mover>
-		<mi>MREQ</mi>
-		<mo>&#x203E;</mo>
-	</mover>
-</math> как 
-<math   display='inline'>
-<msub>
-<mi>T</mi><mi>MREQ1</mi>
-</msub>
-<mo>,</mo>
-<msub>
-<mi>T</mi><mi>MREQ2</mi>
-</msub>
-</math> и т.д. Напишите все неравенства, подразумеваемые при полном квитировании.
-</li>
+    <li>Вернемся к временной диаграмме на <a href='#ris7_11_1'>рис. 7.11.1</a>. Предположим, что вы замедлили задающий
+        генератор до 20 нс вместо 10 нс, а остальные временные ограничения остались без изменения. Сколько времени, в
+        худшем случае, будет у памяти, чтобы передать данные во время третьего цикла
+        <math display='inline'>
+            <msub>
+                <mi>T</mi>
+                <mn>3</mn>
+            </msub>
+        </math>
+        после того, как будет установлен сигнал
+        <math display='inline'>
+            <mover>
+                <mi>MREQ</mi>
+                <mo>&#x203E;</mo>
+            </mover>
+        </math>
+        .
+    </li>
+    <li>
+        Пусть тактовый генератор работает с частотой 100 МГц (см. <a href='#ris7_11_1'>рис. 7.11.1</a>), время
+        <math display='inline'>
+            <msub>
+                <mi>T</mi>
+                <mi>AD</mi>
+            </msub>
+        </math>
+        возросло до 5 нс, а остальные характеристики системы остались без изменения. Можно ли при этом использовать
+        микросхему памяти, считывание слова из которой занимает 10 нс?
+    </li>
+    <li>
+        В <a href='#tab7_11_1'>таблице 7.11.1</a> показано, что значение
+        <math display='inline'>
+            <msub>
+                <mi>T</mi>
+                <mi>ML</mi>
+            </msub>
+        </math>
+        должно быть, по меньшей мере, 2 нс. Может ли быть этот показатель отрицательным, т.е. может ли процессор
+        устанавливать сигнал
+        <math display='inline'>
+            <mover>
+                <mi>MREQ</mi>
+                <mo>&#x203E;</mo>
+            </mover>
+        </math>
+        до выяснения адреса?
+    </li>
+    <li>Посмотрите на <a href='#ris7_11_2'>схему 7.11.2</a>. Обозначьте время передачи адресных линий как
+        <math display='inline'>
+            <msub>
+                <mi>T</mi>
+                <mi>A1</mi>
+            </msub>
+            <mo>,</mo>
+            <msub>
+                <mi>T</mi>
+                <mi>A2</mi>
+            </msub>
+        </math>
+        , время передачи линии
+        <math display='inline'>
+            <mover>
+                <mi>MREQ</mi>
+                <mo>&#x203E;</mo>
+            </mover>
+        </math>
+        как
+        <math display='inline'>
+            <msub>
+                <mi>T</mi>
+                <mi>MREQ1</mi>
+            </msub>
+            <mo>,</mo>
+            <msub>
+                <mi>T</mi>
+                <mi>MREQ2</mi>
+            </msub>
+        </math>
+        и т.д. Напишите все неравенства, подразумеваемые при полном квитировании.
+    </li>
 </ol>
 
 
-<p><a href="7_10.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="7_12.html">К следующему</a> </p>
+<p><a href="7_10.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="7_12.html">К следующему</a></p>
 </body>
+<script type="text/javascript">
+    MathJax.Hub.Configured()
+</script>
 </html>

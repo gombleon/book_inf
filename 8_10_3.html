@@ -1,403 +1,749 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset='UTF-8' />
-<link rel='stylesheet' type='text/css' href='style.css' />
-<meta name='author' content='leonid' />
-<title>Сортировка простым выбором</title>
-<script type="text/javascript">
-function sort_select() {
-	var win=open("", "newWindow"),  html, head, title, body, h2, p, n=10, mass_a=[], i, j, x, k=0, str='', d=0;
-	win.document.open();
-	html=document.createElement("html");
-	win.document.appendChild(html);
-	head=document.createElement("head");
-	title=document.createElement("title");
-	title.textContent="Сортировка простым выбором";
-	head.appendChild(title);
-	html.appendChild(head);
-	body=document.createElement("body");
-	html.appendChild(body);
-	h2=document.createElement("h2");
-	h2.textContent="Сортировка простым выбором";
-	body.appendChild(h2);
-	for (i=0; i<n; i++) {
-		mass_a[i]=Math.round(Math.random()*100);
-		str=str+mass_a[i]+' ';
-	}
-	p=document.createElement("p");
-	p.textContent='Исходный массив: '+str;
-	body.appendChild(p);
-	for (i=0; i<n-1; i++){
-		k=i;
-		x=mass_a[i];
-		p=document.createElement("p");
-		p.textContent='a['+i+']='+x;
-		body.appendChild(p);
-		for (j=i+1;j<n;j++) {
-			if (mass_a[j]<x) {
-				k=j;				
-				x=mass_a[j];
-			}
-		}
-		if (k!==j) {
-			p=document.createElement("p");
-			p.textContent='a['+i+']='+mass_a[i]+'<--->'+'a['+k+']='+mass_a[k]+'.';
-			body.appendChild(p);
-			mass_a[k]=mass_a[i];
-			mass_a[i]=x;		
-		}
-		str='Массив: ';
-		for (d=0; d<n; d++) {
-			str=str+mass_a[d]+' ';
-		}
-		p=document.createElement("p");
-		p.textContent=str;
-		body.appendChild(p);		
-	}
-	str='Отсортированный массив: ';	
-	for (i=0; i<n; i++) {
-		str=str+mass_a[i]+' ';
-	}
-	p=document.createElement("p");
-	p.textContent=str;
-	body.appendChild(p);
-	win.document.close();
-}
-function analis(n) {
-	var win=open("", "newWindow"),  html, head, title, body, h2, p, mass_a=[], i, j, x, k=0, str='', count=0, comp=0, tt_n, t_n, tt_k, t_k;
-	win.document.open();
-	html=document.createElement("html");
-	win.document.appendChild(html);
-	head=document.createElement("head");
-	title=document.createElement("title");
-	title.textContent="Сортировка простым выбором монотонно убывающей последовательности";
-	head.appendChild(title);
-	html.appendChild(head);
-	body=document.createElement("body");
-	html.appendChild(body);
-	h2=document.createElement("h2");
-	h2.textContent="Сортировка простым выбором монотонно убывающей последовательности";
-	body.appendChild(h2);
-	for (i=0; i<n; i++) {
-		mass_a[i]=10005-i;
-	}
-	t_n= new Date();
-	tt_n=t_n.valueOf();	
-	for (i=0; i<n-1; i++){
-		k=i;
-		x=mass_a[i];
-		count++;
-		for (j=i+1;j<n;j++) {
-			if (mass_a[j]<x) {
-				k=j;				
-				x=mass_a[j];
-				count++;
-			}
-			comp++;
-		}
-		if (k!==j) {
-			mass_a[k]=mass_a[i];
-			mass_a[i]=x;
-			count=count+2;
-		}
-	}
-	t_k= new Date();
-	tt_k=t_k.valueOf();	
-	p=document.createElement("p");
-	p.textContent='Всего элементов в массиве '+n+'.';
-	body.appendChild(p);
-	p=document.createElement("p");
-	p.textContent='Всего операций сравнения '+comp+'.';
-	body.appendChild(p);	
-	p=document.createElement("p");
-	p.textContent='Всего операций присваивания '+count+'.';
-	body.appendChild(p);
-	p=document.createElement("p");
-	i=tt_k.valueOf()-tt_n.valueOf();
-	p.textContent='Продолжительность сортировки t='+i+' миллисекунд.';
-	body.appendChild(p);		
-	win.document.close();
-}
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+  extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});
 
-function analis1(n) {
-	var win=open("", "newWindow"),  html, head, title, body, h2, p, mass_a=[], i, j, x, k=0, str='', count=0, comp=0, tt_n, t_n, tt_k, t_k;
-	win.document.open();
-	html=document.createElement("html");
-	win.document.appendChild(html);
-	head=document.createElement("head");
-	title=document.createElement("title");
-	title.textContent="Оценка вычислительной сложности алгоритма сортировки простым выбором";
-	head.appendChild(title);
-	html.appendChild(head);
-	body=document.createElement("body");
-	html.appendChild(body);
-	h2=document.createElement("h2");
-	h2.textContent="Оценка вычислительной сложности алгоритма сортировки простым выбором";
-	body.appendChild(h2);
-	if (n<10) {
-		n=10;
-	}
-	for (i=0; i<n; i++) {
-		mass_a[i]=Math.round(Math.random()*100);
-	}
-	t_n= new Date();
-	tt_n=t_n.valueOf();	
-	for (i=0; i<n-1; i++){
-		k=i;
-		x=mass_a[i];
-		count++;
-		for (j=i+1;j<n;j++) {
-			if (mass_a[j]<x) {
-				k=j;				
-				x=mass_a[j];
-				count++;
-			}
-			comp++;
-		}
-		if (k!==j) {
-			mass_a[k]=mass_a[i];
-			mass_a[i]=x;
-			count=count+2;
-		}
-	}
-	t_k= new Date();
-	tt_k=t_k.valueOf();	
-	p=document.createElement("p");
-	p.textContent='Всего элементов в массиве n='+n+'.';
-	body.appendChild(p);	
-	p=document.createElement("p");
-	p.textContent='Всего операций сравнения '+comp+'.';
-	body.appendChild(p);
-	i=comp/(n*(n-1)/2);j=n-1;
-	p=document.createElement("p");
-	p.textContent='Оценка количества операций сравнения M='+i+'*'+n+'*'+j+'.';
-	body.appendChild(p);	
-	p=document.createElement("p");
-	p.textContent='Всего операций присваивания M='+count+'.';
-	body.appendChild(p);
-	i=count/(n*Math.LOG2E*Math.log(n));
-	p=document.createElement("p");
-	p.textContent='Оценка количества операций присваивания M='+i.toPrecision(4)+'*'+n+'*ln('+n+').';
-	body.appendChild(p);
-	p=document.createElement("p");
-	i=tt_k.valueOf()-tt_n.valueOf();
-	p.textContent='Продолжительность сортировки t='+i+' миллисекунд.';
-	body.appendChild(p);	
-	win.document.close();
-}
-</script>
+
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <meta charset='UTF-8'/>
+    <link rel='stylesheet' type='text/css' href='style.css'/>
+    <meta name='author' content='leonid'/>
+    <title>Сортировка простым выбором</title>
+    <script type="text/javascript">
+        function sort_select() {
+            var win = open("", "newWindow"), html, head, title, body, h2, p, n = 10, mass_a = [], i, j, x, k = 0,
+                str = '', d = 0;
+            win.document.open();
+            html = document.createElement("html");
+            win.document.appendChild(html);
+            head = document.createElement("head");
+            title = document.createElement("title");
+            title.textContent = "Сортировка простым выбором";
+            head.appendChild(title);
+            html.appendChild(head);
+            body = document.createElement("body");
+            html.appendChild(body);
+            h2 = document.createElement("h2");
+            h2.textContent = "Сортировка простым выбором";
+            body.appendChild(h2);
+            for (i = 0; i < n; i++) {
+                mass_a[i] = Math.round(Math.random() * 100);
+                str = str + mass_a[i] + ' ';
+            }
+            p = document.createElement("p");
+            p.textContent = 'Исходный массив: ' + str;
+            body.appendChild(p);
+            for (i = 0; i < n - 1; i++) {
+                k = i;
+                x = mass_a[i];
+                p = document.createElement("p");
+                p.textContent = 'a[' + i + ']=' + x;
+                body.appendChild(p);
+                for (j = i + 1; j < n; j++) {
+                    if (mass_a[j] < x) {
+                        k = j;
+                        x = mass_a[j];
+                    }
+                }
+                if (k !== j) {
+                    p = document.createElement("p");
+                    p.textContent = 'a[' + i + ']=' + mass_a[i] + '<--->' + 'a[' + k + ']=' + mass_a[k] + '.';
+                    body.appendChild(p);
+                    mass_a[k] = mass_a[i];
+                    mass_a[i] = x;
+                }
+                str = 'Массив: ';
+                for (d = 0; d < n; d++) {
+                    str = str + mass_a[d] + ' ';
+                }
+                p = document.createElement("p");
+                p.textContent = str;
+                body.appendChild(p);
+            }
+            str = 'Отсортированный массив: ';
+            for (i = 0; i < n; i++) {
+                str = str + mass_a[i] + ' ';
+            }
+            p = document.createElement("p");
+            p.textContent = str;
+            body.appendChild(p);
+            win.document.close();
+        }
+
+        function analis(n) {
+            var win = open("", "newWindow"), html, head, title, body, h2, p, mass_a = [], i, j, x, k = 0, str = '',
+                count = 0, comp = 0, tt_n, t_n, tt_k, t_k;
+            win.document.open();
+            html = document.createElement("html");
+            win.document.appendChild(html);
+            head = document.createElement("head");
+            title = document.createElement("title");
+            title.textContent = "Сортировка простым выбором монотонно убывающей последовательности";
+            head.appendChild(title);
+            html.appendChild(head);
+            body = document.createElement("body");
+            html.appendChild(body);
+            h2 = document.createElement("h2");
+            h2.textContent = "Сортировка простым выбором монотонно убывающей последовательности";
+            body.appendChild(h2);
+            for (i = 0; i < n; i++) {
+                mass_a[i] = 10005 - i;
+            }
+            t_n = new Date();
+            tt_n = t_n.valueOf();
+            for (i = 0; i < n - 1; i++) {
+                k = i;
+                x = mass_a[i];
+                count++;
+                for (j = i + 1; j < n; j++) {
+                    if (mass_a[j] < x) {
+                        k = j;
+                        x = mass_a[j];
+                        count++;
+                    }
+                    comp++;
+                }
+                if (k !== j) {
+                    mass_a[k] = mass_a[i];
+                    mass_a[i] = x;
+                    count = count + 2;
+                }
+            }
+            t_k = new Date();
+            tt_k = t_k.valueOf();
+            p = document.createElement("p");
+            p.textContent = 'Всего элементов в массиве ' + n + '.';
+            body.appendChild(p);
+            p = document.createElement("p");
+            p.textContent = 'Всего операций сравнения ' + comp + '.';
+            body.appendChild(p);
+            p = document.createElement("p");
+            p.textContent = 'Всего операций присваивания ' + count + '.';
+            body.appendChild(p);
+            p = document.createElement("p");
+            i = tt_k.valueOf() - tt_n.valueOf();
+            p.textContent = 'Продолжительность сортировки t=' + i + ' миллисекунд.';
+            body.appendChild(p);
+            win.document.close();
+        }
+
+        function analis1(n) {
+            var win = open("", "newWindow"), html, head, title, body, h2, p, mass_a = [], i, j, x, k = 0, str = '',
+                count = 0, comp = 0, tt_n, t_n, tt_k, t_k;
+            win.document.open();
+            html = document.createElement("html");
+            win.document.appendChild(html);
+            head = document.createElement("head");
+            title = document.createElement("title");
+            title.textContent = "Оценка вычислительной сложности алгоритма сортировки простым выбором";
+            head.appendChild(title);
+            html.appendChild(head);
+            body = document.createElement("body");
+            html.appendChild(body);
+            h2 = document.createElement("h2");
+            h2.textContent = "Оценка вычислительной сложности алгоритма сортировки простым выбором";
+            body.appendChild(h2);
+            if (n < 10) {
+                n = 10;
+            }
+            for (i = 0; i < n; i++) {
+                mass_a[i] = Math.round(Math.random() * 100);
+            }
+            t_n = new Date();
+            tt_n = t_n.valueOf();
+            for (i = 0; i < n - 1; i++) {
+                k = i;
+                x = mass_a[i];
+                count++;
+                for (j = i + 1; j < n; j++) {
+                    if (mass_a[j] < x) {
+                        k = j;
+                        x = mass_a[j];
+                        count++;
+                    }
+                    comp++;
+                }
+                if (k !== j) {
+                    mass_a[k] = mass_a[i];
+                    mass_a[i] = x;
+                    count = count + 2;
+                }
+            }
+            t_k = new Date();
+            tt_k = t_k.valueOf();
+            p = document.createElement("p");
+            p.textContent = 'Всего элементов в массиве n=' + n + '.';
+            body.appendChild(p);
+            p = document.createElement("p");
+            p.textContent = 'Всего операций сравнения ' + comp + '.';
+            body.appendChild(p);
+            i = comp / (n * (n - 1) / 2);
+            j = n - 1;
+            p = document.createElement("p");
+            p.textContent = 'Оценка количества операций сравнения M=' + i + '*' + n + '*' + j + '.';
+            body.appendChild(p);
+            p = document.createElement("p");
+            p.textContent = 'Всего операций присваивания M=' + count + '.';
+            body.appendChild(p);
+            i = count / (n * Math.LOG2E * Math.log(n));
+            p = document.createElement("p");
+            p.textContent = 'Оценка количества операций присваивания M=' + i.toPrecision(4) + '*' + n + '*ln(' + n + ').';
+            body.appendChild(p);
+            p = document.createElement("p");
+            i = tt_k.valueOf() - tt_n.valueOf();
+            p.textContent = 'Продолжительность сортировки t=' + i + ' миллисекунд.';
+            body.appendChild(p);
+            win.document.close();
+        }
+    </script>
 </head>
 <body>
-<p><a href="8_10_2.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_10_4.html">К следующему</a> </p>
-<h2>8.10.3. Сортировка простым выбором</h2>
-<p>Алгоритм сортировки простыми включениями каждое включение очередного элемента в строящуюся упорядоченную подпоследовательность выполнял посредством перемещения, в некоторых случаях, всех элементов этой подпоследовательности. Сортировка простым выбором призвана уменьшить количество таких перемещений элементов.
+<p><a href="8_10_2.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_10_4.html">К следующему</a>
 </p>
-<p>Пусть дана числовая последовательность 
-<math>
-<mfenced open='' close=''>
-	<msub><mi>a</mi><mn>0</mn></msub>
-	<msub><mi>a</mi><mn>1</mn></msub>
-	<mi>&#133;</mi>
-	<msub><mi>a</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub>
-</mfenced><mo>.</mo>
-</math>
+<h2>8.10.3. Сортировка простым выбором</h2>
+<p>Алгоритм сортировки простыми включениями каждое включение очередного элемента в строящуюся упорядоченную
+    подпоследовательность выполнял посредством перемещения, в некоторых случаях, всех элементов этой
+    подпоследовательности. Сортировка простым выбором призвана уменьшить количество таких перемещений элементов.
+</p>
+<p>Пусть дана числовая последовательность
+    <math>
+        <mfenced open='' close=''>
+            <msub>
+                <mi>a</mi>
+                <mn>0</mn>
+            </msub>
+            <msub>
+                <mi>a</mi>
+                <mn>1</mn>
+            </msub>
+            <mi>&#133;</mi>
+            <msub>
+                <mi>a</mi>
+                <mrow>
+                    <mi>n</mi>
+                    <mo>-</mo>
+                    <mn>1</mn>
+                </mrow>
+            </msub>
+        </mfenced>
+        <mo>.</mo>
+    </math>
 </p>
 <p>Алгоритм сортировки простым выбором состоит в следующем:
 <ul>
-<li>находится минимальный элемент последовательности;</li>
-<li>найденный минимальный элемент и первый элемент последовательности меняются местами;</li>
-<li>в подпоследовательности со второго по последний элемент находится минимальный элемент;</li>
-<li>найденный минимальный элемент и второй элемент последовательности меняются местами;</li>
-<li>продолжение описанного процесса выбора минимального элемента в правой части последовательности с последующей перестановкой найденного минимального элемента и самого правого элемента левой части последовательности, в конечном итоге, приводит к упорядочению последовательности.</li>
+    <li>находится минимальный элемент последовательности;</li>
+    <li>найденный минимальный элемент и первый элемент последовательности меняются местами;</li>
+    <li>в подпоследовательности со второго по последний элемент находится минимальный элемент;</li>
+    <li>найденный минимальный элемент и второй элемент последовательности меняются местами;</li>
+    <li>продолжение описанного процесса выбора минимального элемента в правой части последовательности с последующей
+        перестановкой найденного минимального элемента и самого правого элемента левой части последовательности, в
+        конечном итоге, приводит к упорядочению последовательности.
+    </li>
 </ul>
 </p>
-<p>Опишем алгоритм в деталях. В переменную <math><mi>x</mi></math> записываем значение элемента 
-<math>
-	<msub><mi>a</mi><mn>0</mn></msub>
-</math>, а в переменную <math><mi>k</mi></math> &#151; индекс <math><mn>0</mn></math>. Затем сравниваем <math><mi>x</mi></math> со всеми оставшимися элементами последовательности. Если очередной элемент меньше <math><mi>x</mi></math>, то его индекс сохраняем в переменной <math><mi>k</mi></math>, а значение &#151; в переменной <math><mi>x</mi></math>. Таким образом, в переменной <math><mi>x</mi></math> будем иметь значение минимального элемента последовательности, а в переменной <math><mi>k</mi></math> индекс минимального элемента. Если <math><mi>k</mi></math> отлично от нуля, то поменяем местами <math><msub><mi>a</mi><mn>0</mn></msub></math> и <math><msub><mi>a</mi><mi>k</mi></msub></math>:
-<math>
-	<mrow>
-		<msub><mi>a</mi><mi>k</mi></msub>
-		<mo>=</mo>
-		<msub><mi>a</mi><mn>0</mn></msub>
-	</mrow>	
-	<mo>;</mo>
-	<mrow>	
-		<msub><mi>a</mi><mn>0</mn></msub>
-		<mo>=</mo>
-		<mi>x</mi>
-	</mrow>		
-</math>.
-Таким образом, элемент <math><msub><mi>a</mi><mn>0</mn></msub></math> минимальный. Для отыскания минимального элемента последовательности следует выполнить <math><mi>n</mi><mo>-</mo><mn>1</mn></math> операцию сравнения и не более <math><mi>n</mi></math> операций присваивания.  
+<p>Опишем алгоритм в деталях. В переменную
+    <math>
+        <mi>x</mi>
+    </math>
+    записываем значение элемента
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>0</mn>
+        </msub>
+    </math>
+    , а в переменную
+    <math>
+        <mi>k</mi>
+    </math> &#151; индекс
+    <math>
+        <mn>0</mn>
+    </math>
+    . Затем сравниваем
+    <math>
+        <mi>x</mi>
+    </math>
+    со всеми оставшимися элементами последовательности. Если очередной элемент меньше
+    <math>
+        <mi>x</mi>
+    </math>
+    , то его индекс сохраняем в переменной
+    <math>
+        <mi>k</mi>
+    </math>
+    , а значение &#151; в переменной
+    <math>
+        <mi>x</mi>
+    </math>
+    . Таким образом, в переменной
+    <math>
+        <mi>x</mi>
+    </math>
+    будем иметь значение минимального элемента последовательности, а в переменной
+    <math>
+        <mi>k</mi>
+    </math>
+    индекс минимального элемента. Если
+    <math>
+        <mi>k</mi>
+    </math>
+    отлично от нуля, то поменяем местами
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>0</mn>
+        </msub>
+    </math>
+    и
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mi>k</mi>
+        </msub>
+    </math>
+    :
+    <math>
+        <mrow>
+            <msub>
+                <mi>a</mi>
+                <mi>k</mi>
+            </msub>
+            <mo>=</mo>
+            <msub>
+                <mi>a</mi>
+                <mn>0</mn>
+            </msub>
+        </mrow>
+        <mo>;</mo>
+        <mrow>
+            <msub>
+                <mi>a</mi>
+                <mn>0</mn>
+            </msub>
+            <mo>=</mo>
+            <mi>x</mi>
+        </mrow>
+    </math>
+    .
+    Таким образом, элемент
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>0</mn>
+        </msub>
+    </math>
+    минимальный. Для отыскания минимального элемента последовательности следует выполнить
+    <math>
+        <mi>n</mi>
+        <mo>-</mo>
+        <mn>1</mn>
+    </math>
+    операцию сравнения и не более
+    <math>
+        <mi>n</mi>
+    </math>
+    операций присваивания.
 </p>
 <p>
-Посредством <math><mi>n</mi><mo>-</mo><mn>2</mn></math> операций сравнения и не более <math><mi>n</mi><mo>-</mo><mn>1</mn></math> операции присваивания отыскивается минимальный элемент <math><msub><mi>a</mi><mi>k</mi></msub></math> подпоследовательности        
-<math>
-<mfenced open='' close=''>
-	<msub><mi>a</mi><mn>1</mn></msub>
-	<mi>&#133;</mi>
-	<msub><mi>a</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub>
-</mfenced><mo>.</mo>
-</math> Если он не совпадает с элементом <math><msub><mi>a</mi><mn>1</mn></msub></math>, то посредством двух операций присваивания <math><msub><mi>a</mi><mi>k</mi></msub></math> и <math><msub><mi>a</mi><mn>1</mn></msub></math> меняются местами. Таким образом, левая подпоследовательность из элементов <math><msub><mi>a</mi><mn>0</mn></msub></math> и <math><msub><mi>a</mi><mn>1</mn></msub></math>  упорядочена, а правую подпоследовательность следует упорядочить. Продолжение процесса выбора минимального элемента правой подпоследовательности и обмена с ее начальным элементом приводит к возрастанию упорядоченной левой подпоследовательности и, в конечном итоге, упорядочению по возрастанию всей последовательности.
+    Посредством
+    <math>
+        <mi>n</mi>
+        <mo>-</mo>
+        <mn>2</mn>
+    </math>
+    операций сравнения и не более
+    <math>
+        <mi>n</mi>
+        <mo>-</mo>
+        <mn>1</mn>
+    </math>
+    операции присваивания отыскивается минимальный элемент
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mi>k</mi>
+        </msub>
+    </math>
+    подпоследовательности
+    <math>
+        <mfenced open='' close=''>
+            <msub>
+                <mi>a</mi>
+                <mn>1</mn>
+            </msub>
+            <mi>&#133;</mi>
+            <msub>
+                <mi>a</mi>
+                <mrow>
+                    <mi>n</mi>
+                    <mo>-</mo>
+                    <mn>1</mn>
+                </mrow>
+            </msub>
+        </mfenced>
+        <mo>.</mo>
+    </math>
+    Если он не совпадает с элементом
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>1</mn>
+        </msub>
+    </math>
+    , то посредством двух операций присваивания
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mi>k</mi>
+        </msub>
+    </math>
+    и
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>1</mn>
+        </msub>
+    </math>
+    меняются местами. Таким образом, левая подпоследовательность из элементов
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>0</mn>
+        </msub>
+    </math>
+    и
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>1</mn>
+        </msub>
+    </math>
+    упорядочена, а правую подпоследовательность следует упорядочить. Продолжение процесса выбора минимального элемента
+    правой подпоследовательности и обмена с ее начальным элементом приводит к возрастанию упорядоченной левой
+    подпоследовательности и, в конечном итоге, упорядочению по возрастанию всей последовательности.
 </p>
 <form id='f1'>
-<input type='button' value="Сортировать" onclick="sort_select()" />
+    <input type='button' value="Сортировать" onclick="sort_select()"/>
 </form>
-<p>Независимо от начальной упорядоченности последовательности (в этом проявление неестественности поведения алгоритма сортировки простым выбором), количество операций сравнения будет таким:
-<math display='block'>
-	<mi>C</mi><mo>=</mo>
-	<mrow>
-		<mrow><mo>(</mo><mi>n</mi><mo>-</mo><mn>1</mn><mo>)</mo></mrow>
-		<mo>+</mo>
-		<mrow><mo>(</mo><mi>n</mi><mo>-</mo><mn>2</mn><mo>)</mo></mrow>
-		<mo>+</mo>
-		<mi>&#133;</mi>		
-		<mo>+</mo>
-		<mn>1</mn>
-	</mrow>
-	<mo>=</mo>
-	<mrow>
-		<mfrac><mn>1</mn><mn>2</mn></mfrac>
-		<mo>&#x2062;</mo>
-		<mi>n</mi>
-		<mo>&#x2062;</mo>
-		<mrow><mo>(</mo><mi>n</mi><mo>-</mo><mn>1</mn><mo>)</mo></mrow>
-	</mrow>
-	<mo>.</mo>
-</math></p>
-<p>Минимальное количество операций присваивания потребуется в случае применения алгоритма сортировки к уже упорядоченной последовательности
-<math display='block'>
-	<msub><mi>M</mi><mi>min</mi></msub><mo>=</mo>
-	<mrow>
-		<mn>3</mn><mo>&#x2062;</mo>
-		<mrow><mo>(</mo><mi>n</mi><mo>-</mo><mn>1</mn><mo>)</mo></mrow>
-	</mrow>
-	<mo>.</mo>
-</math>
+<p>Независимо от начальной упорядоченности последовательности (в этом проявление неестественности поведения алгоритма
+    сортировки простым выбором), количество операций сравнения будет таким:
+    <math display='block'>
+        <mi>C</mi>
+        <mo>=</mo>
+        <mrow>
+            <mrow>
+                <mo>(</mo>
+                <mi>n</mi>
+                <mo>-</mo>
+                <mn>1</mn>
+                <mo>)</mo>
+            </mrow>
+            <mo>+</mo>
+            <mrow>
+                <mo>(</mo>
+                <mi>n</mi>
+                <mo>-</mo>
+                <mn>2</mn>
+                <mo>)</mo>
+            </mrow>
+            <mo>+</mo>
+            <mi>&#133;</mi>
+            <mo>+</mo>
+            <mn>1</mn>
+        </mrow>
+        <mo>=</mo>
+        <mrow>
+            <mfrac>
+                <mn>1</mn>
+                <mn>2</mn>
+            </mfrac>
+            <mo>&#x2062;</mo>
+            <mi>n</mi>
+            <mo>&#x2062;</mo>
+            <mrow>
+                <mo>(</mo>
+                <mi>n</mi>
+                <mo>-</mo>
+                <mn>1</mn>
+                <mo>)</mo>
+            </mrow>
+        </mrow>
+        <mo>.</mo>
+    </math>
 </p>
-<p>Если алгоритм применяется к обратно упорядоченной последовательности, то потребуется максимальное количество операций присваивания
-<math display='block'>
-	<msub><mi>M</mi><mi>max</mi></msub><mo>=</mo>
-	<mrow>
-		<mo>[</mo>
-			<mfrac>
-				<msup><mi>n</mi><mn>2</mn></msup>
-				<mn>4</mn>
-			</mfrac>		
-		<mo>]</mo>	
-	</mrow>
-	<mo>+</mo>
-	<mrow>
-		<mn>3</mn><mo>&#x2062;</mo>
-		<mrow><mo>(</mo><mi>n</mi><mo>-</mo><mn>1</mn><mo>)</mo></mrow>
-	</mrow>
-	<mo>.</mo>
-</math>
+<p>Минимальное количество операций присваивания потребуется в случае применения алгоритма сортировки к уже упорядоченной
+    последовательности
+    <math display='block'>
+        <msub>
+            <mi>M</mi>
+            <mi>min</mi>
+        </msub>
+        <mo>=</mo>
+        <mrow>
+            <mn>3</mn>
+            <mo>&#x2062;</mo>
+            <mrow>
+                <mo>(</mo>
+                <mi>n</mi>
+                <mo>-</mo>
+                <mn>1</mn>
+                <mo>)</mo>
+            </mrow>
+        </mrow>
+        <mo>.</mo>
+    </math>
 </p>
-<p>Следующий сценарий вычисляет количество операций присваивания при сортировке по возрастанию монотонно убывающей последовательности:</p>
+<p>Если алгоритм применяется к обратно упорядоченной последовательности, то потребуется максимальное количество операций
+    присваивания
+    <math display='block'>
+        <msub>
+            <mi>M</mi>
+            <mi>max</mi>
+        </msub>
+        <mo>=</mo>
+        <mrow>
+            <mo>[</mo>
+            <mfrac>
+                <msup>
+                    <mi>n</mi>
+                    <mn>2</mn>
+                </msup>
+                <mn>4</mn>
+            </mfrac>
+            <mo>]</mo>
+        </mrow>
+        <mo>+</mo>
+        <mrow>
+            <mn>3</mn>
+            <mo>&#x2062;</mo>
+            <mrow>
+                <mo>(</mo>
+                <mi>n</mi>
+                <mo>-</mo>
+                <mn>1</mn>
+                <mo>)</mo>
+            </mrow>
+        </mrow>
+        <mo>.</mo>
+    </math>
+</p>
+<p>Следующий сценарий вычисляет количество операций присваивания при сортировке по возрастанию монотонно убывающей
+    последовательности:</p>
 <form id='f2'>
-Введите n &gt; 10:<input type="text" id="kolich1" maxlength="5" size="5" value='1000'/>
-<input type='button' value="Сортировать" onclick="analis(kolich1.value)" />
+    Введите n &gt; 10:<input type="text" id="kolich1" maxlength="5" size="5" value='1000'/>
+    <input type='button' value="Сортировать" onclick="analis(kolich1.value)"/>
 </form>
 <p><a id='ocenka_knutt'>Согласно Д. Кнуту, при сортировке простым выбором среднее количество операций присваивания равно
-<math display='block'>
-	<msub><mi>M</mi><mi>среднее</mi></msub><mo>=</mo>
-	<mrow>
-		<mi>n</mi><mo>&#x2062;</mo>
-		<mrow><mo>(</mo>
-		
-		<mrow><mi>ln</mi><mo>&#x2061;</mo><mi>n</mi></mrow>
-		<mo>+</mo><mi>&#947;</mi><mo>)</mo></mrow>
-	</mrow>
-	<mo>.</mo>
-</math></a>
+    <math display='block'>
+        <msub>
+            <mi>M</mi>
+            <mi>среднее</mi>
+        </msub>
+        <mo>=</mo>
+        <mrow>
+            <mi>n</mi>
+            <mo>&#x2062;</mo>
+            <mrow>
+                <mo>(</mo>
+
+                <mrow>
+                    <mi>ln</mi>
+                    <mo>&#x2061;</mo>
+                    <mi>n</mi>
+                </mrow>
+                <mo>+</mo>
+                <mi>&#947;</mi>
+                <mo>)</mo>
+            </mrow>
+        </mrow>
+        <mo>.</mo>
+    </math>
+</a>
 </p>
-<p>Сценарий ниже вычисляет количество операций присваивания при сортировке последовательности псевдослучайных чисел методом простого выбора:</p>
+<p>Сценарий ниже вычисляет количество операций присваивания при сортировке последовательности псевдослучайных чисел
+    методом простого выбора:</p>
 <form id='f3'>
-Введите n &gt; 10:<input type="text" id="kolich" maxlength="5" size="5" value='1000'/>
-<input type='button' value="Сортировать" onclick="analis1(kolich.value)" />
+    Введите n &gt; 10:<input type="text" id="kolich" maxlength="5" size="5" value='1000'/>
+    <input type='button' value="Сортировать" onclick="analis1(kolich.value)"/>
 </form>
-<p>Алгоритм сортировки простым выбором неустойчивый. К примеру, упорядочение простым выбором по числовому полю последовательности 
-<math>
-<mfenced open='{' close='}'>
-	<mrow><mo>(</mo><mn>2</mn><mo>,</mo><mi>a</mi><mo>)</mo></mrow>
-	<mrow><mo>(</mo><mn>1</mn><mo>,</mo><mi>a</mi><mo>)</mo></mrow>
-	<mrow><mo>(</mo><mn>2</mn><mo>,</mo><mi>b</mi><mo>)</mo></mrow>
-	<mrow><mo>(</mo><mn>1</mn><mo>,</mo><mi>b</mi><mo>)</mo></mrow>		
-</mfenced>
-</math>
-дает следующий результат:
-<math>
-<mfenced open='{' close='}'>
-	<mrow><mo>(</mo><mn>1</mn><mo>,</mo><mi>b</mi><mo>)</mo></mrow>	
-	<mrow><mo>(</mo><mn>1</mn><mo>,</mo><mi>a</mi><mo>)</mo></mrow>
-	<mrow><mo>(</mo><mn>2</mn><mo>,</mo><mi>b</mi><mo>)</mo></mrow>
-	<mrow><mo>(</mo><mn>2</mn><mo>,</mo><mi>a</mi><mo>)</mo></mrow>			
-</mfenced><mo>.</mo>
-</math> Как видим, в результате изменилось взаимное расположение элементов с одинаковыми ключами.
+<p>Алгоритм сортировки простым выбором неустойчивый. К примеру, упорядочение простым выбором по числовому полю
+    последовательности
+    <math>
+        <mfenced open='{' close='}'>
+            <mrow>
+                <mo>(</mo>
+                <mn>2</mn>
+                <mo>,</mo>
+                <mi>a</mi>
+                <mo>)</mo>
+            </mrow>
+            <mrow>
+                <mo>(</mo>
+                <mn>1</mn>
+                <mo>,</mo>
+                <mi>a</mi>
+                <mo>)</mo>
+            </mrow>
+            <mrow>
+                <mo>(</mo>
+                <mn>2</mn>
+                <mo>,</mo>
+                <mi>b</mi>
+                <mo>)</mo>
+            </mrow>
+            <mrow>
+                <mo>(</mo>
+                <mn>1</mn>
+                <mo>,</mo>
+                <mi>b</mi>
+                <mo>)</mo>
+            </mrow>
+        </mfenced>
+    </math>
+    дает следующий результат:
+    <math>
+        <mfenced open='{' close='}'>
+            <mrow>
+                <mo>(</mo>
+                <mn>1</mn>
+                <mo>,</mo>
+                <mi>b</mi>
+                <mo>)</mo>
+            </mrow>
+            <mrow>
+                <mo>(</mo>
+                <mn>1</mn>
+                <mo>,</mo>
+                <mi>a</mi>
+                <mo>)</mo>
+            </mrow>
+            <mrow>
+                <mo>(</mo>
+                <mn>2</mn>
+                <mo>,</mo>
+                <mi>b</mi>
+                <mo>)</mo>
+            </mrow>
+            <mrow>
+                <mo>(</mo>
+                <mn>2</mn>
+                <mo>,</mo>
+                <mi>a</mi>
+                <mo>)</mo>
+            </mrow>
+        </mfenced>
+        <mo>.</mo>
+    </math>
+    Как видим, в результате изменилось взаимное расположение элементов с одинаковыми ключами.
 </p>
-<p><span class='primer'>Пример 8.10.3.1</span> реализации алгоритма сортировки числовой последовательности простым выбором:</p>
+<p><span class='primer'>Пример 8.10.3.1</span> реализации алгоритма сортировки числовой последовательности простым
+    выбором:</p>
 <code>
-<p class='ind0'>MODULE sort_select1;</p>
-<p class='ind1'>IMPORT  Log := StdLog,  Ran := i21eduRandom ;</p>
-<p class='ind1'>CONST n=11;</p>
-<p class='ind1'>PROCEDURE do*;</p>
-<p class='ind2'>VAR a: ARRAY n OF INTEGER;</p> 
-<p class='ind3'>i, j, k, x: INTEGER;</p>
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>Log.String('Исходная последовательность: ');</p>
-<p class='ind2'>FOR  i:=0  TO n-1 DO</p>
-<p class='ind3'>a[i]:=Ran.Int(40);</p>
-<p class='ind3'>Log.Int(a[i]);</p>
-<p class='ind3'>Log.Char(',');</p>
-<p class='ind2'>END;</p>
-<p class='ind2'>Log.Ln;</p>
-<p class='ind2'>FOR i := 0  TO n-2  DO</p>
-<p class='ind3'>k:=i;</p>
-<p class='ind3'>x:=a[i];</p>
-<p class='ind3'>FOR j :=i+1  TO n-1  DO</p>
-<p class='ind4'>IF a[j] &lt; x THEN</p>
-<p class='ind5'>k:=j;</p>
-<p class='ind5'>x:=a[j]</p>
-<p class='ind4'>END;</p>
-<p class='ind3'>END;</p>
-<p class='ind3'>IF k#i THEN</p>
-<p class='ind4'>a[k]:=a[i];</p>
-<p class='ind4'>a[i]:=x</p>
-<p class='ind3'>END;</p>
-<p class='ind2'>END;</p>
-<p class='ind2'>Log.String('Отсортированная последовательность: ');</p>
-<p class='ind2'>FOR  i:=0  TO n-1 DO</p>
-<p class='ind3'>Log.Int(a[i]);</p>
-<p class='ind3'>Log.Char(',');</p>
-<p class='ind2'>END;</p>
-<p class='ind2'>Log.Ln;</p>
-<p class='ind1'>END do;</p>
-<p class='ind0'>BEGIN</p>
-<p class='ind0'>END sort_select1.</p>
-<p class='ind0'>sort_select1.do</p>
+    <p class='ind0'>MODULE sort_select1;</p>
+    <p class='ind1'>IMPORT Log := StdLog, Ran := i21eduRandom ;</p>
+    <p class='ind1'>CONST n=11;</p>
+    <p class='ind1'>PROCEDURE do*;</p>
+    <p class='ind2'>VAR a: ARRAY n OF INTEGER;</p>
+    <p class='ind3'>i, j, k, x: INTEGER;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>Log.String('Исходная последовательность: ');</p>
+    <p class='ind2'>FOR i:=0 TO n-1 DO</p>
+    <p class='ind3'>a[i]:=Ran.Int(40);</p>
+    <p class='ind3'>Log.Int(a[i]);</p>
+    <p class='ind3'>Log.Char(',');</p>
+    <p class='ind2'>END;</p>
+    <p class='ind2'>Log.Ln;</p>
+    <p class='ind2'>FOR i := 0 TO n-2 DO</p>
+    <p class='ind3'>k:=i;</p>
+    <p class='ind3'>x:=a[i];</p>
+    <p class='ind3'>FOR j :=i+1 TO n-1 DO</p>
+    <p class='ind4'>IF a[j] &lt; x THEN</p>
+    <p class='ind5'>k:=j;</p>
+    <p class='ind5'>x:=a[j]</p>
+    <p class='ind4'>END;</p>
+    <p class='ind3'>END;</p>
+    <p class='ind3'>IF k#i THEN</p>
+    <p class='ind4'>a[k]:=a[i];</p>
+    <p class='ind4'>a[i]:=x</p>
+    <p class='ind3'>END;</p>
+    <p class='ind2'>END;</p>
+    <p class='ind2'>Log.String('Отсортированная последовательность: ');</p>
+    <p class='ind2'>FOR i:=0 TO n-1 DO</p>
+    <p class='ind3'>Log.Int(a[i]);</p>
+    <p class='ind3'>Log.Char(',');</p>
+    <p class='ind2'>END;</p>
+    <p class='ind2'>Log.Ln;</p>
+    <p class='ind1'>END do;</p>
+    <p class='ind0'>BEGIN</p>
+    <p class='ind0'>END sort_select1.</p>
+    <p class='ind0'>sort_select1.do</p>
 </code>
 
 <h3>Вопросы и задачи</h3>
 <ol>
-<li>Сгенерируйте последовательность
-<input type='button' value="сгенерировать" onclick="create()" />
-и отсортируйте ее в тетради по алгоритму простого выбора. Вычислите количество операций присваивания и сравнения. Как зависят количества операций сравнения и присваивания от количества <math><mi>n</mi></math> элементов в последовательности?
-</li>
-<li>Отсортируйте по убыванию в тетради последовательность цифр даты рождения по алгоритму простого выбора. Вычислите вычислительную сложность алгоритма сортировки простым выбором.</li>
-<li>Отсортируйте в алфавитном порядке (в обратном порядке) буквы фамилии по алгоритму простого выбора.</li>
-<li>Примените к последовательности чисел от 1 до 7 алгоритм сортировки простым выбором и вычислите количества операций сравнения и присваивания. Как зависит количество операций от количества <math><mi>n</mi></math> элементов в последовательности?</li>
-<li>Примените к последовательности чисел от 7 до 1 алгоритм сортировки простым выбором по возрастанию и вычислите количество операций сравнения и присваивания.  Как зависит количество операций сравнения и присваивания от количества <math><mi>n</mi></math> элементов в последовательности? Как проявляется неестественность поведения алгоритма сортировки простым выбором?</li>
-<li>Составьте программу оценки вычислительной сложности алгоритма сортировки простым выбором последовательности целых чисел. Сравните оценку среднего количества операций присваивания (полученную путем многократного исполнения программы и вычисления среднего арифметического количества операций присваивания) с <a href='#ocenka_knutt'>оценкой Д. Кнутта</a>. Вычислите значение постоянной 
-<math><mi>&#947;</mi></math> в оценке Кнутта.
-</li>
-<li>Опишите асимптотическую сложность алгоритма сортировки простым выбором согласно <a href='8_2.html#t8_2_1'> таблице 8.2.1.</a></li>
-<li>Составьте программы сортировки простым выбором последовательности записей из целых чисел и букв по целочисленному ключевому полю. Проявляется ли неустойчивость алгоритма сортировки простым выбором?</li>
-<li>Составьте программу оценки вычислительной сложности и затраченного времени (в миллисекундах) алгоритма сортировки простым выбором последовательности записей из нескольких полей.</li>
+    <li>Сгенерируйте последовательность
+        <input type='button' value="сгенерировать" onclick="create()"/>
+        и отсортируйте ее в тетради по алгоритму простого выбора. Вычислите количество операций присваивания и
+        сравнения. Как зависят количества операций сравнения и присваивания от количества
+        <math>
+            <mi>n</mi>
+        </math>
+        элементов в последовательности?
+    </li>
+    <li>Отсортируйте по убыванию в тетради последовательность цифр даты рождения по алгоритму простого выбора. Вычислите
+        вычислительную сложность алгоритма сортировки простым выбором.
+    </li>
+    <li>Отсортируйте в алфавитном порядке (в обратном порядке) буквы фамилии по алгоритму простого выбора.</li>
+    <li>Примените к последовательности чисел от 1 до 7 алгоритм сортировки простым выбором и вычислите количества
+        операций сравнения и присваивания. Как зависит количество операций от количества
+        <math>
+            <mi>n</mi>
+        </math>
+        элементов в последовательности?
+    </li>
+    <li>Примените к последовательности чисел от 7 до 1 алгоритм сортировки простым выбором по возрастанию и вычислите
+        количество операций сравнения и присваивания. Как зависит количество операций сравнения и присваивания от
+        количества
+        <math>
+            <mi>n</mi>
+        </math>
+        элементов в последовательности? Как проявляется неестественность поведения алгоритма сортировки простым выбором?
+    </li>
+    <li>Составьте программу оценки вычислительной сложности алгоритма сортировки простым выбором последовательности
+        целых чисел. Сравните оценку среднего количества операций присваивания (полученную путем многократного
+        исполнения программы и вычисления среднего арифметического количества операций присваивания) с <a
+                href='#ocenka_knutt'>оценкой Д. Кнутта</a>. Вычислите значение постоянной
+        <math>
+            <mi>&#947;</mi>
+        </math>
+        в оценке Кнутта.
+    </li>
+    <li>Опишите асимптотическую сложность алгоритма сортировки простым выбором согласно <a href='8_2.html#t8_2_1'>
+        таблице 8.2.1.</a></li>
+    <li>Составьте программы сортировки простым выбором последовательности записей из целых чисел и букв по
+        целочисленному ключевому полю. Проявляется ли неустойчивость алгоритма сортировки простым выбором?
+    </li>
+    <li>Составьте программу оценки вычислительной сложности и затраченного времени (в миллисекундах) алгоритма
+        сортировки простым выбором последовательности записей из нескольких полей.
+    </li>
 </ol>
-<p>Задачи для самостоятельного решения из сборника задач по программированию под редакцией С.А. Абрамова, Г.Г. Гнездиловой, Е.Н. Капустиной, М.И. Селюн. Задачи по программированию:</p>
+<p>Задачи для самостоятельного решения из сборника задач по программированию под редакцией С.А. Абрамова, Г.Г.
+    Гнездиловой, Е.Н. Капустиной, М.И. Селюн. Задачи по программированию:</p>
 <p><a href='zadachi/18.html'>§18. Сортировка массивов и файлов</a></p>
-<p><a href="8_10_2.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_10_4.html">К следующему</a> </p>
+<p><a href="8_10_2.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_10_4.html">К следующему</a>
+</p>
 </body>
+<script type="text/javascript">
+    MathJax.Hub.Configured()
+</script>
 </html>

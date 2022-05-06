@@ -1,145 +1,188 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset='UTF-8' />
-<link rel='stylesheet' type='text/css' href='style.css' />
-<meta name='author' content='leonid' />
-<title>Идеально сбалансированное дерево</title>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+  extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});
+
+
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <meta charset='UTF-8'/>
+    <link rel='stylesheet' type='text/css' href='style.css'/>
+    <meta name='author' content='leonid'/>
+    <title>Идеально сбалансированное дерево</title>
 </head>
 <body>
-<p><a href="8_9_7.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_9_9.html">К следующему</a> </p>
+<p><a href="8_9_7.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_9_9.html">К следующему</a>
+</p>
 <h2>8.9.8. Идеально сбалансированное дерево</h2>
-<p><span class='teorema'>Дерево идеально сбалансированно, если для каждого его узла количество узлов в левом и правом поддереве различаются не более чем на 1.</span></p>
-<p>Правило равномерного распределения узлов при известном их числе <math><mi>N</mi></math>:
+<p><span class='teorema'>Дерево идеально сбалансированно, если для каждого его узла количество узлов в левом и правом поддереве различаются не более чем на 1.</span>
+</p>
+<p>Правило равномерного распределения узлов при известном их числе
+    <math>
+        <mi>N</mi>
+    </math>
+    :
 <ol>
-<li>Взять один узел в качестве корня.</li>
-<li>Построить левое дерево с числом узлов 
-<math>
-	<msub><mi>n</mi><mn>1</mn></msub><mo>=</mo>
-	<mrow><mi>N</mi><mo>div</mo><mn>2</mn></mrow>
-</math> описываемым способом.
-</li>
-<li>Построить правое дерево с числом узлов 
-<math>
-	<msub><mi>n</mi><mn>2</mn></msub><mo>=</mo>
-	<mrow><mi>N</mi><mo>-</mo><msub><mi>n</mi><mn>1</mn></msub><mo>-</mo><mn>1</mn></mrow>
-</math> описываемым способом.
-</li>
+    <li>Взять один узел в качестве корня.</li>
+    <li>Построить левое дерево с числом узлов
+        <math>
+            <msub>
+                <mi>n</mi>
+                <mn>1</mn>
+            </msub>
+            <mo>=</mo>
+            <mrow>
+                <mi>N</mi>
+                <mo>div</mo>
+                <mn>2</mn>
+            </mrow>
+        </math>
+        описываемым способом.
+    </li>
+    <li>Построить правое дерево с числом узлов
+        <math>
+            <msub>
+                <mi>n</mi>
+                <mn>2</mn>
+            </msub>
+            <mo>=</mo>
+            <mrow>
+                <mi>N</mi>
+                <mo>-</mo>
+                <msub>
+                    <mi>n</mi>
+                    <mn>1</mn>
+                </msub>
+                <mo>-</mo>
+                <mn>1</mn>
+            </mrow>
+        </math>
+        описываемым способом.
+    </li>
 </ol>
 </p>
 <code>
-<p class='ind0'>MODULE sbal_tree;</p>
-<p class='ind1'>IMPORT  Log := StdLog,  In := i21sysIn,  Ran := i21eduRandom;</p>
-<p class='ind1'>TYPE</p> 
-<p class='ind2'>node=POINTER TO RECORD</p>
-<p class='ind3'>left, right: node;</p>
-<p class='ind3'>data: INTEGER</p>
-<p class='ind2'>END;</p>
-<p class='ind1'>VAR n: INTEGER;</p>
-<p class='ind2'>tree: node;</p>
-<p class='ind1'>PROCEDURE create(n: INTEGER): node;</p>
-<p class='ind2'>VAR new: node;</p>
-<p class='ind3'>x, n1, n2: INTEGER;</p> 
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>IF n=0 THEN</p>
-<p class='ind3'>new:=NIL;</p>
-<p class='ind2'>ELSE</p>
-<p class='ind3'>n1:=n DIV 2;</p>
-<p class='ind3'>n2:=n-n1-1;</p>
-<p class='ind3'>NEW( new );</p>
-<p class='ind3'>new.data:=Ran.Int(30);</p>
-<p class='ind3'>Log.Int(new.data);</p>
-<p class='ind3'>new.left:=create(n1);</p>
-<p class='ind3'>new.right:=create(n2);</p>				
-<p class='ind2'>END;</p>
-<p class='ind2'>RETURN new</p>	
-<p class='ind1'>END create;</p>
-<p class='ind1'>PROCEDURE print(t: node; h: INTEGER);</p>
-<p class='ind2'>VAR  i: INTEGER;</p>
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>Log.Ln;</p>
-<p class='ind2'>IF t#NIL THEN</p>
-<p class='ind3'>print(t.left, h+1);</p>
-<p class='ind3'>FOR i :=0  TO h DO</p>
-<p class='ind4'>Log.String('XXX');</p>
-<p class='ind3'>END;</p>
-<p class='ind3'>Log.Int(t.data);</p>
-<p class='ind3'>Log.Ln;</p>
-<p class='ind3'>print(t.right, h+1);</p>
-<p class='ind2'>END;</p>
-<p class='ind1'>END print;</p>
-<p class='ind1'>PROCEDURE do*;</p>
-<p class='ind2'>VAR</p>  
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>In.Open;</p>
-<p class='ind2'>ASSERT(In.Done);</p>
-<p class='ind2'>In.Int(n);</p>
-<p class='ind2'>ASSERT(In.Done);</p>
-<p class='ind2'>tree:=create(n);</p>
-<p class='ind2'>print(tree, 0);</p>
-<p class='ind1'>END do;</p>
-<p class='ind0'>END sbal_tree.</p>
-sbal_tree.do 4
+    <p class='ind0'>MODULE sbal_tree;</p>
+    <p class='ind1'>IMPORT Log := StdLog, In := i21sysIn, Ran := i21eduRandom;</p>
+    <p class='ind1'>TYPE</p>
+    <p class='ind2'>node=POINTER TO RECORD</p>
+    <p class='ind3'>left, right: node;</p>
+    <p class='ind3'>data: INTEGER</p>
+    <p class='ind2'>END;</p>
+    <p class='ind1'>VAR n: INTEGER;</p>
+    <p class='ind2'>tree: node;</p>
+    <p class='ind1'>PROCEDURE create(n: INTEGER): node;</p>
+    <p class='ind2'>VAR new: node;</p>
+    <p class='ind3'>x, n1, n2: INTEGER;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>IF n=0 THEN</p>
+    <p class='ind3'>new:=NIL;</p>
+    <p class='ind2'>ELSE</p>
+    <p class='ind3'>n1:=n DIV 2;</p>
+    <p class='ind3'>n2:=n-n1-1;</p>
+    <p class='ind3'>NEW( new );</p>
+    <p class='ind3'>new.data:=Ran.Int(30);</p>
+    <p class='ind3'>Log.Int(new.data);</p>
+    <p class='ind3'>new.left:=create(n1);</p>
+    <p class='ind3'>new.right:=create(n2);</p>
+    <p class='ind2'>END;</p>
+    <p class='ind2'>RETURN new</p>
+    <p class='ind1'>END create;</p>
+    <p class='ind1'>PROCEDURE print(t: node; h: INTEGER);</p>
+    <p class='ind2'>VAR i: INTEGER;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>Log.Ln;</p>
+    <p class='ind2'>IF t#NIL THEN</p>
+    <p class='ind3'>print(t.left, h+1);</p>
+    <p class='ind3'>FOR i :=0 TO h DO</p>
+    <p class='ind4'>Log.String('XXX');</p>
+    <p class='ind3'>END;</p>
+    <p class='ind3'>Log.Int(t.data);</p>
+    <p class='ind3'>Log.Ln;</p>
+    <p class='ind3'>print(t.right, h+1);</p>
+    <p class='ind2'>END;</p>
+    <p class='ind1'>END print;</p>
+    <p class='ind1'>PROCEDURE do*;</p>
+    <p class='ind2'>VAR</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>In.Open;</p>
+    <p class='ind2'>ASSERT(In.Done);</p>
+    <p class='ind2'>In.Int(n);</p>
+    <p class='ind2'>ASSERT(In.Done);</p>
+    <p class='ind2'>tree:=create(n);</p>
+    <p class='ind2'>print(tree, 0);</p>
+    <p class='ind1'>END do;</p>
+    <p class='ind0'>END sbal_tree.</p>
+    sbal_tree.do 4
 </code>
 <p>Ниже приведен вариант предыдущего модуля, направляющий вывод в текстовый документ:</p>
 <code>
-<p class='ind0'>MODULE sbal_tree;</p>
-<p class='ind1'>IMPORT  In := i21sysIn,  Ran := i21eduRandom,  Views, TextModels, TextMappers, TextViews;</p>
-<p class='ind1'>TYPE</p> 
-<p class='ind2'>node=POINTER TO RECORD</p>
-<p class='ind3'>left, right: node;</p>
-<p class='ind3'>data: INTEGER</p>
-<p class='ind2'>END;</p>
-<p class='ind1'>VAR n: INTEGER;</p>
-<p class='ind2'>tree: node; t: TextModels.Model; f: TextMappers.Formatter; v: TextViews.View;</p>
-<p class='ind1'>PROCEDURE create(n: INTEGER): node;</p>
-<p class='ind2'>VAR new: node;</p>
-<p class='ind3'>x, n1, n2: INTEGER;</p> 
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>IF n=0 THEN</p>
-<p class='ind3'>new:=NIL;</p>
-<p class='ind2'>ELSE</p>
-<p class='ind3'>n1:=n DIV 2;</p>
-<p class='ind3'>n2:=n-n1-1;</p>
-<p class='ind3'>NEW( new );</p>
-<p class='ind3'>new.data:=Ran.Int(30);</p>
-<p class='ind3'>f.WriteInt(new.data);</p>
-<p class='ind3'>f.WriteChar(',');</p>
-<p class='ind3'>new.left:=create(n1);</p>
-<p class='ind3'>new.right:=create(n2);</p>				
-<p class='ind2'>END;</p>
-<p class='ind2'>RETURN new</p>	
-<p class='ind1'>END create;</p>
-<p class='ind1'>PROCEDURE print(t: node; h: INTEGER);</p>
-<p class='ind2'>VAR  i: INTEGER;</p>
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>IF t#NIL THEN</p>
-<p class='ind3'>print(t.left, h+1);</p>
-<p class='ind3'>FOR i :=0  TO h DO</p>
-<p class='ind4'>f.WriteString('   ');</p>
-<p class='ind3'>END;</p>
-<p class='ind3'>f.WriteInt(t.data);</p>
-<p class='ind3'>f.WriteLn;</p>
-<p class='ind3'>print(t.right, h+1);</p>
-<p class='ind2'>END;</p>
-<p class='ind1'>END print;</p>
-<p class='ind1'>PROCEDURE do*;</p>
-<p class='ind2'>VAR</p>  
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>In.Open;</p>
-<p class='ind2'>ASSERT(In.Done);</p>
-<p class='ind2'>In.Int(n);</p>
-<p class='ind2'>ASSERT(In.Done);</p>
-<p class='ind2'>t := TextModels.dir.New();</p>
-<p class='ind2'>f.ConnectTo(t);</p>
-<p class='ind2'>tree:=create(n);</p>
-<p class='ind2'>f.WriteLn;</p>
-<p class='ind2'>print(tree, 0);</p>
-<p class='ind2'>v := TextViews.dir.New(t);</p>
-<p class='ind2'>Views.OpenView(v)</p>
-<p class='ind1'>END do;</p>
-<p class='ind0'>END sbal_tree.</p>
-sbal_tree.do 11
+    <p class='ind0'>MODULE sbal_tree;</p>
+    <p class='ind1'>IMPORT In := i21sysIn, Ran := i21eduRandom, Views, TextModels, TextMappers, TextViews;</p>
+    <p class='ind1'>TYPE</p>
+    <p class='ind2'>node=POINTER TO RECORD</p>
+    <p class='ind3'>left, right: node;</p>
+    <p class='ind3'>data: INTEGER</p>
+    <p class='ind2'>END;</p>
+    <p class='ind1'>VAR n: INTEGER;</p>
+    <p class='ind2'>tree: node; t: TextModels.Model; f: TextMappers.Formatter; v: TextViews.View;</p>
+    <p class='ind1'>PROCEDURE create(n: INTEGER): node;</p>
+    <p class='ind2'>VAR new: node;</p>
+    <p class='ind3'>x, n1, n2: INTEGER;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>IF n=0 THEN</p>
+    <p class='ind3'>new:=NIL;</p>
+    <p class='ind2'>ELSE</p>
+    <p class='ind3'>n1:=n DIV 2;</p>
+    <p class='ind3'>n2:=n-n1-1;</p>
+    <p class='ind3'>NEW( new );</p>
+    <p class='ind3'>new.data:=Ran.Int(30);</p>
+    <p class='ind3'>f.WriteInt(new.data);</p>
+    <p class='ind3'>f.WriteChar(',');</p>
+    <p class='ind3'>new.left:=create(n1);</p>
+    <p class='ind3'>new.right:=create(n2);</p>
+    <p class='ind2'>END;</p>
+    <p class='ind2'>RETURN new</p>
+    <p class='ind1'>END create;</p>
+    <p class='ind1'>PROCEDURE print(t: node; h: INTEGER);</p>
+    <p class='ind2'>VAR i: INTEGER;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>IF t#NIL THEN</p>
+    <p class='ind3'>print(t.left, h+1);</p>
+    <p class='ind3'>FOR i :=0 TO h DO</p>
+    <p class='ind4'>f.WriteString(' ');</p>
+    <p class='ind3'>END;</p>
+    <p class='ind3'>f.WriteInt(t.data);</p>
+    <p class='ind3'>f.WriteLn;</p>
+    <p class='ind3'>print(t.right, h+1);</p>
+    <p class='ind2'>END;</p>
+    <p class='ind1'>END print;</p>
+    <p class='ind1'>PROCEDURE do*;</p>
+    <p class='ind2'>VAR</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>In.Open;</p>
+    <p class='ind2'>ASSERT(In.Done);</p>
+    <p class='ind2'>In.Int(n);</p>
+    <p class='ind2'>ASSERT(In.Done);</p>
+    <p class='ind2'>t := TextModels.dir.New();</p>
+    <p class='ind2'>f.ConnectTo(t);</p>
+    <p class='ind2'>tree:=create(n);</p>
+    <p class='ind2'>f.WriteLn;</p>
+    <p class='ind2'>print(tree, 0);</p>
+    <p class='ind2'>v := TextViews.dir.New(t);</p>
+    <p class='ind2'>Views.OpenView(v)</p>
+    <p class='ind1'>END do;</p>
+    <p class='ind0'>END sbal_tree.</p>
+    sbal_tree.do 11
 
 
 </code>
@@ -147,17 +190,79 @@ sbal_tree.do 11
 
 <h3>Контрольные вопросы и упражнения</h3>
 <ol>
-<li>Дано натуральное число. Создать идеально сбалансированное дерево из <math><mi>n</mi></math> узлов со значениями числового поля <math><mi>data</mi></math> из заданного набора <math><mi>n</mi></math> целых чисел.</li>
-<li>Создать идеально сбалансированное дерево, числовое поле <math><mi>data</mi></math> каждого узла которого содержит число, равное уровню узла (корень дерева имеет нулевой уровень, дочерние узлы корня &#151; первый уровень и т.д.).</li>
-<li>Пусть задано идеально сбалансированное дерево. Создать копию этого дерева.</li>
-<li>Пусть задано непустое идеально сбалансированное дерево, узлы которого содержат числовое поле <math><mi>data</mi></math> целого типа. Добавить к каждому листу дерева по два дочерних узла: левый со значение <math><mn>10</mn></math> и правый со значением <math><mn>11</mn></math>.</li>
-<li>Создать идеально сбалансированное дерево с обратной связью (дочерний узел содержит ссылка на родительский узел). Для двух заданных узлов дерева найти их общего ближайшего предка.</li>
-<li>Задано непустое дерево, узлы которого содержат числовое поле <math><mi>data</mi></math> целого типа. Не изменяя глубины <math><mi>d</mi></math> исходного дерева, дополнить его до полного дерева (дерева, все листья которого находятся на уровне <math><mi>d</mi></math>). В поле <math><mi>data</mi></math> каждой новой вершины записать <math><mo>-</mo><mn>1</mn></math>.</li>
+    <li>Дано натуральное число. Создать идеально сбалансированное дерево из
+        <math>
+            <mi>n</mi>
+        </math>
+        узлов со значениями числового поля
+        <math>
+            <mi>data</mi>
+        </math>
+        из заданного набора
+        <math>
+            <mi>n</mi>
+        </math>
+        целых чисел.
+    </li>
+    <li>Создать идеально сбалансированное дерево, числовое поле
+        <math>
+            <mi>data</mi>
+        </math>
+        каждого узла которого содержит число, равное уровню узла (корень дерева имеет нулевой уровень, дочерние узлы
+        корня &#151; первый уровень и т.д.).
+    </li>
+    <li>Пусть задано идеально сбалансированное дерево. Создать копию этого дерева.</li>
+    <li>Пусть задано непустое идеально сбалансированное дерево, узлы которого содержат числовое поле
+        <math>
+            <mi>data</mi>
+        </math>
+        целого типа. Добавить к каждому листу дерева по два дочерних узла: левый со значение
+        <math>
+            <mn>10</mn>
+        </math>
+        и правый со значением
+        <math>
+            <mn>11</mn>
+        </math>
+        .
+    </li>
+    <li>Создать идеально сбалансированное дерево с обратной связью (дочерний узел содержит ссылка на родительский узел).
+        Для двух заданных узлов дерева найти их общего ближайшего предка.
+    </li>
+    <li>Задано непустое дерево, узлы которого содержат числовое поле
+        <math>
+            <mi>data</mi>
+        </math>
+        целого типа. Не изменяя глубины
+        <math>
+            <mi>d</mi>
+        </math>
+        исходного дерева, дополнить его до полного дерева (дерева, все листья которого находятся на уровне
+        <math>
+            <mi>d</mi>
+        </math>
+        ). В поле
+        <math>
+            <mi>data</mi>
+        </math>
+        каждой новой вершины записать
+        <math>
+            <mo>-</mo>
+            <mn>1</mn>
+        </math>
+        .
+    </li>
 </ol>
-<p>Задачи для самостоятельного решения из сборника задач по программированию под редакцией С.А. Абрамова, Г.Г. Гнездиловой, Е.Н. Капустиной, М.И. Селюн. Задачи по программированию:</p>
-<p><a href='zadachi/14.html'>§14 Вычисление с хранением последовательностей, число членов которых зависит от исходных данных</a></p>
+<p>Задачи для самостоятельного решения из сборника задач по программированию под редакцией С.А. Абрамова, Г.Г.
+    Гнездиловой, Е.Н. Капустиной, М.И. Селюн. Задачи по программированию:</p>
+<p><a href='zadachi/14.html'>§14 Вычисление с хранением последовательностей, число членов которых зависит от исходных
+    данных</a></p>
 <p><a href='zadachi/36.html'>§36. Некоторые приемы программирования</a></p>
 
-<p><a href="8_9_7.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_9_9.html">К следующему</a> </p>
+<p><a href="8_9_7.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_9_9.html">К следующему</a>
+</p>
 </body>
+<script type="text/javascript">
+    MathJax.Hub.Configured()
+</script>
 </html>

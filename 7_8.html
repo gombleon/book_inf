@@ -1,1221 +1,1401 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" />
-<link rel='stylesheet' type="text/css" href="style.css"></link>
-<meta name="author" content="leonid" />
-<meta name="description" content="ROM, RAM, SRAM, DRAM, EEPRAM"/>
-<meta name="keywords" content="память" />
-<title>Организация памяти</title>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+  extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});
+
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <meta charset="UTF-8"/>
+    <link rel='stylesheet' type="text/css" href="style.css"></link>
+    <meta name="author" content="leonid"/>
+    <meta name="description" content="ROM, RAM, SRAM, DRAM, EEPRAM"/>
+    <meta name="keywords" content="память"/>
+    <title>Организация памяти</title>
 </head>
 <body>
-<p><a href="7_7.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="7_9.html">К следующему</a> </p>
+<p><a href="7_7.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="7_9.html">К следующему</a></p>
 <h1>7.8. Организация памяти</h1>
 <p>На рисунке 7.8.1 представлен пример организации памяти, содержащей четыре слова. Две адресные линии
-<math  display='inline'>
-<msub>
-<mi>A</mi><mn>0</mn>
-</msub>
-</math> и
-<math   display='inline'>
-<msub>
-<mi>A</mi><mn>1</mn>
-</msub>
-</math>
- позволяют  обращаться к любому из четырех слов. Наличие  
-<math   display='inline'>
-<mi>n</mi>
-</math> 
- адресных линий задает
- <math   display='inline'>
-<msup>
-<mn>2</mn><mi>n</mi>
-</msup>
-</math> адресов слов, причем количество бит в словах может быть любым.
- Такая организация требует небольшого количества выводов и применима для построения памяти большого объема.</p>
-<svg height = "930px"  width = "900px">
-<rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
-<text x="205" y="115" stroke="none" fill="#000000" font-size="12">D</text>
-<text x="210" y="160" stroke="none" fill="#000000" font-size="12">CK</text>
-<text x="235" y="115" stroke="none" fill="#000000" font-size="12">Q</text>
-<polyline stroke="#000000" fill="none" points="200,151 208,156 200,161" /> 
-<polyline stroke="#000000" fill="none" points="250,110 317,110 317,215" />
-<line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none" />
-<circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<polyline stroke="#000000" fill="none" points="80,90 180,90 180,620" />
-<polyline stroke="#000000" fill="none" points="80,60 330,60 330,620" />
-<polyline stroke="#000000" fill="none" points="80,30 480,30 480,620" />
-<text x="70" y="35" stroke="none" fill="#000000" font-size="14">I<tspan dy="8" font-size="12">0</tspan></text>
-<text x="70" y="65" stroke="none" fill="#000000" font-size="14">I<tspan dy="8" font-size="12">1</tspan></text>
-<text x="70" y="95" stroke="none" fill="#000000" font-size="14">I<tspan dy="8" font-size="12">2</tspan></text>
-<g transform='translate(150)'>
-<rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
-<text x="205" y="115" stroke="none" fill="#000000" font-size="12">D</text>
-<text x="210" y="160" stroke="none" fill="#000000" font-size="12">CK</text>
-<text x="235" y="115" stroke="none" fill="#000000" font-size="12">Q</text>
-<polyline stroke="#000000" fill="none" points="200,151 208,156 200,161" />
-<polyline stroke="#000000" fill="none" points="250,110 317,110 317,215" />
-<line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none" />
-<circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-</g>
-<g transform='translate(300)'>
-<rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
-<text x="205" y="115" stroke="none" fill="#000000" font-size="12">D</text>
-<text x="210" y="160" stroke="none" fill="#000000" font-size="12">CK</text>
-<text x="235" y="115" stroke="none" fill="#000000" font-size="12">Q</text>
-<polyline stroke="#000000" fill="none" points="200,151 208,156 200,161" />
-<polyline stroke="#000000" fill="none" points="250,110 317,110 317,215" />
-<line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none" />
-<circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-</g>
+    <math display='inline'>
+        <msub>
+            <mi>A</mi>
+            <mn>0</mn>
+        </msub>
+    </math>
+    и
+    <math display='inline'>
+        <msub>
+            <mi>A</mi>
+            <mn>1</mn>
+        </msub>
+    </math>
+    позволяют обращаться к любому из четырех слов. Наличие
+    <math display='inline'>
+        <mi>n</mi>
+    </math>
+    адресных линий задает
+    <math display='inline'>
+        <msup>
+            <mn>2</mn>
+            <mi>n</mi>
+        </msup>
+    </math>
+    адресов слов, причем количество бит в словах может быть любым.
+    Такая организация требует небольшого количества выводов и применима для построения памяти большого объема.
+</p>
+<svg height="930px" width="900px">
+    <rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
+    <text x="205" y="115" stroke="none" fill="#000000" font-size="12">D</text>
+    <text x="210" y="160" stroke="none" fill="#000000" font-size="12">CK</text>
+    <text x="235" y="115" stroke="none" fill="#000000" font-size="12">Q</text>
+    <polyline stroke="#000000" fill="none" points="200,151 208,156 200,161"/>
+    <polyline stroke="#000000" fill="none" points="250,110 317,110 317,215"/>
+    <line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none"/>
+    <circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <polyline stroke="#000000" fill="none" points="80,90 180,90 180,620"/>
+    <polyline stroke="#000000" fill="none" points="80,60 330,60 330,620"/>
+    <polyline stroke="#000000" fill="none" points="80,30 480,30 480,620"/>
+    <text x="70" y="35" stroke="none" fill="#000000" font-size="14">I
+        <tspan dy="8" font-size="12">0</tspan>
+    </text>
+    <text x="70" y="65" stroke="none" fill="#000000" font-size="14">I
+        <tspan dy="8" font-size="12">1</tspan>
+    </text>
+    <text x="70" y="95" stroke="none" fill="#000000" font-size="14">I
+        <tspan dy="8" font-size="12">2</tspan>
+    </text>
+    <g transform='translate(150)'>
+        <rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
+        <text x="205" y="115" stroke="none" fill="#000000" font-size="12">D</text>
+        <text x="210" y="160" stroke="none" fill="#000000" font-size="12">CK</text>
+        <text x="235" y="115" stroke="none" fill="#000000" font-size="12">Q</text>
+        <polyline stroke="#000000" fill="none" points="200,151 208,156 200,161"/>
+        <polyline stroke="#000000" fill="none" points="250,110 317,110 317,215"/>
+        <line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none"/>
+        <circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    </g>
+    <g transform='translate(300)'>
+        <rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
+        <text x="205" y="115" stroke="none" fill="#000000" font-size="12">D</text>
+        <text x="210" y="160" stroke="none" fill="#000000" font-size="12">CK</text>
+        <text x="235" y="115" stroke="none" fill="#000000" font-size="12">Q</text>
+        <polyline stroke="#000000" fill="none" points="200,151 208,156 200,161"/>
+        <polyline stroke="#000000" fill="none" points="250,110 317,110 317,215"/>
+        <line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none"/>
+        <circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    </g>
 
-<g transform='translate(0,170)'>
-<rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
-<text x="205" y="115" stroke="none" fill="#000000" font-size="12">D</text>
-<text x="210" y="160" stroke="none" fill="#000000" font-size="12">CK</text>
-<text x="235" y="115" stroke="none" fill="#000000" font-size="12">Q</text>
-<polyline stroke="#000000" fill="none" points="200,151 208,156 200,161" />
-<polyline stroke="#000000" fill="none" points="250,110 297,110 297,215" />
-<line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none" />
-<circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-</g>
+    <g transform='translate(0,170)'>
+        <rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
+        <text x="205" y="115" stroke="none" fill="#000000" font-size="12">D</text>
+        <text x="210" y="160" stroke="none" fill="#000000" font-size="12">CK</text>
+        <text x="235" y="115" stroke="none" fill="#000000" font-size="12">Q</text>
+        <polyline stroke="#000000" fill="none" points="200,151 208,156 200,161"/>
+        <polyline stroke="#000000" fill="none" points="250,110 297,110 297,215"/>
+        <line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none"/>
+        <circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    </g>
 
-<g transform='translate(150,170)'>
-<rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
-<text x="205" y="115" stroke="none" fill="#000000" font-size="12">D</text>
-<text x="210" y="160" stroke="none" fill="#000000" font-size="12">CK</text>
-<text x="235" y="115" stroke="none" fill="#000000" font-size="12">Q</text>
-<polyline stroke="#000000" fill="none" points="200,151 208,156 200,161" />
-<polyline stroke="#000000" fill="none" points="250,110 297,110 297,215" />
-<line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none" />
-<circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-</g>
-<g transform='translate(300,170)'>
-<rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
-<text x="205" y="115" stroke="none" fill="#000000" font-size="12">D</text>
-<text x="210" y="160" stroke="none" fill="#000000" font-size="12">CK</text>
-<text x="235" y="115" stroke="none" fill="#000000" font-size="12">Q</text>
-<polyline stroke="#000000" fill="none" points="200,151 208,156 200,161" />
-<polyline stroke="#000000" fill="none" points="250,110 297,110 297,215" />
-<line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none" />
-<circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-</g>
-<g transform='translate(0,340)'>
-<rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
-<text x="205" y="115" stroke="none" fill="#000000" font-size="12">D</text>
-<text x="210" y="160" stroke="none" fill="#000000" font-size="12">CK</text>
-<text x="235" y="115" stroke="none" fill="#000000" font-size="12">Q</text>
-<polyline stroke="#000000" fill="none" points="200,151 208,156 200,161" />
-<polyline stroke="#000000" fill="none" points="250,110 277,110 277,215" />
-<line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none" />
-<circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-</g>
+    <g transform='translate(150,170)'>
+        <rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
+        <text x="205" y="115" stroke="none" fill="#000000" font-size="12">D</text>
+        <text x="210" y="160" stroke="none" fill="#000000" font-size="12">CK</text>
+        <text x="235" y="115" stroke="none" fill="#000000" font-size="12">Q</text>
+        <polyline stroke="#000000" fill="none" points="200,151 208,156 200,161"/>
+        <polyline stroke="#000000" fill="none" points="250,110 297,110 297,215"/>
+        <line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none"/>
+        <circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    </g>
+    <g transform='translate(300,170)'>
+        <rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
+        <text x="205" y="115" stroke="none" fill="#000000" font-size="12">D</text>
+        <text x="210" y="160" stroke="none" fill="#000000" font-size="12">CK</text>
+        <text x="235" y="115" stroke="none" fill="#000000" font-size="12">Q</text>
+        <polyline stroke="#000000" fill="none" points="200,151 208,156 200,161"/>
+        <polyline stroke="#000000" fill="none" points="250,110 297,110 297,215"/>
+        <line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none"/>
+        <circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    </g>
+    <g transform='translate(0,340)'>
+        <rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
+        <text x="205" y="115" stroke="none" fill="#000000" font-size="12">D</text>
+        <text x="210" y="160" stroke="none" fill="#000000" font-size="12">CK</text>
+        <text x="235" y="115" stroke="none" fill="#000000" font-size="12">Q</text>
+        <polyline stroke="#000000" fill="none" points="200,151 208,156 200,161"/>
+        <polyline stroke="#000000" fill="none" points="250,110 277,110 277,215"/>
+        <line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none"/>
+        <circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    </g>
 
-<g transform='translate(150,340)'>
-<rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
-<text x="205" y="115" stroke="none" fill="#000000" font-size="12">D</text>
-<text x="210" y="160" stroke="none" fill="#000000" font-size="12">CK</text>
-<text x="235" y="115" stroke="none" fill="#000000" font-size="12">Q</text>
-<polyline stroke="#000000" fill="none" points="200,151 208,156 200,161" />
-<polyline stroke="#000000" fill="none" points="250,110 277,110 277,215" />
-<line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none" />
-<circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-</g>
-<g transform='translate(300,340)'>
-<rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
-<text x="205" y="115" stroke="none" fill="#000000" font-size="12">D</text>
-<text x="210" y="160" stroke="none" fill="#000000" font-size="12">CK</text>
-<text x="235" y="115" stroke="none" fill="#000000" font-size="12">Q</text>
-<polyline stroke="#000000" fill="none" points="200,151 208,156 200,161" />
-<polyline stroke="#000000" fill="none" points="250,110 277,110 277,215" />
-<line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none" />
-<circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-</g>
+    <g transform='translate(150,340)'>
+        <rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
+        <text x="205" y="115" stroke="none" fill="#000000" font-size="12">D</text>
+        <text x="210" y="160" stroke="none" fill="#000000" font-size="12">CK</text>
+        <text x="235" y="115" stroke="none" fill="#000000" font-size="12">Q</text>
+        <polyline stroke="#000000" fill="none" points="200,151 208,156 200,161"/>
+        <polyline stroke="#000000" fill="none" points="250,110 277,110 277,215"/>
+        <line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none"/>
+        <circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    </g>
+    <g transform='translate(300,340)'>
+        <rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
+        <text x="205" y="115" stroke="none" fill="#000000" font-size="12">D</text>
+        <text x="210" y="160" stroke="none" fill="#000000" font-size="12">CK</text>
+        <text x="235" y="115" stroke="none" fill="#000000" font-size="12">Q</text>
+        <polyline stroke="#000000" fill="none" points="200,151 208,156 200,161"/>
+        <polyline stroke="#000000" fill="none" points="250,110 277,110 277,215"/>
+        <line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none"/>
+        <circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    </g>
 
-<g transform='translate(0,510)'>
-<rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
-<text x="205" y="115" stroke="none" fill="#000000" font-size="12">D</text>
-<text x="210" y="160" stroke="none" fill="#000000" font-size="12">CK</text>
-<text x="235" y="115" stroke="none" fill="#000000" font-size="12">Q</text>
-<polyline stroke="#000000" fill="none" points="200,151 208,156 200,161" />
-<polyline stroke="#000000" fill="none" points="250,110 257,110 257,215" />
-<line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none" />
+    <g transform='translate(0,510)'>
+        <rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
+        <text x="205" y="115" stroke="none" fill="#000000" font-size="12">D</text>
+        <text x="210" y="160" stroke="none" fill="#000000" font-size="12">CK</text>
+        <text x="235" y="115" stroke="none" fill="#000000" font-size="12">Q</text>
+        <polyline stroke="#000000" fill="none" points="200,151 208,156 200,161"/>
+        <polyline stroke="#000000" fill="none" points="250,110 257,110 257,215"/>
+        <line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none"/>
 
-</g>
+    </g>
 
-<g transform='translate(150,510)'>
-<rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
-<text x="205" y="115" stroke="none" fill="#000000" font-size="12">D</text>
-<text x="210" y="160" stroke="none" fill="#000000" font-size="12">CK</text>
-<text x="235" y="115" stroke="none" fill="#000000" font-size="12">Q</text>
-<polyline stroke="#000000" fill="none" points="200,151 208,156 200,161" />
-<polyline stroke="#000000" fill="none" points="250,110 257,110 257,215" />
-<line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none" />
+    <g transform='translate(150,510)'>
+        <rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
+        <text x="205" y="115" stroke="none" fill="#000000" font-size="12">D</text>
+        <text x="210" y="160" stroke="none" fill="#000000" font-size="12">CK</text>
+        <text x="235" y="115" stroke="none" fill="#000000" font-size="12">Q</text>
+        <polyline stroke="#000000" fill="none" points="200,151 208,156 200,161"/>
+        <polyline stroke="#000000" fill="none" points="250,110 257,110 257,215"/>
+        <line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none"/>
 
-</g>
-<g transform='translate(300,510)'>
-<rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
-<text x="205" y="115" stroke="none" fill="#000000" font-size="12">D</text>
-<text x="210" y="160" stroke="none" fill="#000000" font-size="12">CK</text>
-<text x="235" y="115" stroke="none" fill="#000000" font-size="12">Q</text>
-<polyline stroke="#000000" fill="none" points="200,151 208,156 200,161" />
-<polyline stroke="#000000" fill="none" points="250,110 257,110 257,215" />
-<line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none" />
+    </g>
+    <g transform='translate(300,510)'>
+        <rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
+        <text x="205" y="115" stroke="none" fill="#000000" font-size="12">D</text>
+        <text x="210" y="160" stroke="none" fill="#000000" font-size="12">CK</text>
+        <text x="235" y="115" stroke="none" fill="#000000" font-size="12">Q</text>
+        <polyline stroke="#000000" fill="none" points="200,151 208,156 200,161"/>
+        <polyline stroke="#000000" fill="none" points="250,110 257,110 257,215"/>
+        <line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none"/>
 
-</g>
-<path stroke="#000000" fill="none" d="M 150,170 C 170,170 170,190  150,190"  />
-<polyline stroke="#000000" fill="none" points="150,170 135,170 135,190 150,190" />
-<polyline stroke="#000000" fill="none" points="135,187 120,187 120,205" />
-<circle cx="120" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<polyline stroke="#000000" fill="none" points="165,180 490,180 490,156 500,156" />
-<polyline stroke="#000000" fill="none" points="340,180 340,156 350,156" />
-<circle cx="340" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<polyline stroke="#000000" fill="none" points="190,180 190,156 200,156" />
-<circle cx="190" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
+    </g>
+    <path stroke="#000000" fill="none" d="M 150,170 C 170,170 170,190  150,190"/>
+    <polyline stroke="#000000" fill="none" points="150,170 135,170 135,190 150,190"/>
+    <polyline stroke="#000000" fill="none" points="135,187 120,187 120,205"/>
+    <circle cx="120" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <polyline stroke="#000000" fill="none" points="165,180 490,180 490,156 500,156"/>
+    <polyline stroke="#000000" fill="none" points="340,180 340,156 350,156"/>
+    <circle cx="340" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <polyline stroke="#000000" fill="none" points="190,180 190,156 200,156"/>
+    <circle cx="190" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
 
-<path stroke="#000000" fill="none" d="M 85,195 C 105,195 105,215  85,215"  />
-<polyline stroke="#000000" fill="none" points="85,195 70,195 70,215 85,215" />
-<line x1='100' y1='205' x2='117' y2='205' stroke="#000000" fill="none" />
-<polyline stroke="#000000" fill="none" points="38,180 45,185 38,190 38,180" />
-<circle cx="48" cy="185" r="3" fill="none" stroke="#000000" stroke-width="1" />
-<polyline stroke="#000000" fill="none" points="51,185 61,185 61,197 70,197" />
-<polyline stroke="#000000" fill="none" points="38,220 45,225 38,230 38,220" />
-<circle cx="48" cy="225" r="3" fill="none" stroke="#000000" stroke-width="1" />
-<polyline stroke="#000000" fill="none" points="51,225 61,225 61,212 70,212" />
+    <path stroke="#000000" fill="none" d="M 85,195 C 105,195 105,215  85,215"/>
+    <polyline stroke="#000000" fill="none" points="85,195 70,195 70,215 85,215"/>
+    <line x1='100' y1='205' x2='117' y2='205' stroke="#000000" fill="none"/>
+    <polyline stroke="#000000" fill="none" points="38,180 45,185 38,190 38,180"/>
+    <circle cx="48" cy="185" r="3" fill="none" stroke="#000000" stroke-width="1"/>
+    <polyline stroke="#000000" fill="none" points="51,185 61,185 61,197 70,197"/>
+    <polyline stroke="#000000" fill="none" points="38,220 45,225 38,230 38,220"/>
+    <circle cx="48" cy="225" r="3" fill="none" stroke="#000000" stroke-width="1"/>
+    <polyline stroke="#000000" fill="none" points="51,225 61,225 61,212 70,212"/>
 
-<polyline stroke="#000000" fill="none" points="38,185 23,185 23,722 70,722" />
+    <polyline stroke="#000000" fill="none" points="38,185 23,185 23,722 70,722"/>
 
-<line x1='23' y1='381' x2='70' y2='381' stroke="#000000" fill="none" />
-<circle cx="23" cy="381" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
+    <line x1='23' y1='381' x2='70' y2='381' stroke="#000000" fill="none"/>
+    <circle cx="23" cy="381" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
 
-<line x1='23' y1='538' x2='70' y2='538' stroke="#000000" fill="none" />
-<circle cx="23" cy="538" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<polyline stroke="#000000" fill="none" points="38,225 28,225 28,708 70,708 " />
-<line x1='28' y1='368' x2='38' y2='368' stroke="#000000" fill="none" />
-<circle cx="28" cy="368" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
+    <line x1='23' y1='538' x2='70' y2='538' stroke="#000000" fill="none"/>
+    <circle cx="23" cy="538" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <polyline stroke="#000000" fill="none" points="38,225 28,225 28,708 70,708 "/>
+    <line x1='28' y1='368' x2='38' y2='368' stroke="#000000" fill="none"/>
+    <circle cx="28" cy="368" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
 
-<line x1='28' y1='550' x2='38' y2='550' stroke="#000000" fill="none" />
-<circle cx="28" cy="550" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-
-
-<polyline stroke="#000000" fill="none" points="38,363 45,368 38,373 38,363" />
-<circle cx="48" cy="368" r="3" fill="none" stroke="#000000" stroke-width="1" />
-<line x1='51' y1='368' x2='70' y2='368' stroke="#000000" fill="none" />
-
-<g transform='translate(0,170)'>
-<path stroke="#000000" fill="none" d="M 150,170 C 170,170 170,190  150,190"  />
-<polyline stroke="#000000" fill="none" points="150,170 135,170 135,190 150,190" />
-<polyline stroke="#000000" fill="none" points="135,187 120,187 120,205" />
-<circle cx="120" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<polyline stroke="#000000" fill="none" points="165,180 490,180 490,156 500,156" />
-<polyline stroke="#000000" fill="none" points="340,180 340,156 350,156" />
-<circle cx="340" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<polyline stroke="#000000" fill="none" points="190,180 190,156 200,156" />
-<circle cx="190" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<path stroke="#000000" fill="none" d="M 85,195 C 105,195 105,215  85,215"  />
-<polyline stroke="#000000" fill="none" points="85,195 70,195 70,215 85,215" />
-<line x1='100' y1='205' x2='117' y2='205' stroke="#000000" fill="none" />
-
-<polyline stroke="#000000" fill="none" points="38,376 45,381 38,386 38,376" />
-<circle cx="48" cy="381" r="3" fill="none" stroke="#000000" stroke-width="1" />
-<line x1='51' y1='381' x2='70' y2='381' stroke="#000000" fill="none" />
-
-</g>
-<g transform='translate(0,340)'>
-<path stroke="#000000" fill="none" d="M 150,170 C 170,170 170,190 150,190"  />
-<polyline stroke="#000000" fill="none" points="150,170 135,170 135,190 150,190" />
-<polyline stroke="#000000" fill="none" points="135,187 120,187 120,205" />
-<circle cx="120" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<polyline stroke="#000000" fill="none" points="165,180 490,180 490,156 500,156" />
-<polyline stroke="#000000" fill="none" points="340,180 340,156 350,156" />
-<circle cx="340" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<polyline stroke="#000000" fill="none" points="190,180 190,156 200,156" />
-<circle cx="190" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<path stroke="#000000" fill="none" d="M 85,195 C 105,195 105,215  85,215"  />
-<polyline stroke="#000000" fill="none" points="85,195 70,195 70,215 85,215" />
-<line x1='100' y1='205' x2='117' y2='205' stroke="#000000" fill="none" />
-</g>
-
-<g transform='translate(0,510)'>
-<path stroke="#000000" fill="none" d="M 150,170 C 170,170 170,190  150,190"  />
-<polyline stroke="#000000" fill="none" points="150,170 135,170 135,190 150,190" />
-<polyline stroke="#000000" fill="none" points="135,187 120,187 120,205" />
-<circle cx="120" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<polyline stroke="#000000" fill="none" points="165,180 490,180 490,156 500,156" />
-<polyline stroke="#000000" fill="none" points="340,180 340,156 350,156" />
-<circle cx="340" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<polyline stroke="#000000" fill="none" points="190,180 190,156 200,156" />
-<circle cx="190" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<path stroke="#000000" fill="none" d="M 85,195 C 105,195 105,215  85,215"  />
-<polyline stroke="#000000" fill="none" points="85,195 70,195 70,215 85,215" />
-<line x1='100' y1='205' x2='117' y2='205' stroke="#000000" fill="none" />
-</g>
-
-<polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230" />
-<path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"  />
-<line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none" />
-<circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none" />
-
-<g transform='translate(150)'>
-<polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230" />
-<path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"  />
-<line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none" />
-<circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none" />
-<g transform='translate(150)'>
-<polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230" />
-<path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"  />
-<line x1='303' y1='204' x2='303' y2='215' stroke="#000000" fill="none" />
-</g>
-</g>
-
-<g transform='translate(-20,170)'>
-<polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230" />
-<path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"  />
-<line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none" />
-<circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none" />
-
-<g transform='translate(150)'>
-<polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230" />
-<path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"  />
-<line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none" />
-<circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none" />
-<g transform='translate(150)'>
-<polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230" />
-<path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"  />
-<line x1='303' y1='204' x2='303' y2='215' stroke="#000000" fill="none" />
-</g>
-</g>
-<line x1='140' y1='205' x2='303' y2='205' stroke="#000000" fill="none" />
-</g>
+    <line x1='28' y1='550' x2='38' y2='550' stroke="#000000" fill="none"/>
+    <circle cx="28" cy="550" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
 
 
-<g transform='translate(-40,340)'>
-<polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230" />
-<path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"  />
-<line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none" />
-<circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none" />
+    <polyline stroke="#000000" fill="none" points="38,363 45,368 38,373 38,363"/>
+    <circle cx="48" cy="368" r="3" fill="none" stroke="#000000" stroke-width="1"/>
+    <line x1='51' y1='368' x2='70' y2='368' stroke="#000000" fill="none"/>
 
-<g transform='translate(150)'>
-<polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230" />
-<path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"  />
-<line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none" />
-<circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none" />
-<g transform='translate(150)'>
-<polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230" />
-<path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"  />
-<line x1='303' y1='204' x2='303' y2='215' stroke="#000000" fill="none" />
-</g>
-</g>
-<line x1='160' y1='205' x2='303' y2='205' stroke="#000000" fill="none" />
-</g>
+    <g transform='translate(0,170)'>
+        <path stroke="#000000" fill="none" d="M 150,170 C 170,170 170,190  150,190"/>
+        <polyline stroke="#000000" fill="none" points="150,170 135,170 135,190 150,190"/>
+        <polyline stroke="#000000" fill="none" points="135,187 120,187 120,205"/>
+        <circle cx="120" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+        <polyline stroke="#000000" fill="none" points="165,180 490,180 490,156 500,156"/>
+        <polyline stroke="#000000" fill="none" points="340,180 340,156 350,156"/>
+        <circle cx="340" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+        <polyline stroke="#000000" fill="none" points="190,180 190,156 200,156"/>
+        <circle cx="190" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+        <path stroke="#000000" fill="none" d="M 85,195 C 105,195 105,215  85,215"/>
+        <polyline stroke="#000000" fill="none" points="85,195 70,195 70,215 85,215"/>
+        <line x1='100' y1='205' x2='117' y2='205' stroke="#000000" fill="none"/>
 
-<g transform='translate(-60,510)'>
-<polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230" />
-<path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"  />
-<line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none" />
-<circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none" />
+        <polyline stroke="#000000" fill="none" points="38,376 45,381 38,386 38,376"/>
+        <circle cx="48" cy="381" r="3" fill="none" stroke="#000000" stroke-width="1"/>
+        <line x1='51' y1='381' x2='70' y2='381' stroke="#000000" fill="none"/>
 
-<g transform='translate(150)'>
-<polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230" />
-<path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"  />
-<line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none" />
-<circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none" />
-<g transform='translate(150)'>
-<polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230" />
-<path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"  />
-<line x1='303' y1='204' x2='303' y2='215' stroke="#000000" fill="none" />
-</g>
-</g>
-<line x1='180' y1='205' x2='303' y2='205' stroke="#000000" fill="none" />
-</g>
-<line x1='120' y1='205' x2='303' y2='205' stroke="#000000" fill="none" />
+    </g>
+    <g transform='translate(0,340)'>
+        <path stroke="#000000" fill="none" d="M 150,170 C 170,170 170,190 150,190"/>
+        <polyline stroke="#000000" fill="none" points="150,170 135,170 135,190 150,190"/>
+        <polyline stroke="#000000" fill="none" points="135,187 120,187 120,205"/>
+        <circle cx="120" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+        <polyline stroke="#000000" fill="none" points="165,180 490,180 490,156 500,156"/>
+        <polyline stroke="#000000" fill="none" points="340,180 340,156 350,156"/>
+        <circle cx="340" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+        <polyline stroke="#000000" fill="none" points="190,180 190,156 200,156"/>
+        <circle cx="190" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+        <path stroke="#000000" fill="none" d="M 85,195 C 105,195 105,215  85,215"/>
+        <polyline stroke="#000000" fill="none" points="85,195 70,195 70,215 85,215"/>
+        <line x1='100' y1='205' x2='117' y2='205' stroke="#000000" fill="none"/>
+    </g>
 
-<path stroke="#000000" fill="none" d="M280,770 Q280,800 300,815 Q320,800 320,770 Q300,780 280,770"/>
-<polyline stroke="#000000" fill="none" points="283,772 283,760 250,760 250,749" />
-<polyline stroke="#000000" fill="none" points="290,773 290,750 270,750 270,579" />
-<polyline stroke="#000000" fill="none" points="308,773 308,735 290,735 290,409 " />
-<polyline stroke="#000000" fill="none" points="315,773 315,725 310,725 310,239" />
-<g transform='translate(150)'>
-<path stroke="#000000" fill="none" d="M280,770 Q280,800 300,815 Q320,800 320,770 Q300,780 280,770"/>
-<polyline stroke="#000000" fill="none" points="283,772 283,760 250,760 250,749" />
-<polyline stroke="#000000" fill="none" points="290,773 290,750 270,750 270,579" />
-<polyline stroke="#000000" fill="none" points="308,773 308,735 290,735 290,409 " />
-<polyline stroke="#000000" fill="none" points="315,773 315,725 310,725 310,239" />
-</g>
-<g transform='translate(300)'>
-<path stroke="#000000" fill="none" d="M280,770 Q280,800 300,815 Q320,800 320,770 Q300,780 280,770"/>
-<polyline stroke="#000000" fill="none" points="283,772 283,760 250,760 250,749" />
-<polyline stroke="#000000" fill="none" points="290,773 290,750 270,750 270,579" />
-<polyline stroke="#000000" fill="none" points="308,773 308,735 290,735 290,409 " />
-<polyline stroke="#000000" fill="none" points="315,773 315,725 310,725 310,239" />
-</g>
+    <g transform='translate(0,510)'>
+        <path stroke="#000000" fill="none" d="M 150,170 C 170,170 170,190  150,190"/>
+        <polyline stroke="#000000" fill="none" points="150,170 135,170 135,190 150,190"/>
+        <polyline stroke="#000000" fill="none" points="135,187 120,187 120,205"/>
+        <circle cx="120" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+        <polyline stroke="#000000" fill="none" points="165,180 490,180 490,156 500,156"/>
+        <polyline stroke="#000000" fill="none" points="340,180 340,156 350,156"/>
+        <circle cx="340" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+        <polyline stroke="#000000" fill="none" points="190,180 190,156 200,156"/>
+        <circle cx="190" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+        <path stroke="#000000" fill="none" d="M 85,195 C 105,195 105,215  85,215"/>
+        <polyline stroke="#000000" fill="none" points="85,195 70,195 70,215 85,215"/>
+        <line x1='100' y1='205' x2='117' y2='205' stroke="#000000" fill="none"/>
+    </g>
 
-<polygon stroke="#000000" fill="none" points="665,820 673,825 665,830" />
-<polyline stroke="#000000" fill="none" points="665,825 600,825 600,814" />
-<line x1='673' y1='825' x2='700' y2='825' stroke="#000000" fill="none" />
-<text x="705" y="830" stroke="none" fill="#000000" font-size="14">O<tspan dy='8' font-size="12" >0</tspan></text>
-<line x1='673' y1='845' x2='700' y2='845' stroke="#000000" fill="none" />
-<text x="705" y="850" stroke="none" fill="#000000" font-size="14">O<tspan dy='8' font-size="12" >1</tspan></text>
-<line x1='673' y1='865' x2='700' y2='865' stroke="#000000" fill="none" />
-<text x="705" y="870" stroke="none" fill="#000000" font-size="14">O<tspan dy='8' font-size="12" >2</tspan></text>
-<polygon stroke="#000000" fill="none" points="665,840 673,845 665,850" />
-<polyline stroke="#000000" fill="none" points="665,845 450,845 450,814" />
-<polygon stroke="#000000" fill="none" points="665,860 673,865 665,870" />
-<polyline stroke="#000000" fill="none" points="665,865 300,865 300,814" />
+    <polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230"/>
+    <path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"/>
+    <line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none"/>
+    <circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none"/>
 
-<line stroke="#000000" fill="none" x1="115" y1="173" x2="115" y2="760" />
-<line stroke="#000000" fill="none" x1="114" y1="173" x2="135" y2="173" />
-<line stroke="#000000" fill="none" x1="114" y1="343" x2="135" y2="343" />
-<line stroke="#000000" fill="none" x1="114" y1="513" x2="135" y2="513" />
-<line stroke="#000000" fill="none" x1="114" y1="683" x2="135" y2="683" />
-<circle cx="115" cy="343" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<circle cx="115" cy="513" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<circle cx="115" cy="683" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<path stroke="#000000" fill="none" d="M 103,771 C 108,755 123,755 128,771 L 128,790 103,790 103,771"  />
-<polyline stroke="#000000" fill="none" points="106,790 106,800 50,800" />
-<line stroke="#000000" fill="none" x1="125" y1="790" x2="125" y2="810" />
-<circle cx="125" cy="813" r="3" fill="none" stroke="#000000" stroke-width="1" />
-<polygon stroke="#000000" fill="none" points="125,816 118,824 132,824" />
-<polyline stroke="#000000" fill="none" points="125,824 125,840 50,840" />
-<circle cx="125" cy="840" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<line stroke="#000000" fill="none" x1="670" y1="880" x2="670" y2="867" />
-<circle cx="670" cy="880" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<path stroke="#000000" fill="none" d="M 200,870 L 200,890 220,890 C 233,890 233,870 220,870 L 200,870"  />
-<polyline stroke="#000000" fill="none" points="230,880 680,880 680,833 670,833 670,826" />
-<polyline stroke="#000000" fill="none" points="680,855 670,855 670,847" />
-<circle cx="680" cy="855" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<polyline stroke="#000000" fill="none" points="200,874 125,874 125,840" />
-<polyline stroke="#000000" fill="none" points="200,880 90,880 90,800" />
-<circle cx="90" cy="800" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<line stroke="#000000" fill="none" x1="50" y1="886" x2="200" y2="886" />
-<text x="26" y="805" stroke="none" fill="#000000" font-size="14">CS</text>
-<text x="26" y="845" stroke="none" fill="#000000" font-size="14">RD</text>
-<text x="26" y="890" stroke="none" fill="#000000" font-size="14">OE</text>
-<text x="55" y="760" stroke="none" fill="#000000" font-size="14">A<tspan dy="8" font-size="12">0</tspan></text>
-<line stroke="#000000" fill="none" x1="60" y1="745" x2="60" y2="708" />
-<circle cx="60" cy="708" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<text x="30" y="760" stroke="none" fill="#000000" font-size="14">A<tspan dy="8" font-size="12">1</tspan></text>
-<line stroke="#000000" fill="none" x1="35" y1="745" x2="35" y2="722" />
-<circle cx="35" cy="722" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<text x="150" y="925" stroke="none" fill="#000000" font-size="14">Рис. 7.8.1. Логическая блок-схема памяти 3x4</text>
+    <g transform='translate(150)'>
+        <polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230"/>
+        <path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"/>
+        <line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none"/>
+        <circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+        <line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none"/>
+        <g transform='translate(150)'>
+            <polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230"/>
+            <path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"/>
+            <line x1='303' y1='204' x2='303' y2='215' stroke="#000000" fill="none"/>
+        </g>
+    </g>
+
+    <g transform='translate(-20,170)'>
+        <polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230"/>
+        <path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"/>
+        <line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none"/>
+        <circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+        <line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none"/>
+
+        <g transform='translate(150)'>
+            <polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230"/>
+            <path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"/>
+            <line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none"/>
+            <circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+            <line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none"/>
+            <g transform='translate(150)'>
+                <polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230"/>
+                <path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"/>
+                <line x1='303' y1='204' x2='303' y2='215' stroke="#000000" fill="none"/>
+            </g>
+        </g>
+        <line x1='140' y1='205' x2='303' y2='205' stroke="#000000" fill="none"/>
+    </g>
+
+
+    <g transform='translate(-40,340)'>
+        <polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230"/>
+        <path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"/>
+        <line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none"/>
+        <circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+        <line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none"/>
+
+        <g transform='translate(150)'>
+            <polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230"/>
+            <path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"/>
+            <line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none"/>
+            <circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+            <line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none"/>
+            <g transform='translate(150)'>
+                <polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230"/>
+                <path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"/>
+                <line x1='303' y1='204' x2='303' y2='215' stroke="#000000" fill="none"/>
+            </g>
+        </g>
+        <line x1='160' y1='205' x2='303' y2='205' stroke="#000000" fill="none"/>
+    </g>
+
+    <g transform='translate(-60,510)'>
+        <polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230"/>
+        <path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"/>
+        <line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none"/>
+        <circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+        <line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none"/>
+
+        <g transform='translate(150)'>
+            <polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230"/>
+            <path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"/>
+            <line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none"/>
+            <circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+            <line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none"/>
+            <g transform='translate(150)'>
+                <polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230"/>
+                <path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"/>
+                <line x1='303' y1='204' x2='303' y2='215' stroke="#000000" fill="none"/>
+            </g>
+        </g>
+        <line x1='180' y1='205' x2='303' y2='205' stroke="#000000" fill="none"/>
+    </g>
+    <line x1='120' y1='205' x2='303' y2='205' stroke="#000000" fill="none"/>
+
+    <path stroke="#000000" fill="none" d="M280,770 Q280,800 300,815 Q320,800 320,770 Q300,780 280,770"/>
+    <polyline stroke="#000000" fill="none" points="283,772 283,760 250,760 250,749"/>
+    <polyline stroke="#000000" fill="none" points="290,773 290,750 270,750 270,579"/>
+    <polyline stroke="#000000" fill="none" points="308,773 308,735 290,735 290,409 "/>
+    <polyline stroke="#000000" fill="none" points="315,773 315,725 310,725 310,239"/>
+    <g transform='translate(150)'>
+        <path stroke="#000000" fill="none" d="M280,770 Q280,800 300,815 Q320,800 320,770 Q300,780 280,770"/>
+        <polyline stroke="#000000" fill="none" points="283,772 283,760 250,760 250,749"/>
+        <polyline stroke="#000000" fill="none" points="290,773 290,750 270,750 270,579"/>
+        <polyline stroke="#000000" fill="none" points="308,773 308,735 290,735 290,409 "/>
+        <polyline stroke="#000000" fill="none" points="315,773 315,725 310,725 310,239"/>
+    </g>
+    <g transform='translate(300)'>
+        <path stroke="#000000" fill="none" d="M280,770 Q280,800 300,815 Q320,800 320,770 Q300,780 280,770"/>
+        <polyline stroke="#000000" fill="none" points="283,772 283,760 250,760 250,749"/>
+        <polyline stroke="#000000" fill="none" points="290,773 290,750 270,750 270,579"/>
+        <polyline stroke="#000000" fill="none" points="308,773 308,735 290,735 290,409 "/>
+        <polyline stroke="#000000" fill="none" points="315,773 315,725 310,725 310,239"/>
+    </g>
+
+    <polygon stroke="#000000" fill="none" points="665,820 673,825 665,830"/>
+    <polyline stroke="#000000" fill="none" points="665,825 600,825 600,814"/>
+    <line x1='673' y1='825' x2='700' y2='825' stroke="#000000" fill="none"/>
+    <text x="705" y="830" stroke="none" fill="#000000" font-size="14">O
+        <tspan dy='8' font-size="12">0</tspan>
+    </text>
+    <line x1='673' y1='845' x2='700' y2='845' stroke="#000000" fill="none"/>
+    <text x="705" y="850" stroke="none" fill="#000000" font-size="14">O
+        <tspan dy='8' font-size="12">1</tspan>
+    </text>
+    <line x1='673' y1='865' x2='700' y2='865' stroke="#000000" fill="none"/>
+    <text x="705" y="870" stroke="none" fill="#000000" font-size="14">O
+        <tspan dy='8' font-size="12">2</tspan>
+    </text>
+    <polygon stroke="#000000" fill="none" points="665,840 673,845 665,850"/>
+    <polyline stroke="#000000" fill="none" points="665,845 450,845 450,814"/>
+    <polygon stroke="#000000" fill="none" points="665,860 673,865 665,870"/>
+    <polyline stroke="#000000" fill="none" points="665,865 300,865 300,814"/>
+
+    <line stroke="#000000" fill="none" x1="115" y1="173" x2="115" y2="760"/>
+    <line stroke="#000000" fill="none" x1="114" y1="173" x2="135" y2="173"/>
+    <line stroke="#000000" fill="none" x1="114" y1="343" x2="135" y2="343"/>
+    <line stroke="#000000" fill="none" x1="114" y1="513" x2="135" y2="513"/>
+    <line stroke="#000000" fill="none" x1="114" y1="683" x2="135" y2="683"/>
+    <circle cx="115" cy="343" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <circle cx="115" cy="513" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <circle cx="115" cy="683" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <path stroke="#000000" fill="none" d="M 103,771 C 108,755 123,755 128,771 L 128,790 103,790 103,771"/>
+    <polyline stroke="#000000" fill="none" points="106,790 106,800 50,800"/>
+    <line stroke="#000000" fill="none" x1="125" y1="790" x2="125" y2="810"/>
+    <circle cx="125" cy="813" r="3" fill="none" stroke="#000000" stroke-width="1"/>
+    <polygon stroke="#000000" fill="none" points="125,816 118,824 132,824"/>
+    <polyline stroke="#000000" fill="none" points="125,824 125,840 50,840"/>
+    <circle cx="125" cy="840" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <line stroke="#000000" fill="none" x1="670" y1="880" x2="670" y2="867"/>
+    <circle cx="670" cy="880" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <path stroke="#000000" fill="none" d="M 200,870 L 200,890 220,890 C 233,890 233,870 220,870 L 200,870"/>
+    <polyline stroke="#000000" fill="none" points="230,880 680,880 680,833 670,833 670,826"/>
+    <polyline stroke="#000000" fill="none" points="680,855 670,855 670,847"/>
+    <circle cx="680" cy="855" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <polyline stroke="#000000" fill="none" points="200,874 125,874 125,840"/>
+    <polyline stroke="#000000" fill="none" points="200,880 90,880 90,800"/>
+    <circle cx="90" cy="800" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <line stroke="#000000" fill="none" x1="50" y1="886" x2="200" y2="886"/>
+    <text x="26" y="805" stroke="none" fill="#000000" font-size="14">CS</text>
+    <text x="26" y="845" stroke="none" fill="#000000" font-size="14">RD</text>
+    <text x="26" y="890" stroke="none" fill="#000000" font-size="14">OE</text>
+    <text x="55" y="760" stroke="none" fill="#000000" font-size="14">A
+        <tspan dy="8" font-size="12">0</tspan>
+    </text>
+    <line stroke="#000000" fill="none" x1="60" y1="745" x2="60" y2="708"/>
+    <circle cx="60" cy="708" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <text x="30" y="760" stroke="none" fill="#000000" font-size="14">A
+        <tspan dy="8" font-size="12">1</tspan>
+    </text>
+    <line stroke="#000000" fill="none" x1="35" y1="745" x2="35" y2="722"/>
+    <circle cx="35" cy="722" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <text x="150" y="925" stroke="none" fill="#000000" font-size="14">Рис. 7.8.1. Логическая блок-схема памяти 3x4
+    </text>
 </svg>
-<p>Микросхема на рис. 7.8.1 представляет собой память из четырех трехразрядных слов, содержащая три входа 
-<math   display='inline'>
-<msub>
-<mi>I</mi><mn>0</mn>
-</msub>
-<mo>,</mo>
-<msub>
-<mi>I</mi><mn>1</mn>
-</msub>
-<mo>,</mo>
-<msub>
-<mi>I</mi><mn>2</mn>
-</msub>
-</math>
- для данных, два адресных входа, упомянутых выше, три входа управления &#8212;
-<math display='inline'>
-<mi>CS</mi>
-</math> (Chip Select &#8212; выбор микросхемы памяти),
-<math   display='inline'>
-<mi>RD</mi>
-</math>
-(Read &#8212; выбор режима чтения или записи),
-<math   display='inline'>
-<mi>OE</mi>
-</math>
-(Output Enable &#8212; разрешение выдачи выходных сигналов),
-три буферных элемента на выходных линиях, обозначенных на схеме в виде треугольников, и
+<p>Микросхема на рис. 7.8.1 представляет собой память из четырех трехразрядных слов, содержащая три входа
+    <math display='inline'>
+        <msub>
+            <mi>I</mi>
+            <mn>0</mn>
+        </msub>
+        <mo>,</mo>
+        <msub>
+            <mi>I</mi>
+            <mn>1</mn>
+        </msub>
+        <mo>,</mo>
+        <msub>
+            <mi>I</mi>
+            <mn>2</mn>
+        </msub>
+    </math>
+    для данных, два адресных входа, упомянутых выше, три входа управления &#8212;
+    <math display='inline'>
+        <mi>CS</mi>
+    </math>
+    (Chip Select &#8212; выбор микросхемы памяти),
+    <math display='inline'>
+        <mi>RD</mi>
+    </math>
+    (Read &#8212; выбор режима чтения или записи),
+    <math display='inline'>
+        <mi>OE</mi>
+    </math>
+    (Output Enable &#8212; разрешение выдачи выходных сигналов),
+    три буферных элемента на выходных линиях, обозначенных на схеме в виде треугольников, и
 
- три выходные линии данных
-<math display='inline'>
-<msub>
-<mi>O</mi><mn>0</mn>
-</msub>
-<mo>,</mo>
-<msub>
-<mi>O</mi><mn>1</mn>
-</msub>
-<mo>,</mo>
-<msub>
-<mi>O</mi><mn>2</mn>
-</msub>
-</math>.
-Сигнал CS служит для выбора необходимой микросхемы из множества микросхем памяти. </p>
+    три выходные линии данных
+    <math display='inline'>
+        <msub>
+            <mi>O</mi>
+            <mn>0</mn>
+        </msub>
+        <mo>,</mo>
+        <msub>
+            <mi>O</mi>
+            <mn>1</mn>
+        </msub>
+        <mo>,</mo>
+        <msub>
+            <mi>O</mi>
+            <mn>2</mn>
+        </msub>
+    </math>
+    .
+    Сигнал CS служит для выбора необходимой микросхемы из множества микросхем памяти.
+</p>
 <p>
-Запись входных данных из 
-<math   display='inline'>
-<msub>
-<mi>I</mi><mn>0</mn>
-</msub>
-<mo>,</mo>
-<msub>
-<mi>I</mi><mn>1</mn>
-</msub>
-<mo>,</mo>
-<msub>
-<mi>I</mi><mn>2</mn>
-</msub>
-</math>
- в слово, определенное адресными входами
-<math display='inline'>
-<msub>
-<mi>A</mi><mn>0</mn>
-</msub>
-</math> и
-<math   display='inline'>
-<msub>
-<mi>A</mi><mn>1</mn>
-</msub>
-</math>, 
-производится в том случае, если 
-<math   display='inline'>
-<mrow>
-	<mrow><mi>CS</mi><mo>=</mo><mn>1</mn></mrow><mo>,</mo>
-	<mrow><mi>RD</mi><mo>=</mo><mn>0</mn></mrow><mo>,</mo>
-	<mrow><mi>OE</mi><mo>=</mo><mn>0</mn></mrow>
-</mrow>
-</math>.
-В буферные элементы подается управляющий сигнал 0, что приводит их к состоянию разомкнутой цепи и невозможности передачи слова на выходные линии.</p>
-<p>Процесс считывания содержимого выбранного слова происходит при выполнении условия 
-<math   display='inline'>
-<mrow>
-	<mrow><mi>CS</mi><mo>&#x2062;</mo><mi>RD</mi><mo>&#x2062;</mo><mi>OE</mi></mrow>
-	<mo>=</mo>
-	<mn>1</mn>
-</mrow>
-</math>.
-При этом блокируется запись в <a href='7_7.html#trigger'>триггеры</a> памяти и запускаются <a href='7_1.html#i'>вентили И</a>, связанные с битами Q выбранного слова. Выбранное слово передает данные в <a href='7_1.html#ili'>вентили ИЛИ</a>, а остальные три слова передают нулевые сигналы. Буферные элементы переключаются в проводящее состояние и передают содержимое текущего слова на выходные линии данных  
-<math display='inline'>
-<msub>
-<mi>O</mi><mn>0</mn>
-</msub>
-<mo>,</mo>
-<msub>
-<mi>O</mi><mn>1</mn>
-</msub>
-<mo>,</mo>
-<msub>
-<mi>O</mi><mn>2</mn>
-</msub>
-</math>.
+    Запись входных данных из
+    <math display='inline'>
+        <msub>
+            <mi>I</mi>
+            <mn>0</mn>
+        </msub>
+        <mo>,</mo>
+        <msub>
+            <mi>I</mi>
+            <mn>1</mn>
+        </msub>
+        <mo>,</mo>
+        <msub>
+            <mi>I</mi>
+            <mn>2</mn>
+        </msub>
+    </math>
+    в слово, определенное адресными входами
+    <math display='inline'>
+        <msub>
+            <mi>A</mi>
+            <mn>0</mn>
+        </msub>
+    </math>
+    и
+    <math display='inline'>
+        <msub>
+            <mi>A</mi>
+            <mn>1</mn>
+        </msub>
+    </math>
+    ,
+    производится в том случае, если
+    <math display='inline'>
+        <mrow>
+            <mrow>
+                <mi>CS</mi>
+                <mo>=</mo>
+                <mn>1</mn>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mi>RD</mi>
+                <mo>=</mo>
+                <mn>0</mn>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mi>OE</mi>
+                <mo>=</mo>
+                <mn>0</mn>
+            </mrow>
+        </mrow>
+    </math>
+    .
+    В буферные элементы подается управляющий сигнал 0, что приводит их к состоянию разомкнутой цепи и невозможности
+    передачи слова на выходные линии.
 </p>
-<p>На рис. 7.8.2 представлен интерактивный вариант логической схемы памяти 3x4. Щелчок мыши на входном сигнале инвертирует его. Запись входных данных в память производится в следующем порядке: инициализация микросхемы (задание 
-<math display='inline'>
-<mi>CS</mi><mo>=</mo><mn>1</mn>
-</math>
-), задание адреса слова (инициализация 
-<math   display='inline'>
-<msub><mi>A</mi><mn>0</mn></msub>
-</math> и 
-<math   display='inline'>
-<msub><mi>A</mi><mn>1</mn></msub>
-</math>
-), задание 
-<math   display='inline'>
-<mi>RD</mi><mo>=</mo><mn>0</mn>
-</math>. Порядок считывания отличается от порядка записи лишь последним шагом: задание 
-<math   display='inline'>
-<mi>RD</mi><mo>=</mo><mn>0</mn>
-</math> следует заменить на задание 
-<math   display='inline'>
-<mi>OE</mi><mo>=</mo><mn>1</mn>
-</math>.
+<p>Процесс считывания содержимого выбранного слова происходит при выполнении условия
+    <math display='inline'>
+        <mrow>
+            <mrow>
+                <mi>CS</mi>
+                <mo>&#x2062;</mo>
+                <mi>RD</mi>
+                <mo>&#x2062;</mo>
+                <mi>OE</mi>
+            </mrow>
+            <mo>=</mo>
+            <mn>1</mn>
+        </mrow>
+    </math>
+    .
+    При этом блокируется запись в <a href='7_7.html#trigger'>триггеры</a> памяти и запускаются <a href='7_1.html#i'>вентили
+        И</a>, связанные с битами Q выбранного слова. Выбранное слово передает данные в <a href='7_1.html#ili'>вентили
+        ИЛИ</a>, а остальные три слова передают нулевые сигналы. Буферные элементы переключаются в проводящее состояние
+    и передают содержимое текущего слова на выходные линии данных
+    <math display='inline'>
+        <msub>
+            <mi>O</mi>
+            <mn>0</mn>
+        </msub>
+        <mo>,</mo>
+        <msub>
+            <mi>O</mi>
+            <mn>1</mn>
+        </msub>
+        <mo>,</mo>
+        <msub>
+            <mi>O</mi>
+            <mn>2</mn>
+        </msub>
+    </math>
+    .
 </p>
-<svg  height = "930px"  width = "900px">
-<script><![CDATA[
+<p>На рис. 7.8.2 представлен интерактивный вариант логической схемы памяти 3x4. Щелчок мыши на входном сигнале
+    инвертирует его. Запись входных данных в память производится в следующем порядке: инициализация микросхемы (задание
+    <math display='inline'>
+        <mi>CS</mi>
+        <mo>=</mo>
+        <mn>1</mn>
+    </math>
+    ), задание адреса слова (инициализация
+    <math display='inline'>
+        <msub>
+            <mi>A</mi>
+            <mn>0</mn>
+        </msub>
+    </math>
+    и
+    <math display='inline'>
+        <msub>
+            <mi>A</mi>
+            <mn>1</mn>
+        </msub>
+    </math>
+    ), задание
+    <math display='inline'>
+        <mi>RD</mi>
+        <mo>=</mo>
+        <mn>0</mn>
+    </math>
+    . Порядок считывания отличается от порядка записи лишь последним шагом: задание
+    <math display='inline'>
+        <mi>RD</mi>
+        <mo>=</mo>
+        <mn>0</mn>
+    </math>
+    следует заменить на задание
+    <math display='inline'>
+        <mi>OE</mi>
+        <mo>=</mo>
+        <mn>1</mn>
+    </math>
+    .
+</p>
+<svg height="930px" width="900px">
+    <script><![CDATA[
 
-function docs() {
-	idCS=document.getElementById('idCS');
-	if (idCS.firstChild.nodeValue=='1')
-		idCS.firstChild.nodeValue='0';
-	else	{
-		idCS.firstChild.nodeValue='1';
-		idI0=document.getElementById('idI0');
-		idD00=document.getElementById('idD00');
-		idD10=document.getElementById('idD10');
-		idD20=document.getElementById('idD20');
-		idD30=document.getElementById('idD30');
-		idD00.firstChild.nodeValue=idI0.firstChild.nodeValue;	
-		idD10.firstChild.nodeValue=idI0.firstChild.nodeValue;
-		idD20.firstChild.nodeValue=idI0.firstChild.nodeValue;
-		idD30.firstChild.nodeValue=idI0.firstChild.nodeValue;
-		idI1=document.getElementById('idI1');
-		idD01=document.getElementById('idD01');
-		idD11=document.getElementById('idD11');
-		idD21=document.getElementById('idD21');
-		idD31=document.getElementById('idD31');
-		idD01.firstChild.nodeValue=idI1.firstChild.nodeValue;	
-		idD11.firstChild.nodeValue=idI1.firstChild.nodeValue;
-		idD21.firstChild.nodeValue=idI1.firstChild.nodeValue;
-		idD31.firstChild.nodeValue=idI1.firstChild.nodeValue;
-		idD02=document.getElementById('idD02');
-		idD12=document.getElementById('idD12');
-		idD22=document.getElementById('idD22');
-		idD32=document.getElementById('idD32');
-		idD02.firstChild.nodeValue=idI2.firstChild.nodeValue;	
-		idD12.firstChild.nodeValue=idI2.firstChild.nodeValue;
-		idD22.firstChild.nodeValue=idI2.firstChild.nodeValue;
-		idD32.firstChild.nodeValue=idI2.firstChild.nodeValue;		
-	}	
-}
+    function docs() {
+        idCS = document.getElementById('idCS');
+        if (idCS.firstChild.nodeValue == '1')
+            idCS.firstChild.nodeValue = '0';
+        else {
+            idCS.firstChild.nodeValue = '1';
+            idI0 = document.getElementById('idI0');
+            idD00 = document.getElementById('idD00');
+            idD10 = document.getElementById('idD10');
+            idD20 = document.getElementById('idD20');
+            idD30 = document.getElementById('idD30');
+            idD00.firstChild.nodeValue = idI0.firstChild.nodeValue;
+            idD10.firstChild.nodeValue = idI0.firstChild.nodeValue;
+            idD20.firstChild.nodeValue = idI0.firstChild.nodeValue;
+            idD30.firstChild.nodeValue = idI0.firstChild.nodeValue;
+            idI1 = document.getElementById('idI1');
+            idD01 = document.getElementById('idD01');
+            idD11 = document.getElementById('idD11');
+            idD21 = document.getElementById('idD21');
+            idD31 = document.getElementById('idD31');
+            idD01.firstChild.nodeValue = idI1.firstChild.nodeValue;
+            idD11.firstChild.nodeValue = idI1.firstChild.nodeValue;
+            idD21.firstChild.nodeValue = idI1.firstChild.nodeValue;
+            idD31.firstChild.nodeValue = idI1.firstChild.nodeValue;
+            idD02 = document.getElementById('idD02');
+            idD12 = document.getElementById('idD12');
+            idD22 = document.getElementById('idD22');
+            idD32 = document.getElementById('idD32');
+            idD02.firstChild.nodeValue = idI2.firstChild.nodeValue;
+            idD12.firstChild.nodeValue = idI2.firstChild.nodeValue;
+            idD22.firstChild.nodeValue = idI2.firstChild.nodeValue;
+            idD32.firstChild.nodeValue = idI2.firstChild.nodeValue;
+        }
+    }
 
-function dord() {
-	idRD=document.getElementById('idRD');
-	idCS=document.getElementById('idCS');
-	if (idCS.firstChild.nodeValue=='1')	{
-		idD00=document.getElementById('idD00');
-		idD01=document.getElementById('idD01');
-		idD02=document.getElementById('idD02');	
-		idD10=document.getElementById('idD10');
-		idD11=document.getElementById('idD11');
-		idD12=document.getElementById('idD12');	
-		idD20=document.getElementById('idD20');
-		idD21=document.getElementById('idD21');
-		idD22=document.getElementById('idD22');	
-		idD30=document.getElementById('idD20');
-		idD31=document.getElementById('idD21');
-		idD32=document.getElementById('idD22');
-		idQ00=document.getElementById('idQ00');
-		idQ01=document.getElementById('idQ01');
-		idQ02=document.getElementById('idQ02');	
-		idQ10=document.getElementById('idQ10');
-		idQ11=document.getElementById('idQ11');
-		idQ12=document.getElementById('idQ12');	
-		idQ20=document.getElementById('idQ20');
-		idQ21=document.getElementById('idQ21');
-		idQ22=document.getElementById('idQ22');	
-		idQ30=document.getElementById('idQ30');
-		idQ31=document.getElementById('idQ31');
-		idQ32=document.getElementById('idQ32');
-		idCK00=document.getElementById('idCK00');
-		idCK01=document.getElementById('idCK01');
-		idCK02=document.getElementById('idCK02');	
-		idCK10=document.getElementById('idCK10');
-		idCK11=document.getElementById('idCK11');
-		idCK12=document.getElementById('idCK12');	
-		idCK20=document.getElementById('idCK20');
-		idCK21=document.getElementById('idCK21');
-		idCK22=document.getElementById('idCK22');	
-		idCK30=document.getElementById('idCK30');
-		idCK31=document.getElementById('idCK31');
-		idCK32=document.getElementById('idCK32');
-		idA0=document.getElementById('idA0');
-		idA1=document.getElementById('idA1');
-		idRD.firstChild.nodeValue='0';
-		if ((idA0.firstChild.nodeValue=='0') && (idA1.firstChild.nodeValue=='0')) {
-			idCK00.firstChild.nodeValue='1';
-			idCK01.firstChild.nodeValue='1';
-			idCK02.firstChild.nodeValue='1';
-			idQ00.firstChild.nodeValue=idD00.firstChild.nodeValue;
-			idQ01.firstChild.nodeValue=idD01.firstChild.nodeValue;
-			idQ02.firstChild.nodeValue=idD02.firstChild.nodeValue;
-		}
-		else {
-			if ((idA0.firstChild.nodeValue=='1') && (idA1.firstChild.nodeValue=='0')) {
-				idCK10.firstChild.nodeValue='1';
-				idCK11.firstChild.nodeValue='1';
-				idCK12.firstChild.nodeValue='1';
-				idQ10.firstChild.nodeValue=idD10.firstChild.nodeValue;
-				idQ11.firstChild.nodeValue=idD11.firstChild.nodeValue;
-				idQ12.firstChild.nodeValue=idD12.firstChild.nodeValue;
-			}
-			else {
-				if ((idA0.firstChild.nodeValue=='0') && (idA1.firstChild.nodeValue=='1')) {
-					idCK20.firstChild.nodeValue='1';
-					idCK21.firstChild.nodeValue='1';
-					idCK22.firstChild.nodeValue='1';
-					idQ20.firstChild.nodeValue=idD20.firstChild.nodeValue;
-					idQ21.firstChild.nodeValue=idD21.firstChild.nodeValue;
-					idQ22.firstChild.nodeValue=idD22.firstChild.nodeValue;
-				}
-				else {
-					idCK30.firstChild.nodeValue='1';
-					idCK31.firstChild.nodeValue='1';
-					idCK32.firstChild.nodeValue='1';
-					idQ30.firstChild.nodeValue=idD30.firstChild.nodeValue;
-					idQ31.firstChild.nodeValue=idD31.firstChild.nodeValue;
-					idQ32.firstChild.nodeValue=idD32.firstChild.nodeValue;			
-				}
-			}
-		}
-	setTimeout("fin()",1000);
-	}	
-}
-function fin()	{
-	idCK00=document.getElementById('idCK00');
-	idCK01=document.getElementById('idCK01');
-	idCK02=document.getElementById('idCK02');	
-	idCK10=document.getElementById('idCK10');
-	idCK11=document.getElementById('idCK11');
-	idCK12=document.getElementById('idCK12');	
-	idCK20=document.getElementById('idCK20');
-	idCK21=document.getElementById('idCK21');
-	idCK22=document.getElementById('idCK22');	
-	idCK30=document.getElementById('idCK30');
-	idCK31=document.getElementById('idCK31');
-	idCK32=document.getElementById('idCK32');
-	idRD=document.getElementById('idRD');
-	idCS=document.getElementById('idCS');
-	idCS.firstChild.nodeValue='0';
-	idRD.firstChild.nodeValue='1';
-	idCK00.firstChild.nodeValue='0';
-	idCK01.firstChild.nodeValue='0';
-	idCK02.firstChild.nodeValue='0';
-	idCK10.firstChild.nodeValue='0';
-	idCK11.firstChild.nodeValue='0';
-	idCK12.firstChild.nodeValue='0';
-	idCK20.firstChild.nodeValue='0';
-	idCK21.firstChild.nodeValue='0';
-	idCK22.firstChild.nodeValue='0';
-	idCK30.firstChild.nodeValue='0';
-	idCK31.firstChild.nodeValue='0';
-	idCK32.firstChild.nodeValue='0';	
-}
-function fin1()	{
-	idCS=document.getElementById('idCS');
-	idOE=document.getElementById('idOE');
-	idCS.firstChild.nodeValue='0';
-	idOE.firstChild.nodeValue='0';
-}
-function dooe() {
-	idCS=document.getElementById('idCS');
-	if (idCS.firstChild.nodeValue=='1') {
-		idOE=document.getElementById('idOE');
-		idOE.firstChild.nodeValue='1';
-		idA0=document.getElementById('idA0');
-		idA1=document.getElementById('idA1');
-		idO0=document.getElementById('idO0');
-		idO1=document.getElementById('idO1');
-		idO2=document.getElementById('idO2');	
-		idQ00=document.getElementById('idQ00');
-		idQ01=document.getElementById('idQ01');
-		idQ02=document.getElementById('idQ02');	
-		idQ10=document.getElementById('idQ10');
-		idQ11=document.getElementById('idQ11');
-		idQ12=document.getElementById('idQ12');	
-		idQ20=document.getElementById('idQ20');
-		idQ21=document.getElementById('idQ21');
-		idQ22=document.getElementById('idQ22');	
-		idQ30=document.getElementById('idQ30');
-		idQ31=document.getElementById('idQ31');
-		idQ32=document.getElementById('idQ32');		
-		if ((idA0.firstChild.nodeValue=='0') && (idA1.firstChild.nodeValue=='0')) {
-			idO0.firstChild.nodeValue=idQ00.firstChild.nodeValue;
-			idO1.firstChild.nodeValue=idQ01.firstChild.nodeValue;
-			idO2.firstChild.nodeValue=idQ02.firstChild.nodeValue;
-		}
-		else {
-			if ((idA0.firstChild.nodeValue=='0') && (idA1.firstChild.nodeValue=='1')) {
-				idO0.firstChild.nodeValue=idQ10.firstChild.nodeValue;
-				idO1.firstChild.nodeValue=idQ11.firstChild.nodeValue;
-				idO2.firstChild.nodeValue=idQ12.firstChild.nodeValue;
-			}
-			else {
-				if ((idA0.firstChild.nodeValue=='1') && (idA1.firstChild.nodeValue=='0')) {
-					idO0.firstChild.nodeValue=idQ20.firstChild.nodeValue;
-					idO1.firstChild.nodeValue=idQ21.firstChild.nodeValue;
-					idO2.firstChild.nodeValue=idQ22.firstChild.nodeValue;
-				}
-				else {
-					idO0.firstChild.nodeValue=idQ30.firstChild.nodeValue;
-					idO1.firstChild.nodeValue=idQ31.firstChild.nodeValue;
-					idO2.firstChild.nodeValue=idQ32.firstChild.nodeValue;
-				}
-			}
-		}
-		setTimeout("fin1()",1000);
-	}
-}
-function doa0() {
-	idA0=document.getElementById('idA0');
-	idCS=document.getElementById('idCS');
-	if (idCS.firstChild.nodeValue=='1') {	
-		if (idA0.firstChild.nodeValue=='1')
-			idA0.firstChild.nodeValue='0';
-		else
-			idA0.firstChild.nodeValue='1';	
-	}	
-}
-function doa1() {
-	idA1=document.getElementById('idA1');
-	idCS=document.getElementById('idCS');
-	if (idCS.firstChild.nodeValue=='1') {	
-		if (idA1.firstChild.nodeValue=='1')
-			idA1.firstChild.nodeValue='0';
-		else
-			idA1.firstChild.nodeValue='1';	
-	}	
-}
+    function dord() {
+        idRD = document.getElementById('idRD');
+        idCS = document.getElementById('idCS');
+        if (idCS.firstChild.nodeValue == '1') {
+            idD00 = document.getElementById('idD00');
+            idD01 = document.getElementById('idD01');
+            idD02 = document.getElementById('idD02');
+            idD10 = document.getElementById('idD10');
+            idD11 = document.getElementById('idD11');
+            idD12 = document.getElementById('idD12');
+            idD20 = document.getElementById('idD20');
+            idD21 = document.getElementById('idD21');
+            idD22 = document.getElementById('idD22');
+            idD30 = document.getElementById('idD20');
+            idD31 = document.getElementById('idD21');
+            idD32 = document.getElementById('idD22');
+            idQ00 = document.getElementById('idQ00');
+            idQ01 = document.getElementById('idQ01');
+            idQ02 = document.getElementById('idQ02');
+            idQ10 = document.getElementById('idQ10');
+            idQ11 = document.getElementById('idQ11');
+            idQ12 = document.getElementById('idQ12');
+            idQ20 = document.getElementById('idQ20');
+            idQ21 = document.getElementById('idQ21');
+            idQ22 = document.getElementById('idQ22');
+            idQ30 = document.getElementById('idQ30');
+            idQ31 = document.getElementById('idQ31');
+            idQ32 = document.getElementById('idQ32');
+            idCK00 = document.getElementById('idCK00');
+            idCK01 = document.getElementById('idCK01');
+            idCK02 = document.getElementById('idCK02');
+            idCK10 = document.getElementById('idCK10');
+            idCK11 = document.getElementById('idCK11');
+            idCK12 = document.getElementById('idCK12');
+            idCK20 = document.getElementById('idCK20');
+            idCK21 = document.getElementById('idCK21');
+            idCK22 = document.getElementById('idCK22');
+            idCK30 = document.getElementById('idCK30');
+            idCK31 = document.getElementById('idCK31');
+            idCK32 = document.getElementById('idCK32');
+            idA0 = document.getElementById('idA0');
+            idA1 = document.getElementById('idA1');
+            idRD.firstChild.nodeValue = '0';
+            if ((idA0.firstChild.nodeValue == '0') && (idA1.firstChild.nodeValue == '0')) {
+                idCK00.firstChild.nodeValue = '1';
+                idCK01.firstChild.nodeValue = '1';
+                idCK02.firstChild.nodeValue = '1';
+                idQ00.firstChild.nodeValue = idD00.firstChild.nodeValue;
+                idQ01.firstChild.nodeValue = idD01.firstChild.nodeValue;
+                idQ02.firstChild.nodeValue = idD02.firstChild.nodeValue;
+            } else {
+                if ((idA0.firstChild.nodeValue == '1') && (idA1.firstChild.nodeValue == '0')) {
+                    idCK10.firstChild.nodeValue = '1';
+                    idCK11.firstChild.nodeValue = '1';
+                    idCK12.firstChild.nodeValue = '1';
+                    idQ10.firstChild.nodeValue = idD10.firstChild.nodeValue;
+                    idQ11.firstChild.nodeValue = idD11.firstChild.nodeValue;
+                    idQ12.firstChild.nodeValue = idD12.firstChild.nodeValue;
+                } else {
+                    if ((idA0.firstChild.nodeValue == '0') && (idA1.firstChild.nodeValue == '1')) {
+                        idCK20.firstChild.nodeValue = '1';
+                        idCK21.firstChild.nodeValue = '1';
+                        idCK22.firstChild.nodeValue = '1';
+                        idQ20.firstChild.nodeValue = idD20.firstChild.nodeValue;
+                        idQ21.firstChild.nodeValue = idD21.firstChild.nodeValue;
+                        idQ22.firstChild.nodeValue = idD22.firstChild.nodeValue;
+                    } else {
+                        idCK30.firstChild.nodeValue = '1';
+                        idCK31.firstChild.nodeValue = '1';
+                        idCK32.firstChild.nodeValue = '1';
+                        idQ30.firstChild.nodeValue = idD30.firstChild.nodeValue;
+                        idQ31.firstChild.nodeValue = idD31.firstChild.nodeValue;
+                        idQ32.firstChild.nodeValue = idD32.firstChild.nodeValue;
+                    }
+                }
+            }
+            setTimeout("fin()", 1000);
+        }
+    }
 
-function doI0() {
-	idI0=document.getElementById('idI0');
-		if (idI0.firstChild.nodeValue=='0')
-			idI0.firstChild.nodeValue='1';
-		else
-			idI0.firstChild.nodeValue='0';
-}
-function doI1() {
-	idI1=document.getElementById('idI1');
-		if (idI1.firstChild.nodeValue=='0')
-			idI1.firstChild.nodeValue='1';
-		else
-			idI1.firstChild.nodeValue='0';	
-}
-function doI2() {
-	idI2=document.getElementById('idI2');
-	if (idI2.firstChild.nodeValue=='0')
-		idI2.firstChild.nodeValue='1';
-	else
-		idI2.firstChild.nodeValue='0';	
-}
+    function fin() {
+        idCK00 = document.getElementById('idCK00');
+        idCK01 = document.getElementById('idCK01');
+        idCK02 = document.getElementById('idCK02');
+        idCK10 = document.getElementById('idCK10');
+        idCK11 = document.getElementById('idCK11');
+        idCK12 = document.getElementById('idCK12');
+        idCK20 = document.getElementById('idCK20');
+        idCK21 = document.getElementById('idCK21');
+        idCK22 = document.getElementById('idCK22');
+        idCK30 = document.getElementById('idCK30');
+        idCK31 = document.getElementById('idCK31');
+        idCK32 = document.getElementById('idCK32');
+        idRD = document.getElementById('idRD');
+        idCS = document.getElementById('idCS');
+        idCS.firstChild.nodeValue = '0';
+        idRD.firstChild.nodeValue = '1';
+        idCK00.firstChild.nodeValue = '0';
+        idCK01.firstChild.nodeValue = '0';
+        idCK02.firstChild.nodeValue = '0';
+        idCK10.firstChild.nodeValue = '0';
+        idCK11.firstChild.nodeValue = '0';
+        idCK12.firstChild.nodeValue = '0';
+        idCK20.firstChild.nodeValue = '0';
+        idCK21.firstChild.nodeValue = '0';
+        idCK22.firstChild.nodeValue = '0';
+        idCK30.firstChild.nodeValue = '0';
+        idCK31.firstChild.nodeValue = '0';
+        idCK32.firstChild.nodeValue = '0';
+    }
 
-]]></script>
-<rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
-<text id="idD00" x="205" y="115" stroke="none" fill="#000000" font-size="12">0</text>
-<text id="idCK00" x="210" y="160" stroke="none" fill="#000000" font-size="12">0</text>
-<text id="idQ00" x="235" y="115" stroke="none" fill="#000000" font-size="12">0</text>
-<polyline stroke="#000000" fill="none" points="200,151 208,156 200,161" /> 
-<polyline stroke="#000000" fill="none" points="250,110 317,110 317,215" />
-<line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none" />
-<circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<polyline stroke="#000000" fill="none" points="80,90 180,90 180,620" />
-<polyline stroke="#000000" fill="none" points="80,60 330,60 330,620" />
-<polyline stroke="#000000" fill="none" points="80,30 480,30 480,620" />
-<text onclick='doI0()' id='idI0' x="70" y="35" stroke="none" fill="#000000" font-size="14" title='I0'>0</text>
-<text onclick='doI1()' id='idI1' x="70" y="65" stroke="none" fill="#000000" font-size="14" title='I1'>0</text>
-<text onclick='doI2()' id='idI2' x="70" y="95" stroke="none" fill="#000000" font-size="14" title='I2'>0</text>
-<g transform='translate(150)'>
-<rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
-<text id="idD01" x="205" y="115" stroke="none" fill="#000000" font-size="12">0</text>
-<text id="idCK01" x="210" y="160" stroke="none" fill="#000000" font-size="12">0</text>
-<text id="idQ01" x="235" y="115" stroke="none" fill="#000000" font-size="12">0</text>
-<polyline stroke="#000000" fill="none" points="200,151 208,156 200,161" />
-<polyline stroke="#000000" fill="none" points="250,110 317,110 317,215" />
-<line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none" />
-<circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-</g>
-<g transform='translate(300)'>
-<rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
-<text id="idD02" x="205" y="115" stroke="none" fill="#000000" font-size="12">0</text>
-<text id="idCK02" x="210" y="160" stroke="none" fill="#000000" font-size="12">0</text>
-<text id="idQ02" x="235" y="115" stroke="none" fill="#000000" font-size="12">0</text>
-<polyline stroke="#000000" fill="none" points="200,151 208,156 200,161" />
-<polyline stroke="#000000" fill="none" points="250,110 317,110 317,215" />
-<line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none" />
-<circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-</g>
+    function fin1() {
+        idCS = document.getElementById('idCS');
+        idOE = document.getElementById('idOE');
+        idCS.firstChild.nodeValue = '0';
+        idOE.firstChild.nodeValue = '0';
+    }
 
-<g transform='translate(0,170)'>
-<rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
-<text id="idD10" x="205" y="115" stroke="none" fill="#000000" font-size="12">0</text>
-<text id="idCK10" x="210" y="160" stroke="none" fill="#000000" font-size="12">0</text>
-<text id="idQ10" x="235" y="115" stroke="none" fill="#000000" font-size="12">0</text>
-<polyline stroke="#000000" fill="none" points="200,151 208,156 200,161" />
-<polyline stroke="#000000" fill="none" points="250,110 297,110 297,215" />
-<line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none" />
-<circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-</g>
+    function dooe() {
+        idCS = document.getElementById('idCS');
+        if (idCS.firstChild.nodeValue == '1') {
+            idOE = document.getElementById('idOE');
+            idOE.firstChild.nodeValue = '1';
+            idA0 = document.getElementById('idA0');
+            idA1 = document.getElementById('idA1');
+            idO0 = document.getElementById('idO0');
+            idO1 = document.getElementById('idO1');
+            idO2 = document.getElementById('idO2');
+            idQ00 = document.getElementById('idQ00');
+            idQ01 = document.getElementById('idQ01');
+            idQ02 = document.getElementById('idQ02');
+            idQ10 = document.getElementById('idQ10');
+            idQ11 = document.getElementById('idQ11');
+            idQ12 = document.getElementById('idQ12');
+            idQ20 = document.getElementById('idQ20');
+            idQ21 = document.getElementById('idQ21');
+            idQ22 = document.getElementById('idQ22');
+            idQ30 = document.getElementById('idQ30');
+            idQ31 = document.getElementById('idQ31');
+            idQ32 = document.getElementById('idQ32');
+            if ((idA0.firstChild.nodeValue == '0') && (idA1.firstChild.nodeValue == '0')) {
+                idO0.firstChild.nodeValue = idQ00.firstChild.nodeValue;
+                idO1.firstChild.nodeValue = idQ01.firstChild.nodeValue;
+                idO2.firstChild.nodeValue = idQ02.firstChild.nodeValue;
+            } else {
+                if ((idA0.firstChild.nodeValue == '0') && (idA1.firstChild.nodeValue == '1')) {
+                    idO0.firstChild.nodeValue = idQ10.firstChild.nodeValue;
+                    idO1.firstChild.nodeValue = idQ11.firstChild.nodeValue;
+                    idO2.firstChild.nodeValue = idQ12.firstChild.nodeValue;
+                } else {
+                    if ((idA0.firstChild.nodeValue == '1') && (idA1.firstChild.nodeValue == '0')) {
+                        idO0.firstChild.nodeValue = idQ20.firstChild.nodeValue;
+                        idO1.firstChild.nodeValue = idQ21.firstChild.nodeValue;
+                        idO2.firstChild.nodeValue = idQ22.firstChild.nodeValue;
+                    } else {
+                        idO0.firstChild.nodeValue = idQ30.firstChild.nodeValue;
+                        idO1.firstChild.nodeValue = idQ31.firstChild.nodeValue;
+                        idO2.firstChild.nodeValue = idQ32.firstChild.nodeValue;
+                    }
+                }
+            }
+            setTimeout("fin1()", 1000);
+        }
+    }
 
-<g transform='translate(150,170)'>
-<rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
-<text id="idD11" x="205" y="115" stroke="none" fill="#000000" font-size="12">0</text>
-<text id="idCK11" x="210" y="160" stroke="none" fill="#000000" font-size="12">0</text>
-<text id="idQ11" x="235" y="115" stroke="none" fill="#000000" font-size="12">0</text>
-<polyline stroke="#000000" fill="none" points="200,151 208,156 200,161" />
-<polyline stroke="#000000" fill="none" points="250,110 297,110 297,215" />
-<line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none" />
-<circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-</g>
-<g transform='translate(300,170)'>
-<rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
-<text id="idD12" x="205" y="115" stroke="none" fill="#000000" font-size="12">0</text>
-<text id="idCK12" x="210" y="160" stroke="none" fill="#000000" font-size="12">0</text>
-<text id="idQ12" x="235" y="115" stroke="none" fill="#000000" font-size="12">0</text>
-<polyline stroke="#000000" fill="none" points="200,151 208,156 200,161" />
-<polyline stroke="#000000" fill="none" points="250,110 297,110 297,215" />
-<line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none" />
-<circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-</g>
-<g transform='translate(0,340)'>
-<rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
-<text id="idD20" x="205" y="115" stroke="none" fill="#000000" font-size="12">0</text>
-<text id="idCK20" x="210" y="160" stroke="none" fill="#000000" font-size="12">0</text>
-<text id="idQ20" x="235" y="115" stroke="none" fill="#000000" font-size="12">0</text>
-<polyline stroke="#000000" fill="none" points="200,151 208,156 200,161" />
-<polyline stroke="#000000" fill="none" points="250,110 277,110 277,215" />
-<line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none" />
-<circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-</g>
+    function doa0() {
+        idA0 = document.getElementById('idA0');
+        idCS = document.getElementById('idCS');
+        if (idCS.firstChild.nodeValue == '1') {
+            if (idA0.firstChild.nodeValue == '1')
+                idA0.firstChild.nodeValue = '0';
+            else
+                idA0.firstChild.nodeValue = '1';
+        }
+    }
 
-<g transform='translate(150,340)'>
-<rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
-<text id="idD21" x="205" y="115" stroke="none" fill="#000000" font-size="12">0</text>
-<text id="idCK21" x="210" y="160" stroke="none" fill="#000000" font-size="12">0</text>
-<text id="idQ21" x="235" y="115" stroke="none" fill="#000000" font-size="12">0</text>
-<polyline stroke="#000000" fill="none" points="200,151 208,156 200,161" />
-<polyline stroke="#000000" fill="none" points="250,110 277,110 277,215" />
-<line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none" />
-<circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-</g>
-<g transform='translate(300,340)'>
-<rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
-<text id="idD22" x="205" y="115" stroke="none" fill="#000000" font-size="12">0</text>
-<text id="idCK22" x="210" y="160" stroke="none" fill="#000000" font-size="12">0</text>
-<text id="idQ22" x="235" y="115" stroke="none" fill="#000000" font-size="12">0</text>
-<polyline stroke="#000000" fill="none" points="200,151 208,156 200,161" />
-<polyline stroke="#000000" fill="none" points="250,110 277,110 277,215" />
-<line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none" />
-<circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-</g>
+    function doa1() {
+        idA1 = document.getElementById('idA1');
+        idCS = document.getElementById('idCS');
+        if (idCS.firstChild.nodeValue == '1') {
+            if (idA1.firstChild.nodeValue == '1')
+                idA1.firstChild.nodeValue = '0';
+            else
+                idA1.firstChild.nodeValue = '1';
+        }
+    }
 
-<g transform='translate(0,510)'>
-<rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
-<text id="idD30" x="205" y="115" stroke="none" fill="#000000" font-size="12">0</text>
-<text id="idCK30" x="210" y="160" stroke="none" fill="#000000" font-size="12">0</text>
-<text id="idQ30" x="235" y="115" stroke="none" fill="#000000" font-size="12">0</text>
-<polyline stroke="#000000" fill="none" points="200,151 208,156 200,161" />
-<polyline stroke="#000000" fill="none" points="250,110 257,110 257,215" />
-<line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none" />
+    function doI0() {
+        idI0 = document.getElementById('idI0');
+        if (idI0.firstChild.nodeValue == '0')
+            idI0.firstChild.nodeValue = '1';
+        else
+            idI0.firstChild.nodeValue = '0';
+    }
 
-</g>
+    function doI1() {
+        idI1 = document.getElementById('idI1');
+        if (idI1.firstChild.nodeValue == '0')
+            idI1.firstChild.nodeValue = '1';
+        else
+            idI1.firstChild.nodeValue = '0';
+    }
 
-<g transform='translate(150,510)'>
-<rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
-<text id="idD31" x="205" y="115" stroke="none" fill="#000000" font-size="12">0</text>
-<text id="idCK31" x="210" y="160" stroke="none" fill="#000000" font-size="12">0</text>
-<text id="idQ31" x="235" y="115" stroke="none" fill="#000000" font-size="12">0</text>
-<polyline stroke="#000000" fill="none" points="200,151 208,156 200,161" />
-<polyline stroke="#000000" fill="none" points="250,110 257,110 257,215" />
-<line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none" />
+    function doI2() {
+        idI2 = document.getElementById('idI2');
+        if (idI2.firstChild.nodeValue == '0')
+            idI2.firstChild.nodeValue = '1';
+        else
+            idI2.firstChild.nodeValue = '0';
+    }
 
-</g>
-<g transform='translate(300,510)'>
-<rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
-<text id="idD32" x="205" y="115" stroke="none" fill="#000000" font-size="12">0</text>
-<text id="idCK32" x="210" y="160" stroke="none" fill="#000000" font-size="12">0</text>
-<text id="idQ32" x="235" y="115" stroke="none" fill="#000000" font-size="12">0</text>
-<polyline stroke="#000000" fill="none" points="200,151 208,156 200,161" />
-<polyline stroke="#000000" fill="none" points="250,110 257,110 257,215" />
-<line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none" />
+    ]]></script>
+    <rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
+    <text id="idD00" x="205" y="115" stroke="none" fill="#000000" font-size="12">0</text>
+    <text id="idCK00" x="210" y="160" stroke="none" fill="#000000" font-size="12">0</text>
+    <text id="idQ00" x="235" y="115" stroke="none" fill="#000000" font-size="12">0</text>
+    <polyline stroke="#000000" fill="none" points="200,151 208,156 200,161"/>
+    <polyline stroke="#000000" fill="none" points="250,110 317,110 317,215"/>
+    <line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none"/>
+    <circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <polyline stroke="#000000" fill="none" points="80,90 180,90 180,620"/>
+    <polyline stroke="#000000" fill="none" points="80,60 330,60 330,620"/>
+    <polyline stroke="#000000" fill="none" points="80,30 480,30 480,620"/>
+    <text onclick='doI0()' id='idI0' x="70" y="35" stroke="none" fill="#000000" font-size="14" title='I0'>0</text>
+    <text onclick='doI1()' id='idI1' x="70" y="65" stroke="none" fill="#000000" font-size="14" title='I1'>0</text>
+    <text onclick='doI2()' id='idI2' x="70" y="95" stroke="none" fill="#000000" font-size="14" title='I2'>0</text>
+    <g transform='translate(150)'>
+        <rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
+        <text id="idD01" x="205" y="115" stroke="none" fill="#000000" font-size="12">0</text>
+        <text id="idCK01" x="210" y="160" stroke="none" fill="#000000" font-size="12">0</text>
+        <text id="idQ01" x="235" y="115" stroke="none" fill="#000000" font-size="12">0</text>
+        <polyline stroke="#000000" fill="none" points="200,151 208,156 200,161"/>
+        <polyline stroke="#000000" fill="none" points="250,110 317,110 317,215"/>
+        <line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none"/>
+        <circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    </g>
+    <g transform='translate(300)'>
+        <rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
+        <text id="idD02" x="205" y="115" stroke="none" fill="#000000" font-size="12">0</text>
+        <text id="idCK02" x="210" y="160" stroke="none" fill="#000000" font-size="12">0</text>
+        <text id="idQ02" x="235" y="115" stroke="none" fill="#000000" font-size="12">0</text>
+        <polyline stroke="#000000" fill="none" points="200,151 208,156 200,161"/>
+        <polyline stroke="#000000" fill="none" points="250,110 317,110 317,215"/>
+        <line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none"/>
+        <circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    </g>
 
-</g>
-<path stroke="#000000" fill="none" d="M 150,170 C 170,170 170,190  150,190"  />
-<polyline stroke="#000000" fill="none" points="150,170 135,170 135,190 150,190" />
-<polyline stroke="#000000" fill="none" points="135,187 120,187 120,205" />
-<circle cx="120" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<polyline stroke="#000000" fill="none" points="165,180 490,180 490,156 500,156" />
-<polyline stroke="#000000" fill="none" points="340,180 340,156 350,156" />
-<circle cx="340" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<polyline stroke="#000000" fill="none" points="190,180 190,156 200,156" />
-<circle cx="190" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
+    <g transform='translate(0,170)'>
+        <rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
+        <text id="idD10" x="205" y="115" stroke="none" fill="#000000" font-size="12">0</text>
+        <text id="idCK10" x="210" y="160" stroke="none" fill="#000000" font-size="12">0</text>
+        <text id="idQ10" x="235" y="115" stroke="none" fill="#000000" font-size="12">0</text>
+        <polyline stroke="#000000" fill="none" points="200,151 208,156 200,161"/>
+        <polyline stroke="#000000" fill="none" points="250,110 297,110 297,215"/>
+        <line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none"/>
+        <circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    </g>
 
-<path stroke="#000000" fill="none" d="M 85,195 C 105,195 105,215  85,215"  />
-<polyline stroke="#000000" fill="none" points="85,195 70,195 70,215 85,215" />
-<line x1='100' y1='205' x2='117' y2='205' stroke="#000000" fill="none" />
-<polyline stroke="#000000" fill="none" points="38,180 45,185 38,190 38,180" />
-<circle cx="48" cy="185" r="3" fill="none" stroke="#000000" stroke-width="1" />
-<polyline stroke="#000000" fill="none" points="51,185 61,185 61,197 70,197" />
-<polyline stroke="#000000" fill="none" points="38,220 45,225 38,230 38,220" />
-<circle cx="48" cy="225" r="3" fill="none" stroke="#000000" stroke-width="1" />
-<polyline stroke="#000000" fill="none" points="51,225 61,225 61,212 70,212" />
-<polyline stroke="#000000" fill="none" points="38,185 23,185 23,722 70,722" />
-<line x1='23' y1='381' x2='70' y2='381' stroke="#000000" fill="none" />
-<circle cx="23" cy="381" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<line x1='23' y1='538' x2='70' y2='538' stroke="#000000" fill="none" />
-<circle cx="23" cy="538" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<polyline stroke="#000000" fill="none" points="38,225 28,225 28,708 70,708 " />
-<line x1='28' y1='368' x2='38' y2='368' stroke="#000000" fill="none" />
-<circle cx="28" cy="368" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<line x1='28' y1='550' x2='38' y2='550' stroke="#000000" fill="none" />
-<circle cx="28" cy="550" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<polyline stroke="#000000" fill="none" points="38,363 45,368 38,373 38,363" />
-<circle cx="48" cy="368" r="3" fill="none" stroke="#000000" stroke-width="1" />
-<line x1='51' y1='368' x2='70' y2='368' stroke="#000000" fill="none" />
-<g transform='translate(0,170)'>
-<path stroke="#000000" fill="none" d="M 150,170 C 170,170 170,190  150,190"  />
-<polyline stroke="#000000" fill="none" points="150,170 135,170 135,190 150,190" />
-<polyline stroke="#000000" fill="none" points="135,187 120,187 120,205" />
-<circle cx="120" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<polyline stroke="#000000" fill="none" points="165,180 490,180 490,156 500,156" />
-<polyline stroke="#000000" fill="none" points="340,180 340,156 350,156" />
-<circle cx="340" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<polyline stroke="#000000" fill="none" points="190,180 190,156 200,156" />
-<circle cx="190" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<path stroke="#000000" fill="none" d="M 85,195 C 105,195 105,215  85,215"  />
-<polyline stroke="#000000" fill="none" points="85,195 70,195 70,215 85,215" />
-<line x1='100' y1='205' x2='117' y2='205' stroke="#000000" fill="none" />
-<polyline stroke="#000000" fill="none" points="38,376 45,381 38,386 38,376" />
-<circle cx="48" cy="381" r="3" fill="none" stroke="#000000" stroke-width="1" />
-<line x1='51' y1='381' x2='70' y2='381' stroke="#000000" fill="none" />
-</g>
-<g transform='translate(0,340)'>
-<path stroke="#000000" fill="none" d="M 150,170 C 170,170 170,190 150,190"  />
-<polyline stroke="#000000" fill="none" points="150,170 135,170 135,190 150,190" />
-<polyline stroke="#000000" fill="none" points="135,187 120,187 120,205" />
-<circle cx="120" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<polyline stroke="#000000" fill="none" points="165,180 490,180 490,156 500,156" />
-<polyline stroke="#000000" fill="none" points="340,180 340,156 350,156" />
-<circle cx="340" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<polyline stroke="#000000" fill="none" points="190,180 190,156 200,156" />
-<circle cx="190" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<path stroke="#000000" fill="none" d="M 85,195 C 105,195 105,215  85,215"  />
-<polyline stroke="#000000" fill="none" points="85,195 70,195 70,215 85,215" />
-<line x1='100' y1='205' x2='117' y2='205' stroke="#000000" fill="none" />
-</g>
+    <g transform='translate(150,170)'>
+        <rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
+        <text id="idD11" x="205" y="115" stroke="none" fill="#000000" font-size="12">0</text>
+        <text id="idCK11" x="210" y="160" stroke="none" fill="#000000" font-size="12">0</text>
+        <text id="idQ11" x="235" y="115" stroke="none" fill="#000000" font-size="12">0</text>
+        <polyline stroke="#000000" fill="none" points="200,151 208,156 200,161"/>
+        <polyline stroke="#000000" fill="none" points="250,110 297,110 297,215"/>
+        <line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none"/>
+        <circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    </g>
+    <g transform='translate(300,170)'>
+        <rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
+        <text id="idD12" x="205" y="115" stroke="none" fill="#000000" font-size="12">0</text>
+        <text id="idCK12" x="210" y="160" stroke="none" fill="#000000" font-size="12">0</text>
+        <text id="idQ12" x="235" y="115" stroke="none" fill="#000000" font-size="12">0</text>
+        <polyline stroke="#000000" fill="none" points="200,151 208,156 200,161"/>
+        <polyline stroke="#000000" fill="none" points="250,110 297,110 297,215"/>
+        <line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none"/>
+        <circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    </g>
+    <g transform='translate(0,340)'>
+        <rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
+        <text id="idD20" x="205" y="115" stroke="none" fill="#000000" font-size="12">0</text>
+        <text id="idCK20" x="210" y="160" stroke="none" fill="#000000" font-size="12">0</text>
+        <text id="idQ20" x="235" y="115" stroke="none" fill="#000000" font-size="12">0</text>
+        <polyline stroke="#000000" fill="none" points="200,151 208,156 200,161"/>
+        <polyline stroke="#000000" fill="none" points="250,110 277,110 277,215"/>
+        <line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none"/>
+        <circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    </g>
 
-<g transform='translate(0,510)'>
-<path stroke="#000000" fill="none" d="M 150,170 C 170,170 170,190  150,190"  />
-<polyline stroke="#000000" fill="none" points="150,170 135,170 135,190 150,190" />
-<polyline stroke="#000000" fill="none" points="135,187 120,187 120,205" />
-<circle cx="120" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<polyline stroke="#000000" fill="none" points="165,180 490,180 490,156 500,156" />
-<polyline stroke="#000000" fill="none" points="340,180 340,156 350,156" />
-<circle cx="340" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<polyline stroke="#000000" fill="none" points="190,180 190,156 200,156" />
-<circle cx="190" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<path stroke="#000000" fill="none" d="M 85,195 C 105,195 105,215  85,215"  />
-<polyline stroke="#000000" fill="none" points="85,195 70,195 70,215 85,215" />
-<line x1='100' y1='205' x2='117' y2='205' stroke="#000000" fill="none" />
-</g>
+    <g transform='translate(150,340)'>
+        <rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
+        <text id="idD21" x="205" y="115" stroke="none" fill="#000000" font-size="12">0</text>
+        <text id="idCK21" x="210" y="160" stroke="none" fill="#000000" font-size="12">0</text>
+        <text id="idQ21" x="235" y="115" stroke="none" fill="#000000" font-size="12">0</text>
+        <polyline stroke="#000000" fill="none" points="200,151 208,156 200,161"/>
+        <polyline stroke="#000000" fill="none" points="250,110 277,110 277,215"/>
+        <line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none"/>
+        <circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    </g>
+    <g transform='translate(300,340)'>
+        <rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
+        <text id="idD22" x="205" y="115" stroke="none" fill="#000000" font-size="12">0</text>
+        <text id="idCK22" x="210" y="160" stroke="none" fill="#000000" font-size="12">0</text>
+        <text id="idQ22" x="235" y="115" stroke="none" fill="#000000" font-size="12">0</text>
+        <polyline stroke="#000000" fill="none" points="200,151 208,156 200,161"/>
+        <polyline stroke="#000000" fill="none" points="250,110 277,110 277,215"/>
+        <line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none"/>
+        <circle cx="180" cy="110" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    </g>
 
-<polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230" />
-<path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"  />
-<line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none" />
-<circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none" />
+    <g transform='translate(0,510)'>
+        <rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
+        <text id="idD30" x="205" y="115" stroke="none" fill="#000000" font-size="12">0</text>
+        <text id="idCK30" x="210" y="160" stroke="none" fill="#000000" font-size="12">0</text>
+        <text id="idQ30" x="235" y="115" stroke="none" fill="#000000" font-size="12">0</text>
+        <polyline stroke="#000000" fill="none" points="200,151 208,156 200,161"/>
+        <polyline stroke="#000000" fill="none" points="250,110 257,110 257,215"/>
+        <line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none"/>
 
-<g transform='translate(150)'>
-<polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230" />
-<path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"  />
-<line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none" />
-<circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none" />
-<g transform='translate(150)'>
-<polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230" />
-<path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"  />
-<line x1='303' y1='204' x2='303' y2='215' stroke="#000000" fill="none" />
-</g>
-</g>
-<g transform='translate(-20,170)'>
-<polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230" />
-<path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"  />
-<line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none" />
-<circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none" />
-<g transform='translate(150)'>
-<polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230" />
-<path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"  />
-<line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none" />
-<circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none" />
-<g transform='translate(150)'>
-<polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230" />
-<path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"  />
-<line x1='303' y1='204' x2='303' y2='215' stroke="#000000" fill="none" />
-</g>
-</g>
-<line x1='140' y1='205' x2='303' y2='205' stroke="#000000" fill="none" />
-</g>
-<g transform='translate(-40,340)'>
-<polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230" />
-<path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"  />
-<line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none" />
-<circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none" />
-<g transform='translate(150)'>
-<polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230" />
-<path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"  />
-<line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none" />
-<circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none" />
-<g transform='translate(150)'>
-<polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230" />
-<path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"  />
-<line x1='303' y1='204' x2='303' y2='215' stroke="#000000" fill="none" />
-</g>
-</g>
-<line x1='160' y1='205' x2='303' y2='205' stroke="#000000" fill="none" />
-</g>
-<g transform='translate(-60,510)'>
-<polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230" />
-<path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"  />
-<line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none" />
-<circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none" />
-<g transform='translate(150)'>
-<polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230" />
-<path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"  />
-<line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none" />
-<circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none" />
-<g transform='translate(150)'>
-<polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230" />
-<path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"  />
-<line x1='303' y1='204' x2='303' y2='215' stroke="#000000" fill="none" />
-</g>
-</g>
-<line x1='180' y1='205' x2='303' y2='205' stroke="#000000" fill="none" />
-</g>
-<line x1='120' y1='205' x2='303' y2='205' stroke="#000000" fill="none" />
-<path stroke="#000000" fill="none" d="M280,770 Q280,800 300,815 Q320,800 320,770 Q300,780 280,770"/>
-<polyline stroke="#000000" fill="none" points="283,772 283,760 250,760 250,749" />
-<polyline stroke="#000000" fill="none" points="290,773 290,750 270,750 270,579" />
-<polyline stroke="#000000" fill="none" points="308,773 308,735 290,735 290,409 " />
-<polyline stroke="#000000" fill="none" points="315,773 315,725 310,725 310,239" />
-<g transform='translate(150)'>
-<path stroke="#000000" fill="none" d="M280,770 Q280,800 300,815 Q320,800 320,770 Q300,780 280,770"/>
-<polyline stroke="#000000" fill="none" points="283,772 283,760 250,760 250,749" />
-<polyline stroke="#000000" fill="none" points="290,773 290,750 270,750 270,579" />
-<polyline stroke="#000000" fill="none" points="308,773 308,735 290,735 290,409 " />
-<polyline stroke="#000000" fill="none" points="315,773 315,725 310,725 310,239" />
-</g>
-<g transform='translate(300)'>
-<path stroke="#000000" fill="none" d="M280,770 Q280,800 300,815 Q320,800 320,770 Q300,780 280,770"/>
-<polyline stroke="#000000" fill="none" points="283,772 283,760 250,760 250,749" />
-<polyline stroke="#000000" fill="none" points="290,773 290,750 270,750 270,579" />
-<polyline stroke="#000000" fill="none" points="308,773 308,735 290,735 290,409 " />
-<polyline stroke="#000000" fill="none" points="315,773 315,725 310,725 310,239" />
-</g>
-<polygon stroke="#000000" fill="none" points="665,820 673,825 665,830" />
-<polyline stroke="#000000" fill="none" points="665,825 600,825 600,814" />
-<line x1='673' y1='825' x2='700' y2='825' stroke="#000000" fill="none" />
-<text id="idO0" x="705" y="830" stroke="none" fill="#000000" font-size="14">0</text>
-<line x1='673' y1='845' x2='700' y2='845' stroke="#000000" fill="none" />
-<text id="idO1" x="705" y="850" stroke="none" fill="#000000" font-size="14">0</text>
-<line x1='673' y1='865' x2='700' y2='865' stroke="#000000" fill="none" />
-<text id="idO2" x="705" y="870" stroke="none" fill="#000000" font-size="14">0</text>
-<polygon stroke="#000000" fill="none" points="665,840 673,845 665,850" />
-<polyline stroke="#000000" fill="none" points="665,845 450,845 450,814" />
-<polygon stroke="#000000" fill="none" points="665,860 673,865 665,870" />
-<polyline stroke="#000000" fill="none" points="665,865 300,865 300,814" />
-<line stroke="#000000" fill="none" x1="115" y1="173" x2="115" y2="760" />
-<line stroke="#000000" fill="none" x1="114" y1="173" x2="135" y2="173" />
-<line stroke="#000000" fill="none" x1="114" y1="343" x2="135" y2="343" />
-<line stroke="#000000" fill="none" x1="114" y1="513" x2="135" y2="513" />
-<line stroke="#000000" fill="none" x1="114" y1="683" x2="135" y2="683" />
-<circle cx="115" cy="343" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<circle cx="115" cy="513" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<circle cx="115" cy="683" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<path stroke="#000000" fill="none" d="M 103,771 C 108,755 123,755 128,771 L 128,790 103,790 103,771"  />
-<polyline stroke="#000000" fill="none" points="106,790 106,800 50,800" />
-<line stroke="#000000" fill="none" x1="125" y1="790" x2="125" y2="810" />
-<circle cx="125" cy="813" r="3" fill="none" stroke="#000000" stroke-width="1" />
-<polygon stroke="#000000" fill="none" points="125,816 118,824 132,824" />
-<polyline stroke="#000000" fill="none" points="125,824 125,840 50,840" />
-<circle cx="125" cy="840" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<line stroke="#000000" fill="none" x1="670" y1="880" x2="670" y2="867" />
-<circle cx="670" cy="880" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<path stroke="#000000" fill="none" d="M 200,870 L 200,890 220,890 C 233,890 233,870 220,870 L 200,870"  />
-<polyline stroke="#000000" fill="none" points="230,880 680,880 680,833 670,833 670,826" />
-<polyline stroke="#000000" fill="none" points="680,855 670,855 670,847" />
-<circle cx="680" cy="855" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<polyline stroke="#000000" fill="none" points="200,874 125,874 125,840" />
-<polyline stroke="#000000" fill="none" points="200,880 90,880 90,800" />
-<circle cx="90" cy="800" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<line stroke="#000000" fill="none" x1="50" y1="886" x2="200" y2="886" />
-<text onclick="docs()" id="idCS" x="26" y="805" stroke="none" fill="#000000" font-size="14" title='CS'>0</text>
-<text onclick="dord()" id="idRD" x="26" y="845" stroke="none" fill="#000000" font-size="14" title='RD'>1</text>
-<text onclick="dooe()" id="idOE" x="26" y="890" stroke="none" fill="#000000" font-size="14" title='OE'>0</text>
-<text onclick='doa0()' id='idA0' x="55" y="760" stroke="none" fill="#000000" font-size="14" title='A0'>0</text>
-<line stroke="#000000" fill="none" x1="60" y1="745" x2="60" y2="708" />
-<circle cx="60" cy="708" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<text onclick="doa1()" id='idA1' x="30" y="760" stroke="none" fill="#000000" font-size="14" title='A1'>0</text>
-<line stroke="#000000" fill="none" x1="35" y1="745" x2="35" y2="722" />
-<circle cx="35" cy="722" r="2" fill="#000000" stroke="#000000" stroke-width="1" />
-<text x="150" y="925" stroke="none" fill="#000000" font-size="14">Рис. 7.8.2. Интерактивная логическая блок-схема памяти 3x4</text>
+    </g>
+
+    <g transform='translate(150,510)'>
+        <rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
+        <text id="idD31" x="205" y="115" stroke="none" fill="#000000" font-size="12">0</text>
+        <text id="idCK31" x="210" y="160" stroke="none" fill="#000000" font-size="12">0</text>
+        <text id="idQ31" x="235" y="115" stroke="none" fill="#000000" font-size="12">0</text>
+        <polyline stroke="#000000" fill="none" points="200,151 208,156 200,161"/>
+        <polyline stroke="#000000" fill="none" points="250,110 257,110 257,215"/>
+        <line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none"/>
+
+    </g>
+    <g transform='translate(300,510)'>
+        <rect x='200' y='100' height='70' width='50' stroke="#000000" fill="none"/>
+        <text id="idD32" x="205" y="115" stroke="none" fill="#000000" font-size="12">0</text>
+        <text id="idCK32" x="210" y="160" stroke="none" fill="#000000" font-size="12">0</text>
+        <text id="idQ32" x="235" y="115" stroke="none" fill="#000000" font-size="12">0</text>
+        <polyline stroke="#000000" fill="none" points="200,151 208,156 200,161"/>
+        <polyline stroke="#000000" fill="none" points="250,110 257,110 257,215"/>
+        <line x1='180' y1='110' x2='200' y2='110' stroke="#000000" fill="none"/>
+
+    </g>
+    <path stroke="#000000" fill="none" d="M 150,170 C 170,170 170,190  150,190"/>
+    <polyline stroke="#000000" fill="none" points="150,170 135,170 135,190 150,190"/>
+    <polyline stroke="#000000" fill="none" points="135,187 120,187 120,205"/>
+    <circle cx="120" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <polyline stroke="#000000" fill="none" points="165,180 490,180 490,156 500,156"/>
+    <polyline stroke="#000000" fill="none" points="340,180 340,156 350,156"/>
+    <circle cx="340" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <polyline stroke="#000000" fill="none" points="190,180 190,156 200,156"/>
+    <circle cx="190" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+
+    <path stroke="#000000" fill="none" d="M 85,195 C 105,195 105,215  85,215"/>
+    <polyline stroke="#000000" fill="none" points="85,195 70,195 70,215 85,215"/>
+    <line x1='100' y1='205' x2='117' y2='205' stroke="#000000" fill="none"/>
+    <polyline stroke="#000000" fill="none" points="38,180 45,185 38,190 38,180"/>
+    <circle cx="48" cy="185" r="3" fill="none" stroke="#000000" stroke-width="1"/>
+    <polyline stroke="#000000" fill="none" points="51,185 61,185 61,197 70,197"/>
+    <polyline stroke="#000000" fill="none" points="38,220 45,225 38,230 38,220"/>
+    <circle cx="48" cy="225" r="3" fill="none" stroke="#000000" stroke-width="1"/>
+    <polyline stroke="#000000" fill="none" points="51,225 61,225 61,212 70,212"/>
+    <polyline stroke="#000000" fill="none" points="38,185 23,185 23,722 70,722"/>
+    <line x1='23' y1='381' x2='70' y2='381' stroke="#000000" fill="none"/>
+    <circle cx="23" cy="381" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <line x1='23' y1='538' x2='70' y2='538' stroke="#000000" fill="none"/>
+    <circle cx="23" cy="538" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <polyline stroke="#000000" fill="none" points="38,225 28,225 28,708 70,708 "/>
+    <line x1='28' y1='368' x2='38' y2='368' stroke="#000000" fill="none"/>
+    <circle cx="28" cy="368" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <line x1='28' y1='550' x2='38' y2='550' stroke="#000000" fill="none"/>
+    <circle cx="28" cy="550" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <polyline stroke="#000000" fill="none" points="38,363 45,368 38,373 38,363"/>
+    <circle cx="48" cy="368" r="3" fill="none" stroke="#000000" stroke-width="1"/>
+    <line x1='51' y1='368' x2='70' y2='368' stroke="#000000" fill="none"/>
+    <g transform='translate(0,170)'>
+        <path stroke="#000000" fill="none" d="M 150,170 C 170,170 170,190  150,190"/>
+        <polyline stroke="#000000" fill="none" points="150,170 135,170 135,190 150,190"/>
+        <polyline stroke="#000000" fill="none" points="135,187 120,187 120,205"/>
+        <circle cx="120" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+        <polyline stroke="#000000" fill="none" points="165,180 490,180 490,156 500,156"/>
+        <polyline stroke="#000000" fill="none" points="340,180 340,156 350,156"/>
+        <circle cx="340" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+        <polyline stroke="#000000" fill="none" points="190,180 190,156 200,156"/>
+        <circle cx="190" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+        <path stroke="#000000" fill="none" d="M 85,195 C 105,195 105,215  85,215"/>
+        <polyline stroke="#000000" fill="none" points="85,195 70,195 70,215 85,215"/>
+        <line x1='100' y1='205' x2='117' y2='205' stroke="#000000" fill="none"/>
+        <polyline stroke="#000000" fill="none" points="38,376 45,381 38,386 38,376"/>
+        <circle cx="48" cy="381" r="3" fill="none" stroke="#000000" stroke-width="1"/>
+        <line x1='51' y1='381' x2='70' y2='381' stroke="#000000" fill="none"/>
+    </g>
+    <g transform='translate(0,340)'>
+        <path stroke="#000000" fill="none" d="M 150,170 C 170,170 170,190 150,190"/>
+        <polyline stroke="#000000" fill="none" points="150,170 135,170 135,190 150,190"/>
+        <polyline stroke="#000000" fill="none" points="135,187 120,187 120,205"/>
+        <circle cx="120" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+        <polyline stroke="#000000" fill="none" points="165,180 490,180 490,156 500,156"/>
+        <polyline stroke="#000000" fill="none" points="340,180 340,156 350,156"/>
+        <circle cx="340" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+        <polyline stroke="#000000" fill="none" points="190,180 190,156 200,156"/>
+        <circle cx="190" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+        <path stroke="#000000" fill="none" d="M 85,195 C 105,195 105,215  85,215"/>
+        <polyline stroke="#000000" fill="none" points="85,195 70,195 70,215 85,215"/>
+        <line x1='100' y1='205' x2='117' y2='205' stroke="#000000" fill="none"/>
+    </g>
+
+    <g transform='translate(0,510)'>
+        <path stroke="#000000" fill="none" d="M 150,170 C 170,170 170,190  150,190"/>
+        <polyline stroke="#000000" fill="none" points="150,170 135,170 135,190 150,190"/>
+        <polyline stroke="#000000" fill="none" points="135,187 120,187 120,205"/>
+        <circle cx="120" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+        <polyline stroke="#000000" fill="none" points="165,180 490,180 490,156 500,156"/>
+        <polyline stroke="#000000" fill="none" points="340,180 340,156 350,156"/>
+        <circle cx="340" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+        <polyline stroke="#000000" fill="none" points="190,180 190,156 200,156"/>
+        <circle cx="190" cy="180" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+        <path stroke="#000000" fill="none" d="M 85,195 C 105,195 105,215  85,215"/>
+        <polyline stroke="#000000" fill="none" points="85,195 70,195 70,215 85,215"/>
+        <line x1='100' y1='205' x2='117' y2='205' stroke="#000000" fill="none"/>
+    </g>
+
+    <polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230"/>
+    <path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"/>
+    <line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none"/>
+    <circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none"/>
+
+    <g transform='translate(150)'>
+        <polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230"/>
+        <path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"/>
+        <line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none"/>
+        <circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+        <line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none"/>
+        <g transform='translate(150)'>
+            <polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230"/>
+            <path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"/>
+            <line x1='303' y1='204' x2='303' y2='215' stroke="#000000" fill="none"/>
+        </g>
+    </g>
+    <g transform='translate(-20,170)'>
+        <polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230"/>
+        <path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"/>
+        <line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none"/>
+        <circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+        <line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none"/>
+        <g transform='translate(150)'>
+            <polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230"/>
+            <path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"/>
+            <line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none"/>
+            <circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+            <line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none"/>
+            <g transform='translate(150)'>
+                <polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230"/>
+                <path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"/>
+                <line x1='303' y1='204' x2='303' y2='215' stroke="#000000" fill="none"/>
+            </g>
+        </g>
+        <line x1='140' y1='205' x2='303' y2='205' stroke="#000000" fill="none"/>
+    </g>
+    <g transform='translate(-40,340)'>
+        <polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230"/>
+        <path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"/>
+        <line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none"/>
+        <circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+        <line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none"/>
+        <g transform='translate(150)'>
+            <polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230"/>
+            <path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"/>
+            <line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none"/>
+            <circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+            <line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none"/>
+            <g transform='translate(150)'>
+                <polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230"/>
+                <path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"/>
+                <line x1='303' y1='204' x2='303' y2='215' stroke="#000000" fill="none"/>
+            </g>
+        </g>
+        <line x1='160' y1='205' x2='303' y2='205' stroke="#000000" fill="none"/>
+    </g>
+    <g transform='translate(-60,510)'>
+        <polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230"/>
+        <path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"/>
+        <line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none"/>
+        <circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+        <line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none"/>
+        <g transform='translate(150)'>
+            <polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230"/>
+            <path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"/>
+            <line x1='303' y1='205' x2='303' y2='215' stroke="#000000" fill="none"/>
+            <circle cx="303" cy="205" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+            <line x1='303' y1='205' x2='453' y2='205' stroke="#000000" fill="none"/>
+            <g transform='translate(150)'>
+                <polyline stroke="#000000" fill="none" points="300,230 300,215 320,215 320,230"/>
+                <path stroke="#000000" fill="none" d="M 300,230 C 302,242 318,242 320,230"/>
+                <line x1='303' y1='204' x2='303' y2='215' stroke="#000000" fill="none"/>
+            </g>
+        </g>
+        <line x1='180' y1='205' x2='303' y2='205' stroke="#000000" fill="none"/>
+    </g>
+    <line x1='120' y1='205' x2='303' y2='205' stroke="#000000" fill="none"/>
+    <path stroke="#000000" fill="none" d="M280,770 Q280,800 300,815 Q320,800 320,770 Q300,780 280,770"/>
+    <polyline stroke="#000000" fill="none" points="283,772 283,760 250,760 250,749"/>
+    <polyline stroke="#000000" fill="none" points="290,773 290,750 270,750 270,579"/>
+    <polyline stroke="#000000" fill="none" points="308,773 308,735 290,735 290,409 "/>
+    <polyline stroke="#000000" fill="none" points="315,773 315,725 310,725 310,239"/>
+    <g transform='translate(150)'>
+        <path stroke="#000000" fill="none" d="M280,770 Q280,800 300,815 Q320,800 320,770 Q300,780 280,770"/>
+        <polyline stroke="#000000" fill="none" points="283,772 283,760 250,760 250,749"/>
+        <polyline stroke="#000000" fill="none" points="290,773 290,750 270,750 270,579"/>
+        <polyline stroke="#000000" fill="none" points="308,773 308,735 290,735 290,409 "/>
+        <polyline stroke="#000000" fill="none" points="315,773 315,725 310,725 310,239"/>
+    </g>
+    <g transform='translate(300)'>
+        <path stroke="#000000" fill="none" d="M280,770 Q280,800 300,815 Q320,800 320,770 Q300,780 280,770"/>
+        <polyline stroke="#000000" fill="none" points="283,772 283,760 250,760 250,749"/>
+        <polyline stroke="#000000" fill="none" points="290,773 290,750 270,750 270,579"/>
+        <polyline stroke="#000000" fill="none" points="308,773 308,735 290,735 290,409 "/>
+        <polyline stroke="#000000" fill="none" points="315,773 315,725 310,725 310,239"/>
+    </g>
+    <polygon stroke="#000000" fill="none" points="665,820 673,825 665,830"/>
+    <polyline stroke="#000000" fill="none" points="665,825 600,825 600,814"/>
+    <line x1='673' y1='825' x2='700' y2='825' stroke="#000000" fill="none"/>
+    <text id="idO0" x="705" y="830" stroke="none" fill="#000000" font-size="14">0</text>
+    <line x1='673' y1='845' x2='700' y2='845' stroke="#000000" fill="none"/>
+    <text id="idO1" x="705" y="850" stroke="none" fill="#000000" font-size="14">0</text>
+    <line x1='673' y1='865' x2='700' y2='865' stroke="#000000" fill="none"/>
+    <text id="idO2" x="705" y="870" stroke="none" fill="#000000" font-size="14">0</text>
+    <polygon stroke="#000000" fill="none" points="665,840 673,845 665,850"/>
+    <polyline stroke="#000000" fill="none" points="665,845 450,845 450,814"/>
+    <polygon stroke="#000000" fill="none" points="665,860 673,865 665,870"/>
+    <polyline stroke="#000000" fill="none" points="665,865 300,865 300,814"/>
+    <line stroke="#000000" fill="none" x1="115" y1="173" x2="115" y2="760"/>
+    <line stroke="#000000" fill="none" x1="114" y1="173" x2="135" y2="173"/>
+    <line stroke="#000000" fill="none" x1="114" y1="343" x2="135" y2="343"/>
+    <line stroke="#000000" fill="none" x1="114" y1="513" x2="135" y2="513"/>
+    <line stroke="#000000" fill="none" x1="114" y1="683" x2="135" y2="683"/>
+    <circle cx="115" cy="343" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <circle cx="115" cy="513" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <circle cx="115" cy="683" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <path stroke="#000000" fill="none" d="M 103,771 C 108,755 123,755 128,771 L 128,790 103,790 103,771"/>
+    <polyline stroke="#000000" fill="none" points="106,790 106,800 50,800"/>
+    <line stroke="#000000" fill="none" x1="125" y1="790" x2="125" y2="810"/>
+    <circle cx="125" cy="813" r="3" fill="none" stroke="#000000" stroke-width="1"/>
+    <polygon stroke="#000000" fill="none" points="125,816 118,824 132,824"/>
+    <polyline stroke="#000000" fill="none" points="125,824 125,840 50,840"/>
+    <circle cx="125" cy="840" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <line stroke="#000000" fill="none" x1="670" y1="880" x2="670" y2="867"/>
+    <circle cx="670" cy="880" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <path stroke="#000000" fill="none" d="M 200,870 L 200,890 220,890 C 233,890 233,870 220,870 L 200,870"/>
+    <polyline stroke="#000000" fill="none" points="230,880 680,880 680,833 670,833 670,826"/>
+    <polyline stroke="#000000" fill="none" points="680,855 670,855 670,847"/>
+    <circle cx="680" cy="855" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <polyline stroke="#000000" fill="none" points="200,874 125,874 125,840"/>
+    <polyline stroke="#000000" fill="none" points="200,880 90,880 90,800"/>
+    <circle cx="90" cy="800" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <line stroke="#000000" fill="none" x1="50" y1="886" x2="200" y2="886"/>
+    <text onclick="docs()" id="idCS" x="26" y="805" stroke="none" fill="#000000" font-size="14" title='CS'>0</text>
+    <text onclick="dord()" id="idRD" x="26" y="845" stroke="none" fill="#000000" font-size="14" title='RD'>1</text>
+    <text onclick="dooe()" id="idOE" x="26" y="890" stroke="none" fill="#000000" font-size="14" title='OE'>0</text>
+    <text onclick='doa0()' id='idA0' x="55" y="760" stroke="none" fill="#000000" font-size="14" title='A0'>0</text>
+    <line stroke="#000000" fill="none" x1="60" y1="745" x2="60" y2="708"/>
+    <circle cx="60" cy="708" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <text onclick="doa1()" id='idA1' x="30" y="760" stroke="none" fill="#000000" font-size="14" title='A1'>0</text>
+    <line stroke="#000000" fill="none" x1="35" y1="745" x2="35" y2="722"/>
+    <circle cx="35" cy="722" r="2" fill="#000000" stroke="#000000" stroke-width="1"/>
+    <text x="150" y="925" stroke="none" fill="#000000" font-size="14">Рис. 7.8.2. Интерактивная логическая блок-схема
+        памяти 3x4
+    </text>
 </svg>
-<p>На рис. 7.8.1 схема памяти имеет как линии ввода, так и линии вывода. Но на практике для ввода и вывода, посредством буферных элементов, используют одни и те же линии. Буферные элементы при считывании данных из памяти линии ввода-вывода соединяют с <a href='7_1.html#ili'>вентилями ИЛИ</a>, а при записи данных в память &#8212; разъединяют. Управляющий сигнал 1 превращает буферный элемент в проводник, если же управляющий сигнал равен 0, то буферный элемент становится изолятором.</p>
-<p>На рисунке 7.8.3 дана логическая схема памяти 512x8 объемом в 4 Мбита (или 512 Кбайт), содержащая 
-<math   display='inline'>
-<msup>
-	<mn>2</mn><mn>19</mn>
-</msup>
-</math>
-байтовых слов:</p>
-<svg  height = "330px"  width = "400px">
-<defs>
-    <marker id="Triangle"
-      viewBox="0 0 10 10" refX="0" refY="5" 
-      markerUnits="strokeWidth"
-      markerWidth="8" markerHeight="8"
-      orient="auto">
-      <path d="M 0 0 L 10 5 L 0 10 z" />
-    </marker>
-    <marker id="Triangle1"
-      viewBox="0 0 10 10" refX="0" refY="5" 
-      markerUnits="strokeWidth"
-      markerWidth="8" markerHeight="8"
-      orient="auto">
-      <path d="M 10 0 L 0 5 L 10 10 z" />
-    </marker>
-  </defs>
-<rect x='50' y='10' height='250' width='80' stroke="#000000" fill="none"/>
-<text x="60" y="300" stroke="none" fill="#000000" font-size="12">CS</text>
-<line x1="65px" y1="287px" x2="65px" y2="266px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
-<text x="82" y="300" stroke="none" fill="#000000" font-size="12">RD</text>
-<line x1="87px" y1="287px" x2="87px" y2="266px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
-<text x="105" y="300" stroke="none" fill="#000000" font-size="12">OE</text>
- <line x1="110px" y1="287px" x2="110px" y2="266px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
-<text x="3" y="50" stroke="none" fill="#000000" font-size="14">A<tspan dy="8" font-size="12">0</tspan></text>
-<line x1="16px" y1="45px" x2="43px" y2="45px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
-<line x1="130px" y1="45px" x2="155px" y2="45px" stroke="#000000" stroke-width="1" marker-start="url(#Triangle1)" marker-end="url(#Triangle)"/>
-<text x="3" y="75" stroke="none" fill="#000000" font-size="14">A<tspan dy="8" font-size="12">1</tspan></text>
-<line x1="16px" y1="70px" x2="43px" y2="70px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
-<line x1="130px" y1="70px" x2="155px" y2="70px" stroke="#000000" stroke-width="1" marker-start="url(#Triangle1)" marker-end="url(#Triangle)"/>
-<text x="3" y="100" stroke="none" fill="#000000" font-size="14">A<tspan dy="8" font-size="12">2</tspan></text>
-<line x1="16px" y1="95px" x2="43px" y2="95px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
-<line x1="130px" y1="95px" x2="155px" y2="95px" stroke="#000000" stroke-width="1" marker-start="url(#Triangle1)" marker-end="url(#Triangle)"/>
-<text x="3" y="125" stroke="none" fill="#000000" font-size="14">A<tspan dy="8" font-size="12">3</tspan></text>
-<line x1="16px" y1="120px" x2="43px" y2="120px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
-<line x1="130px" y1="120px" x2="155px" y2="120px" stroke="#000000" stroke-width="1" marker-start="url(#Triangle1)" marker-end="url(#Triangle)"/>
-<text x="3" y="150" stroke="none" fill="#000000" font-size="14">A<tspan dy="8" font-size="12">4</tspan></text>
-<line x1="16px" y1="145px" x2="43px" y2="145px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
-<text x="3" y="175" stroke="none" fill="#000000" font-size="14">...</text>
-<text x="3" y="225" stroke="none" fill="#000000" font-size="14">A<tspan dy="8" font-size="12">18</tspan></text>
-<line x1="16px" y1="220px" x2="43px" y2="220px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
-<text x="170" y="50" stroke="none" fill="#000000" font-size="14">D<tspan dy="8" font-size="12">0</tspan></text>
-<text x="170" y="75" stroke="none" fill="#000000" font-size="14">D<tspan dy="8" font-size="12">1</tspan></text>
-<text x="170" y="100" stroke="none" fill="#000000" font-size="14">D<tspan dy="8" font-size="12">2</tspan></text>
-<text x="170" y="125" stroke="none" fill="#000000" font-size="14">D<tspan dy="8" font-size="12">3</tspan></text>
-<text x="170" y="150" stroke="none" fill="#000000" font-size="14">D<tspan dy="8" font-size="12">4</tspan></text>
-<line x1="130px" y1="145px" x2="155px" y2="145px" stroke="#000000" stroke-width="1" marker-start="url(#Triangle1)" marker-end="url(#Triangle)"/>
-<text x="170" y="175" stroke="none" fill="#000000" font-size="14">D<tspan dy="8" font-size="12">5</tspan></text>
-<line x1="130px" y1="170px" x2="155px" y2="170px" stroke="#000000" stroke-width="1" marker-start="url(#Triangle1)" marker-end="url(#Triangle)"/>
-<text x="170" y="200" stroke="none" fill="#000000" font-size="14">D<tspan dy="8" font-size="12">6</tspan></text>
-<line x1="130px" y1="195px" x2="155px" y2="195px" stroke="#000000" stroke-width="1" marker-start="url(#Triangle1)" marker-end="url(#Triangle)"/>
-<text x="170" y="225" stroke="none" fill="#000000" font-size="14">D<tspan dy="8" font-size="12">7</tspan></text>
-<line x1="130px" y1="220px" x2="155px" y2="220px" stroke="#000000" stroke-width="1" marker-start="url(#Triangle1)" marker-end="url(#Triangle)"/>
-<text x="5" y="329" stroke="none" fill="#000000" font-size="14">Рис. 7.8.3. Блок-схема памяти в 512 Кбайт</text>
+<p>На рис. 7.8.1 схема памяти имеет как линии ввода, так и линии вывода. Но на практике для ввода и вывода, посредством
+    буферных элементов, используют одни и те же линии. Буферные элементы при считывании данных из памяти линии
+    ввода-вывода соединяют с <a href='7_1.html#ili'>вентилями ИЛИ</a>, а при записи данных в память &#8212; разъединяют.
+    Управляющий сигнал 1 превращает буферный элемент в проводник, если же управляющий сигнал равен 0, то буферный
+    элемент становится изолятором.</p>
+<p>На рисунке 7.8.3 дана логическая схема памяти 512x8 объемом в 4 Мбита (или 512 Кбайт), содержащая
+    <math display='inline'>
+        <msup>
+            <mn>2</mn>
+            <mn>19</mn>
+        </msup>
+    </math>
+    байтовых слов:
+</p>
+<svg height="330px" width="400px">
+    <defs>
+        <marker id="Triangle"
+                viewBox="0 0 10 10" refX="0" refY="5"
+                markerUnits="strokeWidth"
+                markerWidth="8" markerHeight="8"
+                orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z"/>
+        </marker>
+        <marker id="Triangle1"
+                viewBox="0 0 10 10" refX="0" refY="5"
+                markerUnits="strokeWidth"
+                markerWidth="8" markerHeight="8"
+                orient="auto">
+            <path d="M 10 0 L 0 5 L 10 10 z"/>
+        </marker>
+    </defs>
+    <rect x='50' y='10' height='250' width='80' stroke="#000000" fill="none"/>
+    <text x="60" y="300" stroke="none" fill="#000000" font-size="12">CS</text>
+    <line x1="65px" y1="287px" x2="65px" y2="266px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+    <text x="82" y="300" stroke="none" fill="#000000" font-size="12">RD</text>
+    <line x1="87px" y1="287px" x2="87px" y2="266px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+    <text x="105" y="300" stroke="none" fill="#000000" font-size="12">OE</text>
+    <line x1="110px" y1="287px" x2="110px" y2="266px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+    <text x="3" y="50" stroke="none" fill="#000000" font-size="14">A
+        <tspan dy="8" font-size="12">0</tspan>
+    </text>
+    <line x1="16px" y1="45px" x2="43px" y2="45px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+    <line x1="130px" y1="45px" x2="155px" y2="45px" stroke="#000000" stroke-width="1" marker-start="url(#Triangle1)"
+          marker-end="url(#Triangle)"/>
+    <text x="3" y="75" stroke="none" fill="#000000" font-size="14">A
+        <tspan dy="8" font-size="12">1</tspan>
+    </text>
+    <line x1="16px" y1="70px" x2="43px" y2="70px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+    <line x1="130px" y1="70px" x2="155px" y2="70px" stroke="#000000" stroke-width="1" marker-start="url(#Triangle1)"
+          marker-end="url(#Triangle)"/>
+    <text x="3" y="100" stroke="none" fill="#000000" font-size="14">A
+        <tspan dy="8" font-size="12">2</tspan>
+    </text>
+    <line x1="16px" y1="95px" x2="43px" y2="95px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+    <line x1="130px" y1="95px" x2="155px" y2="95px" stroke="#000000" stroke-width="1" marker-start="url(#Triangle1)"
+          marker-end="url(#Triangle)"/>
+    <text x="3" y="125" stroke="none" fill="#000000" font-size="14">A
+        <tspan dy="8" font-size="12">3</tspan>
+    </text>
+    <line x1="16px" y1="120px" x2="43px" y2="120px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+    <line x1="130px" y1="120px" x2="155px" y2="120px" stroke="#000000" stroke-width="1" marker-start="url(#Triangle1)"
+          marker-end="url(#Triangle)"/>
+    <text x="3" y="150" stroke="none" fill="#000000" font-size="14">A
+        <tspan dy="8" font-size="12">4</tspan>
+    </text>
+    <line x1="16px" y1="145px" x2="43px" y2="145px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+    <text x="3" y="175" stroke="none" fill="#000000" font-size="14">...</text>
+    <text x="3" y="225" stroke="none" fill="#000000" font-size="14">A
+        <tspan dy="8" font-size="12">18</tspan>
+    </text>
+    <line x1="16px" y1="220px" x2="43px" y2="220px" stroke="#000000" stroke-width="1" marker-end="url(#Triangle)"/>
+    <text x="170" y="50" stroke="none" fill="#000000" font-size="14">D
+        <tspan dy="8" font-size="12">0</tspan>
+    </text>
+    <text x="170" y="75" stroke="none" fill="#000000" font-size="14">D
+        <tspan dy="8" font-size="12">1</tspan>
+    </text>
+    <text x="170" y="100" stroke="none" fill="#000000" font-size="14">D
+        <tspan dy="8" font-size="12">2</tspan>
+    </text>
+    <text x="170" y="125" stroke="none" fill="#000000" font-size="14">D
+        <tspan dy="8" font-size="12">3</tspan>
+    </text>
+    <text x="170" y="150" stroke="none" fill="#000000" font-size="14">D
+        <tspan dy="8" font-size="12">4</tspan>
+    </text>
+    <line x1="130px" y1="145px" x2="155px" y2="145px" stroke="#000000" stroke-width="1" marker-start="url(#Triangle1)"
+          marker-end="url(#Triangle)"/>
+    <text x="170" y="175" stroke="none" fill="#000000" font-size="14">D
+        <tspan dy="8" font-size="12">5</tspan>
+    </text>
+    <line x1="130px" y1="170px" x2="155px" y2="170px" stroke="#000000" stroke-width="1" marker-start="url(#Triangle1)"
+          marker-end="url(#Triangle)"/>
+    <text x="170" y="200" stroke="none" fill="#000000" font-size="14">D
+        <tspan dy="8" font-size="12">6</tspan>
+    </text>
+    <line x1="130px" y1="195px" x2="155px" y2="195px" stroke="#000000" stroke-width="1" marker-start="url(#Triangle1)"
+          marker-end="url(#Triangle)"/>
+    <text x="170" y="225" stroke="none" fill="#000000" font-size="14">D
+        <tspan dy="8" font-size="12">7</tspan>
+    </text>
+    <line x1="130px" y1="220px" x2="155px" y2="220px" stroke="#000000" stroke-width="1" marker-start="url(#Triangle1)"
+          marker-end="url(#Triangle)"/>
+    <text x="5" y="329" stroke="none" fill="#000000" font-size="14">Рис. 7.8.3. Блок-схема памяти в 512 Кбайт</text>
 </svg>
 <p><span class='teorema'><a id='ram'>Память</a>, позволяющая записывать в нее данные, а также считывать их, называется оперативной или ОЗУ (RAM - Random Access Memory) &#8212; оперативное запоминающее устройство.</span>
 </p>
-<p><span class='teorema'><a id='sram'>ОЗУ</a>, базирующееся на <a href='7_7.html#d_trigger'>D-триггерах</a>, называется статическим ОЗУ (SRAM &#8212; Static RAM)</span>. В статических ОЗУ данные хранятся до тех пор, пока к ним подается питание. Они характеризуются высокой скоростью работы &#8212; время доступа составляет несколько наносекунд. Поэтому их используют в качестве кэш-памяти второго уровня. В статическом ОЗУ на 1 бит требуется не менее 6 транзисторов, по причине чего оно имеет небольшой объем.</p>
-<p><span class='teorema'><a id='dram'>Динамическое ОЗУ</a> (DRAM &#8212; Dynamic RAM)</span> конструируется с помощью конденсаторов и транзисторов. Два возможных состояния конденсатора, заряженное или разряженное, позволяет хранить 0 или 1. Через каждые несколько миллисекунд конденсатор необходимо перезаряжать, по причине утечки заряда. Об этом должна заботиться внешняя логика, что говорит о более сложном сопряжении динамического ОЗУ. Другим минусом динамического ОЗУ является невысокая скорость работы &#8212; время доступа составляет несколько десятков наносекунд. В динамическом ОЗУ каждая ячейка в 1 бит состоит лишь из 1 конденсатора и 1 транзистора, что дает возможность создавать память большого объема за счет плотного размещения ячеек. Поэтому основная память компьютера, как правило, строится на основе динамических ОЗУ.</p> 
-<p><span class='teorema'><a id='rom'>Микросхема памяти</a>, позволяющая только считывать данные, записанные на нее в процессе изготовления, называется постоянным запоминающим устройством или ПЗУ (ROM &#8212; Read Only Memory)</span>. На базе ПЗУ были выпущены программируемые ПЗУ (PROM &#8212; Programmable ROM), допускающие их программирование в процессе эксплуатации. Чаще всего их программирование  сводится к пережиганию плавких перемычек, встроенных в ПЗУ, подачей высокого напряжения. Очевидно, что эта операция программирования разовая &#8212;  восстановить сожженные перемычки уже нельзя.</p>
-<p><a id='eprom'>Следующий тип ПЗУ</a> &#8212; <span class='teorema'>стираемое программируемое ПЗУ (EPROM &#8212; Erasable PROM)</span>, допускающее не только программирование, но и стирание данных путем облучения ячеек памяти ультрафиолетовыми лучами. Структура стираемых ПЗУ похожа на структуру статических ОЗУ.</p>
-<p><a id='eeprom'>Далее следует</a> <span class='teorema'>электронно-перепрограммируемое ПЗУ (EEPROM &#8212; Electronically EPROM)</span>, c которого можно стирать данные воздействием импульсов. Оно не может конкурировать с динамическими и статическими ОЗУ ни по скорости, ни по емкости и ни по цене. Электронно-программируемое ПЗУ используется лишь в тех случаях, когда необходимо сохранение информации при выключенном питании.</p>
-<p><a id='flash'>Разновидностью</a> электронно-перепрограммируемой ПЗУ является <span class='teorema'>Флеш-память (flash memory)</span>. Это же слово используется в электронной схемотехнике для обозначения технологически законченных решений постоянных запоминающих устройств в виде микросхем на базе этой полупроводниковой технологии. В быту это словосочетание закрепилось за широким классом твердотельных устройств хранения информации.</p>
-<p>Благодаря компактности, дешевизне, механической прочности, большому объёму, скорости работы и низкому энергопотреблению, флеш-память широко используется в цифровых портативных устройствах и носителях информации. Серьёзным недостатком данной технологии является ограниченное количество полных циклов записи.</p>
+<p><span class='teorema'><a id='sram'>ОЗУ</a>, базирующееся на <a href='7_7.html#d_trigger'>D-триггерах</a>, называется статическим ОЗУ (SRAM &#8212; Static RAM)</span>.
+    В статических ОЗУ данные хранятся до тех пор, пока к ним подается питание. Они характеризуются высокой скоростью
+    работы &#8212; время доступа составляет несколько наносекунд. Поэтому их используют в качестве кэш-памяти второго
+    уровня. В статическом ОЗУ на 1 бит требуется не менее 6 транзисторов, по причине чего оно имеет небольшой объем.</p>
+<p><span class='teorema'><a id='dram'>Динамическое ОЗУ</a> (DRAM &#8212; Dynamic RAM)</span> конструируется с помощью
+    конденсаторов и транзисторов. Два возможных состояния конденсатора, заряженное или разряженное, позволяет хранить 0
+    или 1. Через каждые несколько миллисекунд конденсатор необходимо перезаряжать, по причине утечки заряда. Об этом
+    должна заботиться внешняя логика, что говорит о более сложном сопряжении динамического ОЗУ. Другим минусом
+    динамического ОЗУ является невысокая скорость работы &#8212; время доступа составляет несколько десятков наносекунд.
+    В динамическом ОЗУ каждая ячейка в 1 бит состоит лишь из 1 конденсатора и 1 транзистора, что дает возможность
+    создавать память большого объема за счет плотного размещения ячеек. Поэтому основная память компьютера, как правило,
+    строится на основе динамических ОЗУ.</p>
+<p><span class='teorema'><a id='rom'>Микросхема памяти</a>, позволяющая только считывать данные, записанные на нее в процессе изготовления, называется постоянным запоминающим устройством или ПЗУ (ROM &#8212; Read Only Memory)</span>.
+    На базе ПЗУ были выпущены программируемые ПЗУ (PROM &#8212; Programmable ROM), допускающие их программирование в
+    процессе эксплуатации. Чаще всего их программирование сводится к пережиганию плавких перемычек, встроенных в ПЗУ,
+    подачей высокого напряжения. Очевидно, что эта операция программирования разовая &#8212; восстановить сожженные
+    перемычки уже нельзя.</p>
+<p><a id='eprom'>Следующий тип ПЗУ</a> &#8212; <span class='teorema'>стираемое программируемое ПЗУ (EPROM &#8212; Erasable PROM)</span>,
+    допускающее не только программирование, но и стирание данных путем облучения ячеек памяти ультрафиолетовыми лучами.
+    Структура стираемых ПЗУ похожа на структуру статических ОЗУ.</p>
+<p><a id='eeprom'>Далее следует</a> <span class='teorema'>электронно-перепрограммируемое ПЗУ (EEPROM &#8212; Electronically EPROM)</span>,
+    c которого можно стирать данные воздействием импульсов. Оно не может конкурировать с динамическими и статическими
+    ОЗУ ни по скорости, ни по емкости и ни по цене. Электронно-программируемое ПЗУ используется лишь в тех случаях,
+    когда необходимо сохранение информации при выключенном питании.</p>
+<p><a id='flash'>Разновидностью</a> электронно-перепрограммируемой ПЗУ является <span class='teorema'>Флеш-память (flash memory)</span>.
+    Это же слово используется в электронной схемотехнике для обозначения технологически законченных решений постоянных
+    запоминающих устройств в виде микросхем на базе этой полупроводниковой технологии. В быту это словосочетание
+    закрепилось за широким классом твердотельных устройств хранения информации.</p>
+<p>Благодаря компактности, дешевизне, механической прочности, большому объёму, скорости работы и низкому
+    энергопотреблению, флеш-память широко используется в цифровых портативных устройствах и носителях информации.
+    Серьёзным недостатком данной технологии является ограниченное количество полных циклов записи.</p>
 <h3>Упражнения</h3>
 <ol>
-<li>В памяти размером 4х3, изображенной на рис. 7.8.1, используются 22 <a href='7_1.html#i'>вентиля И</a> и три <a href='7_1.html#ili'>вентиля ИЛИ</a>. Сколько потребуется вентилей каждого из двух типов, если расширить схему до размера 256х8?</li>
-<li>С увеличением объема памяти, помещаемой на одну микросхему, число выводов для обращения к памяти также увеличивается. Предложите способ обращения к 
-<math   display='inline'>
-<msup>
-<mn>2</mn><mi>n</mi>
-</msup>
-</math> 
-словам памяти при наличии меньшего количества выводов, чем n.</li>
+    <li>В памяти размером 4х3, изображенной на рис. 7.8.1, используются 22 <a href='7_1.html#i'>вентиля И</a> и три <a
+            href='7_1.html#ili'>вентиля ИЛИ</a>. Сколько потребуется вентилей каждого из двух типов, если расширить
+        схему до размера 256х8?
+    </li>
+    <li>С увеличением объема памяти, помещаемой на одну микросхему, число выводов для обращения к памяти также
+        увеличивается. Предложите способ обращения к
+        <math display='inline'>
+            <msup>
+                <mn>2</mn>
+                <mi>n</mi>
+            </msup>
+        </math>
+        словам памяти при наличии меньшего количества выводов, чем n.
+    </li>
 </ol>
 <p><a href="7_7.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="7_9.html">К следующему</a></p>
-</body>			
+</body>
+<script type="text/javascript">
+    MathJax.Hub.Configured()
+</script>
 </html>

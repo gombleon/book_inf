@@ -1,299 +1,474 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset='UTF-8' />
-<link rel='stylesheet' type='text/css' href='style.css' />
-<meta name='author' content='leonid' />
-<title>Стеки</title>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+  extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});
+
+
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <meta charset='UTF-8'/>
+    <link rel='stylesheet' type='text/css' href='style.css'/>
+    <meta name='author' content='leonid'/>
+    <title>Стеки</title>
 </head>
 <body>
-<p><a href="8_9_3.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_9_5.html">К следующему</a> </p>
+<p><a href="8_9_3.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_9_5.html">К следующему</a>
+</p>
 <h2>8.9.4. Стеки</h2>
 
 <p><span class='teorema'>Стек можно определить как частный случай списка, в который добавлять узел можно только в начало, и удалять можно только начальный узел (именованный).</span>
 </p>
- <p>Стеки часто называют магазинными списками (push-down lists), реверсивными хранилищами (reversion storages), дисциплинами обслуживания в обратном порядке (last-in-first-out lists &#151; LIFO lists).</p>
-<p>На практике часто возникают задачи, решаемые посредством использования стеков. Например, при анализе данных возникает необходимость составить список исключительных случаев, которые следует решить впоследствии в порядке, обратном их поступлению. Для организации подобного списка удобно использовать стек, удаляя из него случаи по мере их разрешения, вплоть до полного опустошения стека. При решении задачи мы всегда мысленно организуем некое подобие стека, в котором одна задача порождает другую, а другая, в свою очередь, &#151; следующую. Так задачи накапливаются и соответственно разрешаются одна за другой. Подобно стеку протекает процесс входа в процедуру и выхода из нее во время выполнения компьютерной программы. Стеки особенно полезны при обработке языков с вложенной структурой, например, для языков программирования, арифметических выражений. Стеки чаще всего встречаются при работе с явными и неявными рекурсивными алгоритмами.</p>
-<p>Узел стека содержит одно или несколько информационных полей и одно поле ссылки на следующий узел. К примеру, можно задать такой узел:</p>
+<p>Стеки часто называют магазинными списками (push-down lists), реверсивными хранилищами (reversion storages),
+    дисциплинами обслуживания в обратном порядке (last-in-first-out lists &#151; LIFO lists).</p>
+<p>На практике часто возникают задачи, решаемые посредством использования стеков. Например, при анализе данных возникает
+    необходимость составить список исключительных случаев, которые следует решить впоследствии в порядке, обратном их
+    поступлению. Для организации подобного списка удобно использовать стек, удаляя из него случаи по мере их разрешения,
+    вплоть до полного опустошения стека. При решении задачи мы всегда мысленно организуем некое подобие стека, в котором
+    одна задача порождает другую, а другая, в свою очередь, &#151; следующую. Так задачи накапливаются и соответственно
+    разрешаются одна за другой. Подобно стеку протекает процесс входа в процедуру и выхода из нее во время выполнения
+    компьютерной программы. Стеки особенно полезны при обработке языков с вложенной структурой, например, для языков
+    программирования, арифметических выражений. Стеки чаще всего встречаются при работе с явными и неявными рекурсивными
+    алгоритмами.</p>
+<p>Узел стека содержит одно или несколько информационных полей и одно поле ссылки на следующий узел. К примеру, можно
+    задать такой узел:</p>
 <code>
-<p class='ind0'>TYPE узел=RECORD</p>
-<p class='ind2'>name: ARRAY 20 OF CHAR;</p>
-<p class='ind2'>next: указатель</p>
-<p class='ind1'>END;</p>
-<p class='ind1'>указатель=POINTER TO узел;</p>
+    <p class='ind0'>TYPE узел=RECORD</p>
+    <p class='ind2'>name: ARRAY 20 OF CHAR;</p>
+    <p class='ind2'>next: указатель</p>
+    <p class='ind1'>END;</p>
+    <p class='ind1'>указатель=POINTER TO узел;</p>
 </code>
-<p>Операции добавления узла в стек и извлечения узла из стека выполняются аналогично операциям добавления узла в начало списка и удаления заголовочного узла списка.</p>
+<p>Операции добавления узла в стек и извлечения узла из стека выполняются аналогично операциям добавления узла в начало
+    списка и удаления заголовочного узла списка.</p>
 <div class="examp">
-<p><span class="primer">Пример</span> 8.9.4.1 создания стека, добавления в стек узла, удаления узла из стека и просмотра содержимого информационного поля стека.</p>
-<code>
-<p class='ind0'>MODULE stack1;</p>
-<p class='ind1'>	IMPORT Log := StdLog, In := i21sysIn, Math;</p>
-<p class='ind1'>	TYPE список=RECORD</p>
-<p class='ind3'>		name: ARRAY 20 OF CHAR;</p>
-<p class='ind3'>		next:указатель;</p>
-<p class='ind2'>	END;</p>
-<p class='ind2'>	указатель=POINTER TO список;</p>
-<p class='ind1'>	VAR head:указатель;</p>
-	
-<p class='ind1'>	PROCEDURE first*;</p>
-<p class='ind2'>		VAR</p>
-<p class='ind1'>	BEGIN</p>
-<p class='ind2'>		IF head=NIL THEN</p>
-<p class='ind3'>			NEW( head );</p>
-<p class='ind3'>			head.next:=NIL;</p>
-<p class='ind3'>			In.Open;</p>
-<p class='ind3'>			ASSERT( In.done );</p>
-<p class='ind3'>			In.String(head.name);</p>
-<p class='ind3'>			ASSERT( In.done );</p>
-<p class='ind3'>			Log.String('Создали первый узел.');</p>
-<p class='ind3'>			Log.Ln</p>
-<p class='ind2'>		ELSE</p>
-<p class='ind3'>			Log.String('Первый узел уже существует.');</p>
-<p class='ind3'>			Log.Ln</p>
-<p class='ind2'>		END;</p>
-<p class='ind1'>	END first;</p>
-	
-<p class='ind1'>	PROCEDURE append*;</p>
-<p class='ind2'>		VAR x: указатель;</p>
-<p class='ind1'>	BEGIN</p>
-<p class='ind2'>		IF head#NIL THEN</p>
-<p class='ind3'>			NEW(x);</p>
-<p class='ind3'>			In.Open;</p>
-<p class='ind3'>			ASSERT( In.done );</p>
-<p class='ind3'>			In.String(x.name);</p>
-<p class='ind3'>			x.next:=head;</p>
-<p class='ind3'>			head:=x;</p>
-<p class='ind3'>			Log.String('Добавили один узел.');</p>
-<p class='ind3'>			Log.Ln</p>
-<p class='ind2'>		ELSE</p>
-<p class='ind3'>			first;</p>
-<p class='ind2'>		END;</p>	
-<p class='ind1'>	END append;</p>
-	
-<p class='ind1'>	PROCEDURE view*;</p>
-<p class='ind2'>		VAR x: указатель;</p>
-<p class='ind1'>	BEGIN</p>
-<p class='ind2'>		x:=head;</p>
-<p class='ind2'>		Log.String('Содержание стека:');</p>
-<p class='ind2'>		Log.Ln;</p>
-<p class='ind2'>		WHILE x.next#NIL DO</p>
-<p class='ind3'>			Log.String(x.name);</p>
-<p class='ind3'>			Log.Ln;</p>
-<p class='ind3'>			x:=x.next</p>
-<p class='ind2'>		END;</p>
-<p class='ind2'>		Log.String(x.name);</p>
-<p class='ind2'>		Log.Ln;</p>
-<p class='ind1'>	END view;</p>
-		
-<p class='ind1'>	PROCEDURE delete*;</p>
-<p class='ind2'>			VAR x: указатель;</p>
-<p class='ind1'>		BEGIN</p>
-<p class='ind2'>			IF head#NIL THEN</p>
-<p class='ind3'>				head:=head.next;</p>
-<p class='ind3'>				Log.String('Удалили один узел.');</p>
-<p class='ind2'>			ELSE</p>
-<p class='ind3'>				Log.String('Стек не существует.');</p>	
-<p class='ind2'>			END;</p>
-<p class='ind2'>			Log.Ln</p>				
-<p class='ind1'>	END delete;</p>	
-<p class='ind0'>END stack1.</p>
-<table>
-<tr>
-<td align='right' valign='bottom'>
-<svg width='35' height='40'>
-<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
-<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
-</svg>
-</td>
-<td align='left' valign='middle'>stack1.first Алладин</td>
-</tr>
-<tr>
-<td align='right' valign='bottom'>
-<svg width='35' height='40'>
-<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
-<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
-</svg>
-</td>
-<td align='left' valign='middle'>stack1.append Америка</td>
-</tr>
-<tr>
-<td align='right' valign='bottom'>
-<svg width='35' height='40'>
-<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
-<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
-</svg>
-</td>
-<td align='left' valign='middle'>stack1.view</td>
-</tr>
-<tr>
-<td align='right' valign='bottom'>
-<svg width='35' height='40'>
-<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
-<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
-</svg>
-</td>
-<td align='left' valign='middle'>stack1.delete</td>
-</tr>
-</table>
-</code>
+    <p><span class="primer">Пример</span> 8.9.4.1 создания стека, добавления в стек узла, удаления узла из стека и
+        просмотра содержимого информационного поля стека.</p>
+    <code>
+        <p class='ind0'>MODULE stack1;</p>
+        <p class='ind1'> IMPORT Log := StdLog, In := i21sysIn, Math;</p>
+        <p class='ind1'> TYPE список=RECORD</p>
+        <p class='ind3'> name: ARRAY 20 OF CHAR;</p>
+        <p class='ind3'> next:указатель;</p>
+        <p class='ind2'> END;</p>
+        <p class='ind2'> указатель=POINTER TO список;</p>
+        <p class='ind1'> VAR head:указатель;</p>
 
-<p><span class="primer">Пример</span> 8.9.4.2. Будем рассматривать последовательности открывающих и закрывающих круглых, квадратных и фигурных скобок. Среди всех таких последовательностей выделим правильные &#151; те, которые могут быть получены по таким правилам:</p>
-<ul>
-<li>пустая последовательность правильна;</li>
-<li>если <math display='inline'><mi>A</mi></math> и <math display='inline'><mi>B</mi></math> правильны, то и 
-<math display='inline'><mi>A</mi><mo>&#x2061;</mo><mi>B</mi></math>
-правильна</li>
-<li>если <math display='inline'><mi>A</mi></math> правильна, то и <math display='inline'><mo>(</mo><mi>A</mi><mo>)</mo></math>, <math display='inline'><mo>[</mo><mi>A</mi><mo>]</mo></math> и <math display='inline'><mo>{</mo><mi>A</mi><mo>}</mo></math> правильны.</li>
-</ul>
-<p>Например, последовательности (), [[ ]], [()[ ]()][ ] правильны, а последовательности ], )(, (], ([)] &#151; нет.
-</p>
-<p>Ниже представлена реализация проверки правильности последовательности открывающих и закрывающих скобок:</p>
-<code>
-<p class='ind0'>MODULE скобки;</p>
-<p class='ind1'>	IMPORT  Log := StdLog,  In := i21sysIn;</p>
-<p class='ind1'>	PROCEDURE do*;</p>
-<p class='ind2'>		TYPE node=RECORD</p>
-<p class='ind4'>				simbol: CHAR;</p>
-<p class='ind4'>				next: ptr</p>
-<p class='ind3'>			END;</p>
-<p class='ind3'>			ptr=POINTER TO node;</p>
-<p class='ind2'>		VAR  head, x: ptr;</p>
-<p class='ind3'>			s: CHAR;</p>
-<p class='ind3'>			bool: BOOLEAN;</p> 
-<p class='ind1'>	BEGIN</p>
-<p class='ind2'>		In.Open;</p>
-<p class='ind2'>		ASSERT(In.Done);</p>
-<p class='ind2'>		In.Char(s);</p>
-<p class='ind2'>		ASSERT(In.Done);</p>		
-<p class='ind2'>		bool:=TRUE;</p>
-<p class='ind2'>		WHILE In.Done & bool DO</p>
-<p class='ind3'>			IF (s='(') OR (s='[') OR (s='{') THEN</p>
-<p class='ind4'>				IF head=NIL THEN</p>
-<p class='ind5'>					NEW(head);</p>
-<p class='ind5'>					head.next:=NIL (*NIL как признак пустого стека*)</p>
-<p class='ind5'>					head.simbol:=s (*записываем открывающую скобку в поле узла head*)</p>
-<p class='ind4'>				ELSE;</p>
-<p class='ind5'>				NEW(x);</p>
-<p class='ind5'>					x.next:=head;(*добавляем в стек новый узел*)</p>
-<p class='ind5'>					x.simbol:=s; (*записываем в поле узла открывающую скобку*)</p>
-<p class='ind5'>					head:=x</p>
-<p class='ind4'>				END;</p>
-<p class='ind3'>			ELSIF (s=')') OR (s=']') OR (s='}') THEN</p>
-<p class='ind4'>				IF ORD(s)-ORD(head.simbol)<=2 THEN (*числовые коды парных скобок отличаются на 1 или 2*)</p>
-<p class='ind5'>					head:=head.next; (*удаляем из стека узел с открывающей скобкой*)</p>
-<p class='ind4'>				ELSE</p>
-<p class='ind5'>					bool:=FALSE</p>
-<p class='ind4'>				END;</p>
-<p class='ind3'>			END;</p>
-<p class='ind3'>			In.Char(s);</p>
-<p class='ind2'>		END;</p>
-<p class='ind2'>		Log.Ln;</p>
-<p class='ind2'>		IF bool & (head=NIL) THEN</p>
-<p class='ind3'>			Log.String('Последовательность правильная.');</p>
-<p class='ind2'>		ELSE</p>
-<p class='ind3'>			Log.String('Ошибка.');</p>
-<p class='ind2'>		END;</p>
-<p class='ind1'>	END do;</p>
-<p class='ind0'>END скобки.</p>
-<table>
-<tr>
-<td align='right' valign='bottom'>
-<svg width='35' height='40'>
-<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
-<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
-</svg>
-</td>
-<td align='left' valign='middle'>скобки.do (a+b)*{a-d*[a+2e]}</td>
-</tr>
-</table>
-</code>
-<p>Убедимся в правильности программы.</p>
-<ol>
-<li>Если последовательность построена по правилам, то программа даст ответ «Последовательность правильная». Это легко доказать индукцией по построению правильной последовательности. Надо проверить для пустой, для последовательности <math display='inline'><mi>A</mi><mo>&#x2061;</mo><mi>B</mi></math> в предположении, что для <math display='inline'><mi>A</mi></math> и <math display='inline'><mi>B</mi></math> уже проверено, и, наконец, для последовательностей <math display='inline'><mo>(</mo><mi>A</mi><mo>)</mo></math>, <math display='inline'><mo>[</mo><mi>A</mi><mo>]</mo></math> и <math display='inline'><mo>{</mo><mi>A</mi><mo>}</mo></math> &#151; в предположении, что для <math display='inline'><mi>A</mi></math> уже проверено. Для пустой очевидно. Для <math display='inline'><mi>A</mi><mo>&#x2061;</mo><mi>B</mi></math> действия программы происходят как для <math display='inline'><mi>A</mi></math> и кончаются с пустым стеком; затем все происходит как для <math display='inline'><mi>B</mi></math>. Для <math display='inline'><mo>[</mo><mi>A</mi><mo>]</mo></math> сначала помещается в стек открывающая квадратная скобка и затем все идет как для A &#151; с той разницей, что в глубине стека лежит квадратная скобка. По окончанию <math display='inline'><mi>A</mi></math> в стеке остается только одна скобка, которая затем тоже удаляется.
-Аналогично для <math display='inline'><mo>(</mo><mi>A</mi><mo>)</mo></math> и <math display='inline'><mo>{</mo><mi>A</mi><mo>}</mo></math>.
-</li>
-<li>
-Покажем, что если программа завершает работу с ответом «Последовательность правильная», то последовательность действительно правильная. Рассуждаем индукцией по длине последовательности. Проследим за состоянием стека в процессе работы программы. Если он в некоторый промежуточный момент пуст, то последовательность разбивается на две части, для каждой из которых программа дает ответ «Последовательность правильная»; остается воспользоваться предположением индукции и определением правильности. Пусть стек все время непуст. Это значит, что положенная в него на первом шаге скобка будет вынута лишь на последнем шаге. Тем самым, первый и последний символы последовательности &#151; это парные скобки, и последовательность имеет вид <math display='inline'><mo>(</mo><mi>A</mi><mo>)</mo></math>, <math display='inline'><mo>[</mo><mi>A</mi><mo>]</mo></math> или <math display='inline'><mo>{</mo><mi>A</mi><mo>}</mo></math>, а работа программы (кроме первого и последнего шагов) отличается от ее работы на <math display='inline'><mi>A</mi></math> лишь наличием лишней скобки на дне стека (раз ее не вынимают, она никак не влияет на работу программы). Снова ссылаемся на предположение индукции и определение правильности.
-</li>
-</ol>
+        <p class='ind1'> PROCEDURE first*;</p>
+        <p class='ind2'> VAR</p>
+        <p class='ind1'> BEGIN</p>
+        <p class='ind2'> IF head=NIL THEN</p>
+        <p class='ind3'> NEW( head );</p>
+        <p class='ind3'> head.next:=NIL;</p>
+        <p class='ind3'> In.Open;</p>
+        <p class='ind3'> ASSERT( In.done );</p>
+        <p class='ind3'> In.String(head.name);</p>
+        <p class='ind3'> ASSERT( In.done );</p>
+        <p class='ind3'> Log.String('Создали первый узел.');</p>
+        <p class='ind3'> Log.Ln</p>
+        <p class='ind2'> ELSE</p>
+        <p class='ind3'> Log.String('Первый узел уже существует.');</p>
+        <p class='ind3'> Log.Ln</p>
+        <p class='ind2'> END;</p>
+        <p class='ind1'> END first;</p>
 
-<p><span class="primer">Пример</span> 8.9.4.3 моделирования ограниченного стека в  массиве:</p>
-<code>
-<p class='ind0'>MODULE mass_stek;</p>
-<p class='ind1'>	IMPORT  Log := StdLog,  Ran:= i21eduRandom;</p>
-<p class='ind1'>	CONST n=100;</p>
-<p class='ind1'>	VAR stek: ARRAY n OF INTEGER;</p>
-<p class='ind2'>		dlina: INTEGER;</p>
-<p class='ind1'>	PROCEDURE input*;</p>
-<p class='ind1'>	BEGIN</p>
-<p class='ind2'>		IF dlina &lt; n-2 THEN</p>
-<p class='ind3'>			INC(dlina);</p>
-<p class='ind3'>			stek[dlina]:=Ran.Int(10);</p>
-<p class='ind3'>			Log.String('Добавлен один узел.');</p>
-<p class='ind3'>			Log.Ln</p>
-<p class='ind2'>		END</p>
-<p class='ind1'>	END input;</p>
-<p class='ind1'>	PROCEDURE ouput*;</p>
-<p class='ind1'>	BEGIN</p>
-<p class='ind2'>		IF dlina>0 THEN</p>
-<p class='ind3'>			DEC(dlina);</p>
-<p class='ind3'>			Log.String('Удален один узел.');</p>
-<p class='ind3'>			Log.Ln</p>
-<p class='ind2'>		ELSE</p>
-<p class='ind3'>			Log.String('Стек пуст.');</p>
-<p class='ind3'>			Log.Ln</p>
-<p class='ind2'>		END;</p>		
-<p class='ind1'>	END ouput;</p>	
-<p class='ind1'>	PROCEDURE view*;</p>
-<p class='ind2'>		VAR  i: INTEGER;</p>
-<p class='ind1'>	BEGIN</p>
-<p class='ind2'>		IF dlina>0 THEN</p>
-<p class='ind3'>			FOR i :=1  TO dlina DO</p>
-<p class='ind4'>				Log.Int(stek[i])</p>
-<p class='ind3'>			END;</p>
-<p class='ind3'>			Log.Ln</p>
-<p class='ind2'>		ELSE</p>
-<p class='ind3'>			Log.String('Стек пуст.');</p>
-<p class='ind3'>			Log.Ln</p>
-<p class='ind2'>		END;</p>
-<p class='ind1'>	END view;</p>
-<p class='ind0'>BEGIN</p>
-<p class='ind1'>	dlina:=0;</p>	
-<p class='ind0'>END mass_stek.</p>
-<table>
-<tr>
-<td align='right' valign='bottom'>
-<svg width='35' height='40'>
-<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
-<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
-</svg>
-</td>
-<td align='left' valign='middle'>mass_stek.input</td>
-</tr>
-<tr>
-<td align='right' valign='bottom'>
-<svg width='35' height='40'>
-<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
-<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
-</svg>
-</td>
-<td align='left' valign='middle'>mass_stek.ouput</td>
-</tr>
-<tr>
-<td align='right' valign='bottom'>
-<svg width='35' height='40'>
-<circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
-<text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
-</svg>
-</td>
-<td align='left' valign='middle'>mass_stek.view</td>
-</tr>
-</table>
-</code>
+        <p class='ind1'> PROCEDURE append*;</p>
+        <p class='ind2'> VAR x: указатель;</p>
+        <p class='ind1'> BEGIN</p>
+        <p class='ind2'> IF head#NIL THEN</p>
+        <p class='ind3'> NEW(x);</p>
+        <p class='ind3'> In.Open;</p>
+        <p class='ind3'> ASSERT( In.done );</p>
+        <p class='ind3'> In.String(x.name);</p>
+        <p class='ind3'> x.next:=head;</p>
+        <p class='ind3'> head:=x;</p>
+        <p class='ind3'> Log.String('Добавили один узел.');</p>
+        <p class='ind3'> Log.Ln</p>
+        <p class='ind2'> ELSE</p>
+        <p class='ind3'> first;</p>
+        <p class='ind2'> END;</p>
+        <p class='ind1'> END append;</p>
+
+        <p class='ind1'> PROCEDURE view*;</p>
+        <p class='ind2'> VAR x: указатель;</p>
+        <p class='ind1'> BEGIN</p>
+        <p class='ind2'> x:=head;</p>
+        <p class='ind2'> Log.String('Содержание стека:');</p>
+        <p class='ind2'> Log.Ln;</p>
+        <p class='ind2'> WHILE x.next#NIL DO</p>
+        <p class='ind3'> Log.String(x.name);</p>
+        <p class='ind3'> Log.Ln;</p>
+        <p class='ind3'> x:=x.next</p>
+        <p class='ind2'> END;</p>
+        <p class='ind2'> Log.String(x.name);</p>
+        <p class='ind2'> Log.Ln;</p>
+        <p class='ind1'> END view;</p>
+
+        <p class='ind1'> PROCEDURE delete*;</p>
+        <p class='ind2'> VAR x: указатель;</p>
+        <p class='ind1'> BEGIN</p>
+        <p class='ind2'> IF head#NIL THEN</p>
+        <p class='ind3'> head:=head.next;</p>
+        <p class='ind3'> Log.String('Удалили один узел.');</p>
+        <p class='ind2'> ELSE</p>
+        <p class='ind3'> Log.String('Стек не существует.');</p>
+        <p class='ind2'> END;</p>
+        <p class='ind2'> Log.Ln</p>
+        <p class='ind1'> END delete;</p>
+        <p class='ind0'>END stack1.</p>
+        <table>
+            <tr>
+                <td align='right' valign='bottom'>
+                    <svg width='35' height='40'>
+                        <circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+                        <text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+                    </svg>
+                </td>
+                <td align='left' valign='middle'>stack1.first Алладин</td>
+            </tr>
+            <tr>
+                <td align='right' valign='bottom'>
+                    <svg width='35' height='40'>
+                        <circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+                        <text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+                    </svg>
+                </td>
+                <td align='left' valign='middle'>stack1.append Америка</td>
+            </tr>
+            <tr>
+                <td align='right' valign='bottom'>
+                    <svg width='35' height='40'>
+                        <circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+                        <text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+                    </svg>
+                </td>
+                <td align='left' valign='middle'>stack1.view</td>
+            </tr>
+            <tr>
+                <td align='right' valign='bottom'>
+                    <svg width='35' height='40'>
+                        <circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+                        <text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+                    </svg>
+                </td>
+                <td align='left' valign='middle'>stack1.delete</td>
+            </tr>
+        </table>
+    </code>
+
+    <p><span class="primer">Пример</span> 8.9.4.2. Будем рассматривать последовательности открывающих и закрывающих
+        круглых, квадратных и фигурных скобок. Среди всех таких последовательностей выделим правильные &#151; те,
+        которые могут быть получены по таким правилам:</p>
+    <ul>
+        <li>пустая последовательность правильна;</li>
+        <li>если
+            <math display='inline'>
+                <mi>A</mi>
+            </math>
+            и
+            <math display='inline'>
+                <mi>B</mi>
+            </math>
+            правильны, то и
+            <math display='inline'>
+                <mi>A</mi>
+                <mo>&#x2061;</mo>
+                <mi>B</mi>
+            </math>
+            правильна
+        </li>
+        <li>если
+            <math display='inline'>
+                <mi>A</mi>
+            </math>
+            правильна, то и
+            <math display='inline'>
+                <mo>(</mo>
+                <mi>A</mi>
+                <mo>)</mo>
+            </math>
+            ,
+            <math display='inline'>
+                <mo>[</mo>
+                <mi>A</mi>
+                <mo>]</mo>
+            </math>
+            и
+            <math display='inline'>
+                <mo>{</mo>
+                <mi>A</mi>
+                <mo>}</mo>
+            </math>
+            правильны.
+        </li>
+    </ul>
+    <p>Например, последовательности (), [[ ]], [()[ ]()][ ] правильны, а последовательности ], )(, (], ([)] &#151; нет.
+    </p>
+    <p>Ниже представлена реализация проверки правильности последовательности открывающих и закрывающих скобок:</p>
+    <code>
+        <p class='ind0'>MODULE скобки;</p>
+        <p class='ind1'> IMPORT Log := StdLog, In := i21sysIn;</p>
+        <p class='ind1'> PROCEDURE do*;</p>
+        <p class='ind2'> TYPE node=RECORD</p>
+        <p class='ind4'> simbol: CHAR;</p>
+        <p class='ind4'> next: ptr</p>
+        <p class='ind3'> END;</p>
+        <p class='ind3'> ptr=POINTER TO node;</p>
+        <p class='ind2'> VAR head, x: ptr;</p>
+        <p class='ind3'> s: CHAR;</p>
+        <p class='ind3'> bool: BOOLEAN;</p>
+        <p class='ind1'> BEGIN</p>
+        <p class='ind2'> In.Open;</p>
+        <p class='ind2'> ASSERT(In.Done);</p>
+        <p class='ind2'> In.Char(s);</p>
+        <p class='ind2'> ASSERT(In.Done);</p>
+        <p class='ind2'> bool:=TRUE;</p>
+        <p class='ind2'> WHILE In.Done & bool DO</p>
+        <p class='ind3'> IF (s='(') OR (s='[') OR (s='{') THEN</p>
+        <p class='ind4'> IF head=NIL THEN</p>
+        <p class='ind5'> NEW(head);</p>
+        <p class='ind5'> head.next:=NIL (*NIL как признак пустого стека*)</p>
+        <p class='ind5'> head.simbol:=s (*записываем открывающую скобку в поле узла head*)</p>
+        <p class='ind4'> ELSE;</p>
+        <p class='ind5'> NEW(x);</p>
+        <p class='ind5'> x.next:=head;(*добавляем в стек новый узел*)</p>
+        <p class='ind5'> x.simbol:=s; (*записываем в поле узла открывающую скобку*)</p>
+        <p class='ind5'> head:=x</p>
+        <p class='ind4'> END;</p>
+        <p class='ind3'> ELSIF (s=')') OR (s=']') OR (s='}') THEN</p>
+        <p class='ind4'> IF ORD(s)-ORD(head.simbol)<=2 THEN (*числовые коды парных скобок отличаются на 1 или 2*)</p>
+        <p class='ind5'> head:=head.next; (*удаляем из стека узел с открывающей скобкой*)</p>
+        <p class='ind4'> ELSE</p>
+        <p class='ind5'> bool:=FALSE</p>
+        <p class='ind4'> END;</p>
+        <p class='ind3'> END;</p>
+        <p class='ind3'> In.Char(s);</p>
+        <p class='ind2'> END;</p>
+        <p class='ind2'> Log.Ln;</p>
+        <p class='ind2'> IF bool & (head=NIL) THEN</p>
+        <p class='ind3'> Log.String('Последовательность правильная.');</p>
+        <p class='ind2'> ELSE</p>
+        <p class='ind3'> Log.String('Ошибка.');</p>
+        <p class='ind2'> END;</p>
+        <p class='ind1'> END do;</p>
+        <p class='ind0'>END скобки.</p>
+        <table>
+            <tr>
+                <td align='right' valign='bottom'>
+                    <svg width='35' height='40'>
+                        <circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+                        <text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+                    </svg>
+                </td>
+                <td align='left' valign='middle'>скобки.do (a+b)*{a-d*[a+2e]}</td>
+            </tr>
+        </table>
+    </code>
+    <p>Убедимся в правильности программы.</p>
+    <ol>
+        <li>Если последовательность построена по правилам, то программа даст ответ «Последовательность правильная». Это
+            легко доказать индукцией по построению правильной последовательности. Надо проверить для пустой, для
+            последовательности
+            <math display='inline'>
+                <mi>A</mi>
+                <mo>&#x2061;</mo>
+                <mi>B</mi>
+            </math>
+            в предположении, что для
+            <math display='inline'>
+                <mi>A</mi>
+            </math>
+            и
+            <math display='inline'>
+                <mi>B</mi>
+            </math>
+            уже проверено, и, наконец, для последовательностей
+            <math display='inline'>
+                <mo>(</mo>
+                <mi>A</mi>
+                <mo>)</mo>
+            </math>
+            ,
+            <math display='inline'>
+                <mo>[</mo>
+                <mi>A</mi>
+                <mo>]</mo>
+            </math>
+            и
+            <math display='inline'>
+                <mo>{</mo>
+                <mi>A</mi>
+                <mo>}</mo>
+            </math> &#151; в предположении, что для
+            <math display='inline'>
+                <mi>A</mi>
+            </math>
+            уже проверено. Для пустой очевидно. Для
+            <math display='inline'>
+                <mi>A</mi>
+                <mo>&#x2061;</mo>
+                <mi>B</mi>
+            </math>
+            действия программы происходят как для
+            <math display='inline'>
+                <mi>A</mi>
+            </math>
+            и кончаются с пустым стеком; затем все происходит как для
+            <math display='inline'>
+                <mi>B</mi>
+            </math>
+            . Для
+            <math display='inline'>
+                <mo>[</mo>
+                <mi>A</mi>
+                <mo>]</mo>
+            </math>
+            сначала помещается в стек открывающая квадратная скобка и затем все идет как для A &#151; с той разницей,
+            что в глубине стека лежит квадратная скобка. По окончанию
+            <math display='inline'>
+                <mi>A</mi>
+            </math>
+            в стеке остается только одна скобка, которая затем тоже удаляется.
+            Аналогично для
+            <math display='inline'>
+                <mo>(</mo>
+                <mi>A</mi>
+                <mo>)</mo>
+            </math>
+            и
+            <math display='inline'>
+                <mo>{</mo>
+                <mi>A</mi>
+                <mo>}</mo>
+            </math>
+            .
+        </li>
+        <li>
+            Покажем, что если программа завершает работу с ответом «Последовательность правильная», то
+            последовательность действительно правильная. Рассуждаем индукцией по длине последовательности. Проследим за
+            состоянием стека в процессе работы программы. Если он в некоторый промежуточный момент пуст, то
+            последовательность разбивается на две части, для каждой из которых программа дает ответ «Последовательность
+            правильная»; остается воспользоваться предположением индукции и определением правильности. Пусть стек все
+            время непуст. Это значит, что положенная в него на первом шаге скобка будет вынута лишь на последнем шаге.
+            Тем самым, первый и последний символы последовательности &#151; это парные скобки, и последовательность
+            имеет вид
+            <math display='inline'>
+                <mo>(</mo>
+                <mi>A</mi>
+                <mo>)</mo>
+            </math>
+            ,
+            <math display='inline'>
+                <mo>[</mo>
+                <mi>A</mi>
+                <mo>]</mo>
+            </math>
+            или
+            <math display='inline'>
+                <mo>{</mo>
+                <mi>A</mi>
+                <mo>}</mo>
+            </math>
+            , а работа программы (кроме первого и последнего шагов) отличается от ее работы на
+            <math display='inline'>
+                <mi>A</mi>
+            </math>
+            лишь наличием лишней скобки на дне стека (раз ее не вынимают, она никак не влияет на работу программы).
+            Снова ссылаемся на предположение индукции и определение правильности.
+        </li>
+    </ol>
+
+    <p><span class="primer">Пример</span> 8.9.4.3 моделирования ограниченного стека в массиве:</p>
+    <code>
+        <p class='ind0'>MODULE mass_stek;</p>
+        <p class='ind1'> IMPORT Log := StdLog, Ran:= i21eduRandom;</p>
+        <p class='ind1'> CONST n=100;</p>
+        <p class='ind1'> VAR stek: ARRAY n OF INTEGER;</p>
+        <p class='ind2'> dlina: INTEGER;</p>
+        <p class='ind1'> PROCEDURE input*;</p>
+        <p class='ind1'> BEGIN</p>
+        <p class='ind2'> IF dlina &lt; n-2 THEN</p>
+        <p class='ind3'> INC(dlina);</p>
+        <p class='ind3'> stek[dlina]:=Ran.Int(10);</p>
+        <p class='ind3'> Log.String('Добавлен один узел.');</p>
+        <p class='ind3'> Log.Ln</p>
+        <p class='ind2'> END</p>
+        <p class='ind1'> END input;</p>
+        <p class='ind1'> PROCEDURE ouput*;</p>
+        <p class='ind1'> BEGIN</p>
+        <p class='ind2'> IF dlina>0 THEN</p>
+        <p class='ind3'> DEC(dlina);</p>
+        <p class='ind3'> Log.String('Удален один узел.');</p>
+        <p class='ind3'> Log.Ln</p>
+        <p class='ind2'> ELSE</p>
+        <p class='ind3'> Log.String('Стек пуст.');</p>
+        <p class='ind3'> Log.Ln</p>
+        <p class='ind2'> END;</p>
+        <p class='ind1'> END ouput;</p>
+        <p class='ind1'> PROCEDURE view*;</p>
+        <p class='ind2'> VAR i: INTEGER;</p>
+        <p class='ind1'> BEGIN</p>
+        <p class='ind2'> IF dlina>0 THEN</p>
+        <p class='ind3'> FOR i :=1 TO dlina DO</p>
+        <p class='ind4'> Log.Int(stek[i])</p>
+        <p class='ind3'> END;</p>
+        <p class='ind3'> Log.Ln</p>
+        <p class='ind2'> ELSE</p>
+        <p class='ind3'> Log.String('Стек пуст.');</p>
+        <p class='ind3'> Log.Ln</p>
+        <p class='ind2'> END;</p>
+        <p class='ind1'> END view;</p>
+        <p class='ind0'>BEGIN</p>
+        <p class='ind1'> dlina:=0;</p>
+        <p class='ind0'>END mass_stek.</p>
+        <table>
+            <tr>
+                <td align='right' valign='bottom'>
+                    <svg width='35' height='40'>
+                        <circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+                        <text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+                    </svg>
+                </td>
+                <td align='left' valign='middle'>mass_stek.input</td>
+            </tr>
+            <tr>
+                <td align='right' valign='bottom'>
+                    <svg width='35' height='40'>
+                        <circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+                        <text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+                    </svg>
+                </td>
+                <td align='left' valign='middle'>mass_stek.ouput</td>
+            </tr>
+            <tr>
+                <td align='right' valign='bottom'>
+                    <svg width='35' height='40'>
+                        <circle cx='20' cy='20' r='10' stroke="#000000" stroke-width="1" fill="#000000"/>
+                        <text x='17' y='23' stroke="#FFFFFF" fill="#FFFFFF" font-size="12">!</text>
+                    </svg>
+                </td>
+                <td align='left' valign='middle'>mass_stek.view</td>
+            </tr>
+        </table>
+    </code>
 </div>
-<h3>Задачи для самостоятельного решения из сборника задач по программированию под редакцией С.А. Абрамова, Г.Г. Гнездиловой, Е.Н. Капустиной, М.И. Селюн. Задачи по программированию:</h3>
-<p><a href='zadachi/14.html'>§14 Вычисление с хранением последовательностей, число членов которых зависит от исходных данных</a></p>
+<h3>Задачи для самостоятельного решения из сборника задач по программированию под редакцией С.А. Абрамова, Г.Г.
+    Гнездиловой, Е.Н. Капустиной, М.И. Селюн. Задачи по программированию:</h3>
+<p><a href='zadachi/14.html'>§14 Вычисление с хранением последовательностей, число членов которых зависит от исходных
+    данных</a></p>
 <p><a href='zadachi/36.html'>§36. Некоторые приемы программирования</a></p>
-<p><a href="8_9_3.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_9_5.html">К следующему</a> </p>
+<p><a href="8_9_3.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_9_5.html">К следующему</a>
+</p>
 </body>
+<script type="text/javascript">
+    MathJax.Hub.Configured()
+</script>
 </html>

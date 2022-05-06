@@ -1,220 +1,278 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset='UTF-8' />
-<link rel='stylesheet' type='text/css' href='style.css' />
-<meta name='author' content='leonid' />
-<title>Рекурсивная обработка деревьев</title>
-<script type="text/javascript">
-function hanoi(n) {
-	var win=open("", "newWindow"),  html, head, title, body, h3, p, fact, x=1, y=2, z=3;
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+  extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});
 
 
-function pechat(n) {
-	var win=open("", "newWindow"),  html, head, title, body, h3, p, fact;
-	function print(n) {
-		if (n<10) {
-			p=document.createElement("p");
-			p.textContent="Вызывается процедура print("+n+")"+".";
-			body.appendChild(p);
-			
-			p=document.createElement("p");
-			p.textContent="Исполняется процедура print("+n+"): "+n;
-			body.appendChild(p);			
-		}
-		else {
-			p=document.createElement("p");
-			p.textContent="Вызывается процедура print("+n+")"+".";
-			body.appendChild(p);
-			print((n-(n % 10))/10);
-			p=document.createElement("p");
-			p.textContent="Исполняется процедура print("+n+"): "+n % 10;
-			body.appendChild(p);			
-		}
-		return fact;
-	}
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-	win.document.open();
-	html=document.createElement("html");
-	win.document.appendChild(html);
-	head=document.createElement("head");
-	title=document.createElement("title");
-	title.textContent="Демонстрация порядка вызова и исполнения процедур печати цифр натурального числа";
-	head.appendChild(title);
-	html.appendChild(head);
-	body=document.createElement("body");
-	html.appendChild(body);
-	h3=document.createElement("h3");
-	h3.textContent="Демонстрация порядка вызова и исполнения процедур печати цифр натурального числа";
-	body.appendChild(h3);
-	p=document.createElement("p");
-	p.textContent="n="+n;
-	body.appendChild(p);
-	print(n);
-	win.document.close();
-}
+    <meta charset='UTF-8'/>
+    <link rel='stylesheet' type='text/css' href='style.css'/>
+    <meta name='author' content='leonid'/>
+    <title>Рекурсивная обработка деревьев</title>
+    <script type="text/javascript">
+        function hanoi(n) {
+            var win = open("", "newWindow"), html, head, title, body, h3, p, fact, x = 1, y = 2, z = 3;
 
-</script>
+
+            function pechat(n) {
+                var win = open("", "newWindow"), html, head, title, body, h3, p, fact;
+
+                function print(n) {
+                    if (n < 10) {
+                        p = document.createElement("p");
+                        p.textContent = "Вызывается процедура print(" + n + ")" + ".";
+                        body.appendChild(p);
+
+                        p = document.createElement("p");
+                        p.textContent = "Исполняется процедура print(" + n + "): " + n;
+                        body.appendChild(p);
+                    } else {
+                        p = document.createElement("p");
+                        p.textContent = "Вызывается процедура print(" + n + ")" + ".";
+                        body.appendChild(p);
+                        print((n - (n % 10)) / 10);
+                        p = document.createElement("p");
+                        p.textContent = "Исполняется процедура print(" + n + "): " + n % 10;
+                        body.appendChild(p);
+                    }
+                    return fact;
+                }
+
+                win.document.open();
+                html = document.createElement("html");
+                win.document.appendChild(html);
+                head = document.createElement("head");
+                title = document.createElement("title");
+                title.textContent = "Демонстрация порядка вызова и исполнения процедур печати цифр натурального числа";
+                head.appendChild(title);
+                html.appendChild(head);
+                body = document.createElement("body");
+                html.appendChild(body);
+                h3 = document.createElement("h3");
+                h3.textContent = "Демонстрация порядка вызова и исполнения процедур печати цифр натурального числа";
+                body.appendChild(h3);
+                p = document.createElement("p");
+                p.textContent = "n=" + n;
+                body.appendChild(p);
+                print(n);
+                win.document.close();
+            }
+
+    </script>
 </head>
 <body>
-<p><a href="8_12_1.html">К предыдущему</a> <a href="index.html">К содержанию</a><a href="8_12_3.html">К следующему</a></p>
-<h2>8.12.2. Рекурсивная обработка деревьев</h2>
-<p>Рассмотрим рекурсивную обработку <a href='8_9_6.html#bin_tree'>бинарных деревьев</a> из <a href='litra.html#40'>[41], с. 119 &#151; 122</a>. При этом будем предполагать, что каждый узел дерева нумеруется уникальным натуральным числом. Дерево задается двумя массивами
-l, r: ARRAY n OF INTEGER;
-l[i] и r[i] хранят номера левого и правого потомков узла дерева с номером <math><mi>i</mi></math>, всего узлов &#151; <math><mi>n</mi></math>. Если l[i]=0 (r[i]=0), то узел с номером i не имеет левого (правого) потомка.
+<p><a href="8_12_1.html">К предыдущему</a> <a href="index.html">К содержанию</a><a href="8_12_3.html">К следующему</a>
 </p>
-<p><span class="primer">Пример 8.12.2.1.</span>Рассмотрим на рисунке 8.12.2.1 бинарное дерево, корень которого пронумерован 4:</p>
-<svg height = "210px"  width = "300px">
-<g transform="translate(0,-30)">
-<circle cx="100" cy="200" r="12" stroke="#000000" stroke-width="1" fill="none" />
-<text x='96' y='203' stroke="none" fill="#000000" font-size="12">4</text>
-<circle cx="70" cy="150" r="12" stroke="#000000" stroke-width="1" fill="none" />
-<text x='66' y='154' stroke="none" fill="#000000" font-size="12">3</text>
-<circle cx="130" cy="150" r="12" stroke="#000000" stroke-width="1" fill="none" />
-<text x='126' y='154' stroke="none" fill="#000000" font-size="12">1</text>
-<circle cx="90" cy="100" r="12" stroke="#000000" stroke-width="1" fill="none" />
-<text x='86' y='104' stroke="none" fill="#000000" font-size="12">2</text>
-<circle cx="170" cy="100" r="12" stroke="#000000" stroke-width="1" fill="none" />
-<text x='166' y='104' stroke="none" fill="#000000" font-size="12">5</text>
-<circle cx="224" cy="50" r="12" stroke="#000000" stroke-width="1" fill="none" />
-<text x='220' y='54' stroke="none" fill="#000000" font-size="12">6</text>
-<line x1='100' y1='188' x2='75' y2='160' stroke="#000000" stroke-width="1" fill="none"/>
-<line x1='100' y1='188' x2='126' y2='160' stroke="#000000" stroke-width="1" fill="none"/>
-<line x1='130' y1='138' x2='98' y2='108' stroke="#000000" stroke-width="1" fill="none"/>
-<line x1='130' y1='138' x2='162' y2='108' stroke="#000000" stroke-width="1" fill="none"/>
-<line x1='179' y1='91' x2='216' y2='59' stroke="#000000" stroke-width="1" fill="none"/>
-<text x='45' y='235' stroke="none" fill="#000000" font-size="12">Рис. 8.12.2.1. Бинарное дерево</text>
-</g>
+<h2>8.12.2. Рекурсивная обработка деревьев</h2>
+<p>Рассмотрим рекурсивную обработку <a href='8_9_6.html#bin_tree'>бинарных деревьев</a> из <a href='litra.html#40'>[41],
+    с. 119 &#151; 122</a>. При этом будем предполагать, что каждый узел дерева нумеруется уникальным натуральным числом.
+    Дерево задается двумя массивами
+    l, r: ARRAY n OF INTEGER;
+    l[i] и r[i] хранят номера левого и правого потомков узла дерева с номером
+    <math>
+        <mi>i</mi>
+    </math>
+    , всего узлов &#151;
+    <math>
+        <mi>n</mi>
+    </math>
+    . Если l[i]=0 (r[i]=0), то узел с номером i не имеет левого (правого) потомка.
+</p>
+<p><span class="primer">Пример 8.12.2.1.</span>Рассмотрим на рисунке 8.12.2.1 бинарное дерево, корень которого
+    пронумерован 4:</p>
+<svg height="210px" width="300px">
+    <g transform="translate(0,-30)">
+        <circle cx="100" cy="200" r="12" stroke="#000000" stroke-width="1" fill="none"/>
+        <text x='96' y='203' stroke="none" fill="#000000" font-size="12">4</text>
+        <circle cx="70" cy="150" r="12" stroke="#000000" stroke-width="1" fill="none"/>
+        <text x='66' y='154' stroke="none" fill="#000000" font-size="12">3</text>
+        <circle cx="130" cy="150" r="12" stroke="#000000" stroke-width="1" fill="none"/>
+        <text x='126' y='154' stroke="none" fill="#000000" font-size="12">1</text>
+        <circle cx="90" cy="100" r="12" stroke="#000000" stroke-width="1" fill="none"/>
+        <text x='86' y='104' stroke="none" fill="#000000" font-size="12">2</text>
+        <circle cx="170" cy="100" r="12" stroke="#000000" stroke-width="1" fill="none"/>
+        <text x='166' y='104' stroke="none" fill="#000000" font-size="12">5</text>
+        <circle cx="224" cy="50" r="12" stroke="#000000" stroke-width="1" fill="none"/>
+        <text x='220' y='54' stroke="none" fill="#000000" font-size="12">6</text>
+        <line x1='100' y1='188' x2='75' y2='160' stroke="#000000" stroke-width="1" fill="none"/>
+        <line x1='100' y1='188' x2='126' y2='160' stroke="#000000" stroke-width="1" fill="none"/>
+        <line x1='130' y1='138' x2='98' y2='108' stroke="#000000" stroke-width="1" fill="none"/>
+        <line x1='130' y1='138' x2='162' y2='108' stroke="#000000" stroke-width="1" fill="none"/>
+        <line x1='179' y1='91' x2='216' y2='59' stroke="#000000" stroke-width="1" fill="none"/>
+        <text x='45' y='235' stroke="none" fill="#000000" font-size="12">Рис. 8.12.2.1. Бинарное дерево</text>
+    </g>
 </svg>
 <p>Очевидно, что рассматриваемое бинарное дерево можно задать таблицей 8.12.2.1:</p>
 <table border="1" align='center'>
-<caption>Таблица 8.12.2.1</caption>
-<tr>
-<td>i</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td>
-</tr>
-<tr>
-<td>l[i]</td><td>2</td><td>0</td><td>0</td><td>3</td><td>0</td><td>0</td>
-</tr>
-<tr>
-<td>r[i]</td><td>5</td><td>0</td><td>0</td><td>1</td><td>6</td><td>0</td>
-</tr>
+    <caption>Таблица 8.12.2.1</caption>
+    <tr>
+        <td>i</td>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>l[i]</td>
+        <td>2</td>
+        <td>0</td>
+        <td>0</td>
+        <td>3</td>
+        <td>0</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>r[i]</td>
+        <td>5</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>6</td>
+        <td>0</td>
+    </tr>
 </table>
 <p><span class="primer">Пример 8.12.2.2.</span> Программа вычисления количества узлов в дереве:</p>
 <code>
-<p class='ind0'>MODULE tree12_2_1;</p>
-<p class='ind1'>IMPORT  Log := StdLog,  In := i21sysIn;</p>
-<p class='ind1'>PROCEDURE do*;</p>
-<p class='ind2'>CONST n=7;</p>
-<p class='ind2'>VAR  l, r: ARRAY n OF INTEGER;</p>
-<p class='ind3'>i, root: INTEGER;</p>
-<p class='ind2'>PROCEDURE calc(t: INTEGER): INTEGER;</p>
-<p class='ind3'>VAR v: INTEGER;</p>
-<p class='ind2'>BEGIN</p>
-<p class='ind3'>IF t=0 THEN</p>
-<p class='ind4'>v:=0;</p>
-<p class='ind3'>ELSE</p>
-<p class='ind4'>v:=calc(l[t])+calc(r[t])+1; (*левый потомок+правый потомок+сам узел *)</p>
-<p class='ind3'>END;</p>
-<p class='ind3'>RETURN v</p>
-<p class='ind2'>END calc;</p>	
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>In.Open;</p>
-<p class='ind2'>ASSERT(In.Done);</p>
-<p class='ind3'>In.Int(root) (*номер корня дерева*)</p> 
-<p class='ind2'>FOR i :=1  TO n-1 DO</p>
-<p class='ind3'>In.Int(l[i])</p>
-<p class='ind2'>END;</p>
-<p class='ind2'>FOR i :=1  TO n-1 DO</p>
-<p class='ind3'>In.Int(r[i])</p>
-<p class='ind2'>END;</p>
-<p class='ind2'>i:=calc(root);</p>
-<p class='ind2'>Log.String(&quot;Всего узлов &quot;);</p>
-<p class='ind2'>Log.Int(i);</p>
-<p class='ind2'>Log.Ln</p>
-<p class='ind1'>END do;</p>
-<p class='ind0'>END tree12_2_1.</p>
+    <p class='ind0'>MODULE tree12_2_1;</p>
+    <p class='ind1'>IMPORT Log := StdLog, In := i21sysIn;</p>
+    <p class='ind1'>PROCEDURE do*;</p>
+    <p class='ind2'>CONST n=7;</p>
+    <p class='ind2'>VAR l, r: ARRAY n OF INTEGER;</p>
+    <p class='ind3'>i, root: INTEGER;</p>
+    <p class='ind2'>PROCEDURE calc(t: INTEGER): INTEGER;</p>
+    <p class='ind3'>VAR v: INTEGER;</p>
+    <p class='ind2'>BEGIN</p>
+    <p class='ind3'>IF t=0 THEN</p>
+    <p class='ind4'>v:=0;</p>
+    <p class='ind3'>ELSE</p>
+    <p class='ind4'>v:=calc(l[t])+calc(r[t])+1; (*левый потомок+правый потомок+сам узел *)</p>
+    <p class='ind3'>END;</p>
+    <p class='ind3'>RETURN v</p>
+    <p class='ind2'>END calc;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>In.Open;</p>
+    <p class='ind2'>ASSERT(In.Done);</p>
+    <p class='ind3'>In.Int(root) (*номер корня дерева*)</p>
+    <p class='ind2'>FOR i :=1 TO n-1 DO</p>
+    <p class='ind3'>In.Int(l[i])</p>
+    <p class='ind2'>END;</p>
+    <p class='ind2'>FOR i :=1 TO n-1 DO</p>
+    <p class='ind3'>In.Int(r[i])</p>
+    <p class='ind2'>END;</p>
+    <p class='ind2'>i:=calc(root);</p>
+    <p class='ind2'>Log.String(&quot;Всего узлов &quot;);</p>
+    <p class='ind2'>Log.Int(i);</p>
+    <p class='ind2'>Log.Ln</p>
+    <p class='ind1'>END do;</p>
+    <p class='ind0'>END tree12_2_1.</p>
 </code>
 <p>Для дерева на рис. 8.12.2.1 входной поток будет таким: &quot; 4 2 0 0 3 0 0 5 0 0 1 6 0&quot;.</p>
 <p><span class="primer">Пример 8.12.2.3.</span> Программа вычисления количества листов в дереве:</p>
 <code>
-<p class='ind0'>MODULE tree12_2_2;</p>
-<p class='ind1'>IMPORT  Log := StdLog,  In := i21sysIn;</p>
-<p class='ind1'>PROCEDURE do*;</p>
-<p class='ind2'>CONST n=7;</p>
-<p class='ind2'>VAR  l, r: ARRAY n OF INTEGER;</p>
-<p class='ind3'>i, root: INTEGER;</p>
-<p class='ind2'>PROCEDURE calc(t: INTEGER): INTEGER;</p>
-<p class='ind3'>VAR v: INTEGER;</p>
-<p class='ind2'>BEGIN</p>
-<p class='ind3'>IF t=0 THEN</p>
-<p class='ind4'>v:=0;</p>
-<p class='ind3'>ELSIF (l[t]=0) & (r[t]=0) THEN</p>	
-<p class='ind4'>v:=1;</p>
-<p class='ind3'>ELSE</p>
-<p class='ind4'>v:=calc(l[t])+calc(r[t]); (*левый потомок+правый потомок*)</p>
-<p class='ind3'>END;</p>
-<p class='ind3'>RETURN v</p>
-<p class='ind2'>END calc;</p>	
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>In.Open;</p>
-<p class='ind2'>ASSERT(In.Done);</p>
-<p class='ind3'>In.Int(root) (*номер корня дерева*)</p> 
-<p class='ind2'>FOR i :=1  TO n-1 DO</p>
-<p class='ind3'>In.Int(l[i])</p>
-<p class='ind2'>END;</p>
-<p class='ind2'>FOR i :=1  TO n-1 DO</p>
-<p class='ind3'>In.Int(r[i])</p>
-<p class='ind2'>END;</p>
-<p class='ind2'>i:=calc(root);</p>
-<p class='ind2'>Log.String(&quot;Всего листов &quot;);</p>
-<p class='ind2'>Log.Int(i);</p>
-<p class='ind2'>Log.Ln</p>
-<p class='ind1'>END do;</p>
-<p class='ind0'>END tree12_2_2.</p>
+    <p class='ind0'>MODULE tree12_2_2;</p>
+    <p class='ind1'>IMPORT Log := StdLog, In := i21sysIn;</p>
+    <p class='ind1'>PROCEDURE do*;</p>
+    <p class='ind2'>CONST n=7;</p>
+    <p class='ind2'>VAR l, r: ARRAY n OF INTEGER;</p>
+    <p class='ind3'>i, root: INTEGER;</p>
+    <p class='ind2'>PROCEDURE calc(t: INTEGER): INTEGER;</p>
+    <p class='ind3'>VAR v: INTEGER;</p>
+    <p class='ind2'>BEGIN</p>
+    <p class='ind3'>IF t=0 THEN</p>
+    <p class='ind4'>v:=0;</p>
+    <p class='ind3'>ELSIF (l[t]=0) & (r[t]=0) THEN</p>
+    <p class='ind4'>v:=1;</p>
+    <p class='ind3'>ELSE</p>
+    <p class='ind4'>v:=calc(l[t])+calc(r[t]); (*левый потомок+правый потомок*)</p>
+    <p class='ind3'>END;</p>
+    <p class='ind3'>RETURN v</p>
+    <p class='ind2'>END calc;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>In.Open;</p>
+    <p class='ind2'>ASSERT(In.Done);</p>
+    <p class='ind3'>In.Int(root) (*номер корня дерева*)</p>
+    <p class='ind2'>FOR i :=1 TO n-1 DO</p>
+    <p class='ind3'>In.Int(l[i])</p>
+    <p class='ind2'>END;</p>
+    <p class='ind2'>FOR i :=1 TO n-1 DO</p>
+    <p class='ind3'>In.Int(r[i])</p>
+    <p class='ind2'>END;</p>
+    <p class='ind2'>i:=calc(root);</p>
+    <p class='ind2'>Log.String(&quot;Всего листов &quot;);</p>
+    <p class='ind2'>Log.Int(i);</p>
+    <p class='ind2'>Log.Ln</p>
+    <p class='ind1'>END do;</p>
+    <p class='ind0'>END tree12_2_2.</p>
 </code>
 <p><span class="primer">Пример 8.12.2.4.</span> Программа печати узлов дерева без повторений:</p>
 <code>
-<p class='ind0'>MODULE tree12_2_3;</p>
-<p class='ind1'>IMPORT  Log := StdLog,  In := i21sysIn;</p>
-<p class='ind1'>PROCEDURE do*;</p>
-<p class='ind2'>CONST n=7;</p>
-<p class='ind2'>VAR  l, r: ARRAY n OF INTEGER;</p>
-<p class='ind3'>i, root: INTEGER;</p>
-<p class='ind2'>PROCEDURE print(t: INTEGER);</p>
-<p class='ind3'>VAR</p>
-<p class='ind2'>BEGIN</p>
-<p class='ind3'>IF t=0 THEN</p>
-<p class='ind3'>ELSE</p>
-<p class='ind4'>Log.Int(t);</p>
-<p class='ind4'>Log.Ln;</p>
-<p class='ind4'>print(l[t]);</p>
-<p class='ind4'>print(r[t])</p>
-<p class='ind3'>END;</p>
-<p class='ind2'>END print;</p>
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>In.Open;</p>
-<p class='ind2'>ASSERT(In.Done);</p>
-<p class='ind3'>In.Int(root) (*номер корня дерева*)</p> 
-<p class='ind2'>FOR i :=1  TO n-1 DO</p>
-<p class='ind3'>In.Int(l[i])</p>
-<p class='ind2'>END;</p>
-<p class='ind2'>FOR i :=1  TO n-1 DO</p>
-<p class='ind3'>In.Int(r[i])</p>
-<p class='ind2'>END;</p>
-<p class='ind2'>print(root);</p>
-<p class='ind1'>END do;</p>
-<p class='ind0'>END tree12_2_3.</p>
+    <p class='ind0'>MODULE tree12_2_3;</p>
+    <p class='ind1'>IMPORT Log := StdLog, In := i21sysIn;</p>
+    <p class='ind1'>PROCEDURE do*;</p>
+    <p class='ind2'>CONST n=7;</p>
+    <p class='ind2'>VAR l, r: ARRAY n OF INTEGER;</p>
+    <p class='ind3'>i, root: INTEGER;</p>
+    <p class='ind2'>PROCEDURE print(t: INTEGER);</p>
+    <p class='ind3'>VAR</p>
+    <p class='ind2'>BEGIN</p>
+    <p class='ind3'>IF t=0 THEN</p>
+    <p class='ind3'>ELSE</p>
+    <p class='ind4'>Log.Int(t);</p>
+    <p class='ind4'>Log.Ln;</p>
+    <p class='ind4'>print(l[t]);</p>
+    <p class='ind4'>print(r[t])</p>
+    <p class='ind3'>END;</p>
+    <p class='ind2'>END print;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>In.Open;</p>
+    <p class='ind2'>ASSERT(In.Done);</p>
+    <p class='ind3'>In.Int(root) (*номер корня дерева*)</p>
+    <p class='ind2'>FOR i :=1 TO n-1 DO</p>
+    <p class='ind3'>In.Int(l[i])</p>
+    <p class='ind2'>END;</p>
+    <p class='ind2'>FOR i :=1 TO n-1 DO</p>
+    <p class='ind3'>In.Int(r[i])</p>
+    <p class='ind2'>END;</p>
+    <p class='ind2'>print(root);</p>
+    <p class='ind1'>END do;</p>
+    <p class='ind0'>END tree12_2_3.</p>
 </code>
 <p>Сначала печатается корень дерева, затем левое поддерево, а затем правое поддерево.</p>
 <h3>Задачи для самостоятельного решения</h3>
 <ol type='1'>
-<li>В примере 8.12.2.4 измените порядок печати узлов дерева таким образом: сначала печатается левое поддерево, затем правое, и в последнюю очередь выводится на печать корень всего дерева. Приведите все варианты порядка печати узлов дерева.
-</li>
-<li>Постройте программу подсчета высоты дерева (корень имеет высоту 0, его непосредственные потомки (сыновья) &#151; высоту 1, непосредственные потомки сыновей (внуки) &#151; высоту 2; высота дерева &#151; это максимум высот его узлов).</li>
-<li>Составьте  рекурсивную программу суммирования элементов массива целых чисел.</li>
-<li>Составьте программу вывода на печать всех узлов заданной высоты <math><mi>n</mi></math>.</li>
+    <li>В примере 8.12.2.4 измените порядок печати узлов дерева таким образом: сначала печатается левое поддерево, затем
+        правое, и в последнюю очередь выводится на печать корень всего дерева. Приведите все варианты порядка печати
+        узлов дерева.
+    </li>
+    <li>Постройте программу подсчета высоты дерева (корень имеет высоту 0, его непосредственные потомки (сыновья) &#151;
+        высоту 1, непосредственные потомки сыновей (внуки) &#151; высоту 2; высота дерева &#151; это максимум высот его
+        узлов).
+    </li>
+    <li>Составьте рекурсивную программу суммирования элементов массива целых чисел.</li>
+    <li>Составьте программу вывода на печать всех узлов заданной высоты
+        <math>
+            <mi>n</mi>
+        </math>
+        .
+    </li>
 </ol>
 <p><a href='zadachi/36.html'>§36. Некоторые приемы программирования</a></p>
-<p><a href="8_12_1.html">К предыдущему</a> <a href="index.html">К содержанию</a><a href="8_12_3.html">К следующему</a></p>
+<p><a href="8_12_1.html">К предыдущему</a> <a href="index.html">К содержанию</a><a href="8_12_3.html">К следующему</a>
+</p>
 </body>
+<script type="text/javascript">
+    MathJax.Hub.Configured()
+</script>
 </html>

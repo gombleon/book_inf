@@ -1,953 +1,1199 @@
 <!DOCTYPE html>
 <html>
-<meta charset="UTF-8" />
+<meta charset="UTF-8"/>
 <link rel='stylesheet' type="text/css" href="style.css"></link>
 <head>
-<meta name="author" content="dima" />
-<meta name="description" content="префиксные коды" />
-<meta name="keywords" content="префиксный код, коды Шеннона-Фано, коды Хаффмена" />
-<title>Префиксные коды</title>
-<script type="text/javascript">
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+  extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});
 
-var haph=new Array(34);
-for (var i=0;i<34;i++) 
-	haph[i]=new Array(3);
-	
-haph[0][0]=' ';
-haph[0][1]='100';
-haph[0][2]='0.175';
-haph[1][0]='о';
-haph[1][1]='011';
-haph[1][2]='0.090';
-haph[2][0]='е';
-haph[2][1]='1100';
-haph[2][2]='0.072';
-haph[3][0]='ё';
-haph[3][1]='1100';
-haph[3][2]='0.072';
-haph[4][0]='а';
-haph[4][1]='1110';
-haph[4][2]='0.062';
-haph[5][0]='и';
-haph[5][1]='1111';
-haph[5][2]='0.062';
-haph[6][0]='т';
-haph[6][1]='0011';
-haph[6][2]='0.053';
-haph[7][0]='н';
-haph[7][1]='0010';
-haph[7][2]='0.053';
-haph[8][0]='с';
-haph[8][1]='0101';
-haph[8][2]='0.045';
-haph[9][0]='р';
-haph[9][1]='10101';
-haph[9][2]='0.040';
-haph[10][0]='в';
-haph[10][1]='10111';
-haph[10][2]='0.038';
-haph[11][0]='л';
-haph[11][1]='11010';
-haph[11][2]='0.035';
-haph[12][0]='к';
-haph[12][1]='00001';
-haph[12][2]='0.027';
-haph[13][0]='м';
-haph[13][1]='00011';
-haph[13][2]='0.026';
-haph[14][0]='д';
-haph[14][1]='01000';
-haph[14][2]='0.025';
-haph[15][0]='п';
-haph[15][1]='101000';
-haph[15][2]='0.023';
-haph[16][0]='у';
-haph[16][1]='101001';
-haph[16][2]='0.021';
-haph[17][0]='я';
-haph[17][1]='101101';
-haph[17][2]='0.018';
-haph[18][0]='ы';
-haph[18][1]='110110';
-haph[18][2]='0.016';
-haph[19][0]='з';
-haph[19][1]='110111';
-haph[19][2]='0.016';
-haph[20][0]='ь';
-haph[20][1]='000001';
-haph[20][2]='0.014';
-haph[21][0]='ъ';
-haph[21][1]='000001';
-haph[21][2]='0.014';
-haph[22][0]='б';
-haph[22][1]='000100';
-haph[22][2]='0.014';
-haph[23][0]='г';
-haph[23][1]='000101';
-haph[23][2]='0.013';
-haph[24][0]='ч';
-haph[24][1]='010011';
-haph[24][2]='0.012';
-haph[25][0]='й';
-haph[25][1]='1011001';
-haph[25][2]='0.010';
-haph[26][0]='х';
-haph[26][1]='0000000';
-haph[26][2]='0.009';
-haph[27][0]='ж';
-haph[27][1]='0000001';
-haph[27][2]='0.007';
-haph[28][0]='ю';
-haph[28][1]='0100101';
-haph[28][2]='0.006';
-haph[29][0]='ш';
-haph[29][1]='10110000';
-haph[29][2]='0.006';
-haph[30][0]='ц';
-haph[30][1]='01001000';
-haph[30][2]='0.004';
-haph[31][0]='щ';
-haph[31][1]='01001001';
-haph[31][2]='0.003';
-haph[32][0]='э';
-haph[32][1]='101100010';
-haph[32][2]='0.003';
-haph[33][0]='ф';
-haph[33][1]='101100011';
-haph[33][2]='0.002';
 
-function test_cyr(stroka) {
-	var alph_cyr=' абвгдеёжзийклмнопрстуфхцчшщъыьэюя', len=alph_cyr.length, found=true, j;
-	for (var i=0;i<stroka.length;i++) {	
-		j=0;
-		while ((stroka.charAt(i)!=alph_cyr.charAt(j))&&(j<len)) {
-			j++;
-		}
-		if (j>=len) {
-			found=false;
-			break;
-		}
-	}
-	return found;
-}
 
-function codir() {
-var result='', j, t, len, izb, win=open("", "newWindow"), html, head, title, body, h2, p, table, caption, tr1, tr2 ,td ,th, txt=document.getElementById("txt1").value, o={}, h_hafm=0, inf_perv=0, inf_kod=0;
-	if (test_cyr(txt)==false) {
-		alert('Ошибка! Проверьте ввод.')
-	} 
-	else 	{
-		len=txt.length;
-		for (var i=0;i<len; i++) {
-			t=txt[i];
-			if (t in o) {
-				o[t]++;
-			} else {
-				o[t]=1;		
-			}
-		}		
-		win.document.open();
-		html=document.createElement("html");
-		win.document.appendChild(html);
-		head=document.createElement("head");
-		title=document.createElement("title");
-		title.textContent="Кодирование методом Хаффмена";
-		head.appendChild(title);
-		html.appendChild(head);
-		body=document.createElement("body");
-		html.appendChild(body);
-		h2=document.createElement("h2");
-		h2.textContent="Кодирование методом Хаффмена";
-		body.appendChild(h2);
-		p=document.createElement("p");
-		p.textContent="Первичное сообщение:";
-		body.appendChild(p);
-		p=document.createElement("p");
-		p.textContent="'"+txt+"'";
-		body.appendChild(p);		
-		table=document.createElement("table");
-		table.border="1";
-		body.appendChild(table);
-		caption=document.createElement("caption");
-		caption.textContent="Статистика";
-		table.appendChild(caption);
-		tr1=document.createElement("tr");
-		table.appendChild(tr1);
-		tr2=document.createElement("tr");
-		table.appendChild(tr2);		
-		for (var i in o)	{
-			td=document.createElement("td");
-			td.textContent=i;
-			tr1.appendChild(td);
-			td=document.createElement("td");
-			td.textContent=o[i];
-			tr2.appendChild(td);					
-			h_hafm+=-o[i]/len*Math.log(o[i]/len)/Math.LN2;
-		}				
-		p=document.createElement("p");
-		p.textContent="Энтропия по Шеннону H="+h_hafm.toFixed(2)+" бит.";
-		body.appendChild(p);	
-		inf_perv=h_hafm*len;
-		p=document.createElement("p");
-		p.textContent="Информационная емкость сообщения I1="+inf_perv.toFixed(2)+" бит.";
-		body.appendChild(p);			
-		for (var i=0;i<txt.length;i++) {
-			j=0;
-			while ((txt[i]!=haph[j][0])&&(j<=33)) {
-				j++;
-			}
-			result+=((j<=33)?haph[j][1]:'?');
-		}	
-		len=result.length;	
-		izb=1-inf_perv/len;	
-		p=document.createElement("p");
-		p.textContent="Код Хаффмена:";
-		body.appendChild(p);
-		p=document.createElement("p");
-		p.textContent="'"+result+"'";
-		body.appendChild(p);
-		p=document.createElement("p");
-		p.textContent="Информационная емкость кода I2="+len+" бит.";
-		body.appendChild(p);
-		p=document.createElement("p");
-		p.textContent="Избыточность кода Q="+izb.toFixed(2);
-		body.appendChild(p);		
-					
-		win.document.close();	
-	}	
-}
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <meta name="author" content="dima"/>
+    <meta name="description" content="префиксные коды"/>
+    <meta name="keywords" content="префиксный код, коды Шеннона-Фано, коды Хаффмена"/>
+    <title>Префиксные коды</title>
+    <script type="text/javascript">
 
-function start() {
-	var txt=document.getElementById("txt2").value, o={}, len=txt.length, t, a=[], fr=[], cod=[], j, div=document.getElementById("div1"), table, caption, tr1, tr2, tr3, td, h_shen=0, inf_txt, cod_posl="", isbyt;
-	function dec(k) {
-		var ln=a[k-1].length-1;
-		a[k][0]=a[k-1][0]+a[k-1][1];
-		fr[k][0]=fr[k-1][0]+fr[k-1][1];
-		cod[k][0]="";
-		for (var i=1; i<ln; i++) {
-			a[k][i]=a[k-1][i+1];
-			fr[k][i]=fr[k-1][i+1];
-			cod[k][i]="";
-		}
-	};
-	function sort_mas(k) {
-		var i, tem;
-		i=0;
-		while ((fr[k][i]>fr[k][i+1]) && (i<fr[k].length)) {
-			tem=fr[k][i];
-			fr[k][i]=fr[k][i+1];
-			fr[k][i+1]=tem;		
-			tem=a[k][i];
-			a[k][i]=a[k][i+1];
-			a[k][i+1]=tem;		
-			i++;
-		}
-	};
-	if (len>0) {
-		while (div.firstChild) {
-			div.removeChild(div.firstChild);
-		}
-		for (var i=0; i<len; i++ ) {
-			t=txt[i];
-			if (t in o) {
-				o[t]++;		
-			} else {
-				o[t]=1;		
-			}
-		}
-		p=document.createElement("p");
-		p.textContent="Первичное сообщение: '"+txt+"'";
-		div.appendChild(p);
-		j=0;
-		a[0]=[]; fr[0]=[]; cod[0]=[];
-		for (var i in o) {
-			a[0][j]=i;	
-			fr[0][j]=o[i];
-			cod[0][j]="";
-			j++;
-			h_shen+=-o[i]/len*Math.log(o[i]/len)/Math.LN2;
-		}
-		inf_txt=h_shen*len;
-		p=document.createElement("p");
-		p.textContent="Энтропия сообщения H="+h_shen.toFixed(2)+" бит.";
-		div.appendChild(p);
-		p=document.createElement("p");
-		p.textContent="Информационная емкость сообщения I1="+inf_txt.toFixed(2)+" бит.";
-		div.appendChild(p);	
-		len=fr[0].length;
-		for (var i=len-1;i>0;i--) {
-			for (var j=i-1; j>=0;j--) {
-				if (fr[0][j]>fr[0][i]) {
-					t=fr[0][j];
-					fr[0][j]=fr[0][i];
-					fr[0][i]=t;			
-					t=a[0][j];
-					a[0][j]=a[0][i];
-					a[0][i]=t;			
-				}		
-			}	
-		}
-		for (var k=1; k<len-1;k++) {
-			a[k]=[];
-			fr[k]=[];
-			cod[k]=[];
-			dec(k);
-			sort_mas(k);
-		}
-		cod[len-2][0]="0";
-		cod[len-2][1]="1";
-		for (var k=len-2;k>0;k--) {
-			fnd="0";
-			len=a[k-1].length;
-			for (var i=0; i<len; i++) {
-				for (var j=0; j<len-1; j++) {
-					if (a[k][j].indexOf(a[k-1][i])!=-1) {
-						if (a[k][j]==a[k-1][i]) {
-							cod[k-1][i]=cod[k][j];					
-						}
-						else {
-							cod[k-1][i]=cod[k][j]+fnd;
-							fnd="1";					
-						}				
-					}			
-				}
-			}
-		}
-		table=document.createElement("table");
-		table.border="1";
-		div.appendChild(table);
-		caption=document.createElement("caption");
-		caption.textContent="Кодирование методом Хаффмена";	
-		table.appendChild(caption);	
-		len=a[0].length;
-		for (k=0; k<len-1; k++) {
-			tr1=document.createElement("tr");
-			table.appendChild(tr1);
-			td=document.createElement("td");
-			td.textContent="Алфавит";
-			tr1.appendChild(td);	
-			tr2=document.createElement("tr");	
-			table.appendChild(tr2);
-			td=document.createElement("td");
-			td.textContent="Частота";
-			tr2.appendChild(td);	
-			tr3=document.createElement("tr");	
-			table.appendChild(tr3);
-			td=document.createElement("td");
-			td.textContent="Код";
-			tr3.appendChild(td);	
-			for (i=0;i<len-k;i++) {
-				td=document.createElement("td");
-				td.textContent=a[k][i];
-				tr1.appendChild(td);
-				td=document.createElement("td");		
-				td.textContent=fr[k][i];
-				tr2.appendChild(td);		
-				td=document.createElement("td");		
-				td.textContent=cod[k][i];
-				tr3.appendChild(td);		
-			}
-		}
-		len=txt.length;	
-		for (i=0; i<len; i++) {
-			j=0;			
-			while (a[0][j]!=txt[i])	{
-				j++			
-			}	
-			cod_posl+=cod[0][j];
-		}				
-		p=document.createElement("p");
-		p.textContent="Код Хаффмена: '"+cod_posl+"'.";
-		div.appendChild(p);
-		p=document.createElement("p");
-		p.textContent="Информационная емкость кода I2="+cod_posl.length+" бит(а).";
-		div.appendChild(p);
-		isbyt=1-inf_txt/cod_posl.length;
-		p=document.createElement("p");
-		p.textContent="Избыточность кода Q="+isbyt.toFixed(3)+".";
-		div.appendChild(p);
-	}
-}
-</script>
+        var haph = new Array(34);
+        for (var i = 0; i < 34; i++)
+            haph[i] = new Array(3);
+
+        haph[0][0] = ' ';
+        haph[0][1] = '100';
+        haph[0][2] = '0.175';
+        haph[1][0] = 'о';
+        haph[1][1] = '011';
+        haph[1][2] = '0.090';
+        haph[2][0] = 'е';
+        haph[2][1] = '1100';
+        haph[2][2] = '0.072';
+        haph[3][0] = 'ё';
+        haph[3][1] = '1100';
+        haph[3][2] = '0.072';
+        haph[4][0] = 'а';
+        haph[4][1] = '1110';
+        haph[4][2] = '0.062';
+        haph[5][0] = 'и';
+        haph[5][1] = '1111';
+        haph[5][2] = '0.062';
+        haph[6][0] = 'т';
+        haph[6][1] = '0011';
+        haph[6][2] = '0.053';
+        haph[7][0] = 'н';
+        haph[7][1] = '0010';
+        haph[7][2] = '0.053';
+        haph[8][0] = 'с';
+        haph[8][1] = '0101';
+        haph[8][2] = '0.045';
+        haph[9][0] = 'р';
+        haph[9][1] = '10101';
+        haph[9][2] = '0.040';
+        haph[10][0] = 'в';
+        haph[10][1] = '10111';
+        haph[10][2] = '0.038';
+        haph[11][0] = 'л';
+        haph[11][1] = '11010';
+        haph[11][2] = '0.035';
+        haph[12][0] = 'к';
+        haph[12][1] = '00001';
+        haph[12][2] = '0.027';
+        haph[13][0] = 'м';
+        haph[13][1] = '00011';
+        haph[13][2] = '0.026';
+        haph[14][0] = 'д';
+        haph[14][1] = '01000';
+        haph[14][2] = '0.025';
+        haph[15][0] = 'п';
+        haph[15][1] = '101000';
+        haph[15][2] = '0.023';
+        haph[16][0] = 'у';
+        haph[16][1] = '101001';
+        haph[16][2] = '0.021';
+        haph[17][0] = 'я';
+        haph[17][1] = '101101';
+        haph[17][2] = '0.018';
+        haph[18][0] = 'ы';
+        haph[18][1] = '110110';
+        haph[18][2] = '0.016';
+        haph[19][0] = 'з';
+        haph[19][1] = '110111';
+        haph[19][2] = '0.016';
+        haph[20][0] = 'ь';
+        haph[20][1] = '000001';
+        haph[20][2] = '0.014';
+        haph[21][0] = 'ъ';
+        haph[21][1] = '000001';
+        haph[21][2] = '0.014';
+        haph[22][0] = 'б';
+        haph[22][1] = '000100';
+        haph[22][2] = '0.014';
+        haph[23][0] = 'г';
+        haph[23][1] = '000101';
+        haph[23][2] = '0.013';
+        haph[24][0] = 'ч';
+        haph[24][1] = '010011';
+        haph[24][2] = '0.012';
+        haph[25][0] = 'й';
+        haph[25][1] = '1011001';
+        haph[25][2] = '0.010';
+        haph[26][0] = 'х';
+        haph[26][1] = '0000000';
+        haph[26][2] = '0.009';
+        haph[27][0] = 'ж';
+        haph[27][1] = '0000001';
+        haph[27][2] = '0.007';
+        haph[28][0] = 'ю';
+        haph[28][1] = '0100101';
+        haph[28][2] = '0.006';
+        haph[29][0] = 'ш';
+        haph[29][1] = '10110000';
+        haph[29][2] = '0.006';
+        haph[30][0] = 'ц';
+        haph[30][1] = '01001000';
+        haph[30][2] = '0.004';
+        haph[31][0] = 'щ';
+        haph[31][1] = '01001001';
+        haph[31][2] = '0.003';
+        haph[32][0] = 'э';
+        haph[32][1] = '101100010';
+        haph[32][2] = '0.003';
+        haph[33][0] = 'ф';
+        haph[33][1] = '101100011';
+        haph[33][2] = '0.002';
+
+        function test_cyr(stroka) {
+            var alph_cyr = ' абвгдеёжзийклмнопрстуфхцчшщъыьэюя', len = alph_cyr.length, found = true, j;
+            for (var i = 0; i < stroka.length; i++) {
+                j = 0;
+                while ((stroka.charAt(i) != alph_cyr.charAt(j)) && (j < len)) {
+                    j++;
+                }
+                if (j >= len) {
+                    found = false;
+                    break;
+                }
+            }
+            return found;
+        }
+
+        function codir() {
+            var result = '', j, t, len, izb, win = open("", "newWindow"), html, head, title, body, h2, p, table,
+                caption, tr1, tr2, td, th, txt = document.getElementById("txt1").value, o = {}, h_hafm = 0,
+                inf_perv = 0, inf_kod = 0;
+            if (test_cyr(txt) == false) {
+                alert('Ошибка! Проверьте ввод.')
+            } else {
+                len = txt.length;
+                for (var i = 0; i < len; i++) {
+                    t = txt[i];
+                    if (t in o) {
+                        o[t]++;
+                    } else {
+                        o[t] = 1;
+                    }
+                }
+                win.document.open();
+                html = document.createElement("html");
+                win.document.appendChild(html);
+                head = document.createElement("head");
+                title = document.createElement("title");
+                title.textContent = "Кодирование методом Хаффмена";
+                head.appendChild(title);
+                html.appendChild(head);
+                body = document.createElement("body");
+                html.appendChild(body);
+                h2 = document.createElement("h2");
+                h2.textContent = "Кодирование методом Хаффмена";
+                body.appendChild(h2);
+                p = document.createElement("p");
+                p.textContent = "Первичное сообщение:";
+                body.appendChild(p);
+                p = document.createElement("p");
+                p.textContent = "'" + txt + "'";
+                body.appendChild(p);
+                table = document.createElement("table");
+                table.border = "1";
+                body.appendChild(table);
+                caption = document.createElement("caption");
+                caption.textContent = "Статистика";
+                table.appendChild(caption);
+                tr1 = document.createElement("tr");
+                table.appendChild(tr1);
+                tr2 = document.createElement("tr");
+                table.appendChild(tr2);
+                for (var i in o) {
+                    td = document.createElement("td");
+                    td.textContent = i;
+                    tr1.appendChild(td);
+                    td = document.createElement("td");
+                    td.textContent = o[i];
+                    tr2.appendChild(td);
+                    h_hafm += -o[i] / len * Math.log(o[i] / len) / Math.LN2;
+                }
+                p = document.createElement("p");
+                p.textContent = "Энтропия по Шеннону H=" + h_hafm.toFixed(2) + " бит.";
+                body.appendChild(p);
+                inf_perv = h_hafm * len;
+                p = document.createElement("p");
+                p.textContent = "Информационная емкость сообщения I1=" + inf_perv.toFixed(2) + " бит.";
+                body.appendChild(p);
+                for (var i = 0; i < txt.length; i++) {
+                    j = 0;
+                    while ((txt[i] != haph[j][0]) && (j <= 33)) {
+                        j++;
+                    }
+                    result += ((j <= 33) ? haph[j][1] : '?');
+                }
+                len = result.length;
+                izb = 1 - inf_perv / len;
+                p = document.createElement("p");
+                p.textContent = "Код Хаффмена:";
+                body.appendChild(p);
+                p = document.createElement("p");
+                p.textContent = "'" + result + "'";
+                body.appendChild(p);
+                p = document.createElement("p");
+                p.textContent = "Информационная емкость кода I2=" + len + " бит.";
+                body.appendChild(p);
+                p = document.createElement("p");
+                p.textContent = "Избыточность кода Q=" + izb.toFixed(2);
+                body.appendChild(p);
+
+                win.document.close();
+            }
+        }
+
+        function start() {
+            var txt = document.getElementById("txt2").value, o = {}, len = txt.length, t, a = [], fr = [], cod = [], j,
+                div = document.getElementById("div1"), table, caption, tr1, tr2, tr3, td, h_shen = 0, inf_txt,
+                cod_posl = "", isbyt;
+
+            function dec(k) {
+                var ln = a[k - 1].length - 1;
+                a[k][0] = a[k - 1][0] + a[k - 1][1];
+                fr[k][0] = fr[k - 1][0] + fr[k - 1][1];
+                cod[k][0] = "";
+                for (var i = 1; i < ln; i++) {
+                    a[k][i] = a[k - 1][i + 1];
+                    fr[k][i] = fr[k - 1][i + 1];
+                    cod[k][i] = "";
+                }
+            };
+
+            function sort_mas(k) {
+                var i, tem;
+                i = 0;
+                while ((fr[k][i] > fr[k][i + 1]) && (i < fr[k].length)) {
+                    tem = fr[k][i];
+                    fr[k][i] = fr[k][i + 1];
+                    fr[k][i + 1] = tem;
+                    tem = a[k][i];
+                    a[k][i] = a[k][i + 1];
+                    a[k][i + 1] = tem;
+                    i++;
+                }
+            };
+            if (len > 0) {
+                while (div.firstChild) {
+                    div.removeChild(div.firstChild);
+                }
+                for (var i = 0; i < len; i++) {
+                    t = txt[i];
+                    if (t in o) {
+                        o[t]++;
+                    } else {
+                        o[t] = 1;
+                    }
+                }
+                p = document.createElement("p");
+                p.textContent = "Первичное сообщение: '" + txt + "'";
+                div.appendChild(p);
+                j = 0;
+                a[0] = [];
+                fr[0] = [];
+                cod[0] = [];
+                for (var i in o) {
+                    a[0][j] = i;
+                    fr[0][j] = o[i];
+                    cod[0][j] = "";
+                    j++;
+                    h_shen += -o[i] / len * Math.log(o[i] / len) / Math.LN2;
+                }
+                inf_txt = h_shen * len;
+                p = document.createElement("p");
+                p.textContent = "Энтропия сообщения H=" + h_shen.toFixed(2) + " бит.";
+                div.appendChild(p);
+                p = document.createElement("p");
+                p.textContent = "Информационная емкость сообщения I1=" + inf_txt.toFixed(2) + " бит.";
+                div.appendChild(p);
+                len = fr[0].length;
+                for (var i = len - 1; i > 0; i--) {
+                    for (var j = i - 1; j >= 0; j--) {
+                        if (fr[0][j] > fr[0][i]) {
+                            t = fr[0][j];
+                            fr[0][j] = fr[0][i];
+                            fr[0][i] = t;
+                            t = a[0][j];
+                            a[0][j] = a[0][i];
+                            a[0][i] = t;
+                        }
+                    }
+                }
+                for (var k = 1; k < len - 1; k++) {
+                    a[k] = [];
+                    fr[k] = [];
+                    cod[k] = [];
+                    dec(k);
+                    sort_mas(k);
+                }
+                cod[len - 2][0] = "0";
+                cod[len - 2][1] = "1";
+                for (var k = len - 2; k > 0; k--) {
+                    fnd = "0";
+                    len = a[k - 1].length;
+                    for (var i = 0; i < len; i++) {
+                        for (var j = 0; j < len - 1; j++) {
+                            if (a[k][j].indexOf(a[k - 1][i]) != -1) {
+                                if (a[k][j] == a[k - 1][i]) {
+                                    cod[k - 1][i] = cod[k][j];
+                                } else {
+                                    cod[k - 1][i] = cod[k][j] + fnd;
+                                    fnd = "1";
+                                }
+                            }
+                        }
+                    }
+                }
+                table = document.createElement("table");
+                table.border = "1";
+                div.appendChild(table);
+                caption = document.createElement("caption");
+                caption.textContent = "Кодирование методом Хаффмена";
+                table.appendChild(caption);
+                len = a[0].length;
+                for (k = 0; k < len - 1; k++) {
+                    tr1 = document.createElement("tr");
+                    table.appendChild(tr1);
+                    td = document.createElement("td");
+                    td.textContent = "Алфавит";
+                    tr1.appendChild(td);
+                    tr2 = document.createElement("tr");
+                    table.appendChild(tr2);
+                    td = document.createElement("td");
+                    td.textContent = "Частота";
+                    tr2.appendChild(td);
+                    tr3 = document.createElement("tr");
+                    table.appendChild(tr3);
+                    td = document.createElement("td");
+                    td.textContent = "Код";
+                    tr3.appendChild(td);
+                    for (i = 0; i < len - k; i++) {
+                        td = document.createElement("td");
+                        td.textContent = a[k][i];
+                        tr1.appendChild(td);
+                        td = document.createElement("td");
+                        td.textContent = fr[k][i];
+                        tr2.appendChild(td);
+                        td = document.createElement("td");
+                        td.textContent = cod[k][i];
+                        tr3.appendChild(td);
+                    }
+                }
+                len = txt.length;
+                for (i = 0; i < len; i++) {
+                    j = 0;
+                    while (a[0][j] != txt[i]) {
+                        j++
+                    }
+                    cod_posl += cod[0][j];
+                }
+                p = document.createElement("p");
+                p.textContent = "Код Хаффмена: '" + cod_posl + "'.";
+                div.appendChild(p);
+                p = document.createElement("p");
+                p.textContent = "Информационная емкость кода I2=" + cod_posl.length + " бит(а).";
+                div.appendChild(p);
+                isbyt = 1 - inf_txt / cod_posl.length;
+                p = document.createElement("p");
+                p.textContent = "Избыточность кода Q=" + isbyt.toFixed(3) + ".";
+                div.appendChild(p);
+            }
+        }
+    </script>
 </head>
 <body>
 <p><a href="3_4.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="3_6.html">К следующему</a></p>
 <h2>3.5. Префиксное кодирование</h2>
-<p>В данном параграфе рассмотрим некоторые идеи уменьшения <a href="3_1.html#izb_kod">избыточности кода</a>, лежащие в основе алгоритмов сжатия сообщений.</p>
-<p>Пусть символы некоторого первичного алфавита кодируются последовательностями элементарных сигналов &quot;0&quot; и &quot;1&quot;, причем передача любого элементарного сигнала занимает <var>&#964;</var> единиц времени. Напрашивается идея поставить в соответствие частоте появления знака	первичного алфавита длину кодовой последовательности: часто встречающиеся знаки кодировать короткими последовательностями кодов, а редко встречающиеся &#8212; длинными. Очевидно, что при таком подходе можно уменьшить суммарную длину кодовой последовательности, что приводит к уменьшению длительности передачи закодированного сообщения. Длительность передачи будет равняться произведению длины кодовой последовательности на длительность <var>&#964;</var>	передачи элементарного сигнала. Разумеется, что закодированное сообщение должно допускать однозначное декодирование.</p>
-<p>Возможен такой вариант кодирования, при котором признаки конца кода буквы и конца слова кодируются специальными кодовыми последовательностями. Например, в качестве разделителя кодов букв можно использовать последовательность &quot;00&quot; (признак конца кода буквы), а в качестве кода пробела &#8212; &quot;000&quot; (признак конца слова).</p> 
-<p>Напрашивается очевидный вопрос: можно ли обойтись без разделителей знаков и тем самым уменьшить избыточность кода? В связи с этим возникает другой вопрос: существует ли наиболее оптимальный способ неравномерного двоичного кодирования?</p>
-<p>Решение первой проблемы состоит в нахождении такого варианта кодирования сообщения, при котором возможно последовательное однозначное выделение (т.е. декодирование) из кодовой последовательности кода каждого отдельного знака первичного алфавита без специальных указателей разделения знаков. Предпосылки к решению второй проблемы приведены <a href="3_5.html#predpos"> в конце данного параграфа.</a></p>
-<p><a name="fano"></a>В качестве примера рассмотрим так называемые <span class="termin">префиксные коды</span>, которые удовлетворяют <span class="termin">условию  Фано</span>:</p>
-<p><span class="teorema">Неравномерный код может быть однозначно декодирован, если никакой из кодов не совпадает с началом (префиксом) какого-либо иного более длинного кода.</span></p>
+<p>В данном параграфе рассмотрим некоторые идеи уменьшения <a href="3_1.html#izb_kod">избыточности кода</a>, лежащие в
+    основе алгоритмов сжатия сообщений.</p>
+<p>Пусть символы некоторого первичного алфавита кодируются последовательностями элементарных сигналов &quot;0&quot; и
+    &quot;1&quot;, причем передача любого элементарного сигнала занимает <var>&#964;</var> единиц времени. Напрашивается
+    идея поставить в соответствие частоте появления знака первичного алфавита длину кодовой последовательности: часто
+    встречающиеся знаки кодировать короткими последовательностями кодов, а редко встречающиеся &#8212; длинными.
+    Очевидно, что при таком подходе можно уменьшить суммарную длину кодовой последовательности, что приводит к
+    уменьшению длительности передачи закодированного сообщения. Длительность передачи будет равняться произведению длины
+    кодовой последовательности на длительность <var>&#964;</var> передачи элементарного сигнала. Разумеется, что
+    закодированное сообщение должно допускать однозначное декодирование.</p>
+<p>Возможен такой вариант кодирования, при котором признаки конца кода буквы и конца слова кодируются специальными
+    кодовыми последовательностями. Например, в качестве разделителя кодов букв можно использовать последовательность
+    &quot;00&quot; (признак конца кода буквы), а в качестве кода пробела &#8212; &quot;000&quot; (признак конца
+    слова).</p>
+<p>Напрашивается очевидный вопрос: можно ли обойтись без разделителей знаков и тем самым уменьшить избыточность кода? В
+    связи с этим возникает другой вопрос: существует ли наиболее оптимальный способ неравномерного двоичного
+    кодирования?</p>
+<p>Решение первой проблемы состоит в нахождении такого варианта кодирования сообщения, при котором возможно
+    последовательное однозначное выделение (т.е. декодирование) из кодовой последовательности кода каждого отдельного
+    знака первичного алфавита без специальных указателей разделения знаков. Предпосылки к решению второй проблемы
+    приведены <a href="3_5.html#predpos"> в конце данного параграфа.</a></p>
+<p><a name="fano"></a>В качестве примера рассмотрим так называемые <span class="termin">префиксные коды</span>, которые
+    удовлетворяют <span class="termin">условию  Фано</span>:</p>
+<p><span class="teorema">Неравномерный код может быть однозначно декодирован, если никакой из кодов не совпадает с началом (префиксом) какого-либо иного более длинного кода.</span>
+</p>
 <p>В языковедении термин &quot;префикс&quot; означает &quot;приставка&quot;.</p>
-<p>Например, если имеется код &quot;110&quot;, то уже не могут использоваться коды &quot;1&quot;, &quot;11&quot;, &quot;1101&quot;, &quot;110101&quot; и пр. Если условие Фано выполняется, то при декодировании кодовой последовательности путем сопоставления со списком кодов всегда можно точно указать, где заканчивается один код и начинается другой.</p>
+<p>Например, если имеется код &quot;110&quot;, то уже не могут использоваться коды &quot;1&quot;, &quot;11&quot;, &quot;1101&quot;,
+    &quot;110101&quot; и пр. Если условие Фано выполняется, то при декодировании кодовой последовательности путем
+    сопоставления со списком кодов всегда можно точно указать, где заканчивается один код и начинается другой.</p>
 <div class="examp">
-<p><span class="primer">Пример 3.5.1.</span> Пусть имеется следующая таблица префиксных кодов:</p>
-<table border="1" width="40%" align="center">
-<caption>Таблица 3.5.1</caption>
-<tr>
-<td>а</td>
-<td>л</td>
-<td>м</td>
-<td>р</td>
-<td>у</td>
-<td>ы</td>
-</tr>
-<tr>
-<td>10</td>
-<td>010</td>
-<td>00</td>
-<td>11</td>
-<td>0110</td>
-<td>0111</td>
-</tr>
-</table>
-<p>Требуется декодировать кодовую последовательность: &quot;00100010000111010101110000110&quot;.</p>
-<p><span class="primer">Решение.</span> Декодирование производится циклическим повторением следующих действий:</p>
-<ol>
-<li>составить рабочее слово из первого символа кодовой последовательности;</li>
-<li>сравнить рабочее слово с кодовой таблицей;</li>
-<li>если совпадения нет, то присоединить к рабочему слову очередной символ кодовой последовательности, в противном случае декодировать рабочее слово и укоротить кодовую последовательность на распознанное рабочее слово;</li>
-<li>если кодовая последовательность не исчерпана, то перейти к шагу 1.</li>
-</ol>
-<p>Нетрудно убедиться, что применение данного алгоритма декодирования кодовой последовательности дает следующее сообщение: &quot;мама мыла раму&quot;.</p>
+    <p><span class="primer">Пример 3.5.1.</span> Пусть имеется следующая таблица префиксных кодов:</p>
+    <table border="1" width="40%" align="center">
+        <caption>Таблица 3.5.1</caption>
+        <tr>
+            <td>а</td>
+            <td>л</td>
+            <td>м</td>
+            <td>р</td>
+            <td>у</td>
+            <td>ы</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>010</td>
+            <td>00</td>
+            <td>11</td>
+            <td>0110</td>
+            <td>0111</td>
+        </tr>
+    </table>
+    <p>Требуется декодировать кодовую последовательность: &quot;00100010000111010101110000110&quot;.</p>
+    <p><span class="primer">Решение.</span> Декодирование производится циклическим повторением следующих действий:</p>
+    <ol>
+        <li>составить рабочее слово из первого символа кодовой последовательности;</li>
+        <li>сравнить рабочее слово с кодовой таблицей;</li>
+        <li>если совпадения нет, то присоединить к рабочему слову очередной символ кодовой последовательности, в
+            противном случае декодировать рабочее слово и укоротить кодовую последовательность на распознанное рабочее
+            слово;
+        </li>
+        <li>если кодовая последовательность не исчерпана, то перейти к шагу 1.</li>
+    </ol>
+    <p>Нетрудно убедиться, что применение данного алгоритма декодирования кодовой последовательности дает следующее
+        сообщение: &quot;мама мыла раму&quot;.</p>
 </div>
-<p>Таким образом, использование префиксного кодирования сокращает длину кода, поскольку отпадает необходимость в разделителях кодов знаков. Однако, условие Фано не устанавливает способа формирования префиксного кода и, в частности, наилучшего из возможных.</p>
+<p>Таким образом, использование префиксного кодирования сокращает длину кода, поскольку отпадает необходимость в
+    разделителях кодов знаков. Однако, условие Фано не устанавливает способа формирования префиксного кода и, в
+    частности, наилучшего из возможных.</p>
 <a name="shennonfano"></a>
-<p>В качестве префиксного двоичного кодирования рассмотрим <span class="name">метод Шеннона-Фано</span>. Идея этого метода следующая: разбить алфавит сообщения на две группы символов с приблизительно равными суммарными частотами, и всем символам первой группы присвоить код &quot;0&quot;, а символам второй группы &#8212; код &quot;1&quot;. Затем каждую группу разбить аналогично на две группы и добавить к кодам одной группы код &quot;0&quot;, а к кодам второй группы код &quot;1&quot;. Процедуру продолжить до тех пор, пока каждая группа не будет состоять только из одного символа.</p>
+<p>В качестве префиксного двоичного кодирования рассмотрим <span class="name">метод Шеннона-Фано</span>. Идея этого
+    метода следующая: разбить алфавит сообщения на две группы символов с приблизительно равными суммарными частотами, и
+    всем символам первой группы присвоить код &quot;0&quot;, а символам второй группы &#8212; код &quot;1&quot;. Затем
+    каждую группу разбить аналогично на две группы и добавить к кодам одной группы код &quot;0&quot;, а к кодам второй
+    группы код &quot;1&quot;. Процедуру продолжить до тех пор, пока каждая группа не будет состоять только из одного
+    символа.</p>
 <div class="examp">
- <p><span class="primer">Пример 3.5.2</span>. Закодируем в кодах Шеннона-Фано сообщение &quot;мама мыла раму&quot;, для чего составим его алфавит:</p>
-<table align="center" border="1">
-<caption>Таблица 3.5.2</caption>
-<tr>
-<td>Символ</td><td>м</td><td>а</td><td> </td><td>р</td><td>у</td><td>ы</td><td>л</td>
-</tr>
-<tr>
-<td>Частота</td><td>4</td><td>4</td><td>2</td><td>1</td><td>1</td><td>1</td><td>1</td>
-</tr>
-</table>
-<p>Первую группу символов с суммарной частотой 8 составляют буквы &quot;м&quot; и &quot;а&quot;, вторая группа из всех остальных символов имеет суммарную частоту, равную 6. Присвоим буквам первой группы код &quot;0&quot;, а второй &#8212; код &quot;1&quot;:</p>
-<table align="center" border="1">
-<caption>Таблица 3.5.3</caption>
-<tr>
-<td>Символ</td><td>м</td><td>а</td><td> </td><td>р</td><td>у</td><td>ы</td><td>л</td>
-</tr>
-<tr>
-<td>Частота</td><td>4</td><td>4</td><td>2</td><td>1</td><td>1</td><td>1</td><td>1</td>
-</tr>
-<tr>
-<td>Код</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td>
-</tr>
-</table>
-<p>Группу символов {&quot;м&quot;, &quot;а&quot;} разобъем на группы {&quot;м&quot;} и {&quot;а&quot;}. Затем добавим к коду буквы &quot;м&quot; код &quot;0&quot;, а к коду &quot;а&quot; &#8212; &quot;1&quot;. Тогда &quot;м&quot; будет иметь код &quot;00&quot;, а &quot;а&quot; &#8212; код &quot;01&quot;.</p>
-<p>Оставшиеся символы разобъем на группы {&quot; &quot;, &quot;р&quot;} и {&quot;у&quot;, &quot;ы&quot;, &quot;л&quot;}, каждая из которых имеет суммарную частоту, равную трем. Присоединяем к кодам первой группы символов &quot;0&quot;, а к кодам второй группы &#8212; &quot;1&quot;:</p>
-<table align="center" border="1">
-<caption>Таблица 3.5.4</caption>
-<tr>
-<td>Символ</td><td>м</td><td>а</td><td> </td><td>р</td><td>у</td><td>ы</td><td>л</td>
-</tr>
-<tr>
-<td>Частота</td><td>4</td><td>4</td><td>2</td><td>1</td><td>1</td><td>1</td><td>1</td>
-</tr>
-<tr>
-<td>Код</td><td>00</td><td>01</td><td>10</td><td>10</td><td>11</td><td>11</td><td>11</td>
-</tr>
-</table>
-<p>Группа символов {&quot; &quot;, &quot;р&quot;} разбивается на группы {&quot; &quot;} и {&quot;р&quot;}, затем пробел кодируем последовательностью &quot;100&quot;, а букву &quot;р&quot; &#8212; &quot;101&quot;</p>
-<p>Группу букв {&quot;у&quot;, &quot;ы&quot;, &quot;л&quot;}, разобъем на группы {&quot;у&quot;} и {&quot;ы&quot;, &quot;л&quot;}. К коду буквы &quot;у&quot; присоединим &quot;0&quot;, а к кодам букв &quot;ы&quot; и &quot;л&quot; &#8212; &quot;1&quot;:</p>
-<table align="center" border="1">
-<caption>Таблица 3.5.5</caption>
-<tr>
-<td>Символ</td><td>м</td><td>а</td><td> </td><td>р</td><td>у</td><td>ы</td><td>л</td>
-</tr>
-<tr>
-<td>Частота</td><td>4</td><td>4</td><td>2</td><td>1</td><td>1</td><td>1</td><td>1</td>
-</tr>
-<tr>
-<td>Код</td><td>00</td><td>01</td><td>100</td><td>101</td><td>110</td><td>111</td><td>111</td>
-</tr>
-</table>
-<p>Наконец, присоединим &quot;0&quot; к коду буквы &quot;ы&quot; и &quot;1&quot; к коду буквы &quot;л&quot;:</p>
-<table align="center" border="1">
-<caption>Таблица 3.5.6</caption>
-<tr>
-<td>Символ</td><td>м</td><td>а</td><td> </td><td>р</td><td>у</td><td>ы</td><td>л</td>
-</tr>
-<tr>
-<td>Частота</td><td>4</td><td>4</td><td>2</td><td>1</td><td>1</td><td>1</td><td>1</td>
-</tr>
-<tr>
-<td>Код</td><td>00</td><td>01</td><td>100</td><td>101</td><td>110</td><td>1110</td><td>1111</td>
-</tr>
-</table>
-<p>Полученные коды, очевидно, префиксные, причем редкие буквы кодируются длинными кодами, а частые &#8212; короткими. Информационная емкость кода Шеннона-Фано составляет 36 бит, в то время как при байтовом кодировании она равна 112 битам.</p>
+    <p><span class="primer">Пример 3.5.2</span>. Закодируем в кодах Шеннона-Фано сообщение &quot;мама мыла раму&quot;,
+        для чего составим его алфавит:</p>
+    <table align="center" border="1">
+        <caption>Таблица 3.5.2</caption>
+        <tr>
+            <td>Символ</td>
+            <td>м</td>
+            <td>а</td>
+            <td></td>
+            <td>р</td>
+            <td>у</td>
+            <td>ы</td>
+            <td>л</td>
+        </tr>
+        <tr>
+            <td>Частота</td>
+            <td>4</td>
+            <td>4</td>
+            <td>2</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+    </table>
+    <p>Первую группу символов с суммарной частотой 8 составляют буквы &quot;м&quot; и &quot;а&quot;, вторая группа из
+        всех остальных символов имеет суммарную частоту, равную 6. Присвоим буквам первой группы код &quot;0&quot;, а
+        второй &#8212; код &quot;1&quot;:</p>
+    <table align="center" border="1">
+        <caption>Таблица 3.5.3</caption>
+        <tr>
+            <td>Символ</td>
+            <td>м</td>
+            <td>а</td>
+            <td></td>
+            <td>р</td>
+            <td>у</td>
+            <td>ы</td>
+            <td>л</td>
+        </tr>
+        <tr>
+            <td>Частота</td>
+            <td>4</td>
+            <td>4</td>
+            <td>2</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>Код</td>
+            <td>0</td>
+            <td>0</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+    </table>
+    <p>Группу символов {&quot;м&quot;, &quot;а&quot;} разобъем на группы {&quot;м&quot;} и {&quot;а&quot;}. Затем
+        добавим к коду буквы &quot;м&quot; код &quot;0&quot;, а к коду &quot;а&quot; &#8212; &quot;1&quot;. Тогда &quot;м&quot;
+        будет иметь код &quot;00&quot;, а &quot;а&quot; &#8212; код &quot;01&quot;.</p>
+    <p>Оставшиеся символы разобъем на группы {&quot; &quot;, &quot;р&quot;} и {&quot;у&quot;, &quot;ы&quot;, &quot;л&quot;},
+        каждая из которых имеет суммарную частоту, равную трем. Присоединяем к кодам первой группы символов &quot;0&quot;,
+        а к кодам второй группы &#8212; &quot;1&quot;:</p>
+    <table align="center" border="1">
+        <caption>Таблица 3.5.4</caption>
+        <tr>
+            <td>Символ</td>
+            <td>м</td>
+            <td>а</td>
+            <td></td>
+            <td>р</td>
+            <td>у</td>
+            <td>ы</td>
+            <td>л</td>
+        </tr>
+        <tr>
+            <td>Частота</td>
+            <td>4</td>
+            <td>4</td>
+            <td>2</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>Код</td>
+            <td>00</td>
+            <td>01</td>
+            <td>10</td>
+            <td>10</td>
+            <td>11</td>
+            <td>11</td>
+            <td>11</td>
+        </tr>
+    </table>
+    <p>Группа символов {&quot; &quot;, &quot;р&quot;} разбивается на группы {&quot; &quot;} и {&quot;р&quot;}, затем
+        пробел кодируем последовательностью &quot;100&quot;, а букву &quot;р&quot; &#8212; &quot;101&quot;</p>
+    <p>Группу букв {&quot;у&quot;, &quot;ы&quot;, &quot;л&quot;}, разобъем на группы {&quot;у&quot;} и {&quot;ы&quot;,
+        &quot;л&quot;}. К коду буквы &quot;у&quot; присоединим &quot;0&quot;, а к кодам букв &quot;ы&quot; и &quot;л&quot;
+        &#8212; &quot;1&quot;:</p>
+    <table align="center" border="1">
+        <caption>Таблица 3.5.5</caption>
+        <tr>
+            <td>Символ</td>
+            <td>м</td>
+            <td>а</td>
+            <td></td>
+            <td>р</td>
+            <td>у</td>
+            <td>ы</td>
+            <td>л</td>
+        </tr>
+        <tr>
+            <td>Частота</td>
+            <td>4</td>
+            <td>4</td>
+            <td>2</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>Код</td>
+            <td>00</td>
+            <td>01</td>
+            <td>100</td>
+            <td>101</td>
+            <td>110</td>
+            <td>111</td>
+            <td>111</td>
+        </tr>
+    </table>
+    <p>Наконец, присоединим &quot;0&quot; к коду буквы &quot;ы&quot; и &quot;1&quot; к коду буквы &quot;л&quot;:</p>
+    <table align="center" border="1">
+        <caption>Таблица 3.5.6</caption>
+        <tr>
+            <td>Символ</td>
+            <td>м</td>
+            <td>а</td>
+            <td></td>
+            <td>р</td>
+            <td>у</td>
+            <td>ы</td>
+            <td>л</td>
+        </tr>
+        <tr>
+            <td>Частота</td>
+            <td>4</td>
+            <td>4</td>
+            <td>2</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>Код</td>
+            <td>00</td>
+            <td>01</td>
+            <td>100</td>
+            <td>101</td>
+            <td>110</td>
+            <td>1110</td>
+            <td>1111</td>
+        </tr>
+    </table>
+    <p>Полученные коды, очевидно, префиксные, причем редкие буквы кодируются длинными кодами, а частые &#8212;
+        короткими. Информационная емкость кода Шеннона-Фано составляет 36 бит, в то время как при байтовом кодировании
+        она равна 112 битам.</p>
 </div>
 <a name="haphmen"></a>
-<p><span class="termin">Метод Хаффмена</span> построения префиксного кода предложен в 1952 году. Он более практичен и по степени сжатия, по меньшей мере, не уступает методу Шеннона-Фано. Пусть имеется алфавит первичного сообщения из <var>n</var> знаков с соответствующими частотами.</p>
-<p>На первом шаге объединим два символа с минимальными частотами в один составной символ. На следующем шаге опять выбираем два символа, возможно, составных, с минимальными частотами и объединяем в один составной символ. Продолжив <var>(n-2)</var> раза процесс объединения символов с минимальными частотами, в конечном итоге получим алфавит из двух составных символов.</p>
+<p><span class="termin">Метод Хаффмена</span> построения префиксного кода предложен в 1952 году. Он более практичен и по
+    степени сжатия, по меньшей мере, не уступает методу Шеннона-Фано. Пусть имеется алфавит первичного сообщения из
+    <var>n</var> знаков с соответствующими частотами.</p>
+<p>На первом шаге объединим два символа с минимальными частотами в один составной символ. На следующем шаге опять
+    выбираем два символа, возможно, составных, с минимальными частотами и объединяем в один составной символ. Продолжив
+    <var>(n-2)</var> раза процесс объединения символов с минимальными частотами, в конечном итоге получим алфавит из
+    двух составных символов.</p>
 <p>Для сообщения &quot;мама мыла раму&quot; будем иметь следующую таблицу (в одинарные кавычки заключили пробел):</p>
 <table border="1">
-<caption>Таблица 3.5.7</caption>
-<tr>
-<td>Символ</td>
-<td>Частота</td>
-<td>Символ</td>
-<td>Частота</td>
-<td>Символ</td>
-<td>Частота</td>
-<td>Символ</td>
-<td>Частота</td>
-<td>Символ</td>
-<td>Частота</td>
-<td>Символ</td>
-<td>Частота</td>
-</tr>
-<tr>
-<td>м</td>
-<td>4</td>
-<td>м</td>
-<td>4</td>
-<td>м</td>
-<td>4</td>
-<td>м</td>
-<td>4</td>
-<td>мру</td>
-<td>6</td>
-<td>а' 'ыл</td>
-<td>8</td>
-</tr>
-<tr>
-<td>а</td>
-<td>4</td>
-<td>а</td>
-<td>4</td>
-<td>а</td>
-<td>4</td>
-<td>а</td>
-<td>4</td>
-<td>а</td>
-<td>4</td>
-<td>мру</td>
-<td>6</td>
-</tr>
-<tr>
-<td>' '</td>
-<td>2</td>
-<td>' '</td>
-<td>2</td>
-<td>' '</td>
-<td>2</td>
-<td>' 'ыл</td>
-<td>4</td>
-<td>' 'ыл</td>
-<td>4</td>
-</tr>
-<tr>
-<td>р</td>
-<td>1</td>
-<td>ыл</td>
-<td>2</td>
-<td>ыл</td>
-<td>2</td>
-<td>ру</td>
-<td>2</td>
-</tr>
-<tr>
-<td>у</td>
-<td>1</td>
-<td>р</td>
-<td>1</td>
-<td>ру</td>
-<td>2</td>
-</tr>
-<tr>
-<td>ы</td>
-<td>1</td>
-<td>у</td>
-<td>1</td>
-</tr>
-<tr>
-<td>л</td>
-<td>1</td>
-<td></td>
-<td></td>
-</tr>
+    <caption>Таблица 3.5.7</caption>
+    <tr>
+        <td>Символ</td>
+        <td>Частота</td>
+        <td>Символ</td>
+        <td>Частота</td>
+        <td>Символ</td>
+        <td>Частота</td>
+        <td>Символ</td>
+        <td>Частота</td>
+        <td>Символ</td>
+        <td>Частота</td>
+        <td>Символ</td>
+        <td>Частота</td>
+    </tr>
+    <tr>
+        <td>м</td>
+        <td>4</td>
+        <td>м</td>
+        <td>4</td>
+        <td>м</td>
+        <td>4</td>
+        <td>м</td>
+        <td>4</td>
+        <td>мру</td>
+        <td>6</td>
+        <td>а' 'ыл</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>а</td>
+        <td>4</td>
+        <td>а</td>
+        <td>4</td>
+        <td>а</td>
+        <td>4</td>
+        <td>а</td>
+        <td>4</td>
+        <td>а</td>
+        <td>4</td>
+        <td>мру</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>' '</td>
+        <td>2</td>
+        <td>' '</td>
+        <td>2</td>
+        <td>' '</td>
+        <td>2</td>
+        <td>' 'ыл</td>
+        <td>4</td>
+        <td>' 'ыл</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>р</td>
+        <td>1</td>
+        <td>ыл</td>
+        <td>2</td>
+        <td>ыл</td>
+        <td>2</td>
+        <td>ру</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>у</td>
+        <td>1</td>
+        <td>р</td>
+        <td>1</td>
+        <td>ру</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>ы</td>
+        <td>1</td>
+        <td>у</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>л</td>
+        <td>1</td>
+        <td></td>
+        <td></td>
+    </tr>
 </table>
-<p>Присвоим первому символу код &quot;0&quot;, а второму &#8212; код &quot;1&quot;. На предыдущем <var>(n-3)</var>-м шаге мы имели три символа, два из которых на <var>(n-2)</var>-м шаге были объединены в один символ. Нас в данный момент интересуют именно эти два символа. К коду первого из них присоединим справа &quot;0&quot;, к коду второго символа &#8212; &quot;1&quot;.</p>
+<p>Присвоим первому символу код &quot;0&quot;, а второму &#8212; код &quot;1&quot;. На предыдущем <var>(n-3)</var>-м
+    шаге мы имели три символа, два из которых на <var>(n-2)</var>-м шаге были объединены в один символ. Нас в данный
+    момент интересуют именно эти два символа. К коду первого из них присоединим справа &quot;0&quot;, к коду второго
+    символа &#8212; &quot;1&quot;.</p>
 <p>Продолжая процесс кодирования символов, в конечном итоге получим префиксные коды символов алфавита.</p>
 <p>Для примера с сообщением &quot;мама мыла раму&quot; будем иметь такую таблицу построения кодов Хаффмена:</p>
 <table border="1">
-<caption>Таблица 3.5.8</caption>
-<tr>
-<td>Символ</td>
-<td>Частота</td>
-<td>Код</td>
-<td>Символ</td>
-<td>Частота</td>
-<td>Код</td>
-<td>Символ</td>
-<td>Частота</td>
-<td>Код</td>
-<td>Символ</td>
-<td>Частота</td>
-<td>Код</td>
-<td>Символ</td>
-<td>Частота</td>
-<td>Код</td>
-<td>Символ</td>
-<td>Частота</td>
-<td>Код</td>
-</tr>
-<tr>
-<td>м</td>
-<td>4</td>
-<td>10</td>
-<td>м</td>
-<td>4</td>
-<td>10</td>
-<td>м</td>
-<td>4</td>
-<td>10</td>
-<td>м</td>
-<td>4</td>
-<td>10</td>
-<td>мру</td>
-<td>6</td>
-<td>1</td>
-<td>а' 'ыл</td>
-<td>8</td>
-<td>0</td>
-</tr>
-<tr>
-<td>а</td>
-<td>4</td>
-<td>00</td>
-<td>а</td>
-<td>4</td>
-<td>00</td>
-<td>а</td>
-<td>4</td>
-<td>00</td>
-<td>а</td>
-<td>4</td>
-<td>00</td>
-<td>а</td>
-<td>4</td>
-<td>00</td>
-<td>мру</td>
-<td>6</td>
-<td>1</td>
-</tr>
-<tr>
-<td>' '</td>
-<td>2</td>
-<td>010 </td>
-<td>' '</td>
-<td>2</td>
-<td>010</td>
-<td>' '</td>
-<td>2</td>
-<td>010</td>
-<td>' 'ыл</td>
-<td>4</td>
-<td>01</td>
-<td>' 'ыл</td>
-<td>4</td>
-<td>01</td>
-</tr>
-<tr>
-<td>р</td>
-<td>1</td>
-<td>110</td>
-<td>ыл</td>
-<td>2</td>
-<td>011</td>
-<td>ыл</td>
-<td>2</td>
-<td>011</td>
-<td>ру</td>
-<td>2</td>
-<td>11</td>
-</tr>
-<tr>
-<td>у</td>
-<td>1</td>
-<td>111</td>
-<td>р</td>
-<td>1</td>
-<td>110</td>
-<td>ру</td>
-<td>2</td>
-<td>11</td>
-</tr>
-<tr>
-<td>ы</td>
-<td>1</td>
-<td>0110</td>
-<td>у</td>
-<td>1</td>
-<td>111</td>
-</tr>
-<tr>
-<td>л</td>
-<td>1</td>
-<td>0111</td>
-<td></td>
-<td></td>
-</tr>
+    <caption>Таблица 3.5.8</caption>
+    <tr>
+        <td>Символ</td>
+        <td>Частота</td>
+        <td>Код</td>
+        <td>Символ</td>
+        <td>Частота</td>
+        <td>Код</td>
+        <td>Символ</td>
+        <td>Частота</td>
+        <td>Код</td>
+        <td>Символ</td>
+        <td>Частота</td>
+        <td>Код</td>
+        <td>Символ</td>
+        <td>Частота</td>
+        <td>Код</td>
+        <td>Символ</td>
+        <td>Частота</td>
+        <td>Код</td>
+    </tr>
+    <tr>
+        <td>м</td>
+        <td>4</td>
+        <td>10</td>
+        <td>м</td>
+        <td>4</td>
+        <td>10</td>
+        <td>м</td>
+        <td>4</td>
+        <td>10</td>
+        <td>м</td>
+        <td>4</td>
+        <td>10</td>
+        <td>мру</td>
+        <td>6</td>
+        <td>1</td>
+        <td>а' 'ыл</td>
+        <td>8</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>а</td>
+        <td>4</td>
+        <td>00</td>
+        <td>а</td>
+        <td>4</td>
+        <td>00</td>
+        <td>а</td>
+        <td>4</td>
+        <td>00</td>
+        <td>а</td>
+        <td>4</td>
+        <td>00</td>
+        <td>а</td>
+        <td>4</td>
+        <td>00</td>
+        <td>мру</td>
+        <td>6</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>' '</td>
+        <td>2</td>
+        <td>010</td>
+        <td>' '</td>
+        <td>2</td>
+        <td>010</td>
+        <td>' '</td>
+        <td>2</td>
+        <td>010</td>
+        <td>' 'ыл</td>
+        <td>4</td>
+        <td>01</td>
+        <td>' 'ыл</td>
+        <td>4</td>
+        <td>01</td>
+    </tr>
+    <tr>
+        <td>р</td>
+        <td>1</td>
+        <td>110</td>
+        <td>ыл</td>
+        <td>2</td>
+        <td>011</td>
+        <td>ыл</td>
+        <td>2</td>
+        <td>011</td>
+        <td>ру</td>
+        <td>2</td>
+        <td>11</td>
+    </tr>
+    <tr>
+        <td>у</td>
+        <td>1</td>
+        <td>111</td>
+        <td>р</td>
+        <td>1</td>
+        <td>110</td>
+        <td>ру</td>
+        <td>2</td>
+        <td>11</td>
+    </tr>
+    <tr>
+        <td>ы</td>
+        <td>1</td>
+        <td>0110</td>
+        <td>у</td>
+        <td>1</td>
+        <td>111</td>
+    </tr>
+    <tr>
+        <td>л</td>
+        <td>1</td>
+        <td>0111</td>
+        <td></td>
+        <td></td>
+    </tr>
 </table>
-<p>Из самой процедуры построения кодов легко видеть, что они удовлетворяют <a href="#fano">условию Фано</a> и, следовательно, не требуют разделителя.</p>
+<p>Из самой процедуры построения кодов легко видеть, что они удовлетворяют <a href="#fano">условию Фано</a> и,
+    следовательно, не требуют разделителя.</p>
 <p><a href="3_1.html#srdlina">Средняя длина кода</a> вычисляется по формуле:
-<table class='formula'><tr>
-<td class='formula'>
-<math display="block">
-<mrow>
-  <mi>K</mi><mo>=</mo>
-  <mrow>
-    <munderover>
-    	<mo>&#931;</mo>
-    	<mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow>
-      <mi>n</mi>
-    </munderover>
-    <msub>
-      <mi>p</mi>
-      <mi>i</mi>
-    </msub>
-    <mo>&#x2062;</mo>
-    <msub>
-      <mi>l</mi>
-      <mi>i</mi>
-    </msub>
-  </mrow>
-</mrow><mo>,</mo>
-</math>
-</td>
-<td class='nomer'>(3.5.1)</td></tr>
+<table class='formula'>
+    <tr>
+        <td class='formula'>
+            <math display="block">
+                <mrow>
+                    <mi>K</mi>
+                    <mo>=</mo>
+                    <mrow>
+                        <munderover>
+                            <mo>&#931;</mo>
+                            <mrow>
+                                <mi>i</mi>
+                                <mo>=</mo>
+                                <mn>1</mn>
+                            </mrow>
+                            <mi>n</mi>
+                        </munderover>
+                        <msub>
+                            <mi>p</mi>
+                            <mi>i</mi>
+                        </msub>
+                        <mo>&#x2062;</mo>
+                        <msub>
+                            <mi>l</mi>
+                            <mi>i</mi>
+                        </msub>
+                    </mrow>
+                </mrow>
+                <mo>,</mo>
+            </math>
+        </td>
+        <td class='nomer'>(3.5.1)</td>
+    </tr>
 </table>
-где <var>p<sub>i</sub></var> &#8212; относительная частота, а <var>l<sub>i</sub></var> &#8212; длина кода символа алфавита первичного сообщнения.</p>
+где <var>p<sub>i</sub></var> &#8212; относительная частота, а <var>l<sub>i</sub></var> &#8212; длина кода символа
+алфавита первичного сообщнения.</p>
 <p>Для сообщения &quot;мама мыла раму&quot; средняя длина кода буквы составляет
-<math display='inline'>
-<mrow>
-  <mi>H</mi><mo>=</mo>
-<mrow>
-  	<mo>−</mo>
-  	<mrow>
-  		<mrow>
-  			<mn>2</mn><mo>&#x2064;</mo><mfrac><mn>4</mn><mn>14</mn></mfrac>
-  		</mrow>
-  		<mo>&#x2062;</mo>
-  		<mrow>
-  			<msub><mi>log</mi><mn>2</mn></msub><mo>&#x2061;</mo>
-  			<mfrac><mn>4</mn><mn>14</mn></mfrac>
-  		</mrow>
-  	</mrow>	
-  <mo>−</mo>
-	<mrow>
-  		<mfrac><mn>2</mn><mn>14</mn></mfrac>
-  		<mo>&#x2062;</mo>
-  		<mrow>
-  			<msub><mi>log</mi><mn>2</mn></msub><mo>&#x2061;</mo><mfrac><mn>2</mn><mn>14</mn></mfrac>
-  		</mrow>
-  </mrow>
-  <mo>−</mo>
-	<mrow>
-		<mrow>  
-  			<mn>4</mn><mo>&#x2064;</mo>
-  			<mfrac><mn>1</mn><mn>14</mn></mfrac>
-  		</mrow>
-  		<mo>&#x2062;</mo>
-  		<mrow>
-  			<msub><mi>log</mi><mn>2</mn></msub><mo>&#x2061;</mo><mfrac><mn>1</mn><mn>14</mn></mfrac>
-  		</mrow>
-	</mrow>
-</mrow>
-  <mo>≈</mo>
-  <mn>2.52</mn>
-</mrow>
-</math>, а <a href="3_1.html#izb_kod">избыточность кода</a> будет такой
-<math display='inline'>
-<mrow>
-  <mi>Q</mi>
-  <mo>=</mo>
-  <mrow>
-		<mn>1</mn>
-  		<mo>−</mo>
-  		<mfrac><mi>H</mi><mi>K</mi></mfrac>
-	</mrow>  
-  <mo>=</mo>
-  <mrow>
-  		<mn>1</mn>
-  		<mo>−</mo>
-  		<mfrac><mn>2.52</mn><mn>2.57</mn></mfrac>
-  </mrow>
-  <mo>&#8776;</mo>
-  <mn>0.0188</mn>
-</mrow>  
-</math>.</p>
+    <math display='inline'>
+        <mrow>
+            <mi>H</mi>
+            <mo>=</mo>
+            <mrow>
+                <mo>−</mo>
+                <mrow>
+                    <mrow>
+                        <mn>2</mn>
+                        <mo>&#x2064;</mo>
+                        <mfrac>
+                            <mn>4</mn>
+                            <mn>14</mn>
+                        </mfrac>
+                    </mrow>
+                    <mo>&#x2062;</mo>
+                    <mrow>
+                        <msub>
+                            <mi>log</mi>
+                            <mn>2</mn>
+                        </msub>
+                        <mo>&#x2061;</mo>
+                        <mfrac>
+                            <mn>4</mn>
+                            <mn>14</mn>
+                        </mfrac>
+                    </mrow>
+                </mrow>
+                <mo>−</mo>
+                <mrow>
+                    <mfrac>
+                        <mn>2</mn>
+                        <mn>14</mn>
+                    </mfrac>
+                    <mo>&#x2062;</mo>
+                    <mrow>
+                        <msub>
+                            <mi>log</mi>
+                            <mn>2</mn>
+                        </msub>
+                        <mo>&#x2061;</mo>
+                        <mfrac>
+                            <mn>2</mn>
+                            <mn>14</mn>
+                        </mfrac>
+                    </mrow>
+                </mrow>
+                <mo>−</mo>
+                <mrow>
+                    <mrow>
+                        <mn>4</mn>
+                        <mo>&#x2064;</mo>
+                        <mfrac>
+                            <mn>1</mn>
+                            <mn>14</mn>
+                        </mfrac>
+                    </mrow>
+                    <mo>&#x2062;</mo>
+                    <mrow>
+                        <msub>
+                            <mi>log</mi>
+                            <mn>2</mn>
+                        </msub>
+                        <mo>&#x2061;</mo>
+                        <mfrac>
+                            <mn>1</mn>
+                            <mn>14</mn>
+                        </mfrac>
+                    </mrow>
+                </mrow>
+            </mrow>
+            <mo>≈</mo>
+            <mn>2.52</mn>
+        </mrow>
+    </math>
+    , а <a href="3_1.html#izb_kod">избыточность кода</a> будет такой
+    <math display='inline'>
+        <mrow>
+            <mi>Q</mi>
+            <mo>=</mo>
+            <mrow>
+                <mn>1</mn>
+                <mo>−</mo>
+                <mfrac>
+                    <mi>H</mi>
+                    <mi>K</mi>
+                </mfrac>
+            </mrow>
+            <mo>=</mo>
+            <mrow>
+                <mn>1</mn>
+                <mo>−</mo>
+                <mfrac>
+                    <mn>2.52</mn>
+                    <mn>2.57</mn>
+                </mfrac>
+            </mrow>
+            <mo>&#8776;</mo>
+            <mn>0.0188</mn>
+        </mrow>
+    </math>
+    .
+</p>
 <p>Для сравнения, при байтовом кодировании этого же сообщения избыточность кода составит около 0.69.</p>
-<p>Применение метода Хаффмена к фрагменту рассказа А. П. Чехова &quot;Каштанка&quot; из 11461 знака, при условии 
-неразличимости строчных и прописных букв, игнорировании знаков препинания и некоторых других знаков, дает следующую таблицу кодов:</p>
+<p>Применение метода Хаффмена к фрагменту рассказа А. П. Чехова &quot;Каштанка&quot; из 11461 знака, при условии
+    неразличимости строчных и прописных букв, игнорировании знаков препинания и некоторых других знаков, дает следующую
+    таблицу кодов:</p>
 <table border="1">
-<caption>Таблица 3.5.9</caption>
-<tr>
-<td>Буква</td>
-<td>пробел</td>
-<td>а</td>
-<td>о</td>
-<td>е</td>
-<td>н</td>
-<td>и</td>
-<td>л</td>
-<td>т</td>
-<td>к</td>
-<td>с</td>
-<td>р</td>
-</tr>
-<tr>
-<td>Относительная частота</td>
-<td>0.16866</td>
-<td>0.08839</td>
-<td>0.08804</td>
-<td>0.06535</td>
-<td>0.05383</td>
-<td>0.05061</td>
-<td>0.04956</td>
-<td>0.0444</td>
-<td>0.0400</td>
-<td>0.0386</td>
-<td>0.0333</td>
-</tr>
-<tr>
-<td>Код</td>
-<td>110</td>
-<td>000</td>
-<td>1111</td>
-<td>1010</td>
-<td>0110</td>
-<td>0101</td>
-<td>0100</td>
-<td>11101</td>
-<td>11100</td>
-<td>10111</td>
-<td>10011</td>
-</tr>
-<tr>
-<td>Буква</td>
-<td>в</td>
-<td>у</td>
-<td>д</td>
-<td>м</td>
-<td>п</td>
-<td>з</td>
-<td>я</td>
-<td>г</td>
-<td>ь</td>
-<td>ы</td>
-<td>б</td>
-</tr>
-<tr>
-<td>Относительная частота</td>
-<td>0.0319</td>
-<td>0.0284</td>
-<td>0.0244</td>
-<td>0.0224</td>
-<td>0.0224</td>
-<td>0.0180</td>
-<td>0.0160</td>
-<td>0.0158</td>
-<td>0.0148</td>
-<td>0.0146</td>
-<td>0.0120</td>
-</tr>
-<tr>
-<td>Код</td>
-<td>10010</td>
-<td>01111</td>
-<td>00111</td>
-<td>00100</td>
-<td>00101</td>
-<td>101100</td>
-<td>100011</td>
-<td>100010</td>
-<td>100000</td>
-<td>011101</td>
-<td>001100</td>
-</tr>
-<tr>
-<td>Буква</td>
-<td>ч</td>
-<td>ш</td>
-<td>ж</td>
-<td>х</td>
-<td>й</td>
-<td>ю</td>
-<td>ц</td>
-<td>щ</td>
-<td>ф</td>
-<td>э</td>
-<td>ъ</td>
-</tr>
-<tr>
-<td>Относительная частота</td>
-<td>0.0120</td>
-<td>0.0110</td>
-<td>0.0079</td>
-<td>0.0074</td>
-<td>0.0071</td>
-<td>0.0056</td>
-<td>0.0031</td>
-<td>0.0018</td>
-<td>0.0010</td>
-<td>0.0010</td>
-<td>0.0005</td>
-</tr>
-<tr>
-<td>Код</td>
-<td>001101</td>
-<td>1011011</td>
-<td>1011010</td>
-<td>1000010</td>
-<td>0111001</td>
-<td>0111000</td>
-<td>10000110</td>
-<td>100001110</td>
-<td>1000011110</td>
-<td>10000111111</td>
-<td>10000111110</td>
-</tr>
+    <caption>Таблица 3.5.9</caption>
+    <tr>
+        <td>Буква</td>
+        <td>пробел</td>
+        <td>а</td>
+        <td>о</td>
+        <td>е</td>
+        <td>н</td>
+        <td>и</td>
+        <td>л</td>
+        <td>т</td>
+        <td>к</td>
+        <td>с</td>
+        <td>р</td>
+    </tr>
+    <tr>
+        <td>Относительная частота</td>
+        <td>0.16866</td>
+        <td>0.08839</td>
+        <td>0.08804</td>
+        <td>0.06535</td>
+        <td>0.05383</td>
+        <td>0.05061</td>
+        <td>0.04956</td>
+        <td>0.0444</td>
+        <td>0.0400</td>
+        <td>0.0386</td>
+        <td>0.0333</td>
+    </tr>
+    <tr>
+        <td>Код</td>
+        <td>110</td>
+        <td>000</td>
+        <td>1111</td>
+        <td>1010</td>
+        <td>0110</td>
+        <td>0101</td>
+        <td>0100</td>
+        <td>11101</td>
+        <td>11100</td>
+        <td>10111</td>
+        <td>10011</td>
+    </tr>
+    <tr>
+        <td>Буква</td>
+        <td>в</td>
+        <td>у</td>
+        <td>д</td>
+        <td>м</td>
+        <td>п</td>
+        <td>з</td>
+        <td>я</td>
+        <td>г</td>
+        <td>ь</td>
+        <td>ы</td>
+        <td>б</td>
+    </tr>
+    <tr>
+        <td>Относительная частота</td>
+        <td>0.0319</td>
+        <td>0.0284</td>
+        <td>0.0244</td>
+        <td>0.0224</td>
+        <td>0.0224</td>
+        <td>0.0180</td>
+        <td>0.0160</td>
+        <td>0.0158</td>
+        <td>0.0148</td>
+        <td>0.0146</td>
+        <td>0.0120</td>
+    </tr>
+    <tr>
+        <td>Код</td>
+        <td>10010</td>
+        <td>01111</td>
+        <td>00111</td>
+        <td>00100</td>
+        <td>00101</td>
+        <td>101100</td>
+        <td>100011</td>
+        <td>100010</td>
+        <td>100000</td>
+        <td>011101</td>
+        <td>001100</td>
+    </tr>
+    <tr>
+        <td>Буква</td>
+        <td>ч</td>
+        <td>ш</td>
+        <td>ж</td>
+        <td>х</td>
+        <td>й</td>
+        <td>ю</td>
+        <td>ц</td>
+        <td>щ</td>
+        <td>ф</td>
+        <td>э</td>
+        <td>ъ</td>
+    </tr>
+    <tr>
+        <td>Относительная частота</td>
+        <td>0.0120</td>
+        <td>0.0110</td>
+        <td>0.0079</td>
+        <td>0.0074</td>
+        <td>0.0071</td>
+        <td>0.0056</td>
+        <td>0.0031</td>
+        <td>0.0018</td>
+        <td>0.0010</td>
+        <td>0.0010</td>
+        <td>0.0005</td>
+    </tr>
+    <tr>
+        <td>Код</td>
+        <td>001101</td>
+        <td>1011011</td>
+        <td>1011010</td>
+        <td>1000010</td>
+        <td>0111001</td>
+        <td>0111000</td>
+        <td>10000110</td>
+        <td>100001110</td>
+        <td>1000011110</td>
+        <td>10000111111</td>
+        <td>10000111110</td>
+    </tr>
 </table>
-<p>Код Хаффмена важен в теоретическом отношении, поскольку доказана (см. (<a href="litra.html#42">[43], с. 209–211</a>):</p>
-<p><span class="name">Теорема 3.5.1.</span><span class="teorema">Код Хаффмена является самым экономичным из всех возможных, т.е. ни для какого метода алфавитного кодирования длина кода не может оказаться меньше длины кода Хаффмена.</span></p>
-<p>Построение кодов Хаффмена некоторого сообщения, с учетом алфавита сообщения и частоты букв в сообщении, дает кодовую таблицу только для этого сообщения. В этом случае для декодирования кодовой последовательности требуется и сама кодовая таблица, т.е. должны храниться и передаваться как кодовая последовательность,так и кодовая таблица сообщения.</p>
-<p>На основании <a href="2_4.html#t2_4_1">Таблицы частот 2.4.1</a> возможно построение <a href='kod_hafm.html'>универсальной кодовой таблицы Хаффмена</a>, в которой присутствуют только строчные буквы кириллицы и пробел.</p>
-<p>Наличие универсальной таблицы Хаффмена позволяет использовать однопроходное кодирование, так как отпадает необходимость строить алфавит сообщения и кодовую таблицу, и можно ограничиться передачей по каналам связи только кодовой последовательности.</p>
+<p>Код Хаффмена важен в теоретическом отношении, поскольку доказана (см. (<a href="litra.html#42">[43], с. 209–211</a>):
+</p>
+<p><span class="name">Теорема 3.5.1.</span><span class="teorema">Код Хаффмена является самым экономичным из всех возможных, т.е. ни для какого метода алфавитного кодирования длина кода не может оказаться меньше длины кода Хаффмена.</span>
+</p>
+<p>Построение кодов Хаффмена некоторого сообщения, с учетом алфавита сообщения и частоты букв в сообщении, дает кодовую
+    таблицу только для этого сообщения. В этом случае для декодирования кодовой последовательности требуется и сама
+    кодовая таблица, т.е. должны храниться и передаваться как кодовая последовательность,так и кодовая таблица
+    сообщения.</p>
+<p>На основании <a href="2_4.html#t2_4_1">Таблицы частот 2.4.1</a> возможно построение <a href='kod_hafm.html'>универсальной
+    кодовой таблицы Хаффмена</a>, в которой присутствуют только строчные буквы кириллицы и пробел.</p>
+<p>Наличие универсальной таблицы Хаффмена позволяет использовать однопроходное кодирование, так как отпадает
+    необходимость строить алфавит сообщения и кодовую таблицу, и можно ограничиться передачей по каналам связи только
+    кодовой последовательности.</p>
 <p>Очевидные минусы такого кодирования:</p>
 <ol>
-<li>В кодируемом тексте можно использовать только те знаки, которые присутствуют в универсальной кодовой таблице.</li>
-<li>Коды для некоторых сообщений могут быть не оптимальными, т.к. реальное частотное распределение букв алфавита сообщения может достаточно сильно отличаться от таблицы 2.4.1.</li>
+    <li>В кодируемом тексте можно использовать только те знаки, которые присутствуют в универсальной кодовой таблице.
+    </li>
+    <li>Коды для некоторых сообщений могут быть не оптимальными, т.к. реальное частотное распределение букв алфавита
+        сообщения может достаточно сильно отличаться от таблицы 2.4.1.
+    </li>
 </ol>
-<p align="left">Используем эту таблицу кодов для кодирования текста в следующем калькуляторе (в тексте можем использовать только те знаки, которые присутствуют в универсальной кодовой таблице Хаффмена:</p>
+<p align="left">Используем эту таблицу кодов для кодирования текста в следующем калькуляторе (в тексте можем
+    использовать только те знаки, которые присутствуют в универсальной кодовой таблице Хаффмена:</p>
 <form id="forma1">
-<p>Введите текст</p>
-<textarea cols="80" rows="5" id="txt1" title="Введите текст, используя строчные буквы кириллицы без знаков препинания"></textarea><br />
-<input type="button" value="Закодировать" onclick="codir()" />
-<input type="reset" value="Сброс" />
+    <p>Введите текст</p>
+    <textarea cols="80" rows="5" id="txt1"
+              title="Введите текст, используя строчные буквы кириллицы без знаков препинания"></textarea><br/>
+    <input type="button" value="Закодировать" onclick="codir()"/>
+    <input type="reset" value="Сброс"/>
 </form>
-<p>Рассмотрим двухпроходное кодирование Хаффмена, при котором строиться алфавит сообщения, затем на основе статистики букв строится кодовая таблица и кодируется сообщение. Предложенный ниже калькулятор строит коды Хаффмена для произвольного текста в два прохода:</p>
+<p>Рассмотрим двухпроходное кодирование Хаффмена, при котором строиться алфавит сообщения, затем на основе статистики
+    букв строится кодовая таблица и кодируется сообщение. Предложенный ниже калькулятор строит коды Хаффмена для
+    произвольного текста в два прохода:</p>
 <form id="forma2">
-	Введите сообщение:<br />
-	<textarea rows="3" id="txt2" cols="80"></textarea><br />
-	<input type="button" value="Вычислить" onclick="start()" />
-	<input type="reset" value="Сброс" />
+    Введите сообщение:<br/>
+    <textarea rows="3" id="txt2" cols="80"></textarea><br/>
+    <input type="button" value="Вычислить" onclick="start()"/>
+    <input type="reset" value="Сброс"/>
 </form>
 <div id='div1'>
 </div>
 
-<p>При подобном кодировании приходится как хранить, так и отправлять по каналам связи как кодовую последовательность, так и кодовую таблицу, что значительно снижает эффект сжатия сообщения (кодовая таблица может быть достаточно большой). В программах сжатия потоковой информации применяется модификация метода Хаффмена &#8212; <span class="name">метод адаптивного (динамического) кодирования Хаффмена</span>, который является однопроходным методом кодирования и не требует передачи по каналам связи кодовой таблицы.</p>
+<p>При подобном кодировании приходится как хранить, так и отправлять по каналам связи как кодовую последовательность,
+    так и кодовую таблицу, что значительно снижает эффект сжатия сообщения (кодовая таблица может быть достаточно
+    большой). В программах сжатия потоковой информации применяется модификация метода Хаффмена &#8212; <span
+            class="name">метод адаптивного (динамического) кодирования Хаффмена</span>, который является однопроходным
+    методом кодирования и не требует передачи по каналам связи кодовой таблицы.</p>
 <a name="predpos"></a>
-<p>Очевидно, что при кодировании методами Шеннона-Фано и Хаффмена на каждый символ тратится не менее одного бита, хотя энтропия сообшения может быть меньше 1.</p>
-<p>Сжатие сообщения не может быть больше некоторого теоретического предела. Доказана <a href="litra.html#42">[43], с. 212-216</a>:</p>
+<p>Очевидно, что при кодировании методами Шеннона-Фано и Хаффмена на каждый символ тратится не менее одного бита, хотя
+    энтропия сообшения может быть меньше 1.</p>
+<p>Сжатие сообщения не может быть больше некоторого теоретического предела. Доказана <a href="litra.html#42">[43], с.
+    212-216</a>:</p>
 <p><span class="name">Теорема 3.5.2.</span><span class="teorema">Средняя длина кода <var>K</var> (среднее количество бит, приходящихся на один знак первичного алфавита) не может быть меньше энтропии <var>H</var> сообщения: 
 <math display='inline'>
 <mrow>
@@ -961,23 +1207,36 @@ function start() {
 <mi>H</mi><mo>&#8804;</mo><mrow><mi>K</mi><mo>-</mo><mn>1</mn></mrow>
 </mrow>
 </math>.</span></p>
-<p>Приведем <span class="termin">основную теорему (Шеннона-Фано)</span> о кодировании сообщения при отсутствии помех:</p>
-<p><span class="name">Теорема 3.5.4.</span><span class="teorema">C ростом длины <var>n</var> сообщения при кодировании методом Шеннона-Фано всего сообщения целиком средняя длина кода будет сколь угодно мало отличаться от энтропии сообщения.</span></p>
- <p>Подобное кодирование на практике нереализуемо из-за того, что с ростом длины сообщения трудоемкость построения кода становится недопустимо большой. Кроме того, такое кодирование делает невозможным отправку сообщения по частям, что необходимо для непрерывных процессов передачи данных. Дополнительным недостатком такого кодирования является необходимость отправки или хранения как кодовой последовательности, так и кодовой таблицы, что снижает эффект сжатия.</p>
+<p>Приведем <span class="termin">основную теорему (Шеннона-Фано)</span> о кодировании сообщения при отсутствии помех:
+</p>
+<p><span class="name">Теорема 3.5.4.</span><span class="teorema">C ростом длины <var>n</var> сообщения при кодировании методом Шеннона-Фано всего сообщения целиком средняя длина кода будет сколь угодно мало отличаться от энтропии сообщения.</span>
+</p>
+<p>Подобное кодирование на практике нереализуемо из-за того, что с ростом длины сообщения трудоемкость построения кода
+    становится недопустимо большой. Кроме того, такое кодирование делает невозможным отправку сообщения по частям, что
+    необходимо для непрерывных процессов передачи данных. Дополнительным недостатком такого кодирования является
+    необходимость отправки или хранения как кодовой последовательности, так и кодовой таблицы, что снижает эффект
+    сжатия.</p>
 <h3>Контрольные вопросы и упражнения</h3>
 <ol>
-<li>Какие коды называют префиксными?</li>
-<li>В чем заключается условие Фано?</li>
-<li>Требуется ли кодировать специальный разделитель кодов символов при префиксном кодировании?</li>
-<li>В чем заключается идея неравномерного кодирования, позволяющая сократить длину кода?</li>
-<li>Закодируйте в системе электронных таблиц кодами Шеннона-Фано сообщение из фамилии, имени и отчества. Вычислите энтропию по Шеннону исходного сообщения, среднюю длину и избыточность кода.</li> 
-<li>Закодируйте в системе электронных таблиц кодами Хаффмена сообщение из фамилии, имени и отчества. Вычислите энтропию по Шеннону исходного сообщения, среднюю длину и избыточность кода.</li>
-<li>Является ли кодирование по методу Шеннона-Фано (Хаффмена) однозначным?</li>
-<li>Возможно ли алфавитное кодирование, более экономичное, чем кодирование Хаффмена?</li>
-<li>Как соотносятся средняя длина кода и энтропия сообщения?</li>
-<li>Как зависит средняя длина кода, полученного двухпроходным методом Шеннона-Фано, от длины сообщения?</li>
-<li>В чем заключается основной недостаток двухпроходных префиксных кодов?</li>
+    <li>Какие коды называют префиксными?</li>
+    <li>В чем заключается условие Фано?</li>
+    <li>Требуется ли кодировать специальный разделитель кодов символов при префиксном кодировании?</li>
+    <li>В чем заключается идея неравномерного кодирования, позволяющая сократить длину кода?</li>
+    <li>Закодируйте в системе электронных таблиц кодами Шеннона-Фано сообщение из фамилии, имени и отчества. Вычислите
+        энтропию по Шеннону исходного сообщения, среднюю длину и избыточность кода.
+    </li>
+    <li>Закодируйте в системе электронных таблиц кодами Хаффмена сообщение из фамилии, имени и отчества. Вычислите
+        энтропию по Шеннону исходного сообщения, среднюю длину и избыточность кода.
+    </li>
+    <li>Является ли кодирование по методу Шеннона-Фано (Хаффмена) однозначным?</li>
+    <li>Возможно ли алфавитное кодирование, более экономичное, чем кодирование Хаффмена?</li>
+    <li>Как соотносятся средняя длина кода и энтропия сообщения?</li>
+    <li>Как зависит средняя длина кода, полученного двухпроходным методом Шеннона-Фано, от длины сообщения?</li>
+    <li>В чем заключается основной недостаток двухпроходных префиксных кодов?</li>
 </ol>
 <p><a href="3_4.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="3_6.html">К следующему</a></p>
 </body>
+<script type="text/javascript">
+    MathJax.Hub.Configured()
+</script>
 </html>

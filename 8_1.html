@@ -1,142 +1,161 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset='UTF-8' />
-<link rel='stylesheet' type='text/css' href='style.css' />
-<meta name='author' content='leonid' />
-<title>Машина Тьюринга</title>
-<script type="text/javascript" >
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+  extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});
 
-function start() {
-var ust=document.getElementById('ust').value, res=document.getElementById('res'), i=0, len=ust.length;
-	while ((i<len) && ((ust[i]=='0') || (ust[i]=='1') ||(ust[i]=='_'))) {
-		i++;
-	}
-	if (i==len) { 
-		while (res.firstChild) {	
-			res.removeChild(res.firstChild);
-		}
-		inic();
-	}
-	else {
-		alert('Ошибка! Проверьте ввод.');	
-	}
-}
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-function inic() {
-var ust=document.getElementById('ust').value, blank=document.getElementById('blank').value, nol=document.getElementById('nol').value, odin=document.getElementById('odin').value, res=document.getElementById('res'), m_sost=[], m_blank=[], m_nol=[], m_odin=[], m_ust=[], j, sst, k, p, tek_str='',q,span;
-	m_blank=blank.split('\u000A');  //разбиваем строку в массив, разделитель перевод строки
-	m_nol=nol.split('\u000A');
-	m_odin=odin.split('\u000A');
-	ust="_"+ust+"_";
-	for (var i=0; i<ust.length; i++)
-		m_ust[i]=ust[i];
-	j=m_ust.length-2;
-	sst="   ";
-	k=0;
-	while (sst[2]!='0') {
-		if (m_ust[j]=='0') {
-			sst=m_nol[k];
-		}	
-		else {
-			if (m_ust[j]=='1')	
-				sst=m_odin[k];
-			else
-				sst=m_blank[k];	
-		}
-		p=document.createElement("p");
-		res.appendChild(p);
-		p.textContent="Команда: "+sst;
-		
-		if (m_ust[j]!=sst[0])  //записываем в ячейку ленты новое значение
-			m_ust[j]=sst[0];
-		//печатаем ленту после замены содержимого ячейки
-		p=document.createElement("p");
-		res.appendChild(p);
-		p.textContent="Команда: "+sst;
+    <meta charset='UTF-8'/>
+    <link rel='stylesheet' type='text/css' href='style.css'/>
+    <meta name='author' content='leonid'/>
+    <title>Машина Тьюринга</title>
+    <script type="text/javascript">
 
-		p=document.createElement("p");
-		res.appendChild(p);
-		p.textContent="Лента: ";
-		span=document.createElement("span");
-		span.textContent="\uE08B";
-		p.appendChild(span);		
-		q=0; //печатаем элементы ленты обычным шрифтом до текущей ячейки
-		while (q<j) {
-			span=document.createElement("span");
-			span.textContent=m_ust[q];
-			p.appendChild(span);		
-			q++;		
-		}
-		span=document.createElement("span"); //текущая ячейка жирным шрифтом
-		span.style.fontWeight="bold";
-		span.textContent=m_ust[q];
-		p.appendChild(span);
-		q++; //далее обычным шрифтом
-		while (q<m_ust.length) {
-			span=document.createElement("span");
-			span.textContent=m_ust[q];
-			p.appendChild(span);		
-			q++;		
-		}
-		span=document.createElement("span");
-		span.textContent="\uE08B";
-		p.appendChild(span);				
-			
+        function start() {
+            var ust = document.getElementById('ust').value, res = document.getElementById('res'), i = 0,
+                len = ust.length;
+            while ((i < len) && ((ust[i] == '0') || (ust[i] == '1') || (ust[i] == '_'))) {
+                i++;
+            }
+            if (i == len) {
+                while (res.firstChild) {
+                    res.removeChild(res.firstChild);
+                }
+                inic();
+            } else {
+                alert('Ошибка! Проверьте ввод.');
+            }
+        }
 
-		//выбираем направление сдвига
-		switch (sst[1]) {
-		case "R":
-			j++;
-			if (j==m_ust.length)
-				m_ust[j]="_";
-			break;
-		case "L":
-			j--;
-			break;
-		default:
-			break;			
-		}
-		//печатаем ленту после сдвига головки
-		p=document.createElement("p");
-		res.appendChild(p);		
-		p.textContent="Лента: ";
-		span=document.createElement("span");
-		span.textContent="\uE08B";
-		p.appendChild(span);		
-		q=0;
-		while (q<j) {
-			span=document.createElement("span");
-			span.textContent=m_ust[q];
-			p.appendChild(span);		
-			q++;		
-		}
-		span=document.createElement("span");
-		span.style.fontWeight="bold";
-		span.textContent=m_ust[q];
-		p.appendChild(span);
-		q++;
-		while (q<m_ust.length) {
-			span=document.createElement("span");
-			span.textContent=m_ust[q];
-			p.appendChild(span);		
-			q++;		
-		}
-		span=document.createElement("span");
-		span.textContent="\uE08B";
-		p.appendChild(span);	
-		//выбираем номер состояния
-		if (sst[2]!='0')	
-			k=Number(sst[2])-1;
-	}
-}
-</script>
+        function inic() {
+            var ust = document.getElementById('ust').value, blank = document.getElementById('blank').value,
+                nol = document.getElementById('nol').value, odin = document.getElementById('odin').value,
+                res = document.getElementById('res'), m_sost = [], m_blank = [], m_nol = [], m_odin = [], m_ust = [], j,
+                sst, k, p, tek_str = '', q, span;
+            m_blank = blank.split('\u000A');  //разбиваем строку в массив, разделитель перевод строки
+            m_nol = nol.split('\u000A');
+            m_odin = odin.split('\u000A');
+            ust = "_" + ust + "_";
+            for (var i = 0; i < ust.length; i++)
+                m_ust[i] = ust[i];
+            j = m_ust.length - 2;
+            sst = "   ";
+            k = 0;
+            while (sst[2] != '0') {
+                if (m_ust[j] == '0') {
+                    sst = m_nol[k];
+                } else {
+                    if (m_ust[j] == '1')
+                        sst = m_odin[k];
+                    else
+                        sst = m_blank[k];
+                }
+                p = document.createElement("p");
+                res.appendChild(p);
+                p.textContent = "Команда: " + sst;
+
+                if (m_ust[j] != sst[0])  //записываем в ячейку ленты новое значение
+                    m_ust[j] = sst[0];
+                //печатаем ленту после замены содержимого ячейки
+                p = document.createElement("p");
+                res.appendChild(p);
+                p.textContent = "Команда: " + sst;
+
+                p = document.createElement("p");
+                res.appendChild(p);
+                p.textContent = "Лента: ";
+                span = document.createElement("span");
+                span.textContent = "\uE08B";
+                p.appendChild(span);
+                q = 0; //печатаем элементы ленты обычным шрифтом до текущей ячейки
+                while (q < j) {
+                    span = document.createElement("span");
+                    span.textContent = m_ust[q];
+                    p.appendChild(span);
+                    q++;
+                }
+                span = document.createElement("span"); //текущая ячейка жирным шрифтом
+                span.style.fontWeight = "bold";
+                span.textContent = m_ust[q];
+                p.appendChild(span);
+                q++; //далее обычным шрифтом
+                while (q < m_ust.length) {
+                    span = document.createElement("span");
+                    span.textContent = m_ust[q];
+                    p.appendChild(span);
+                    q++;
+                }
+                span = document.createElement("span");
+                span.textContent = "\uE08B";
+                p.appendChild(span);
+
+
+                //выбираем направление сдвига
+                switch (sst[1]) {
+                    case "R":
+                        j++;
+                        if (j == m_ust.length)
+                            m_ust[j] = "_";
+                        break;
+                    case "L":
+                        j--;
+                        break;
+                    default:
+                        break;
+                }
+                //печатаем ленту после сдвига головки
+                p = document.createElement("p");
+                res.appendChild(p);
+                p.textContent = "Лента: ";
+                span = document.createElement("span");
+                span.textContent = "\uE08B";
+                p.appendChild(span);
+                q = 0;
+                while (q < j) {
+                    span = document.createElement("span");
+                    span.textContent = m_ust[q];
+                    p.appendChild(span);
+                    q++;
+                }
+                span = document.createElement("span");
+                span.style.fontWeight = "bold";
+                span.textContent = m_ust[q];
+                p.appendChild(span);
+                q++;
+                while (q < m_ust.length) {
+                    span = document.createElement("span");
+                    span.textContent = m_ust[q];
+                    p.appendChild(span);
+                    q++;
+                }
+                span = document.createElement("span");
+                span.textContent = "\uE08B";
+                p.appendChild(span);
+                //выбираем номер состояния
+                if (sst[2] != '0')
+                    k = Number(sst[2]) - 1;
+            }
+        }
+    </script>
 </head>
 <body>
-<p><a href="7_13.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_2.html">К следующему</a> </p>
+<p><a href="7_13.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_2.html">К следующему</a></p>
 <h2>8.1. Определение алгоритма</h2>
 <h3>8.1.1. Понятие алгоритма</h3>
-<p>До начала двадцатого столетия не возникало необходимости в формализации понятия алгоритма. Математики, строя конкретные алгоритмы, обходились интуитивным понятием алгоритма. Одно из свойств алгоритма заключается в том, что он представляет собой единый способ решения за конечное число шагов всякой задачи из некоторого класса задач. Но в первые десятилетия двадцатого столетия накопилось много классов задач, для которых алгоритм решения найти не удавалось. Одним из них является класс алгебраических диофантовых уравнений. 
+<p>До начала двадцатого столетия не возникало необходимости в формализации понятия алгоритма. Математики, строя
+    конкретные алгоритмы, обходились интуитивным понятием алгоритма. Одно из свойств алгоритма заключается в том, что он
+    представляет собой единый способ решения за конечное число шагов всякой задачи из некоторого класса задач. Но в
+    первые десятилетия двадцатого столетия накопилось много классов задач, для которых алгоритм решения найти не
+    удавалось. Одним из них является класс алгебраических диофантовых уравнений.
 </p>
 <p><span class='teorema'>Диофантово уравнение &#151; это уравнение вида
 <math display="inline">
@@ -170,697 +189,1088 @@ var ust=document.getElementById('ust').value, blank=document.getElementById('bla
 
 <p>Примеры диофантовых уравнений:</p>
 <ol>
-<li>
-<math display="inline">
-	<msup><mi>x</mi><mi>n</mi></msup>
-	<mo>+</mo>
-	<msup><mi>y</mi><mi>n</mi></msup>
-	<mo>=</mo>
-	<msup><mi>z</mi><mi>n</mi></msup>
-</math>:
-<ul>
-<li>При <math display="inline"><mi>n</mi><mo>=</mo><mn>2</mn></math>  решениями этого уравнения являются пифагоровы тройки .</li>
-<li>Великая теорема Ферма утверждает, что при 
-<math display="inline"><mi>n</mi><mo>&gt;</mo><mn>2</mn></math>
-это уравнение не имеет целых положительных решений.</li>
-</ul>
-</li>
-<li>
-<math display="inline">
-<mrow>
-	<mrow>
-		<msub><mi>a</mi><mn>1</mn></msub>
-		<mo>&#x2062;</mo>
-		<msub><mi>x</mi><mn>1</mn></msub>
-	</mrow>
-	<mo>+</mo>
-	<mi>&#8230;</mi>
-	<mo>+</mo>
-	<mrow>
-		<msub><mi>a</mi><mi>k</mi></msub>
-		<mo>&#x2062;</mo>
-		<msub><mi>x</mi><mi>k</mi></msub>
-	</mrow>
-</mrow>
-<mo>=</mo>
-<mi>d</mi>
-</math> &#151; линейное диофантово уравнение.
+    <li>
+        <math display="inline">
+            <msup>
+                <mi>x</mi>
+                <mi>n</mi>
+            </msup>
+            <mo>+</mo>
+            <msup>
+                <mi>y</mi>
+                <mi>n</mi>
+            </msup>
+            <mo>=</mo>
+            <msup>
+                <mi>z</mi>
+                <mi>n</mi>
+            </msup>
+        </math>
+        :
+        <ul>
+            <li>При
+                <math display="inline">
+                    <mi>n</mi>
+                    <mo>=</mo>
+                    <mn>2</mn>
+                </math>
+                решениями этого уравнения являются пифагоровы тройки .
+            </li>
+            <li>Великая теорема Ферма утверждает, что при
+                <math display="inline">
+                    <mi>n</mi>
+                    <mo>&gt;</mo>
+                    <mn>2</mn>
+                </math>
+                это уравнение не имеет целых положительных решений.
+            </li>
+        </ul>
+    </li>
+    <li>
+        <math display="inline">
+            <mrow>
+                <mrow>
+                    <msub>
+                        <mi>a</mi>
+                        <mn>1</mn>
+                    </msub>
+                    <mo>&#x2062;</mo>
+                    <msub>
+                        <mi>x</mi>
+                        <mn>1</mn>
+                    </msub>
+                </mrow>
+                <mo>+</mo>
+                <mi>&#8230;</mi>
+                <mo>+</mo>
+                <mrow>
+                    <msub>
+                        <mi>a</mi>
+                        <mi>k</mi>
+                    </msub>
+                    <mo>&#x2062;</mo>
+                    <msub>
+                        <mi>x</mi>
+                        <mi>k</mi>
+                    </msub>
+                </mrow>
+            </mrow>
+            <mo>=</mo>
+            <mi>d</mi>
+        </math> &#151; линейное диофантово уравнение.
 
-</li>
+    </li>
 
-<li>
-<math   display="inline">
-	<mrow>	
-		<munderover>
-   		<mo>&#931;</mo>
-   			<mrow>
-        			<mi>k</mi>
-        			<mo>=</mo>
-        			<mn>1</mn>
-   			</mrow>
-   			<mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow>
-		</munderover>
-		<msubsup><mi>a</mi><mi>k</mi><mi>n</mi></msubsup>
-		<mo>=</mo>
-		<msubsup><mi>a</mi><mi>n</mi><mi>n</mi></msubsup>
-</mrow>
-</math> &#151; гипотеза Эйлера утверждает, что при <math display="inline"><mi>n</mi><mo>&gt;</mo><mn>2</mn></math> это уравнение неразрешимо в натуральных числах 
-<math display="inline">
-<mfenced open='' close=''>
-	<msub><mi>a</mi><mn>1</mn></msub>
-	<mi>&#8230;</mi>
-	<msub><mi>a</mi><mi>n</mi></msub>
-</mfenced>
-</math>. Гипотеза является обобщением великой теоремы Ферма, и была опровергнута для 
-<math display="inline"><mi>n</mi><mo>=</mo><mn>4</mn></math> и <math display="inline"><mi>n</mi><mo>=</mo><mn>5</mn></math>.
-</li>
+    <li>
+        <math display="inline">
+            <mrow>
+                <munderover>
+                    <mo>&#931;</mo>
+                    <mrow>
+                        <mi>k</mi>
+                        <mo>=</mo>
+                        <mn>1</mn>
+                    </mrow>
+                    <mrow>
+                        <mi>n</mi>
+                        <mo>-</mo>
+                        <mn>1</mn>
+                    </mrow>
+                </munderover>
+                <msubsup>
+                    <mi>a</mi>
+                    <mi>k</mi>
+                    <mi>n</mi>
+                </msubsup>
+                <mo>=</mo>
+                <msubsup>
+                    <mi>a</mi>
+                    <mi>n</mi>
+                    <mi>n</mi>
+                </msubsup>
+            </mrow>
+        </math> &#151; гипотеза Эйлера утверждает, что при
+        <math display="inline">
+            <mi>n</mi>
+            <mo>&gt;</mo>
+            <mn>2</mn>
+        </math>
+        это уравнение неразрешимо в натуральных числах
+        <math display="inline">
+            <mfenced open='' close=''>
+                <msub>
+                    <mi>a</mi>
+                    <mn>1</mn>
+                </msub>
+                <mi>&#8230;</mi>
+                <msub>
+                    <mi>a</mi>
+                    <mi>n</mi>
+                </msub>
+            </mfenced>
+        </math>
+        . Гипотеза является обобщением великой теоремы Ферма, и была опровергнута для
+        <math display="inline">
+            <mi>n</mi>
+            <mo>=</mo>
+            <mn>4</mn>
+        </math>
+        и
+        <math display="inline">
+            <mi>n</mi>
+            <mo>=</mo>
+            <mn>5</mn>
+        </math>
+        .
+    </li>
 </ol>
-<p>В 1901 году великий немецкий математик Давид Гильберт сформулировал проблему, названную в его честь десятой проблемой Гильберта, состоящую в построении алгоритма решения алгебраического диофантово уравнения или в доказательстве несуществования такого алгоритма.</p>
+<p>В 1901 году великий немецкий математик Давид Гильберт сформулировал проблему, названную в его честь десятой проблемой
+    Гильберта, состоящую в построении алгоритма решения алгебраического диофантово уравнения или в доказательстве
+    несуществования такого алгоритма.</p>
 <p>
-Вначале поиски математиков были направлены на нахождение алгоритма, но требуемый алгоритм так и не был найден. И лишь в 1970 году молодой советский математик Ю. В. Матиясевич доказал, что такой алгоритм не существует. Доказать это утверждение, пользуясь только интуитивным понятием алгоритма, было бы невозможно, ибо в таком случае не ясно, несуществование чего нужно доказывать. Доказательство существования или несуществования алгоритма требует определения  алгоритма в математических терминах.
+    Вначале поиски математиков были направлены на нахождение алгоритма, но требуемый алгоритм так и не был найден. И
+    лишь в 1970 году молодой советский математик Ю. В. Матиясевич доказал, что такой алгоритм не существует. Доказать
+    это утверждение, пользуясь только интуитивным понятием алгоритма, было бы невозможно, ибо в таком случае не ясно,
+    несуществование чего нужно доказывать. Доказательство существования или несуществования алгоритма требует
+    определения алгоритма в математических терминах.
 </p>
-<p>На понятие алгоритма можно взглянуть и с несколько иной точки зрения. Каждую задачу из бесконечного множества задач можно выразить (закодировать) некоторым словом некоторого алфавита, а решение задачи &#151; каким-то другим словом того же алфавита. В результате получим функцию, заданную на некотором подмножестве множества всех слов выбранного алфавита и принимающую значения в множестве всех слов того же алфавита. Решить какую-либо задачу &#151; значит найти значение этой функции на слове, кодирующем данную задачу. А иметь алгоритм для решения всех задач данного класса &#151; значит иметь единый способ, позволяющий за конечное число шагов «вычислять» значения построенной функции для любых значений аргумента из ее области определения. Таким образом, алгоритмическая проблема &#151; по существу, проблема о вычислении значений функции, заданной в некотором алфавите.</p>
-<p>Такой подход в строгом определении понятия алгоритма, известном как Машина Тьюринга, использовал в тридцатые годы прошлого столетия английский ученый Алан Тьюринг. Таким образом, машину Тьюринга можно рассматривать как точное математическое понятие алгоритма.</p>
+<p>На понятие алгоритма можно взглянуть и с несколько иной точки зрения. Каждую задачу из бесконечного множества задач
+    можно выразить (закодировать) некоторым словом некоторого алфавита, а решение задачи &#151; каким-то другим словом
+    того же алфавита. В результате получим функцию, заданную на некотором подмножестве множества всех слов выбранного
+    алфавита и принимающую значения в множестве всех слов того же алфавита. Решить какую-либо задачу &#151; значит найти
+    значение этой функции на слове, кодирующем данную задачу. А иметь алгоритм для решения всех задач данного класса
+    &#151; значит иметь единый способ, позволяющий за конечное число шагов «вычислять» значения построенной функции для
+    любых значений аргумента из ее области определения. Таким образом, алгоритмическая проблема &#151; по существу,
+    проблема о вычислении значений функции, заданной в некотором алфавите.
+</p>
+<p>Такой подход в строгом определении понятия алгоритма, известном как Машина Тьюринга, использовал в тридцатые годы
+    прошлого столетия английский ученый Алан Тьюринг. Таким образом, машину Тьюринга можно рассматривать как точное
+    математическое понятие алгоритма.</p>
 
 <h3>8.1.2. Машина Тьюринга</h3>
 <p>
-Машина Тьюринга (МТ) — математическая абстракция, представляющая вычислительную машину общего вида. Была предложена Аланом Тьюрингом в 1936 году для формализации понятия алгоритма.
+    Машина Тьюринга (МТ) — математическая абстракция, представляющая вычислительную машину общего вида. Была предложена
+    Аланом Тьюрингом в 1936 году для формализации понятия алгоритма.
 </p>
 
 <p>
-В состав Машины Тьюринга входит бесконечная в обе стороны лента, разделенная на ячейки, и управляющее устройство с конечным числом состояний.
+    В состав Машины Тьюринга входит бесконечная в обе стороны лента, разделенная на ячейки, и управляющее устройство с
+    конечным числом состояний.
 </p>
 <p>
-Управляющее устройство может перемещаться влево и вправо по ленте, читать и записывать в ячейки символы некоторого конечного алфавита. Выделяется особый пустой символ, заполняющий все ячейки ленты, кроме тех из них (конечного числа), в которых записаны входные данные.
+    Управляющее устройство может перемещаться влево и вправо по ленте, читать и записывать в ячейки символы некоторого
+    конечного алфавита. Выделяется особый пустой символ, заполняющий все ячейки ленты, кроме тех из них (конечного
+    числа), в которых записаны входные данные.
 </p>
 <p>
-В управляющем устройстве содержится таблица переходов, которая представляет алгоритм, реализуемый Машиной Тьюринга. Каждое правило из таблицы предписывает машине, в зависимости от текущего состояния и наблюдаемого в текущей ячейке символа, записать в эту ячейку новый символ, перейти в новое состояние и переместиться на одну ячейку влево или вправо. Некоторые состояния Машины Тьюринга могут быть помечены как терминальные, и переход в любое из них означает конец работы, остановку алгоритма.
+    В управляющем устройстве содержится таблица переходов, которая представляет алгоритм, реализуемый Машиной Тьюринга.
+    Каждое правило из таблицы предписывает машине, в зависимости от текущего состояния и наблюдаемого в текущей ячейке
+    символа, записать в эту ячейку новый символ, перейти в новое состояние и переместиться на одну ячейку влево или
+    вправо. Некоторые состояния Машины Тьюринга могут быть помечены как терминальные, и переход в любое из них означает
+    конец работы, остановку алгоритма.
 </p>
 <p>
-Машину Тьюринга можно определить как математический объект:
-Пусть 
-<math display='inline'>
-<mrow>
-	<mi>A</mi>
-	<mo>=</mo>
-	<mfenced open='{' close='}'>
-		<msub>
-			<mi>a</mi><mn>0</mn>
-		</msub>
-		<msub>
-			<mi>a</mi><mn>1</mn>
-		</msub>
-		<mi>&#8230;</mi>
-		<msub>
-			<mi>a</mi><mi>n</mi>
-		</msub>
-	</mfenced>
-</mrow>
-</math>
-&#151; алфавит машины Тьюринга; 
-<math display='inline'>
-<mrow>
-	<mi>S</mi>
-	<mo>=</mo>
-	<mfenced open='{' close='}'>
-		<msub>
-			<mi>s</mi><mn>0</mn>
-		</msub>
-		<msub>
-			<mi>s</mi><mn>1</mn>
-		</msub>
-		<mi>&#8230;</mi>
-		<msub>
-			<mi>s</mi><mi>p</mi>
-		</msub>
-	</mfenced>
-</mrow>
-</math>
-&#151; конечное множество состояний, где
-<math display='inline'>
-	<msub><mi>s</mi><mn>0</mn></msub>
-</math>
-&#151; конечное  (терминальное) состояние, а
-<math display='inline'>
-	<msub><mi>s</mi><mn>1</mn></msub>
-</math>
-&#151; начальное состояние;
-<math display='inline'>
-<mrow>
-	<mi>T</mi>
-	<mo>=</mo>
-	<mfenced open='{' close='}'>
-		<mi>L</mi><mi>N</mi><mi>R</mi>
-	</mfenced>
-</mrow>
-</math>
-&#151; множество сдвигов управляющей головки 
-<math display='inline'>
-<mrow>
-	<mfenced open='{' close='}'>
-		<mrow>
-			<mi>L</mi><mo>&#151;</mo><mtext>сдвиг влево</mtext>
-		</mrow>
-		<mrow>
-			<mi>N</mi><mo>&#151;</mo><mtext>нет сдвига</mtext>
-		</mrow>
-		<mrow>
-			<mi>R</mi><mo>&#151;</mo><mtext>сдвиг вправо</mtext>
-		</mrow>					
-	</mfenced>
-</mrow>
-</math>.
-Каждой паре
-<math display='inline'>
-<mrow>
-	<mfenced>
-		<msub>
-			<mi>a</mi><mi>i</mi>
-		</msub>
-		<msub>
-			<mi>s</mi><mi>i</mi>
-		</msub>
-	</mfenced>
-</mrow>
-</math>,
-<math display='inline'>
-<mrow>
-	<msub>
-		<mi>a</mi><mi>i</mi>
-	</msub>
-	<mo>&#8712;</mo><mi>A</mi>
-</mrow>
-</math>,
-<math display='inline'>
-<mrow>
-	<msub>
-		<mi>s</mi><mi>i</mi>
-	</msub>
-	<mo>&#8712;</mo>
-	<mrow>	
-		<mi>S</mi><mo>&#8726;</mo>
-		<mrow>
-		<mo>{</mo>
-		<msub>
-			<mi>s</mi><mn>0</mn>
-		</msub>
-		<mo>}</mo>
-		</mrow>	
-	</mrow>		
-</mrow>
-</math>,
+    Машину Тьюринга можно определить как математический объект:
+    Пусть
+    <math display='inline'>
+        <mrow>
+            <mi>A</mi>
+            <mo>=</mo>
+            <mfenced open='{' close='}'>
+                <msub>
+                    <mi>a</mi>
+                    <mn>0</mn>
+                </msub>
+                <msub>
+                    <mi>a</mi>
+                    <mn>1</mn>
+                </msub>
+                <mi>&#8230;</mi>
+                <msub>
+                    <mi>a</mi>
+                    <mi>n</mi>
+                </msub>
+            </mfenced>
+        </mrow>
+    </math>
+    &#151; алфавит машины Тьюринга;
+    <math display='inline'>
+        <mrow>
+            <mi>S</mi>
+            <mo>=</mo>
+            <mfenced open='{' close='}'>
+                <msub>
+                    <mi>s</mi>
+                    <mn>0</mn>
+                </msub>
+                <msub>
+                    <mi>s</mi>
+                    <mn>1</mn>
+                </msub>
+                <mi>&#8230;</mi>
+                <msub>
+                    <mi>s</mi>
+                    <mi>p</mi>
+                </msub>
+            </mfenced>
+        </mrow>
+    </math>
+    &#151; конечное множество состояний, где
+    <math display='inline'>
+        <msub>
+            <mi>s</mi>
+            <mn>0</mn>
+        </msub>
+    </math>
+    &#151; конечное (терминальное) состояние, а
+    <math display='inline'>
+        <msub>
+            <mi>s</mi>
+            <mn>1</mn>
+        </msub>
+    </math>
+    &#151; начальное состояние;
+    <math display='inline'>
+        <mrow>
+            <mi>T</mi>
+            <mo>=</mo>
+            <mfenced open='{' close='}'>
+                <mi>L</mi>
+                <mi>N</mi>
+                <mi>R</mi>
+            </mfenced>
+        </mrow>
+    </math>
+    &#151; множество сдвигов управляющей головки
+    <math display='inline'>
+        <mrow>
+            <mfenced open='{' close='}'>
+                <mrow>
+                    <mi>L</mi>
+                    <mo>&#151;</mo>
+                    <mtext>сдвиг влево</mtext>
+                </mrow>
+                <mrow>
+                    <mi>N</mi>
+                    <mo>&#151;</mo>
+                    <mtext>нет сдвига</mtext>
+                </mrow>
+                <mrow>
+                    <mi>R</mi>
+                    <mo>&#151;</mo>
+                    <mtext>сдвиг вправо</mtext>
+                </mrow>
+            </mfenced>
+        </mrow>
+    </math>
+    .
+    Каждой паре
+    <math display='inline'>
+        <mrow>
+            <mfenced>
+                <msub>
+                    <mi>a</mi>
+                    <mi>i</mi>
+                </msub>
+                <msub>
+                    <mi>s</mi>
+                    <mi>i</mi>
+                </msub>
+            </mfenced>
+        </mrow>
+    </math>
+    ,
+    <math display='inline'>
+        <mrow>
+            <msub>
+                <mi>a</mi>
+                <mi>i</mi>
+            </msub>
+            <mo>&#8712;</mo>
+            <mi>A</mi>
+        </mrow>
+    </math>
+    ,
+    <math display='inline'>
+        <mrow>
+            <msub>
+                <mi>s</mi>
+                <mi>i</mi>
+            </msub>
+            <mo>&#8712;</mo>
+            <mrow>
+                <mi>S</mi>
+                <mo>&#8726;</mo>
+                <mrow>
+                    <mo>{</mo>
+                    <msub>
+                        <mi>s</mi>
+                        <mn>0</mn>
+                    </msub>
+                    <mo>}</mo>
+                </mrow>
+            </mrow>
+        </mrow>
+    </math>
+    ,
 
 
- ставится в соответствие тройка
-<math display='inline'>
-<mrow>
-	<mfenced>
-		<msub>
-			<mi>a</mi><mi>j</mi>
-		</msub>
-		<mi>t</mi>
-		<msub>
-			<mi>s</mi><mi>j</mi>
-		</msub>		
-	</mfenced>
-	<mo>,</mo>
-	<mrow>
-		<msub>
-			<mi>a</mi><mi>j</mi>
-		</msub>
-		<mo>&#8712;</mo><mi>A</mi>
-	</mrow>
-	<mo>,</mo>
-	<mrow>
-		<mi>t</mi><mo>&#8712;</mo>	<mi>T</mi>
-	</mrow>
-	<mo>,</mo>	
-	<mrow>
-		<msub>
-			<mi>s</mi><mi>j</mi>
-		</msub>
-		<mo>&#8712;</mo>
-		<mi>S</mi>
-	</mrow>
-</mrow>
-</math>.
-Множество всех пар вида
-<math display='inline'>
-<mrow>
-	<mfenced>
-		<msub>
-			<mi>a</mi><mi>i</mi>
-		</msub>
-		<msub>
-			<mi>s</mi><mi>i</mi>
-		</msub>
-	</mfenced>
-</mrow>
-</math>,
-<math display='inline'>
-<mrow>
-	<msub>
-		<mi>a</mi><mi>i</mi>
-	</msub>
-	<mo>&#8712;</mo><mi>A</mi>
-</mrow>
-</math>,
-<math display='inline'>
-<mrow>
-	<msub>
-		<mi>s</mi><mi>i</mi>
-	</msub>
-	<mo>&#8712;</mo>
-	<mi>S</mi><mo>&#8726;</mo>
-	<mrow>
-		<mo>{</mo>
-		<msub>
-			<mi>s</mi><mn>0</mn>
-		</msub>
-		<mo>}</mo>
-	</mrow>
+    ставится в соответствие тройка
+    <math display='inline'>
+        <mrow>
+            <mfenced>
+                <msub>
+                    <mi>a</mi>
+                    <mi>j</mi>
+                </msub>
+                <mi>t</mi>
+                <msub>
+                    <mi>s</mi>
+                    <mi>j</mi>
+                </msub>
+            </mfenced>
+            <mo>,</mo>
+            <mrow>
+                <msub>
+                    <mi>a</mi>
+                    <mi>j</mi>
+                </msub>
+                <mo>&#8712;</mo>
+                <mi>A</mi>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mi>t</mi>
+                <mo>&#8712;</mo>
+                <mi>T</mi>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <msub>
+                    <mi>s</mi>
+                    <mi>j</mi>
+                </msub>
+                <mo>&#8712;</mo>
+                <mi>S</mi>
+            </mrow>
+        </mrow>
+    </math>
+    .
+    Множество всех пар вида
+    <math display='inline'>
+        <mrow>
+            <mfenced>
+                <msub>
+                    <mi>a</mi>
+                    <mi>i</mi>
+                </msub>
+                <msub>
+                    <mi>s</mi>
+                    <mi>i</mi>
+                </msub>
+            </mfenced>
+        </mrow>
+    </math>
+    ,
+    <math display='inline'>
+        <mrow>
+            <msub>
+                <mi>a</mi>
+                <mi>i</mi>
+            </msub>
+            <mo>&#8712;</mo>
+            <mi>A</mi>
+        </mrow>
+    </math>
+    ,
+    <math display='inline'>
+        <mrow>
+            <msub>
+                <mi>s</mi>
+                <mi>i</mi>
+            </msub>
+            <mo>&#8712;</mo>
+            <mi>S</mi>
+            <mo>&#8726;</mo>
+            <mrow>
+                <mo>{</mo>
+                <msub>
+                    <mi>s</mi>
+                    <mn>0</mn>
+                </msub>
+                <mo>}</mo>
+            </mrow>
 
 
-</mrow>
-</math>
- называется декартовым  произведением множеств 
-<math display='inline'><mi>A</mi></math> и
-<math display='inline'>
-<mrow>
-	<mi>S</mi><mo>&#8726;</mo>
-	<mrow>
-		<mo>{</mo>
-		<msub>
-			<mi>s</mi><mn>0</mn>
-		</msub>
-		<mo>}</mo>
-	</mrow>	
-</mrow>
-</math> 
- и обозначается
-<math display='inline'>
-<mrow>
-	<mi>A</mi>
-	<mo>&#215;</mo>	
-	<mrow>
-		<mi>S</mi><mo>&#8726;</mo>
-		<mrow>
-			<mo>{</mo>
-			<msub>
-				<mi>s</mi><mn>0</mn>
-			</msub>
-			<mo>}</mo>
-		</mrow>
-	</mrow>	
-</mrow>
-</math>. 
- Аналогично, множество всех троек вида 
-<math display='inline'>
-<mrow>
-	<mfenced>
-		<msub>
-			<mi>a</mi><mi>j</mi>
-		</msub>
-		<mi>t</mi>
-		<msub>
-			<mi>s</mi><mi>j</mi>
-		</msub>		
-	</mfenced>
-	<mo>,</mo>
-	<mrow>
-		<msub>
-			<mi>a</mi><mi>j</mi>
-		</msub>
-		<mo>&#8712;</mo><mi>A</mi>
-	</mrow>
-	<mo>,</mo>
-	<mrow>
-		<mi>t</mi><mo>&#8712;</mo>	<mi>T</mi>
-	</mrow>
-	<mo>,</mo>	
-	<mrow>
-		<msub>
-			<mi>s</mi><mi>j</mi>
-		</msub>
-		<mo>&#8712;</mo>
-		<mi>S</mi>
-	</mrow>
-</mrow>
-</math>,  
- называется декартовым произведением множеств 
-<math display='inline'>
-<mi>A</mi><mo>,</mo><mi>T</mi>
-</math> 
- и
-<math display='inline'>
-<mi>S</mi>
-</math>  
- и обозначается
-<math display='inline'>
-<mrow>
-	<mi>A</mi>
-	<mo>&#215;</mo>
-	<mi>T</mi>
-	<mo>&#215;</mo>	
-	<mi>S</mi>
-</mrow>
-</math>.  
+        </mrow>
+    </math>
+    называется декартовым произведением множеств
+    <math display='inline'>
+        <mi>A</mi>
+    </math>
+    и
+    <math display='inline'>
+        <mrow>
+            <mi>S</mi>
+            <mo>&#8726;</mo>
+            <mrow>
+                <mo>{</mo>
+                <msub>
+                    <mi>s</mi>
+                    <mn>0</mn>
+                </msub>
+                <mo>}</mo>
+            </mrow>
+        </mrow>
+    </math>
+    и обозначается
+    <math display='inline'>
+        <mrow>
+            <mi>A</mi>
+            <mo>&#215;</mo>
+            <mrow>
+                <mi>S</mi>
+                <mo>&#8726;</mo>
+                <mrow>
+                    <mo>{</mo>
+                    <msub>
+                        <mi>s</mi>
+                        <mn>0</mn>
+                    </msub>
+                    <mo>}</mo>
+                </mrow>
+            </mrow>
+        </mrow>
+    </math>
+    .
+    Аналогично, множество всех троек вида
+    <math display='inline'>
+        <mrow>
+            <mfenced>
+                <msub>
+                    <mi>a</mi>
+                    <mi>j</mi>
+                </msub>
+                <mi>t</mi>
+                <msub>
+                    <mi>s</mi>
+                    <mi>j</mi>
+                </msub>
+            </mfenced>
+            <mo>,</mo>
+            <mrow>
+                <msub>
+                    <mi>a</mi>
+                    <mi>j</mi>
+                </msub>
+                <mo>&#8712;</mo>
+                <mi>A</mi>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <mi>t</mi>
+                <mo>&#8712;</mo>
+                <mi>T</mi>
+            </mrow>
+            <mo>,</mo>
+            <mrow>
+                <msub>
+                    <mi>s</mi>
+                    <mi>j</mi>
+                </msub>
+                <mo>&#8712;</mo>
+                <mi>S</mi>
+            </mrow>
+        </mrow>
+    </math>
+    ,
+    называется декартовым произведением множеств
+    <math display='inline'>
+        <mi>A</mi>
+        <mo>,</mo>
+        <mi>T</mi>
+    </math>
+    и
+    <math display='inline'>
+        <mi>S</mi>
+    </math>
+    и обозначается
+    <math display='inline'>
+        <mrow>
+            <mi>A</mi>
+            <mo>&#215;</mo>
+            <mi>T</mi>
+            <mo>&#215;</mo>
+            <mi>S</mi>
+        </mrow>
+    </math>
+    .
 </p>
 <p>
-Программа машины Тьюринга представляет собой функцию
-<math display='inline'>
-<mi>&#964;</mi>
-</math>
- с областью определения
-<math display='inline'>
-<mrow>
-	<mi>A</mi>
-	<mo>&#215;</mo>	
-	<mrow>
-		<mi>S</mi><mo>&#8726;</mo>
-		<mrow>
-			<mo>{</mo>
-			<msub>
-				<mi>s</mi><mn>0</mn>
-			</msub>
-			<mo>}</mo>
-		</mrow>
-	</mrow>	
-</mrow>
-</math>, принимающая значения из множества
-<math display='inline'>
-<mrow>
-	<mi>A</mi>
-	<mo>&#215;</mo>
-	<mi>T</mi>
-	<mo>&#215;</mo>	
-	<mi>S</mi>
-</mrow>
-</math>.
- Запись
-<math display='inline'>
-<mrow>
-	<mfenced>
-		<msub>
-			<mi>a</mi><mi>i</mi>
-		</msub>
-		<msub>
-			<mi>s</mi><mi>i</mi>
-		</msub>
-	</mfenced>
-	<mover><mi>&#8594;</mi><mi>&#964;</mi></mover>
-	<mrow>
-		<mfenced>
-			<msub>
-				<mi>a</mi><mi>j</mi>
-			</msub>
-			<mi>t</mi>
-			<msub>
-				<mi>s</mi><mi>j</mi>
-			</msub>		
-		</mfenced>
-	</mrow>	
-</mrow>
-</math> 
-означает инструкцию управляющему устройству, находящемуся в состоянии
-<math display='inline'><msub><mi>s</mi><mi>i</mi></msub></math>, заменить текущий символ <math display='inline'><msub><mi>a</mi><mi>i</mi></msub></math> на символ <math display='inline'><msub><mi>a</mi><mi>j</mi></msub></math>, перейти в состояние <math display='inline'><msub><mi>s</mi><mi>j</mi></msub></math> и на ленте совершить сдвиг согласно значению <math display='inline'><mi>t</mi></math>.
+    Программа машины Тьюринга представляет собой функцию
+    <math display='inline'>
+        <mi>&#964;</mi>
+    </math>
+    с областью определения
+    <math display='inline'>
+        <mrow>
+            <mi>A</mi>
+            <mo>&#215;</mo>
+            <mrow>
+                <mi>S</mi>
+                <mo>&#8726;</mo>
+                <mrow>
+                    <mo>{</mo>
+                    <msub>
+                        <mi>s</mi>
+                        <mn>0</mn>
+                    </msub>
+                    <mo>}</mo>
+                </mrow>
+            </mrow>
+        </mrow>
+    </math>
+    , принимающая значения из множества
+    <math display='inline'>
+        <mrow>
+            <mi>A</mi>
+            <mo>&#215;</mo>
+            <mi>T</mi>
+            <mo>&#215;</mo>
+            <mi>S</mi>
+        </mrow>
+    </math>
+    .
+    Запись
+    <math display='inline'>
+        <mrow>
+            <mfenced>
+                <msub>
+                    <mi>a</mi>
+                    <mi>i</mi>
+                </msub>
+                <msub>
+                    <mi>s</mi>
+                    <mi>i</mi>
+                </msub>
+            </mfenced>
+            <mover>
+                <mi>&#8594;</mi>
+                <mi>&#964;</mi>
+            </mover>
+            <mrow>
+                <mfenced>
+                    <msub>
+                        <mi>a</mi>
+                        <mi>j</mi>
+                    </msub>
+                    <mi>t</mi>
+                    <msub>
+                        <mi>s</mi>
+                        <mi>j</mi>
+                    </msub>
+                </mfenced>
+            </mrow>
+        </mrow>
+    </math>
+    означает инструкцию управляющему устройству, находящемуся в состоянии
+    <math display='inline'>
+        <msub>
+            <mi>s</mi>
+            <mi>i</mi>
+        </msub>
+    </math>
+    , заменить текущий символ
+    <math display='inline'>
+        <msub>
+            <mi>a</mi>
+            <mi>i</mi>
+        </msub>
+    </math>
+    на символ
+    <math display='inline'>
+        <msub>
+            <mi>a</mi>
+            <mi>j</mi>
+        </msub>
+    </math>
+    , перейти в состояние
+    <math display='inline'>
+        <msub>
+            <mi>s</mi>
+            <mi>j</mi>
+        </msub>
+    </math>
+    и на ленте совершить сдвиг согласно значению
+    <math display='inline'>
+        <mi>t</mi>
+    </math>
+    .
 
 </p>
 <p>
-В приведенных выше терминах Машина Тьюринга является математическим уточнением интуитивного понятия алгоритма как система вида
-<math display='inline'>
-	<mfenced>
-		<mi>A</mi>
-		<mi>S</mi>
-		<msub>
-			<mi>s</mi>
-			<mn>0</mn>
-		</msub>
-		<msub>
-			<mi>s</mi>
-			<mn>1</mn>
-		</msub>
-		<mi>T</mi>
-		<mi>&#964;</mi>		
-	</mfenced>
-</math>.</p>
-<p>В качестве примера рассмотрим Машину Тьюринга с алфавитом 
-<math display='inline'>
-<mi>A</mi><mo>=</mo>
-<mfenced open='{' close='}'><mi>0</mi><mi>1</mi></mfenced>
-</math>,
-множеством состояний
-<math display='inline'>
-<mi>S</mi><mo>=</mo>
-<mfenced open='{' close='}'><mi>0</mi><mi>1</mi><mi>&#133;</mi><mi>n</mi></mfenced>
-</math>,
- где <math display='inline'><mi>1</mi></math> &#151; начальное состояние, <math display='inline'><mi>0</mi></math> &#151; терминальное. В начальном состоянии управляющая головка обозревает крайнюю правую занятую ячейку. Пустые ячейки обозначим символом подчеркивания &#147;_&#148;.
+    В приведенных выше терминах Машина Тьюринга является математическим уточнением интуитивного понятия алгоритма как
+    система вида
+    <math display='inline'>
+        <mfenced>
+            <mi>A</mi>
+            <mi>S</mi>
+            <msub>
+                <mi>s</mi>
+                <mn>0</mn>
+            </msub>
+            <msub>
+                <mi>s</mi>
+                <mn>1</mn>
+            </msub>
+            <mi>T</mi>
+            <mi>&#964;</mi>
+        </mfenced>
+    </math>
+    .
+</p>
+<p>В качестве примера рассмотрим Машину Тьюринга с алфавитом
+    <math display='inline'>
+        <mi>A</mi>
+        <mo>=</mo>
+        <mfenced open='{' close='}'>
+            <mi>0</mi>
+            <mi>1</mi>
+        </mfenced>
+    </math>
+    ,
+    множеством состояний
+    <math display='inline'>
+        <mi>S</mi>
+        <mo>=</mo>
+        <mfenced open='{' close='}'>
+            <mi>0</mi>
+            <mi>1</mi>
+            <mi>&#133;</mi>
+            <mi>n</mi>
+        </mfenced>
+    </math>
+    ,
+    где
+    <math display='inline'>
+        <mi>1</mi>
+    </math> &#151; начальное состояние,
+    <math display='inline'>
+        <mi>0</mi>
+    </math> &#151; терминальное. В начальном состоянии управляющая головка обозревает крайнюю правую занятую ячейку.
+    Пустые ячейки обозначим символом подчеркивания &#147;_&#148;.
 </p>
 <div class="examp">
-<p>
-<span class="primer">Пример 8.1.1.</span> Пусть требуется составить программу увеличения двоичного целого положительного числа на единицу. Если крайняя правая ячейка содержит 0, то Машина Тьюринга должна заменить 0 на 1, после чего перейти в состояние 0. Если же крайняя правая ячейка содержит 1, то управляющая головка перемещается влево до тех пор, пока не встретится либо пустая ячейка, либо ячейка с 0. Машина Тьюринга в эту ячейку запишет 1, затем будет перемещать управляющую головку вправо, заменяя 1 на 0, пока не встретит пустую ячейку и перейдет в состояние 0. В формализованном виде программа будет такой:</p>
-<table border='1'>
-	<tr>
-		<th>Состояние</th><th>_</th><th>0</th><th>1</th>
-	</tr>
-	<tr>
-		<td>1</td><td>1R2</td><td>1R2</td><td>1L1</td>
-	</tr>
-	<tr>
-		<td>2</td><td>_N0</td><td>0N0</td><td>0R2</td>
-	</tr>
-</table>
-<p>
-<span class="primer">Пример 8.1.2.</span> Программа уменьшения двоичного целого положительного числа на единицу состоит в следующем:
-<ol>
-<li>В состоянии 1 проверить факт наличия в записи числа хотя бы одной цифры 1: совершать сдвиги влево, пока не встретится  ячейка с 1 или пустая ячейка. Если в текущей ячейке 1, то перейти в состояние 2. Если ячейка пустая, то перейти в терминальное состояние 0;</li>
-<li>в состоянии 2 вернуться на крайнюю правую занятую ячейку: совершать сдвиги вправо вплоть до достижения пустой ячейки, после чего выполнить сдвиг влево на занятую ячейку и перейти в состояние 3;
-</li>
-<li>в состоянии 3 уменьшить число на единицу: если в текущей ячейке ленты содержится 0, то заменять ее содержимое значением 1 и сдвигаться влево.  При достижении пустой ячейки или ячейки с 1 перейти в терминальное состояние 0 с предварительной заменой значения 1 на значение 0.
-</li>
-</ol>
-  Текст программы для Машины Тьюринга такой:
-<table border='1'>
-	<tr>
-		<th>Состояние</th><th>_</th><th>0</th><th>1</th>
-	</tr>
-	<tr>
-		<td>1</td><td>_N0</td><td>0L1</td><td>1N2</td>
-	</tr>
-	<tr>
-		<td>2</td><td>_L3</td><td>0R2</td><td>1R2</td>
-	</tr>	
-	<tr>
-		<td>3</td><td>_N0</td><td>1L3</td><td>0N0</td>
-	</tr>	
-</table>
-<p><span class="primer">Пример 8.1.3.</span>Программа вычисления суммы двух двоичных слов:</p>
+    <p>
+        <span class="primer">Пример 8.1.1.</span> Пусть требуется составить программу увеличения двоичного целого
+        положительного числа на единицу. Если крайняя правая ячейка содержит 0, то Машина Тьюринга должна заменить 0 на
+        1, после чего перейти в состояние 0. Если же крайняя правая ячейка содержит 1, то управляющая головка
+        перемещается влево до тех пор, пока не встретится либо пустая ячейка, либо ячейка с 0. Машина Тьюринга в эту
+        ячейку запишет 1, затем будет перемещать управляющую головку вправо, заменяя 1 на 0, пока не встретит пустую
+        ячейку и перейдет в состояние 0. В формализованном виде программа будет такой:</p>
+    <table border='1'>
+        <tr>
+            <th>Состояние</th>
+            <th>_</th>
+            <th>0</th>
+            <th>1</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1R2</td>
+            <td>1R2</td>
+            <td>1L1</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>_N0</td>
+            <td>0N0</td>
+            <td>0R2</td>
+        </tr>
+    </table>
+    <p>
+        <span class="primer">Пример 8.1.2.</span> Программа уменьшения двоичного целого положительного числа на единицу
+        состоит в следующем:
+    <ol>
+        <li>В состоянии 1 проверить факт наличия в записи числа хотя бы одной цифры 1: совершать сдвиги влево, пока не
+            встретится ячейка с 1 или пустая ячейка. Если в текущей ячейке 1, то перейти в состояние 2. Если ячейка
+            пустая, то перейти в терминальное состояние 0;
+        </li>
+        <li>в состоянии 2 вернуться на крайнюю правую занятую ячейку: совершать сдвиги вправо вплоть до достижения
+            пустой ячейки, после чего выполнить сдвиг влево на занятую ячейку и перейти в состояние 3;
+        </li>
+        <li>в состоянии 3 уменьшить число на единицу: если в текущей ячейке ленты содержится 0, то заменять ее
+            содержимое значением 1 и сдвигаться влево. При достижении пустой ячейки или ячейки с 1 перейти в
+            терминальное состояние 0 с предварительной заменой значения 1 на значение 0.
+        </li>
+    </ol>
+    Текст программы для Машины Тьюринга такой:
+    <table border='1'>
+        <tr>
+            <th>Состояние</th>
+            <th>_</th>
+            <th>0</th>
+            <th>1</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>_N0</td>
+            <td>0L1</td>
+            <td>1N2</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>_L3</td>
+            <td>0R2</td>
+            <td>1R2</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>_N0</td>
+            <td>1L3</td>
+            <td>0N0</td>
+        </tr>
+    </table>
+    <p><span class="primer">Пример 8.1.3.</span>Программа вычисления суммы двух двоичных слов:</p>
 </div>
 <table border='1'>
-	<tr>
-		<th>Состояние</th><th>_</th><th>0</th><th>1</th>
-	</tr>
-	<tr>
-		<td>1</td><td>_R6</td><td>1L1</td><td>0L2</td>
-	</tr>
-	<tr>
-		<td>2</td><td>_L3</td><td>0L2</td><td>1L2</td>
-	</tr>	
-	<tr>
-		<td>3</td><td>1R4</td><td>1R4</td><td>0L3</td>
-	</tr>	
-	<tr>
-		<td>4</td><td>_R5</td><td>0R4</td><td>1R4</td>
-	</tr>
-	<tr>
-		<td>5</td><td>_L1</td><td>0R5</td><td>1R5</td>
-	</tr>
-	<tr>
-		<td>6</td><td>_L7</td><td>_N0</td><td>_R6</td>
-	</tr>
-	<tr>
-		<td>7</td><td>_L7</td><td>0N0</td><td>1N0</td>
-	</tr>
+    <tr>
+        <th>Состояние</th>
+        <th>_</th>
+        <th>0</th>
+        <th>1</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>_R6</td>
+        <td>1L1</td>
+        <td>0L2</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>_L3</td>
+        <td>0L2</td>
+        <td>1L2</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>1R4</td>
+        <td>1R4</td>
+        <td>0L3</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>_R5</td>
+        <td>0R4</td>
+        <td>1R4</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>_L1</td>
+        <td>0R5</td>
+        <td>1R5</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>_L7</td>
+        <td>_N0</td>
+        <td>_R6</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>_L7</td>
+        <td>0N0</td>
+        <td>1N0</td>
+    </tr>
 </table>
-<p>Ниже представлена реализация описанной выше Машины Тьюринга с двоичным алфавитом. Номер состояния совпадает с номером строки (1, 2, &#133;). Переход на следующую строку выполняется нажатием кнопки ENTER.</p>
+<p>Ниже представлена реализация описанной выше Машины Тьюринга с двоичным алфавитом. Номер состояния совпадает с номером
+    строки (1, 2, &#133;). Переход на следующую строку выполняется нажатием кнопки ENTER.</p>
 <form>
-Начальное содержание ленты <input size='10' type='text' id='ust' />
-<input type='button' value='Исполнить' onclick='start()'/>
-<br/>
-<table>
-<caption>Алгоритм</caption>
-<tr>
-<th>№</th><th>_</th><th>0</th><th>1</th>
-</tr>
-<tr>
-<td>
-<textarea id='sost' cols='2' rows='10'></textarea>
-</td>
-<td>
-<textarea id='blank' cols='3' rows='10'></textarea>
-</td>
-<td>
-<textarea id='nol' cols='3' rows='10'></textarea>
-</td>
-<td>
-<textarea id='odin' cols='3' rows='10'></textarea>
-</td>
-</tr>
-</table>
+    Начальное содержание ленты <input size='10' type='text' id='ust'/>
+    <input type='button' value='Исполнить' onclick='start()'/>
+    <br/>
+    <table>
+        <caption>Алгоритм</caption>
+        <tr>
+            <th>№</th>
+            <th>_</th>
+            <th>0</th>
+            <th>1</th>
+        </tr>
+        <tr>
+            <td>
+                <textarea id='sost' cols='2' rows='10'></textarea>
+            </td>
+            <td>
+                <textarea id='blank' cols='3' rows='10'></textarea>
+            </td>
+            <td>
+                <textarea id='nol' cols='3' rows='10'></textarea>
+            </td>
+            <td>
+                <textarea id='odin' cols='3' rows='10'></textarea>
+            </td>
+        </tr>
+    </table>
 </form>
 <div id='res'></div>
 
 <p>
-Можно сказать, что Машина Тьюринга представляет собой простейшую вычислительную машину с бесконечной линейной памятью, которая, согласно формальным правилам, преобразует входные данные с помощью последовательности элементарных действий.
+    Можно сказать, что Машина Тьюринга представляет собой простейшую вычислительную машину с бесконечной линейной
+    памятью, которая, согласно формальным правилам, преобразует входные данные с помощью последовательности элементарных
+    действий.
 </p>
 <p>
-Элементарность действии Машины Тьюринга заключается в том, что каждое ее действие меняет содержимое лишь одной ячейки , а число возможных действий конечно. Несмотря на простоту Машины Тьюринга, на ней можно вычислить всё, что можно вычислить на любой другой машине, осуществляющей вычисления с помощью последовательности элементарных действий. Это свойство называется полнотой.
+    Элементарность действии Машины Тьюринга заключается в том, что каждое ее действие меняет содержимое лишь одной
+    ячейки , а число возможных действий конечно. Несмотря на простоту Машины Тьюринга, на ней можно вычислить всё, что
+    можно вычислить на любой другой машине, осуществляющей вычисления с помощью последовательности элементарных
+    действий. Это свойство называется полнотой.
 </p>
 <p>
-Один из естественных способов доказательства того, что алгоритмы вычисления, которые можно реализовать на одной машине, можно реализовать и на другой, — это имитация первой машины на второй.
+    Один из естественных способов доказательства того, что алгоритмы вычисления, которые можно реализовать на одной
+    машине, можно реализовать и на другой, — это имитация первой машины на второй.
 </p>
 <p>
-Имитация заключается в следующем. На вход второй машины подается описание программы (правил работы) первой машины D и входные данные X, которые должны были поступить на вход первой машины. Нужно описать такую программу (правила работы второй машины), чтобы в результате вычислений на выходе оказалось то же самое, что вернула бы первая машина, если бы получила на вход данные X.
+    Имитация заключается в следующем. На вход второй машины подается описание программы (правил работы) первой машины D
+    и входные данные X, которые должны были поступить на вход первой машины. Нужно описать такую программу (правила
+    работы второй машины), чтобы в результате вычислений на выходе оказалось то же самое, что вернула бы первая машина,
+    если бы получила на вход данные X.
 </p>
 <p>
-Остается уточнить, что значит уметь вычислять значения функции. Это значит вычислять значения функции с помощью подходящей
-Машины Тьюринга. Для каких же функций возможно их тьюрингово вычисление? Многочисленные исследования ученых, обширный опыт
-показали, что такой класс функций чрезвычайно широк. Каждая функция, для вычисления значений которой существует какой-нибудь алгоритм, оказывалась вычислимой посредством некоторой Машины Тьюринга. Это дало повод Тьюрингу высказать следующую гипотезу, называемую основной гипотезой теории алгоритмов, или тезисом Черча-Тьюринга:</p>
+    Остается уточнить, что значит уметь вычислять значения функции. Это значит вычислять значения функции с помощью
+    подходящей
+    Машины Тьюринга. Для каких же функций возможно их тьюрингово вычисление? Многочисленные исследования ученых,
+    обширный опыт
+    показали, что такой класс функций чрезвычайно широк. Каждая функция, для вычисления значений которой существует
+    какой-нибудь алгоритм, оказывалась вычислимой посредством некоторой Машины Тьюринга. Это дало повод Тьюрингу
+    высказать следующую гипотезу, называемую основной гипотезой теории алгоритмов, или тезисом Черча-Тьюринга:
+</p>
 <p> <span class='teorema'>
-Для нахождения значений функции, заданной в некотором алфавите, тогда и только тогда существует какой-нибудь алгоритм, когда функция является вычислимой по Тьюрингу, т. е. когда она может вычисляться на подходящей машине Тьюринга.</span></p>
+Для нахождения значений функции, заданной в некотором алфавите, тогда и только тогда существует какой-нибудь алгоритм, когда функция является вычислимой по Тьюрингу, т. е. когда она может вычисляться на подходящей машине Тьюринга.</span>
+</p>
 <p>
-Это означает, что строго математическое понятие вычислимой (по Тьюрингу) функции предлагается в качестве модели взятого из опыта понятия алгоритма. В этом смысле понятие алгоритма эквивалентно машине Тьюринга (под всяким интуитивным понятием алгоритма будем понимать некоторую машину Тьюринга).</p>
+    Это означает, что строго математическое понятие вычислимой (по Тьюрингу) функции предлагается в качестве модели
+    взятого из опыта понятия алгоритма. В этом смысле понятие алгоритма эквивалентно машине Тьюринга (под всяким
+    интуитивным понятием алгоритма будем понимать некоторую машину Тьюринга).
+</p>
 <p>Очевидно, что Машина Тьюринга (алгоритм) обладает следующими свойствами:
 <ol>
-<li>дискретностью &#151; всякий алгоритм состоит из элементарных операций, которые выполняются по шагам;</li>
-<li>детерминированностью &#151; каждая операция алгоритма однозначно определена, и все операции выполняются в определенном порядке;</li>
-<li>универсальностью &#151; алгоритм применим к любой задаче из некоторого класса задач при любых допустимых входных данных;</li>
-<li>конечностью &#151; алгоритм должен быть реализован за конечное число шагов;</li>
-<li>формальностью &#151; всякий исполнитель алгоритма действует формально, т.е. строго выполняет операции алгоритма.</li>
+    <li>дискретностью &#151; всякий алгоритм состоит из элементарных операций, которые выполняются по шагам;</li>
+    <li>детерминированностью &#151; каждая операция алгоритма однозначно определена, и все операции выполняются в
+        определенном порядке;
+    </li>
+    <li>универсальностью &#151; алгоритм применим к любой задаче из некоторого класса задач при любых допустимых входных
+        данных;
+    </li>
+    <li>конечностью &#151; алгоритм должен быть реализован за конечное число шагов;</li>
+    <li>формальностью &#151; всякий исполнитель алгоритма действует формально, т.е. строго выполняет операции
+        алгоритма.
+    </li>
 </ol>
 </p>
 <p>
-<h3>8.1.3. Машины Тьюринга и современные электронно-вычислительные машины</h3></p>
-<p>
-Изучение машин Тьюринга и практика составления программ для них закладывают фундамент алгоритмического мышления, сущность
-которого состоит в том, что нужно уметь разделять тот или иной процесс вычисления или какой-либо другой деятельности на простые составляющие шаги. В Машине Тьюринга разбиение (анализ) вычислительного процесса на простейшие операции доведено до предельной возможности: распознавание символа в ячейке, перемещение управляющей головки в соседнюю ячейку, изменение имеющейся в ячейке информации. Очевидно, что предельно мелкое дробление вычислительного процесса значительно его удлиняет. Но вместе с тем логическая структура процесса значительно упрощается и предстает в некотором стандартном виде.
+<h3>8.1.3. Машины Тьюринга и современные электронно-вычислительные машины</h3>
 </p>
 <p>
-В современных ЭВМ алгоритмический процесс расчленен не на столь мелкие составляющие, как в Машине Тьюринга. Наоборот, создатели ЭВМ стремятся к известному укрупнению выполняемых машиной процедур. Так, для выполнения операции сложения на Машине Тьюринга составляется целая программа, а в современной ЭВМ такая операция является простейшей. Далее, Машина Тьюринга обладает бесконечной памятью (неограниченная в обе стороны лента, разбитая на ячейки). Но ни в одной реально существующей машине бесконечной памяти быть не может.</p>
-<p>
-В большинстве ЭВМ принята трехадресная система команд, обусловленная необходимостью выполнения бинарных операций, в которых участвует содержимое сразу трех ячеек памяти. Машину Тьюринга можно считать одноадресной машиной: на каждом шаге работы машины команда предписывает замену лишь единственного знака, хранящегося в обозреваемой ячейке, а адрес обозреваемой ячейки при переходе к следующему такту может меняться лишь на единицу (обозрение соседней справа или слева ячейки ленты) или не меняться вовсе. Это удлиняет процесс вычисления, но в то же время унифицирует его.
+    Изучение машин Тьюринга и практика составления программ для них закладывают фундамент алгоритмического мышления,
+    сущность
+    которого состоит в том, что нужно уметь разделять тот или иной процесс вычисления или какой-либо другой деятельности
+    на простые составляющие шаги. В Машине Тьюринга разбиение (анализ) вычислительного процесса на простейшие операции
+    доведено до предельной возможности: распознавание символа в ячейке, перемещение управляющей головки в соседнюю
+    ячейку, изменение имеющейся в ячейке информации. Очевидно, что предельно мелкое дробление вычислительного процесса
+    значительно его удлиняет. Но вместе с тем логическая структура процесса значительно упрощается и предстает в
+    некотором стандартном виде.
 </p>
 <p>
-Таким образом, современные ЭВМ есть некие реальные физические модели Машины Тьюринга,  созданные в целях реализации конкретных вычислительных процессов.
+    В современных ЭВМ алгоритмический процесс расчленен не на столь мелкие составляющие, как в Машине Тьюринга.
+    Наоборот, создатели ЭВМ стремятся к известному укрупнению выполняемых машиной процедур. Так, для выполнения операции
+    сложения на Машине Тьюринга составляется целая программа, а в современной ЭВМ такая операция является простейшей.
+    Далее, Машина Тьюринга обладает бесконечной памятью (неограниченная в обе стороны лента, разбитая на ячейки). Но ни
+    в одной реально существующей машине бесконечной памяти быть не может.
+</p>
+<p>
+    В большинстве ЭВМ принята трехадресная система команд, обусловленная необходимостью выполнения бинарных операций, в
+    которых участвует содержимое сразу трех ячеек памяти. Машину Тьюринга можно считать одноадресной машиной: на каждом
+    шаге работы машины команда предписывает замену лишь единственного знака, хранящегося в обозреваемой ячейке, а адрес
+    обозреваемой ячейки при переходе к следующему такту может меняться лишь на единицу (обозрение соседней справа или
+    слева ячейки ленты) или не меняться вовсе. Это удлиняет процесс вычисления, но в то же время унифицирует его.
+</p>
+<p>
+    Таким образом, современные ЭВМ есть некие реальные физические модели Машины Тьюринга, созданные в целях реализации
+    конкретных вычислительных процессов.
 </p>
 <h3>8.1.4. Другие абстрактные исполнители алгоритмов</h3>
 <p>
-Как было сказано, на машине Тьюринга можно имитировать (с помощью задания правил перехода) все другие исполнители, каким-либо образом реализующие процесс пошагового вычисления, в котором каждый шаг вычисления достаточно элементарен.
+    Как было сказано, на машине Тьюринга можно имитировать (с помощью задания правил перехода) все другие исполнители,
+    каким-либо образом реализующие процесс пошагового вычисления, в котором каждый шаг вычисления достаточно
+    элементарен.
 </p>
 <p>
-На машине Тьюринга можно имитировать машину Поста, нормальные алгоритмы Маркова и любую программу для обычных компьютеров, преобразующую входные данные в выходные по какому-либо алгоритму. В свою очередь, на различных абстрактных исполнителях можно имитировать Машину Тьюринга.
+    На машине Тьюринга можно имитировать машину Поста, нормальные алгоритмы Маркова и любую программу для обычных
+    компьютеров, преобразующую входные данные в выходные по какому-либо алгоритму. В свою очередь, на различных
+    абстрактных исполнителях можно имитировать Машину Тьюринга.
 </p>
-<p><span class='teorema'>Исполнители, на которых можно имитировать работу Машину Тьюринга, называются полными по Тьюрингу.</span></p>
-<p>
-Есть программы для обычных компьютеров, имитирующие работу машины Тьюринга. Но следует отметить, что данная имитация неполная, так как в машине Тьюринга присутствует абстрактная бесконечная лента с данными, которую  невозможно в полной мере имитировать на компьютере по причине конечной памяти компьютера.
-</p>
-<p>
-Модель машины Тьюринга допускает расширения. Можно рассматривать машины Тьюринга с произвольным числом лент и многомерными лентами с различными ограничениями. Все эти машины являются полными по Тьюрингу и моделируются обычной Машиной Тьюринга.
+<p><span class='teorema'>Исполнители, на которых можно имитировать работу Машину Тьюринга, называются полными по Тьюрингу.</span>
 </p>
 <p>
-Одним из полных по Тьюрингу исполнителей является <span class='teorema'>конечный автомат &#151; математическая абстракция, позволяющая описывать пути изменения состояния объекта с конечным количеством возможных состояний, в зависимости от его текущего состояния и входных данных.</span>
+    Есть программы для обычных компьютеров, имитирующие работу машины Тьюринга. Но следует отметить, что данная имитация
+    неполная, так как в машине Тьюринга присутствует абстрактная бесконечная лента с данными, которую невозможно в
+    полной мере имитировать на компьютере по причине конечной памяти компьютера.
 </p>
 <p>
-Формально конечный автомат определяется как пятёрка
-<math display='inline'>
-	<mi>M</mi><mo>=</mo>
-	<mfenced>
-		<mi>K</mi><mi>&#931;</mi><mi>&#960;</mi><mi>s</mi><mi>F</mi>
-	</mfenced>
-</math>,
-где 
-<math display='inline'><mi>K</mi></math> &#151; конечное множество состояний автомата, 
-<math display='inline'>
-	<mi>s</mi><mo> &#8714;</mo><mi>K</mi>
-</math> &#151; единственно допустимое начальное состояние автомата, 
-<math display='inline'>
-	<mi>F</mi><mo>&#8834;</mo><mi>K</mi>
-</math> &#151; множество конечных состояний, причём допустимо 
-<math display='inline'>
-	<mi>F</mi><mo>=</mo><mi>&#8709;</mi>
-</math> или
-<math display='inline'>
-	<mi>F</mi><mo>=</mo><mi>K</mi>
-</math>,
-<math display='inline'>
-	<mi>&#931;</mi>
-</math> &#151; допустимый входной алфавит, из которого формируются строки, считываемые автоматом, 
-<math display='inline'>
-	<mi>&#960;</mi><mo>:</mo>
-	<mrow>
-		<mi>K</mi><mo>&#215;</mo><mi>&#931;</mi>
-	</mrow>		
-	<mo>&#10230;</mo>		
-	<mi>K</mi>
-</math> &#151; функция переходов. Автомат начинает работу в состоянии 
-<math display='inline'><mi>s</mi></math>, считывая по одному символы входной строки. Считанный символ переводит автомат в новое состояние из K, в соответствии с функцией переходов. Процесс продолжается до тех пор, пока не будет достигнуто одно из состояний F.
+    Модель машины Тьюринга допускает расширения. Можно рассматривать машины Тьюринга с произвольным числом лент и
+    многомерными лентами с различными ограничениями. Все эти машины являются полными по Тьюрингу и моделируются обычной
+    Машиной Тьюринга.
 </p>
 <p>
-Конечные автоматы широко используются на практике, например в синтаксических анализаторах, а также в других случаях, когда количество состояний объекта и переходов между ними сравнительно невелико.
+    Одним из полных по Тьюрингу исполнителей является <span class='teorema'>конечный автомат &#151; математическая абстракция, позволяющая описывать пути изменения состояния объекта с конечным количеством возможных состояний, в зависимости от его текущего состояния и входных данных.</span>
 </p>
 <p>
-Обобщением конечного автомата является абстрактный автомат:
+    Формально конечный автомат определяется как пятёрка
+    <math display='inline'>
+        <mi>M</mi>
+        <mo>=</mo>
+        <mfenced>
+            <mi>K</mi>
+            <mi>&#931;</mi>
+            <mi>&#960;</mi>
+            <mi>s</mi>
+            <mi>F</mi>
+        </mfenced>
+    </math>
+    ,
+    где
+    <math display='inline'>
+        <mi>K</mi>
+    </math> &#151; конечное множество состояний автомата,
+    <math display='inline'>
+        <mi>s</mi>
+        <mo> &#8714;</mo>
+        <mi>K</mi>
+    </math> &#151; единственно допустимое начальное состояние автомата,
+    <math display='inline'>
+        <mi>F</mi>
+        <mo>&#8834;</mo>
+        <mi>K</mi>
+    </math> &#151; множество конечных состояний, причём допустимо
+    <math display='inline'>
+        <mi>F</mi>
+        <mo>=</mo>
+        <mi>&#8709;</mi>
+    </math>
+    или
+    <math display='inline'>
+        <mi>F</mi>
+        <mo>=</mo>
+        <mi>K</mi>
+    </math>
+    ,
+    <math display='inline'>
+        <mi>&#931;</mi>
+    </math> &#151; допустимый входной алфавит, из которого формируются строки, считываемые автоматом,
+    <math display='inline'>
+        <mi>&#960;</mi>
+        <mo>:</mo>
+        <mrow>
+            <mi>K</mi>
+            <mo>&#215;</mo>
+            <mi>&#931;</mi>
+        </mrow>
+        <mo>&#10230;</mo>
+        <mi>K</mi>
+    </math> &#151; функция переходов. Автомат начинает работу в состоянии
+    <math display='inline'>
+        <mi>s</mi>
+    </math>
+    , считывая по одному символы входной строки. Считанный символ переводит автомат в новое состояние из K, в
+    соответствии с функцией переходов. Процесс продолжается до тех пор, пока не будет достигнуто одно из состояний F.
 </p>
 <p>
-<span class='teorema'>Абстрактный автомат &#151; математическая абстракция в качестве модели дискретного устройства, имеющего один вход, один выход и в каждый момент времени находящегося в одном состоянии из множества возможных. На вход этому устройству поступают символы одного языка, на выходе оно выдает символы (в общем случае) другого языка.</span>
+    Конечные автоматы широко используются на практике, например в синтаксических анализаторах, а также в других случаях,
+    когда количество состояний объекта и переходов между ними сравнительно невелико.
 </p>
 <p>
-Формально абстрактный автомат определяется как пятёрка
-<math display='inline'>
-	<mi>A</mi><mo>=</mo>
-	<mfenced>
-		<mi>S</mi><mi>X</mi><mi>Y</mi><mi>&#948;</mi><mi>&#955;</mi>
-	</mfenced>
-</math>, где 
-<math display='inline'><mi>S</mi></math> &#151; конечное множество состояний автомата, 
-<math display='inline'><mfenced open='' close=''><mi>X</mi><mi>Y</mi></mfenced></math> &#151; конечные входной и выходной алфавиты соответственно, из которых формируются строки, считываемые и выдаваемые автоматом, 
-<math display='inline'>
-	<mi>&#948;</mi><mo>:</mo>
-	<mrow>
-		<mi>S</mi><mo>&#215;</mo><mi>X</mi>
-	</mrow>		
-	<mo>&#10230;</mo>		
-	<mi>S</mi>
-</math> &#151; функция переходов, 
-<math display='inline'>
-	<mi>&#955;</mi><mo>:</mo>
-	<mrow>
-		<mi>S</mi><mo>&#215;</mo><mi>X</mi>
-	</mrow>		
-	<mo>&#10230;</mo>		
-	<mi>Y</mi>
-</math> &#151; функция выходов.
+    Обобщением конечного автомата является абстрактный автомат:
+</p>
+<p>
+    <span class='teorema'>Абстрактный автомат &#151; математическая абстракция в качестве модели дискретного устройства, имеющего один вход, один выход и в каждый момент времени находящегося в одном состоянии из множества возможных. На вход этому устройству поступают символы одного языка, на выходе оно выдает символы (в общем случае) другого языка.</span>
+</p>
+<p>
+    Формально абстрактный автомат определяется как пятёрка
+    <math display='inline'>
+        <mi>A</mi>
+        <mo>=</mo>
+        <mfenced>
+            <mi>S</mi>
+            <mi>X</mi>
+            <mi>Y</mi>
+            <mi>&#948;</mi>
+            <mi>&#955;</mi>
+        </mfenced>
+    </math>
+    , где
+    <math display='inline'>
+        <mi>S</mi>
+    </math> &#151; конечное множество состояний автомата,
+    <math display='inline'>
+        <mfenced open='' close=''>
+            <mi>X</mi>
+            <mi>Y</mi>
+        </mfenced>
+    </math> &#151; конечные входной и выходной алфавиты соответственно, из которых формируются строки, считываемые и
+    выдаваемые автоматом,
+    <math display='inline'>
+        <mi>&#948;</mi>
+        <mo>:</mo>
+        <mrow>
+            <mi>S</mi>
+            <mo>&#215;</mo>
+            <mi>X</mi>
+        </mrow>
+        <mo>&#10230;</mo>
+        <mi>S</mi>
+    </math> &#151; функция переходов,
+    <math display='inline'>
+        <mi>&#955;</mi>
+        <mo>:</mo>
+        <mrow>
+            <mi>S</mi>
+            <mo>&#215;</mo>
+            <mi>X</mi>
+        </mrow>
+        <mo>&#10230;</mo>
+        <mi>Y</mi>
+    </math> &#151; функция выходов.
 </p>
 <p>Абстрактный автомат также является полным по Тьюрингу.</p>
 <h3>Контрольные вопросы и упражнения</h3>
 <ol>
-<li>Что такое алгоритм?</li>
-<li>Дайте определение МT как функции.</li>
-<li>Обладает ли персональный компьютер свойством элементарности?</li>
-<li>Обладает ли персональный компьютер свойством полноты по Тьюрингу?</li>
-<li>Можно ли считать компьютер аналогом Машины Тьюринга?</li>
-<li>Приведите примеры исполнителей алгоритмов, полных по Тьюрингу.</li>
-<li>Что такое конечный автомат?</li>
-<li>Будет ли конечный автомат полным по Тьюрингу?</li>
-<li>В чем отличие абстрактного автомата от конечного?</li>
-<li>Сформулируйте тезис Черча-Тьюринга.</li>
-<li>Что означает уметь вычислять значение функции?</li>
-<li>Какие функции вычислимы посредством МТ?</li>
-<li>Перечислите свойства алгоритма.</li>
-<li>Составьте программу реализации на Машине Тьюринга операции инвертирования целого неотрицательного двоичного числа.</li>
-<li>Составьте программу реализации на Машине Тьюринга операции вычитания из целого неотрицательного двоичного числа единицы.</li>
-<li>Составьте программу реализации на Машине Тьюринга операции сложения двух целых двоичных чисел без знака в восьмибитной разрядной сетке.</li>
+    <li>Что такое алгоритм?</li>
+    <li>Дайте определение МT как функции.</li>
+    <li>Обладает ли персональный компьютер свойством элементарности?</li>
+    <li>Обладает ли персональный компьютер свойством полноты по Тьюрингу?</li>
+    <li>Можно ли считать компьютер аналогом Машины Тьюринга?</li>
+    <li>Приведите примеры исполнителей алгоритмов, полных по Тьюрингу.</li>
+    <li>Что такое конечный автомат?</li>
+    <li>Будет ли конечный автомат полным по Тьюрингу?</li>
+    <li>В чем отличие абстрактного автомата от конечного?</li>
+    <li>Сформулируйте тезис Черча-Тьюринга.</li>
+    <li>Что означает уметь вычислять значение функции?</li>
+    <li>Какие функции вычислимы посредством МТ?</li>
+    <li>Перечислите свойства алгоритма.</li>
+    <li>Составьте программу реализации на Машине Тьюринга операции инвертирования целого неотрицательного двоичного
+        числа.
+    </li>
+    <li>Составьте программу реализации на Машине Тьюринга операции вычитания из целого неотрицательного двоичного числа
+        единицы.
+    </li>
+    <li>Составьте программу реализации на Машине Тьюринга операции сложения двух целых двоичных чисел без знака в
+        восьмибитной разрядной сетке.
+    </li>
 </ol>
-<p><a href="7_13.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_2.html">К следующему</a> </p>
+<p><a href="7_13.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_2.html">К следующему</a></p>
 </body>
+<script type="text/javascript">
+    MathJax.Hub.Configured()
+</script>
 </html>

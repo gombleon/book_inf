@@ -1,720 +1,1412 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset='UTF-8' />
-<link rel='stylesheet' type='text/css' href='style.css' />
-<meta name='author' content='leonid' />
-<title>Пирамидальная сортировка</title>
-<script type="text/javascript">
-function sort() {
-	var win=open("", "newWindow"),  html, head, title, body, h2, p,  str='', n=10, mass_a=[], i, j, k, stack=[], s;
-	function create_heap(l, r) {
-		var t=0, x=0, z;
-		t=2*l+1;
-		stack=[];
-		str='Пирамида: ';
-		for (z=l;z<=r;z++) {
-			str=str+mass_a[z]+' ';				
-		}
-		str=str+'.';
-		stack.push(str);		
-		str='Строим пирамидальную последовательность:';
-		stack.push(str);		
-		while (t<=r) {
-			x=mass_a[l];
-			if ((t<r)&&(mass_a[t]<mass_a[t+1])) {
-				t++;			
-			}
-			str=''
-			if (x<mass_a[t]) {
-				str='a['+l+']='+mass_a[l]+'<-->a['+t+']='+mass_a[t]+': ';
-				mass_a[l]=mass_a[t];
-				mass_a[t]=x;
-				for (z=l;z<=r;z++) {
-					str=str+mass_a[z]+' ';				
-				}
-				str=str+'. ';
-				stack.push(str);
-				l=t;
-				t=2*t+1;
-			}				
-			else {
-				t=r+1;
-			}
-		}
-	}
-	win.document.open();
-	html=document.createElement("html");
-	win.document.appendChild(html);
-	head=document.createElement("head");
-	title=document.createElement("title");
-	title.textContent="Пирамидальная сортировка";
-	head.appendChild(title);
-	html.appendChild(head);
-	body=document.createElement("body");
-	html.appendChild(body);
-	h2=document.createElement("h2");
-	h2.textContent="Пирамидальная сортировка";
-	body.appendChild(h2);
-	i=0;
-	str='Исходная последовательность: ';
-	while (i<n) {
-		mass_a[i]=mass_a[i]=Math.round(Math.random()*100);	
-		str=str+mass_a[i]+' ';
-		i++;
-	}
-	str=str+'.';
-	p=document.createElement("p");
-	p.textContent=str;
-	body.appendChild(p);	
-	i=(n-(n % 2))/2-1;
-	k=n-1;
-	while (i>=0) {
-		create_heap(i, k);
-		for (s=0;s<stack.length;s++) {
-			p=document.createElement("p");
-			p.textContent=stack[s];
-			body.appendChild(p);					
-		}			
-		i--;
-	}
-	i=0;
-	str='Пирамидальная последовательность: ';
-	while (i<n) {
-		str=str+mass_a[i]+' ';
-		i++;
-	}	
-	str=str+'.';
-	p=document.createElement("p");
-	p.textContent=str;
-	body.appendChild(p);
-	i=0;
-	k=n-1;
-	while (k>0) {
-		str='Обмен корневого элемента и последнего: a[0]='+mass_a[0]+'<-->a['+k+']='+mass_a[k];	
-		j=mass_a[k];
-		mass_a[k]=mass_a[0];
-		mass_a[0]=j;
-		p=document.createElement("p");
-		p.textContent=str;
-		body.appendChild(p);	
-		k--;
-		create_heap(0, k);
-		for (s=0;s<stack.length;s++) {
-			p=document.createElement("p");
-			p.textContent=stack[s];
-			body.appendChild(p);					
-		}	
-	}
-	str='Отсортированная последовательность: ';
-	while (i<n) {
-		str=str+mass_a[i]+' ';
-		i++;
-	}
-	str=str+'.';
-	p=document.createElement("p");
-	p.textContent=str;
-	body.appendChild(p);
-	win.document.close();					
-}
-function calc_op(n) {
-	var win=open("", "newWindow"),  html, head, title, body, h2, p,  str='', mass_a=[], i, j, k, count=0, comp=0, tt_n, t_n, tt_k, t_k;
-	function create_heap(l, r) {
-		var t=0, x=0, z;
-		t=2*l+1;
-		while (t<=r) {
-			x=mass_a[l];
-			if ((t<r)&&(mass_a[t]<mass_a[t+1])) {
-				t++;			
-			}
-			if (x<mass_a[t]) {
-				mass_a[l]=mass_a[t];
-				mass_a[t]=x;
-				count++;
-				l=t;
-				t=2*t+1;
-			}				
-			else {
-				t=r+1;
-			}
-			comp=comp+2;
-		}
-	}
-	win.document.open();
-	html=document.createElement("html");
-	win.document.appendChild(html);
-	head=document.createElement("head");
-	title=document.createElement("title");
-	title.textContent="Оценка вычислительной сложности алгоритма пирамидальной сортировки";
-	head.appendChild(title);
-	html.appendChild(head);
-	body=document.createElement("body");
-	html.appendChild(body);
-	h2=document.createElement("h2");
-	h2.textContent="Оценка вычислительной сложности алгоритма пирамидальной сортировки";
-	body.appendChild(h2);
-	i=0;
-	if (n<2) {
-		n=3;	
-	}
-	while (i<n) {
-		mass_a[i]=mass_a[i]=Math.round(Math.random()*100);	
-		i++;
-	}
-	t_n= new Date();
-	tt_n=t_n.valueOf();	
-	i=(n-(n % 2))/2-1;
-	k=n-1;
-	while (i>=0) {
-		create_heap(i, k);
-		i--;
-	}
-	i=0;
-	i=0;
-	k=n-1;
-	while (k>0) {
-		j=mass_a[k];
-		mass_a[k]=mass_a[0];
-		mass_a[0]=j;
-		count++;
-		k--;
-		create_heap(0, k);
-	}
-	t_k= new Date();
-	tt_k=t_k.valueOf();	
-	p=document.createElement("p");
-	p.textContent='Всего элементов в последовательности: '+n+'.';
-	body.appendChild(p);
-	p=document.createElement("p");
-	p.textContent='Всего операций сравнения: '+comp+'.';
-	body.appendChild(p);	
-	p=document.createElement("p");
-	i=(comp)/(n*Math.LOG2E*Math.log(n));	
-	p.textContent='Оценка количества операций сравнения: '+i.toPrecision(4)+'*'+n+'*ln('+n+').';	
-	body.appendChild(p);	
-	p=document.createElement("p");
-	p.textContent='Всего операций обмена: '+count+'.';
-	body.appendChild(p);
-	p=document.createElement("p");
-	i=(3*count)/(n*Math.LOG2E*Math.log(n));	
-	p.textContent='Оценка количества операций присваивания: '+i.toPrecision(4)+'*'+n+'*ln('+n+').';	
-	body.appendChild(p);	
-	p=document.createElement("p");
-	i=tt_k.valueOf()-tt_n.valueOf();
-	p.textContent='Продолжительность сортировки t='+i+' миллисекунд.';
-	body.appendChild(p);		
-	win.document.close();
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+  extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});
 
-}
-</script>
+    </script>
+    <script type="text/javascript"
+            src="https://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <meta charset='UTF-8'/>
+    <link rel='stylesheet' type='text/css' href='style.css'/>
+    <meta name='author' content='leonid'/>
+    <title>Пирамидальная сортировка</title>
+    <script type="text/javascript">
+        function sort() {
+            var win = open("", "newWindow"), html, head, title, body, h2, p, str = '', n = 10, mass_a = [], i, j, k,
+                stack = [], s;
+
+            function create_heap(l, r) {
+                var t = 0, x = 0, z;
+                t = 2 * l + 1;
+                stack = [];
+                str = 'Пирамида: ';
+                for (z = l; z <= r; z++) {
+                    str = str + mass_a[z] + ' ';
+                }
+                str = str + '.';
+                stack.push(str);
+                str = 'Строим пирамидальную последовательность:';
+                stack.push(str);
+                while (t <= r) {
+                    x = mass_a[l];
+                    if ((t < r) && (mass_a[t] < mass_a[t + 1])) {
+                        t++;
+                    }
+                    str = ''
+                    if (x < mass_a[t]) {
+                        str = 'a[' + l + ']=' + mass_a[l] + '<-->a[' + t + ']=' + mass_a[t] + ': ';
+                        mass_a[l] = mass_a[t];
+                        mass_a[t] = x;
+                        for (z = l; z <= r; z++) {
+                            str = str + mass_a[z] + ' ';
+                        }
+                        str = str + '. ';
+                        stack.push(str);
+                        l = t;
+                        t = 2 * t + 1;
+                    } else {
+                        t = r + 1;
+                    }
+                }
+            }
+
+            win.document.open();
+            html = document.createElement("html");
+            win.document.appendChild(html);
+            head = document.createElement("head");
+            title = document.createElement("title");
+            title.textContent = "Пирамидальная сортировка";
+            head.appendChild(title);
+            html.appendChild(head);
+            body = document.createElement("body");
+            html.appendChild(body);
+            h2 = document.createElement("h2");
+            h2.textContent = "Пирамидальная сортировка";
+            body.appendChild(h2);
+            i = 0;
+            str = 'Исходная последовательность: ';
+            while (i < n) {
+                mass_a[i] = mass_a[i] = Math.round(Math.random() * 100);
+                str = str + mass_a[i] + ' ';
+                i++;
+            }
+            str = str + '.';
+            p = document.createElement("p");
+            p.textContent = str;
+            body.appendChild(p);
+            i = (n - (n % 2)) / 2 - 1;
+            k = n - 1;
+            while (i >= 0) {
+                create_heap(i, k);
+                for (s = 0; s < stack.length; s++) {
+                    p = document.createElement("p");
+                    p.textContent = stack[s];
+                    body.appendChild(p);
+                }
+                i--;
+            }
+            i = 0;
+            str = 'Пирамидальная последовательность: ';
+            while (i < n) {
+                str = str + mass_a[i] + ' ';
+                i++;
+            }
+            str = str + '.';
+            p = document.createElement("p");
+            p.textContent = str;
+            body.appendChild(p);
+            i = 0;
+            k = n - 1;
+            while (k > 0) {
+                str = 'Обмен корневого элемента и последнего: a[0]=' + mass_a[0] + '<-->a[' + k + ']=' + mass_a[k];
+                j = mass_a[k];
+                mass_a[k] = mass_a[0];
+                mass_a[0] = j;
+                p = document.createElement("p");
+                p.textContent = str;
+                body.appendChild(p);
+                k--;
+                create_heap(0, k);
+                for (s = 0; s < stack.length; s++) {
+                    p = document.createElement("p");
+                    p.textContent = stack[s];
+                    body.appendChild(p);
+                }
+            }
+            str = 'Отсортированная последовательность: ';
+            while (i < n) {
+                str = str + mass_a[i] + ' ';
+                i++;
+            }
+            str = str + '.';
+            p = document.createElement("p");
+            p.textContent = str;
+            body.appendChild(p);
+            win.document.close();
+        }
+
+        function calc_op(n) {
+            var win = open("", "newWindow"), html, head, title, body, h2, p, str = '', mass_a = [], i, j, k, count = 0,
+                comp = 0, tt_n, t_n, tt_k, t_k;
+
+            function create_heap(l, r) {
+                var t = 0, x = 0, z;
+                t = 2 * l + 1;
+                while (t <= r) {
+                    x = mass_a[l];
+                    if ((t < r) && (mass_a[t] < mass_a[t + 1])) {
+                        t++;
+                    }
+                    if (x < mass_a[t]) {
+                        mass_a[l] = mass_a[t];
+                        mass_a[t] = x;
+                        count++;
+                        l = t;
+                        t = 2 * t + 1;
+                    } else {
+                        t = r + 1;
+                    }
+                    comp = comp + 2;
+                }
+            }
+
+            win.document.open();
+            html = document.createElement("html");
+            win.document.appendChild(html);
+            head = document.createElement("head");
+            title = document.createElement("title");
+            title.textContent = "Оценка вычислительной сложности алгоритма пирамидальной сортировки";
+            head.appendChild(title);
+            html.appendChild(head);
+            body = document.createElement("body");
+            html.appendChild(body);
+            h2 = document.createElement("h2");
+            h2.textContent = "Оценка вычислительной сложности алгоритма пирамидальной сортировки";
+            body.appendChild(h2);
+            i = 0;
+            if (n < 2) {
+                n = 3;
+            }
+            while (i < n) {
+                mass_a[i] = mass_a[i] = Math.round(Math.random() * 100);
+                i++;
+            }
+            t_n = new Date();
+            tt_n = t_n.valueOf();
+            i = (n - (n % 2)) / 2 - 1;
+            k = n - 1;
+            while (i >= 0) {
+                create_heap(i, k);
+                i--;
+            }
+            i = 0;
+            i = 0;
+            k = n - 1;
+            while (k > 0) {
+                j = mass_a[k];
+                mass_a[k] = mass_a[0];
+                mass_a[0] = j;
+                count++;
+                k--;
+                create_heap(0, k);
+            }
+            t_k = new Date();
+            tt_k = t_k.valueOf();
+            p = document.createElement("p");
+            p.textContent = 'Всего элементов в последовательности: ' + n + '.';
+            body.appendChild(p);
+            p = document.createElement("p");
+            p.textContent = 'Всего операций сравнения: ' + comp + '.';
+            body.appendChild(p);
+            p = document.createElement("p");
+            i = (comp) / (n * Math.LOG2E * Math.log(n));
+            p.textContent = 'Оценка количества операций сравнения: ' + i.toPrecision(4) + '*' + n + '*ln(' + n + ').';
+            body.appendChild(p);
+            p = document.createElement("p");
+            p.textContent = 'Всего операций обмена: ' + count + '.';
+            body.appendChild(p);
+            p = document.createElement("p");
+            i = (3 * count) / (n * Math.LOG2E * Math.log(n));
+            p.textContent = 'Оценка количества операций присваивания: ' + i.toPrecision(4) + '*' + n + '*ln(' + n + ').';
+            body.appendChild(p);
+            p = document.createElement("p");
+            i = tt_k.valueOf() - tt_n.valueOf();
+            p.textContent = 'Продолжительность сортировки t=' + i + ' миллисекунд.';
+            body.appendChild(p);
+            win.document.close();
+
+        }
+    </script>
 </head>
 <body>
-<p><a href="8_10_5.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_10_7.html">К следующему</a> </p>
+<p><a href="8_10_5.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_10_7.html">К следующему</a>
+</p>
 <h2>8.10.6. Пирамидальная сортировка</h2>
-<p>Линейный поиск наименьшего элемента в последовательности из <math><mi>n</mi></math> элементов потребует <math><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></math> операцию сравнения. Для поиска следующего минимального элемента потребуются еще <math><mrow><mi>n</mi><mo>-</mo><mn>2</mn></mrow></math> операции сравнения. Для упорядочения последовательности с использованием линейного поиска количество всех операций сравнения порядка <math><msup><mi>n</mi><mn>2</mn></msup></math>. Идея пирамидальной сортировки, принадлежащая Дж. Уильямсу, заключается в представлении массива как особым образом упорядоченного бинарного дерева (Рис. 8.10.6.1), что позволило бы значительно уменьшить затраты на сортировку.</p>
-<svg height = "210px"  width = "500px">
-<text x="300" y="20" stroke="none" fill="#000000" font-size="14" font-family="serif">a<tspan dy="4" font-size="10">0</tspan></text>
-<line x1="290px" y1="22px" x2="235px" y2="60px" stroke="#000000" stroke-width="1"/>
-<line x1="215px" y1="72px" x2="166px" y2="109px" stroke="#000000" stroke-width="1"/>
-<text x="220" y="70" stroke="none" fill="#000000" font-size="14" font-family="serif">a<tspan dy="4" font-size="10">1</tspan></text>
-<line x1="316px" y1="24px" x2="375px" y2="60px" stroke="#000000" stroke-width="1"/>
-<text x="380" y="70" stroke="none" fill="#000000" font-size="14" font-family="serif">a<tspan dy="4" font-size="10">2</tspan></text>
-<line x1="382px" y1="74px" x2="360px" y2="108px" stroke="#000000" stroke-width="1"/>
-<text x="150" y="120" stroke="none" fill="#000000" font-size="14" font-family="serif">a<tspan dy="4" font-size="10">3</tspan></text>
-<text x="255" y="120" stroke="none" fill="#000000" font-size="14" font-family="serif">a<tspan dy="4" font-size="10">4</tspan></text>
-<line x1="228px" y1="76px" x2="255px" y2="112px" stroke="#000000" stroke-width="1"/>
-<text x="350" y="120" stroke="none" fill="#000000" font-size="14" font-family="serif">a<tspan dy="4" font-size="10">5</tspan></text>
-<text x="453" y="118" stroke="none" fill="#000000" font-size="14" font-family="serif">a<tspan dy="4" font-size="10">6</tspan></text>
-<line x1="396px" y1="76px" x2="445px" y2="108px" stroke="#000000" stroke-width="1"/>
-<line x1="150px" y1="124px" x2="104px" y2="160px" stroke="#000000" stroke-width="1"/>
-<line x1="162px" y1="126px" x2="190px" y2="160px" stroke="#000000" stroke-width="1"/>
-<text x="90" y="170" stroke="none" fill="#000000" font-size="14" font-family="serif">a<tspan dy="4" font-size="10">7</tspan></text>
-<text x="190" y="170" stroke="none" fill="#000000" font-size="14" font-family="serif">a<tspan dy="4" font-size="10">8</tspan></text>
-<text x="100" y="200" stroke="none" fill="#000000" font-size="14" font-family="serif">Рис. 8.10.6.1. Массив как бинарное дерево</text>
+<p>Линейный поиск наименьшего элемента в последовательности из
+    <math>
+        <mi>n</mi>
+    </math>
+    элементов потребует
+    <math>
+        <mrow>
+            <mi>n</mi>
+            <mo>-</mo>
+            <mn>1</mn>
+        </mrow>
+    </math>
+    операцию сравнения. Для поиска следующего минимального элемента потребуются еще
+    <math>
+        <mrow>
+            <mi>n</mi>
+            <mo>-</mo>
+            <mn>2</mn>
+        </mrow>
+    </math>
+    операции сравнения. Для упорядочения последовательности с использованием линейного поиска количество всех операций
+    сравнения порядка
+    <math>
+        <msup>
+            <mi>n</mi>
+            <mn>2</mn>
+        </msup>
+    </math>
+    . Идея пирамидальной сортировки, принадлежащая Дж. Уильямсу, заключается в представлении массива как особым образом
+    упорядоченного бинарного дерева (Рис. 8.10.6.1), что позволило бы значительно уменьшить затраты на сортировку.
+</p>
+<svg height="210px" width="500px">
+    <text x="300" y="20" stroke="none" fill="#000000" font-size="14" font-family="serif">a
+        <tspan dy="4" font-size="10">0</tspan>
+    </text>
+    <line x1="290px" y1="22px" x2="235px" y2="60px" stroke="#000000" stroke-width="1"/>
+    <line x1="215px" y1="72px" x2="166px" y2="109px" stroke="#000000" stroke-width="1"/>
+    <text x="220" y="70" stroke="none" fill="#000000" font-size="14" font-family="serif">a
+        <tspan dy="4" font-size="10">1</tspan>
+    </text>
+    <line x1="316px" y1="24px" x2="375px" y2="60px" stroke="#000000" stroke-width="1"/>
+    <text x="380" y="70" stroke="none" fill="#000000" font-size="14" font-family="serif">a
+        <tspan dy="4" font-size="10">2</tspan>
+    </text>
+    <line x1="382px" y1="74px" x2="360px" y2="108px" stroke="#000000" stroke-width="1"/>
+    <text x="150" y="120" stroke="none" fill="#000000" font-size="14" font-family="serif">a
+        <tspan dy="4" font-size="10">3</tspan>
+    </text>
+    <text x="255" y="120" stroke="none" fill="#000000" font-size="14" font-family="serif">a
+        <tspan dy="4" font-size="10">4</tspan>
+    </text>
+    <line x1="228px" y1="76px" x2="255px" y2="112px" stroke="#000000" stroke-width="1"/>
+    <text x="350" y="120" stroke="none" fill="#000000" font-size="14" font-family="serif">a
+        <tspan dy="4" font-size="10">5</tspan>
+    </text>
+    <text x="453" y="118" stroke="none" fill="#000000" font-size="14" font-family="serif">a
+        <tspan dy="4" font-size="10">6</tspan>
+    </text>
+    <line x1="396px" y1="76px" x2="445px" y2="108px" stroke="#000000" stroke-width="1"/>
+    <line x1="150px" y1="124px" x2="104px" y2="160px" stroke="#000000" stroke-width="1"/>
+    <line x1="162px" y1="126px" x2="190px" y2="160px" stroke="#000000" stroke-width="1"/>
+    <text x="90" y="170" stroke="none" fill="#000000" font-size="14" font-family="serif">a
+        <tspan dy="4" font-size="10">7</tspan>
+    </text>
+    <text x="190" y="170" stroke="none" fill="#000000" font-size="14" font-family="serif">a
+        <tspan dy="4" font-size="10">8</tspan>
+    </text>
+    <text x="100" y="200" stroke="none" fill="#000000" font-size="14" font-family="serif">Рис. 8.10.6.1. Массив как
+        бинарное дерево
+    </text>
 </svg>
-<p>Пирамидой называют такую последовательность 
-<math>
-	<mfenced open='' close=''>
-		<msub><mi>a</mi><mn>0</mn></msub>
-		<msub><mi>a</mi><mn>1</mn></msub>
-		<mi>&#133;</mi>
-		<msub><mi>a</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub>		
-	</mfenced>
-</math>, в которой для любого 
-<math>
-	<mi>i</mi><mo>=</mo>
-		<mfenced open='' close=''>
-			<mi>0</mi>
-			<mi>1</mi>
-			<mi>&#133;</mi>
-			<mrow><mo>[</mo><mfrac><mi>n</mi><mn>2</mn></mfrac><mo>]</mo><mo>-</mo><mn>1</mn></mrow>			
-		</mfenced>
-</math>
- элементы 
-<math>
-	<msub>
-		<mi>a</mi>
-		<mrow><mn>2</mn><mo>&#x2062;</mo><mi>i</mi><mo>+</mo><mn>1</mn></mrow>
-	</msub>
-</math> и 
-<math>	
-	<msub>
-		<mi>a</mi>
-		<mrow><mn>2</mn><mo>&#x2062;</mo><mi>i</mi><mo>+</mo><mn>2</mn></mrow>
-	</msub>
-</math>
-считаются потомками элемента-предка <math><msub><mi>a</mi><mi>i</mi></msub></math>, и никакой потомок не превышает своего предка.
+<p>Пирамидой называют такую последовательность
+    <math>
+        <mfenced open='' close=''>
+            <msub>
+                <mi>a</mi>
+                <mn>0</mn>
+            </msub>
+            <msub>
+                <mi>a</mi>
+                <mn>1</mn>
+            </msub>
+            <mi>&#133;</mi>
+            <msub>
+                <mi>a</mi>
+                <mrow>
+                    <mi>n</mi>
+                    <mo>-</mo>
+                    <mn>1</mn>
+                </mrow>
+            </msub>
+        </mfenced>
+    </math>
+    , в которой для любого
+    <math>
+        <mi>i</mi>
+        <mo>=</mo>
+        <mfenced open='' close=''>
+            <mi>0</mi>
+            <mi>1</mi>
+            <mi>&#133;</mi>
+            <mrow>
+                <mo>[</mo>
+                <mfrac>
+                    <mi>n</mi>
+                    <mn>2</mn>
+                </mfrac>
+                <mo>]</mo>
+                <mo>-</mo>
+                <mn>1</mn>
+            </mrow>
+        </mfenced>
+    </math>
+    элементы
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mrow>
+                <mn>2</mn>
+                <mo>&#x2062;</mo>
+                <mi>i</mi>
+                <mo>+</mo>
+                <mn>1</mn>
+            </mrow>
+        </msub>
+    </math>
+    и
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mrow>
+                <mn>2</mn>
+                <mo>&#x2062;</mo>
+                <mi>i</mi>
+                <mo>+</mo>
+                <mn>2</mn>
+            </mrow>
+        </msub>
+    </math>
+    считаются потомками элемента-предка
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mi>i</mi>
+        </msub>
+    </math>
+    , и никакой потомок не превышает своего предка.
 </p>
-<p>Корнем дерева является элемент <math><msub><mi>a</mi><mn>0</mn></msub></math>, а листьями, как элементы без потомков, узлы  
-<math>
-	<msub><mi>a</mi><mi>i</mi></msub>
-	<mo>,</mo>
-	<mi>i</mi><mo>=</mo>
-	<mfenced open='' close=''>
-		<mrow>
-			<mo>[</mo><mfrac><mi>n</mi><mn>2</mn></mfrac><mo>]</mo>
-		</mrow>
-		<mi>&#133;</mi>
-		<mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow>
-	</mfenced>
-	<mo>,</mo>
-</math>. 
+<p>Корнем дерева является элемент
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>0</mn>
+        </msub>
+    </math>
+    , а листьями, как элементы без потомков, узлы
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mi>i</mi>
+        </msub>
+        <mo>,</mo>
+        <mi>i</mi>
+        <mo>=</mo>
+        <mfenced open='' close=''>
+            <mrow>
+                <mo>[</mo>
+                <mfrac>
+                    <mi>n</mi>
+                    <mn>2</mn>
+                </mfrac>
+                <mo>]</mo>
+            </mrow>
+            <mi>&#133;</mi>
+            <mrow>
+                <mi>n</mi>
+                <mo>-</mo>
+                <mn>1</mn>
+            </mrow>
+        </mfenced>
+        <mo>,</mo>
+    </math>
+    .
 </p>
-<p>Пример 8.10.6.1. Рассмотрим последовательность 
-<math>
-	<mfenced open='' close=''>
-		<mn>25</mn><mo>,</mo><mn>10</mn><mo>,</mo><mn>19</mn><mo>,</mo><mn>5</mn><mo>,</mo><mn>9</mn><mo>,</mo><mn>10</mn>
-	</mfenced>
-	<mo>.</mo>
-</math>
-Элемент 
-<math>
-	<msub><mi>a</mi><mn>0</mn></msub><mo>=</mo><mn>25</mn>
-</math> 
-является корнем дерева и больше своих потомков
-<math>
-	<msub><mi>a</mi><mn>1</mn></msub><mo>=</mo><mn>10</mn>
-</math> и
-<math>
-	<msub><mi>a</mi><mn>2</mn></msub><mo>=</mo><mn>19</mn>
-</math>.
-Элемент
-<math>
-	<msub><mi>a</mi><mn>1</mn></msub><mo>=</mo><mn>10</mn>
-</math>  
-больше своих потомков
-<math>
-	<msub><mi>a</mi><mn>3</mn></msub><mo>=</mo><mn>5</mn>
-</math> и
-<math>
-	<msub><mi>a</mi><mn>4</mn></msub><mo>=</mo><mn>9</mn>
-</math>, а элемент
-<math>
-	<msub><mi>a</mi><mn>2</mn></msub><mo>=</mo><mn>19</mn>
-</math>  
-больше своего потомка
-<math>
-	<msub><mi>a</mi><mn>5</mn></msub><mo>=</mo><mn>10</mn>
-</math>. Следовательно, эта последовательность есть пирамида.
+<p>Пример 8.10.6.1. Рассмотрим последовательность
+    <math>
+        <mfenced open='' close=''>
+            <mn>25</mn>
+            <mo>,</mo>
+            <mn>10</mn>
+            <mo>,</mo>
+            <mn>19</mn>
+            <mo>,</mo>
+            <mn>5</mn>
+            <mo>,</mo>
+            <mn>9</mn>
+            <mo>,</mo>
+            <mn>10</mn>
+        </mfenced>
+        <mo>.</mo>
+    </math>
+    Элемент
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>0</mn>
+        </msub>
+        <mo>=</mo>
+        <mn>25</mn>
+    </math>
+    является корнем дерева и больше своих потомков
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>1</mn>
+        </msub>
+        <mo>=</mo>
+        <mn>10</mn>
+    </math>
+    и
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>2</mn>
+        </msub>
+        <mo>=</mo>
+        <mn>19</mn>
+    </math>
+    .
+    Элемент
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>1</mn>
+        </msub>
+        <mo>=</mo>
+        <mn>10</mn>
+    </math>
+    больше своих потомков
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>3</mn>
+        </msub>
+        <mo>=</mo>
+        <mn>5</mn>
+    </math>
+    и
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>4</mn>
+        </msub>
+        <mo>=</mo>
+        <mn>9</mn>
+    </math>
+    , а элемент
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>2</mn>
+        </msub>
+        <mo>=</mo>
+        <mn>19</mn>
+    </math>
+    больше своего потомка
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>5</mn>
+        </msub>
+        <mo>=</mo>
+        <mn>10</mn>
+    </math>
+    . Следовательно, эта последовательность есть пирамида.
 </p>
-<p>Пример 8.10.6.2. Последовательность 
-<math>
-	<mfenced open='' close=''>
-		<mn>25</mn><mo>,</mo><mn>10</mn><mo>,</mo><mn>19</mn><mo>,</mo><mn>5</mn><mo>,</mo><mn>37</mn><mo>,</mo><mn>10</mn>
-	</mfenced>
-	<mo></mo>
-</math>
-не является пирамидой, так как элемент 
-<math>
-	<msub><mi>a</mi><mn>4</mn></msub><mo>=</mo><mn>37</mn>
-</math>
-больше своего предка
-<math>
-	<msub><mi>a</mi><mn>1</mn></msub><mo>=</mo><mn>10</mn>
-	<mo>.</mo>
-</math>
+<p>Пример 8.10.6.2. Последовательность
+    <math>
+        <mfenced open='' close=''>
+            <mn>25</mn>
+            <mo>,</mo>
+            <mn>10</mn>
+            <mo>,</mo>
+            <mn>19</mn>
+            <mo>,</mo>
+            <mn>5</mn>
+            <mo>,</mo>
+            <mn>37</mn>
+            <mo>,</mo>
+            <mn>10</mn>
+        </mfenced>
+        <mo></mo>
+    </math>
+    не является пирамидой, так как элемент
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>4</mn>
+        </msub>
+        <mo>=</mo>
+        <mn>37</mn>
+    </math>
+    больше своего предка
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>1</mn>
+        </msub>
+        <mo>=</mo>
+        <mn>10</mn>
+        <mo>.</mo>
+    </math>
 </p>
-<p>Всякую последовательность можно преобразовать в пирамиду путем обхода дерева от предка к потомку (или от потомка к предку), выполняя при этом операции сравнения элемента-предка 
-<math>
-	<msub><mi>a</mi><mi>i</mi></msub>
-</math>
-с элементами-потомками 
-<math>
-	<msub>
-		<mi>a</mi>
-		<mrow><mn>2</mn><mo>&#x2062;</mo><mi>i</mi><mo>+</mo><mn>1</mn></mrow>
-	</msub>
-</math> и 
-<math>	
-	<msub>
-		<mi>a</mi>
-		<mrow><mn>2</mn><mo>&#x2062;</mo><mi>i</mi><mo>+</mo><mn>2</mn></mrow>
-	</msub>
-</math>
-и, при нарушении отношения предка и потомков, совершая операцию обмена, в результате которого предок будет не меньше любого из потомков.
+<p>Всякую последовательность можно преобразовать в пирамиду путем обхода дерева от предка к потомку (или от потомка к
+    предку), выполняя при этом операции сравнения элемента-предка
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mi>i</mi>
+        </msub>
+    </math>
+    с элементами-потомками
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mrow>
+                <mn>2</mn>
+                <mo>&#x2062;</mo>
+                <mi>i</mi>
+                <mo>+</mo>
+                <mn>1</mn>
+            </mrow>
+        </msub>
+    </math>
+    и
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mrow>
+                <mn>2</mn>
+                <mo>&#x2062;</mo>
+                <mi>i</mi>
+                <mo>+</mo>
+                <mn>2</mn>
+            </mrow>
+        </msub>
+    </math>
+    и, при нарушении отношения предка и потомков, совершая операцию обмена, в результате которого предок будет не меньше
+    любого из потомков.
 </p>
-<p>Пример 8.10.6.3. Вернемся к примеру 8.10.6.2. Элемент 
-<math>
-	<msub><mi>a</mi><mn>4</mn></msub><mo>=</mo><mn>37</mn>
-</math>
-больше своего предка
-<math>
-	<msub><mi>a</mi><mn>1</mn></msub><mo>=</mo><mn>10</mn>
-	<mo>.</mo>
-</math> Совершим операцию обмена между ними и получим последовательность
-<math>
-	<mfenced open='' close=''>
-		<mn>25</mn><mo>,</mo><mn>37</mn><mo>,</mo><mn>19</mn><mo>,</mo><mn>5</mn><mo>,</mo><mn>10</mn><mo>,</mo><mn>10</mn>
-	</mfenced>
-	<mo>.</mo>
-</math> Но теперь элемент
-<math>
-	<msub><mi>a</mi><mn>1</mn></msub><mo>=</mo><mn>37</mn>
-</math> больше предка
-<math>
-	<msub><mi>a</mi><mn>0</mn></msub><mo>=</mo><mn>25</mn>
-</math>. Элемент
-<math>
-	<msub><mi>a</mi><mn>0</mn></msub>
-</math> имеет двух потомков, больший из которых
-<math>
-	<msub><mi>a</mi><mn>1</mn></msub>
-</math>. Операция обмена между ними дает последовательность
-<math>
-	<mfenced open='' close=''>
-		<mn>37</mn><mo>,</mo><mn>25</mn><mo>,</mo><mn>19</mn><mo>,</mo><mn>5</mn><mo>,</mo><mn>10</mn><mo>,</mo><mn>10</mn>
-	</mfenced>
-	<mo>,</mo>
-</math> которая будет пирамидой.
+<p>Пример 8.10.6.3. Вернемся к примеру 8.10.6.2. Элемент
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>4</mn>
+        </msub>
+        <mo>=</mo>
+        <mn>37</mn>
+    </math>
+    больше своего предка
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>1</mn>
+        </msub>
+        <mo>=</mo>
+        <mn>10</mn>
+        <mo>.</mo>
+    </math>
+    Совершим операцию обмена между ними и получим последовательность
+    <math>
+        <mfenced open='' close=''>
+            <mn>25</mn>
+            <mo>,</mo>
+            <mn>37</mn>
+            <mo>,</mo>
+            <mn>19</mn>
+            <mo>,</mo>
+            <mn>5</mn>
+            <mo>,</mo>
+            <mn>10</mn>
+            <mo>,</mo>
+            <mn>10</mn>
+        </mfenced>
+        <mo>.</mo>
+    </math>
+    Но теперь элемент
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>1</mn>
+        </msub>
+        <mo>=</mo>
+        <mn>37</mn>
+    </math>
+    больше предка
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>0</mn>
+        </msub>
+        <mo>=</mo>
+        <mn>25</mn>
+    </math>
+    . Элемент
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>0</mn>
+        </msub>
+    </math>
+    имеет двух потомков, больший из которых
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>1</mn>
+        </msub>
+    </math>
+    . Операция обмена между ними дает последовательность
+    <math>
+        <mfenced open='' close=''>
+            <mn>37</mn>
+            <mo>,</mo>
+            <mn>25</mn>
+            <mo>,</mo>
+            <mn>19</mn>
+            <mo>,</mo>
+            <mn>5</mn>
+            <mo>,</mo>
+            <mn>10</mn>
+            <mo>,</mo>
+            <mn>10</mn>
+        </mfenced>
+        <mo>,</mo>
+    </math>
+    которая будет пирамидой.
 </p>
-<p>Перейдем к описанию одной из модификаций пирамидальной сортировки, отличительной особенностью которой является тот факт, что при этом не требуется использовать ни дополнительные массивы, ни дополнительные деревья. Автором идеи является Р. У. Флойд.</p>
+<p>Перейдем к описанию одной из модификаций пирамидальной сортировки, отличительной особенностью которой является тот
+    факт, что при этом не требуется использовать ни дополнительные массивы, ни дополнительные деревья. Автором идеи
+    является Р. У. Флойд.</p>
 <p>Пусть требуется отсортировать по возрастанию числовую последовательность
-<math>
-	<mfenced open='' close=''>
-		<msub><mi>a</mi><mn>0</mn></msub>
-		<msub><mi>a</mi><mn>1</mn></msub>
-		<mi>&#133;</mi>
-		<msub><mi>a</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub>		
-	</mfenced>
-</math>. Сортировка выполняется в два этапа.</p>
-<p>На первом этапе преобразуем последовательность в пирамиду. Элементы подпоследовательности 
-<math>
-	<mfenced open='' close=''>
-		<msub>
-			<mi>a</mi>
-			<mrow>
-				<mo>[</mo><mfrac><mi>n</mi><mn>2</mn></mfrac><mo>]</mo>
-			</mrow>
-		</msub>
-		<mi>&#133;</mi>
-		<msub><mi>a</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub>		
-	</mfenced>
-</math> не имеют потомков, поэтому можно считать, что они образуют листья пирамиды. Присоединим к ним элемент 
-<math>
-<msub>
-	<mi>a</mi>
-	<mrow>
-		<mo>[</mo><mfrac><mi>n</mi><mn>2</mn></mfrac><mo>]</mo>
-		<mo>-</mo><mn>1</mn>
-	</mrow>
-</msub>
-</math>, который имеет один или два потомка, один из которых элемент
-<math>
-	<msub><mi>a</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub>		
-</math>. Если потомок больше предка, то необходимо выполнить между ними операцию обмена. Далее к подпоследовательности присоединяется элемент
-<math>
-<msub>
-	<mi>a</mi>
-	<mrow>
-		<mo>[</mo><mfrac><mi>n</mi><mn>2</mn></mfrac><mo>]</mo>
-		<mo>-</mo><mn>2</mn>
-	</mrow>
-</msub>
-</math>, имеющий два потомка. Сравнивается значение предка с потомком большей величины, и если нарушается условие определения пирамиды, то выполняется операция обмена. Выполняя описанный процесс до исчерпания всей последовательности, в результате имеем пирамиду.  
+    <math>
+        <mfenced open='' close=''>
+            <msub>
+                <mi>a</mi>
+                <mn>0</mn>
+            </msub>
+            <msub>
+                <mi>a</mi>
+                <mn>1</mn>
+            </msub>
+            <mi>&#133;</mi>
+            <msub>
+                <mi>a</mi>
+                <mrow>
+                    <mi>n</mi>
+                    <mo>-</mo>
+                    <mn>1</mn>
+                </mrow>
+            </msub>
+        </mfenced>
+    </math>
+    . Сортировка выполняется в два этапа.
 </p>
-<p>Рассмотрим второй этап сортировки. Выполняется обмен между элементами 
-<math>
-<msub>
-	<mi>a</mi><mn>0</mn>
-</msub>
-</math>
-и
-<math>
-<msub>
-	<mi>a</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow>
-</msub>
-</math>, в результате которого наибольшим элементом последовательности будет ее последний элемент
-<math>
-<msub>
-	<mi>a</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow>
-</msub>
-</math>. Последний элемент исключается из дальнейшего рассмотрения, а последовательность
-<math>
-	<mfenced open='' close=''>
-		<msub><mi>a</mi><mn>0</mn></msub>
-		<msub><mi>a</mi><mn>1</mn></msub>
-		<mi>&#133;</mi>
-		<msub><mi>a</mi><mrow><mi>n</mi><mo>-</mo><mn>2</mn></mrow></msub>		
-	</mfenced>
-</math> преобразуется в пирамиду путем сравнения предка с потомками и, возможно, выполнения операции обмена. Затем выполняется операция обмена между элементами 
-<math>
-<msub>
-	<mi>a</mi><mn>0</mn>
-</msub>
-</math>
-и
-<math>
-<msub>
-	<mi>a</mi><mrow><mi>n</mi><mo>-</mo><mn>2</mn></mrow>
-</msub>
-</math>. Элементы
-<math>
-	<mfenced open='' close=''>
-		<msub><mi>a</mi><mrow><mi>n</mi><mo>-</mo><mn>2</mn></mrow></msub>
-		<msub><mi>a</mi><mrow><mi>n</mi><mo>-</mo><mn>1</mn></mrow></msub>		
-	</mfenced>
-</math>
-образуют упорядоченную по возрастанию последовательность. Затем последовательность
-<math>
-	<mfenced open='' close=''>
-		<msub><mi>a</mi><mn>0</mn></msub>
-		<msub><mi>a</mi><mn>1</mn></msub>
-		<mi>&#133;</mi>
-		<msub><mi>a</mi><mrow><mi>n</mi><mo>-</mo><mn>3</mn></mrow></msub>		
-	</mfenced>
-</math> преобразуется в пирамиду.
+<p>На первом этапе преобразуем последовательность в пирамиду. Элементы подпоследовательности
+    <math>
+        <mfenced open='' close=''>
+            <msub>
+                <mi>a</mi>
+                <mrow>
+                    <mo>[</mo>
+                    <mfrac>
+                        <mi>n</mi>
+                        <mn>2</mn>
+                    </mfrac>
+                    <mo>]</mo>
+                </mrow>
+            </msub>
+            <mi>&#133;</mi>
+            <msub>
+                <mi>a</mi>
+                <mrow>
+                    <mi>n</mi>
+                    <mo>-</mo>
+                    <mn>1</mn>
+                </mrow>
+            </msub>
+        </mfenced>
+    </math>
+    не имеют потомков, поэтому можно считать, что они образуют листья пирамиды. Присоединим к ним элемент
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mrow>
+                <mo>[</mo>
+                <mfrac>
+                    <mi>n</mi>
+                    <mn>2</mn>
+                </mfrac>
+                <mo>]</mo>
+                <mo>-</mo>
+                <mn>1</mn>
+            </mrow>
+        </msub>
+    </math>
+    , который имеет один или два потомка, один из которых элемент
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mrow>
+                <mi>n</mi>
+                <mo>-</mo>
+                <mn>1</mn>
+            </mrow>
+        </msub>
+    </math>
+    . Если потомок больше предка, то необходимо выполнить между ними операцию обмена. Далее к подпоследовательности
+    присоединяется элемент
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mrow>
+                <mo>[</mo>
+                <mfrac>
+                    <mi>n</mi>
+                    <mn>2</mn>
+                </mfrac>
+                <mo>]</mo>
+                <mo>-</mo>
+                <mn>2</mn>
+            </mrow>
+        </msub>
+    </math>
+    , имеющий два потомка. Сравнивается значение предка с потомком большей величины, и если нарушается условие
+    определения пирамиды, то выполняется операция обмена. Выполняя описанный процесс до исчерпания всей
+    последовательности, в результате имеем пирамиду.
+</p>
+<p>Рассмотрим второй этап сортировки. Выполняется обмен между элементами
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>0</mn>
+        </msub>
+    </math>
+    и
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mrow>
+                <mi>n</mi>
+                <mo>-</mo>
+                <mn>1</mn>
+            </mrow>
+        </msub>
+    </math>
+    , в результате которого наибольшим элементом последовательности будет ее последний элемент
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mrow>
+                <mi>n</mi>
+                <mo>-</mo>
+                <mn>1</mn>
+            </mrow>
+        </msub>
+    </math>
+    . Последний элемент исключается из дальнейшего рассмотрения, а последовательность
+    <math>
+        <mfenced open='' close=''>
+            <msub>
+                <mi>a</mi>
+                <mn>0</mn>
+            </msub>
+            <msub>
+                <mi>a</mi>
+                <mn>1</mn>
+            </msub>
+            <mi>&#133;</mi>
+            <msub>
+                <mi>a</mi>
+                <mrow>
+                    <mi>n</mi>
+                    <mo>-</mo>
+                    <mn>2</mn>
+                </mrow>
+            </msub>
+        </mfenced>
+    </math>
+    преобразуется в пирамиду путем сравнения предка с потомками и, возможно, выполнения операции обмена. Затем
+    выполняется операция обмена между элементами
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>0</mn>
+        </msub>
+    </math>
+    и
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mrow>
+                <mi>n</mi>
+                <mo>-</mo>
+                <mn>2</mn>
+            </mrow>
+        </msub>
+    </math>
+    . Элементы
+    <math>
+        <mfenced open='' close=''>
+            <msub>
+                <mi>a</mi>
+                <mrow>
+                    <mi>n</mi>
+                    <mo>-</mo>
+                    <mn>2</mn>
+                </mrow>
+            </msub>
+            <msub>
+                <mi>a</mi>
+                <mrow>
+                    <mi>n</mi>
+                    <mo>-</mo>
+                    <mn>1</mn>
+                </mrow>
+            </msub>
+        </mfenced>
+    </math>
+    образуют упорядоченную по возрастанию последовательность. Затем последовательность
+    <math>
+        <mfenced open='' close=''>
+            <msub>
+                <mi>a</mi>
+                <mn>0</mn>
+            </msub>
+            <msub>
+                <mi>a</mi>
+                <mn>1</mn>
+            </msub>
+            <mi>&#133;</mi>
+            <msub>
+                <mi>a</mi>
+                <mrow>
+                    <mi>n</mi>
+                    <mo>-</mo>
+                    <mn>3</mn>
+                </mrow>
+            </msub>
+        </mfenced>
+    </math>
+    преобразуется в пирамиду.
 </p>
 <p>Повторяя описанные выше шаги, в результате получим упорядоченную по возрастанию последовательность.</p>
 <p>Последовательность шагов пирамидальной сортировки можно проследить, исполнив следующий сценарий:</p>
 <form id='f1'>
-<input type='button' value="Сортировать" onclick="sort()" />
+    <input type='button' value="Сортировать" onclick="sort()"/>
 </form>
-<p>Пример 8.10.6.4. Отсортируем последовательность-пирамиду   
-<math>
-	<mfenced open='' close=''>
-		<mn>37</mn><mo>,</mo><mn>25</mn><mo>,</mo><mn>19</mn><mo>,</mo><mn>5</mn><mo>,</mo><mn>10</mn><mo>,</mo><mn>10</mn>
-	</mfenced>
-</math>
-из примера 8.10.6.3. 
+<p>Пример 8.10.6.4. Отсортируем последовательность-пирамиду
+    <math>
+        <mfenced open='' close=''>
+            <mn>37</mn>
+            <mo>,</mo>
+            <mn>25</mn>
+            <mo>,</mo>
+            <mn>19</mn>
+            <mo>,</mo>
+            <mn>5</mn>
+            <mo>,</mo>
+            <mn>10</mn>
+            <mo>,</mo>
+            <mn>10</mn>
+        </mfenced>
+    </math>
+    из примера 8.10.6.3.
 </p>
-<p>Выполним операцию обмена между элементами <math><msub><mi>a</mi><mn>0</mn></msub></math> и <math><msub><mi>a</mi><mn>5</mn></msub></math> и получим последовательность
-<math>
-	<mfenced open='' close=''>
-		<mn>10</mn><mo>,</mo><mn>25</mn><mo>,</mo><mn>19</mn><mo>,</mo><mn>5</mn><mo>,</mo><mn>10</mn><mo>,</mo><mn>37</mn>
-	</mfenced>
-	<mo>,</mo>
-</math> из которой выделим подпоследовательность 
-<math>
-	<mfenced open='' close=''>
-		<mn>10</mn><mo>,</mo><mn>25</mn><mo>,</mo><mn>19</mn><mo>,</mo><mn>5</mn><mo>,</mo><mn>10</mn>
-	</mfenced>
-	<mo>.</mo>
-</math>
+<p>Выполним операцию обмена между элементами
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>0</mn>
+        </msub>
+    </math>
+    и
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>5</mn>
+        </msub>
+    </math>
+    и получим последовательность
+    <math>
+        <mfenced open='' close=''>
+            <mn>10</mn>
+            <mo>,</mo>
+            <mn>25</mn>
+            <mo>,</mo>
+            <mn>19</mn>
+            <mo>,</mo>
+            <mn>5</mn>
+            <mo>,</mo>
+            <mn>10</mn>
+            <mo>,</mo>
+            <mn>37</mn>
+        </mfenced>
+        <mo>,</mo>
+    </math>
+    из которой выделим подпоследовательность
+    <math>
+        <mfenced open='' close=''>
+            <mn>10</mn>
+            <mo>,</mo>
+            <mn>25</mn>
+            <mo>,</mo>
+            <mn>19</mn>
+            <mo>,</mo>
+            <mn>5</mn>
+            <mo>,</mo>
+            <mn>10</mn>
+        </mfenced>
+        <mo>.</mo>
+    </math>
 </p>
-<p>Элемент <math><msub><mi>a</mi><mn>0</mn></msub><mo>=</mo><mn>10</mn></math> меньше своих потомков <math><msub><mi>a</mi><mn>1</mn></msub><mo>=</mo><mn>25</mn></math>
-и <math><msub><mi>a</mi><mn>2</mn></msub><mo>=</mo><mn>19</mn></math>, что нарушает определение пирамиды. Преобразуем подпоследовательность в пирамиду серией операций сравнения и обмена:
-выполним обмен между <math><msub><mi>a</mi><mn>0</mn></msub></math> и большим из потомков <math><msub><mi>a</mi><mn>1</mn></msub></math>: 
-<math>
-	<mfenced open='' close=''>
-		<mn>25</mn><mo>,</mo><mn>10</mn><mo>,</mo><mn>19</mn><mo>,</mo><mn>5</mn><mo>,</mo><mn>10</mn>
-	</mfenced>
-	<mo>;</mo>
-</math>
-полученная подпоследовательность является пирамидой, так как всякий потомок не больше своего предка</p>
-<p>Выполним обмен между элементами <math><msub><mi>a</mi><mn>0</mn></msub><mo>=</mo><mn>25</mn></math> и <math><msub><mi>a</mi><mn>4</mn></msub><mo>=</mo><mn>10</mn></math>, в результате чего получим последовательность
-<math>
-	<mfenced open='' close=''>
-		<mn>10</mn><mo>,</mo><mn>10</mn><mo>,</mo><mn>19</mn><mo>,</mo><mn>5</mn><mo>,</mo><mn>25</mn>
-	</mfenced>
-	<mo>,</mo>
-</math> из которой опять выделим подпоследовательность
-<math>
-	<mfenced open='' close=''>
-		<mn>10</mn><mo>,</mo><mn>10</mn><mo>,</mo><mn>19</mn><mo>,</mo><mn>5</mn>
-	</mfenced>
-	<mo>.</mo>
-</math>
+<p>Элемент
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>0</mn>
+        </msub>
+        <mo>=</mo>
+        <mn>10</mn>
+    </math>
+    меньше своих потомков
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>1</mn>
+        </msub>
+        <mo>=</mo>
+        <mn>25</mn>
+    </math>
+    и
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>2</mn>
+        </msub>
+        <mo>=</mo>
+        <mn>19</mn>
+    </math>
+    , что нарушает определение пирамиды. Преобразуем подпоследовательность в пирамиду серией операций сравнения и
+    обмена:
+    выполним обмен между
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>0</mn>
+        </msub>
+    </math>
+    и большим из потомков
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>1</mn>
+        </msub>
+    </math>
+    :
+    <math>
+        <mfenced open='' close=''>
+            <mn>25</mn>
+            <mo>,</mo>
+            <mn>10</mn>
+            <mo>,</mo>
+            <mn>19</mn>
+            <mo>,</mo>
+            <mn>5</mn>
+            <mo>,</mo>
+            <mn>10</mn>
+        </mfenced>
+        <mo>;</mo>
+    </math>
+    полученная подпоследовательность является пирамидой, так как всякий потомок не больше своего предка
 </p>
-<p>В последовательности 
-<math>
-	<mfenced open='' close=''>
-		<mn>10</mn><mo>,</mo><mn>10</mn><mo>,</mo><mn>19</mn><mo>,</mo><mn>5</mn>
-	</mfenced>
-</math>
-элемент
-<math><msub><mi>a</mi><mn>2</mn></msub><mo>=</mo><mn>19</mn></math> больше своего предка
-<math><msub><mi>a</mi><mn>0</mn></msub><mo>=</mo><mn>10</mn></math>. Поменяем их местами и получим пирамиду 
-<math>
-	<mfenced open='' close=''>
-		<mn>19</mn><mo>,</mo><mn>10</mn><mo>,</mo><mn>10</mn><mo>,</mo><mn>5</mn>
-	</mfenced>
-</math>.
+<p>Выполним обмен между элементами
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>0</mn>
+        </msub>
+        <mo>=</mo>
+        <mn>25</mn>
+    </math>
+    и
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>4</mn>
+        </msub>
+        <mo>=</mo>
+        <mn>10</mn>
+    </math>
+    , в результате чего получим последовательность
+    <math>
+        <mfenced open='' close=''>
+            <mn>10</mn>
+            <mo>,</mo>
+            <mn>10</mn>
+            <mo>,</mo>
+            <mn>19</mn>
+            <mo>,</mo>
+            <mn>5</mn>
+            <mo>,</mo>
+            <mn>25</mn>
+        </mfenced>
+        <mo>,</mo>
+    </math>
+    из которой опять выделим подпоследовательность
+    <math>
+        <mfenced open='' close=''>
+            <mn>10</mn>
+            <mo>,</mo>
+            <mn>10</mn>
+            <mo>,</mo>
+            <mn>19</mn>
+            <mo>,</mo>
+            <mn>5</mn>
+        </mfenced>
+        <mo>.</mo>
+    </math>
 </p>
-<p>Поменяем местами элементы 
-<math><msub><mi>a</mi><mn>0</mn></msub></math> и
-<math><msub><mi>a</mi><mn>3</mn></msub></math>:
-<math>
-	<mfenced open='' close=''>
-		<mn>5</mn><mo>,</mo><mn>10</mn><mo>,</mo><mn>10</mn><mo>,</mo><mn>19</mn>
-	</mfenced>
-</math>. Из этой последовательности выделим подпоследовательность
-<math>
-	<mfenced open='' close=''>
-		<mn>5</mn><mo>,</mo><mn>10</mn><mo>,</mo><mn>10</mn>
-	</mfenced>
-</math>.
+<p>В последовательности
+    <math>
+        <mfenced open='' close=''>
+            <mn>10</mn>
+            <mo>,</mo>
+            <mn>10</mn>
+            <mo>,</mo>
+            <mn>19</mn>
+            <mo>,</mo>
+            <mn>5</mn>
+        </mfenced>
+    </math>
+    элемент
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>2</mn>
+        </msub>
+        <mo>=</mo>
+        <mn>19</mn>
+    </math>
+    больше своего предка
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>0</mn>
+        </msub>
+        <mo>=</mo>
+        <mn>10</mn>
+    </math>
+    . Поменяем их местами и получим пирамиду
+    <math>
+        <mfenced open='' close=''>
+            <mn>19</mn>
+            <mo>,</mo>
+            <mn>10</mn>
+            <mo>,</mo>
+            <mn>10</mn>
+            <mo>,</mo>
+            <mn>5</mn>
+        </mfenced>
+    </math>
+    .
+</p>
+<p>Поменяем местами элементы
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>0</mn>
+        </msub>
+    </math>
+    и
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>3</mn>
+        </msub>
+    </math>
+    :
+    <math>
+        <mfenced open='' close=''>
+            <mn>5</mn>
+            <mo>,</mo>
+            <mn>10</mn>
+            <mo>,</mo>
+            <mn>10</mn>
+            <mo>,</mo>
+            <mn>19</mn>
+        </mfenced>
+    </math>
+    . Из этой последовательности выделим подпоследовательность
+    <math>
+        <mfenced open='' close=''>
+            <mn>5</mn>
+            <mo>,</mo>
+            <mn>10</mn>
+            <mo>,</mo>
+            <mn>10</mn>
+        </mfenced>
+    </math>
+    .
 </p>
 <p>Последовательность
-<math>
-	<mfenced open='' close=''>
-		<mn>5</mn><mo>,</mo><mn>10</mn><mo>,</mo><mn>10</mn>
-	</mfenced>
-</math>
-не является пирамидой, так как элемент <math><msub><mi>a</mi><mn>0</mn></msub><mo>=</mo><mn>5</mn></math> меньше своих потомков <math><msub><mi>a</mi><mn>1</mn></msub><mo>=</mo><mn>10</mn></math> и <math><msub><mi>a</mi><mn>2</mn></msub><mo>=</mo><mn>10</mn></math>. Посредством операции обмена получим пирамиду
-<math>
-	<mfenced open='' close=''>
-		<mn>10</mn><mo>,</mo><mn>5</mn><mo>,</mo><mn>10</mn>
-	</mfenced>
-</math>.
+    <math>
+        <mfenced open='' close=''>
+            <mn>5</mn>
+            <mo>,</mo>
+            <mn>10</mn>
+            <mo>,</mo>
+            <mn>10</mn>
+        </mfenced>
+    </math>
+    не является пирамидой, так как элемент
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>0</mn>
+        </msub>
+        <mo>=</mo>
+        <mn>5</mn>
+    </math>
+    меньше своих потомков
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>1</mn>
+        </msub>
+        <mo>=</mo>
+        <mn>10</mn>
+    </math>
+    и
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>2</mn>
+        </msub>
+        <mo>=</mo>
+        <mn>10</mn>
+    </math>
+    . Посредством операции обмена получим пирамиду
+    <math>
+        <mfenced open='' close=''>
+            <mn>10</mn>
+            <mo>,</mo>
+            <mn>5</mn>
+            <mo>,</mo>
+            <mn>10</mn>
+        </mfenced>
+    </math>
+    .
 </p>
-<p>Поменяем местами элементы 
-<math><msub><mi>a</mi><mn>0</mn></msub></math> и <math><msub><mi>a</mi><mn>2</mn></msub></math>, после чего временно исключаем из рассмотрения элемент <math><msub><mi>a</mi><mn>2</mn></msub></math>. Далее рассмотрим подпоследовательность
-<math>
-	<mfenced open='' close=''>
-		<mn>10</mn><mo>,</mo><mn>5</mn>
-	</mfenced>
-</math>, являющуюся пирамидой. Поменяем местами ее элементы и получим последовательность
-<math>
-	<mfenced open='' close=''>
-		<mn>5</mn><mo>,</mo><mn>10</mn>
-	</mfenced>
-</math>.   
+<p>Поменяем местами элементы
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>0</mn>
+        </msub>
+    </math>
+    и
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>2</mn>
+        </msub>
+    </math>
+    , после чего временно исключаем из рассмотрения элемент
+    <math>
+        <msub>
+            <mi>a</mi>
+            <mn>2</mn>
+        </msub>
+    </math>
+    . Далее рассмотрим подпоследовательность
+    <math>
+        <mfenced open='' close=''>
+            <mn>10</mn>
+            <mo>,</mo>
+            <mn>5</mn>
+        </mfenced>
+    </math>
+    , являющуюся пирамидой. Поменяем местами ее элементы и получим последовательность
+    <math>
+        <mfenced open='' close=''>
+            <mn>5</mn>
+            <mo>,</mo>
+            <mn>10</mn>
+        </mfenced>
+    </math>
+    .
 </p>
-<p>В результате мы получили искомую отсортированную по возрастанию последовательность 
-<math>
-	<mfenced open='' close=''>
-		<mn>5</mn><mo>,</mo><mn>10</mn><mo>,</mo><mn>10</mn><mo>,</mo><mn>19</mn><mo>,</mo><mn>25</mn><mo>,</mo><mn>37</mn>
-	</mfenced>
-</math>.
+<p>В результате мы получили искомую отсортированную по возрастанию последовательность
+    <math>
+        <mfenced open='' close=''>
+            <mn>5</mn>
+            <mo>,</mo>
+            <mn>10</mn>
+            <mo>,</mo>
+            <mn>10</mn>
+            <mo>,</mo>
+            <mn>19</mn>
+            <mo>,</mo>
+            <mn>25</mn>
+            <mo>,</mo>
+            <mn>37</mn>
+        </mfenced>
+    </math>
+    .
 </p>
 <p><a id='heap_sort'>Программная реализация пирамидальной сортировки:</a></p>
 <code>
-<p class='ind0'>MODULE sort_heap;</p>
-<p class='ind1'>IMPORT Log:=StdLog, Ran:=i21eduRandom;</p>
-<p class='ind1'>CONST n=15;</p>
-<p class='ind1'>PROCEDURE do*;</p>
-<p class='ind2'>VAR a: ARRAY n OF INTEGER;</p> 
-<p class='ind3'>i, j, k: INTEGER;</p>
-<p class='ind2'>PROCEDURE pir(l, r: INTEGER); (*строит пирамиду*)</p>
-<p class='ind4'>VAR t, x: INTEGER;</p>
-<p class='ind3'>BEGIN</p>
-<p class='ind4'>t:=2*l+1;</p>
-<p class='ind4'>WHILE t &#8804; r DO</p>
-<p class='ind5'>x:=a[l];</p>
-<p class='ind5'>IF t &lt; r THEN</p>
-<p class='ind6'>IF a[t] &lt; a[t+1] THEN</p>
-<p class='ind7'>INC(t)</p>						
-<p class='ind6'>END;</p>						
-<p class='ind5'>END;</p>
-<p class='ind5'>IF x &lt; a[t] THEN</p>
-<p class='ind6'>a[l]:=a[t];</p>
-<p class='ind6'>a[t]:=x;</p>
-<p class='ind6'>l:=t;</p>
-<p class='ind6'>t:=2*t+1</p>						
-<p class='ind5'>ELSE</p>
-<p class='ind6'>t:=r+1</p>
-<p class='ind5'>END;</p>
-<p class='ind4'>END;</p>
-<p class='ind2'>END pir;</p>	
-<p class='ind2'>PROCEDURE print;</p>
-<p class='ind3'>VAR s: INTEGER;</p>
-<p class='ind2'>BEGIN</p>
-<p class='ind3'>FOR s:=0 TO n-1 DO</p>
-<p class='ind4'>Log.Int(a[s]);</p>
-<p class='ind4'>Log.Char(',');</p>
-<p class='ind3'>END;</p>		
-<p class='ind2'>END print;</p>		
-<p class='ind1'>BEGIN</p>
-<p class='ind2'>i:=0;</p>
-<p class='ind2'>WHILE i &lt; n DO</p>
-<p class='ind3'>a[i]:=Ran.Int(40);</p>
-<p class='ind3'>INC(i)</p>
-<p class='ind2'>END;</p>
-<p class='ind2'>Log.String('Исходная последовательность: ');</p>
-<p class='ind2'>print;</p>		
-<p class='ind2'>Log.Ln;</p>
-<p class='ind2'>(*строим пирамиду*)</p>
-<p class='ind2'>i:=(n DIV 2) -1;</p>
-<p class='ind2'>k:=n-1;</p>
-<p class='ind2'>WHILE i &#8805; 0 DO</p>
-<p class='ind3'>pir(i, k);</p>
-<p class='ind3'>DEC(i);</p>	
-<p class='ind2'>END;</p>
-<p class='ind2'>i:=0;</p>
-<p class='ind2'>Log.String('Пирамидальная последовательность: ');</p>
-<p class='ind2'>print;</p>
-<p class='ind2'>(*сортируем*)</p>
-<p class='ind2'>i:=0;</p>
-<p class='ind2'>k:=n-1;</p>
-<p class='ind2'>WHILE k &gt; 0 DO</p>
-<p class='ind3'>j:=a[k];</p>
-<p class='ind3'>a[k]:=a[0];</p>
-<p class='ind3'>a[0]:=j;</p>
-<p class='ind3'>DEC(k);</p>
-<p class='ind3'>pir(0, k);</p>
-<p class='ind2'>END;</p>
-<p class='ind2'>Log.String('Отсортированная последовательность: ');</p>
-<p class='ind2'>print;</p>
-<p class='ind1'>END do;</p>
-<p class='ind0'>BEGIN</p>
-<p class='ind0'>END sort_heap.</p>
-sort_heap.do
+    <p class='ind0'>MODULE sort_heap;</p>
+    <p class='ind1'>IMPORT Log:=StdLog, Ran:=i21eduRandom;</p>
+    <p class='ind1'>CONST n=15;</p>
+    <p class='ind1'>PROCEDURE do*;</p>
+    <p class='ind2'>VAR a: ARRAY n OF INTEGER;</p>
+    <p class='ind3'>i, j, k: INTEGER;</p>
+    <p class='ind2'>PROCEDURE pir(l, r: INTEGER); (*строит пирамиду*)</p>
+    <p class='ind4'>VAR t, x: INTEGER;</p>
+    <p class='ind3'>BEGIN</p>
+    <p class='ind4'>t:=2*l+1;</p>
+    <p class='ind4'>WHILE t &#8804; r DO</p>
+    <p class='ind5'>x:=a[l];</p>
+    <p class='ind5'>IF t &lt; r THEN</p>
+    <p class='ind6'>IF a[t] &lt; a[t+1] THEN</p>
+    <p class='ind7'>INC(t)</p>
+    <p class='ind6'>END;</p>
+    <p class='ind5'>END;</p>
+    <p class='ind5'>IF x &lt; a[t] THEN</p>
+    <p class='ind6'>a[l]:=a[t];</p>
+    <p class='ind6'>a[t]:=x;</p>
+    <p class='ind6'>l:=t;</p>
+    <p class='ind6'>t:=2*t+1</p>
+    <p class='ind5'>ELSE</p>
+    <p class='ind6'>t:=r+1</p>
+    <p class='ind5'>END;</p>
+    <p class='ind4'>END;</p>
+    <p class='ind2'>END pir;</p>
+    <p class='ind2'>PROCEDURE print;</p>
+    <p class='ind3'>VAR s: INTEGER;</p>
+    <p class='ind2'>BEGIN</p>
+    <p class='ind3'>FOR s:=0 TO n-1 DO</p>
+    <p class='ind4'>Log.Int(a[s]);</p>
+    <p class='ind4'>Log.Char(',');</p>
+    <p class='ind3'>END;</p>
+    <p class='ind2'>END print;</p>
+    <p class='ind1'>BEGIN</p>
+    <p class='ind2'>i:=0;</p>
+    <p class='ind2'>WHILE i &lt; n DO</p>
+    <p class='ind3'>a[i]:=Ran.Int(40);</p>
+    <p class='ind3'>INC(i)</p>
+    <p class='ind2'>END;</p>
+    <p class='ind2'>Log.String('Исходная последовательность: ');</p>
+    <p class='ind2'>print;</p>
+    <p class='ind2'>Log.Ln;</p>
+    <p class='ind2'>(*строим пирамиду*)</p>
+    <p class='ind2'>i:=(n DIV 2) -1;</p>
+    <p class='ind2'>k:=n-1;</p>
+    <p class='ind2'>WHILE i &#8805; 0 DO</p>
+    <p class='ind3'>pir(i, k);</p>
+    <p class='ind3'>DEC(i);</p>
+    <p class='ind2'>END;</p>
+    <p class='ind2'>i:=0;</p>
+    <p class='ind2'>Log.String('Пирамидальная последовательность: ');</p>
+    <p class='ind2'>print;</p>
+    <p class='ind2'>(*сортируем*)</p>
+    <p class='ind2'>i:=0;</p>
+    <p class='ind2'>k:=n-1;</p>
+    <p class='ind2'>WHILE k &gt; 0 DO</p>
+    <p class='ind3'>j:=a[k];</p>
+    <p class='ind3'>a[k]:=a[0];</p>
+    <p class='ind3'>a[0]:=j;</p>
+    <p class='ind3'>DEC(k);</p>
+    <p class='ind3'>pir(0, k);</p>
+    <p class='ind2'>END;</p>
+    <p class='ind2'>Log.String('Отсортированная последовательность: ');</p>
+    <p class='ind2'>print;</p>
+    <p class='ind1'>END do;</p>
+    <p class='ind0'>BEGIN</p>
+    <p class='ind0'>END sort_heap.</p>
+    sort_heap.do
 </code>
-<p>Рассмотрим эффективность пирамидальной сортировки. На небольших массивах метод неэффективен. Чем больше количество элементов массива, тем эффективнее пирамидальная сортировка (эффективнее сортировки Шелла). Быстродействие пирамидальной сортировки порядка 
-<math>
-	<mi>n</mi>
-	<mo>&#x2062;</mo>
-	<mrow><msub><mi>log</mi><mn>2</mn></msub><mo>&#x2061;</mo><mi>n</mi></mrow>
-</math>, тогда как сортировка Шелла лишь порядка
-<math>
-	<msup><mi>n</mi><mn>1.8</mn></msup>
-</math>.
-Среднее число операций обмена при пирамидальной сортировке равно
-<math>
-	<mfrac><mn>1</mn><mn>2</mn></mfrac>
-	<mo>&#x2062;</mo>	
-	<mi>n</mi>
-	<mo>&#x2062;</mo>
-	<mrow>
-		<msub><mi>log</mi><mn>2</mn></msub><mo>&#x2061;</mo><mi>n</mi>
-	</mrow>
-	<mo>.</mo>
-</math>
+<p>Рассмотрим эффективность пирамидальной сортировки. На небольших массивах метод неэффективен. Чем больше количество
+    элементов массива, тем эффективнее пирамидальная сортировка (эффективнее сортировки Шелла). Быстродействие
+    пирамидальной сортировки порядка
+    <math>
+        <mi>n</mi>
+        <mo>&#x2062;</mo>
+        <mrow>
+            <msub>
+                <mi>log</mi>
+                <mn>2</mn>
+            </msub>
+            <mo>&#x2061;</mo>
+            <mi>n</mi>
+        </mrow>
+    </math>
+    , тогда как сортировка Шелла лишь порядка
+    <math>
+        <msup>
+            <mi>n</mi>
+            <mn>1.8</mn>
+        </msup>
+    </math>
+    .
+    Среднее число операций обмена при пирамидальной сортировке равно
+    <math>
+        <mfrac>
+            <mn>1</mn>
+            <mn>2</mn>
+        </mfrac>
+        <mo>&#x2062;</mo>
+        <mi>n</mi>
+        <mo>&#x2062;</mo>
+        <mrow>
+            <msub>
+                <mi>log</mi>
+                <mn>2</mn>
+            </msub>
+            <mo>&#x2061;</mo>
+            <mi>n</mi>
+        </mrow>
+        <mo>.</mo>
+    </math>
 </p>
-<p>Следующий сценарий предназначен для оценки вычислительной сложности алгоритма пирамидальной сортировки последовательности псевдослучайных чисел по <a href='#heap_sort'>приведенному выше модулю:</a></p>
+<p>Следующий сценарий предназначен для оценки вычислительной сложности алгоритма пирамидальной сортировки
+    последовательности псевдослучайных чисел по <a href='#heap_sort'>приведенному выше модулю:</a></p>
 <form id='f2'>
-Введите n &gt; 3:<input type="text" id="kolich" maxlength="6" size="6" value='1000'/>
-<input type='button' value="Сортировать" onclick="calc_op(kolich.value)" />
+    Введите n &gt; 3:<input type="text" id="kolich" maxlength="6" size="6" value='1000'/>
+    <input type='button' value="Сортировать" onclick="calc_op(kolich.value)"/>
 </form>
-<p>Поведение алгоритма пирамидальной сортировки неестественное &#151; первоначальная частичная упорядоченность массива не ускоряет процесс сортировки.</p>
+<p>Поведение алгоритма пирамидальной сортировки неестественное &#151; первоначальная частичная упорядоченность массива
+    не ускоряет процесс сортировки.</p>
 <p>Алгоритм неустойчивый, так как взаимное расположение уже упорядоченных элементов не сохраняется.</p>
 <h3>Вопросы и задачи</h3>
 <ol>
-<li>Последовательность цифр даты рождения преобразуйте в пирамиду.</li>
-<li>Отсортируйте по возрастанию (убыванию) алгоритмом пирамидальной сортировки последовательность цифр даты рождения.</li>
-<li>Задайте монотонно возрастающую последовательность из 7 чисел и примените к ней пирамидальную сортировку по возрастанию. Посчитайте количество операций сравнения и присваивания.</li>
-<li>Задайте монотонно убывающую последовательность из 7 чисел и примените к ней пирамидальную сортировку по возрастанию. Посчитайте количество операций сравнения и присваивания.</li>
-<li>Задайте последовательность из 7 одинаковых чисел и примените к ней пирамидальную сортировку. Посчитайте количество операций сравнения и присваивания.</li>
-<li>Постройте пример, демонстрирующий неустойчивость пирамидальной сортировки.</li>
-<li>Постройте пример, демонстрирующий неестественность поведения пирамидальной сортировки.</li>
-<li>Опишите пирамидальную сортировку для упорядочения последовательности по убыванию.</li>
-<li>Составьте программу пирамидальной сортировки для упорядочения последовательности по убыванию.</li>
-<li>Опишите асимптотическую сложность алгоритма пирамидальной сортировки согласно <a href='8_2.html#t8_2_1'> таблице 8.2.1.</a></li>
-<li>Составьте программу пирамидальной сортировки последовательности записей из целых чисел и букв по целочисленному ключевому полю. Является ли алгоритм устойчивым? Если нет, то постройте пример неустойчивости алгоритма.</li>
-<li>Составьте программу оценки вычислительной сложности и затраченного времени (в миллисекундах) алгоритма пирамидальной сортировки последовательности записей из нескольких полей.</li>
+    <li>Последовательность цифр даты рождения преобразуйте в пирамиду.</li>
+    <li>Отсортируйте по возрастанию (убыванию) алгоритмом пирамидальной сортировки последовательность цифр даты
+        рождения.
+    </li>
+    <li>Задайте монотонно возрастающую последовательность из 7 чисел и примените к ней пирамидальную сортировку по
+        возрастанию. Посчитайте количество операций сравнения и присваивания.
+    </li>
+    <li>Задайте монотонно убывающую последовательность из 7 чисел и примените к ней пирамидальную сортировку по
+        возрастанию. Посчитайте количество операций сравнения и присваивания.
+    </li>
+    <li>Задайте последовательность из 7 одинаковых чисел и примените к ней пирамидальную сортировку. Посчитайте
+        количество операций сравнения и присваивания.
+    </li>
+    <li>Постройте пример, демонстрирующий неустойчивость пирамидальной сортировки.</li>
+    <li>Постройте пример, демонстрирующий неестественность поведения пирамидальной сортировки.</li>
+    <li>Опишите пирамидальную сортировку для упорядочения последовательности по убыванию.</li>
+    <li>Составьте программу пирамидальной сортировки для упорядочения последовательности по убыванию.</li>
+    <li>Опишите асимптотическую сложность алгоритма пирамидальной сортировки согласно <a href='8_2.html#t8_2_1'> таблице
+        8.2.1.</a></li>
+    <li>Составьте программу пирамидальной сортировки последовательности записей из целых чисел и букв по целочисленному
+        ключевому полю. Является ли алгоритм устойчивым? Если нет, то постройте пример неустойчивости алгоритма.
+    </li>
+    <li>Составьте программу оценки вычислительной сложности и затраченного времени (в миллисекундах) алгоритма
+        пирамидальной сортировки последовательности записей из нескольких полей.
+    </li>
 </ol>
-<p>Задачи для самостоятельного решения из сборника задач по программированию под редакцией С.А. Абрамова, Г.Г. Гнездиловой, Е.Н. Капустиной, М.И. Селюн. Задачи по программированию:</p>
+<p>Задачи для самостоятельного решения из сборника задач по программированию под редакцией С.А. Абрамова, Г.Г.
+    Гнездиловой, Е.Н. Капустиной, М.И. Селюн. Задачи по программированию:</p>
 <p><a href='zadachi/18.html'>§18. Сортировка массивов и файлов</a></p>
-<p><a href="8_10_5.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_10_7.html">К следующему</a> </p>
+<p><a href="8_10_5.html">К предыдущему</a> <a href="index.html">К содержанию</a> <a href="8_10_7.html">К следующему</a>
+</p>
 </body>
+<script type="text/javascript">
+    MathJax.Hub.Configured()
+</script>
 </html>
